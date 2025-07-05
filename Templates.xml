@@ -1,0 +1,100 @@
+<Ui>
+    <Frame name="ICHListHeadersTemplate" virtual="true" enableMouse="true">
+        <Size y="25"/>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="BorderBottom">
+                    <Size y="3"/>
+                    <Color r="1" g="1" b="1"/>
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT"/>
+                        <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString parentKey="NameHeader" inherits="GameTooltipText" justifyH="left" text="NAME">
+                    <Size x="200"/>
+                    <Anchors><Anchor point="LEFT" relativePoint="LEFT"/></Anchors>
+                </FontString>
+                <FontString parentKey="InstanceHeader" inherits="GameTooltipText" justifyH="left" text="INSTANCE">
+                    <Size x="200"/>
+                    <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="200"/></Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+
+    <Frame name="ICHListItemTemplate" virtual="true" enableMouse="true">
+        <Size y="25"/>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Bg" hidden="true">
+                    <Color r="1" g="1" b="1" a="0.1"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString parentKey="Instance" inherits="GameTooltipText" justifyH="LEFT" text="">
+                    <Size x="200"/>
+                    <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="200"/></Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Frame parentKey="NameContainer" enableMouse="false">
+                <Size x="200"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                    <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="">
+                            <Size x="165"/>
+                            <Anchors><Anchor point="LEFT" relativePoint="LEFT"/></Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnEnter>
+                        -- Hide ViewButtons from other list items
+                        local children = { self:GetParent():GetParent():GetChildren() }
+                        for i, child in ipairs(children) do
+                            if child.NameContainer.ViewButton:IsShown() then
+                                child.NameContainer.ViewButton:Hide()
+                            end
+                        end
+
+                        self.ViewButton:Show()
+                    </OnEnter>
+                </Scripts>
+                <Frames>
+                    <Button name="ICHViewItemButton" parentKey="ViewButton" inherits="InsecureActionButtonTemplate" hidden="true">
+                        <Size x="20" y="20"/>
+                        <Anchors><Anchor point="RIGHT" relativePoint="RIGHT" x="-10"/></Anchors>
+                        <Scripts><OnClick/></Scripts>
+                        <NormalTexture file="Interface\AddOns\ICH\Media\ViewItem.png"/>
+                        <HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+                        <Scripts>
+                            <OnEnter>
+                                GameTooltip:SetOwner(self, "ANCHOR_NONE")
+                                GameTooltip:SetPoint("RIGHT", self, "LEFT", -5, 0)
+                                local mountName = self:GetParent().Text:GetText()
+                                GameTooltip:SetText(mountName)
+                                GameTooltip:AddLine("View mount", 1, 1, 1, true)
+                                GameTooltip:Show()
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide()
+                            </OnLeave>
+                        </Scripts>
+                    </Button>
+                </Frames>
+            </Frame>
+        </Frames>
+    </Frame>
+</Ui>

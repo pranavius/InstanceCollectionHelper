@@ -1,0 +1,17 @@
+## Interface: 110107
+## Title: Instance Collection Helper
+## Notes: Helps find and set the instance difficulty needed to obtain collectible items
+## Author: pranavius
+## Version: 1
+## SavedVariables: ICH_DB
+## X-Flavor: retail
+## X-Category: Achievements
+## X-Additional-Categories: Battle Pets, Boss Encounters
+
+embeds.xml
+Templates.xml
+
+Configs.lua
+Constants.lua
+Modules\DataProvider.lua
+ICH.lua
