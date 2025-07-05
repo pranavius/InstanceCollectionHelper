@@ -37,55 +37,24 @@
                     </Anchors>
                 </Texture>
             </Layer>
-            <Layer level="OVERLAY">
-                <FontString parentKey="Instance" inherits="GameTooltipText" justifyH="LEFT" text="">
-                    <Size x="200"/>
-                    <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="200"/></Anchors>
-                </FontString>
-            </Layer>
         </Layers>
         <Frames>
-            <Frame parentKey="NameContainer" enableMouse="false">
+            <Frame parentKey="NameContainer">
                 <Size x="200"/>
                 <Anchors>
                     <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
                     <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT"/>
                 </Anchors>
-                <Layers>
-                    <Layer level="OVERLAY">
-                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="">
-                            <Size x="165"/>
-                            <Anchors><Anchor point="LEFT" relativePoint="LEFT"/></Anchors>
-                        </FontString>
-                    </Layer>
-                </Layers>
-                <Scripts>
-                    <OnEnter>
-                        -- Hide ViewButtons from other list items
-                        local children = { self:GetParent():GetParent():GetChildren() }
-                        for i, child in ipairs(children) do
-                            if child.NameContainer.ViewButton:IsShown() then
-                                child.NameContainer.ViewButton:Hide()
-                            end
-                        end
-
-                        self.ViewButton:Show()
-                    </OnEnter>
-                </Scripts>
                 <Frames>
-                    <Button name="ICHViewItemButton" parentKey="ViewButton" inherits="InsecureActionButtonTemplate" hidden="true">
-                        <Size x="20" y="20"/>
-                        <Anchors><Anchor point="RIGHT" relativePoint="RIGHT" x="-10"/></Anchors>
-                        <Scripts><OnClick/></Scripts>
-                        <NormalTexture file="Interface\AddOns\ICH\Media\ViewItem.png"/>
-                        <HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+                    <Button name="ICHViewItemButton" parentKey="ViewButton" inherits="InsecureActionButtonTemplate">
+                        <Size x="23" y="23"/>
+                        <Anchors><Anchor point="LEFT" relativePoint="LEFT"/></Anchors>
+                        <!-- <HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/> -->
                         <Scripts>
                             <OnEnter>
                                 GameTooltip:SetOwner(self, "ANCHOR_NONE")
                                 GameTooltip:SetPoint("RIGHT", self, "LEFT", -5, 0)
-                                local mountName = self:GetParent().Text:GetText()
-                                GameTooltip:SetText(mountName)
-                                GameTooltip:AddLine("View mount", 1, 1, 1, true)
+                                GameTooltip:AddLine("View in mount journal", 1, 1, 1, true)
                                 GameTooltip:Show()
                             </OnEnter>
                             <OnLeave>
@@ -94,6 +63,47 @@
                         </Scripts>
                     </Button>
                 </Frames>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="">
+                            <Size x="165"/>
+                            <Anchors><Anchor point="LEFT" relativeKey="$parent.ViewButton" relativePoint="RIGHT" x="5"/></Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <Frame parentKey="InstanceContainer">
+                <Size x="200"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.NameContainer" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.NameContainer" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+                <Frames>
+                    <Button name="ICHViewInstanceButton" parentKey="ViewButton" inherits="InsecureActionButtonTemplate">
+                        <Size x="20" y="20"/>
+                        <Anchors><Anchor point="LEFT" relativePoint="LEFT"/></Anchors>
+                        <Scripts>
+                            <OnEnter>
+                                GameTooltip:SetOwner(self, "ANCHOR_NONE")
+                                GameTooltip:SetPoint("RIGHT", self, "LEFT", -5, 0)
+                                GameTooltip:AddLine("View in instance journal", 1, 1, 1, true)
+                                GameTooltip:Show()
+                            </OnEnter>
+                            <OnLeave>
+                                GameTooltip:Hide()
+                            </OnLeave>
+                        </Scripts>
+                    </Button>
+                </Frames>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="">
+                            <Size x="175"/>
+                            <Anchors><Anchor point="LEFT" relativeKey="$parent.ViewButton" relativePoint="RIGHT" x="5"/></Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
             </Frame>
         </Frames>
     </Frame>

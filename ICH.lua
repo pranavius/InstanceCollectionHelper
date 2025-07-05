@@ -78,14 +78,6 @@ function AddOn:CreateMainFrame()
 
     self.Container = f
     self:CreateScrollingView()
-    -- Hide any shown buttons in the list after leaving the frame
-    self.Container:SetScript("OnLeave", function()
-        for _, item in ipairs({ self.ScrollBox.ScrollTarget:GetChildren() }) do
-            if item.NameContainer.ViewButton:IsShown() then
-                item.NameContainer.ViewButton:Hide()
-            end
-        end
-    end)
 
     -- Hide by default
     self.Container:Hide()
@@ -99,7 +91,7 @@ function AddOn:CreateScrollingView()
     self.Container.ListHeaders:SetPoint("TOPRIGHT", self.Container.Title, "BOTTOMRIGHT", -10, -10)
 
     self.ScrollBox = CreateFrame("Frame", "ICHScrollBox", self.Container, "WowScrollBoxList")
-    self.ScrollBox:SetPoint("TOPLEFT", self.Container.ListHeaders, "BOTTOMLEFT", 0, 0)
+    self.ScrollBox:SetPoint("TOPLEFT", self.Container.ListHeaders, "BOTTOMLEFT", 0, -5)
     self.ScrollBox:SetPoint("BOTTOMRIGHT", self.Container, "BOTTOMRIGHT", -30, 20)
 
     self.ScrollBar = CreateFrame("EventFrame", "ICHScrollBar", self.Container, "MinimalScrollBar")
