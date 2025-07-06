@@ -190,5 +190,26 @@ function AddOn:CreateScrollingView()
     end
 end
 
+---Query the Dungeon Journal API for Boss Information
+function AddOn:ShowBossInfo(instanceID, bossIndex)
+    -- Select the instance in the Dungeon Journal
+    EJ_SelectInstance(instanceID)
+    -- Get boss info by index (1-based)
+    local encounterID, boss_name, description, _, icon = EJ_GetEncounterInfoByIndex(bossIndex, EJ_GetDifficulty())
+    if boss_name then
+        -- Display boss name in BossInfo frame
+        if not self.LeftPane.BossInfo.NameText then
+            self.LeftPane.BossInfo.NameText = self.LeftPane.BossInfo:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+            self.LeftPane.BossInfo.NameText:SetPoint("TOPLEFT", self.LeftPane.BossInfo, "TOPLEFT", 10, -10)
+        end
+        self.LeftPane.BossInfo.NameText:SetText(boss_name)
+    else
+        -- Handle missing boss
+        if self.LeftPane.BossInfo.NameText then
+            self.LeftPane.BossInfo.NameText:SetText("Boss not found")
+        end
+    end
+end
+
 -- Exposes AddOn functionality for use in XML
 ICH = AddOn
