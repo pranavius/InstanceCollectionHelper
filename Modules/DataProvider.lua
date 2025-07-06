@@ -2,35 +2,99 @@ local name, AddOn = ...
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 
----@class NameContainerFrame
+---@class NameContainer: Frame Frame that displays elements relevant to the "Name" column in the scrollable list
 ---@field Text FontString Name of an item
 ---@field ViewButton Button Button to view the item in the appropriate collection journal in-game
 
----@class InstanceContainerFrame
+---@class InstanceContainer: Frame Frame that displays elements relevant to the "Instance" column in the scrollable list
 ---@field Text FontString Name of an instance
 ---@field ViewButton Button Button to view the instance in the encounter journal in-game
 
+---@class DifficultyButton: Button
+---@field difficultyID number
+
+---@class DifficultyContainer: Frame Frame that displays elements relevant to the "Difficulty" column in the scrollable list
+---@field RaidDiff10Button DifficultyButton Button for setting Legacy Raid difficulty to 10 player
+---@field RaidDiff10HeroicButton DifficultyButton Button for setting Legacy Raid difficulty to 10 player (Heroic)
+---@field RaidDiff25Button DifficultyButton Button for setting Legacy Raid difficulty to 25 player
+---@field RaidDiff25HeroicButton DifficultyButton Button for setting Legacy Raid difficulty to 25 player (Heroic)
+---@field RaidDiffNormalButton DifficultyButton Button for setting Raid difficulty to Normal
+---@field RaidDiffHeroicButton DifficultyButton Button for setting Raid difficulty to Heroic
+---@field RaidDiffMythicButton DifficultyButton Button for setting Raid difficulty to Mythic
+---@field DungDiffNormalButton DifficultyButton Button for setting Dungeon difficulty to Normal
+---@field DungDiffHeroicButton DifficultyButton Button for setting Dungeon difficulty to Heroic
+---@field DungDiffMythicButton DifficultyButton Button for setting Dungeon difficulty to Mythic
+
 ---@class ICHListItem: Frame
 ---@field Bg Frame The background texture for the list item
----@field NameContainer NameContainerFrame
----@field InstanceContainer InstanceContainerFrame
+---@field NameContainer NameContainer
+---@field InstanceContainer InstanceContainer
+---@field DifficultyContainer DifficultyContainer
+
+---Unsets all difficulty button points and hides them before attempting to show the correct ones based on provided data
+---@param container DifficultyContainer
+local function HideAllDifficultyButtons(container)
+    for _, button in ipairs({ container:GetChildren() }) do
+        button:Hide()
+    end
+end
+
+---@param container DifficultyContainer See `Templates.xml` for "ICHListItemTemplate"
+---@param data InstanceMount The data to process and display in a list item.
+local function ShowDifficultyButtons(container, data)
+    print("Container name:", container and container:GetParentKey())
+    for i, diffID in ipairs(data.DifficultyIDs) do
+        print("index", i)
+        local button
+        if AddOn:IsInstanceRaid(data) then
+            if diffID == AddOn.RaidDifficulty.Legacy10 then button = container.RaidDiff10Button
+            elseif diffID == AddOn.RaidDifficulty.Legacy10H then button = container.RaidDiff10HeroicButton
+            elseif diffID == AddOn.RaidDifficulty.Legacy25 then button = container.RaidDiff25Button
+            elseif diffID == AddOn.RaidDifficulty.Legacy25H then button = container.RaidDiff25HeroicButton
+            elseif diffID == AddOn.RaidDifficulty.Normal then button = container.RaidDiffNormalButton
+            elseif diffID == AddOn.RaidDifficulty.Heroic then button = container.RaidDiffHeroicButton
+            elseif diffID == AddOn.RaidDifficulty.Mythic then button = container.RaidDiffMythicButton
+            end
+        else
+            if diffID == AddOn.DungeonDifficulty.Normal then button = container.DungDiffNormalButton
+            elseif diffID == AddOn.DungeonDifficulty.Heroic then button = container.DungDiffHeroicButton
+            elseif diffID == AddOn.DungeonDifficulty.Mythic then button = container.DungDiffMythicButton
+            end
+        end
+
+        if button then
+            print("Button name:", button:GetParentKey())
+            button:ClearAllPoints()
+            button:SetPoint("TOPLEFT", container, "TOPLEFT", i == 1 and 0 or ((50 * (i - 1)) + 2), -2.5)
+            button:SetPoint("BOTTOMLEFT", container, "BOTTOMLEFT", i == 1 and 0 or ((50 * (i - 1)) + 2), 2.5)
+            button:SetText(AddOn:GetDifficultyButtonText(button.difficultyID))
+            button:GetFontString():SetTextColor(1, 1, 1, 1)
+            button:Show()
+        end
+    end
+end
 
 ---Initializes how data in the scrollable list should be displayed.
 ---@param frame ICHListItem See `Templates.xml` for "ICHListItemTemplate"
 ---@param data InstanceMount The data to process and display in a list item.
 function AddOn.DataProviderInit(frame, data)
+    if not frame or not data then return end
+
     local index = AddOn.ICHDataProvider:FindIndex(data)
     if index % 2 == 0 then frame.Bg:Show() elseif frame.Bg:IsShown() then frame.Bg:Hide() end
     frame.NameContainer.Text:SetText(data.Name)
     frame.InstanceContainer.Text:SetText(data.Instance)
 
     local mountSpellID = select(2, C_MountJournal.GetMountInfoByID(data.MountID))
-    local iconID = C_Spell.GetSpellInfo(mountSpellID).originalIconID
+    local iconID = C_Spell.GetSpellInfo(mountSpellID) and C_Spell.GetSpellInfo(mountSpellID).originalIconID
     frame.NameContainer.ViewButton:SetNormalTexture(iconID)
     frame.NameContainer.ViewButton:SetHighlightTexture(iconID)
 
     frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
     frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
+
+    HideAllDifficultyButtons(frame.DifficultyContainer)
+    ShowDifficultyButtons(frame.DifficultyContainer, data)
 
     frame.NameContainer.ViewButton:SetScript("OnClick", function()
         -- Currently only supports Mounts, but additional conditions could be added for showing things like Battle Pets and Achievements
@@ -53,6 +117,50 @@ function AddOn.DataProviderInit(frame, data)
     end)
 end
 
+function AddOn:GetDifficultyButtonText(difficultyID)
+    local dKey
+    for key, dd in pairs(AddOn.DungeonDifficulty) do
+        if dd == difficultyID then dKey = key break end
+    end
+    if not dKey then
+        for key, rd in pairs(AddOn.RaidDifficulty) do
+            if rd == difficultyID then dKey = key break end
+        end
+    end
+
+    if dKey == "Normal" then return "N"
+    elseif dKey == "Heroic" then return "H"
+    elseif dKey == "Mythic" then return "M"
+    elseif dKey == "Legacy10" then return "10"
+    elseif dKey == "Legacy25" then return "25"
+    elseif dKey == "Legacy10H" then return "10H"
+    elseif dKey == "Legacy25H" then return "25H"
+    end
+
+    return "?"
+end
+
+function AddOn:GetDifficultyButtonTooltipText(difficultyID)
+    local dKey
+    for key, dd in pairs(AddOn.DungeonDifficulty) do
+        if dd == difficultyID then dKey = key break end
+    end
+    if not dKey then
+        for key, rd in pairs(AddOn.RaidDifficulty) do
+            if rd == difficultyID then dKey = key break end
+        end
+    end
+
+    if not dKey then return "Unknown"
+    elseif dKey == "Legacy10" then return "10 Player"
+    elseif dKey == "Legacy25" then return "25 Player"
+    elseif dKey == "Legacy10H" then return "10 Player (Heroic)"
+    elseif dKey == "Legacy25H" then return "25 Player (Heroic)"
+    end
+
+    return dKey
+end
+
 ---@param data InstanceMount
 ---@return boolean `true` if the instance is a raid, `false` otherwise
 function AddOn:IsInstanceRaid(data)
@@ -61,6 +169,5 @@ function AddOn:IsInstanceRaid(data)
     for _, id in pairs(self.DungeonDifficulty) do
         if id == data.DifficultyIDs[1] then return false end
     end
-
     return true
 end

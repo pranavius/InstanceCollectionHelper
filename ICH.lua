@@ -73,6 +73,10 @@ function AddOn:CreateMainFrame()
     f.Title:SetPoint("TOPLEFT", f, "TOPLEFT", 0, -10)
     f.Title:SetPoint("TOPRIGHT", f, "TOPRIGHT", 0, -10)
     f.Title:SetText(name)
+
+    -- Close button
+    f.CloseButton = CreateFrame("Button", "ICHCloseButton", f, "UIPanelCloseButtonDefaultAnchors")
+    f.CloseButton:SetSize(20, 20)
     -- Allows closing via ESC key
     tinsert(UISpecialFrames, f:GetName())
 
@@ -104,6 +108,10 @@ function AddOn:CreateScrollingView()
     self.ScrollView:SetDataProvider(self.ICHDataProvider)
 
     ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView)
+    ScrollUtil.AddAcquiredFrameCallback(self.ScrollBox, function(frame)
+        -- print("Frame was just updated:", frame:GetName(), frame:GetParentKey())
+        print("Frame:", frame)
+    end)
     self.ScrollView:SetElementInitializer("ICHListItemTemplate", self.DataProviderInit)
     for _, data in ipairs(self.InstanceMounts) do
         self.ICHDataProvider:Insert(data)
