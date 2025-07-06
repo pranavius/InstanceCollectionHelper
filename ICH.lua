@@ -69,6 +69,28 @@ function AddOn:CreateMainFrame()
     f.LeftPane.Bg:SetAllPoints(f.LeftPane)
     f.LeftPane.Bg:SetColorTexture(0.12, 0.12, 0.12, 0.7)
 
+    -- Upper Left Pane (for boss info)
+    f.LeftPane.BossInfo = CreateFrame("Frame", nil, f.LeftPane)
+    f.LeftPane.BossInfo:SetPoint("TOPLEFT", f.LeftPane, "TOPLEFT", 0, 0)
+    f.LeftPane.BossInfo:SetPoint("TOPRIGHT", f.LeftPane, "TOPRIGHT", 0, 0)
+    f.LeftPane.BossInfo.Bg = f.LeftPane.BossInfo:CreateTexture(nil, "BACKGROUND")
+    f.LeftPane.BossInfo.Bg:SetAllPoints(f.LeftPane.BossInfo)
+    f.LeftPane.BossInfo.Bg:SetColorTexture(0.15, 0.15, 0.15, 0.7)
+
+    -- Divider
+    f.LeftPane.Divider = f.LeftPane:CreateTexture(nil, "ARTWORK")
+    f.LeftPane.Divider:SetColorTexture(0.3, 0.3, 0.3, 1)
+
+    -- Lower Left Pane (for map info)
+    f.LeftPane.MapInfo = CreateFrame("Frame", nil, f.LeftPane)
+    f.LeftPane.MapInfo:SetPoint("TOPLEFT", f.LeftPane.Divider, "BOTTOMLEFT", 0, 0)
+    f.LeftPane.MapInfo:SetPoint("TOPRIGHT", f.LeftPane.Divider, "BOTTOMRIGHT", 0, 0)
+    f.LeftPane.MapInfo:SetPoint("BOTTOMLEFT", f.LeftPane, "BOTTOMLEFT", 0, 0)
+    f.LeftPane.MapInfo:SetPoint("BOTTOMRIGHT", f.LeftPane, "BOTTOMRIGHT", 0, 0)
+    f.LeftPane.MapInfo.Bg = f.LeftPane.MapInfo:CreateTexture(nil, "BACKGROUND")
+    f.LeftPane.MapInfo.Bg:SetAllPoints(f.LeftPane.MapInfo)
+    f.LeftPane.MapInfo.Bg:SetColorTexture(0.12, 0.12, 0.12, 0.7)
+
     -- Right Pane (for object list)
     f.RightPane = CreateFrame("Frame", nil, f)
     f.RightPane:SetPoint("TOPLEFT", f.LeftPane, "TOPRIGHT", 10, 0)
@@ -76,6 +98,32 @@ function AddOn:CreateMainFrame()
     f.RightPane.Bg = f.RightPane:CreateTexture(nil, "BACKGROUND")
     f.RightPane.Bg:SetAllPoints(f.RightPane)
     f.RightPane.Bg:SetColorTexture(0.18, 0.18, 0.18, 0.7)
+
+    -- Resize left pane sections dynamically
+    local function ResizeLeftPaneSections()
+        local leftPaneHeight = f.LeftPane:GetHeight()
+        local bossInfoHeight = leftPaneHeight * 0.6 -- Adjust BossInfo height
+        local mapInfoHeight = leftPaneHeight - bossInfoHeight - 2 -- 2 for divider
+
+        f.LeftPane.BossInfo:SetHeight(bossInfoHeight)
+        f.LeftPane.MapInfo:SetHeight(mapInfoHeight)
+
+        -- Reposition divider
+        f.LeftPane.Divider:ClearAllPoints()
+        f.LeftPane.Divider:SetPoint("TOPLEFT", f.LeftPane.BossInfo, "BOTTOMLEFT", 0, 0)
+        f.LeftPane.Divider:SetPoint("TOPRIGHT", f.LeftPane.BossInfo, "BOTTOMRIGHT", 0, 0)
+        f.LeftPane.Divider:SetHeight(2)
+
+        -- Re-anchor MapInfo to divider
+        f.LeftPane.MapInfo:ClearAllPoints()
+        f.LeftPane.MapInfo:SetPoint("TOPLEFT", f.LeftPane.Divider, "BOTTOMLEFT", 0, 0)
+        f.LeftPane.MapInfo:SetPoint("TOPRIGHT", f.LeftPane.Divider, "BOTTOMRIGHT", 0, 0)
+        f.LeftPane.MapInfo:SetPoint("BOTTOMLEFT", f.LeftPane, "BOTTOMLEFT", 0, 0)
+        f.LeftPane.MapInfo:SetPoint("BOTTOMRIGHT", f.LeftPane, "BOTTOMRIGHT", 0, 0)
+    end
+
+    ResizeLeftPaneSections()
+    f.LeftPane:HookScript("OnSizeChanged", ResizeLeftPaneSections)
 
     -- Mouse drag operations
     f:RegisterForDrag("LeftButton")
@@ -100,6 +148,8 @@ function AddOn:CreateMainFrame()
     -- Store reference for later use
     self.Container = f
     self.LeftPane = f.LeftPane
+    self.LeftPane.MapInfo = f.LeftPane.MapInfo
+    self.LeftPane.BossInfo = f.LeftPane.BossInfo
     self.RightPane = f.RightPane
     self:CreateScrollingView()
 
