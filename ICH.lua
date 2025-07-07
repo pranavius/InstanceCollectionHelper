@@ -48,6 +48,9 @@ function AddOn:OnInitialize()
     config:RegisterOptionsTable(name, self.SlashOptions, "ich")
     -- Override default slash command behavior so /ich opens the addon
     self:RegisterChatCommand("ich", function(input) self.HandleSlashCommand("ich", input) end)
+
+    if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then C_AddOns.LoadAddOn("Blizzard_Collections") end
+    if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then C_AddOns.LoadAddOn("Blizzard_EncounterJournal") end
     
     self:CreateMainFrame()
     self:RegisterEvent("PLAYER_ENTERING_WORLD", "UpdateListContents")
