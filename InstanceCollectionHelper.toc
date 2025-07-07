@@ -9,6 +9,8 @@
 ## X-Flavor: retail
 ## X-Category: Achievements
 ## X-Additional-Categories: Battle Pets, Boss Encounters
+## X-Curse-Project-ID: 1302094
+## X-Wago-ID: kGr0j76y
 
 embeds.xml
 Templates.xml
