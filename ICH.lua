@@ -50,6 +50,7 @@ function AddOn:OnInitialize()
     self:RegisterChatCommand("ich", function(input) self.HandleSlashCommand("ich", input) end)
     
     self:CreateMainFrame()
+    self:RegisterEvent("PLAYER_ENTERING_WORLD", "UpdateListContents")
     self:RegisterEvent("ZONE_CHANGED", "UpdateListContents")
 end
 
@@ -121,13 +122,9 @@ function AddOn:CreateScrollingView()
 
     ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView)
     self.ScrollView:SetElementInitializer("ICHListItemTemplate", self.DataProviderInit)
-    for _, data in ipairs(self.InstanceMounts) do
-        local isOwned = select(11, C_MountJournal.GetMountInfoByID(data.MountID))
-        if not isOwned then self.ICHDataProvider:Insert(data) end
-    end
 end
 
-function AddOn:UpdateListContents()
+function AddOn:UpdateListContents(event)
     local newData = {}
     for _, data in ipairs(self.InstanceMounts) do
         local isOwned = select(11, C_MountJournal.GetMountInfoByID(data.MountID))
@@ -135,7 +132,7 @@ function AddOn:UpdateListContents()
     end
 
     if #newData ~= self.ICHDataProvider:GetSize() then
-        self:PrintChatMessage("Number of obtainable mounts changed. The mount list will be updated.")
+        if event ~= "PLAYER_ENTERING_WORLD" then self:PrintChatMessage("Number of obtainable mounts changed. The mount list will be updated.") end
         self.ICHDataProvider = CreateDataProvider(newData)
         self.ScrollView:SetDataProvider(self.ICHDataProvider)
     end
