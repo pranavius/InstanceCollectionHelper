@@ -5,6 +5,10 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 local LDB = LibStub("LibDataBroker-1.1")
 ICH = {}
 
+function AddOn:PrintChatMessage(...)
+    print("|cFF00CCFFInstance Collection Helper: |r", ...)
+end
+
 ---Handles slash commands in a way that overrides the default behavior of Ace3 slash commands. Executing the command with no arguments
 ---opens the AddOn options window, providing the `help` argument displays a list of available arguments and uses for the slash command,
 ---and all other arguments are handled using Ace3's default behavior.
@@ -44,8 +48,9 @@ function AddOn:OnInitialize()
     config:RegisterOptionsTable(name, self.SlashOptions, "ich")
     -- Override default slash command behavior so /ich opens the addon
     self:RegisterChatCommand("ich", function(input) self.HandleSlashCommand("ich", input) end)
-
+    
     self:CreateMainFrame()
+    self:RegisterEvent("ZONE_CHANGED", "UpdateListContents")
 end
 
 ---Initializes the AddOn window.<br/>
@@ -53,7 +58,7 @@ end
 function AddOn:CreateMainFrame()
     local f = CreateFrame("Frame", "ICHMain", UIParent)
     f:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
-    f:SetSize(800, 500)
+    f:SetSize(800, 600)
     f:EnableMouse(true)
     f:SetMovable(true)
 
@@ -74,6 +79,13 @@ function AddOn:CreateMainFrame()
     f.Title:SetPoint("TOPRIGHT", f, "TOPRIGHT", 0, -10)
     f.Title:SetText(name)
 
+    -- Info section
+    f.Info = f:CreateFontString("ICHInfo", "OVERLAY", "GameTooltipText")
+    f.Info:SetPoint("TOPLEFT", f.Title, "BOTTOMLEFT", 25, -10)
+    f.Info:SetPoint("TOPRIGHT", f.Title, "BOTTOMRIGHT", -25, -10)
+    f.Info:SetText("Find the mount you want to collect in the list and click the button for the difficulty you want to run on to make sure it is updated. Search functionality for mounts will be added soon.\n\nWhen you are locked out for a mount on a particular difficulty, the button for that difficulty will be disabled.")
+    f.Info:SetTextColor(1, 0.82, 0, 1)
+    
     -- Close button
     f.CloseButton = CreateFrame("Button", "ICHCloseButton", f, "UIPanelCloseButtonDefaultAnchors")
     f.CloseButton:SetSize(20, 20)
@@ -91,8 +103,8 @@ end
 ---Currently only displays mount information.
 function AddOn:CreateScrollingView()
     self.Container.ListHeaders = CreateFrame("Frame", "ICHListHeaders", self.Container, "ICHListHeadersTemplate")
-    self.Container.ListHeaders:SetPoint("TOPLEFT", self.Container.Title, "BOTTOMLEFT", 10, -10)
-    self.Container.ListHeaders:SetPoint("TOPRIGHT", self.Container.Title, "BOTTOMRIGHT", -10, -10)
+    self.Container.ListHeaders:SetPoint("TOPLEFT", self.Container.Info, "BOTTOMLEFT", -15, -10)
+    self.Container.ListHeaders:SetPoint("TOPRIGHT", self.Container.Info, "BOTTOMRIGHT", 15, -10)
 
     self.ScrollBox = CreateFrame("Frame", "ICHScrollBox", self.Container, "WowScrollBoxList")
     self.ScrollBox:SetPoint("TOPLEFT", self.Container.ListHeaders, "BOTTOMLEFT", 0, -5)
@@ -110,8 +122,24 @@ function AddOn:CreateScrollingView()
     ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView)
     self.ScrollView:SetElementInitializer("ICHListItemTemplate", self.DataProviderInit)
     for _, data in ipairs(self.InstanceMounts) do
-        self.ICHDataProvider:Insert(data)
+        local isOwned = select(11, C_MountJournal.GetMountInfoByID(data.MountID))
+        if not isOwned then self.ICHDataProvider:Insert(data) end
     end
+end
+
+function AddOn:UpdateListContents()
+    local newData = {}
+    for _, data in ipairs(self.InstanceMounts) do
+        local isOwned = select(11, C_MountJournal.GetMountInfoByID(data.MountID))
+        if not isOwned then tinsert(newData, data) end
+    end
+
+    if #newData ~= self.ICHDataProvider:GetSize() then
+        self:PrintChatMessage("Number of obtainable mounts changed. The mount list will be updated.")
+        self.ICHDataProvider = CreateDataProvider(newData)
+        self.ScrollView:SetDataProvider(self.ICHDataProvider)
+    end
+
 end
 
 -- Exposes AddOn functionality for use in XML

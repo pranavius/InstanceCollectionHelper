@@ -39,6 +39,27 @@ local function HideAllDifficultyButtons(container)
     end
 end
 
+local function IsEncounterCompleted(data, difficultyID)
+    local encounterName
+    if data.EncounterID then encounterName = select(1, EJ_GetEncounterInfo(data.EncounterID)) end
+    for i = 1, GetNumSavedInstances() do
+        local instanceName, lockoutID, secTilReset, diff, isLocked, isExtended, _, isRaid, maxPlayers, diffName, numEncounters, encProg, isExtendDisabled, mapID = GetSavedInstanceInfo(i)
+        if isLocked and diff == difficultyID then
+            if mapID == data.MapID then
+                if not encounterName then return isLocked
+                else
+                    for idx = 1, numEncounters do
+                        local bossName, fileDataID, isKilled = GetSavedInstanceEncounterInfo(i, idx)
+                        if bossName == encounterName then return isKilled end
+                    end
+                end
+            end
+        end
+    end
+
+    return false
+end
+
 ---@param container DifficultyContainer See `Templates.xml` for "ICHListItemTemplate"
 ---@param data InstanceMount The data to process and display in a list item.
 local function ShowDifficultyButtons(container, data)
@@ -67,18 +88,26 @@ local function ShowDifficultyButtons(container, data)
             button:SetText(AddOn:GetDifficultyButtonText(button.difficultyID))
             button:GetFontString():SetTextColor(1, 1, 1, 1)
             button:GetFontString():SetDrawLayer("OVERLAY")
-            -- Tint dungeon buttons blue and raids green
-            if AddOn:IsInstanceRaid(data) then button.ButtonTint:SetVertexColor(0, 1, 0, 0.5)
-            else button.ButtonTint:SetVertexColor(0, 0, 1, 0.5) end
-            --Mask ButtonTint with the same texture as the button background
-            if not button.TintMask then
-                button.TintMask = button:CreateMaskTexture()
-                button.TintMask:SetTexture("Interface/Buttons/UI-Panel-Button-Up")
-                button.ButtonTint:AddMaskTexture(button.TintMask)
+            button:Enable()
+            button.ButtonTint:Show()
+            if IsEncounterCompleted(data, diffID) then
+                -- If an encounter has already been attempted in the current reset period, disable the button and don't show a tinted overlay
+                button:Disable()
+                if button.ButtonTint:IsShown() then button.ButtonTint:Hide() end
+            else
+                -- Tint dungeon buttons blue and raids green
+                if AddOn:IsInstanceRaid(data) then button.ButtonTint:SetVertexColor(0, 1, 0, 0.5)
+                else button.ButtonTint:SetVertexColor(0, 0, 1, 0.5) end
+                --Mask ButtonTint with the same texture as the button background
+                if not button.TintMask then
+                    button.TintMask = button:CreateMaskTexture()
+                    button.TintMask:SetTexture("Interface/Buttons/UI-Panel-Button-Up")
+                    button.ButtonTint:AddMaskTexture(button.TintMask)
+                end
+                button.TintMask:ClearAllPoints()
+                button.TintMask:SetPoint("TOPLEFT", button.ButtonTint, "TOPLEFT", 3, -3)
+                button.TintMask:SetPoint("BOTTOMRIGHT", button.ButtonTint, "TOPLEFT", 73, -24)
             end
-            button.TintMask:ClearAllPoints()
-            button.TintMask:SetPoint("TOPLEFT", button.ButtonTint, "TOPLEFT", 3, -3)
-            button.TintMask:SetPoint("BOTTOMRIGHT", button.ButtonTint, "TOPLEFT", 73, -24)
             button:Show()
         end
     end
@@ -107,6 +136,13 @@ function AddOn.DataProviderInit(frame, data)
 
     HideAllDifficultyButtons(frame.DifficultyContainer)
     ShowDifficultyButtons(frame.DifficultyContainer, data)
+
+    if data.Notes then
+        frame.NotesContainer.ICHNote.Notes = data.Notes
+        frame.NotesContainer:Show()
+    elseif frame.NotesContainer:IsShown() then
+        frame.NotesContainer:Hide()
+    end
 
     frame.NameContainer.ViewButton:SetScript("OnClick", function()
         -- Currently only supports Mounts, but additional conditions could be added for showing things like Battle Pets and Achievements
