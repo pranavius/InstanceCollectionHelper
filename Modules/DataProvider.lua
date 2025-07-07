@@ -50,7 +50,7 @@ local function IsEncounterCompleted(data, difficultyID)
                 else
                     for idx = 1, numEncounters do
                         local bossName, fileDataID, isKilled = GetSavedInstanceEncounterInfo(i, idx)
-                        if bossName == encounterName then return isKilled end
+                        if encounterName:match(bossName) then return isKilled end
                     end
                 end
             end

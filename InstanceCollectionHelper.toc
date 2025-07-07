@@ -5,7 +5,6 @@
 ## Author: pranavius
 ## Version: 1
 ## SavedVariables: ICH_DB
-## OptionalDeps: Blizzard_EncounterJournal, Blizzard_Collections
 ## X-Flavor: retail
 ## X-Category: Achievements
 ## X-Additional-Categories: Battle Pets, Boss Encounters

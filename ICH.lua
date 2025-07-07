@@ -48,12 +48,9 @@ function AddOn:OnInitialize()
     config:RegisterOptionsTable(name, self.SlashOptions, "ich")
     -- Override default slash command behavior so /ich opens the addon
     self:RegisterChatCommand("ich", function(input) self.HandleSlashCommand("ich", input) end)
-
-    if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then C_AddOns.LoadAddOn("Blizzard_Collections") end
-    if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then C_AddOns.LoadAddOn("Blizzard_EncounterJournal") end
     
     self:CreateMainFrame()
-    self:RegisterEvent("PLAYER_ENTERING_WORLD", "UpdateListContents")
+    self.Container:HookScript("OnShow", function() self:UpdateListContents("ICH_OPEN") end)
     self:RegisterEvent("ZONE_CHANGED", "UpdateListContents")
 end
 
@@ -128,17 +125,19 @@ function AddOn:CreateScrollingView()
 end
 
 function AddOn:UpdateListContents(event)
+    if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then UIParentLoadAddOn("Blizzard_Collections") end
+    if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then UIParentLoadAddOn("Blizzard_EncounterJournal") end
     local newData = {}
     for _, data in ipairs(self.InstanceMounts) do
         local isOwned = select(11, C_MountJournal.GetMountInfoByID(data.MountID))
         if not isOwned then tinsert(newData, data) end
     end
 
-    if #newData ~= self.ICHDataProvider:GetSize() then
-        if event ~= "PLAYER_ENTERING_WORLD" then self:PrintChatMessage("Number of obtainable mounts changed. The mount list will be updated.") end
-        self.ICHDataProvider = CreateDataProvider(newData)
-        self.ScrollView:SetDataProvider(self.ICHDataProvider)
+    if #newData ~= self.ICHDataProvider:GetSize() and event == "ZONE_CHANGED" then
+         self:PrintChatMessage("Number of obtainable mounts changed. The mount list will be updated.")
     end
+    self.ICHDataProvider = CreateDataProvider(newData)
+    self.ScrollView:SetDataProvider(self.ICHDataProvider)
 
 end
 
