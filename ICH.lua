@@ -32,7 +32,7 @@ function AddOn:OnInitialize()
     local broker = LDB:NewDataObject(name, {
         type = "launcher",
         text = name,
-        icon = "Interface/Icons/Spell_Frost_FrostArmor", -- TODO: Create/add an icon later
+        icon = "Interface/Icons/Spell_Tailor_MountSpeedUp01", -- TODO: Create an icon later
         OnClick = function()
             if self.Container then self.Container:Show() end
         end,

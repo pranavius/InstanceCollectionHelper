@@ -1,6 +1,7 @@
 ## Interface: 110107
 ## Title: Instance Collection Helper
 ## Notes: Helps find and set the instance difficulty needed to obtain collectible items
+## IconTexture: Interface/Icons/Spell_Tailor_MountSpeedUp01
 ## Author: pranavius
 ## Version: 1
 ## SavedVariables: ICH_DB
