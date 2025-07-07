@@ -42,9 +42,7 @@ end
 ---@param container DifficultyContainer See `Templates.xml` for "ICHListItemTemplate"
 ---@param data InstanceMount The data to process and display in a list item.
 local function ShowDifficultyButtons(container, data)
-    print("Container name:", container and container:GetParentKey())
     for i, diffID in ipairs(data.DifficultyIDs) do
-        print("index", i)
         local button
         if AddOn:IsInstanceRaid(data) then
             if diffID == AddOn.RaidDifficulty.Legacy10 then button = container.RaidDiff10Button
@@ -63,12 +61,24 @@ local function ShowDifficultyButtons(container, data)
         end
 
         if button then
-            print("Button name:", button:GetParentKey())
             button:ClearAllPoints()
             button:SetPoint("TOPLEFT", container, "TOPLEFT", i == 1 and 0 or ((50 * (i - 1)) + 2), -2.5)
             button:SetPoint("BOTTOMLEFT", container, "BOTTOMLEFT", i == 1 and 0 or ((50 * (i - 1)) + 2), 2.5)
             button:SetText(AddOn:GetDifficultyButtonText(button.difficultyID))
             button:GetFontString():SetTextColor(1, 1, 1, 1)
+            button:GetFontString():SetDrawLayer("OVERLAY")
+            -- Tint dungeon buttons blue and raids green
+            if AddOn:IsInstanceRaid(data) then button.ButtonTint:SetVertexColor(0, 1, 0, 0.5)
+            else button.ButtonTint:SetVertexColor(0, 0, 1, 0.5) end
+            --Mask ButtonTint with the same texture as the button background
+            if not button.TintMask then
+                button.TintMask = button:CreateMaskTexture()
+                button.TintMask:SetTexture("Interface/Buttons/UI-Panel-Button-Up")
+                button.ButtonTint:AddMaskTexture(button.TintMask)
+            end
+            button.TintMask:ClearAllPoints()
+            button.TintMask:SetPoint("TOPLEFT", button.ButtonTint, "TOPLEFT", 3, -3)
+            button.TintMask:SetPoint("BOTTOMRIGHT", button.ButtonTint, "TOPLEFT", 73, -24)
             button:Show()
         end
     end
@@ -87,8 +97,10 @@ function AddOn.DataProviderInit(frame, data)
 
     local mountSpellID = select(2, C_MountJournal.GetMountInfoByID(data.MountID))
     local iconID = C_Spell.GetSpellInfo(mountSpellID) and C_Spell.GetSpellInfo(mountSpellID).originalIconID
-    frame.NameContainer.ViewButton:SetNormalTexture(iconID)
-    frame.NameContainer.ViewButton:SetHighlightTexture(iconID)
+    if iconID then
+        frame.NameContainer.ViewButton:SetNormalTexture(iconID)
+        frame.NameContainer.ViewButton:SetHighlightTexture(iconID)
+    end
 
     frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
     frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")

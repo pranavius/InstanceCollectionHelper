@@ -1,4 +1,5 @@
-<Ui>
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Blizzard_SharedXML/UI.xsd">
     <Frame name="ICHListHeadersTemplate" virtual="true" enableMouse="true">
         <Size y="25"/>
         <Layers>
@@ -13,15 +14,15 @@
                 </Texture>
             </Layer>
             <Layer level="OVERLAY">
-                <FontString parentKey="NameHeader" inherits="GameTooltipText" justifyH="left" text="NAME">
+                <FontString parentKey="NameHeader" inherits="GameTooltipText" justifyH="LEFT" text="NAME">
                     <Size x="171"/>
                     <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="29"/></Anchors>
                 </FontString>
-                <FontString parentKey="InstanceHeader" inherits="GameTooltipText" justifyH="left" text="INSTANCE">
+                <FontString parentKey="InstanceHeader" inherits="GameTooltipText" justifyH="LEFT" text="INSTANCE">
                     <Size x="225"/>
                     <Anchors><Anchor point="LEFT" relativeKey="$parent.NameHeader" relativePoint="RIGHT" x="25"/></Anchors>
                 </FontString>
-                <FontString parentKey="DiffHeader" inherits="GameTooltipText" justifyH="left" text="Difficulty">
+                <FontString parentKey="DiffHeader" inherits="GameTooltipText" justifyH="LEFT" text="Difficulty">
                     <Size x="200"/>
                     <Anchors><Anchor point="LEFT" relativeKey="$parent.InstanceHeader" relativePoint="RIGHT"/></Anchors>
                 </FontString>
@@ -29,8 +30,19 @@
         </Layers>
     </Frame>
 
-    <Button name="ICHDifficultyButton" virtual="true" inherits="UIPanelButtonTemplate">
+    <Button name="ICHDifficultyButtonTemplate" virtual="true" inherits="UIPanelButtonTemplate">
         <Size x="50"/>
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture parentKey="ButtonTint" file="Interface/Buttons/WHITE8x8" alphaMode="ALPHAKEY">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Left" relativePoint="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Right" relativePoint="BOTTOMRIGHT"/>
+                    </Anchors>
+                    <TexCoords left="0" right="0" top="1" bottom="1"/>
+                </Texture>
+            </Layer>
+        </Layers>
         <Scripts>
             <OnEnter>
                 GameTooltip:SetOwner(self, "ANCHOR_TOP")
@@ -126,65 +138,45 @@
                     <Anchor point="BOTTOMLEFT" relativeKey="$parent.InstanceContainer" relativePoint="BOTTOMRIGHT"></Anchor>
                 </Anchors>
                 <Frames>
-                    <Button parentKey="RaidDiffNormalButton" inherits="ICHDifficultyButton" hidden="true">
-                        <Scripts>
-                            <OnLoad>self.difficultyID = 14</OnLoad>
-                            <OnClick>SetRaidDifficulty(self.difficultyID)</OnClick>
-                        </Scripts>
+                    <Button parentKey="RaidDiffNormalButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="14" type="number"/></KeyValues>
+                        <Scripts><OnClick>SetRaidDifficultyID(self.difficultyID)</OnClick></Scripts>
                     </Button>
-                    <Button parentKey="RaidDiffHeroicButton" inherits="ICHDifficultyButton" hidden="true">
-                        <Scripts>
-                            <OnLoad>self.difficultyID = 15</OnLoad>
-                            <OnClick>SetRaidDifficulty(self.difficultyID)</OnClick>
-                        </Scripts>
+                    <Button parentKey="RaidDiffHeroicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="15" type="number"/></KeyValues>
+                        <Scripts><OnClick>SetRaidDifficultyID(self.difficultyID)</OnClick></Scripts>
                     </Button>
-                    <Button parentKey="RaidDiffMythicButton" inherits="ICHDifficultyButton" hidden="true">
-                        <Scripts>
-                            <OnLoad>self.difficultyID = 16</OnLoad>
-                            <OnClick>SetRaidDifficulty(self.difficultyID)</OnClick>
-                        </Scripts>
+                    <Button parentKey="RaidDiffMythicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="16" type="number"/></KeyValues>
+                        <Scripts><OnClick>SetRaidDifficultyID(self.difficultyID)</OnClick></Scripts>
                     </Button>
-                    <Button parentKey="RaidDiff10Button" inherits="ICHDifficultyButton" hidden="true">
-                        <Scripts>
-                            <OnLoad>self.difficultyID = 3</OnLoad>
-                            <OnClick>SetLegacyRaidDifficultyID(self.difficultyID)</OnClick>
-                        </Scripts>
+                    <Button parentKey="RaidDiff10Button" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="3" type="number"/></KeyValues>
+                        <Scripts><OnClick>SetLegacyRaidDifficultyID(self.difficultyID)</OnClick></Scripts>
                     </Button>
-                    <Button parentKey="RaidDiff25Button" inherits="ICHDifficultyButton" hidden="true">
-                        <Scripts>
-                            <OnLoad>self.difficultyID = 4</OnLoad>
-                            <OnClick>SetLegacyRaidDifficultyID(self.difficultyID)</OnClick>
-                        </Scripts>
+                    <Button parentKey="RaidDiff25Button" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="4" type="number"/></KeyValues>
+                        <Scripts><OnClick>SetLegacyRaidDifficultyID(self.difficultyID)</OnClick></Scripts>
                     </Button>
-                    <Button parentKey="RaidDiff10HeroicButton" inherits="ICHDifficultyButton" hidden="true">
-                        <Scripts>
-                            <OnLoad>self.difficultyID = 5</OnLoad>
-                            <OnClick>SetLegacyRaidDifficultyID(self.difficultyID)</OnClick>
-                        </Scripts>
+                    <Button parentKey="RaidDiff10HeroicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="5" type="number"/></KeyValues>
+                        <Scripts><OnClick>SetLegacyRaidDifficultyID(self.difficultyID)</OnClick></Scripts>
                     </Button>
-                    <Button parentKey="RaidDiff25HButton" inherits="ICHDifficultyButton" hidden="true">
-                        <Scripts>
-                            <OnLoad>self.difficultyID = 6</OnLoad>
-                            <OnClick>SetLegacyRaidDifficultyID(self.difficultyID)</OnClick>
-                        </Scripts>
+                    <Button parentKey="RaidDiff25HButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="6" type="number"/></KeyValues>
+                        <Scripts><OnClick>SetLegacyRaidDifficultyID(self.difficultyID)</OnClick></Scripts>
                     </Button>
-                    <Button parentKey="DungDiffNormalButton" inherits="ICHDifficultyButton" hidden="true">
-                        <Scripts>
-                            <OnLoad>self.difficultyID = 1</OnLoad>
-                            <OnClick>SetDungeonDifficultyID(self.difficultyID)</OnClick>
-                        </Scripts>
+                    <Button parentKey="DungDiffNormalButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="1" type="number"/></KeyValues>
+                        <Scripts><OnClick>SetDungeonDifficultyID(self.difficultyID)</OnClick></Scripts>
                     </Button>
-                    <Button parentKey="DungDiffHeroicButton" inherits="ICHDifficultyButton" hidden="true">
-                        <Scripts>
-                            <OnLoad>self.difficultyID = 2</OnLoad>
-                            <OnClick>SetDungeonDifficultyID(self.difficultyID)</OnClick>
-                        </Scripts>
+                    <Button parentKey="DungDiffHeroicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="2" type="number"/></KeyValues>
+                        <Scripts><OnClick>SetDungeonDifficultyID(self.difficultyID)</OnClick></Scripts>
                     </Button>
-                    <Button parentKey="DungDiffMythicButton" inherits="ICHDifficultyButton" hidden="true">
-                        <Scripts>
-                            <OnLoad>self.difficultyID = 23</OnLoad>
-                            <OnClick>SetDungeonDifficultyID(self.difficultyID)</OnClick>
-                        </Scripts>
+                    <Button parentKey="DungDiffMythicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="23" type="number"/></KeyValues>
+                        <Scripts><OnClick>SetDungeonDifficultyID(self.difficultyID)</OnClick></Scripts>
                     </Button>
                 </Frames>
             </Frame>

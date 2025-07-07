@@ -108,10 +108,6 @@ function AddOn:CreateScrollingView()
     self.ScrollView:SetDataProvider(self.ICHDataProvider)
 
     ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView)
-    ScrollUtil.AddAcquiredFrameCallback(self.ScrollBox, function(frame)
-        -- print("Frame was just updated:", frame:GetName(), frame:GetParentKey())
-        print("Frame:", frame)
-    end)
     self.ScrollView:SetElementInitializer("ICHListItemTemplate", self.DataProviderInit)
     for _, data in ipairs(self.InstanceMounts) do
         self.ICHDataProvider:Insert(data)
