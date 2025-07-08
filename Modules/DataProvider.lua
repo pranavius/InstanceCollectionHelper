@@ -96,8 +96,8 @@ local function ShowDifficultyButtons(container, data)
                 if button.ButtonTint:IsShown() then button.ButtonTint:Hide() end
             else
                 -- Tint dungeon buttons blue and raids green
-                if AddOn:IsInstanceRaid(data) then button.ButtonTint:SetVertexColor(0, 1, 0, 0.5)
-                else button.ButtonTint:SetVertexColor(0, 0, 1, 0.5) end
+                if AddOn:IsInstanceRaid(data) then button.ButtonTint:SetVertexColor(0.082, 0.702, 0, 0.75)
+                else button.ButtonTint:SetVertexColor(0, 0.569, 0.949, 0.75) end
                 --Mask ButtonTint with the same texture as the button background
                 if not button.TintMask then
                     button.TintMask = button:CreateMaskTexture()

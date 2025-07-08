@@ -15,7 +15,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             </Layer>
             <Layer level="OVERLAY">
                 <FontString parentKey="NameHeader" inherits="GameTooltipText" justifyH="LEFT" text="Name">
-                    <Size x="171"/>
+                    <Size x="180"/>
                     <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="29"/></Anchors>
                 </FontString>
                 <FontString parentKey="InstanceHeader" inherits="GameTooltipText" justifyH="LEFT" text="Instance">
@@ -74,7 +74,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
         </Layers>
         <Frames>
             <Frame parentKey="NameContainer">
-                <Size x="200"/>
+                <Size x="209"/>
                 <Anchors>
                     <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
                     <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT"/>

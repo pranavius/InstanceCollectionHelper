@@ -64,6 +64,15 @@ AddOn.InstanceMounts = {
         Notes = "Also obtainable in Raid Finder (LFR) difficulty"
     },
     {
+        Name = "Anu'relos, Flame's Guidance",
+        MountID = 1818,
+        Instance = "Amirdrassil, the Dream's Hope",
+        InstanceID = 1207,
+        MapID = 2549,
+        EncounterID = 2519,
+        DifficultyIDs = { RaidDifficulty.Mythic },
+    },
+    {
         Name = "Armored Razzashi Raptor",
         MountID = 410,
         Instance = "Zul'Gurub",
@@ -71,6 +80,15 @@ AddOn.InstanceMounts = {
         MapID = 859,
         EncounterID = 176,
         DifficultyIDs = { DungeonDifficulty.Heroic }
+    },
+    {
+        Name = "Ascendant Skyrazor",
+        MountID = 2223,
+        Instance = "Nerub-ar Palance",
+        InstanceID = 1273,
+        MapID = 2657,
+        EncounterID = 2602,
+        DifficultyIDs = { RaidDifficulty.Mythic },
     },
     {
         Name = "Ashes of Al'ar",
@@ -81,6 +99,15 @@ AddOn.InstanceMounts = {
         EncounterID = 1576,
         DifficultyIDs = {},
         Notes = "This raid only has a 25 player difficulty, so any raid difficulty can be set"
+    },
+    {
+        Name = "Astral Cloud Serpent",
+        MountID = 478,
+        Instance = "Mogu'shan Vaults",
+        InstanceID = 317,
+        MapID = 1008,
+        EncounterID = 726,
+        DifficultyIDs = { RaidDifficulty.Mythic },
     },
     {
         Name = "Azure Drake",
@@ -107,7 +134,8 @@ AddOn.InstanceMounts = {
         InstanceID = 187,
         MapID = 967,
         EncounterID = 333,
-        DifficultyIDs = { RaidDifficulty.Legacy10H }
+        DifficultyIDs = { RaidDifficulty.Legacy10, RaidDifficulty.Legacy10H },
+        Notes = "Recommended to attempt on Heroic first if |cFFFFD100Life-Binder's Handmaiden|r is not obtained yet"
     },
     {
         Name = "Blue Drake",
@@ -188,8 +216,8 @@ AddOn.InstanceMounts = {
         InstanceID = 187,
         MapID = 967,
         EncounterID = 331,
-        DifficultyIDs = { RaidDifficulty.Legacy10H },
-        Notes = "Obtainable in Normal difficulty as well, but only 2 mounts are available in Normal vs. 3 in Heroic"
+        DifficultyIDs = { RaidDifficulty.Legacy10, RaidDifficulty.Legacy10H },
+        Notes = "Recommended to attempt on Heroic first if |cFFFFD100Life-Binder's Handmaiden|r is not obtained yet"
     },
     {
         Name = "Felblaze Infernal",
@@ -228,6 +256,15 @@ AddOn.InstanceMounts = {
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic }
     },
     {
+        Name = "Glacial Tidestorm",
+        MountID = 1219,
+        Instance = "Battle of Dazar'alor",
+        InstanceID = 1176,
+        MapID = 2070,
+        EncounterID = 2343,
+        DifficultyIDs = { RaidDifficulty.Mythic }
+    },
+    {
         Name = "G.M.O.D",
         MountID = 1217,
         Instance = "Battle of Dazar'alor",
@@ -238,31 +275,22 @@ AddOn.InstanceMounts = {
         Notes = "Also obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"
     },
     {
-        Name = "Glacial Tidestorm",
-        MountID = 1219,
-        Instance = "Battle of Dazar'alor",
-        InstanceID = 1176,
-        MapID = 2070,
-        EncounterID = 2343,
-        DifficultyIDs = { RaidDifficulty.Mythic }
-    },
-    {
-        Name = "Grand Black War Mammoth",
+        Name = "Grand Black War Mammoth |A:QuestPortraitIcon-Alliance:15:17|a",
         MountID = 286,
         Instance = "Vault of Archavon",
         InstanceID = 753,
         MapID = 624,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Notes = "Specific to Alliance characters"
+        Notes = "Drops for |cFF00ADF0Alliance|r characters, but obtaining this also gives you the |cFFFF2934Horde|r version"
     },
     {
-        Name = "Grand Black War Mammoth",
+        Name = "Grand Black War Mammoth |A:QuestPortraitIcon-Horde:15:17|a",
         MountID = 287,
         Instance = "Vault of Archavon",
         InstanceID = 753,
         MapID = 624,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Notes = "Specific to Horde characters"
+        Notes = "Drops for |cFFFF2934Horde|r characters, but obtaining this also gives you the |cFF00ADF0Alliance|r version"
     },
     {
         Name = "Green Qiraji Battle Tank",
@@ -373,6 +401,16 @@ AddOn.InstanceMounts = {
         DifficultyIDs = { RaidDifficulty.Legacy10 }
     },
     {
+        Name = "Prototype A.S.M.R",
+        MountID = 2507,
+        Instance = "Liberation of Undermine",
+        InstanceID = 1296,
+        MapID = 2769,
+        EncounterID = 2646,
+        DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Notes = "Also obtainable in Raid Finder (LFR) difficulty"
+    },
+    {
         Name = "Pureblood Fire Hawk",
         MountID = 415,
         Instance = "Firelands",
@@ -455,6 +493,16 @@ AddOn.InstanceMounts = {
         DifficultyIDs = { RaidDifficulty.Legacy10 }
     },
     {
+        Name = "Sureki Skyrazor",
+        MountID = 2219,
+        Instance = "Nerub-ar Palance",
+        InstanceID = 1273,
+        MapID = 2657,
+        EncounterID = 2602,
+        DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Notes = "Also obtainable in Raid Finder (LFR) difficulty"
+    },
+    {
         Name = "Swift White Hawkstrider",
         MountID = 213,
         Instance = "Magister's Terrace",
@@ -472,6 +520,15 @@ AddOn.InstanceMounts = {
         MapID = 859,
         EncounterID = 181,
         DifficultyIDs = { DungeonDifficulty.Heroic }
+    },
+    {
+        Name = "The Big G",
+        MountID = 2487,
+        Instance = "Liberation of Undermine",
+        InstanceID = 1296,
+        MapID = 2769,
+        EncounterID = 2646,
+        DifficultyIDs = { RaidDifficulty.Mythic }
     },
     {
         Name = "Tomb Stalker",
@@ -492,15 +549,6 @@ AddOn.InstanceMounts = {
         DifficultyIDs = { RaidDifficulty.Legacy25 }
     },
     {
-        Name = "Vitreous Stone Drake",
-        MountID = 397,
-        Instance = "The Stonecore",
-        InstanceID = 67,
-        MapID = 725,
-        EncounterID = 111,
-        DifficultyIDs = { DungeonDifficulty.Normal }
-    },
-    {
         Name = "Underrot Crawg",
         MountID = 1053,
         Instance = "The Underrot",
@@ -517,6 +565,15 @@ AddOn.InstanceMounts = {
         MapID = 2450,
         EncounterID = 2441,
         DifficultyIDs = { RaidDifficulty.Mythic }
+    },
+    {
+        Name = "Vitreous Stone Drake",
+        MountID = 397,
+        Instance = "The Stonecore",
+        InstanceID = 67,
+        MapID = 725,
+        EncounterID = 111,
+        DifficultyIDs = { DungeonDifficulty.Normal }
     },
     {
         Name = "Wick",
