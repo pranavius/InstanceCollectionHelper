@@ -15,15 +15,15 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             </Layer>
             <Layer level="OVERLAY">
                 <FontString parentKey="NameHeader" inherits="GameTooltipText" justifyH="LEFT" text="Name">
-                    <Size x="171"/>
+                    <Size x="140"/>
                     <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="29"/></Anchors>
                 </FontString>
                 <FontString parentKey="InstanceHeader" inherits="GameTooltipText" justifyH="LEFT" text="Instance">
-                    <Size x="225"/>
+                    <Size x="170"/>
                     <Anchors><Anchor point="LEFT" relativeKey="$parent.NameHeader" relativePoint="RIGHT" x="25"/></Anchors>
                 </FontString>
                 <FontString parentKey="DiffHeader" inherits="GameTooltipText" justifyH="LEFT" text="Difficulty">
-                    <Size x="200"/>
+                    <Size x="120"/>
                     <Anchors><Anchor point="LEFT" relativeKey="$parent.InstanceHeader" relativePoint="RIGHT"/></Anchors>
                 </FontString>
                 <FontString parentKey="NotesHeader" inherits="GameTooltipText" justifyH="LEFT" text="Notes">
@@ -74,7 +74,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
         </Layers>
         <Frames>
             <Frame parentKey="NameContainer">
-                <Size x="200"/>
+                <Size x="140"/>
                 <Anchors>
                     <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
                     <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT"/>
@@ -96,7 +96,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </Frames>
                 <Layers>
                     <Layer level="OVERLAY">
-                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="">
+                        <FontString parentKey="Text" inherits="GameFontNormalSmall" justifyH="LEFT" text="">
                             <Anchors><Anchor point="LEFT" relativeKey="$parent.ViewButton" relativePoint="RIGHT" x="5"/></Anchors>
                         </FontString>
                     </Layer>
@@ -104,7 +104,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             </Frame>
 
             <Frame parentKey="InstanceContainer">
-                <Size x="250"/>
+                <Size x="170"/>
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeKey="$parent.NameContainer" relativePoint="TOPRIGHT"/>
                     <Anchor point="BOTTOMLEFT" relativeKey="$parent.NameContainer" relativePoint="BOTTOMRIGHT"/>
@@ -126,7 +126,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </Frames>
                 <Layers>
                     <Layer level="OVERLAY">
-                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="">
+                        <FontString parentKey="Text" inherits="GameFontNormalSmall" justifyH="LEFT" text="">
                             <Anchors><Anchor point="LEFT" relativeKey="$parent.ViewButton" relativePoint="RIGHT" x="5"/></Anchors>
                         </FontString>
                     </Layer>
@@ -134,7 +134,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             </Frame>
 
             <Frame parentKey="DifficultyContainer">
-                <Size x="200"/>
+                <Size x="120"/>
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeKey="$parent.InstanceContainer" relativePoint="TOPRIGHT"></Anchor>
                     <Anchor point="BOTTOMLEFT" relativeKey="$parent.InstanceContainer" relativePoint="BOTTOMRIGHT"></Anchor>
@@ -266,21 +266,22 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
 
             <Frame parentKey="NotesContainer" hidden="true">
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="TOPRIGHT"></Anchor>
-                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="BOTTOMRIGHT"></Anchor>
-                    <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="BOTTOMRIGHT"/>
+                    <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
                 </Anchors>
                 <Frames>
                     <Frame parentKey="ICHNote" enableMouse="true">
                         <Size x="20" y="20"/>
                         <KeyValues><KeyValue key="Notes" value="" type="string"/></KeyValues>
-                        <Anchors><Anchor point="LEFT" relativePoint="LEFT"/></Anchors>
+                        <Anchors><Anchor point="CENTER" relativePoint="CENTER"/></Anchors>
                         <Layers>
                             <Layer level="OVERLAY">
                                 <Texture parentKey="NotesIcon" file="interface/icons/inv_misc_note_04">
+                                    <Size x="20" y="20"/>
                                     <Anchors>
-                                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
-                                        <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+                                        <Anchor point="CENTER" relativePoint="CENTER"/>
                                     </Anchors>
                                 </Texture>
                             </Layer>

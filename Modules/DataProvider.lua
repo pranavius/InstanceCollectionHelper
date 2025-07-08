@@ -116,10 +116,10 @@ end
 ---Initializes how data in the scrollable list should be displayed.
 ---@param frame ICHListItem See `Templates.xml` for "ICHListItemTemplate"
 ---@param data InstanceMount The data to process and display in a list item.
-function AddOn.DataProviderInit(frame, data)
+---@param index number The row index (for alternating backgrounds)
+function AddOn.DataProviderInit(frame, data, index)
     if not frame or not data then return end
-
-    local index = AddOn.ICHDataProvider:FindIndex(data)
+    if type(index) ~= "number" then index = 1 end
     if index % 2 == 0 then frame.Bg:Show() elseif frame.Bg:IsShown() then frame.Bg:Hide() end
     frame.NameContainer.Text:SetText(data.Name)
     frame.InstanceContainer.Text:SetText(data.Instance)

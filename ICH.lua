@@ -66,9 +66,27 @@ function AddOn:CreateMainFrame()
     f:SetScript("OnDragStart", function(frame) frame:StartMoving() end)
     f:SetScript("OnDragStop", function(frame) frame:StopMovingOrSizing() end)
 
+    -- Frame background
+    f.Bg = f:CreateTexture("ICHBackground", "BACKGROUND")
+    f.Bg:SetAllPoints(f)
+    f.Bg:SetColorTexture(0, 0, 0, 0.8)
+
+    -- Frame Title
+    f.Title = f:CreateFontString("ICHTitle", "OVERLAY", "GameFontHighlightMedium")
+    f.Title:SetPoint("TOPLEFT", f, "TOPLEFT", 0, -10)
+    f.Title:SetPoint("TOPRIGHT", f, "TOPRIGHT", 0, -10)
+    f.Title:SetText(name)
+
+    -- Info section (move this above pane creation)
+    f.Info = f:CreateFontString("ICHInfo", "OVERLAY", "GameTooltipText")
+    f.Info:SetPoint("TOPLEFT", f.Title, "BOTTOMLEFT", 25, -10)
+    f.Info:SetPoint("TOPRIGHT", f.Title, "BOTTOMRIGHT", -25, -10)
+    f.Info:SetText("Find the mount you want to collect in the list and click the button for the difficulty you want to run on to make sure it is updated. Search functionality for mounts will be added soon.\n\nWhen you are locked out for a mount on a particular difficulty, the button for that difficulty will be disabled.")
+    f.Info:SetTextColor(1, 0.82, 0, 1)
+
     -- Left Pane (for boss/map info, etc.)
     f.LeftPane = CreateFrame("Frame", nil, f)
-    f.LeftPane:SetPoint("TOPLEFT", f, "TOPLEFT", 10, -40)
+    f.LeftPane:SetPoint("TOPLEFT", f.Info, "BOTTOMLEFT", -15, -10)
     f.LeftPane:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 10, 10)
     f.LeftPane:SetWidth(320) -- Adjust as needed
     f.LeftPane.Bg = f.LeftPane:CreateTexture(nil, "BACKGROUND")
@@ -101,6 +119,7 @@ function AddOn:CreateMainFrame()
     f.RightPane = CreateFrame("Frame", nil, f)
     f.RightPane:SetPoint("TOPLEFT", f.LeftPane, "TOPRIGHT", 10, 0)
     f.RightPane:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -10, 10)
+    f.RightPane:SetPoint("TOPRIGHT", f, "TOPRIGHT", -10, 0)
     f.RightPane.Bg = f.RightPane:CreateTexture(nil, "BACKGROUND")
     f.RightPane.Bg:SetAllPoints(f.RightPane)
     f.RightPane.Bg:SetColorTexture(0.18, 0.18, 0.18, 0.7)
@@ -138,24 +157,6 @@ function AddOn:CreateMainFrame()
     end)
     f:SetScript("OnDragStop", function(frame) frame:StopMovingOrSizing() end)
 
-    -- Frame background
-    f.Bg = f:CreateTexture("ICHBackground", "BACKGROUND")
-    f.Bg:SetAllPoints(f)
-    f.Bg:SetColorTexture(0, 0, 0, 0.8)
-
-    -- Frame Title
-    f.Title = f:CreateFontString("ICHTitle", "OVERLAY", "GameFontHighlightMedium")
-    f.Title:SetPoint("TOPLEFT", f, "TOPLEFT", 0, -10)
-    f.Title:SetPoint("TOPRIGHT", f, "TOPRIGHT", 0, -10)
-    f.Title:SetText(name)
-
-    -- Info section
-    f.Info = f:CreateFontString("ICHInfo", "OVERLAY", "GameTooltipText")
-    f.Info:SetPoint("TOPLEFT", f.Title, "BOTTOMLEFT", 25, -10)
-    f.Info:SetPoint("TOPRIGHT", f.Title, "BOTTOMRIGHT", -25, -10)
-    f.Info:SetText("Find the mount you want to collect in the list and click the button for the difficulty you want to run on to make sure it is updated. Search functionality for mounts will be added soon.\n\nWhen you are locked out for a mount on a particular difficulty, the button for that difficulty will be disabled.")
-    f.Info:SetTextColor(1, 0.82, 0, 1)
-    
     -- Close button
     f.CloseButton = CreateFrame("Button", "ICHCloseButton", f, "UIPanelCloseButtonDefaultAnchors")
     f.CloseButton:SetSize(20, 20)
@@ -177,43 +178,60 @@ end
 ---Initializes the scrollable list of data to display.<br/>
 ---Currently only displays mount information.
 function AddOn:CreateScrollingView()
+    -- Headers
     self.RightPane.ListHeaders = CreateFrame("Frame", "ICHListHeaders", self.RightPane, "ICHListHeadersTemplate")
     self.RightPane.ListHeaders:SetPoint("TOPLEFT", self.RightPane, "TOPLEFT", 10, -10)
     self.RightPane.ListHeaders:SetPoint("TOPRIGHT", self.RightPane, "TOPRIGHT", -10, -10)
 
-    -- ScrollBox: leave space for the scrollbar on the right
-    -- Anchored to the bottom of ListHeaders, fills the remaining space in RightPane
-    self.ScrollBox = CreateFrame("Frame", "ICHScrollBox", self.RightPane, "WowScrollBoxList")
-    self.ScrollBox:SetPoint("TOPLEFT", self.RightPane.ListHeaders, "BOTTOMLEFT", 0, -5)
-    self.ScrollBox:SetPoint("BOTTOMLEFT", self.RightPane, "BOTTOMLEFT", 0, 20)
-    self.ScrollBox:SetPoint("TOPRIGHT", self.RightPane, "TOPRIGHT", -20, -5)
-    self.ScrollBox:SetPoint("BOTTOMRIGHT", self.RightPane, "BOTTOMRIGHT", -20, 20)
+    -- ScrollFrame (fallback if ScrollBox is not available)
+    self.ScrollFrame = CreateFrame("ScrollFrame", "ICHScrollFrame", self.RightPane, "UIPanelScrollFrameTemplate")
+    self.ScrollFrame:SetPoint("TOPLEFT", self.RightPane.ListHeaders, "BOTTOMLEFT", 0, -5)
+    self.ScrollFrame:SetPoint("BOTTOMRIGHT", self.RightPane, "BOTTOMRIGHT", -20, 20)
+    self.ScrollFrame:SetPoint("BOTTOMLEFT", self.RightPane, "BOTTOMLEFT", 10, 20)
 
-    -- ScrollBar: fixed width, anchored to the right edge of RightPane
-    self.ScrollBar = CreateFrame("EventFrame", "ICHScrollBar", self.RightPane, "MinimalScrollBar")
-    self.ScrollBar:SetPoint("TOPRIGHT", self.RightPane.ListHeaders, "BOTTOMRIGHT", 5, -5)
-    self.ScrollBar:SetPoint("BOTTOMRIGHT", self.RightPane, "BOTTOMRIGHT", 5, 20)
-    self.ScrollBar:SetWidth(12)
-    self.ScrollBar:SetHideIfUnscrollable(true)
+    -- Content frame for the scroll frame
+    self.ScrollContent = CreateFrame("Frame", nil, self.ScrollFrame)
+    local function UpdateScrollContentWidth()
+        local scrollFrameWidth = self.ScrollFrame:GetWidth() or 1
+        self.ScrollContent:SetWidth(scrollFrameWidth - 22) -- 22px for scrollbar
+    end
+    self.ScrollFrame:HookScript("OnSizeChanged", UpdateScrollContentWidth)
+    UpdateScrollContentWidth()
+    self.ScrollContent:SetHeight(1) -- will be resized dynamically
+    self.ScrollFrame:SetScrollChild(self.ScrollContent)
 
-    self.ICHDataProvider = CreateDataProvider()
-    self.ScrollView = CreateScrollBoxListLinearView()
-    self.ScrollView:SetDataProvider(self.ICHDataProvider)
-
-    ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView)
-    self.ScrollView:SetElementInitializer("ICHListItemTemplate", self.DataProviderInit)
+    self.ListRows = {}
 end
 
 function AddOn:UpdateListContents(event)
     if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then UIParentLoadAddOn("Blizzard_Collections") end
     if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then UIParentLoadAddOn("Blizzard_EncounterJournal") end
-    local newData = {}
-    for _, data in ipairs(self.InstanceMounts) do
-        self.ICHDataProvider:Insert(data)
-    end
-    self.ICHDataProvider = CreateDataProvider(newData)
-    self.ScrollView:SetDataProvider(self.ICHDataProvider)
 
+    -- Clear old rows
+    if self.ListRows then
+        for _, row in ipairs(self.ListRows) do
+            row:Hide()
+            row:SetParent(nil)
+        end
+    end
+    self.ListRows = {}
+
+    local rowHeight = 25
+    local yOffset = 0
+    local visibleCount = 0
+    for i, data in ipairs(self.InstanceMounts or {}) do
+        local row = CreateFrame("Frame", nil, self.ScrollContent, "ICHListItemTemplate")
+        row:SetPoint("TOPLEFT", self.ScrollContent, "TOPLEFT", 0, -yOffset)
+        row:SetPoint("TOPRIGHT", self.ScrollContent, "TOPRIGHT", 0, -yOffset)
+        row:SetHeight(rowHeight)
+        if AddOn.DataProviderInit then
+            AddOn.DataProviderInit(row, data, i)
+        end
+        table.insert(self.ListRows, row)
+        yOffset = yOffset + rowHeight
+        visibleCount = visibleCount + 1
+    end
+    self.ScrollContent:SetHeight(yOffset)
 end
 
 ---Query the Dungeon Journal API for Boss Information
