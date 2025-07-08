@@ -17,6 +17,7 @@ If you see that any mounts are missing from this list, please let me know and I'
 
 ## Usage
 - **Open UI**: Type `/ich` in chat or click the minimap icon to display the main window.
+- **View Current Difficulty Settings**: Type `/ich diffs` to view all current instance difficulty settings.
 - **Show/Hide Minimap Icon**: Type `/ich minimap` in chat
 - **View Entry**: Click the icon next to each mount name or instance:
 - Opens the Mount Journal or the Encounter Journal to that specific mount/instance.
