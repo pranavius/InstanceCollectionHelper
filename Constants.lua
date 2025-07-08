@@ -97,7 +97,7 @@ AddOn.InstanceMounts = {
         InstanceID = 749,
         MapID = 550,
         EncounterID = 1576,
-        DifficultyIDs = {},
+        DifficultyIDs = { RaidDifficulty.Legacy25 },
         Notes = "This raid only has a 25 player difficulty, so any raid difficulty can be set"
     },
     {
@@ -162,7 +162,7 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         DifficultyIDs = {},
-        Notes = "This raid only has a 40 player difficulty, so any raid difficulty can be set"
+        Notes = "Drop from trash mobs around |cFFFFD100Temple of Ahn'Qiraj|r.\n\nThis raid only has a 40 player difficulty, so any raid difficulty can be set."
     },
     {
         Name = "Bronze Drake",
@@ -299,7 +299,7 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         DifficultyIDs = {},
-        Notes = "This raid only has a 40 player difficulty, so any raid difficulty can be set"
+        Notes = "Drop from trash mobs around |cFFFFD100Temple of Ahn'Qiraj|r.\n\nThis raid only has a 40 player difficulty, so any raid difficulty can be set."
     },
     {
         Name = "Hellfire Infernal",
@@ -435,7 +435,7 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         DifficultyIDs = {},
-        Notes = "This raid only has a 40 player difficulty, so any raid difficulty can be set"
+        Notes = "Drop from trash mobs around |cFFFFD100Temple of Ahn'Qiraj|r.\n\nThis raid only has a 40 player difficulty, so any raid difficulty can be set."
     },
     {
         Name = "Rivendare's Deathcharger",
@@ -591,7 +591,7 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         DifficultyIDs = {},
-        Notes = "This raid only has a 40 player difficulty, so any raid difficulty can be set"
+        Notes = "Drop from trash mobs around |cFFFFD100Temple of Ahn'Qiraj|r.\n\nThis raid only has a 40 player difficulty, so any raid difficulty can be set."
     },
     {
         Name = "Zereth Overseer",
