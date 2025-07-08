@@ -1,13 +1,13 @@
 ## Interface: 110107
 ## Title: Instance Collection Helper
 ## Notes: Helps find and set the instance difficulty needed to obtain collectible items
-## IconTexture: Interface/Icons/Spell_Tailor_MountSpeedUp01
+## IconTexture: Interface\AddOns\InstanceCollectionHelper\Media\Logo.png
 ## Author: pranavius
 ## Version: 1
 ## SavedVariables: ICH_DB
 ## X-Flavor: retail
 ## X-Category: Achievements
-## X-Additional-Categories: Battle Pets, Boss Encounters
+## X-Additional-Categories: Battle Pets, Boss Encounters, Miscellaneous
 ## X-Curse-Project-ID: 1302094
 ## X-Wago-ID: kGr0j76y
 
