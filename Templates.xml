@@ -52,7 +52,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
         <Scripts>
             <OnEnter>
                 GameTooltip:SetOwner(self, "ANCHOR_TOP")
-                GameTooltip:AddLine(ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                GameTooltip:AddLine(ICH:GetInstanceDifficultyText(self.difficultyID))
                 GameTooltip:Show()
             </OnEnter>
             <OnLeave>GameTooltip:Hide()</OnLeave>
@@ -145,7 +145,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Scripts>
                             <OnClick>
                                 if GetRaidDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Raid Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                    ICH:PrintChatMessage("Raid Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
                                 else
                                     SetRaidDifficultyID(self.difficultyID)
                                 end
@@ -157,7 +157,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Scripts>
                             <OnClick>
                                 if GetRaidDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Raid Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                    ICH:PrintChatMessage("Raid Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
                                 else
                                     SetRaidDifficultyID(self.difficultyID)
                                 end
@@ -169,7 +169,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Scripts>
                             <OnClick>
                                 if GetRaidDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Raid Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                    ICH:PrintChatMessage("Raid Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
                                 else
                                     SetRaidDifficultyID(self.difficultyID)
                                 end
@@ -181,7 +181,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Scripts>
                             <OnClick>
                                 if GetLegacyRaidDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Legacy Raid Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                    ICH:PrintChatMessage("Legacy Raid Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
                                 else
                                     SetLegacyRaidDifficultyID(self.difficultyID)
                                 end
@@ -193,7 +193,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Scripts>
                             <OnClick>
                                 if GetLegacyRaidDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Legacy Raid Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                    ICH:PrintChatMessage("Legacy Raid Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
                                 else
                                     SetLegacyRaidDifficultyID(self.difficultyID)
                                 end
@@ -205,7 +205,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Scripts>
                             <OnClick>
                                 if GetLegacyRaidDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Legacy Raid Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                    ICH:PrintChatMessage("Legacy Raid Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
                                 else
                                     SetLegacyRaidDifficultyID(self.difficultyID)
                                 end
@@ -217,7 +217,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Scripts>
                             <OnClick>
                                 if GetLegacyRaidDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Legacy Raid Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                    ICH:PrintChatMessage("Legacy Raid Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
                                 else
                                     SetLegacyRaidDifficultyID(self.difficultyID)
                                 end
@@ -230,7 +230,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Scripts>
                             <OnClick>
                                 if GetDungeonDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Dungeon Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                    ICH:PrintChatMessage("Dungeon Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
                                 else
                                     SetDungeonDifficultyID(self.difficultyID)
                                 end
@@ -242,7 +242,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Scripts>
                             <OnClick>
                                 if GetDungeonDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Dungeon Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                    ICH:PrintChatMessage("Dungeon Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
                                 else
                                     SetDungeonDifficultyID(self.difficultyID)
                                 end
@@ -254,7 +254,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Scripts>
                             <OnClick>
                                 if GetDungeonDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Dungeon Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                    ICH:PrintChatMessage("Dungeon Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
                                 else
                                     SetDungeonDifficultyID(self.difficultyID)
                                 end

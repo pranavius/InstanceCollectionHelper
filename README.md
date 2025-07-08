@@ -18,6 +18,9 @@ If you see that any mounts are missing from this list, please let me know and I'
 ## Usage
 - **Open UI**: Type `/ich` in chat or click the minimap icon to display the main window.
 - **View Current Difficulty Settings**: Type `/ich diffs` to view all current instance difficulty settings.
+- **Set Dungeon Difficulty**: Type `/ich dung` followed by one of the following: `norm`, `hero`, `myth` (example: `ich dung myth` will set dungeon difficulty to Mythic)
+- **Set Raid Difficulty**: Type `/ich raid` followed by one of the following: `norm`, `hero`, `myth` (example: `ich raid norm` will set raid difficulty to Normal)
+- **Set Legacy Raid Difficulty**: Type `/ich lraid` followed by one of the following: `10`, `25`, `10h`, `25h` (example: `ich lraid 25h` will set legacy raid difficulty to 25 player (Heroic))
 - **Show/Hide Minimap Icon**: Type `/ich minimap` in chat
 - **View Entry**: Click the icon next to each mount name or instance:
 - Opens the Mount Journal or the Encounter Journal to that specific mount/instance.
