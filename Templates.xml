@@ -67,7 +67,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     <Color r="1" g="1" b="1" a="0.1"/>
                     <Anchors>
                         <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
-                        <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+                        <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="80"/>
                     </Anchors>
                 </Texture>
             </Layer>
@@ -266,8 +266,8 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
 
             <Frame parentKey="NotesContainer" hidden="true">
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="TOPRIGHT"/>
-                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="BOTTOMRIGHT"/>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="TOPRIGHT" x="70"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="BOTTOMRIGHT" x="70"/>
                     <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT"/>
                     <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
                 </Anchors>
