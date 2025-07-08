@@ -1,6 +1,6 @@
 local name, AddOn = ...
----@class InstanceCollectionHelper: AceAddon, AceConsole-3.0
-AddOn = LibStub("AceAddon-3.0"):NewAddon(name, "AceConsole-3.0")
+---@class InstanceCollectionHelper: AceAddon, AceConsole-3.0, AceEvent-3.0
+AddOn = LibStub("AceAddon-3.0"):NewAddon(name, "AceConsole-3.0", "AceEvent-3.0")
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 AddOn.DatabaseDefaults = {

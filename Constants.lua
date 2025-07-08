@@ -28,6 +28,7 @@ local RaidDifficulty = AddOn.RaidDifficulty
 ---@field MountID number
 ---@field Instance string
 ---@field InstanceID number
+---@field MapID number
 ---@field EncounterID? number
 ---@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[]
 ---@field Notes? string Additional notes about this mount or instance
@@ -39,6 +40,7 @@ AddOn.InstanceMounts = {
         MountID = 899,
         Instance = "Tomb of Sargeras",
         InstanceID = 875,
+        MapID = 1676,
         EncounterID = 1861,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = "Also obtainable in Raid Finder (LFR) difficulty"
@@ -48,6 +50,7 @@ AddOn.InstanceMounts = {
         MountID = 419,
         Instance = "Zul'Aman",
         InstanceID = 77,
+        MapID = 568,
         DifficultyIDs = { DungeonDifficulty.Heroic }
     },
     {
@@ -55,6 +58,7 @@ AddOn.InstanceMounts = {
         MountID = 971,
         Instance = "Antorus, the Burning Throne",
         InstanceID = 946,
+        MapID = 1712,
         EncounterID = 1987,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = "Also obtainable in Raid Finder (LFR) difficulty"
@@ -64,6 +68,7 @@ AddOn.InstanceMounts = {
         MountID = 410,
         Instance = "Zul'Gurub",
         InstanceID = 76,
+        MapID = 859,
         EncounterID = 176,
         DifficultyIDs = { DungeonDifficulty.Heroic }
     },
@@ -72,15 +77,17 @@ AddOn.InstanceMounts = {
         MountID = 183,
         Instance = "The Eye",
         InstanceID = 749,
+        MapID = 550,
         EncounterID = 1576,
         DifficultyIDs = {},
-        Notes = "This raid only has an option for 25-man difficulty, so any raid difficulty will suffice"
+        Notes = "This raid only has a 25 player difficulty, so any raid difficulty can be set"
     },
     {
         Name = "Azure Drake",
         MountID = 246,
         Instance = "Eye of Eternity",
         InstanceID = 756,
+        MapID = 616,
         EncounterID = 1617,
         DifficultyIDs = { RaidDifficulty.Legacy10 }
     },
@@ -89,6 +96,7 @@ AddOn.InstanceMounts = {
         MountID = 253,
         Instance = "The Obsidian Sanctum",
         InstanceID = 755,
+        MapID = 615,
         EncounterID = 1616,
         DifficultyIDs = { RaidDifficulty.Legacy10 }
     },
@@ -97,6 +105,7 @@ AddOn.InstanceMounts = {
         MountID = 442,
         Instance = "Dragon Soul",
         InstanceID = 187,
+        MapID = 967,
         EncounterID = 333,
         DifficultyIDs = { RaidDifficulty.Legacy10H }
     },
@@ -105,6 +114,7 @@ AddOn.InstanceMounts = {
         MountID = 247,
         Instance = "Eye of Eternity",
         InstanceID = 756,
+        MapID = 616,
         EncounterID = 1617,
         DifficultyIDs = { RaidDifficulty.Legacy10 }
     },
@@ -113,6 +123,7 @@ AddOn.InstanceMounts = {
         MountID = 264,
         Instance = "Utgarde Pinnacle",
         InstanceID = 286,
+        MapID = 575,
         EncounterID = 643,
         DifficultyIDs = { DungeonDifficulty.Heroic }
     },
@@ -121,14 +132,16 @@ AddOn.InstanceMounts = {
         MountID = 117,
         Instance = "Temple of Ahn'Qiraj",
         InstanceID = 744,
+        MapID = 531,
         DifficultyIDs = {},
-        Notes = "This raid only has an option for 40-man difficulty, so any raid difficulty will suffice"
+        Notes = "This raid only has a 40 player difficulty, so any raid difficulty can be set"
     },
     {
         Name = "Bronze Drake",
         MountID = 248,
         Instance = "The Culling of Stratholme",
         InstanceID = 279,
+        MapID = 595,
         DifficultyIDs = { DungeonDifficulty.Heroic }
     },
     {
@@ -136,6 +149,7 @@ AddOn.InstanceMounts = {
         MountID = 1481,
         Instance = "Tazavesh, the Veiled Market",
         InstanceID = 1194,
+        MapID = 2441,
         EncounterID = 2455,
         DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic }
     },
@@ -144,6 +158,7 @@ AddOn.InstanceMounts = {
         MountID = 543,
         Instance = "Throne of Thunder",
         InstanceID = 362,
+        MapID = 1098,
         EncounterID = 828,
         DifficultyIDs = { RaidDifficulty.Legacy10 }
     },
@@ -152,6 +167,7 @@ AddOn.InstanceMounts = {
         MountID = 395,
         Instance = "The Vortex Pinnacle",
         InstanceID = 68,
+        MapID = 657,
         EncounterID = 115,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic },
         Notes = "Also obtainable in Timewalking"
@@ -161,6 +177,7 @@ AddOn.InstanceMounts = {
         MountID = 396,
         Instance = "Throne of the Four Winds",
         InstanceID = 74,
+        MapID = 754,
         EncounterID = 155,
         DifficultyIDs = { RaidDifficulty.Legacy10 }
     },
@@ -169,6 +186,7 @@ AddOn.InstanceMounts = {
         MountID = 445,
         Instance = "Dragon Soul",
         InstanceID = 187,
+        MapID = 967,
         EncounterID = 331,
         DifficultyIDs = { RaidDifficulty.Legacy10H },
         Notes = "Obtainable in Normal difficulty as well, but only 2 mounts are available in Normal vs. 3 in Heroic"
@@ -178,6 +196,7 @@ AddOn.InstanceMounts = {
         MountID = 791,
         Instance = "The Nighthold",
         InstanceID = 786,
+        MapID = 1530,
         EncounterID = 1737,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic }
     },
@@ -186,6 +205,7 @@ AddOn.InstanceMounts = {
         MountID = 751,
         Instance = "Hellfire Citadel",
         InstanceID = 669,
+        MapID = 1448,
         EncounterID = 1438,
         DifficultyIDs = { RaidDifficulty.Mythic }
     },
@@ -194,6 +214,7 @@ AddOn.InstanceMounts = {
         MountID = 168,
         Instance = "Karazhan",
         InstanceID = 745,
+        MapID = 532,
         EncounterID = 1553,
         DifficultyIDs = { RaidDifficulty.Legacy10 }
     },
@@ -202,6 +223,7 @@ AddOn.InstanceMounts = {
         MountID = 425,
         Instance = "Firelands",
         InstanceID = 78,
+        MapID = 720,
         EncounterID = 194,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic }
     },
@@ -210,6 +232,7 @@ AddOn.InstanceMounts = {
         MountID = 1217,
         Instance = "Battle of Dazar'alor",
         InstanceID = 1176,
+        MapID = 2070,
         EncounterID = 2334,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = "Also obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"
@@ -219,6 +242,7 @@ AddOn.InstanceMounts = {
         MountID = 1219,
         Instance = "Battle of Dazar'alor",
         InstanceID = 1176,
+        MapID = 2070,
         EncounterID = 2343,
         DifficultyIDs = { RaidDifficulty.Mythic }
     },
@@ -227,30 +251,34 @@ AddOn.InstanceMounts = {
         MountID = 286,
         Instance = "Vault of Archavon",
         InstanceID = 753,
+        MapID = 624,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Notes = "Alliance/Horde specific"
+        Notes = "Specific to Alliance characters"
     },
     {
         Name = "Grand Black War Mammoth",
         MountID = 287,
         Instance = "Vault of Archavon",
         InstanceID = 753,
+        MapID = 624,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Notes = "Alliance/Horde specific"
+        Notes = "Specific to Horde characters"
     },
     {
         Name = "Green Qiraji Battle Tank",
         MountID = 120,
         Instance = "Temple of Ahn'Qiraj",
         InstanceID = 744,
+        MapID = 531,
         DifficultyIDs = {},
-        Notes = "This raid only has an option for 40-man difficulty, so any raid difficulty will suffice"
+        Notes = "This raid only has a 40 player difficulty, so any raid difficulty can be set"
     },
     {
         Name = "Hellfire Infernal",
         MountID = 633,
         Instance = "The Nighthold",
         InstanceID = 786,
+        MapID = 1530,
         EncounterID = 1737,
         DifficultyIDs = { RaidDifficulty.Mythic }
     },
@@ -259,6 +287,7 @@ AddOn.InstanceMounts = {
         MountID = 363,
         Instance = "Icecrown Citadel",
         InstanceID = 758,
+        MapID = 631,
         EncounterID = 1636,
         DifficultyIDs = { RaidDifficulty.Legacy25H }
     },
@@ -267,6 +296,7 @@ AddOn.InstanceMounts = {
         MountID = 613,
         Instance = "Blackrock Foundry",
         InstanceID = 457,
+        MapID = 1205,
         EncounterID = 959,
         DifficultyIDs = { RaidDifficulty.Mythic }
     },
@@ -275,6 +305,7 @@ AddOn.InstanceMounts = {
         MountID = 559,
         Instance = "Seige of Orgimmar",
         InstanceID = 369,
+        MapID = 1136,
         EncounterID = 869,
         DifficultyIDs = { RaidDifficulty.Mythic }
     },
@@ -283,6 +314,7 @@ AddOn.InstanceMounts = {
         MountID = 444,
         Instance = "Dragon Soul",
         InstanceID = 187,
+        MapID = 967,
         EncounterID = 333,
         DifficultyIDs = { RaidDifficulty.Legacy10H }
     },
@@ -291,6 +323,7 @@ AddOn.InstanceMounts = {
         MountID = 1406,
         Instance = "The Necrotic Wake",
         InstanceID = 1182,
+        MapID = 2286,
         EncounterID = 2396,
         DifficultyIDs = { DungeonDifficulty.Mythic }
     },
@@ -299,6 +332,7 @@ AddOn.InstanceMounts = {
         MountID = 1252,
         Instance = "Operation: Mechagon",
         InstanceID = 1178,
+        MapID = 2097,
         EncounterID = 2355,
         DifficultyIDs = { DungeonDifficulty.Mythic }
     },
@@ -307,6 +341,7 @@ AddOn.InstanceMounts = {
         MountID = 875,
         Instance = "Return to Karazhan",
         InstanceID = 860,
+        MapID = 1651,
         EncounterID = 1835,
         DifficultyIDs = { DungeonDifficulty.Mythic }
     },
@@ -315,6 +350,7 @@ AddOn.InstanceMounts = {
         MountID = 304,
         Instance = "Ulduar",
         InstanceID = 759,
+        MapID = 603,
         EncounterID = 1649,
         DifficultyIDs = { RaidDifficulty.Legacy25 }
     },
@@ -323,6 +359,7 @@ AddOn.InstanceMounts = {
         MountID = 1293,
         Instance = "Ny'alotha, the Waking City",
         InstanceID = 1180,
+        MapID = 2217,
         EncounterID = 2375,
         DifficultyIDs = { RaidDifficulty.Mythic }
     },
@@ -331,6 +368,7 @@ AddOn.InstanceMounts = {
         MountID = 349,
         Instance = "Onyxia's Lair",
         InstanceID = 760,
+        MapID = 249,
         EncounterID = 1651,
         DifficultyIDs = { RaidDifficulty.Legacy10 }
     },
@@ -339,6 +377,7 @@ AddOn.InstanceMounts = {
         MountID = 415,
         Instance = "Firelands",
         InstanceID = 78,
+        MapID = 720,
         EncounterID = 198,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic }
     },
@@ -347,6 +386,7 @@ AddOn.InstanceMounts = {
         MountID = 185,
         Instance = "Sethekk Halls",
         InstanceID = 252,
+        MapID = 556,
         EncounterID = 542,
         DifficultyIDs = { DungeonDifficulty.Heroic }
     },
@@ -355,14 +395,16 @@ AddOn.InstanceMounts = {
         MountID = 118,
         Instance = "Temple of Ahn'Qiraj",
         InstanceID = 744,
+        MapID = 531,
         DifficultyIDs = {},
-        Notes = "This raid only has an option for 40-man difficulty, so any raid difficulty will suffice"
+        Notes = "This raid only has a 40 player difficulty, so any raid difficulty can be set"
     },
     {
         Name = "Rivendare's Deathcharger",
         MountID = 69, -- Nice
         Instance = "Stratholme - Service Entrance",
         InstanceID = 1292,
+        MapID = 329,
         EncounterID = 456,
         DifficultyIDs = { DungeonDifficulty.Normal },
         Notes = "Also obtainable in Timewalking"
@@ -372,6 +414,7 @@ AddOn.InstanceMounts = {
         MountID = 1500,
         Instance = "Sanctum of Dominiation",
         InstanceID = 1193,
+        MapID = 2450,
         EncounterID = 2439,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = "Also obtainable in Raid Finder (LFR) difficulty"
@@ -381,6 +424,7 @@ AddOn.InstanceMounts = {
         MountID = 954,
         Instance = "Antorus, the Burning Throne",
         InstanceID = 946,
+        MapID = 1712,
         EncounterID = 2031,
         DifficultyIDs = { RaidDifficulty.Mythic }
     },
@@ -389,6 +433,7 @@ AddOn.InstanceMounts = {
         MountID = 995,
         Instance = "Freehold",
         InstanceID = 1001,
+        MapID = 1754,
         EncounterID = 2095,
         DifficultyIDs = { DungeonDifficulty.Mythic }
     },
@@ -397,6 +442,7 @@ AddOn.InstanceMounts = {
         MountID = 883,
         Instance = "Return to Karazhan",
         InstanceID = 860,
+        MapID = 1651,
         DifficultyIDs = { DungeonDifficulty.Mythic }
     },
     {
@@ -404,6 +450,7 @@ AddOn.InstanceMounts = {
         MountID = 531,
         Instance = "Throne of Thunder",
         InstanceID = 362,
+        MapID = 1098,
         EncounterID = 819,
         DifficultyIDs = { RaidDifficulty.Legacy10 }
     },
@@ -412,6 +459,7 @@ AddOn.InstanceMounts = {
         MountID = 213,
         Instance = "Magister's Terrace",
         InstanceID = 249,
+        MapID = 585,
         EncounterID = 533,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Notes = "Also obtainable in Timewalking"
@@ -421,6 +469,7 @@ AddOn.InstanceMounts = {
         MountID = 411,
         Instance = "Zul'Gurub",
         InstanceID = 76,
+        MapID = 859,
         EncounterID = 181,
         DifficultyIDs = { DungeonDifficulty.Heroic }
     },
@@ -429,6 +478,7 @@ AddOn.InstanceMounts = {
         MountID = 1040,
         Instance = "Kings' Rest",
         InstanceID = 1041,
+        MapID = 1762,
         EncounterID = 2172,
         DifficultyIDs = { DungeonDifficulty.Mythic }
     },
@@ -437,6 +487,7 @@ AddOn.InstanceMounts = {
         MountID = 250,
         Instance = "The Obsidian Sanctum",
         InstanceID = 755,
+        MapID = 615,
         EncounterID = 1616,
         DifficultyIDs = { RaidDifficulty.Legacy25 }
     },
@@ -445,6 +496,7 @@ AddOn.InstanceMounts = {
         MountID = 397,
         Instance = "The Stonecore",
         InstanceID = 67,
+        MapID = 725,
         EncounterID = 111,
         DifficultyIDs = { DungeonDifficulty.Normal }
     },
@@ -453,6 +505,7 @@ AddOn.InstanceMounts = {
         MountID = 1053,
         Instance = "The Underrot",
         InstanceID = 1022,
+        MapID = 1841,
         EncounterID = 2158,
         DifficultyIDs = { DungeonDifficulty.Mythic }
     },
@@ -461,6 +514,7 @@ AddOn.InstanceMounts = {
         MountID = 1471,
         Instance = "Sanctum of Dominiation",
         InstanceID = 1193,
+        MapID = 2450,
         EncounterID = 2441,
         DifficultyIDs = { RaidDifficulty.Mythic }
     },
@@ -469,6 +523,7 @@ AddOn.InstanceMounts = {
         MountID = 2204,
         Instance = "Darkflame Cleft",
         InstanceID = 1210,
+        MapID = 2651,
         EncounterID = 2561,
         DifficultyIDs = { DungeonDifficulty.Mythic }
     },
@@ -477,15 +532,17 @@ AddOn.InstanceMounts = {
         MountID = 119,
         Instance = "Temple of Ahn'Qiraj",
         InstanceID = 744,
+        MapID = 531,
         DifficultyIDs = {},
-        Notes = "This raid only has an option for 40-man difficulty, so any raid difficulty will suffice"
+        Notes = "This raid only has a 40 player difficulty, so any raid difficulty can be set"
     },
     {
         Name = "Zereth Overseer",
         MountID = 1587,
         Instance = "Sepulcher of the First Ones",
         InstanceID = 1195,
+        MapID = 2481,
         EncounterID = 2464,
         DifficultyIDs = { RaidDifficulty.Mythic }
-    },
+    }
 }

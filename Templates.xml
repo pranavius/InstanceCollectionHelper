@@ -1,4 +1,5 @@
-<Ui>
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Blizzard_SharedXML/UI.xsd">
     <Frame name="ICHListHeadersTemplate" virtual="true" enableMouse="true">
         <Size y="25"/>
         <Layers>
@@ -13,17 +14,50 @@
                 </Texture>
             </Layer>
             <Layer level="OVERLAY">
-                <FontString parentKey="NameHeader" inherits="GameTooltipText" justifyH="left" text="NAME">
-                    <Size x="200"/>
-                    <Anchors><Anchor point="LEFT" relativePoint="LEFT"/></Anchors>
+                <FontString parentKey="NameHeader" inherits="GameTooltipText" justifyH="LEFT" text="Name">
+                    <Size x="171"/>
+                    <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="29"/></Anchors>
                 </FontString>
-                <FontString parentKey="InstanceHeader" inherits="GameTooltipText" justifyH="left" text="INSTANCE">
+                <FontString parentKey="InstanceHeader" inherits="GameTooltipText" justifyH="LEFT" text="Instance">
+                    <Size x="225"/>
+                    <Anchors><Anchor point="LEFT" relativeKey="$parent.NameHeader" relativePoint="RIGHT" x="25"/></Anchors>
+                </FontString>
+                <FontString parentKey="DiffHeader" inherits="GameTooltipText" justifyH="LEFT" text="Difficulty">
                     <Size x="200"/>
-                    <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="200"/></Anchors>
+                    <Anchors><Anchor point="LEFT" relativeKey="$parent.InstanceHeader" relativePoint="RIGHT"/></Anchors>
+                </FontString>
+                <FontString parentKey="NotesHeader" inherits="GameTooltipText" justifyH="LEFT" text="Notes">
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.DiffHeader" relativePoint="RIGHT"/>
+                        <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                    </Anchors>
                 </FontString>
             </Layer>
         </Layers>
     </Frame>
+
+    <Button name="ICHDifficultyButtonTemplate" virtual="true" inherits="UIPanelButtonTemplate">
+        <Size x="50"/>
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture parentKey="ButtonTint" file="Interface/Buttons/WHITE8x8" alphaMode="ALPHAKEY">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Left" relativePoint="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Right" relativePoint="BOTTOMRIGHT"/>
+                    </Anchors>
+                    <TexCoords left="0" right="0" top="1" bottom="1"/>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnEnter>
+                GameTooltip:SetOwner(self, "ANCHOR_TOP")
+                GameTooltip:AddLine(ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                GameTooltip:Show()
+            </OnEnter>
+            <OnLeave>GameTooltip:Hide()</OnLeave>
+        </Scripts>
+    </Button>
 
     <Frame name="ICHListItemTemplate" virtual="true" enableMouse="true">
         <Size y="25"/>
@@ -47,9 +81,8 @@
                 </Anchors>
                 <Frames>
                     <Button name="ICHViewItemButton" parentKey="ViewButton" inherits="InsecureActionButtonTemplate">
-                        <Size x="23" y="23"/>
+                        <Size x="24" y="24"/>
                         <Anchors><Anchor point="LEFT" relativePoint="LEFT"/></Anchors>
-                        <!-- <HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/> -->
                         <Scripts>
                             <OnEnter>
                                 GameTooltip:SetOwner(self, "ANCHOR_NONE")
@@ -57,16 +90,13 @@
                                 GameTooltip:AddLine("View in mount journal", 1, 1, 1, true)
                                 GameTooltip:Show()
                             </OnEnter>
-                            <OnLeave>
-                                GameTooltip:Hide()
-                            </OnLeave>
+                            <OnLeave>GameTooltip:Hide()</OnLeave>
                         </Scripts>
                     </Button>
                 </Frames>
                 <Layers>
                     <Layer level="OVERLAY">
                         <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="">
-                            <Size x="165"/>
                             <Anchors><Anchor point="LEFT" relativeKey="$parent.ViewButton" relativePoint="RIGHT" x="5"/></Anchors>
                         </FontString>
                     </Layer>
@@ -74,7 +104,7 @@
             </Frame>
 
             <Frame parentKey="InstanceContainer">
-                <Size x="200"/>
+                <Size x="250"/>
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeKey="$parent.NameContainer" relativePoint="TOPRIGHT"/>
                     <Anchor point="BOTTOMLEFT" relativeKey="$parent.NameContainer" relativePoint="BOTTOMRIGHT"/>
@@ -87,24 +117,187 @@
                             <OnEnter>
                                 GameTooltip:SetOwner(self, "ANCHOR_NONE")
                                 GameTooltip:SetPoint("RIGHT", self, "LEFT", -5, 0)
-                                GameTooltip:AddLine("View in instance journal", 1, 1, 1, true)
+                                GameTooltip:AddLine("View in encounter journal", 1, 1, 1, true)
                                 GameTooltip:Show()
                             </OnEnter>
-                            <OnLeave>
-                                GameTooltip:Hide()
-                            </OnLeave>
+                            <OnLeave>GameTooltip:Hide()</OnLeave>
                         </Scripts>
                     </Button>
                 </Frames>
                 <Layers>
                     <Layer level="OVERLAY">
                         <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="">
-                            <Size x="175"/>
                             <Anchors><Anchor point="LEFT" relativeKey="$parent.ViewButton" relativePoint="RIGHT" x="5"/></Anchors>
                         </FontString>
                     </Layer>
                 </Layers>
             </Frame>
+
+            <Frame parentKey="DifficultyContainer">
+                <Size x="200"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.InstanceContainer" relativePoint="TOPRIGHT"></Anchor>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.InstanceContainer" relativePoint="BOTTOMRIGHT"></Anchor>
+                </Anchors>
+                <Frames>
+                    <Button parentKey="RaidDiffNormalButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="14" type="number"/></KeyValues>
+                        <Scripts>
+                            <OnClick>
+                                if GetRaidDifficultyID() == self.difficultyID then
+                                    ICH:PrintChatMessage("Raid Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                else
+                                    SetRaidDifficultyID(self.difficultyID)
+                                end
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button parentKey="RaidDiffHeroicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="15" type="number"/></KeyValues>
+                        <Scripts>
+                            <OnClick>
+                                if GetRaidDifficultyID() == self.difficultyID then
+                                    ICH:PrintChatMessage("Raid Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                else
+                                    SetRaidDifficultyID(self.difficultyID)
+                                end
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button parentKey="RaidDiffMythicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="16" type="number"/></KeyValues>
+                        <Scripts>
+                            <OnClick>
+                                if GetRaidDifficultyID() == self.difficultyID then
+                                    ICH:PrintChatMessage("Raid Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                else
+                                    SetRaidDifficultyID(self.difficultyID)
+                                end
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button parentKey="RaidDiff10Button" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="3" type="number"/></KeyValues>
+                        <Scripts>
+                            <OnClick>
+                                if GetLegacyRaidDifficultyID() == self.difficultyID then
+                                    ICH:PrintChatMessage("Legacy Raid Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                else
+                                    SetLegacyRaidDifficultyID(self.difficultyID)
+                                end
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button parentKey="RaidDiff25Button" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="4" type="number"/></KeyValues>
+                        <Scripts>
+                            <OnClick>
+                                if GetLegacyRaidDifficultyID() == self.difficultyID then
+                                    ICH:PrintChatMessage("Legacy Raid Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                else
+                                    SetLegacyRaidDifficultyID(self.difficultyID)
+                                end
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button parentKey="RaidDiff10HeroicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="5" type="number"/></KeyValues>
+                        <Scripts>
+                            <OnClick>
+                                if GetLegacyRaidDifficultyID() == self.difficultyID then
+                                    ICH:PrintChatMessage("Legacy Raid Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                else
+                                    SetLegacyRaidDifficultyID(self.difficultyID)
+                                end
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button parentKey="RaidDiff25HeroicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="6" type="number"/></KeyValues>
+                        <Scripts>
+                            <OnClick>
+                                if GetLegacyRaidDifficultyID() == self.difficultyID then
+                                    ICH:PrintChatMessage("Legacy Raid Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                else
+                                    SetLegacyRaidDifficultyID(self.difficultyID)
+                                end
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button parentKey="DungDiffNormalButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="1" type="number"/></KeyValues>
+                        <Scripts><OnClick>SetDungeonDifficultyID(self.difficultyID)</OnClick></Scripts>
+                        <Scripts>
+                            <OnClick>
+                                if GetDungeonDifficultyID() == self.difficultyID then
+                                    ICH:PrintChatMessage("Dungeon Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                else
+                                    SetDungeonDifficultyID(self.difficultyID)
+                                end
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button parentKey="DungDiffHeroicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="2" type="number"/></KeyValues>
+                        <Scripts>
+                            <OnClick>
+                                if GetDungeonDifficultyID() == self.difficultyID then
+                                    ICH:PrintChatMessage("Dungeon Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                else
+                                    SetDungeonDifficultyID(self.difficultyID)
+                                end
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button parentKey="DungDiffMythicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="23" type="number"/></KeyValues>
+                        <Scripts>
+                            <OnClick>
+                                if GetDungeonDifficultyID() == self.difficultyID then
+                                    ICH:PrintChatMessage("Dungeon Difficulty is already set to", ICH:GetDifficultyButtonTooltipText(self.difficultyID))
+                                else
+                                    SetDungeonDifficultyID(self.difficultyID)
+                                end
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                </Frames>
+            </Frame>
+
+            <Frame parentKey="NotesContainer" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="TOPRIGHT"></Anchor>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="BOTTOMRIGHT"></Anchor>
+                    <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                </Anchors>
+                <Frames>
+                    <Frame parentKey="ICHNote" enableMouse="true">
+                        <Size x="20" y="20"/>
+                        <KeyValues><KeyValue key="Notes" value="" type="string"/></KeyValues>
+                        <Anchors><Anchor point="LEFT" relativePoint="LEFT"/></Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <Texture parentKey="NotesIcon" file="interface/icons/inv_misc_note_04">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                                        <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                        </Layers>
+                        <Scripts>
+                            <OnEnter>
+                                GameTooltip:SetOwner(self, "ANCHOR_NONE")
+                                GameTooltip:SetPoint("LEFT", self, "RIGHT", 5, 0)
+                                GameTooltip:AddLine(self.Notes, 1, 1, 1, true)
+                                GameTooltip:Show()
+                            </OnEnter>
+                            <OnLeave>GameTooltip:Hide()</OnLeave>
+                        </Scripts>
+                    </Frame>
+                </Frames>
+            </Frame>
         </Frames>
     </Frame>
+
 </Ui>

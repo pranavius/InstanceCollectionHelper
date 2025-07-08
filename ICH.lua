@@ -5,6 +5,10 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 local LDB = LibStub("LibDataBroker-1.1")
 ICH = {}
 
+function AddOn:PrintChatMessage(...)
+    print("|cFF00CCFFInstance Collection Helper: |r", ...)
+end
+
 ---Handles slash commands in a way that overrides the default behavior of Ace3 slash commands. Executing the command with no arguments
 ---opens the AddOn options window, providing the `help` argument displays a list of available arguments and uses for the slash command,
 ---and all other arguments are handled using Ace3's default behavior.
@@ -28,7 +32,7 @@ function AddOn:OnInitialize()
     local broker = LDB:NewDataObject(name, {
         type = "launcher",
         text = name,
-        icon = "Interface/Icons/Spell_Frost_FrostArmor", -- TODO: Create/add an icon later
+        icon = "Interface/AddOns/InstanceCollectionHelper/Media/Logo.png",
         OnClick = function()
             if self.Container then self.Container:Show() end
         end,
@@ -44,8 +48,10 @@ function AddOn:OnInitialize()
     config:RegisterOptionsTable(name, self.SlashOptions, "ich")
     -- Override default slash command behavior so /ich opens the addon
     self:RegisterChatCommand("ich", function(input) self.HandleSlashCommand("ich", input) end)
-
+    
     self:CreateMainFrame()
+    self.Container:HookScript("OnShow", function() self:UpdateListContents("ICH_OPEN") end)
+    self:RegisterEvent("ZONE_CHANGED", "UpdateListContents")
 end
 
 ---Initializes the AddOn window.<br/>
@@ -142,6 +148,17 @@ function AddOn:CreateMainFrame()
     f.Title:SetPoint("TOPLEFT", f, "TOPLEFT", 0, -10)
     f.Title:SetPoint("TOPRIGHT", f, "TOPRIGHT", 0, -10)
     f.Title:SetText(name)
+
+    -- Info section
+    f.Info = f:CreateFontString("ICHInfo", "OVERLAY", "GameTooltipText")
+    f.Info:SetPoint("TOPLEFT", f.Title, "BOTTOMLEFT", 25, -10)
+    f.Info:SetPoint("TOPRIGHT", f.Title, "BOTTOMRIGHT", -25, -10)
+    f.Info:SetText("Find the mount you want to collect in the list and click the button for the difficulty you want to run on to make sure it is updated. Search functionality for mounts will be added soon.\n\nWhen you are locked out for a mount on a particular difficulty, the button for that difficulty will be disabled.")
+    f.Info:SetTextColor(1, 0.82, 0, 1)
+    
+    -- Close button
+    f.CloseButton = CreateFrame("Button", "ICHCloseButton", f, "UIPanelCloseButtonDefaultAnchors")
+    f.CloseButton:SetSize(20, 20)
     -- Allows closing via ESC key
     tinsert(UISpecialFrames, f:GetName())
 
@@ -185,9 +202,18 @@ function AddOn:CreateScrollingView()
 
     ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView)
     self.ScrollView:SetElementInitializer("ICHListItemTemplate", self.DataProviderInit)
+end
+
+function AddOn:UpdateListContents(event)
+    if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then UIParentLoadAddOn("Blizzard_Collections") end
+    if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then UIParentLoadAddOn("Blizzard_EncounterJournal") end
+    local newData = {}
     for _, data in ipairs(self.InstanceMounts) do
         self.ICHDataProvider:Insert(data)
     end
+    self.ICHDataProvider = CreateDataProvider(newData)
+    self.ScrollView:SetDataProvider(self.ICHDataProvider)
+
 end
 
 ---Query the Dungeon Journal API for Boss Information
