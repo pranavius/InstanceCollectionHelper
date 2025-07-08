@@ -5,10 +5,6 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 local LDB = LibStub("LibDataBroker-1.1")
 ICH = {}
 
-function AddOn:PrintChatMessage(...)
-    print("|cFF00CCFFInstance Collection Helper: |r", ...)
-end
-
 ---Handles slash commands in a way that overrides the default behavior of Ace3 slash commands. Executing the command with no arguments
 ---opens the AddOn options window, providing the `help` argument displays a list of available arguments and uses for the slash command,
 ---and all other arguments are handled using Ace3's default behavior.

@@ -96,8 +96,8 @@ local function ShowDifficultyButtons(container, data)
                 if button.ButtonTint:IsShown() then button.ButtonTint:Hide() end
             else
                 -- Tint dungeon buttons blue and raids green
-                if AddOn:IsInstanceRaid(data) then button.ButtonTint:SetVertexColor(0, 1, 0, 0.5)
-                else button.ButtonTint:SetVertexColor(0, 0, 1, 0.5) end
+                if AddOn:IsInstanceRaid(data) then button.ButtonTint:SetVertexColor(0.082, 0.702, 0, 0.75)
+                else button.ButtonTint:SetVertexColor(0, 0.569, 0.949, 0.75) end
                 --Mask ButtonTint with the same texture as the button background
                 if not button.TintMask then
                     button.TintMask = button:CreateMaskTexture()
@@ -163,50 +163,6 @@ function AddOn.DataProviderInit(frame, data, index)
         EJ_SetLootFilter(0, 0)
         C_EncounterJournal.SetSlotFilter(Enum.ItemSlotFilterType.Other)
     end)
-end
-
-function AddOn:GetDifficultyButtonText(difficultyID)
-    local dKey
-    for key, dd in pairs(AddOn.DungeonDifficulty) do
-        if dd == difficultyID then dKey = key break end
-    end
-    if not dKey then
-        for key, rd in pairs(AddOn.RaidDifficulty) do
-            if rd == difficultyID then dKey = key break end
-        end
-    end
-
-    if dKey == "Normal" then return "N"
-    elseif dKey == "Heroic" then return "H"
-    elseif dKey == "Mythic" then return "M"
-    elseif dKey == "Legacy10" then return "10"
-    elseif dKey == "Legacy25" then return "25"
-    elseif dKey == "Legacy10H" then return "10H"
-    elseif dKey == "Legacy25H" then return "25H"
-    end
-
-    return "?"
-end
-
-function AddOn:GetDifficultyButtonTooltipText(difficultyID)
-    local dKey
-    for key, dd in pairs(AddOn.DungeonDifficulty) do
-        if dd == difficultyID then dKey = key break end
-    end
-    if not dKey then
-        for key, rd in pairs(AddOn.RaidDifficulty) do
-            if rd == difficultyID then dKey = key break end
-        end
-    end
-
-    if not dKey then return "Unknown"
-    elseif dKey == "Legacy10" then return "10 Player"
-    elseif dKey == "Legacy25" then return "25 Player"
-    elseif dKey == "Legacy10H" then return "10 Player (Heroic)"
-    elseif dKey == "Legacy25H" then return "25 Player (Heroic)"
-    end
-
-    return dKey
 end
 
 ---@param data InstanceMount
