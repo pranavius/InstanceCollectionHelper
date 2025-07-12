@@ -14,6 +14,8 @@ AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 ---@field difficultyID number
 
 ---@class DifficultyContainer: Frame Frame that displays elements relevant to the "Difficulty" column in the scrollable list
+---@field sharedDifficulties? table<RaidDifficulty, RaidDifficulty> Button for tracking LFR lockout (no action taken when clicked)
+---@field RaidDiffLFRButton DifficultyButton Button for tracking LFR lockout (no action taken when clicked)
 ---@field RaidDiff10Button DifficultyButton Button for setting Legacy Raid difficulty to 10 player
 ---@field RaidDiff10HeroicButton DifficultyButton Button for setting Legacy Raid difficulty to 10 player (Heroic)
 ---@field RaidDiff25Button DifficultyButton Button for setting Legacy Raid difficulty to 25 player
@@ -43,13 +45,13 @@ local function IsEncounterCompleted(data, difficultyID)
     local encounterName
     if data.EncounterID then encounterName = select(1, EJ_GetEncounterInfo(data.EncounterID)) end
     for i = 1, GetNumSavedInstances() do
-        local instanceName, lockoutID, secTilReset, diff, isLocked, isExtended, _, isRaid, maxPlayers, diffName, numEncounters, encProg, isExtendDisabled, mapID = GetSavedInstanceInfo(i)
+        local _, _, _, diff, isLocked, _, _, _, _, _, numEncounters, _, _, mapID = GetSavedInstanceInfo(i)
         if isLocked and diff == difficultyID then
             if mapID == data.MapID then
                 if not encounterName then return isLocked
                 else
                     for idx = 1, numEncounters do
-                        local bossName, fileDataID, isKilled = GetSavedInstanceEncounterInfo(i, idx)
+                        local bossName, _, isKilled = GetSavedInstanceEncounterInfo(i, idx)
                         if encounterName:match(bossName) then return isKilled end
                     end
                 end
@@ -60,13 +62,23 @@ local function IsEncounterCompleted(data, difficultyID)
     return false
 end
 
+local function IsEncounterCompletedOnSharedDifficulty(data)
+    local isCompleted = false
+    for shared, _ in pairs(data.SharedDifficulties) do
+        if IsEncounterCompleted(data, shared) then isCompleted = true break end
+    end
+
+    return isCompleted
+end
+
 ---@param container DifficultyContainer See `Templates.xml` for "ICHListItemTemplate"
 ---@param data InstanceMount The data to process and display in a list item.
 local function ShowDifficultyButtons(container, data)
     for i, diffID in ipairs(data.DifficultyIDs) do
         local button
         if AddOn:IsInstanceRaid(data) then
-            if diffID == AddOn.RaidDifficulty.Legacy10 then button = container.RaidDiff10Button
+            if diffID == AddOn.RaidDifficulty.LFR then button = container.RaidDiffLFRButton
+            elseif diffID == AddOn.RaidDifficulty.Legacy10 then button = container.RaidDiff10Button
             elseif diffID == AddOn.RaidDifficulty.Legacy10H then button = container.RaidDiff10HeroicButton
             elseif diffID == AddOn.RaidDifficulty.Legacy25 then button = container.RaidDiff25Button
             elseif diffID == AddOn.RaidDifficulty.Legacy25H then button = container.RaidDiff25HeroicButton
@@ -74,6 +86,7 @@ local function ShowDifficultyButtons(container, data)
             elseif diffID == AddOn.RaidDifficulty.Heroic then button = container.RaidDiffHeroicButton
             elseif diffID == AddOn.RaidDifficulty.Mythic then button = container.RaidDiffMythicButton
             end
+            if data.SharedDifficulties then button.sharedDifficulties = data.SharedDifficulties end
         else
             if diffID == AddOn.DungeonDifficulty.Normal then button = container.DungDiffNormalButton
             elseif diffID == AddOn.DungeonDifficulty.Heroic then button = container.DungDiffHeroicButton
@@ -90,8 +103,9 @@ local function ShowDifficultyButtons(container, data)
             button:GetFontString():SetDrawLayer("OVERLAY")
             button:Enable()
             button.ButtonTint:Show()
-            if IsEncounterCompleted(data, diffID) then
-                -- If an encounter has already been attempted in the current reset period, disable the button and don't show a tinted overlay
+            if IsEncounterCompleted(data, diffID) or (data.SharedDifficulties and IsEncounterCompletedOnSharedDifficulty(data)) then
+                -- If an encounter has already been completed in the current reset period, disable the button and don't show a tinted overlay
+                -- For legacy raids that share a single lockout for all difficulties, check if the encounter has been completed on any shared difficulties as well
                 button:Disable()
                 if button.ButtonTint:IsShown() then button.ButtonTint:Hide() end
             else

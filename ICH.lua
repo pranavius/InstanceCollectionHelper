@@ -80,8 +80,16 @@ function AddOn:CreateMainFrame()
     f.Info = f:CreateFontString("ICHInfo", "OVERLAY", "GameTooltipText")
     f.Info:SetPoint("TOPLEFT", f.Title, "BOTTOMLEFT", 25, -10)
     f.Info:SetPoint("TOPRIGHT", f.Title, "BOTTOMRIGHT", -25, -10)
-    f.Info:SetText("Find the mount you want to collect in the list and click the button for the difficulty you want to run on to make sure it is updated. Search functionality for mounts will be added soon.\n\nWhen you are locked out for a mount on a particular difficulty, the button for that difficulty will be disabled.")
+    f.Info:SetText("Find the mount you want to collect in the list and click the button for the difficulty you want to run on to make sure it is updated.\n\nWhen you are locked out for a mount on a particular difficulty, the button for that difficulty will be disabled. The button will also be disabled when for legacy raids completed on another difficulty since those lockouts are shared across all difficulties.")
     f.Info:SetTextColor(1, 0.82, 0, 1)
+
+    -- Search box
+    f.SearchBox = CreateFrame("EditBox", "ICHSearchBox", f, "SearchBoxTemplate")
+    f.SearchBox:SetPoint("TOPRIGHT", f.Info, "BOTTOMRIGHT", 0, -10)
+    f.SearchBox:SetAutoFocus(false)
+    f.SearchBox:SetSize(350, 30)
+    f.SearchBox.Instructions:SetText("Search by mount/instance name, instance type, or difficulty")
+    f.SearchBox:HookScript("OnTextChanged", function() self:UpdateListContents("ICH_SEARCH") end)
     
     -- Close button
     f.CloseButton = CreateFrame("Button", "ICHCloseButton", f, "UIPanelCloseButtonDefaultAnchors")
@@ -100,8 +108,8 @@ end
 ---Currently only displays mount information.
 function AddOn:CreateScrollingView()
     self.Container.ListHeaders = CreateFrame("Frame", "ICHListHeaders", self.Container, "ICHListHeadersTemplate")
-    self.Container.ListHeaders:SetPoint("TOPLEFT", self.Container.Info, "BOTTOMLEFT", -15, -10)
-    self.Container.ListHeaders:SetPoint("TOPRIGHT", self.Container.Info, "BOTTOMRIGHT", 15, -10)
+    self.Container.ListHeaders:SetPoint("TOPLEFT", self.Container.Info, "BOTTOMLEFT", -15, -55)
+    self.Container.ListHeaders:SetPoint("TOPRIGHT", self.Container.Info, "BOTTOMRIGHT", 15, -55)
 
     self.ScrollBox = CreateFrame("Frame", "ICHScrollBox", self.Container, "WowScrollBoxList")
     self.ScrollBox:SetPoint("TOPLEFT", self.Container.ListHeaders, "BOTTOMLEFT", 0, -5)
@@ -129,12 +137,44 @@ function AddOn:UpdateListContents(event)
         if not isOwned then tinsert(newData, data) end
     end
 
-    if #newData ~= self.ICHDataProvider:GetSize() and event == "ZONE_CHANGED" then
-         self:PrintChatMessage("Number of obtainable mounts changed. The mount list will be updated.")
+    -- Filter list results based on search criteria when present
+    if self.Container.SearchBox and self.Container.SearchBox:GetText() ~= "" then
+        local filteredData = {}
+        local searchBox = self.Container.SearchBox
+        local query = searchBox:GetText():lower()
+        for _, nData in ipairs(newData) do
+            local nameMatches = nData.Name:lower():match(query) and true or false
+            local instanceMatches = nData.Instance:lower():match(query) and true or false
+            local instanceTypeMatches = query == "raid" and self:IsInstanceRaid(nData) or (query == "dungeon" and not self:IsInstanceRaid(nData))
+            local difficultyMatches = false
+            for _, diffID in ipairs(nData.DifficultyIDs) do
+                if self:GetInstanceDifficultyText(diffID):lower():match(query) then
+                    difficultyMatches = true
+                    break
+                end
+            end
+            if not difficultyMatches and nData.SharedDifficulties then
+                for shared, _ in pairs(nData.SharedDifficulties) do
+                    if self:GetInstanceDifficultyText(shared):lower():match(query) then
+                        difficultyMatches = true
+                        break
+                    end
+                end
+            end
+
+            if nameMatches or instanceMatches or instanceTypeMatches or difficultyMatches then
+                tinsert(filteredData, nData)
+            end
+        end
+
+        newData = filteredData
     end
+
     self.ICHDataProvider = CreateDataProvider(newData)
     self.ScrollView:SetDataProvider(self.ICHDataProvider)
-
+    if #newData ~= self.ICHDataProvider:GetSize() and event == "ZONE_CHANGED" then
+         self:PrintChatMessage("Updated available mount list")
+    end
 end
 
 -- Exposes AddOn functionality for use in XML

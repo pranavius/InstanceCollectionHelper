@@ -15,6 +15,7 @@ AddOn.RaidDifficulty = {
     Legacy25 = 4,
     Legacy10H = 5,
     Legacy25H = 6,
+    LFR = 17,
     Normal = 14,
     Heroic = 15,
     Mythic = 16
@@ -31,6 +32,7 @@ local RaidDifficulty = AddOn.RaidDifficulty
 ---@field MapID number
 ---@field EncounterID? number
 ---@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[]
+---@field SharedDifficulties table<RaidDifficulty, RaidDifficulty>
 ---@field Notes? string Additional notes about this mount or instance
 
 ---@type table<string, InstanceMount>
@@ -42,8 +44,7 @@ AddOn.InstanceMounts = {
         InstanceID = 875,
         MapID = 1676,
         EncounterID = 1861,
-        DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = "Also obtainable in Raid Finder (LFR) difficulty"
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic }
     },
     {
         Name = "Amani Battle Bear",
@@ -60,8 +61,7 @@ AddOn.InstanceMounts = {
         InstanceID = 946,
         MapID = 1712,
         EncounterID = 1987,
-        DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = "Also obtainable in Raid Finder (LFR) difficulty"
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic }
     },
     {
         Name = "Anu'relos, Flame's Guidance",
@@ -98,7 +98,7 @@ AddOn.InstanceMounts = {
         MapID = 550,
         EncounterID = 1576,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Notes = "This raid only has a 25 player difficulty, so any raid difficulty can be set"
+        Notes = "This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"
     },
     {
         Name = "Astral Cloud Serpent",
@@ -107,7 +107,12 @@ AddOn.InstanceMounts = {
         InstanceID = 317,
         MapID = 1008,
         EncounterID = 726,
-        DifficultyIDs = { RaidDifficulty.Mythic },
+        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        SharedDifficulties = {
+            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
+        }
     },
     {
         Name = "Azure Drake",
@@ -116,7 +121,8 @@ AddOn.InstanceMounts = {
         InstanceID = 756,
         MapID = 616,
         EncounterID = 1617,
-        DifficultyIDs = { RaidDifficulty.Legacy10 }
+        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 }
     },
     {
         Name = "Black Drake",
@@ -134,8 +140,13 @@ AddOn.InstanceMounts = {
         InstanceID = 187,
         MapID = 967,
         EncounterID = 333,
-        DifficultyIDs = { RaidDifficulty.Legacy10, RaidDifficulty.Legacy10H },
-        Notes = "Recommended to attempt on Heroic first if |cFFFFD100Life-Binder's Handmaiden|r is not obtained yet"
+        DifficultyIDs = { RaidDifficulty.Legacy10H },
+        SharedDifficulties = {
+            [RaidDifficulty.Legacy10] = RaidDifficulty.Legacy10H,
+            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10H,
+            [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H
+        },
+        Notes = "Available in Normal Legacy Raid difficulty, but Heroic should be set if |cFFFFD100Life-Binder's Handmaiden|r is not obtained yet"
     },
     {
         Name = "Blue Drake",
@@ -144,7 +155,8 @@ AddOn.InstanceMounts = {
         InstanceID = 756,
         MapID = 616,
         EncounterID = 1617,
-        DifficultyIDs = { RaidDifficulty.Legacy10 }
+        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 }
     },
     {
         Name = "Blue Proto-Drake",
@@ -162,7 +174,7 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         DifficultyIDs = {},
-        Notes = "Drop from trash mobs around |cFFFFD100Temple of Ahn'Qiraj|r.\n\nThis raid only has a 40 player difficulty, so any raid difficulty can be set."
+        Notes = "Drop from trash mobs around "..WrapTextInColor("Temple of Ahn'Qiraj", DARKYELLOW_FONT_COLOR).."\n\nThis raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"
     },
     {
         Name = "Bronze Drake",
@@ -188,7 +200,12 @@ AddOn.InstanceMounts = {
         InstanceID = 362,
         MapID = 1098,
         EncounterID = 828,
-        DifficultyIDs = { RaidDifficulty.Legacy10 }
+        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        SharedDifficulties = {
+            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
+        }
     },
     {
         Name = "Drake of the North Wind",
@@ -207,7 +224,12 @@ AddOn.InstanceMounts = {
         InstanceID = 74,
         MapID = 754,
         EncounterID = 155,
-        DifficultyIDs = { RaidDifficulty.Legacy10 }
+        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        SharedDifficulties = {
+            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
+        }
     },
     {
         Name = "Experiment 12-B",
@@ -216,8 +238,13 @@ AddOn.InstanceMounts = {
         InstanceID = 187,
         MapID = 967,
         EncounterID = 331,
-        DifficultyIDs = { RaidDifficulty.Legacy10, RaidDifficulty.Legacy10H },
-        Notes = "Recommended to attempt on Heroic first if |cFFFFD100Life-Binder's Handmaiden|r is not obtained yet"
+        DifficultyIDs = { RaidDifficulty.Legacy10H },
+        SharedDifficulties = {
+            [RaidDifficulty.Legacy10] = RaidDifficulty.Legacy10H,
+            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10H,
+            [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H
+        },
+        Notes = "Available in Normal Legacy Raid difficulty, but Heroic should be set if |cFFFFD100Life-Binder's Handmaiden|r is not obtained yet"
     },
     {
         Name = "Felblaze Infernal",
@@ -271,8 +298,8 @@ AddOn.InstanceMounts = {
         InstanceID = 1176,
         MapID = 2070,
         EncounterID = 2334,
-        DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = "Also obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Notes = "Obtainable in Raid Finder (LFR) difficulty by killing "..WrapTextInColor("Lady Jaina Proudmoore", DARKYELLOW_FONT_COLOR)
     },
     {
         Name = "Grand Black War Mammoth |A:QuestPortraitIcon-Alliance:15:17|a",
@@ -281,7 +308,7 @@ AddOn.InstanceMounts = {
         InstanceID = 753,
         MapID = 624,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Notes = "Drops for |cFF00ADF0Alliance|r characters, but obtaining this also gives you the |cFFFF2934Horde|r version"
+        Notes = "Drops for "..WrapTextInColor("Alliance", PLAYER_FACTION_COLOR_ALLIANCE).." characters, but obtaining this also gives you the "..WrapTextInColor("Horde", PLAYER_FACTION_COLOR_HORDE).." version"
     },
     {
         Name = "Grand Black War Mammoth |A:QuestPortraitIcon-Horde:15:17|a",
@@ -290,7 +317,7 @@ AddOn.InstanceMounts = {
         InstanceID = 753,
         MapID = 624,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Notes = "Drops for |cFFFF2934Horde|r characters, but obtaining this also gives you the |cFF00ADF0Alliance|r version"
+        Notes = "Drops for "..WrapTextInColor("Horde", PLAYER_FACTION_COLOR_HORDE).." characters, but obtaining this also gives you the "..WrapTextInColor("Alliance", PLAYER_FACTION_COLOR_ALLIANCE).." version"
     },
     {
         Name = "Green Qiraji Battle Tank",
@@ -299,7 +326,7 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         DifficultyIDs = {},
-        Notes = "Drop from trash mobs around |cFFFFD100Temple of Ahn'Qiraj|r.\n\nThis raid only has a 40 player difficulty, so any raid difficulty can be set."
+        Notes = "Drop from trash mobs around "..WrapTextInColor("Temple of Ahn'Qiraj", DARKYELLOW_FONT_COLOR).."\n\nThis raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"
     },
     {
         Name = "Hellfire Infernal",
@@ -344,7 +371,8 @@ AddOn.InstanceMounts = {
         InstanceID = 187,
         MapID = 967,
         EncounterID = 333,
-        DifficultyIDs = { RaidDifficulty.Legacy10H }
+        DifficultyIDs = { RaidDifficulty.Legacy10H },
+        SharedDifficulties = { [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H }
     },
     {
         Name = "Marrowfang",
@@ -380,7 +408,8 @@ AddOn.InstanceMounts = {
         InstanceID = 759,
         MapID = 603,
         EncounterID = 1649,
-        DifficultyIDs = { RaidDifficulty.Legacy25 }
+        DifficultyIDs = { RaidDifficulty.Normal },
+        Notes = "Upon entering the instance, raid difficulty will automatically be set to Normal"
     },
     {
         Name = "Ny'alotha Allseer",
@@ -398,7 +427,8 @@ AddOn.InstanceMounts = {
         InstanceID = 760,
         MapID = 249,
         EncounterID = 1651,
-        DifficultyIDs = { RaidDifficulty.Legacy10 }
+        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 },
     },
     {
         Name = "Prototype A.S.M.R",
@@ -407,8 +437,7 @@ AddOn.InstanceMounts = {
         InstanceID = 1296,
         MapID = 2769,
         EncounterID = 2646,
-        DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = "Also obtainable in Raid Finder (LFR) difficulty"
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic }
     },
     {
         Name = "Pureblood Fire Hawk",
@@ -435,7 +464,7 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         DifficultyIDs = {},
-        Notes = "Drop from trash mobs around |cFFFFD100Temple of Ahn'Qiraj|r.\n\nThis raid only has a 40 player difficulty, so any raid difficulty can be set."
+        Notes = "Drop from trash mobs around "..WrapTextInColor("Temple of Ahn'Qiraj", DARKYELLOW_FONT_COLOR).."\n\nThis raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"
     },
     {
         Name = "Rivendare's Deathcharger",
@@ -450,12 +479,11 @@ AddOn.InstanceMounts = {
     {
         Name = "Sanctum Gloomcharger",
         MountID = 1500,
-        Instance = "Sanctum of Dominiation",
+        Instance = "Sanctum of Domination",
         InstanceID = 1193,
         MapID = 2450,
         EncounterID = 2439,
-        DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = "Also obtainable in Raid Finder (LFR) difficulty"
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic }
     },
     {
         Name = "Shackled Ur'zul",
@@ -490,17 +518,21 @@ AddOn.InstanceMounts = {
         InstanceID = 362,
         MapID = 1098,
         EncounterID = 819,
-        DifficultyIDs = { RaidDifficulty.Legacy10 }
+        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        SharedDifficulties = {
+            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
+        }
     },
     {
         Name = "Sureki Skyrazor",
         MountID = 2219,
-        Instance = "Nerub-ar Palance",
+        Instance = "Nerub-ar Palace",
         InstanceID = 1273,
         MapID = 2657,
         EncounterID = 2602,
-        DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = "Also obtainable in Raid Finder (LFR) difficulty"
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic }
     },
     {
         Name = "Swift White Hawkstrider",
@@ -591,7 +623,7 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         DifficultyIDs = {},
-        Notes = "Drop from trash mobs around |cFFFFD100Temple of Ahn'Qiraj|r.\n\nThis raid only has a 40 player difficulty, so any raid difficulty can be set."
+        Notes = "Drop from trash mobs around "..WrapTextInColor("Temple of Ahn'Qiraj", DARKYELLOW_FONT_COLOR).."\n\nThis raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"
     },
     {
         Name = "Zereth Overseer",

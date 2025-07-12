@@ -22,8 +22,8 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     <Size x="225"/>
                     <Anchors><Anchor point="LEFT" relativeKey="$parent.NameHeader" relativePoint="RIGHT" x="25"/></Anchors>
                 </FontString>
-                <FontString parentKey="DiffHeader" inherits="GameTooltipText" justifyH="LEFT" text="Difficulty">
-                    <Size x="200"/>
+                <FontString parentKey="DiffHeader" inherits="GameTooltipText" justifyH="LEFT" text="Available Difficulty(s)">
+                    <Size x="250"/>
                     <Anchors><Anchor point="LEFT" relativeKey="$parent.InstanceHeader" relativePoint="RIGHT"/></Anchors>
                 </FontString>
                 <FontString parentKey="NotesHeader" inherits="GameTooltipText" justifyH="LEFT" text="Notes">
@@ -52,7 +52,14 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
         <Scripts>
             <OnEnter>
                 GameTooltip:SetOwner(self, "ANCHOR_TOP")
-                GameTooltip:AddLine(ICH:GetInstanceDifficultyText(self.difficultyID))
+                GameTooltip:SetText(ICH:GetInstanceDifficultyText(self.difficultyID))
+                if self.sharedDifficulties then
+                    GameTooltip:AddLine("\n")
+                    GameTooltip:AddLine("Shares lockout with:", 1, 1, 1)
+                    for shared, _ in pairs(self.sharedDifficulties) do
+                        GameTooltip:AddLine(ICH:GetInstanceDifficultyText(shared))
+                    end
+                end
                 GameTooltip:Show()
             </OnEnter>
             <OnLeave>GameTooltip:Hide()</OnLeave>
@@ -134,12 +141,20 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             </Frame>
 
             <Frame parentKey="DifficultyContainer">
-                <Size x="200"/>
+                <Size x="250"/>
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeKey="$parent.InstanceContainer" relativePoint="TOPRIGHT"></Anchor>
                     <Anchor point="BOTTOMLEFT" relativeKey="$parent.InstanceContainer" relativePoint="BOTTOMRIGHT"></Anchor>
                 </Anchors>
                 <Frames>
+                    <Button parentKey="RaidDiffLFRButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="17" type="number"/></KeyValues>
+                        <Scripts>
+                            <OnClick>
+                                ICH:PrintChatMessage(WrapTextInColor("This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed.", DARKYELLOW_FONT_COLOR))
+                            </OnClick>
+                        </Scripts>
+                    </Button>
                     <Button parentKey="RaidDiffNormalButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="14" type="number"/></KeyValues>
                         <Scripts>
@@ -299,5 +314,4 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             </Frame>
         </Frames>
     </Frame>
-
 </Ui>
