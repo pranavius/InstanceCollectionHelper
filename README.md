@@ -1,25 +1,45 @@
-# Instance Collection Helper
+# InstanceCollectionHelper
 
-## Overview
-Instance Collection Helper is a World of Warcraft addon designed to help collectors locate which difficulty to run for mounts from dungeons and raids. It shows a list of mounts and what instance/difficulty to run with buttons to quickly set your desired dungeon or raid difficulty. When a mount cannot be obtained on a given difficulty that button will be disabled, helping to better track what you can still do to obtain the same mount or go after another one.
+_Track available mounts from instances and easily set required instance difficulty_
 
+## Highlights
+- Search for a mount by its name, an instance name or type, as well as a difficulty setting
+- Multi-column scrollable UI with Name, Instance, and Available Difficulty columns
+- Links to in-game mount journal as well as instance and encounter journal for each list item
+- Simple buttons to set your desired instance difficulty with a single click
+- DataBroker integration for quick access to options via minimap icon or other DataBroker AddOns
 
-If you see that any mounts are missing from this list, please let me know and I'll be happy to add them ASAP.
+## Summary
+**InstanceCollectionHelper** is designed to help collectors easily identify and set an appropriate instance difficulty when pursuing a mount from a dungeon or raid. Available mounts can be further filtered by mount name, instance name, instance type (dungeon or raid), as well as instance difficulty. When a mount cannot be obtained on a given difficulty, the button for that difficlty will be disabled. This effectively provides a simple and clean "to-do" list in the AddOn UI so you can decide to attempt to get the mount on another difficulty or pivot to hunting for a new one.
 
-## Features
-- **Searchable List**: Search for a mount by its name, an instance name or type, as well as a difficulty setting
-- **Scrollable UI**: A multi-column view showing the mount Name, Instance, and buttons for the difficulties on which it is available.
-- **View Buttons**: Click to jump directly to the appropriate journal entry (Mount Journal or Encounter Journal).
-- **Difficulty Buttons**: One-click buttons (N, H, M, 10, 10H, 25H, etc.) to change your instance difficulty.
-- **Auto-Refresh**: Detects mounts you don’t yet own and updates the list on login or when you change zones.
+Although this AddOn currently only supports mount collection, there are plans to add other collectibles such as Battle Pets in the future. If you see that any mounts are missing from this list, please let me know and I'll be happy to add them ASAP.
 
 ## Usage
-- **Open UI**: Type `/ich` in chat or click the minimap icon to display the main window.
-- **View Current Difficulty Settings**: Type `/ich diffs` to view all current instance difficulty settings.
-- **Set Dungeon Difficulty**: Type `/ich dung` followed by one of the following: `norm`, `hero`, `myth` (example: `/ich dung myth` will set dungeon difficulty to Mythic)
-- **Set Raid Difficulty**: Type `/ich raid` followed by one of the following: `norm`, `hero`, `myth` (example: `/ich raid norm` will set raid difficulty to Normal)
-- **Set Legacy Raid Difficulty**: Type `/ich lraid` followed by one of the following: `10`, `25`, `10h`, `25h` (example: `/ich lraid 25h` will set legacy raid difficulty to 25 player (Heroic))
-- **Show/Hide Minimap Icon**: Type `/ich minimap` in chat
-- **View Entry**: Click the icon next to each mount name or instance:
-- Opens the Mount Journal or the Encounter Journal to that specific mount/instance.
-- **Set Difficulty**: Click the difficulty button to change your current dungeon or raid difficulty accordingly.
+Aside from the AddOn UI itself, **InstanceCollectionHelper** provides a few other utilities via slash commands. A comprehensive list of available commands is shown below:
+
+- `/ich`: Opens the AddOn window
+- `/ich help`: List all available slash commands for the AddOn
+- `/ich diffs`: Print current difficulty settings for Dungeons, Legacy Raids, and Raids in the chat window
+- `/ich dung <difficulty>`: Set Dungeon difficulty to the specified value
+- `/ich raid <difficulty>`: Set Raid difficulty to the specified value
+- `/ich lraid <difficulty>`: Set Legacy Raid difficulty to the specified value
+- `/ich minimap`: Show or hide the minimap icon for the AddOn
+
+### Notes
+- For both `/ich dung` and `/ich raid`, `<difficulty>` can be one of `norm` (Normal), `hero` (Heroic), or `myth` (Mythic)
+- For `/ich lraid`, `<difficulty>` can be one of `10` (10 player), `25` (25 player), `10h` (10 player (Heroic)), or `25h` (25 player (Heroic))
+
+## Planned Updates
+**InstanceCollectionHelper** was released in July 2025 to help players with tracking mounts and setting the correct instance difficulty for the [Collector's Bounty](https://www.wowhead.com/event=1674/collectors-bounty) event. After the event ends and the AddOn continues to exist, there are a number of features and improvements in line to be added:
+
+- Track Battle Pets and Achievements available from instances
+- Ability to view available mounts/lockouts on alt characters
+- Set in-game map pins or TomTom waypoints for instance entrances
+- Allow AddOn properties such as font, text size, etc. to be configurable
+
+## Contact
+**Twitter/X**: [PranaviusWoW](https://x.com/pranaviuswow)
+
+**GitHub**: [Pranavius](https://github.com/pranavius)
+
+**Email**: [pranavius1@gmail.com](mailto:pranavius1@gmail.com)

@@ -29,12 +29,10 @@ function AddOn:OnInitialize()
         type = "launcher",
         text = name,
         icon = "Interface/AddOns/InstanceCollectionHelper/Media/Logo.png",
-        OnClick = function()
-            if self.Container then self.Container:Show() end
-        end,
+        OnClick = function() if self.Container then self.Container:Show() end end,
         OnTooltipShow = function(tooltip)
             tooltip:AddLine(name)
-            tooltip:AddLine("Makes sure you set your instance settings are farm-ready", 1, 1, 1, 1)
+            tooltip:AddLine("Track available mounts from instances and easily set required instance difficulty", 1, 1, 1, 1)
         end
     })
     self.Icon:Register(name, broker, self.db.global.minimap)
