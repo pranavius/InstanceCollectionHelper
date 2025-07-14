@@ -36,6 +36,41 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
         </Layers>
     </Frame>
 
+    <Button name="ICHGenericButtonTemplate" virtual="true" inherits="InsecureActionButtonTemplate">
+        <KeyValues>
+            <KeyValue key="action" value="" type="string" />
+        </KeyValues>
+        <Size x="20" y="20"/>
+        <Scripts>
+            <OnEnter>
+                if self.action == "INFO" then
+                    GameTooltip:SetOwner(self, "ANCHOR_TOP")
+                    GameTooltip:SetText("How To Use:")
+                    GameTooltip:AddLine("\n")
+                    GameTooltip:AddLine("- Find the mount you want to collect in the list and click the button for the difficulty you want to run on")
+                    GameTooltip:AddLine("to make sure it is updated.")
+                    GameTooltip:AddLine("- When you are locked out for a mount on a particular difficulty, the button for that difficulty will be disabled.")
+                    GameTooltip:AddLine("- A button will also be disabled for legacy raids completed on another difficulty since those lockouts")
+                    GameTooltip:AddLine("are shared across difficulties.")
+                elseif self.action == "SEARCH" then
+                    GameTooltip:SetOwner(self:GetParent(), "ANCHOR_NONE")
+                    GameTooltip:SetPoint("TOPLEFT", self:GetParent(), "TOPRIGHT")
+                    GameTooltip:SetText("Search Hints:")
+                    GameTooltip:AddLine("\n")
+                    GameTooltip:AddLine("- \"raid\" will show all mounts that can be collected from a raid")
+                    GameTooltip:AddLine("- \"10\" will show all mounts that can be collected from a legacy 10 player raid (Normal or Heroic)")
+                    GameTooltip:AddLine("- \"fel\" will show all mounts and instances that contain \"fel\" in the name")
+                    GameTooltip:AddLine("- \"mythic\" will show all mounts that can be obtained from a Mythic dungeon or raid")
+                    GameTooltip:AddLine("- \"lfr\" will show all mounts that can be obtained from an LFR raid")
+                end
+                GameTooltip:Show()
+            </OnEnter>
+            <OnLeave>
+                GameTooltip:Hide()
+            </OnLeave>
+        </Scripts>
+    </Button>
+
     <Button name="ICHDifficultyButtonTemplate" virtual="true" inherits="UIPanelButtonTemplate">
         <Size x="50"/>
         <Layers>
