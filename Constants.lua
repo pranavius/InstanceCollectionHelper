@@ -32,10 +32,10 @@ local RaidDifficulty = AddOn.RaidDifficulty
 ---@field MapID number
 ---@field EncounterID? number
 ---@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[]
----@field SharedDifficulties table<RaidDifficulty, RaidDifficulty>
+---@field SharedDifficulties? table<RaidDifficulty, RaidDifficulty>
 ---@field Notes? string Additional notes about this mount or instance
 
----@type table<string, InstanceMount>
+---@type InstanceMount[]
 AddOn.InstanceMounts = {
     {
         Name = "Abyss Worm",

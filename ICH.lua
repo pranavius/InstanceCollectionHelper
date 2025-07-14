@@ -105,6 +105,10 @@ function AddOn:CreateMainFrame()
 
     self.Container = f
     self:CreateScrollingView()
+    self:CreateFooter()
+
+    -- Set window scale
+    self.Container:SetScale(self.db.global.windowScale)
 
     -- Hide by default
     self.Container:Hide()
@@ -134,54 +138,121 @@ function AddOn:CreateScrollingView()
     self.ScrollView:SetElementInitializer("ICHListItemTemplate", self.DataProviderInit)
 end
 
-function AddOn:UpdateListContents(event)
-    if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then UIParentLoadAddOn("Blizzard_Collections") end
-    if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then UIParentLoadAddOn("Blizzard_EncounterJournal") end
-    local newData = {}
-    for _, data in ipairs(self.InstanceMounts) do
-        local isOwned = select(11, C_MountJournal.GetMountInfoByID(data.MountID))
-        if not isOwned then tinsert(newData, data) end
-    end
+function AddOn:CreateFooter()
+    local foot = CreateFrame("Frame", "ICHFooter", self.Container)
+    foot:SetHeight(35)
+    foot:SetPoint("TOPLEFT", self.Container, "BOTTOMLEFT")
+    foot:SetPoint("TOPRIGHT", self.Container, "BOTTOMRIGHT")
+    -- Footer background
+    foot.Bg = foot:CreateTexture("ICHFooterBackground", "BACKGROUND")
+    foot.Bg:SetAllPoints(foot)
+    foot.Bg:SetColorTexture(0, 0, 0, 1)
 
-    -- Filter list results based on search criteria when present
-    if self.Container.SearchBox and self.Container.SearchBox:GetText() ~= "" then
-        local filteredData = {}
-        local searchBox = self.Container.SearchBox
-        local query = searchBox:GetText():lower()
-        for _, nData in ipairs(newData) do
-            local nameMatches = nData.Name:lower():gsub("|.+|.*", ""):match(query) and true or false
-            local instanceMatches = nData.Instance:lower():match(query) and true or false
-            local instanceTypeMatches = query == "raid" and self:IsInstanceRaid(nData) or (query == "dungeon" and not self:IsInstanceRaid(nData))
-            local difficultyMatches = false
-            for _, diffID in ipairs(nData.DifficultyIDs) do
-                if self:GetDifficultyButtonText(diffID):lower() == query or self:GetInstanceDifficultyText(diffID):lower() == query then
+    -- AddOn Window Scale
+    foot.ScaleContainer = CreateFrame("Frame", nil, foot)
+    foot.ScaleContainer:SetWidth(200)
+    foot.ScaleContainer:SetPoint("TOPLEFT")
+    foot.ScaleContainer:SetPoint("BOTTOMLEFT")
+
+    foot.ScaleContainer.Text = foot.ScaleContainer:CreateFontString(nil, "OVERLAY", "GameTooltipText")
+    foot.ScaleContainer.Text:SetJustifyH("LEFT")
+    foot.ScaleContainer.Text:SetPoint("TOPLEFT", 5, -5)
+    foot.ScaleContainer.Text:SetPoint("BOTTOMLEFT", 5, 5)
+    foot.ScaleContainer.Text:SetText("Scale")
+
+    foot.ScaleContainer.WindowScale = CreateFrame("Slider", nil, foot.ScaleContainer, "MinimalSliderWithSteppersTemplate")
+    foot.ScaleContainer.WindowScale:SetObeyStepOnDrag(true)
+    foot.ScaleContainer.WindowScale:SetPoint("TOPLEFT", foot.ScaleContainer.Text, "TOPRIGHT", 5, 0)
+    foot.ScaleContainer.WindowScale:SetPoint("BOTTOMRIGHT", foot.ScaleContainer, "BOTTOMRIGHT", 0, 5)
+    -- Initialize the DB to have a default scale of 1 if there is not already an existing value
+    if self.db.global.windowScale == nil then self.db.global.windowScale = 1 end
+    foot.ScaleContainer.WindowScale:Init(self.db.global.windowScale, 1, 1.2, 40)
+    foot.ScaleContainer.WindowScale.Slider:HookScript("OnValueChanged", function(_, value)
+        self.db.global.windowScale = value
+        self.Container:SetScale(value)
+    end)
+
+    -- Show Owned Mounts
+    foot.OwnedContainer = CreateFrame("Frame", nil, foot)
+    foot.OwnedContainer:SetWidth(175)
+    foot.OwnedContainer:SetPoint("TOPLEFT", foot.ScaleContainer, "TOPRIGHT", 5, 0)
+    foot.OwnedContainer:SetPoint("BOTTOMLEFT", foot.ScaleContainer, "BOTTOMRIGHT", 5, 0)
+    
+    foot.OwnedContainer.Checkbox = CreateFrame("CheckButton", nil, foot.OwnedContainer, "UICheckButtonTemplate")
+    foot.OwnedContainer.Checkbox:SetPoint("TOPRIGHT", foot.OwnedContainer, "TOPRIGHT", 0, 0)
+    foot.OwnedContainer.Checkbox:SetPoint("BOTTOMLEFT", foot.OwnedContainer, "BOTTOMRIGHT", -32, 0)
+    foot.OwnedContainer.Checkbox:SetChecked(self.db.global.showOwned)
+
+    foot.OwnedContainer.Checkbox.Text:SetText("Show Owned Mounts")
+    foot.OwnedContainer.Checkbox.Text:ClearAllPoints()
+    foot.OwnedContainer.Checkbox.Text:SetPoint("RIGHT", foot.OwnedContainer.Checkbox, "LEFT", -5, 2)
+    foot.OwnedContainer.Checkbox.Text:SetJustifyH("RIGHT")
+    foot.OwnedContainer.Checkbox.Text:SetFontObject("GameTooltipText")
+
+    foot.OwnedContainer.Checkbox:HookScript("OnClick", function(cb)
+        local value = cb:GetChecked()
+        self.db.global.showOwned = value
+        self:UpdateListContents("ICH_OWNED")
+    end)
+end
+
+---Filters a list of data based on search parameters
+---@param listData InstanceMount[]
+---@return InstanceMount[]
+function AddOn:FilterListContentsByQuery(listData)
+    local filtered = {}
+    local query = self.Container.SearchBox:GetText():lower()
+    for _, item in ipairs(listData) do
+        -- Remove things like textures or atlases from names
+        local cleanName = item.Name:lower():gsub("|.+|.*", "")
+        local nameMatches = cleanName:match(query) and true or false
+        local instanceMatches = item.Instance:lower():match(query) and true or false
+        local instanceTypeMatches = query == "raid" and self:IsInstanceRaid(item) or (query == "dungeon" and not self:IsInstanceRaid(item))
+        local difficultyMatches = false
+        for _, diffID in ipairs(item.DifficultyIDs) do
+            if self:GetDifficultyButtonText(diffID):lower() == query or self:GetInstanceDifficultyText(diffID):lower() == query then
+                difficultyMatches = true
+                break
+            end
+        end
+        if not difficultyMatches and item.SharedDifficulties then
+            for shared, _ in pairs(item.SharedDifficulties) do
+                if self:GetDifficultyButtonText(shared):lower() == query or self:GetInstanceDifficultyText(shared):lower() == query then
                     difficultyMatches = true
                     break
                 end
             end
-            if not difficultyMatches and nData.SharedDifficulties then
-                for shared, _ in pairs(nData.SharedDifficulties) do
-                    if self:GetDifficultyButtonText(shared):lower() == query or self:GetInstanceDifficultyText(shared):lower() == query then
-                        difficultyMatches = true
-                        break
-                    end
-                end
-            end
-
-            if nameMatches or instanceMatches or instanceTypeMatches or difficultyMatches then
-                tinsert(filteredData, nData)
-            end
         end
 
-        newData = filteredData
+        if nameMatches or instanceMatches or instanceTypeMatches or difficultyMatches then
+            tinsert(filtered, item)
+        end
+    end
+
+    return filtered
+end
+
+function AddOn:UpdateListContents(event)
+    if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then UIParentLoadAddOn("Blizzard_Collections") end
+    if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then UIParentLoadAddOn("Blizzard_EncounterJournal") end
+    ---@type InstanceMount[]
+    local newData = {}
+    for _, data in ipairs(self.InstanceMounts) do
+        local isOwned = select(11, C_MountJournal.GetMountInfoByID(data.MountID))
+        if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, data) end
+    end
+
+    -- Filter list results based on search criteria when present
+    if self.Container.SearchBox and self.Container.SearchBox:GetText() ~= "" then
+        newData = self:FilterListContentsByQuery(newData)
     end
 
     self.ICHDataProvider = CreateDataProvider(newData)
     self.ScrollView:SetDataProvider(self.ICHDataProvider)
     if #newData ~= self.ICHDataProvider:GetSize() and event == "ZONE_CHANGED" then
-         self:PrintChatMessage("Updated available mount list")
+        self:PrintChatMessage("Updated available mount list")
     end
 end
 
--- Exposes AddOn functionality for use in XML
+-- Exposes AddOn functionality for use in XML Templates
 ICH = AddOn

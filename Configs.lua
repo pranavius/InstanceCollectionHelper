@@ -5,7 +5,9 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 AddOn.DatabaseDefaults = {
     global = {
-        minimap = { hide = false }
+        minimap = { hide = false },
+        windowScale = 1,
+        showOwned = false
     }
 }
 

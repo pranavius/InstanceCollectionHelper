@@ -61,7 +61,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     GameTooltip:AddLine("- \"10\" will show all mounts that can be collected from a legacy 10 player raid (Normal or Heroic)")
                     GameTooltip:AddLine("- \"fel\" will show all mounts and instances that contain \"fel\" in the name")
                     GameTooltip:AddLine("- \"mythic\" will show all mounts that can be obtained from a Mythic dungeon or raid")
-                    GameTooltip:AddLine("- \"lfr\" will show all mounts that can be obtained from an LFR raid")
+                    GameTooltip:AddLine("- \"lfr\" will show all mounts that can be obtained from Raid Finder (LFR) difficulty raids")
                 end
                 GameTooltip:Show()
             </OnEnter>
@@ -107,6 +107,13 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             <Layer level="BACKGROUND">
                 <Texture parentKey="Bg" hidden="true">
                     <Color r="1" g="1" b="1" a="0.1"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+                <Texture parentKey="OwnedBg" hidden="true">
+                    <Color r="0.082" g="0.702" b="0" a="0.5"/>
                     <Anchors>
                         <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
                         <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
@@ -345,6 +352,39 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                             <OnLeave>GameTooltip:Hide()</OnLeave>
                         </Scripts>
                     </Frame>
+                </Frames>
+            </Frame>
+        </Frames>
+    </Frame>
+
+    <!-- Unused for right now -->
+    <Frame name="ICHFooterTemplate" virtual="true">
+        <Size y="25"/>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Bg" setAllPoints="true">
+                    <Color r="0" g="0" b="0" a="1"/>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Frame parentKey="ScaleContainer">
+                <Size x="200"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                    <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Title" inherits="GameTooltipText" justifyH="LEFT" text="Scale">
+                            <Anchors>
+                                <Anchor point="LEFT" relativePoint="LEFT" x="5"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+                <Frames>
+                    <Slider parentKey="WindowScale" inherits="MinimalSliderWithSteppersTemplate"/>
                 </Frames>
             </Frame>
         </Frames>
