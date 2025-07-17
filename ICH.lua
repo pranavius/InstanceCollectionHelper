@@ -56,6 +56,7 @@ function AddOn:CreateMainFrame()
     f:SetSize(800, 600)
     f:EnableMouse(true)
     f:SetMovable(true)
+    f:SetFrameStrata("HIGH")
 
     f:RegisterForDrag("LeftButton")
     f:SetScript("OnDragStart", function(frame)
@@ -166,7 +167,7 @@ function AddOn:CreateFooter()
     foot.ScaleContainer.WindowScale:SetPoint("BOTTOMRIGHT", foot.ScaleContainer, "BOTTOMRIGHT", 0, 5)
     -- Initialize the DB to have a default scale of 1 if there is not already an existing value
     if self.db.global.windowScale == nil then self.db.global.windowScale = 1 end
-    foot.ScaleContainer.WindowScale:Init(self.db.global.windowScale, 1, 1.2, 40)
+    foot.ScaleContainer.WindowScale:Init(self.db.global.windowScale, 0.8, 1.2, 80)
     foot.ScaleContainer.WindowScale.Slider:HookScript("OnValueChanged", function(_, value)
         self.db.global.windowScale = value
         self.Container:SetScale(value)
