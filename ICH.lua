@@ -161,17 +161,29 @@ function AddOn:CreateFooter()
     foot.ScaleContainer.Text:SetPoint("BOTTOMLEFT", 5, 5)
     foot.ScaleContainer.Text:SetText("Scale")
 
-    foot.ScaleContainer.WindowScale = CreateFrame("Slider", nil, foot.ScaleContainer, "MinimalSliderWithSteppersTemplate")
-    foot.ScaleContainer.WindowScale:SetObeyStepOnDrag(true)
-    foot.ScaleContainer.WindowScale:SetPoint("TOPLEFT", foot.ScaleContainer.Text, "TOPRIGHT", 5, 0)
-    foot.ScaleContainer.WindowScale:SetPoint("BOTTOMRIGHT", foot.ScaleContainer, "BOTTOMRIGHT", 0, 5)
+    local scale = CreateFrame("Slider", nil, foot.ScaleContainer, "MinimalSliderWithSteppersTemplate")
+    scale:SetObeyStepOnDrag(true)
+    scale:SetPoint("TOPLEFT", foot.ScaleContainer.Text, "TOPRIGHT", 5, 0)
+    scale:SetPoint("BOTTOMRIGHT", foot.ScaleContainer, "BOTTOMRIGHT", 0, 5)
     -- Initialize the DB to have a default scale of 1 if there is not already an existing value
-    if self.db.global.windowScale == nil then self.db.global.windowScale = 1 end
-    foot.ScaleContainer.WindowScale:Init(self.db.global.windowScale, 0.8, 1.2, 80)
-    foot.ScaleContainer.WindowScale.Slider:HookScript("OnValueChanged", function(_, value)
-        self.db.global.windowScale = value
-        self.Container:SetScale(value)
+    if tonumber(self.db.global.windowScale) == nil then self.db.global.windowScale = 1 end
+    scale:Init(self.db.global.windowScale, 0.8, 1.2, 80)
+    scale.Slider:HookScript("OnMouseUp", function(slider)
+        self.db.global.windowScale = slider:GetValue()
+        self.Container:SetScale(slider:GetValue())
     end)
+    scale.Back:HookScript("OnClick", function()
+        local val = scale.Slider:GetValue()
+        self.db.global.windowScale = val
+        self.Container:SetScale(val)
+    end)
+    scale.Forward:HookScript("OnClick", function()
+        local val = scale.Slider:GetValue()
+        self.db.global.windowScale = val
+        self.Container:SetScale(val)
+    end)
+
+    foot.ScaleContainer.WindowScale = scale
 
     -- Show Owned Mounts
     foot.OwnedContainer = CreateFrame("Frame", nil, foot)
@@ -179,22 +191,24 @@ function AddOn:CreateFooter()
     foot.OwnedContainer:SetPoint("TOPLEFT", foot.ScaleContainer, "TOPRIGHT", 5, 0)
     foot.OwnedContainer:SetPoint("BOTTOMLEFT", foot.ScaleContainer, "BOTTOMRIGHT", 5, 0)
     
-    foot.OwnedContainer.Checkbox = CreateFrame("CheckButton", nil, foot.OwnedContainer, "UICheckButtonTemplate")
-    foot.OwnedContainer.Checkbox:SetPoint("TOPRIGHT", foot.OwnedContainer, "TOPRIGHT", 0, 0)
-    foot.OwnedContainer.Checkbox:SetPoint("BOTTOMLEFT", foot.OwnedContainer, "BOTTOMRIGHT", -32, 0)
-    foot.OwnedContainer.Checkbox:SetChecked(self.db.global.showOwned)
-
-    foot.OwnedContainer.Checkbox.Text:SetText("Show Owned Mounts")
-    foot.OwnedContainer.Checkbox.Text:ClearAllPoints()
-    foot.OwnedContainer.Checkbox.Text:SetPoint("RIGHT", foot.OwnedContainer.Checkbox, "LEFT", -5, 2)
-    foot.OwnedContainer.Checkbox.Text:SetJustifyH("RIGHT")
-    foot.OwnedContainer.Checkbox.Text:SetFontObject("GameTooltipText")
-
-    foot.OwnedContainer.Checkbox:HookScript("OnClick", function(cb)
+    local checkbox = CreateFrame("CheckButton", nil, foot.OwnedContainer, "UICheckButtonTemplate")
+    checkbox:SetPoint("TOPRIGHT", foot.OwnedContainer, "TOPRIGHT", 0, 0)
+    checkbox:SetPoint("BOTTOMLEFT", foot.OwnedContainer, "BOTTOMRIGHT", -32, 0)
+    checkbox:SetChecked(self.db.global.showOwned)
+    
+    checkbox.Text:SetText("Show Owned Mounts")
+    checkbox.Text:ClearAllPoints()
+    checkbox.Text:SetPoint("RIGHT", checkbox, "LEFT", -5, 2)
+    checkbox.Text:SetJustifyH("RIGHT")
+    checkbox.Text:SetFontObject("GameTooltipText")
+    
+    checkbox:HookScript("OnClick", function(cb)
         local value = cb:GetChecked()
         self.db.global.showOwned = value
         self:UpdateListContents("ICH_OWNED")
     end)
+    
+    foot.OwnedContainer.Checkbox = checkbox
 end
 
 ---Filters a list of data based on search parameters

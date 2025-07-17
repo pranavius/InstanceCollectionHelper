@@ -200,122 +200,62 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     <Button parentKey="RaidDiffNormalButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="14" type="number"/></KeyValues>
                         <Scripts>
-                            <OnClick>
-                                if GetRaidDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Raid Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
-                                else
-                                    SetRaidDifficultyID(self.difficultyID)
-                                end
-                            </OnClick>
+                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
                         </Scripts>
                     </Button>
                     <Button parentKey="RaidDiffHeroicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="15" type="number"/></KeyValues>
                         <Scripts>
-                            <OnClick>
-                                if GetRaidDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Raid Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
-                                else
-                                    SetRaidDifficultyID(self.difficultyID)
-                                end
-                            </OnClick>
+                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
                         </Scripts>
                     </Button>
                     <Button parentKey="RaidDiffMythicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="16" type="number"/></KeyValues>
                         <Scripts>
-                            <OnClick>
-                                if GetRaidDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Raid Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
-                                else
-                                    SetRaidDifficultyID(self.difficultyID)
-                                end
-                            </OnClick>
+                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
                         </Scripts>
                     </Button>
                     <Button parentKey="RaidDiff10Button" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="3" type="number"/></KeyValues>
                         <Scripts>
-                            <OnClick>
-                                if GetLegacyRaidDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Legacy Raid Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
-                                else
-                                    SetLegacyRaidDifficultyID(self.difficultyID)
-                                end
-                            </OnClick>
+                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
                         </Scripts>
                     </Button>
                     <Button parentKey="RaidDiff25Button" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="4" type="number"/></KeyValues>
                         <Scripts>
-                            <OnClick>
-                                if GetLegacyRaidDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Legacy Raid Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
-                                else
-                                    SetLegacyRaidDifficultyID(self.difficultyID)
-                                end
-                            </OnClick>
+                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
                         </Scripts>
                     </Button>
                     <Button parentKey="RaidDiff10HeroicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="5" type="number"/></KeyValues>
                         <Scripts>
-                            <OnClick>
-                                if GetLegacyRaidDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Legacy Raid Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
-                                else
-                                    SetLegacyRaidDifficultyID(self.difficultyID)
-                                end
-                            </OnClick>
+                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
                         </Scripts>
                     </Button>
                     <Button parentKey="RaidDiff25HeroicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="6" type="number"/></KeyValues>
                         <Scripts>
-                            <OnClick>
-                                if GetLegacyRaidDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Legacy Raid Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
-                                else
-                                    SetLegacyRaidDifficultyID(self.difficultyID)
-                                end
-                            </OnClick>
+                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
                         </Scripts>
                     </Button>
                     <Button parentKey="DungDiffNormalButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="1" type="number"/></KeyValues>
                         <Scripts><OnClick>SetDungeonDifficultyID(self.difficultyID)</OnClick></Scripts>
                         <Scripts>
-                            <OnClick>
-                                if GetDungeonDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Dungeon Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
-                                else
-                                    SetDungeonDifficultyID(self.difficultyID)
-                                end
-                            </OnClick>
+                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
                         </Scripts>
                     </Button>
                     <Button parentKey="DungDiffHeroicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="2" type="number"/></KeyValues>
                         <Scripts>
-                            <OnClick>
-                                if GetDungeonDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Dungeon Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
-                                else
-                                    SetDungeonDifficultyID(self.difficultyID)
-                                end
-                            </OnClick>
+                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
                         </Scripts>
                     </Button>
                     <Button parentKey="DungDiffMythicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="23" type="number"/></KeyValues>
                         <Scripts>
-                            <OnClick>
-                                if GetDungeonDifficultyID() == self.difficultyID then
-                                    ICH:PrintChatMessage("Dungeon Difficulty is already set to", ICH:GetInstanceDifficultyText(self.difficultyID))
-                                else
-                                    SetDungeonDifficultyID(self.difficultyID)
-                                end
-                            </OnClick>
+                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
                         </Scripts>
                     </Button>
                 </Frames>
