@@ -1,64 +1,3 @@
-# CloseSpecialWindows
-
-
-```lua
-function CloseSpecialWindows()
-  -> boolean
-```
-
-
----
-
-# ColorPickerFrame.cancelFunc
-
-
-```lua
-function ColorPickerFrame.cancelFunc()
-```
-
-
----
-
-# ColorPickerFrame.func
-
-
-```lua
-function ColorPickerFrame.func()
-```
-
-
----
-
-# ColorPickerFrame.hasOpacity
-
-
-```lua
-unknown
-```
-
-
----
-
-# ColorPickerFrame.opacity
-
-
-```lua
-integer
-```
-
-
----
-
-# ColorPickerFrame.opacityFunc
-
-
-```lua
-function ColorPickerFrame.opacityFunc()
-```
-
-
----
-
 # DifficultyButton
 
 ## difficultyID
@@ -67,6 +6,8 @@ function ColorPickerFrame.opacityFunc()
 ```lua
 number
 ```
+
+ID number for instance, scenario, and raid difficulty (see https://wago.tools/db2/Difficulty)
 
 
 ---
@@ -179,7 +120,7 @@ Button for setting Raid difficulty to Normal
 table<RaidDifficulty, RaidDifficulty>?
 ```
 
-Button for tracking LFR lockout (no action taken when clicked)
+Difficulties that share a lockout with a difficulty displayed using the appropriate button
 
 
 ---
@@ -231,6 +172,13 @@ InstanceContainer
 NameContainer
 ```
 
+## NotesContainer
+
+
+```lua
+NotesContainer
+```
+
 ## OwnedBg
 
 
@@ -239,6 +187,28 @@ Texture
 ```
 
 The background texture for owned list items
+
+
+---
+
+# ICHNote
+
+## Notes
+
+
+```lua
+string?
+```
+
+
+---
+
+# ICH_LANG
+
+
+```lua
+unknown
+```
 
 
 ---
@@ -259,7 +229,7 @@ unknown
 (method) InstanceCollectionHelper:CreateFooter()
 ```
 
-Initializes the footer in the AddOn
+Initializes the footer in the AddOn that contains some display options for the window
 
 ## CreateMainFrame
 
@@ -288,24 +258,16 @@ Currently only displays mount information.
 function InstanceCollectionHelper.DataProviderInit(frame: ICHListItem, data: InstanceMount)
 ```
 
-Initializes how data in the scrollable list should be displayed.
-
-@*param* `frame` — See `Templates.xml` for "ICHListItemTemplate"
-
-@*param* `data` — The data to process and display in a list item.
+Initializes how data in the scrollable list should be displayed
+See:
+  * [ICHListItem](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Modules/DataProvider.lua#39#10)
+  * [InstanceMount](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Constants.lua#28#10)
 
 ## DatabaseDefaults
 
 
 ```lua
 table
-```
-
-## DungeonDifficulty
-
-
-```lua
-enum DungeonDifficulty
 ```
 
 ## FilterListContentsByQuery
@@ -326,7 +288,9 @@ Filters a list of data based on search parameters
   -> text: string
 ```
 
-Returns the text to be shown on a difficulty button
+@*param* `difficultyID` — ID associated with an instance difficulty
+
+@*return* `text` — The text to be shown on the button that sets the desired instance difficulty
 
 ## GetInstanceDifficultyText
 
@@ -337,6 +301,10 @@ Returns the text to be shown on a difficulty button
 ```
 
 Returns the difficulty text that corresponds to the given `difficultyID`
+
+@*param* `difficultyID` — ID associated with an instance difficulty. Marked optional due to `GetLegacyRaidDifficultyID()` return a `number?` value, but required for this function.
+
+@*return* `text` — The text to be shown when referencing the desired instance difficulty
 
 ## HandleSlashCommand
 
@@ -367,13 +335,6 @@ unknown
 unknown
 ```
 
-## InstanceMounts
-
-
-```lua
-InstanceMount[]
-```
-
 ## IsInstanceRaid
 
 
@@ -383,6 +344,8 @@ InstanceMount[]
 ```
 
 @*return* — `true` if the instance is a raid, `false` otherwise
+
+See: [InstanceMount](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Constants.lua#28#10)
 
 ## OnInitialize
 
@@ -403,13 +366,6 @@ Prints a message to the chat window prefixed by the AddOn name
 @*param* `...` — Arguments to be printed to the chat window
 
 See: [print](file:///Users/pranavchary/.vscode/extensions/sumneko.lua-3.15.0-darwin-arm64/server/meta/Lua%205.4%20en-us%20utf8/basic.lua#235#9)
-
-## RaidDifficulty
-
-
-```lua
-enum RaidDifficulty
-```
 
 ## ScrollBar
 
@@ -441,6 +397,8 @@ unknown
 
 Sets instance difficulty based on the provided value (Usable for all instance types)<br/>
 *Provides a consistent experience when changing difficulties either from the UI or chat command.*
+
+@*param* `difficultyID` — ID associated with an instance difficulty
 
 ## SlashOptions
 
@@ -504,12 +462,16 @@ Button to view the instance in the encounter journal in-game
 (DungeonDifficulty|RaidDifficulty)[]
 ```
 
+A list of IDs associated with the instance difficulty(s) the mount can be obtained in
+
 ## EncounterID
 
 
 ```lua
 number?
 ```
+
+The ID number associated with the encounter that needs to be completed to obtain the mount
 
 ## Instance
 
@@ -518,12 +480,16 @@ number?
 string
 ```
 
+The instance from which the mount can be obtained
+
 ## InstanceID
 
 
 ```lua
 number
 ```
+
+The ID number for the associated instance
 
 ## MapID
 
@@ -532,6 +498,8 @@ number
 number
 ```
 
+The ID number of the map of the associated instance
+
 ## MountID
 
 
@@ -539,12 +507,16 @@ number
 number
 ```
 
+The ID number associated with the mount
+
 ## Name
 
 
 ```lua
 string
 ```
+
+The name of the mount
 
 ## Notes
 
@@ -561,6 +533,8 @@ Additional notes about this mount or instance
 ```lua
 table<RaidDifficulty, RaidDifficulty>?
 ```
+
+Provides associations for difficulties that are not listed in `DifficultyIDs` but share a lockout with the listed ID(s)
 
 
 ---
@@ -589,3 +563,15 @@ Button
 ```
 
 Button to view the item in the appropriate collection journal in-game
+
+
+---
+
+# NotesContainer
+
+## ICHNote
+
+
+```lua
+ICHNote
+```

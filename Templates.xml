@@ -45,23 +45,23 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             <OnEnter>
                 if self.action == "INFO" then
                     GameTooltip:SetOwner(self, "ANCHOR_TOP")
-                    GameTooltip:SetText("How To Use:")
+                    GameTooltip:SetText(ICH_LANG["How To Use:"])
                     GameTooltip:AddLine("\n")
-                    GameTooltip:AddLine("- Find the mount you want to collect in the list and click the button for the difficulty you want to run on")
-                    GameTooltip:AddLine("to make sure it is updated.")
-                    GameTooltip:AddLine("- When you are locked out for a mount on a particular difficulty, the button for that difficulty will be disabled.")
-                    GameTooltip:AddLine("- A button will also be disabled for legacy raids completed on another difficulty since those lockouts")
-                    GameTooltip:AddLine("are shared across difficulties.")
+                    GameTooltip:AddLine("- "..ICH_LANG["Find the mount you want to collect in the list and click the button for the difficulty you want to run on")
+                    GameTooltip:AddLine(ICH_LANG["to make sure it is updated."])
+                    GameTooltip:AddLine("- "..ICH_LANG["When you are locked out for a mount on a particular difficulty, the button for that difficulty will be disabled."])
+                    GameTooltip:AddLine("- "..ICH_LANG["A button will also be disabled for legacy raids completed on another difficulty since those lockouts"])
+                    GameTooltip:AddLine(ICH_LANG["are shared across difficulties."])
                 elseif self.action == "SEARCH" then
                     GameTooltip:SetOwner(self:GetParent(), "ANCHOR_NONE")
                     GameTooltip:SetPoint("TOPLEFT", self:GetParent(), "TOPRIGHT")
-                    GameTooltip:SetText("Search Hints:")
+                    GameTooltip:SetText(ICH_LANG["Search Hints:"])
                     GameTooltip:AddLine("\n")
-                    GameTooltip:AddLine("- \"raid\" will show all mounts that can be collected from a raid")
-                    GameTooltip:AddLine("- \"10\" will show all mounts that can be collected from a legacy 10 player raid (Normal or Heroic)")
-                    GameTooltip:AddLine("- \"fel\" will show all mounts and instances that contain \"fel\" in the name")
-                    GameTooltip:AddLine("- \"mythic\" will show all mounts that can be obtained from a Mythic dungeon or raid")
-                    GameTooltip:AddLine("- \"lfr\" will show all mounts that can be obtained from Raid Finder (LFR) difficulty raids")
+                    GameTooltip:AddLine("- "..ICH_LANG["\"raid\" will show all mounts that can be collected from a raid"])
+                    GameTooltip:AddLine("- "..ICH_LANG["\"10\" will show all mounts that can be collected from a legacy 10 player raid (Normal or Heroic)"])
+                    GameTooltip:AddLine("- "..ICH_LANG["\"fel\" will show all mounts and instances that contain \"fel\" in the name"])
+                    GameTooltip:AddLine("- "..ICH_LANG["\"mythic\" will show all mounts that can be obtained from a Mythic dungeon or raid"])
+                    GameTooltip:AddLine("- "..ICH_LANG["\"lfr\" will show all mounts that can be obtained from Raid Finder (LFR) difficulty raids"])
                 end
                 GameTooltip:Show()
             </OnEnter>
@@ -90,9 +90,9 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 GameTooltip:SetText(ICH:GetInstanceDifficultyText(self.difficultyID))
                 if self.sharedDifficulties then
                     GameTooltip:AddLine("\n")
-                    GameTooltip:AddLine("Shares lockout with:", 1, 1, 1)
+                    GameTooltip:AddLine(ICH_LANG["Shares lockout with:"], 1, 1, 1)
                     for shared, _ in pairs(self.sharedDifficulties) do
-                        GameTooltip:AddLine(ICH:GetInstanceDifficultyText(shared))
+                        GameTooltip:AddLine("- "..ICH:GetInstanceDifficultyText(shared))
                     end
                 end
                 GameTooltip:Show()
@@ -136,7 +136,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                             <OnEnter>
                                 GameTooltip:SetOwner(self, "ANCHOR_NONE")
                                 GameTooltip:SetPoint("RIGHT", self, "LEFT", -5, 0)
-                                GameTooltip:AddLine("View in mount journal", 1, 1, 1, true)
+                                GameTooltip:AddLine(ICH_LANG["View in mount journal"], 1, 1, 1, true)
                                 GameTooltip:Show()
                             </OnEnter>
                             <OnLeave>GameTooltip:Hide()</OnLeave>
@@ -166,7 +166,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                             <OnEnter>
                                 GameTooltip:SetOwner(self, "ANCHOR_NONE")
                                 GameTooltip:SetPoint("RIGHT", self, "LEFT", -5, 0)
-                                GameTooltip:AddLine("View in encounter journal", 1, 1, 1, true)
+                                GameTooltip:AddLine(ICH_LANG["View in encounter journal"], 1, 1, 1, true)
                                 GameTooltip:Show()
                             </OnEnter>
                             <OnLeave>GameTooltip:Hide()</OnLeave>
@@ -193,70 +193,49 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <KeyValues><KeyValue key="difficultyID" value="17" type="number"/></KeyValues>
                         <Scripts>
                             <OnClick>
-                                ICH:PrintChatMessage(WrapTextInColor("This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed.", DARKYELLOW_FONT_COLOR))
+                                ICH:PrintChatMessage(WrapTextInColor(ICH_LANG["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."], DARKYELLOW_FONT_COLOR))
                             </OnClick>
                         </Scripts>
                     </Button>
                     <Button parentKey="RaidDiffNormalButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="14" type="number"/></KeyValues>
-                        <Scripts>
-                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
-                        </Scripts>
+                        <Scripts><OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick></Scripts>
                     </Button>
                     <Button parentKey="RaidDiffHeroicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="15" type="number"/></KeyValues>
-                        <Scripts>
-                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
-                        </Scripts>
+                        <Scripts><OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick></Scripts>
                     </Button>
                     <Button parentKey="RaidDiffMythicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="16" type="number"/></KeyValues>
-                        <Scripts>
-                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
-                        </Scripts>
+                        <Scripts><OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick></Scripts>
                     </Button>
                     <Button parentKey="RaidDiff10Button" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="3" type="number"/></KeyValues>
-                        <Scripts>
-                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
-                        </Scripts>
+                        <Scripts><OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick></Scripts>
                     </Button>
                     <Button parentKey="RaidDiff25Button" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="4" type="number"/></KeyValues>
-                        <Scripts>
-                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
-                        </Scripts>
+                        <Scripts><OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick></Scripts>
                     </Button>
                     <Button parentKey="RaidDiff10HeroicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="5" type="number"/></KeyValues>
-                        <Scripts>
-                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
-                        </Scripts>
+                        <Scripts><OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick></Scripts>
                     </Button>
                     <Button parentKey="RaidDiff25HeroicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="6" type="number"/></KeyValues>
-                        <Scripts>
-                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
-                        </Scripts>
+                        <Scripts><OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick></Scripts>
                     </Button>
                     <Button parentKey="DungDiffNormalButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="1" type="number"/></KeyValues>
-                        <Scripts><OnClick>SetDungeonDifficultyID(self.difficultyID)</OnClick></Scripts>
-                        <Scripts>
-                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
-                        </Scripts>
+                        <Scripts><OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick></Scripts>
                     </Button>
                     <Button parentKey="DungDiffHeroicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="2" type="number"/></KeyValues>
-                        <Scripts>
-                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
-                        </Scripts>
+                        <Scripts><OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick></Scripts>
                     </Button>
                     <Button parentKey="DungDiffMythicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="23" type="number"/></KeyValues>
-                        <Scripts>
-                            <OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick>
-                        </Scripts>
+                        <Scripts><OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick></Scripts>
                     </Button>
                 </Frames>
             </Frame>

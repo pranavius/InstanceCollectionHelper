@@ -17,12 +17,11 @@ AddOn.Icon = LibStub("LibDBIcon-1.0")
 ---@param ... any Arguments to be printed to the chat window
 ---@see print
 function AddOn:PrintChatMessage(...)
-    print(WrapTextInColor("Instance Collection Helper:", HEIRLOOM_BLUE_COLOR), ...)
+    print(WrapTextInColor("InstanceCollectionHelper:", HEIRLOOM_BLUE_COLOR), ...)
 end
 
----Returns the text to be shown on a difficulty button
----@param difficultyID number
----@return string text
+---@param difficultyID number ID associated with an instance difficulty
+---@return string text The text to be shown on the button that sets the desired instance difficulty
 function AddOn:GetDifficultyButtonText(difficultyID)
     local dKey
     for key, dd in pairs(AddOn.DungeonDifficulty) do
@@ -48,8 +47,8 @@ function AddOn:GetDifficultyButtonText(difficultyID)
 end
 
 ---Returns the difficulty text that corresponds to the given `difficultyID`
----@param difficultyID number?
----@return string text
+---@param difficultyID number? ID associated with an instance difficulty. Marked optional due to `GetLegacyRaidDifficultyID()` return a `number?` value, but required for this function.
+---@return string text The text to be shown when referencing the desired instance difficulty
 function AddOn:GetInstanceDifficultyText(difficultyID)
     local dKey
     for key, dd in pairs(AddOn.DungeonDifficulty) do
@@ -61,24 +60,24 @@ function AddOn:GetInstanceDifficultyText(difficultyID)
         end
     end
 
-    if not dKey then return "Unknown"
-    elseif dKey == "Legacy10" then return "10 Player"
-    elseif dKey == "Legacy25" then return "25 Player"
-    elseif dKey == "Legacy10H" then return "10 Player (Heroic)"
-    elseif dKey == "Legacy25H" then return "25 Player (Heroic)"
+    if not dKey then return L["Unknown"]
+    elseif dKey == "Legacy10" then return L["10 Player"]
+    elseif dKey == "Legacy25" then return L["25 Player"]
+    elseif dKey == "Legacy10H" then return L["10 Player (Heroic)"]
+    elseif dKey == "Legacy25H" then return L["25 Player (Heroic)"]
     end
 
-    return dKey
+    return L[dKey]
 end
 
 ---Sets instance difficulty based on the provided value (Usable for all instance types)<br/>
 ---*Provides a consistent experience when changing difficulties either from the UI or chat command.*
----@param difficultyID number
+---@param difficultyID number ID associated with an instance difficulty
 function AddOn:SetInstanceDifficulty(difficultyID)
     for _, id in pairs(self.DungeonDifficulty) do
         if difficultyID == id then
             if GetDungeonDifficultyID() == difficultyID then
-                ICH:PrintChatMessage("Dungeon Difficulty is already set to", WrapTextInColor(ICH:GetInstanceDifficultyText(difficultyID), DARKYELLOW_FONT_COLOR))
+                ICH:PrintChatMessage(L["Dungeon Difficulty is already set to"], WrapTextInColor(ICH:GetInstanceDifficultyText(difficultyID), DARKYELLOW_FONT_COLOR))
             else
                 SetDungeonDifficultyID(difficultyID)
             end
@@ -89,13 +88,13 @@ function AddOn:SetInstanceDifficulty(difficultyID)
     -- Raid difficulty ID less than 10 indicates legacy raid
     if difficultyID < 10 then
         if GetLegacyRaidDifficultyID() == difficultyID then
-            ICH:PrintChatMessage("Legacy Raid Difficulty is already set to", WrapTextInColor(ICH:GetInstanceDifficultyText(difficultyID), DARKYELLOW_FONT_COLOR))
+            ICH:PrintChatMessage(L["Legacy Raid Difficulty is already set to"], WrapTextInColor(ICH:GetInstanceDifficultyText(difficultyID), DARKYELLOW_FONT_COLOR))
         else
             SetLegacyRaidDifficultyID(difficultyID)
         end
     else
         if GetRaidDifficultyID() == difficultyID then
-            ICH:PrintChatMessage("Raid Difficulty is already set to", WrapTextInColor(ICH:GetInstanceDifficultyText(difficultyID), DARKYELLOW_FONT_COLOR))
+            ICH:PrintChatMessage(L["Raid Difficulty is already set to"], WrapTextInColor(ICH:GetInstanceDifficultyText(difficultyID), DARKYELLOW_FONT_COLOR))
         else
             SetRaidDifficultyID(difficultyID)
         end
@@ -112,33 +111,33 @@ AddOn.SlashOptions = {
         diffs = {
             type = "execute",
             name = "diffs",
-            desc = "Display all current instance difficulties",
+            desc = L["Display all current instance difficulties"],
             order = counter(),
             func = function()
-                AddOn:PrintChatMessage("Current Instance Difficulties")
-                print("Dungeon Difficulty:", WrapTextInColor(AddOn:GetInstanceDifficultyText(GetDungeonDifficultyID()), DARKYELLOW_FONT_COLOR))
-                print("Legacy Raid Difficulty:", WrapTextInColor(AddOn:GetInstanceDifficultyText(GetLegacyRaidDifficultyID()), DARKYELLOW_FONT_COLOR))
-                print("Raid Difficulty:", WrapTextInColor(AddOn:GetInstanceDifficultyText(GetRaidDifficultyID()), DARKYELLOW_FONT_COLOR))
+                AddOn:PrintChatMessage(L["Current Instance Difficulties"])
+                print(L["Dungeon Difficulty:"], WrapTextInColor(AddOn:GetInstanceDifficultyText(GetDungeonDifficultyID()), DARKYELLOW_FONT_COLOR))
+                print(L["Legacy Raid Difficulty:"], WrapTextInColor(AddOn:GetInstanceDifficultyText(GetLegacyRaidDifficultyID()), DARKYELLOW_FONT_COLOR))
+                print(L["Raid Difficulty:"], WrapTextInColor(AddOn:GetInstanceDifficultyText(GetRaidDifficultyID()), DARKYELLOW_FONT_COLOR))
             end
         },
         dung = {
             type = "input",
             name = "dung",
-            desc = "Set dungeon difficulty.\n        Accepted values: norm, hero, myth",
+            desc = L["Set dungeon difficulty."].."\n        "..L["Accepted values:"].." norm, hero, myth",
             order = counter(),
             set = function(_, difficulty)
                 if tostring(difficulty):lower() == "norm" then AddOn:SetInstanceDifficulty(AddOn.DungeonDifficulty.Normal)
                 elseif tostring(difficulty):lower() == "hero" then AddOn:SetInstanceDifficulty(AddOn.DungeonDifficulty.Heroic)
                 elseif tostring(difficulty):lower() == "myth" then AddOn:SetInstanceDifficulty(AddOn.DungeonDifficulty.Mythic)
                 else
-                    AddOn:PrintChatMessage(WrapTextInColor("Invalid dungeon difficulty provided.\nAccepted values:", ERROR_COLOR), WrapTextInColor("norm, hero, myth", WHITE_FONT_COLOR))
+                    AddOn:PrintChatMessage(WrapTextInColor(L["Invalid dungeon difficulty provided."].."\n"..L["Accepted values:"], ERROR_COLOR), WrapTextInColor("norm, hero, myth", WHITE_FONT_COLOR))
                 end
             end
         },
         lraid = {
             type = "input",
             name = "lraid",
-            desc = "Set legacy raid difficulty.\n        Accepted values: 10, 25, 10h, 25h",
+            desc = L["Set legacy raid difficulty."].."\n        "..L["Accepted values:"].." 10, 25, 10h, 25h",
             order = counter(),
             set = function(_, difficulty)
                 if tostring(difficulty):lower() == "10" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Legacy10)
@@ -146,28 +145,28 @@ AddOn.SlashOptions = {
                 elseif tostring(difficulty):lower() == "10h" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Legacy10H)
                 elseif tostring(difficulty):lower() == "25h" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Legacy25H)
                 else
-                    AddOn:PrintChatMessage(WrapTextInColor("Invalid legacy raid difficulty provided.\nAccepted values:", ERROR_COLOR), WrapTextInColor("10, 25, 10h, 25h", WHITE_FONT_COLOR))
+                    AddOn:PrintChatMessage(WrapTextInColor(L["Invalid legacy raid difficulty provided."].."\n"..L["Accepted values:"], ERROR_COLOR), WrapTextInColor("10, 25, 10h, 25h", WHITE_FONT_COLOR))
                 end
             end
         },
         raid = {
             type = "input",
             name = "raid",
-            desc = "Set raid difficulty.\n        Accepted values: norm, hero, myth",
+            desc = L["Set raid difficulty."].."\n        "..L["Accepted values:"].." norm, hero, myth",
             order = counter(),
             set = function(_, difficulty)
                 if tostring(difficulty):lower() == "norm" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Normal)
                 elseif tostring(difficulty):lower() == "hero" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Heroic)
                 elseif tostring(difficulty):lower() == "myth" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Mythic)
                 else
-                    AddOn:PrintChatMessage(WrapTextInColor("Invalid raid difficulty provided.\nAccepted values:", ERROR_COLOR), WrapTextInColor("norm, hero, myth", WHITE_FONT_COLOR))
+                    AddOn:PrintChatMessage(WrapTextInColor(L["Invalid raid difficulty provided."].."\n"..L["Accepted values:"], ERROR_COLOR), WrapTextInColor("norm, hero, myth", WHITE_FONT_COLOR))
                 end
             end
         },
         minimap = {
             type = "toggle",
             name = "minimap",
-            desc = "Show/hide the minimap icon",
+            desc = L["Show/hide the minimap icon"],
             order = counter(),
             set = function()
                 AddOn.db.global.minimap.hide = not AddOn.db.global.minimap.hide

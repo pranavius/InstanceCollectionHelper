@@ -31,8 +31,9 @@ function AddOn:OnInitialize()
         icon = "Interface/AddOns/InstanceCollectionHelper/Media/Logo.png",
         OnClick = function() if self.Container then self.Container:Show() end end,
         OnTooltipShow = function(tooltip)
-            tooltip:AddLine(name)
-            tooltip:AddLine("Track available mounts from instances and easily set required instance difficulty", 1, 1, 1, 1)
+            tooltip:SetText(name)
+            tooltip:AddLine(L["Track available mounts from instances and easily set required instance difficulty"], 1, 1, 1, true)
+            tooltip:AddLine(L["Type \"/ich help\" in the chat window for available slash commands"])
         end
     })
     self.Icon:Register(name, broker, self.db.global.minimap)
@@ -80,7 +81,7 @@ function AddOn:CreateMainFrame()
     f.SearchBox:SetPoint("TOPRIGHT", f.Title, "BOTTOMRIGHT", -25, -10)
     f.SearchBox:SetAutoFocus(false)
     f.SearchBox:SetSize(350, 30)
-    f.SearchBox.Instructions:SetText("Search by mount/instance name, instance type, or difficulty")
+    f.SearchBox.Instructions:SetText(L["Search by mount/instance name, instance type, or difficulty"])
     f.SearchBox:HookScript("OnTextChanged", function() self:UpdateListContents("ICH_SEARCH") end)
     
     -- Close button
@@ -139,7 +140,7 @@ function AddOn:CreateScrollingView()
     self.ScrollView:SetElementInitializer("ICHListItemTemplate", self.DataProviderInit)
 end
 
----Initializes the footer in the AddOn
+---Initializes the footer in the AddOn that contains some display options for the window
 function AddOn:CreateFooter()
     local foot = CreateFrame("Frame", "ICHFooter", self.Container)
     foot:SetHeight(35)
@@ -160,7 +161,7 @@ function AddOn:CreateFooter()
     foot.ScaleContainer.Text:SetJustifyH("LEFT")
     foot.ScaleContainer.Text:SetPoint("TOPLEFT", 5, -5)
     foot.ScaleContainer.Text:SetPoint("BOTTOMLEFT", 5, 5)
-    foot.ScaleContainer.Text:SetText("Scale")
+    foot.ScaleContainer.Text:SetText(L["Scale"])
 
     local scale = CreateFrame("Slider", nil, foot.ScaleContainer, "MinimalSliderWithSteppersTemplate")
     scale:SetObeyStepOnDrag(true)
@@ -186,7 +187,7 @@ function AddOn:CreateFooter()
 
     foot.ScaleContainer.WindowScale = scale
 
-    -- Show Owned Mounts
+    -- "Show Owned Mounts" Checkbox
     foot.OwnedContainer = CreateFrame("Frame", nil, foot)
     foot.OwnedContainer:SetWidth(175)
     foot.OwnedContainer:SetPoint("TOPLEFT", foot.ScaleContainer, "TOPRIGHT", 5, 0)
@@ -197,7 +198,7 @@ function AddOn:CreateFooter()
     checkbox:SetPoint("BOTTOMLEFT", foot.OwnedContainer, "BOTTOMRIGHT", -32, 0)
     checkbox:SetChecked(self.db.global.showOwned)
     
-    checkbox.Text:SetText("Show Owned Mounts")
+    checkbox.Text:SetText(L["Show Owned Mounts"])
     checkbox.Text:ClearAllPoints()
     checkbox.Text:SetPoint("RIGHT", checkbox, "LEFT", -5, 2)
     checkbox.Text:SetJustifyH("RIGHT")
@@ -268,9 +269,10 @@ function AddOn:UpdateListContents(event)
     self.ICHDataProvider = CreateDataProvider(newData)
     self.ScrollView:SetDataProvider(self.ICHDataProvider)
     if #newData ~= self.ICHDataProvider:GetSize() and event == "ZONE_CHANGED" then
-        self:PrintChatMessage("Updated available mount list")
+        self:PrintChatMessage(L["Updated available mount list"])
     end
 end
 
 -- Exposes AddOn functionality for use in XML Templates
 ICH = AddOn
+ICH_LANG = L

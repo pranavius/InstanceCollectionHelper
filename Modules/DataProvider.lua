@@ -2,19 +2,22 @@ local name, AddOn = ...
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 
----@class NameContainer: Frame Frame that displays elements relevant to the "Name" column in the scrollable list
+---@class NameContainer: Frame Displays elements relevant to the "Name" column in the scrollable list<br/>
+---For frame definition and more layout information, see `Templates.xml`
 ---@field Text FontString Name of an item
 ---@field ViewButton Button Button to view the item in the appropriate collection journal in-game
 
----@class InstanceContainer: Frame Frame that displays elements relevant to the "Instance" column in the scrollable list
+---@class InstanceContainer: Frame Displays elements relevant to the "Instance" column in the scrollable list<br/>
+---For frame definition and more layout information, see `Templates.xml`
 ---@field Text FontString Name of an instance
 ---@field ViewButton Button Button to view the instance in the encounter journal in-game
 
----@class DifficultyButton: Button
----@field difficultyID number
+---@class DifficultyButton: Button Sets instance difficulty to the associated value
+---@field difficultyID number ID number for instance, scenario, and raid difficulty (see https://wago.tools/db2/Difficulty)
 
----@class DifficultyContainer: Frame Frame that displays elements relevant to the "Difficulty" column in the scrollable list
----@field sharedDifficulties? table<RaidDifficulty, RaidDifficulty> Button for tracking LFR lockout (no action taken when clicked)
+---@class DifficultyContainer: Frame Displays elements relevant to the "Difficulty" column in the scrollable list<br/>
+---For frame definition and more layout information, see `Templates.xml`
+---@field sharedDifficulties? table<RaidDifficulty, RaidDifficulty> Difficulties that share a lockout with a difficulty displayed using the appropriate button
 ---@field RaidDiffLFRButton DifficultyButton Button for tracking LFR lockout (no action taken when clicked)
 ---@field RaidDiff10Button DifficultyButton Button for setting Legacy Raid difficulty to 10 player
 ---@field RaidDiff10HeroicButton DifficultyButton Button for setting Legacy Raid difficulty to 10 player (Heroic)
@@ -27,14 +30,21 @@ AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 ---@field DungDiffHeroicButton DifficultyButton Button for setting Dungeon difficulty to Heroic
 ---@field DungDiffMythicButton DifficultyButton Button for setting Dungeon difficulty to Mythic
 
+---@class ICHNote: Frame
+---@field Notes string?
+
+---@class NotesContainer: Frame
+---@field ICHNote ICHNote
+
 ---@class ICHListItem: Frame
 ---@field Bg Texture The background texture for unowned list item
 ---@field OwnedBg Texture The background texture for owned list items
 ---@field NameContainer NameContainer
 ---@field InstanceContainer InstanceContainer
 ---@field DifficultyContainer DifficultyContainer
+---@field NotesContainer NotesContainer
 
----Unsets all difficulty button points and hides them before attempting to show the correct ones based on provided data
+---Unsets all difficulty button points and hides them before showing the correct ones based on provided data
 ---@param container DifficultyContainer
 local function HideAllDifficultyButtons(container)
     for _, button in ipairs({ container:GetChildren() }) do
@@ -42,6 +52,9 @@ local function HideAllDifficultyButtons(container)
     end
 end
 
+---Determines whether or not an instance encounter has been completed for the reset period for a given difficulty
+---@param data InstanceMount
+---@see InstanceMount
 local function IsEncounterCompleted(data, difficultyID)
     local encounterName
     if data.EncounterID then encounterName = select(1, EJ_GetEncounterInfo(data.EncounterID)) end
@@ -63,6 +76,9 @@ local function IsEncounterCompleted(data, difficultyID)
     return false
 end
 
+---@param data InstanceMount
+---@return boolean isCompleted `true` if an encounter has been completed for the reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise
+---@see InstanceMount
 local function IsEncounterCompletedOnSharedDifficulty(data)
     local isCompleted = false
     for shared, _ in pairs(data.SharedDifficulties) do
@@ -72,9 +88,12 @@ local function IsEncounterCompletedOnSharedDifficulty(data)
     return isCompleted
 end
 
----@param container DifficultyContainer See `Templates.xml` for "ICHListItemTemplate"
----@param data InstanceMount The data to process and display in a list item.
----@param isOwned boolean? Whether or not the item is owned by the player
+---Determines which difficulty button(s) to display based on the provided data
+---@param container DifficultyContainer
+---@param data InstanceMount
+---@param isOwned boolean? Whether or not the item is owned by the player. `nil` for this parameter is evaluated the same way as `false`
+---@see DifficultyContainer
+---@see InstanceMount
 local function ShowDifficultyButtons(container, data, isOwned)
     for i, diffID in ipairs(data.DifficultyIDs) do
         local button
@@ -129,9 +148,11 @@ local function ShowDifficultyButtons(container, data, isOwned)
     end
 end
 
----Initializes how data in the scrollable list should be displayed.
----@param frame ICHListItem See `Templates.xml` for "ICHListItemTemplate"
----@param data InstanceMount The data to process and display in a list item.
+---Initializes how data in the scrollable list should be displayed
+---@param frame ICHListItem
+---@param data InstanceMount
+---@see ICHListItem
+---@see InstanceMount
 function AddOn.DataProviderInit(frame, data)
     if not frame or not data then return end
 
@@ -190,6 +211,7 @@ end
 
 ---@param data InstanceMount
 ---@return boolean `true` if the instance is a raid, `false` otherwise
+---@see InstanceMount
 function AddOn:IsInstanceRaid(data)
     -- AQ has no difficulty IDs listed since it defaults to a 40-man when zoned in (not settable from the UI)
     if #data.DifficultyIDs == 0 then return true end

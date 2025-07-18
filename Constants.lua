@@ -1,16 +1,17 @@
 local name, AddOn = ...
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
+local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---@enum DungeonDifficulty
- AddOn.DungeonDifficulty = {
+ local DungeonDifficulty = {
     Normal = 1,
     Heroic = 2,
     Mythic = 23
 }
 
 ---@enum RaidDifficulty
-AddOn.RaidDifficulty = {
+local RaidDifficulty = {
     Legacy10 = 3,
     Legacy25 = 4,
     Legacy10H = 5,
@@ -21,21 +22,21 @@ AddOn.RaidDifficulty = {
     Mythic = 16
 }
 
-local DungeonDifficulty = AddOn.DungeonDifficulty
-local RaidDifficulty = AddOn.RaidDifficulty
+AddOn.DungeonDifficulty = DungeonDifficulty
+AddOn.RaidDifficulty = RaidDifficulty
 
----@class InstanceMount
----@field Name string
----@field MountID number
----@field Instance string
----@field InstanceID number
----@field MapID number
----@field EncounterID? number
----@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[]
----@field SharedDifficulties? table<RaidDifficulty, RaidDifficulty>
+---@class InstanceMount The mount data to process and display as a list item
+---@field Name string The name of the mount
+---@field MountID number The ID number associated with the mount
+---@field Instance string The instance from which the mount can be obtained
+---@field InstanceID number The ID number for the associated instance
+---@field MapID number The ID number of the map of the associated instance
+---@field EncounterID? number The ID number associated with the encounter that needs to be completed to obtain the mount
+---@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[] A list of IDs associated with the instance difficulty(s) the mount can be obtained in
+---@field SharedDifficulties? table<RaidDifficulty, RaidDifficulty> Provides associations for difficulties that are not listed in `DifficultyIDs` but share a lockout with the listed ID(s)
 ---@field Notes? string Additional notes about this mount or instance
 
----@type InstanceMount[]
+---@type InstanceMount[] List of mounts available from instances
 AddOn.InstanceMounts = {
     {
         Name = "Abyss Worm",
@@ -98,7 +99,7 @@ AddOn.InstanceMounts = {
         MapID = 550,
         EncounterID = 1576,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Notes = "This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"
+        Notes = L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"]
     },
     {
         Name = "Astral Cloud Serpent",
@@ -146,7 +147,7 @@ AddOn.InstanceMounts = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10H,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H
         },
-        Notes = "Available in Normal Legacy Raid difficulty, but Heroic should be set if |cFFFFD100Life-Binder's Handmaiden|r is not obtained yet"
+        Notes = L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"]
     },
     {
         Name = "Blue Drake",
@@ -174,7 +175,7 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         DifficultyIDs = {},
-        Notes = "Drop from trash mobs around "..WrapTextInColor("Temple of Ahn'Qiraj", DARKYELLOW_FONT_COLOR).."\n\nThis raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"
+        Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"]
     },
     {
         Name = "Bronze Drake",
@@ -215,7 +216,7 @@ AddOn.InstanceMounts = {
         MapID = 657,
         EncounterID = 115,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic },
-        Notes = "Also obtainable in Timewalking"
+        Notes = L["Also obtainable in Timewalking"]
     },
     {
         Name = "Drake of the South Wind",
@@ -244,7 +245,7 @@ AddOn.InstanceMounts = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10H,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H
         },
-        Notes = "Available in Normal Legacy Raid difficulty, but Heroic should be set if |cFFFFD100Life-Binder's Handmaiden|r is not obtained yet"
+        Notes = L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"]
     },
     {
         Name = "Felblaze Infernal",
@@ -299,7 +300,7 @@ AddOn.InstanceMounts = {
         MapID = 2070,
         EncounterID = 2334,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = "Obtainable in Raid Finder (LFR) difficulty by killing "..WrapTextInColor("Lady Jaina Proudmoore", DARKYELLOW_FONT_COLOR)
+        Notes = L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"]
     },
     {
         Name = "Grand Black War Mammoth |A:QuestPortraitIcon-Alliance:15:17|a",
@@ -308,7 +309,7 @@ AddOn.InstanceMounts = {
         InstanceID = 753,
         MapID = 624,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Notes = "Drops for "..WrapTextInColor("Alliance", PLAYER_FACTION_COLOR_ALLIANCE).." characters, but obtaining this also gives you the "..WrapTextInColor("Horde", PLAYER_FACTION_COLOR_HORDE).." version"
+        Notes = L["Drops for Alliance characters, but obtaining this also gives you the Horde version"]
     },
     {
         Name = "Grand Black War Mammoth |A:QuestPortraitIcon-Horde:15:17|a",
@@ -317,7 +318,7 @@ AddOn.InstanceMounts = {
         InstanceID = 753,
         MapID = 624,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Notes = "Drops for "..WrapTextInColor("Horde", PLAYER_FACTION_COLOR_HORDE).." characters, but obtaining this also gives you the "..WrapTextInColor("Alliance", PLAYER_FACTION_COLOR_ALLIANCE).." version"
+        Notes = L["Drops for Horde characters, but obtaining this also gives you the Alliance version"]
     },
     {
         Name = "Green Qiraji Battle Tank",
@@ -326,7 +327,7 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         DifficultyIDs = {},
-        Notes = "Drop from trash mobs around "..WrapTextInColor("Temple of Ahn'Qiraj", DARKYELLOW_FONT_COLOR).."\n\nThis raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"
+        Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"]
     },
     {
         Name = "Hellfire Infernal",
@@ -409,7 +410,7 @@ AddOn.InstanceMounts = {
         MapID = 603,
         EncounterID = 1649,
         DifficultyIDs = { RaidDifficulty.Normal },
-        Notes = "Upon entering the instance, raid difficulty will automatically be set to Normal"
+        Notes = L["Upon entering the instance, raid difficulty will automatically be set to Normal"]
     },
     {
         Name = "Ny'alotha Allseer",
@@ -464,7 +465,7 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         DifficultyIDs = {},
-        Notes = "Drop from trash mobs around "..WrapTextInColor("Temple of Ahn'Qiraj", DARKYELLOW_FONT_COLOR).."\n\nThis raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"
+        Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"]
     },
     {
         Name = "Rivendare's Deathcharger",
@@ -474,7 +475,7 @@ AddOn.InstanceMounts = {
         MapID = 329,
         EncounterID = 456,
         DifficultyIDs = { DungeonDifficulty.Normal },
-        Notes = "Also obtainable in Timewalking"
+        Notes = L["Also obtainable in Timewalking"]
     },
     {
         Name = "Sanctum Gloomcharger",
@@ -542,7 +543,7 @@ AddOn.InstanceMounts = {
         MapID = 585,
         EncounterID = 533,
         DifficultyIDs = { DungeonDifficulty.Heroic },
-        Notes = "Also obtainable in Timewalking"
+        Notes = L["Also obtainable in Timewalking"]
     },
     {
         Name = "Swift Zulian Panther",
@@ -623,7 +624,7 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         DifficultyIDs = {},
-        Notes = "Drop from trash mobs around "..WrapTextInColor("Temple of Ahn'Qiraj", DARKYELLOW_FONT_COLOR).."\n\nThis raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"
+        Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"]
     },
     {
         Name = "Zereth Overseer",

@@ -14,6 +14,8 @@
 embeds.xml
 Templates.xml
 
+Localization\enUS.lua
+
 Configs.lua
 Constants.lua
 Modules\DataProvider.lua
