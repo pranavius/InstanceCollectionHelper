@@ -47,7 +47,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     GameTooltip:SetOwner(self, "ANCHOR_TOP")
                     GameTooltip:SetText(ICH_LANG["How To Use:"])
                     GameTooltip:AddLine("\n")
-                    GameTooltip:AddLine("- "..ICH_LANG["Find the mount you want to collect in the list and click the button for the difficulty you want to run on")
+                    GameTooltip:AddLine("- "..ICH_LANG["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"])
                     GameTooltip:AddLine(ICH_LANG["to make sure it is updated."])
                     GameTooltip:AddLine("- "..ICH_LANG["When you are locked out for a mount on a particular difficulty, the button for that difficulty will be disabled."])
                     GameTooltip:AddLine("- "..ICH_LANG["A button will also be disabled for legacy raids completed on another difficulty since those lockouts"])

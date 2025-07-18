@@ -6,7 +6,7 @@ if not L then return end
 --- Mount Notes ---
 L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"] = "This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"
 L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"] = "Available in Normal Legacy Raid difficulty, but Heroic should be set if "..WrapTextInColor("Life-Binder's Handmaiden", DARKYELLOW_FONT_COLOR).." is not obtained yet"
-L["Drops from trash mobs around Temple of Ahn'Qiraj"] = "Drop from trash mobs around "..WrapTextInColor("Temple of Ahn'Qiraj", DARKYELLOW_FONT_COLOR)
+L["Drop from trash mobs around Temple of Ahn'Qiraj"] = "Drop from trash mobs around "..WrapTextInColor("Temple of Ahn'Qiraj", DARKYELLOW_FONT_COLOR)
 L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"] = "This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"
 L["Also obtainable in Timewalking"] = "Also obtainable in Timewalking"
 L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"] = "Obtainable in Raid Finder (LFR) difficulty by killing "..WrapTextInColor("Lady Jaina Proudmoore", DARKYELLOW_FONT_COLOR)
