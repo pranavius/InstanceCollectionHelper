@@ -6,6 +6,11 @@ Release versions suffixed with a lowercase letter are considered unofficial _alp
 ## Latest Version: 8a
 
 ## Changes
+**8b**
+- Added a missing required dependency to the embedded files of the AddOn
+- Minor code cleanup and documentation updates
+- Set up framework for localization into non-English languages (_looking for translators!_)
+
 **8a**
 - Update slash commands for setting instance difficulty to display a message when the chosen difficulty is already set
 - Fix bug causing slider arrows to not resize the AddOn window

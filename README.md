@@ -2,6 +2,8 @@
 
 _Track available mounts from instances and easily set required instance difficulty_
 
+**Important:** I am looking for translators to help bring this AddOn to those who may not understand English. If interested, please contact me via one of the means listed in the [Contact](#contact) section.
+
 ## Highlights
 - Search for a mount by its name, an instance name or type, as well as a difficulty setting
 - Multi-column scrollable UI with Name, Instance, and Available Difficulty columns
