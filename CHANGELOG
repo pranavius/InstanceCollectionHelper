@@ -1,0 +1,54 @@
+# InstanceCollectionHelper
+This document describes changes to each version of **InstanceCollectionHelper (ICH)** and will be updated with each new release.
+
+Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
+
+## Latest Version: 8a
+
+## Changes
+**8a**
+- Update slash commands for setting instance difficulty to display a message when the chosen difficulty is already set
+- Fix bug causing slider arrows to not resize the AddOn window
+- Reduce minimum allowed value for UI slider to decrease window size beyond default
+
+**7a**
+- Create a "search hints" tooltip to provide examples of how to use the search functionality
+- Move the text explaining how the AddOn works into a tooltip
+- Create buttons for both "search hints" and "how it works" to show the appropriate tooltip
+- Added option to increase the UI size as desired
+- Added an option to show owned mounts in the list (indicated with a green background)
+
+**6a**
+- Added a search bar to filter the list of available mounts
+- Fixed some typos in instance names
+- Added LFR button for tracking completed Raid Finder lockouts
+- Update difficulty buttons to be disabled when legacy raid is completed on a different difficulty (shared difficulty lockouts)
+
+**5a**
+- Add difficulty button for **Ashes of Al'ar** to help track weekly lockout
+- Added slash commands to update instance difficulty from chat window:
+  - `/ich dung` for dungeons
+  - `/ich raid` for raids
+  - `/ich lraid` for legacy raids
+- Updated notes for some mounts
+
+**4a**
+- Update AddOn logo
+- Add missing mounts to list
+- Update difficulty button colors
+- Update some mount-related data
+- Added command `/ich diffs` to view all instance difficulty settings at once
+
+**3a**
+- Fixed a bug where _Blizzard_ boss names sometimes didn't correctly match what Blizzard calls the boss in the Encounter Journal
+- Updated dependencies that caused issues on load sometimes
+- Updated the list to show correct lockout info immediately after opening
+
+**2b**
+- Load necessary _Blizzard_ AddOns when initializing
+
+**2a**
+- Fix bug where owned mounts weren't updated automatically on login
+
+**1a**
+- Initial release

@@ -115,7 +115,7 @@ function AddOn:CreateMainFrame()
     self.Container:Hide()
 end
 
----Initializes the scrollable list of data to display.<br/>
+---Initializes the scrollable list of data to display in the AddOn.<br/>
 ---Currently only displays mount information.
 function AddOn:CreateScrollingView()
     self.Container.ListHeaders = CreateFrame("Frame", "ICHListHeaders", self.Container, "ICHListHeadersTemplate")
@@ -139,6 +139,7 @@ function AddOn:CreateScrollingView()
     self.ScrollView:SetElementInitializer("ICHListItemTemplate", self.DataProviderInit)
 end
 
+---Initializes the footer in the AddOn
 function AddOn:CreateFooter()
     local foot = CreateFrame("Frame", "ICHFooter", self.Container)
     foot:SetHeight(35)
@@ -247,6 +248,8 @@ function AddOn:FilterListContentsByQuery(listData)
     return filtered
 end
 
+---Update the contents of the list shown in the UI
+---@param event string The event that triggered the list update
 function AddOn:UpdateListContents(event)
     if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then UIParentLoadAddOn("Blizzard_Collections") end
     if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then UIParentLoadAddOn("Blizzard_EncounterJournal") end
