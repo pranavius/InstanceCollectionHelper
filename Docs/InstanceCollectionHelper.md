@@ -140,6 +140,18 @@ InstanceCollectionHelper
 
 ---
 
+# ICHBlizzWaypoint
+
+## instanceID
+
+
+```lua
+number
+```
+
+
+---
+
 # ICHListItem
 
 ## Bg
@@ -193,7 +205,7 @@ The background texture for owned list items
 
 # ICHNote
 
-## Notes
+## notes
 
 
 ```lua
@@ -260,8 +272,8 @@ function InstanceCollectionHelper.DataProviderInit(frame: ICHListItem, data: Ins
 
 Initializes how data in the scrollable list should be displayed
 See:
-  * [ICHListItem](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Modules/DataProvider.lua#39#10)
-  * [InstanceMount](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Constants.lua#28#10)
+  * [ICHListItem](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Modules/DataProvider.lua#47#10)
+  * [InstanceMount](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Constants.lua#33#10)
 
 ## DatabaseDefaults
 
@@ -345,7 +357,7 @@ unknown
 
 @*return* — `true` if the instance is a raid, `false` otherwise
 
-See: [InstanceMount](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Constants.lua#28#10)
+See: [InstanceMount](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Constants.lua#33#10)
 
 ## OnInitialize
 
@@ -455,6 +467,15 @@ Button to view the instance in the encounter journal in-game
 
 # InstanceMount
 
+## AreaPoiID
+
+
+```lua
+number?
+```
+
+ID number of the Point of Interest (POI) for the instance on the map (used for setting Blizzard map pins)
+
 ## DifficultyIDs
 
 
@@ -480,7 +501,7 @@ The ID number associated with the encounter that needs to be completed to obtain
 string
 ```
 
-The instance from which the mount can be obtained
+The instance from which the mount can be obtained (for information only, displayed name is in user's locale)
 
 ## InstanceID
 
@@ -516,7 +537,7 @@ The ID number associated with the mount
 string
 ```
 
-The name of the mount
+The name of the mount (for information only, displayed name is in user's locale)
 
 ## Notes
 
@@ -535,6 +556,15 @@ table<RaidDifficulty, RaidDifficulty>?
 ```
 
 Provides associations for difficulties that are not listed in `DifficultyIDs` but share a lockout with the listed ID(s)
+
+## Waypoint
+
+
+```lua
+Waypoint?
+```
+
+Information to place a map pin on the entrance to the instance
 
 
 ---
@@ -569,9 +599,48 @@ Button to view the item in the appropriate collection journal in-game
 
 # OtherInfoContainer
 
+## ICHBlizzWaypoint
+
+
+```lua
+ICHBlizzWaypoint
+```
+
 ## ICHNote
 
 
 ```lua
 ICHNote
 ```
+
+
+---
+
+# Waypoint
+
+## mapID
+
+
+```lua
+number
+```
+
+Identifier for the map on which to place the pin
+
+## x
+
+
+```lua
+number
+```
+
+X coordinate of the location on the map
+
+## y
+
+
+```lua
+number
+```
+
+Y coordinate of the location on the map
