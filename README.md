@@ -17,6 +17,12 @@ _Track available mounts from instances and easily set required instance difficul
 
 Although this AddOn currently only supports mount collection, there are plans to add other collectibles such as Battle Pets in the future. If you see that any mounts are missing from this list, please let me know and I'll be happy to add them ASAP.
 
+### Supported Languages
+All mount and instance names will appear in the language that the game is being played in, but other text may appear in English. Currently, the following languages are either supported or in the process of being localized:
+- English (`enUS`)
+- Spanish (`esMX`)
+- German (`deDE`) [**In progress**]
+
 ## Usage
 Aside from the AddOn UI itself, **InstanceCollectionHelper** provides a few other utilities via slash commands. A comprehensive list of available commands is shown below:
 
