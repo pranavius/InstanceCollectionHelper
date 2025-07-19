@@ -8,6 +8,7 @@ _Track available mounts from instances and easily set required instance difficul
 - Search for a mount by its name, an instance name or type, as well as a difficulty setting
 - Multi-column scrollable UI with Name, Instance, and Available Difficulty columns
 - Links to in-game mount journal as well as instance and encounter journal for each list item
+- Ability to drop a map pin at the dungeon or raid entrance to make navigating to each instance easier
 - Simple buttons to set your desired instance difficulty with a single click
 - DataBroker integration for quick access to options via minimap icon or other DataBroker AddOns
 
@@ -36,8 +37,8 @@ Aside from the AddOn UI itself, **InstanceCollectionHelper** provides a few othe
 
 - Track Battle Pets and Achievements available from instances
 - Ability to view available mounts/lockouts on alt characters
-- Set in-game map pins or TomTom waypoints for instance entrances
-- Allow AddOn properties such as font, text size, etc. to be configurable
+- Set TomTom waypoints for instance entrances
+- Allow AddOn properties such as text font to be configurable
 
 ## Contact
 **Twitter/X**: [PranaviusWoW](https://x.com/pranaviuswow)
