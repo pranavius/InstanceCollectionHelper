@@ -157,10 +157,9 @@ function AddOn.DataProviderInit(frame, data)
     if not frame or not data then return end
 
     local index = AddOn.ICHDataProvider:FindIndex(data)
-    frame.NameContainer.Text:SetText(data.Name)
-    frame.InstanceContainer.Text:SetText(data.Instance)
 
-    local mountSpellID, _, _, _, _, _, _, _, _, isOwned = select(2, C_MountJournal.GetMountInfoByID(data.MountID))
+    local mountName, mountSpellID, _, _, _, _, _, _, _, _, isOwned = C_MountJournal.GetMountInfoByID(data.MountID)
+    local instanceName = EJ_GetInstanceInfo(data.InstanceID)
     if isOwned then
         frame.Bg:Hide()
         frame.OwnedBg:Show()
@@ -168,6 +167,8 @@ function AddOn.DataProviderInit(frame, data)
         frame.OwnedBg:Hide()
         if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
     end
+    frame.NameContainer.Text:SetText(mountName) -- Localized mount name
+    frame.InstanceContainer.Text:SetText(instanceName) -- Localized instance name
 
     local iconID = C_Spell.GetSpellInfo(mountSpellID) and C_Spell.GetSpellInfo(mountSpellID).originalIconID
     if iconID then

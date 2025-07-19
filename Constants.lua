@@ -25,16 +25,22 @@ local RaidDifficulty = {
 AddOn.DungeonDifficulty = DungeonDifficulty
 AddOn.RaidDifficulty = RaidDifficulty
 
+---@class Waypoint Information for placing a Blizzard map pin at a location
+---@field mapID number Identifier for the map on which to place the pin
+---@field x number X coordinate of the location on the map
+---@field y number Y coordinate of the location on the map
+
 ---@class InstanceMount The mount data to process and display as a list item
----@field Name string The name of the mount
+---@field Name string The name of the mount (for information only, displayed name is in user's locale)
 ---@field MountID number The ID number associated with the mount
----@field Instance string The instance from which the mount can be obtained
+---@field Instance string The instance from which the mount can be obtained (for information only, displayed name is in user's locale)
 ---@field InstanceID number The ID number for the associated instance
 ---@field MapID number The ID number of the map of the associated instance
 ---@field EncounterID? number The ID number associated with the encounter that needs to be completed to obtain the mount
 ---@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[] A list of IDs associated with the instance difficulty(s) the mount can be obtained in
 ---@field SharedDifficulties? table<RaidDifficulty, RaidDifficulty> Provides associations for difficulties that are not listed in `DifficultyIDs` but share a lockout with the listed ID(s)
 ---@field Notes? string Additional notes about this mount or instance
+---@field Waypoint? Waypoint Information to place a map pin on the entrance to the instance
 
 ---@type InstanceMount[] List of mounts available from instances
 AddOn.InstanceMounts = {
@@ -45,7 +51,8 @@ AddOn.InstanceMounts = {
         InstanceID = 875,
         MapID = 1676,
         EncounterID = 1861,
-        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic }
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = { mapID = 646, x = 0.64, y = 0.214 }
     },
     {
         Name = "Amani Battle Bear",
@@ -53,7 +60,8 @@ AddOn.InstanceMounts = {
         Instance = "Zul'Aman",
         InstanceID = 77,
         MapID = 568,
-        DifficultyIDs = { DungeonDifficulty.Heroic }
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Waypoint = { mapID = 95, x = 0.82, y = 0.643 }
     },
     {
         Name = "Antoran Charhound",
@@ -62,7 +70,8 @@ AddOn.InstanceMounts = {
         InstanceID = 946,
         MapID = 1712,
         EncounterID = 1987,
-        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic }
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = { mapID = 885, x = 0.548, y = 0.625 }
     },
     {
         Name = "Anu'relos, Flame's Guidance",
@@ -72,6 +81,7 @@ AddOn.InstanceMounts = {
         MapID = 2549,
         EncounterID = 2519,
         DifficultyIDs = { RaidDifficulty.Mythic },
+        Waypoint = { mapID = 2200, x = 0.273, y = 0.31 }
     },
     {
         Name = "Armored Razzashi Raptor",
@@ -80,16 +90,18 @@ AddOn.InstanceMounts = {
         InstanceID = 76,
         MapID = 859,
         EncounterID = 176,
-        DifficultyIDs = { DungeonDifficulty.Heroic }
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Waypoint = { mapID = 224, x = 0.64, y = 0.218 }
     },
     {
         Name = "Ascendant Skyrazor",
         MountID = 2223,
-        Instance = "Nerub-ar Palance",
+        Instance = "Nerub-ar Palace",
         InstanceID = 1273,
         MapID = 2657,
         EncounterID = 2602,
         DifficultyIDs = { RaidDifficulty.Mythic },
+        Waypoint = { mapID = 2255, x = 0.436, y = 0.903 }
     },
     {
         Name = "Ashes of Al'ar",
@@ -99,7 +111,8 @@ AddOn.InstanceMounts = {
         MapID = 550,
         EncounterID = 1576,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Notes = L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"]
+        Notes = L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"],
+        Waypoint = { mapID = 109, x = 0.736, y = 0.637 }
     },
     {
         Name = "Astral Cloud Serpent",
@@ -113,7 +126,8 @@ AddOn.InstanceMounts = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
-        }
+        },
+        Waypoint = { mapID = 379, x = 0.596, y = 0.392 }
     },
     {
         Name = "Azure Drake",
@@ -123,7 +137,8 @@ AddOn.InstanceMounts = {
         MapID = 616,
         EncounterID = 1617,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 }
+        SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 },
+        Waypoint = { mapID = 114, x = 0.275, y = 0.267 }
     },
     {
         Name = "Black Drake",
@@ -132,7 +147,8 @@ AddOn.InstanceMounts = {
         InstanceID = 755,
         MapID = 615,
         EncounterID = 1616,
-        DifficultyIDs = { RaidDifficulty.Legacy10 }
+        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        Waypoint = { mapID = 115, x = 0.6, y = 0.57 }
     },
     {
         Name = "Blazing Drake",
@@ -147,7 +163,8 @@ AddOn.InstanceMounts = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10H,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H
         },
-        Notes = L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"]
+        Notes = L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"],
+        Waypoint = { mapID = 71, x = 0.647, y = 0.513 }
     },
     {
         Name = "Blue Drake",
@@ -157,7 +174,8 @@ AddOn.InstanceMounts = {
         MapID = 616,
         EncounterID = 1617,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 }
+        SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 },
+        Waypoint = { mapID = 114, x = 0.275, y = 0.267 }
     },
     {
         Name = "Blue Proto-Drake",
@@ -166,7 +184,8 @@ AddOn.InstanceMounts = {
         InstanceID = 286,
         MapID = 575,
         EncounterID = 643,
-        DifficultyIDs = { DungeonDifficulty.Heroic }
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Waypoint = { mapID = 117, x = 0.572, y = 0.465 }
     },
     {
         Name = "Blue Qiraji Battle Tank",
@@ -175,7 +194,8 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         DifficultyIDs = {},
-        Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"]
+        Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
+        Waypoint = { mapID = 327, x = 0.468, y = 0.075 }
     },
     {
         Name = "Bronze Drake",
@@ -183,7 +203,8 @@ AddOn.InstanceMounts = {
         Instance = "The Culling of Stratholme",
         InstanceID = 279,
         MapID = 595,
-        DifficultyIDs = { DungeonDifficulty.Heroic }
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Waypoint = { mapID = 71, x = 0.647, y = 0.513 }
     },
     {
         Name = "Cartel Master's Gearglider",
@@ -206,7 +227,8 @@ AddOn.InstanceMounts = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
-        }
+        },
+        Waypoint = { mapID = 504, x = 0.638, y = 0.32 }
     },
     {
         Name = "Drake of the North Wind",
@@ -216,7 +238,8 @@ AddOn.InstanceMounts = {
         MapID = 657,
         EncounterID = 115,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic },
-        Notes = L["Also obtainable in Timewalking"]
+        Notes = L["Also obtainable in Timewalking"],
+        Waypoint = { mapID = 1527, x = 0.767, y = 0.844 }
     },
     {
         Name = "Drake of the South Wind",
@@ -230,7 +253,8 @@ AddOn.InstanceMounts = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
-        }
+        },
+        Waypoint = { mapID = 1527, x = 0.37, y = 0.814 }
     },
     {
         Name = "Experiment 12-B",
@@ -245,7 +269,8 @@ AddOn.InstanceMounts = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10H,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H
         },
-        Notes = L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"]
+        Notes = L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"],
+        Waypoint = { mapID = 71, x = 0.647, y = 0.513 }
     },
     {
         Name = "Felblaze Infernal",
@@ -254,7 +279,8 @@ AddOn.InstanceMounts = {
         InstanceID = 786,
         MapID = 1530,
         EncounterID = 1737,
-        DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic }
+        DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = { mapID = 680, x = 0.437, y = 0.573 }
     },
     {
         Name = "Felsteel Annihilator",
@@ -263,7 +289,8 @@ AddOn.InstanceMounts = {
         InstanceID = 669,
         MapID = 1448,
         EncounterID = 1438,
-        DifficultyIDs = { RaidDifficulty.Mythic }
+        DifficultyIDs = { RaidDifficulty.Mythic },
+        Waypoint = { mapID = 534, x = 0.47, y = 0.526 }
     },
     {
         Name = "Fiery Warhorse",
@@ -272,7 +299,8 @@ AddOn.InstanceMounts = {
         InstanceID = 745,
         MapID = 532,
         EncounterID = 1553,
-        DifficultyIDs = { RaidDifficulty.Legacy10 }
+        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        Waypoint = { mapID = 745, x = 0.47, y = 0.749 }
     },
     {
         Name = "Flametalon of Alysrazor",
@@ -281,7 +309,8 @@ AddOn.InstanceMounts = {
         InstanceID = 78,
         MapID = 720,
         EncounterID = 194,
-        DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic }
+        DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
+        Waypoint = { mapID = 198, x = 0.468, y = 0.784 }
     },
     {
         Name = "Glacial Tidestorm",
@@ -290,7 +319,8 @@ AddOn.InstanceMounts = {
         InstanceID = 1176,
         MapID = 2070,
         EncounterID = 2343,
-        DifficultyIDs = { RaidDifficulty.Mythic }
+        DifficultyIDs = { RaidDifficulty.Mythic },
+        Waypoint = { mapID = 862, x = 0.543, y = 0.299 }
     },
     {
         Name = "G.M.O.D",
@@ -300,7 +330,8 @@ AddOn.InstanceMounts = {
         MapID = 2070,
         EncounterID = 2334,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"]
+        Notes = L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"],
+        Waypoint = { mapID = 862, x = 0.543, y = 0.299 }
     },
     {
         Name = "Grand Black War Mammoth |A:QuestPortraitIcon-Alliance:15:17|a",
@@ -309,7 +340,8 @@ AddOn.InstanceMounts = {
         InstanceID = 753,
         MapID = 624,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Notes = L["Drops for Alliance characters, but obtaining this also gives you the Horde version"]
+        Notes = L["Drops for Alliance characters, but obtaining this also gives you the Horde version"],
+        Waypoint = { mapID = 123, x = 0.5, y = 0.117 }
     },
     {
         Name = "Grand Black War Mammoth |A:QuestPortraitIcon-Horde:15:17|a",
@@ -318,7 +350,8 @@ AddOn.InstanceMounts = {
         InstanceID = 753,
         MapID = 624,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Notes = L["Drops for Horde characters, but obtaining this also gives you the Alliance version"]
+        Notes = L["Drops for Horde characters, but obtaining this also gives you the Alliance version"],
+        Waypoint = { mapID = 123, x = 0.5, y = 0.117 }
     },
     {
         Name = "Green Qiraji Battle Tank",
@@ -327,7 +360,8 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         DifficultyIDs = {},
-        Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"]
+        Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
+        Waypoint = { mapID = 327, x = 0.468, y = 0.075 }
     },
     {
         Name = "Hellfire Infernal",
@@ -336,7 +370,8 @@ AddOn.InstanceMounts = {
         InstanceID = 786,
         MapID = 1530,
         EncounterID = 1737,
-        DifficultyIDs = { RaidDifficulty.Mythic }
+        DifficultyIDs = { RaidDifficulty.Mythic },
+        Waypoint = { mapID = 680, x = 0.437, y = 0.573 }
     },
     {
         Name = "Invincible",
@@ -345,7 +380,8 @@ AddOn.InstanceMounts = {
         InstanceID = 758,
         MapID = 631,
         EncounterID = 1636,
-        DifficultyIDs = { RaidDifficulty.Legacy25H }
+        DifficultyIDs = { RaidDifficulty.Legacy25H },
+        Waypoint = { mapID = 118, x = 0.538, y = 0.871 }
     },
     {
         Name = "Ironhoof Destroyer",
@@ -354,7 +390,8 @@ AddOn.InstanceMounts = {
         InstanceID = 457,
         MapID = 1205,
         EncounterID = 959,
-        DifficultyIDs = { RaidDifficulty.Mythic }
+        DifficultyIDs = { RaidDifficulty.Mythic },
+        Waypoint = { mapID = 543, x = 0.516, y = 0.272 }
     },
     {
         Name = "Kor'kron Juggernaut",
@@ -363,7 +400,8 @@ AddOn.InstanceMounts = {
         InstanceID = 369,
         MapID = 1136,
         EncounterID = 869,
-        DifficultyIDs = { RaidDifficulty.Mythic }
+        DifficultyIDs = { RaidDifficulty.Mythic },
+        Waypoint = { mapID = 1530, x = 0.741, y = 0.401 }
     },
     {
         Name = "Life-Binder's Handmaiden",
@@ -373,7 +411,8 @@ AddOn.InstanceMounts = {
         MapID = 967,
         EncounterID = 333,
         DifficultyIDs = { RaidDifficulty.Legacy10H },
-        SharedDifficulties = { [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H }
+        SharedDifficulties = { [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H },
+        Waypoint = { mapID = 71, x = 0.647, y = 0.513 }
     },
     {
         Name = "Marrowfang",
@@ -382,7 +421,8 @@ AddOn.InstanceMounts = {
         InstanceID = 1182,
         MapID = 2286,
         EncounterID = 2396,
-        DifficultyIDs = { DungeonDifficulty.Mythic }
+        DifficultyIDs = { DungeonDifficulty.Mythic },
+        Waypoint = { mapID = 1533, x = 0.401, y = 0.552 }
     },
     {
         Name = "Mechagon Peacekeeper",
@@ -391,7 +431,8 @@ AddOn.InstanceMounts = {
         InstanceID = 1178,
         MapID = 2097,
         EncounterID = 2355,
-        DifficultyIDs = { DungeonDifficulty.Mythic }
+        DifficultyIDs = { DungeonDifficulty.Mythic },
+        Waypoint = { mapID = 1462, x = 0.729, y = 0.365 }
     },
     {
         Name = "Midnight",
@@ -400,7 +441,8 @@ AddOn.InstanceMounts = {
         InstanceID = 860,
         MapID = 1651,
         EncounterID = 1835,
-        DifficultyIDs = { DungeonDifficulty.Mythic }
+        DifficultyIDs = { DungeonDifficulty.Mythic },
+        Waypoint = { mapID = 745, x = 0.47, y = 0.749 }
     },
     {
         Name = "Mimiron's Head",
@@ -410,7 +452,8 @@ AddOn.InstanceMounts = {
         MapID = 603,
         EncounterID = 1649,
         DifficultyIDs = { RaidDifficulty.Normal },
-        Notes = L["Upon entering the instance, raid difficulty will automatically be set to Normal"]
+        Notes = L["Upon entering the instance, raid difficulty will automatically be set to Normal"],
+        Waypoint = { mapID = 120, x = 0.416, y = 0.178 }
     },
     {
         Name = "Ny'alotha Allseer",
@@ -430,6 +473,7 @@ AddOn.InstanceMounts = {
         EncounterID = 1651,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 },
+        Waypoint = { mapID = 70, x = 0.522, y = 0.759 }
     },
     {
         Name = "Prototype A.S.M.R",
@@ -438,7 +482,8 @@ AddOn.InstanceMounts = {
         InstanceID = 1296,
         MapID = 2769,
         EncounterID = 2646,
-        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic }
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = { mapID = 2346, x = 0.416, y = 0.488 }
     },
     {
         Name = "Pureblood Fire Hawk",
@@ -447,7 +492,8 @@ AddOn.InstanceMounts = {
         InstanceID = 78,
         MapID = 720,
         EncounterID = 198,
-        DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic }
+        DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
+        Waypoint = { mapID = 198, x = 0.468, y = 0.784 }
     },
     {
         Name = "Raven Lord",
@@ -456,7 +502,8 @@ AddOn.InstanceMounts = {
         InstanceID = 252,
         MapID = 556,
         EncounterID = 542,
-        DifficultyIDs = { DungeonDifficulty.Heroic }
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Waypoint = { mapID = 108, x = 0.446, y = 0.656 }
     },
     {
         Name = "Red Qiraji Battle Tank",
@@ -465,7 +512,8 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         DifficultyIDs = {},
-        Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"]
+        Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
+        Waypoint = { mapID = 327, x = 0.468, y = 0.075 }
     },
     {
         Name = "Rivendare's Deathcharger",
@@ -475,7 +523,8 @@ AddOn.InstanceMounts = {
         MapID = 329,
         EncounterID = 456,
         DifficultyIDs = { DungeonDifficulty.Normal },
-        Notes = L["Also obtainable in Timewalking"]
+        Notes = L["Also obtainable in Timewalking"],
+        Waypoint = { mapID = 23, x = 0.436, y = 0.191 }
     },
     {
         Name = "Sanctum Gloomcharger",
@@ -484,7 +533,8 @@ AddOn.InstanceMounts = {
         InstanceID = 1193,
         MapID = 2450,
         EncounterID = 2439,
-        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic }
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = { mapID = 1543, x = 0.697, y = 0.32 }
     },
     {
         Name = "Shackled Ur'zul",
@@ -493,7 +543,8 @@ AddOn.InstanceMounts = {
         InstanceID = 946,
         MapID = 1712,
         EncounterID = 2031,
-        DifficultyIDs = { RaidDifficulty.Mythic }
+        DifficultyIDs = { RaidDifficulty.Mythic },
+        Waypoint = { mapID = 885, x = 0.548, y = 0.625 }
     },
     {
         Name = "Sharkbait",
@@ -502,7 +553,8 @@ AddOn.InstanceMounts = {
         InstanceID = 1001,
         MapID = 1754,
         EncounterID = 2095,
-        DifficultyIDs = { DungeonDifficulty.Mythic }
+        DifficultyIDs = { DungeonDifficulty.Mythic },
+        Waypoint = { mapID = 895, x = 0.846, y = 0.788 }
     },
     {
         Name = "Smoldering Ember Wyrm",
@@ -510,7 +562,8 @@ AddOn.InstanceMounts = {
         Instance = "Return to Karazhan",
         InstanceID = 860,
         MapID = 1651,
-        DifficultyIDs = { DungeonDifficulty.Mythic }
+        DifficultyIDs = { DungeonDifficulty.Mythic },
+        Waypoint = { mapID = 745, x = 0.47, y = 0.749 }
     },
     {
         Name = "Spawn of Horridon",
@@ -524,7 +577,8 @@ AddOn.InstanceMounts = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
-        }
+        },
+        Waypoint = { mapID = 504, x = 0.638, y = 0.32 }
     },
     {
         Name = "Sureki Skyrazor",
@@ -533,7 +587,8 @@ AddOn.InstanceMounts = {
         InstanceID = 1273,
         MapID = 2657,
         EncounterID = 2602,
-        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic }
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = { mapID = 2255, x = 0.436, y = 0.903 }
     },
     {
         Name = "Swift White Hawkstrider",
@@ -543,7 +598,8 @@ AddOn.InstanceMounts = {
         MapID = 585,
         EncounterID = 533,
         DifficultyIDs = { DungeonDifficulty.Heroic },
-        Notes = L["Also obtainable in Timewalking"]
+        Notes = L["Also obtainable in Timewalking"],
+        Waypoint = { mapID = 122, x = 0.61, y = 0.307 }
     },
     {
         Name = "Swift Zulian Panther",
@@ -552,7 +608,8 @@ AddOn.InstanceMounts = {
         InstanceID = 76,
         MapID = 859,
         EncounterID = 181,
-        DifficultyIDs = { DungeonDifficulty.Heroic }
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Waypoint = { mapID = 224, x = 0.64, y = 0.218 }
     },
     {
         Name = "The Big G",
@@ -561,7 +618,8 @@ AddOn.InstanceMounts = {
         InstanceID = 1296,
         MapID = 2769,
         EncounterID = 2646,
-        DifficultyIDs = { RaidDifficulty.Mythic }
+        DifficultyIDs = { RaidDifficulty.Mythic },
+        Waypoint = { mapID = 2346, x = 0.416, y = 0.488 }
     },
     {
         Name = "Tomb Stalker",
@@ -570,7 +628,8 @@ AddOn.InstanceMounts = {
         InstanceID = 1041,
         MapID = 1762,
         EncounterID = 2172,
-        DifficultyIDs = { DungeonDifficulty.Mythic }
+        DifficultyIDs = { DungeonDifficulty.Mythic },
+        Waypoint = { mapID = 862, x = 0.376, y = 0.395 }
     },
     {
         Name = "Twilight Drake",
@@ -579,7 +638,8 @@ AddOn.InstanceMounts = {
         InstanceID = 755,
         MapID = 615,
         EncounterID = 1616,
-        DifficultyIDs = { RaidDifficulty.Legacy25 }
+        DifficultyIDs = { RaidDifficulty.Legacy25 },
+        Waypoint = { mapID = 115, x = 0.6, y = 0.57 }
     },
     {
         Name = "Underrot Crawg",
@@ -588,16 +648,18 @@ AddOn.InstanceMounts = {
         InstanceID = 1022,
         MapID = 1841,
         EncounterID = 2158,
-        DifficultyIDs = { DungeonDifficulty.Mythic }
+        DifficultyIDs = { DungeonDifficulty.Mythic },
+        Waypoint = { mapID = 863, x = 0.513, y = 0.646 }
     },
     {
         Name = "Vengeance",
         MountID = 1471,
-        Instance = "Sanctum of Dominiation",
+        Instance = "Sanctum of Domination",
         InstanceID = 1193,
         MapID = 2450,
         EncounterID = 2441,
-        DifficultyIDs = { RaidDifficulty.Mythic }
+        DifficultyIDs = { RaidDifficulty.Mythic },
+        Waypoint = { mapID = 1543, x = 0.697, y = 0.32 }
     },
     {
         Name = "Vitreous Stone Drake",
@@ -606,7 +668,8 @@ AddOn.InstanceMounts = {
         InstanceID = 67,
         MapID = 725,
         EncounterID = 111,
-        DifficultyIDs = { DungeonDifficulty.Normal }
+        DifficultyIDs = { DungeonDifficulty.Normal },
+        Waypoint = { mapID = 207, x = 0.474, y = 0.521 }
     },
     {
         Name = "Wick",
@@ -615,7 +678,8 @@ AddOn.InstanceMounts = {
         InstanceID = 1210,
         MapID = 2651,
         EncounterID = 2561,
-        DifficultyIDs = { DungeonDifficulty.Mythic }
+        DifficultyIDs = { DungeonDifficulty.Mythic },
+        Waypoint = { mapID = 2214, x = 0.555, y = 0.216 }
     },
     {
         Name = "Yellow Qiraji Battle Tank",
@@ -624,7 +688,8 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         DifficultyIDs = {},
-        Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"]
+        Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
+        Waypoint = { mapID = 327, x = 0.468, y = 0.075 }
     },
     {
         Name = "Zereth Overseer",
@@ -633,6 +698,7 @@ AddOn.InstanceMounts = {
         InstanceID = 1195,
         MapID = 2481,
         EncounterID = 2464,
-        DifficultyIDs = { RaidDifficulty.Mythic }
+        DifficultyIDs = { RaidDifficulty.Mythic },
+        Waypoint = { mapID = 1970, x = 0.805, y = 0.534 }
     }
 }
