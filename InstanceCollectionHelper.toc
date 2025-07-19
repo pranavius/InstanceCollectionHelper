@@ -15,6 +15,7 @@ embeds.xml
 Templates.xml
 
 Localization\enUS.lua
+Localization\esMX.lua
 
 Configs.lua
 Constants.lua

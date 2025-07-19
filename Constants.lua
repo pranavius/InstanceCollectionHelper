@@ -36,6 +36,7 @@ AddOn.RaidDifficulty = RaidDifficulty
 ---@field Instance string The instance from which the mount can be obtained (for information only, displayed name is in user's locale)
 ---@field InstanceID number The ID number for the associated instance
 ---@field MapID number The ID number of the map of the associated instance
+---@field AreaPoiID? number ID number of the Point of Interest (POI) for the instance on the map (used for setting Blizzard map pins)
 ---@field EncounterID? number The ID number associated with the encounter that needs to be completed to obtain the mount
 ---@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[] A list of IDs associated with the instance difficulty(s) the mount can be obtained in
 ---@field SharedDifficulties? table<RaidDifficulty, RaidDifficulty> Provides associations for difficulties that are not listed in `DifficultyIDs` but share a lockout with the listed ID(s)
@@ -50,6 +51,7 @@ AddOn.InstanceMounts = {
         Instance = "Tomb of Sargeras",
         InstanceID = 875,
         MapID = 1676,
+        AreaPoiID = 5250,
         EncounterID = 1861,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Waypoint = { mapID = 646, x = 0.64, y = 0.214 }
@@ -60,8 +62,10 @@ AddOn.InstanceMounts = {
         Instance = "Zul'Aman",
         InstanceID = 77,
         MapID = 568,
+        AreaPoiID = 6683,
         DifficultyIDs = { DungeonDifficulty.Heroic },
-        Waypoint = { mapID = 95, x = 0.82, y = 0.643 }
+        Waypoint = { mapID = 95, x = 0.82, y = 0.643 },
+        Notes = L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"]
     },
     {
         Name = "Antoran Charhound",
@@ -69,6 +73,7 @@ AddOn.InstanceMounts = {
         Instance = "Antorus, the Burning Throne",
         InstanceID = 946,
         MapID = 1712,
+        AreaPoiID = 5440,
         EncounterID = 1987,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Waypoint = { mapID = 885, x = 0.548, y = 0.625 }
@@ -79,6 +84,7 @@ AddOn.InstanceMounts = {
         Instance = "Amirdrassil, the Dream's Hope",
         InstanceID = 1207,
         MapID = 2549,
+        AreaPoiID = 7631, -- C_SuperTrack.SetSuperTrackedMapPin(0, ID)
         EncounterID = 2519,
         DifficultyIDs = { RaidDifficulty.Mythic },
         Waypoint = { mapID = 2200, x = 0.273, y = 0.31 }
@@ -89,6 +95,7 @@ AddOn.InstanceMounts = {
         Instance = "Zul'Gurub",
         InstanceID = 76,
         MapID = 859,
+        AreaPoiID = 6682,
         EncounterID = 176,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Waypoint = { mapID = 224, x = 0.64, y = 0.218 }
@@ -99,6 +106,7 @@ AddOn.InstanceMounts = {
         Instance = "Nerub-ar Palace",
         InstanceID = 1273,
         MapID = 2657,
+        AreaPoiID = 7546,
         EncounterID = 2602,
         DifficultyIDs = { RaidDifficulty.Mythic },
         Waypoint = { mapID = 2255, x = 0.436, y = 0.903 }
@@ -109,6 +117,7 @@ AddOn.InstanceMounts = {
         Instance = "The Eye",
         InstanceID = 749,
         MapID = 550,
+        AreaPoiID = 6534,
         EncounterID = 1576,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
         Notes = L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"],
@@ -120,6 +129,7 @@ AddOn.InstanceMounts = {
         Instance = "Mogu'shan Vaults",
         InstanceID = 317,
         MapID = 1008,
+        AreaPoiID = 6511,
         EncounterID = 726,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         SharedDifficulties = {
@@ -135,6 +145,7 @@ AddOn.InstanceMounts = {
         Instance = "Eye of Eternity",
         InstanceID = 756,
         MapID = 616,
+        AreaPoiID = 6525,
         EncounterID = 1617,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 },
@@ -146,6 +157,7 @@ AddOn.InstanceMounts = {
         Instance = "The Obsidian Sanctum",
         InstanceID = 755,
         MapID = 615,
+        AreaPoiID = 6520,
         EncounterID = 1616,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         Waypoint = { mapID = 115, x = 0.6, y = 0.57 }
@@ -156,6 +168,7 @@ AddOn.InstanceMounts = {
         Instance = "Dragon Soul",
         InstanceID = 187,
         MapID = 967,
+        AreaPoiID = 6512,
         EncounterID = 333,
         DifficultyIDs = { RaidDifficulty.Legacy10H },
         SharedDifficulties = {
@@ -172,6 +185,7 @@ AddOn.InstanceMounts = {
         Instance = "Eye of Eternity",
         InstanceID = 756,
         MapID = 616,
+        AreaPoiID = 6525,
         EncounterID = 1617,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 },
@@ -183,6 +197,7 @@ AddOn.InstanceMounts = {
         Instance = "Utgarde Pinnacle",
         InstanceID = 286,
         MapID = 575,
+        AreaPoiID = 6690,
         EncounterID = 643,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Waypoint = { mapID = 117, x = 0.572, y = 0.465 }
@@ -193,6 +208,7 @@ AddOn.InstanceMounts = {
         Instance = "Temple of Ahn'Qiraj",
         InstanceID = 744,
         MapID = 531,
+        AreaPoiID = 6537,
         DifficultyIDs = {},
         Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
         Waypoint = { mapID = 327, x = 0.468, y = 0.075 }
@@ -203,8 +219,10 @@ AddOn.InstanceMounts = {
         Instance = "The Culling of Stratholme",
         InstanceID = 279,
         MapID = 595,
+        AreaPoiID = 6663,
         DifficultyIDs = { DungeonDifficulty.Heroic },
-        Waypoint = { mapID = 71, x = 0.647, y = 0.513 }
+        Waypoint = { mapID = 71, x = 0.647, y = 0.513 },
+        Notes = L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"]
     },
     {
         Name = "Cartel Master's Gearglider",
@@ -212,6 +230,7 @@ AddOn.InstanceMounts = {
         Instance = "Tazavesh, the Veiled Market",
         InstanceID = 1194,
         MapID = 2441,
+        -- AreaPoiID = 8374,
         EncounterID = 2455,
         DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic }
     },
@@ -221,6 +240,7 @@ AddOn.InstanceMounts = {
         Instance = "Throne of Thunder",
         InstanceID = 362,
         MapID = 1098,
+        AreaPoiID = 6508,
         EncounterID = 828,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         SharedDifficulties = {
@@ -236,6 +256,7 @@ AddOn.InstanceMounts = {
         Instance = "The Vortex Pinnacle",
         InstanceID = 68,
         MapID = 657,
+        AreaPoiID = 6685,
         EncounterID = 115,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic },
         Notes = L["Also obtainable in Timewalking"],
@@ -247,6 +268,7 @@ AddOn.InstanceMounts = {
         Instance = "Throne of the Four Winds",
         InstanceID = 74,
         MapID = 754,
+        AreaPoiID = 6515,
         EncounterID = 155,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         SharedDifficulties = {
@@ -262,6 +284,7 @@ AddOn.InstanceMounts = {
         Instance = "Dragon Soul",
         InstanceID = 187,
         MapID = 967,
+        AreaPoiID = 6512,
         EncounterID = 331,
         DifficultyIDs = { RaidDifficulty.Legacy10H },
         SharedDifficulties = {
@@ -278,6 +301,7 @@ AddOn.InstanceMounts = {
         Instance = "The Nighthold",
         InstanceID = 786,
         MapID = 1530,
+        AreaPoiID = 5101,
         EncounterID = 1737,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Waypoint = { mapID = 680, x = 0.437, y = 0.573 }
@@ -288,6 +312,7 @@ AddOn.InstanceMounts = {
         Instance = "Hellfire Citadel",
         InstanceID = 669,
         MapID = 1448,
+        AreaPoiID = 6504,
         EncounterID = 1438,
         DifficultyIDs = { RaidDifficulty.Mythic },
         Waypoint = { mapID = 534, x = 0.47, y = 0.526 }
@@ -298,6 +323,7 @@ AddOn.InstanceMounts = {
         Instance = "Karazhan",
         InstanceID = 745,
         MapID = 532,
+        AreaPoiID = 6528,
         EncounterID = 1553,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         Waypoint = { mapID = 745, x = 0.47, y = 0.749 }
@@ -308,6 +334,7 @@ AddOn.InstanceMounts = {
         Instance = "Firelands",
         InstanceID = 78,
         MapID = 720,
+        AreaPoiID = 6514,
         EncounterID = 194,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
         Waypoint = { mapID = 198, x = 0.468, y = 0.784 }
@@ -318,9 +345,10 @@ AddOn.InstanceMounts = {
         Instance = "Battle of Dazar'alor",
         InstanceID = 1176,
         MapID = 2070,
+        -- AreaPoiID = 6012 for Horde and 6013 for Alliance
         EncounterID = 2343,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 862, x = 0.543, y = 0.299 }
+        -- Waypoint = { mapID = 862, x = 0.543, y = 0.299 } -- Zuldazar
     },
     {
         Name = "G.M.O.D",
@@ -328,27 +356,30 @@ AddOn.InstanceMounts = {
         Instance = "Battle of Dazar'alor",
         InstanceID = 1176,
         MapID = 2070,
+        -- AreaPoiID = 6012 for Horde and 6013 for Alliance
         EncounterID = 2334,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"],
-        Waypoint = { mapID = 862, x = 0.543, y = 0.299 }
+        -- Waypoint = { mapID = 862, x = 0.543, y = 0.299 } -- Zuldazar
     },
     {
-        Name = "Grand Black War Mammoth |A:QuestPortraitIcon-Alliance:15:17|a",
+        Name = "Grand Black War Mammoth",
         MountID = 286,
         Instance = "Vault of Archavon",
         InstanceID = 753,
         MapID = 624,
+        AreaPoiID = 6526,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         Notes = L["Drops for Alliance characters, but obtaining this also gives you the Horde version"],
         Waypoint = { mapID = 123, x = 0.5, y = 0.117 }
     },
     {
-        Name = "Grand Black War Mammoth |A:QuestPortraitIcon-Horde:15:17|a",
+        Name = "Grand Black War Mammoth",
         MountID = 287,
         Instance = "Vault of Archavon",
         InstanceID = 753,
         MapID = 624,
+        AreaPoiID = 6526,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         Notes = L["Drops for Horde characters, but obtaining this also gives you the Alliance version"],
         Waypoint = { mapID = 123, x = 0.5, y = 0.117 }
@@ -359,6 +390,7 @@ AddOn.InstanceMounts = {
         Instance = "Temple of Ahn'Qiraj",
         InstanceID = 744,
         MapID = 531,
+        AreaPoiID = 6537,
         DifficultyIDs = {},
         Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
         Waypoint = { mapID = 327, x = 0.468, y = 0.075 }
@@ -369,6 +401,7 @@ AddOn.InstanceMounts = {
         Instance = "The Nighthold",
         InstanceID = 786,
         MapID = 1530,
+        AreaPoiID = 5101,
         EncounterID = 1737,
         DifficultyIDs = { RaidDifficulty.Mythic },
         Waypoint = { mapID = 680, x = 0.437, y = 0.573 }
@@ -379,6 +412,7 @@ AddOn.InstanceMounts = {
         Instance = "Icecrown Citadel",
         InstanceID = 758,
         MapID = 631,
+        AreaPoiID = 6521,
         EncounterID = 1636,
         DifficultyIDs = { RaidDifficulty.Legacy25H },
         Waypoint = { mapID = 118, x = 0.538, y = 0.871 }
@@ -389,6 +423,7 @@ AddOn.InstanceMounts = {
         Instance = "Blackrock Foundry",
         InstanceID = 457,
         MapID = 1205,
+        AreaPoiID = 6505,
         EncounterID = 959,
         DifficultyIDs = { RaidDifficulty.Mythic },
         Waypoint = { mapID = 543, x = 0.516, y = 0.272 }
@@ -399,6 +434,7 @@ AddOn.InstanceMounts = {
         Instance = "Seige of Orgimmar",
         InstanceID = 369,
         MapID = 1136,
+        AreaPoiID = 6507,
         EncounterID = 869,
         DifficultyIDs = { RaidDifficulty.Mythic },
         Waypoint = { mapID = 1530, x = 0.741, y = 0.401 }
@@ -409,6 +445,7 @@ AddOn.InstanceMounts = {
         Instance = "Dragon Soul",
         InstanceID = 187,
         MapID = 967,
+        AreaPoiID = 6512,
         EncounterID = 333,
         DifficultyIDs = { RaidDifficulty.Legacy10H },
         SharedDifficulties = { [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H },
@@ -420,6 +457,7 @@ AddOn.InstanceMounts = {
         Instance = "The Necrotic Wake",
         InstanceID = 1182,
         MapID = 2286,
+        AreaPoiID = 6582,
         EncounterID = 2396,
         DifficultyIDs = { DungeonDifficulty.Mythic },
         Waypoint = { mapID = 1533, x = 0.401, y = 0.552 }
@@ -430,6 +468,7 @@ AddOn.InstanceMounts = {
         Instance = "Operation: Mechagon",
         InstanceID = 1178,
         MapID = 2097,
+        AreaPoiID = 6129,
         EncounterID = 2355,
         DifficultyIDs = { DungeonDifficulty.Mythic },
         Waypoint = { mapID = 1462, x = 0.729, y = 0.365 }
@@ -442,7 +481,7 @@ AddOn.InstanceMounts = {
         MapID = 1651,
         EncounterID = 1835,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 745, x = 0.47, y = 0.749 }
+        Waypoint = { mapID = 42, x = 0.47, y = 0.749 }
     },
     {
         Name = "Mimiron's Head",
@@ -450,10 +489,11 @@ AddOn.InstanceMounts = {
         Instance = "Ulduar",
         InstanceID = 759,
         MapID = 603,
+        AreaPoiID = 6523,
         EncounterID = 1649,
         DifficultyIDs = { RaidDifficulty.Normal },
-        Notes = L["Upon entering the instance, raid difficulty will automatically be set to Normal"],
-        Waypoint = { mapID = 120, x = 0.416, y = 0.178 }
+        Notes = L["Upon entering the instance, raid difficulty will automatically be set to Normal"].."\n\n"..L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"],
+        Waypoint = { mapID = 120, x = 0.416, y = 0.178 },
     },
     {
         Name = "Ny'alotha Allseer",
@@ -461,8 +501,10 @@ AddOn.InstanceMounts = {
         Instance = "Ny'alotha, the Waking City",
         InstanceID = 1180,
         MapID = 2217,
+        -- AreaPoiID = 6539, -- Or 6540 (Uldum)
         EncounterID = 2375,
-        DifficultyIDs = { RaidDifficulty.Mythic }
+        DifficultyIDs = { RaidDifficulty.Mythic },
+        Notes = L["Entrance can be in either Uldum or Vale of Eternal Blossoms"]
     },
     {
         Name = "Onyxian Drake",
@@ -470,6 +512,7 @@ AddOn.InstanceMounts = {
         Instance = "Onyxia's Lair",
         InstanceID = 760,
         MapID = 249,
+        AreaPoiID = 6527,
         EncounterID = 1651,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 },
@@ -481,6 +524,7 @@ AddOn.InstanceMounts = {
         Instance = "Liberation of Undermine",
         InstanceID = 1296,
         MapID = 2769,
+        AreaPoiID = 8240,
         EncounterID = 2646,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Waypoint = { mapID = 2346, x = 0.416, y = 0.488 }
@@ -491,6 +535,7 @@ AddOn.InstanceMounts = {
         Instance = "Firelands",
         InstanceID = 78,
         MapID = 720,
+        AreaPoiID = 6514,
         EncounterID = 198,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
         Waypoint = { mapID = 198, x = 0.468, y = 0.784 }
@@ -501,6 +546,7 @@ AddOn.InstanceMounts = {
         Instance = "Sethekk Halls",
         InstanceID = 252,
         MapID = 556,
+        AreaPoiID = 6717,
         EncounterID = 542,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Waypoint = { mapID = 108, x = 0.446, y = 0.656 }
@@ -511,6 +557,7 @@ AddOn.InstanceMounts = {
         Instance = "Temple of Ahn'Qiraj",
         InstanceID = 744,
         MapID = 531,
+        AreaPoiID = 6537,
         DifficultyIDs = {},
         Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
         Waypoint = { mapID = 327, x = 0.468, y = 0.075 }
@@ -532,6 +579,7 @@ AddOn.InstanceMounts = {
         Instance = "Sanctum of Domination",
         InstanceID = 1193,
         MapID = 2450,
+        AreaPoiID = 6994,
         EncounterID = 2439,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Waypoint = { mapID = 1543, x = 0.697, y = 0.32 }
@@ -542,6 +590,7 @@ AddOn.InstanceMounts = {
         Instance = "Antorus, the Burning Throne",
         InstanceID = 946,
         MapID = 1712,
+        AreaPoiID = 5440,
         EncounterID = 2031,
         DifficultyIDs = { RaidDifficulty.Mythic },
         Waypoint = { mapID = 885, x = 0.548, y = 0.625 }
@@ -552,6 +601,7 @@ AddOn.InstanceMounts = {
         Instance = "Freehold",
         InstanceID = 1001,
         MapID = 1754,
+        AreaPoiID = 5834,
         EncounterID = 2095,
         DifficultyIDs = { DungeonDifficulty.Mythic },
         Waypoint = { mapID = 895, x = 0.846, y = 0.788 }
@@ -563,7 +613,8 @@ AddOn.InstanceMounts = {
         InstanceID = 860,
         MapID = 1651,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 745, x = 0.47, y = 0.749 }
+        Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
+        Notes = L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"]
     },
     {
         Name = "Spawn of Horridon",
@@ -571,6 +622,7 @@ AddOn.InstanceMounts = {
         Instance = "Throne of Thunder",
         InstanceID = 362,
         MapID = 1098,
+        AreaPoiID = 6508,
         EncounterID = 819,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         SharedDifficulties = {
@@ -586,6 +638,7 @@ AddOn.InstanceMounts = {
         Instance = "Nerub-ar Palace",
         InstanceID = 1273,
         MapID = 2657,
+        AreaPoiID = 7546,
         EncounterID = 2602,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Waypoint = { mapID = 2255, x = 0.436, y = 0.903 }
@@ -596,6 +649,7 @@ AddOn.InstanceMounts = {
         Instance = "Magister's Terrace",
         InstanceID = 249,
         MapID = 585,
+        AreaPoiID = 6718,
         EncounterID = 533,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Notes = L["Also obtainable in Timewalking"],
@@ -607,6 +661,7 @@ AddOn.InstanceMounts = {
         Instance = "Zul'Gurub",
         InstanceID = 76,
         MapID = 859,
+        AreaPoiID = 6682,
         EncounterID = 181,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Waypoint = { mapID = 224, x = 0.64, y = 0.218 }
@@ -617,6 +672,7 @@ AddOn.InstanceMounts = {
         Instance = "Liberation of Undermine",
         InstanceID = 1296,
         MapID = 2769,
+        AreaPoiID = 8240,
         EncounterID = 2646,
         DifficultyIDs = { RaidDifficulty.Mythic },
         Waypoint = { mapID = 2346, x = 0.416, y = 0.488 }
@@ -627,6 +683,7 @@ AddOn.InstanceMounts = {
         Instance = "Kings' Rest",
         InstanceID = 1041,
         MapID = 1762,
+        AreaPoiID = 5839,
         EncounterID = 2172,
         DifficultyIDs = { DungeonDifficulty.Mythic },
         Waypoint = { mapID = 862, x = 0.376, y = 0.395 }
@@ -637,6 +694,7 @@ AddOn.InstanceMounts = {
         Instance = "The Obsidian Sanctum",
         InstanceID = 755,
         MapID = 615,
+        AreaPoiID = 6520,
         EncounterID = 1616,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
         Waypoint = { mapID = 115, x = 0.6, y = 0.57 }
@@ -647,6 +705,7 @@ AddOn.InstanceMounts = {
         Instance = "The Underrot",
         InstanceID = 1022,
         MapID = 1841,
+        AreaPoiID = 5841,
         EncounterID = 2158,
         DifficultyIDs = { DungeonDifficulty.Mythic },
         Waypoint = { mapID = 863, x = 0.513, y = 0.646 }
@@ -657,6 +716,7 @@ AddOn.InstanceMounts = {
         Instance = "Sanctum of Domination",
         InstanceID = 1193,
         MapID = 2450,
+        AreaPoiID = 6994,
         EncounterID = 2441,
         DifficultyIDs = { RaidDifficulty.Mythic },
         Waypoint = { mapID = 1543, x = 0.697, y = 0.32 }
@@ -667,6 +727,7 @@ AddOn.InstanceMounts = {
         Instance = "The Stonecore",
         InstanceID = 67,
         MapID = 725,
+        AreaPoiID = 6687,
         EncounterID = 111,
         DifficultyIDs = { DungeonDifficulty.Normal },
         Waypoint = { mapID = 207, x = 0.474, y = 0.521 }
@@ -677,6 +738,7 @@ AddOn.InstanceMounts = {
         Instance = "Darkflame Cleft",
         InstanceID = 1210,
         MapID = 2651,
+        AreaPoiID = 7821,
         EncounterID = 2561,
         DifficultyIDs = { DungeonDifficulty.Mythic },
         Waypoint = { mapID = 2214, x = 0.555, y = 0.216 }
@@ -687,6 +749,7 @@ AddOn.InstanceMounts = {
         Instance = "Temple of Ahn'Qiraj",
         InstanceID = 744,
         MapID = 531,
+        AreaPoiID = 6537,
         DifficultyIDs = {},
         Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
         Waypoint = { mapID = 327, x = 0.468, y = 0.075 }
@@ -697,6 +760,7 @@ AddOn.InstanceMounts = {
         Instance = "Sepulcher of the First Ones",
         InstanceID = 1195,
         MapID = 2481,
+        AreaPoiID = 7021,
         EncounterID = 2464,
         DifficultyIDs = { RaidDifficulty.Mythic },
         Waypoint = { mapID = 1970, x = 0.805, y = 0.534 }

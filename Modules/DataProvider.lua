@@ -1,6 +1,7 @@
 local name, AddOn = ...
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
+local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---@class NameContainer: Frame Displays elements relevant to the "Name" column in the scrollable list<br/>
 ---For frame definition and more layout information, see `Templates.xml`
@@ -31,10 +32,17 @@ AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 ---@field DungDiffMythicButton DifficultyButton Button for setting Dungeon difficulty to Mythic
 
 ---@class ICHNote: Frame
----@field Notes string?
+---@field notes string?
 
----@class NotesContainer: Frame
+---@class ICHBlizzWaypoint: Button
+---@field instanceID number
+-- ---@field instance string
+-- ---@field areaPoiID number
+
+
+---@class OtherInfoContainer: Frame
 ---@field ICHNote ICHNote
+---@field ICHBlizzWaypoint ICHBlizzWaypoint
 
 ---@class ICHListItem: Frame
 ---@field Bg Texture The background texture for unowned list item
@@ -42,7 +50,7 @@ AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 ---@field NameContainer NameContainer
 ---@field InstanceContainer InstanceContainer
 ---@field DifficultyContainer DifficultyContainer
----@field NotesContainer NotesContainer
+---@field OtherInfoContainer OtherInfoContainer
 
 ---Unsets all difficulty button points and hides them before showing the correct ones based on provided data
 ---@param container DifficultyContainer
@@ -183,11 +191,17 @@ function AddOn.DataProviderInit(frame, data)
     ShowDifficultyButtons(frame.DifficultyContainer, data, isOwned)
 
     if data.Notes then
-        frame.NotesContainer.ICHNote.Notes = data.Notes
-        frame.NotesContainer:Show()
-    elseif frame.NotesContainer:IsShown() then
-        frame.NotesContainer:Hide()
+        frame.OtherInfoContainer.ICHNote.notes = data.Notes
+        frame.OtherInfoContainer.ICHNote:Show()
+    elseif frame.OtherInfoContainer.ICHNote:IsShown() then
+        frame.OtherInfoContainer.ICHNote:Hide()
     end
+
+    if data.InstanceID == 1176 or data.AreaPoiID or data.Waypoint then frame.OtherInfoContainer.ICHBlizzWaypoint:Show()
+    elseif frame.OtherInfoContainer.ICHBlizzWaypoint:IsShown() then frame.OtherInfoContainer.ICHBlizzWaypoint:Hide() end
+    -- frame.OtherInfoContainer.ICHBlizzWaypoint.instance = instanceName
+    frame.OtherInfoContainer.ICHBlizzWaypoint.instanceID = data.InstanceID
+    -- frame.OtherInfoContainer.ICHBlizzWaypoint.areaPoiID = data.AreaPoiID
 
     frame.NameContainer.ViewButton:SetScript("OnClick", function()
         -- Currently only supports Mounts, but additional conditions could be added for showing things like Battle Pets and Achievements
@@ -207,6 +221,28 @@ function AddOn.DataProviderInit(frame, data)
         -- Show only non-equipment loot for all classes and specs
         EJ_SetLootFilter(0, 0)
         C_EncounterJournal.SetSlotFilter(Enum.ItemSlotFilterType.Other)
+    end)
+
+    frame.OtherInfoContainer.ICHBlizzWaypoint:SetScript("OnClick", function()
+        local isPinSet = false
+        C_SuperTrack.ClearSuperTrackedMapPin()
+        C_SuperTrack.SetSuperTrackedUserWaypoint(false)
+        C_Map.ClearUserWaypoint()
+        -- Special case for BoD (separate entrances based on faction)
+        if data.InstanceID == 1176 then
+            local faction = UnitFactionGroup("player")
+            C_SuperTrack.SetSuperTrackedMapPin(0, faction == "Horde" and 6012 or 6013)
+            isPinSet = true
+        end
+        if data.AreaPoiID then
+            C_SuperTrack.SetSuperTrackedMapPin(0, data.AreaPoiID)
+            isPinSet = true
+        elseif data.Waypoint then
+            C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(data.Waypoint.mapID, data.Waypoint.x, data.Waypoint.y))
+            C_SuperTrack.SetSuperTrackedUserWaypoint(true)
+            isPinSet = true
+        end
+        AddOn:PrintChatMessage(isPinSet and L["Map pin set for"] or L["Unable to set map pin for"], WrapTextInColor(instanceName, DARKYELLOW_FONT_COLOR))
     end)
 end
 

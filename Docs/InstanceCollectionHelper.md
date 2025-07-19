@@ -172,11 +172,11 @@ InstanceContainer
 NameContainer
 ```
 
-## NotesContainer
+## OtherInfoContainer
 
 
 ```lua
-NotesContainer
+OtherInfoContainer
 ```
 
 ## OwnedBg
@@ -567,7 +567,7 @@ Button to view the item in the appropriate collection journal in-game
 
 ---
 
-# NotesContainer
+# OtherInfoContainer
 
 ## ICHNote
 
