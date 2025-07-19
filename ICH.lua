@@ -80,7 +80,7 @@ function AddOn:CreateMainFrame()
     f.SearchBox = CreateFrame("EditBox", "ICHSearchBox", f, "SearchBoxTemplate")
     f.SearchBox:SetPoint("TOPRIGHT", f.Title, "BOTTOMRIGHT", -25, -10)
     f.SearchBox:SetAutoFocus(false)
-    f.SearchBox:SetSize(350, 30)
+    f.SearchBox:SetSize(400, 30)
     f.SearchBox.Instructions:SetText(L["Search by mount/instance name, instance type, or difficulty"])
     f.SearchBox:HookScript("OnTextChanged", function() self:UpdateListContents("ICH_SEARCH") end)
     
@@ -190,8 +190,8 @@ function AddOn:CreateFooter()
     -- "Show Owned Mounts" Checkbox
     foot.OwnedContainer = CreateFrame("Frame", nil, foot)
     foot.OwnedContainer:SetWidth(175)
-    foot.OwnedContainer:SetPoint("TOPLEFT", foot.ScaleContainer, "TOPRIGHT", 5, 0)
-    foot.OwnedContainer:SetPoint("BOTTOMLEFT", foot.ScaleContainer, "BOTTOMRIGHT", 5, 0)
+    foot.OwnedContainer:SetPoint("TOPRIGHT", foot, "TOPRIGHT", 0, 0)
+    foot.OwnedContainer:SetPoint("BOTTOMRIGHT", foot, "BOTTOMRIGHT", 20, 0)
     
     local checkbox = CreateFrame("CheckButton", nil, foot.OwnedContainer, "UICheckButtonTemplate")
     checkbox:SetPoint("TOPRIGHT", foot.OwnedContainer, "TOPRIGHT", 0, 0)
@@ -264,6 +264,15 @@ function AddOn:UpdateListContents(event)
     -- Filter list results based on search criteria when present
     if self.Container.SearchBox and self.Container.SearchBox:GetText() ~= "" then
         newData = self:FilterListContentsByQuery(newData)
+    end
+
+    -- Grand Black War Mammoth: Remove version that is not for the current character's faction
+    local faction = UnitFactionGroup("player")
+    for i, data in pairs(newData) do
+        if (data.MountID == 286 and faction == "Horde") or (data.MountID == 287 and faction == "Alliance") then
+            tremove(newData, i)
+            break
+        end
     end
 
     self.ICHDataProvider = CreateDataProvider(newData)

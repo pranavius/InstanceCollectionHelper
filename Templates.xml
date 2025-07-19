@@ -26,7 +26,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     <Size x="250"/>
                     <Anchors><Anchor point="LEFT" relativeKey="$parent.InstanceHeader" relativePoint="RIGHT"/></Anchors>
                 </FontString>
-                <FontString parentKey="NotesHeader" inherits="GameTooltipText" justifyH="LEFT" text="Notes">
+                <FontString parentKey="OtherInfoHeader" inherits="GameTooltipText" justifyH="LEFT" text="">
                     <Anchors>
                         <Anchor point="LEFT" relativeKey="$parent.DiffHeader" relativePoint="RIGHT"/>
                         <Anchor point="RIGHT" relativePoint="RIGHT"/>
@@ -47,21 +47,23 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     GameTooltip:SetOwner(self, "ANCHOR_TOP")
                     GameTooltip:SetText(ICH_LANG["How To Use:"])
                     GameTooltip:AddLine("\n")
-                    GameTooltip:AddLine("- "..ICH_LANG["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"])
-                    GameTooltip:AddLine(ICH_LANG["to make sure it is updated."])
-                    GameTooltip:AddLine("- "..ICH_LANG["When you are locked out for a mount on a particular difficulty, the button for that difficulty will be disabled."])
-                    GameTooltip:AddLine("- "..ICH_LANG["A button will also be disabled for legacy raids completed on another difficulty since those lockouts"])
-                    GameTooltip:AddLine(ICH_LANG["are shared across difficulties."])
+                    GameTooltip:AddLine("- "..ICH_LANG["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"], 1, 1, 1)
+                    GameTooltip:AddLine(ICH_LANG["to make sure it is updated."], 1, 1, 1)
+                    GameTooltip:AddLine("- "..ICH_LANG["When you are locked out for a mount on a particular difficulty, the button for that difficulty will be disabled."], 1, 1, 1)
+                    GameTooltip:AddLine("- "..ICH_LANG["A button will also be disabled for legacy raids completed on another difficulty since those lockouts"], 1, 1, 1)
+                    GameTooltip:AddLine(ICH_LANG["are shared across difficulties."], 1, 1, 1)
+                    GameTooltip:AddLine("- "..ICH_LANG["Waypoint tracking on the minimap may not always appear until you are in a specific zone."], 1, 1, 1)
+                    GameTooltip:AddLine(ICH_LANG["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"], 1, 1, 1)
                 elseif self.action == "SEARCH" then
                     GameTooltip:SetOwner(self:GetParent(), "ANCHOR_NONE")
                     GameTooltip:SetPoint("TOPLEFT", self:GetParent(), "TOPRIGHT")
                     GameTooltip:SetText(ICH_LANG["Search Hints:"])
                     GameTooltip:AddLine("\n")
-                    GameTooltip:AddLine("- "..ICH_LANG["\"raid\" will show all mounts that can be collected from a raid"])
-                    GameTooltip:AddLine("- "..ICH_LANG["\"10\" will show all mounts that can be collected from a legacy 10 player raid (Normal or Heroic)"])
-                    GameTooltip:AddLine("- "..ICH_LANG["\"fel\" will show all mounts and instances that contain \"fel\" in the name"])
-                    GameTooltip:AddLine("- "..ICH_LANG["\"mythic\" will show all mounts that can be obtained from a Mythic dungeon or raid"])
-                    GameTooltip:AddLine("- "..ICH_LANG["\"lfr\" will show all mounts that can be obtained from Raid Finder (LFR) difficulty raids"])
+                    GameTooltip:AddLine("- "..ICH_LANG["\"raid\" will show all mounts that can be collected from a raid"], 1, 1, 1)
+                    GameTooltip:AddLine("- "..ICH_LANG["\"10\" will show all mounts that can be collected from a legacy 10 player raid (Normal or Heroic)"], 1, 1, 1)
+                    GameTooltip:AddLine("- "..ICH_LANG["\"fel\" will show all mounts and instances that contain \"fel\" in the name"], 1, 1, 1)
+                    GameTooltip:AddLine("- "..ICH_LANG["\"mythic\" will show all mounts that can be obtained from a Mythic dungeon or raid"], 1, 1, 1)
+                    GameTooltip:AddLine("- "..ICH_LANG["\"lfr\" will show all mounts that can be obtained from Raid Finder (LFR) difficulty raids"], 1, 1, 1)
                 end
                 GameTooltip:Show()
             </OnEnter>
@@ -240,7 +242,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </Frames>
             </Frame>
 
-            <Frame parentKey="NotesContainer" hidden="true">
+            <Frame parentKey="OtherInfoContainer">
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="TOPRIGHT"></Anchor>
                     <Anchor point="BOTTOMLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="BOTTOMRIGHT"></Anchor>
@@ -248,8 +250,8 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </Anchors>
                 <Frames>
                     <Frame parentKey="ICHNote" enableMouse="true">
-                        <Size x="20" y="20"/>
-                        <KeyValues><KeyValue key="Notes" value="" type="string"/></KeyValues>
+                        <Size x="17.5" y="17.5"/>
+                        <KeyValues><KeyValue key="notes" value="" type="string"/></KeyValues>
                         <Anchors><Anchor point="LEFT" relativePoint="LEFT"/></Anchors>
                         <Layers>
                             <Layer level="OVERLAY">
@@ -265,12 +267,36 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                             <OnEnter>
                                 GameTooltip:SetOwner(self, "ANCHOR_NONE")
                                 GameTooltip:SetPoint("LEFT", self, "RIGHT", 5, 0)
-                                GameTooltip:AddLine(self.Notes, 1, 1, 1, true)
+                                GameTooltip:AddLine(self.notes, 1, 1, 1, true)
                                 GameTooltip:Show()
                             </OnEnter>
                             <OnLeave>GameTooltip:Hide()</OnLeave>
                         </Scripts>
                     </Frame>
+                    <Button parentKey="ICHBlizzWaypoint" inherits="InsecureActionButtonTemplate">
+                        <Size x="24" y="24"/>
+                        <KeyValues><KeyValue key="instanceID" value="" type="number"/></KeyValues>
+                        <Anchors><Anchor point="LEFT" x="25"/></Anchors>
+                        <NormalTexture file="Interface/Minimap/Minimap-Waypoint-MapPin-Untracked"/>
+                        <HighlightTexture file="Interface/Minimap/Minimap-Waypoint-MapPin-Tracked"/>
+                        <Scripts>
+                            <OnEnter>
+                                local instanceName = EJ_GetInstanceInfo(self.instanceID)
+                                GameTooltip:SetOwner(self, "ANCHOR_TOP")
+                                GameTooltip:SetText(instanceName)
+                                GameTooltip:AddLine(ICH_LANG["Set map pin"], 1, 1, 1)
+                                <!-- if self.instanceID == 946 then
+                                    GameTooltip:AddLine("\n")
+                                    GameTooltip:AddLine(ICH_LANG["Waypoint tracking will be visible on the mimap once you are in Argus"], 1, 1, 1)
+                                elseif self.instanceID == 362 then
+                                    GameTooltip:AddLine("\n")
+                                    GameTooltip:AddLine(ICH_LANG["Waypoint tracking will be visible on the mimap once you are in Isle of Thunder"], 1, 1, 1)
+                                end -->
+                                GameTooltip:Show()
+                            </OnEnter>
+                            <OnLeave>GameTooltip:Hide()</OnLeave>
+                        </Scripts>
+                    </Button>
                 </Frames>
             </Frame>
         </Frames>

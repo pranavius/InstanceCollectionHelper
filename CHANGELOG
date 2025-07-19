@@ -3,9 +3,16 @@ This document describes changes to each version of **InstanceCollectionHelper (I
 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
-## Latest Version: 8b
+## Latest Version: 1
 
 ## Changes
+
+**1**
+- Added ability to set Blizzard map pins on instance entrances
+- Added support for `esMX` locale (_still looking for more translators!_)
+- Updated AddOn UI and tooltip text
+- Documentation updates
+
 **8b**
 - Added a missing required dependency to the embedded files of the AddOn
 - Minor code cleanup and documentation updates
