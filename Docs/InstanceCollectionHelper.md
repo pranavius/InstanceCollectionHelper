@@ -149,6 +149,8 @@ InstanceCollectionHelper
 number
 ```
 
+ID number for instance
+
 
 ---
 
@@ -161,7 +163,7 @@ number
 Texture
 ```
 
-The background texture for unowned list item
+The background texture for unowned list items
 
 ## DifficultyContainer
 
@@ -211,6 +213,8 @@ The background texture for owned list items
 ```lua
 string?
 ```
+
+The note(s) to display when hovering over the texture in `ICHNote`
 
 
 ---
@@ -272,7 +276,7 @@ function InstanceCollectionHelper.DataProviderInit(frame: ICHListItem, data: Ins
 
 Initializes how data in the scrollable list should be displayed
 See:
-  * [ICHListItem](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Modules/DataProvider.lua#47#10)
+  * [ICHListItem](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Modules/DataProvider.lua#44#10)
   * [InstanceMount](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Constants.lua#33#10)
 
 ## DatabaseDefaults
@@ -280,6 +284,13 @@ See:
 
 ```lua
 table
+```
+
+## DungeonDifficulty
+
+
+```lua
+enum DungeonDifficulty
 ```
 
 ## FilterListContentsByQuery
@@ -347,6 +358,15 @@ unknown
 unknown
 ```
 
+## InstanceMounts
+
+
+```lua
+InstanceMount[]
+```
+
+List of mounts available from instances
+
 ## IsInstanceRaid
 
 
@@ -378,6 +398,13 @@ Prints a message to the chat window prefixed by the AddOn name
 @*param* `...` — Arguments to be printed to the chat window
 
 See: [print](file:///Users/pranavchary/.vscode/extensions/sumneko.lua-3.15.0-darwin-arm64/server/meta/Lua%205.4%20en-us%20utf8/basic.lua#235#9)
+
+## RaidDifficulty
+
+
+```lua
+enum RaidDifficulty
+```
 
 ## ScrollBar
 
@@ -474,7 +501,7 @@ Button to view the instance in the encounter journal in-game
 number?
 ```
 
-ID number of the Point of Interest (POI) for the instance on the map (used for setting Blizzard map pins)
+ID number for the Point of Interest (POI) marker showing the instance entrance on the map. Used to place Blizzard map pins for navigation guidance.
 
 ## DifficultyIDs
 
@@ -483,7 +510,7 @@ ID number of the Point of Interest (POI) for the instance on the map (used for s
 (DungeonDifficulty|RaidDifficulty)[]
 ```
 
-A list of IDs associated with the instance difficulty(s) the mount can be obtained in
+List of IDs for instance difficulty(s) the mount can be obtained in
 
 ## EncounterID
 
@@ -492,7 +519,7 @@ A list of IDs associated with the instance difficulty(s) the mount can be obtain
 number?
 ```
 
-The ID number associated with the encounter that needs to be completed to obtain the mount
+ID number for the encounter from which the mount is obtainable
 
 ## Instance
 
@@ -501,7 +528,7 @@ The ID number associated with the encounter that needs to be completed to obtain
 string
 ```
 
-The instance from which the mount can be obtained (for information only, displayed name is in user's locale)
+Instance from which the mount can be obtained (for information only, displayed name is in user's locale)
 
 ## InstanceID
 
@@ -510,7 +537,7 @@ The instance from which the mount can be obtained (for information only, display
 number
 ```
 
-The ID number for the associated instance
+ID number for the instance
 
 ## MapID
 
@@ -519,7 +546,7 @@ The ID number for the associated instance
 number
 ```
 
-The ID number of the map of the associated instance
+ID number for the map of the instance
 
 ## MountID
 
@@ -528,7 +555,7 @@ The ID number of the map of the associated instance
 number
 ```
 
-The ID number associated with the mount
+ID number for the mount
 
 ## Name
 
@@ -537,7 +564,7 @@ The ID number associated with the mount
 string
 ```
 
-The name of the mount (for information only, displayed name is in user's locale)
+Name of the mount (for information only, displayed name is in user's locale)
 
 ## Notes
 
@@ -546,7 +573,7 @@ The name of the mount (for information only, displayed name is in user's locale)
 string?
 ```
 
-Additional notes about this mount or instance
+Additional notes about the mount or instance
 
 ## SharedDifficulties
 
@@ -555,7 +582,7 @@ Additional notes about this mount or instance
 table<RaidDifficulty, RaidDifficulty>?
 ```
 
-Provides associations for difficulties that are not listed in `DifficultyIDs` but share a lockout with the listed ID(s)
+Provides associations for difficulties that share a lockout with the listed `DifficultyID`
 
 ## Waypoint
 
@@ -564,7 +591,7 @@ Provides associations for difficulties that are not listed in `DifficultyIDs` bu
 Waypoint?
 ```
 
-Information to place a map pin on the entrance to the instance
+Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance)
 
 
 ---
@@ -583,7 +610,7 @@ Information to place a map pin on the entrance to the instance
 FontString
 ```
 
-Name of an item
+Name of a collectible
 
 ## ViewButton
 
@@ -592,7 +619,7 @@ Name of an item
 Button
 ```
 
-Button to view the item in the appropriate collection journal in-game
+Button to view the collectible in the appropriate collection journal in-game
 
 
 ---

@@ -53,6 +53,10 @@ L["Show/hide the minimap icon"] = "Mostrar/ocultar el icono del minimapa"
 L["Track available mounts from instances and easily set required instance difficulty"] = "Rastrear monturas disponibles de instancias y configurar fácilmente la dificultad requerida de la instancia"
 L["Type \"/ich help\" in the chat window for available slash commands"] = "Escribe \"/ich help\" en la ventana de chat para ver los comandos disponibles"
 
+-- Special Search Terms --
+L["dungeon"] = "calabozo"
+L["raid"] = "banda"
+
 --- UI ---
 L["Search by mount/instance name, instance type, or difficulty"] = "Buscar por nombre de montura/instancia, tipo de instancia o dificultad"
 L["Scale"] = "Escala"
@@ -64,11 +68,14 @@ L["When you are locked out for a mount on a particular difficulty, the button fo
 L["A button will also be disabled for legacy raids completed on another difficulty since those lockouts"] = "Un botón también se desactivará para bandas clásicas completadas en otra dificultad ya que esos bloqueos"
 L["are shared across difficulties."] = "se comparten entre dificultades."
 L["Search Hints:"] = "Sugerencias de búsqueda:"
-L["\"raid\" will show all mounts that can be collected from a raid"] = WrapTextInColor("\"raid\"", DARKYELLOW_FONT_COLOR).." mostrará todas las monturas que se pueden coleccionar en una banda"
+L["\"raid\" will show all mounts that can be collected from a raid"] = WrapTextInColor("\"banda\"", DARKYELLOW_FONT_COLOR).." mostrará todas las monturas que se pueden coleccionar en una banda"
 L["\"10\" will show all mounts that can be collected from a legacy 10 player raid (Normal or Heroic)"] = WrapTextInColor("\"10\"", DARKYELLOW_FONT_COLOR).." mostrará todas las monturas que se pueden coleccionar en una banda de legado de 10 jugadores (Normal o Heroico)"
 L["\"fel\" will show all mounts and instances that contain \"fel\" in the name"] = WrapTextInColor("\"fel\"", DARKYELLOW_FONT_COLOR).." mostrará todas las monturas e instancias que contengan \"fel\" en el nombre"
 L["\"mythic\" will show all mounts that can be obtained from a Mythic dungeon or raid"] = WrapTextInColor("\"mítico\"", DARKYELLOW_FONT_COLOR).." mostrará todas las monturas que se pueden obtener en una calabozo o banda Mítica"
 L["\"lfr\" will show all mounts that can be obtained from Raid Finder (LFR) difficulty raids"] = WrapTextInColor("\"lfr\"", DARKYELLOW_FONT_COLOR).." mostrará todas las monturas que se pueden obtener en bandas en dificultad Buscador de bandas (LFR)"
+L["Name"] = "Nombre"
+L["Instance"] = "Instancia"
+L["Available Difficulty(s)"] = "Dificultad(es)"
 L["Shares lockout with:"] = "Comparte bloqueo con:"
 L["View in mount journal"] = "Ver en el diario de monturas"
 L["View in encounter journal"] = "Ver en el diario de encuentros"

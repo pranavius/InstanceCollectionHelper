@@ -30,18 +30,18 @@ AddOn.RaidDifficulty = RaidDifficulty
 ---@field x number X coordinate of the location on the map
 ---@field y number Y coordinate of the location on the map
 
----@class InstanceMount The mount data to process and display as a list item
----@field Name string The name of the mount (for information only, displayed name is in user's locale)
----@field MountID number The ID number associated with the mount
----@field Instance string The instance from which the mount can be obtained (for information only, displayed name is in user's locale)
----@field InstanceID number The ID number for the associated instance
----@field MapID number The ID number of the map of the associated instance
----@field AreaPoiID? number ID number of the Point of Interest (POI) for the instance on the map (used for setting Blizzard map pins)
----@field EncounterID? number The ID number associated with the encounter that needs to be completed to obtain the mount
----@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[] A list of IDs associated with the instance difficulty(s) the mount can be obtained in
----@field SharedDifficulties? table<RaidDifficulty, RaidDifficulty> Provides associations for difficulties that are not listed in `DifficultyIDs` but share a lockout with the listed ID(s)
----@field Notes? string Additional notes about this mount or instance
----@field Waypoint? Waypoint Information to place a map pin on the entrance to the instance
+---@class InstanceMount Mount data to process and display as a list item in the AddOn
+---@field Name string Name of the mount (for information only, displayed name is in user's locale)
+---@field MountID number ID number for the mount
+---@field Instance string Instance from which the mount can be obtained (for information only, displayed name is in user's locale)
+---@field InstanceID number ID number for the instance
+---@field MapID number ID number for the map of the instance
+---@field AreaPoiID? number ID number for the Point of Interest (POI) marker showing the instance entrance on the map. Used to place Blizzard map pins for navigation guidance.
+---@field EncounterID? number ID number for the encounter from which the mount is obtainable
+---@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[] List of IDs for instance difficulty(s) the mount can be obtained in
+---@field SharedDifficulties? table<RaidDifficulty, RaidDifficulty> Provides associations for difficulties that share a lockout with the listed `DifficultyID`
+---@field Notes? string Additional notes about the mount or instance
+---@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance)
 
 ---@type InstanceMount[] List of mounts available from instances
 AddOn.InstanceMounts = {

@@ -21,6 +21,7 @@ Although this AddOn currently only supports mount collection, there are plans to
 All mount and instance names will appear in the language that the game is being played in, but other text may appear in English. Currently, the following languages are either supported or in the process of being localized:
 - English (`enUS`)
 - Spanish (`esMX`)
+- Portuguese (`ptBR`)
 - German (`deDE`) [**In progress**]
 
 ## Usage

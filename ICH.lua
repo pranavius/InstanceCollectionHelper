@@ -224,7 +224,7 @@ function AddOn:FilterListContentsByQuery(listData)
         local cleanName = item.Name:lower():gsub("|.+|.*", "")
         local nameMatches = cleanName:match(query) and true or false
         local instanceMatches = item.Instance:lower():match(query) and true or false
-        local instanceTypeMatches = query == "raid" and self:IsInstanceRaid(item) or (query == "dungeon" and not self:IsInstanceRaid(item))
+        local instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(item) or (query == L["dungeon"] and not self:IsInstanceRaid(item))
         local difficultyMatches = false
         for _, diffID in ipairs(item.DifficultyIDs) do
             if self:GetDifficultyButtonText(diffID):lower() == query or self:GetInstanceDifficultyText(diffID):lower() == query then

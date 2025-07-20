@@ -53,6 +53,10 @@ L["Show/hide the minimap icon"] = "Show/hide the minimap icon"
 L["Track available mounts from instances and easily set required instance difficulty"] = "Track available mounts from instances and easily set required instance difficulty"
 L["Type \"/ich help\" in the chat window for available slash commands"] = "Type \"/ich help\" in the chat window for available slash commands"
 
+-- Special Search Terms --
+L["dungeon"] = "dungeon"
+L["raid"] = "raid"
+
 --- UI ---
 L["Search by mount/instance name, instance type, or difficulty"] = "Search by mount/instance name, instance type, or difficulty"
 L["Scale"] = "Scale"
@@ -69,6 +73,9 @@ L["\"10\" will show all mounts that can be collected from a legacy 10 player rai
 L["\"fel\" will show all mounts and instances that contain \"fel\" in the name"] = WrapTextInColor("\"fel\"", DARKYELLOW_FONT_COLOR).." will show all mounts and instances that contain \"fel\" in the name"
 L["\"mythic\" will show all mounts that can be obtained from a Mythic dungeon or raid"] = WrapTextInColor("\"mythic\"", DARKYELLOW_FONT_COLOR).." will show all mounts that can be obtained from a Mythic dungeon or raid"
 L["\"lfr\" will show all mounts that can be obtained from Raid Finder (LFR) difficulty raids"] = WrapTextInColor("\"lfr\"", DARKYELLOW_FONT_COLOR).." will show all mounts that can be obtained from Raid Finder (LFR) difficulty raids"
+L["Name"] = "Name"
+L["Instance"] = "Instance"
+L["Available Difficulty(s)"] = "Available Difficulty(s)"
 L["Shares lockout with:"] = "Shares lockout with:"
 L["View in mount journal"] = "View in mount journal"
 L["View in encounter journal"] = "View in encounter journal"

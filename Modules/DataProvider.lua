@@ -3,12 +3,12 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----@class NameContainer: Frame Displays elements relevant to the "Name" column in the scrollable list<br/>
+---@class NameContainer: Frame Displays elements relevant to a collectible's name<br/>
 ---For frame definition and more layout information, see `Templates.xml`
----@field Text FontString Name of an item
----@field ViewButton Button Button to view the item in the appropriate collection journal in-game
+---@field Text FontString Name of a collectible
+---@field ViewButton Button Button to view the collectible in the appropriate collection journal in-game
 
----@class InstanceContainer: Frame Displays elements relevant to the "Instance" column in the scrollable list<br/>
+---@class InstanceContainer: Frame Displays elements relevant to the instance where a collectible can be obtained<br/>
 ---For frame definition and more layout information, see `Templates.xml`
 ---@field Text FontString Name of an instance
 ---@field ViewButton Button Button to view the instance in the encounter journal in-game
@@ -16,7 +16,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@class DifficultyButton: Button Sets instance difficulty to the associated value
 ---@field difficultyID number ID number for instance, scenario, and raid difficulty (see https://wago.tools/db2/Difficulty)
 
----@class DifficultyContainer: Frame Displays elements relevant to the "Difficulty" column in the scrollable list<br/>
+---@class DifficultyContainer: Frame Displays elements relevant to the instance difficulty for a collectible<br/>
 ---For frame definition and more layout information, see `Templates.xml`
 ---@field sharedDifficulties? table<RaidDifficulty, RaidDifficulty> Difficulties that share a lockout with a difficulty displayed using the appropriate button
 ---@field RaidDiffLFRButton DifficultyButton Button for tracking LFR lockout (no action taken when clicked)
@@ -31,29 +31,31 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field DungDiffHeroicButton DifficultyButton Button for setting Dungeon difficulty to Heroic
 ---@field DungDiffMythicButton DifficultyButton Button for setting Dungeon difficulty to Mythic
 
----@class ICHNote: Frame
----@field notes string?
+---@class ICHNote: Frame Handles displaying notes about a mount or instance in a tooltip when hovered
+---@field notes string? The note(s) to display when hovering over the texture in `ICHNote`
 
----@class ICHBlizzWaypoint: Button
----@field instanceID number
--- ---@field instance string
--- ---@field areaPoiID number
+---@class ICHBlizzWaypoint: Button Creates a map pin on or near the corresponding instance entrance
+---@field instanceID number ID number for instance
 
-
----@class OtherInfoContainer: Frame
+---@class OtherInfoContainer: Frame Displays other elements associated with a collectible
 ---@field ICHNote ICHNote
 ---@field ICHBlizzWaypoint ICHBlizzWaypoint
 
----@class ICHListItem: Frame
----@field Bg Texture The background texture for unowned list item
+---@class ICHListItem: Frame List item that displays relevant information for a given collectible 
+---@field Bg Texture The background texture for unowned list items
 ---@field OwnedBg Texture The background texture for owned list items
 ---@field NameContainer NameContainer
 ---@field InstanceContainer InstanceContainer
 ---@field DifficultyContainer DifficultyContainer
 ---@field OtherInfoContainer OtherInfoContainer
+---@see NameContainer
+---@see InstanceContainer
+---@see DifficultyContainer
+---@see OtherInfoContainer
 
 ---Unsets all difficulty button points and hides them before showing the correct ones based on provided data
 ---@param container DifficultyContainer
+---@see DifficultyContainer
 local function HideAllDifficultyButtons(container)
     for _, button in ipairs({ container:GetChildren() }) do
         button:Hide()
@@ -99,7 +101,7 @@ end
 ---Determines which difficulty button(s) to display based on the provided data
 ---@param container DifficultyContainer
 ---@param data InstanceMount
----@param isOwned boolean? Whether or not the item is owned by the player. `nil` for this parameter is evaluated the same way as `false`
+---@param isOwned boolean? Whether or not the collectible is owned by the player. Omitting this argument is equivalent to providing `false`
 ---@see DifficultyContainer
 ---@see InstanceMount
 local function ShowDifficultyButtons(container, data, isOwned)
@@ -141,7 +143,7 @@ local function ShowDifficultyButtons(container, data, isOwned)
                 -- Tint dungeon buttons blue and raids green
                 if AddOn:IsInstanceRaid(data) then button.ButtonTint:SetVertexColor(0.082, 0.702, 0, 0.75)
                 else button.ButtonTint:SetVertexColor(0, 0.569, 0.949, 0.75) end
-                --Mask ButtonTint with the same texture as the button background
+                -- Mask ButtonTint with the same texture as the button background
                 if not button.TintMask then
                     button.TintMask = button:CreateMaskTexture()
                     button.TintMask:SetTexture("Interface/Buttons/UI-Panel-Button-Up")
@@ -199,9 +201,7 @@ function AddOn.DataProviderInit(frame, data)
 
     if data.InstanceID == 1176 or data.AreaPoiID or data.Waypoint then frame.OtherInfoContainer.ICHBlizzWaypoint:Show()
     elseif frame.OtherInfoContainer.ICHBlizzWaypoint:IsShown() then frame.OtherInfoContainer.ICHBlizzWaypoint:Hide() end
-    -- frame.OtherInfoContainer.ICHBlizzWaypoint.instance = instanceName
     frame.OtherInfoContainer.ICHBlizzWaypoint.instanceID = data.InstanceID
-    -- frame.OtherInfoContainer.ICHBlizzWaypoint.areaPoiID = data.AreaPoiID
 
     frame.NameContainer.ViewButton:SetScript("OnClick", function()
         -- Currently only supports Mounts, but additional conditions could be added for showing things like Battle Pets and Achievements
