@@ -12,7 +12,9 @@ AddOn.DatabaseDefaults = {
     global = {
         minimap = { hide = false },
         windowScale = 1,
-        showOwned = false
+        showOwned = false,
+        useTomTomPoints = true,
+        currentTomTomWaypoint = nil
     }
 }
 

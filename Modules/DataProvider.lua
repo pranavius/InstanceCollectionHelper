@@ -34,12 +34,12 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@class ICHNote: Frame Handles displaying notes about a mount or instance in a tooltip when hovered
 ---@field notes string? The note(s) to display when hovering over the texture in `ICHNote`
 
----@class ICHBlizzWaypoint: Button Creates a map pin on or near the corresponding instance entrance
+---@class ICHWaypointButton: Button Creates a map pin or TomTom waypoint to the corresponding instance entrance based on user's preferences
 ---@field instanceID number ID number for instance
 
 ---@class OtherInfoContainer: Frame Displays other elements associated with a collectible
 ---@field ICHNote ICHNote
----@field ICHBlizzWaypoint ICHBlizzWaypoint
+---@field ICHWaypointButton ICHWaypointButton
 
 ---@class ICHListItem: Frame List item that displays relevant information for a given collectible
 ---@field Bg Texture The background texture for unowned list items
@@ -201,9 +201,19 @@ function AddOn.DataProviderInit(frame, data)
         frame.OtherInfoContainer.ICHNote:Hide()
     end
 
-    if data.InstanceID == 1176 or data.InstanceID == 1194 or data.AreaPoiID or data.Waypoint then frame.OtherInfoContainer.ICHBlizzWaypoint:Show()
-    elseif frame.OtherInfoContainer.ICHBlizzWaypoint:IsShown() then frame.OtherInfoContainer.ICHBlizzWaypoint:Hide() end
-    frame.OtherInfoContainer.ICHBlizzWaypoint.instanceID = data.InstanceID
+    if data.InstanceID == 1176 or data.InstanceID == 1194 or data.AreaPoiID or data.Waypoint then
+        if C_AddOns.IsAddOnLoaded("TomTom") and AddOn.db.global.useTomTomPoints then
+            frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/AddOns/TomTom/Images/GoldGreenDotNew")
+            frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/AddOns/TomTom/Images/GoldPurpleDotNew")
+            frame.OtherInfoContainer.ICHWaypointButton:SetSize(15, 15)
+        else
+            frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Untracked")
+            frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Tracked")
+            frame.OtherInfoContainer.ICHWaypointButton:SetSize(24, 24)
+        end
+        frame.OtherInfoContainer.ICHWaypointButton:Show()
+    elseif frame.OtherInfoContainer.ICHWaypointButton:IsShown() then frame.OtherInfoContainer.ICHWaypointButton:Hide() end
+    frame.OtherInfoContainer.ICHWaypointButton.instanceID = data.InstanceID
 
     frame.NameContainer.ViewButton:SetScript("OnClick", function()
         -- Currently only supports Mounts, but additional conditions could be added for showing things like Battle Pets and Achievements
@@ -225,29 +235,74 @@ function AddOn.DataProviderInit(frame, data)
         C_EncounterJournal.SetSlotFilter(Enum.ItemSlotFilterType.Other)
     end)
 
-    frame.OtherInfoContainer.ICHBlizzWaypoint:SetScript("OnClick", function()
-        local isPinSet = false
+    ---@param data InstanceMount
+    ---@return boolean isPinSet
+    local function SetBlizzardMapPin(data)
+        -- Clear any previously supertracked pins and waypoints
         C_SuperTrack.ClearSuperTrackedMapPin()
         C_SuperTrack.SetSuperTrackedUserWaypoint(false)
         C_Map.ClearUserWaypoint()
+
         -- Special case for BoD (separate entrances based on faction)
         if data.InstanceID == 1176 then
             local faction = UnitFactionGroup("player")
             C_SuperTrack.SetSuperTrackedMapPin(0, faction == "Horde" and 6012 or 6013)
-            isPinSet = true
+            return true
         elseif data.InstanceID == 1194 then
             -- Special case for Tazavesh (AreaPoiID is a flight path from Oribos)
             C_SuperTrack.SetSuperTrackedMapPin(2, data.AreaPoiID)
-            isPinSet = true
+            return true
         elseif data.AreaPoiID then
             C_SuperTrack.SetSuperTrackedMapPin(0, data.AreaPoiID)
-            isPinSet = true
+            return true
         elseif data.Waypoint then
             C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(data.Waypoint.mapID, data.Waypoint.x, data.Waypoint.y))
             C_SuperTrack.SetSuperTrackedUserWaypoint(true)
-            isPinSet = true
+            return true
         end
-        AddOn:PrintChatMessage(isPinSet and L["Map pin set for"] or L["Unable to set map pin for"], WrapTextInColor(instanceName, DARKYELLOW_FONT_COLOR))
+        return false
+    end
+
+    ---@param data InstanceMount
+    ---@return boolean isPinSet
+    local function SetTomTomWaypoint(data)
+        if AddOn.db.global.currentTomTomWaypoint then
+            TomTom:RemoveWaypoint(AddOn.db.global.currentTomTomWaypoint)
+            AddOn.db.global.currentTomTomWaypoint = nil
+        end
+        local ttOptions = {
+            title = instanceName,
+            from = name,
+            crazy = true,
+            silent = true
+        }
+        -- Special case for BoD (separate entrances based on faction)
+        if data.InstanceID == 1176 then
+            local faction = UnitFactionGroup("player")
+            if faction == "Horde" then AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(862, 0.543, 0.299, ttOptions)
+            else AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(1161, 0.704, .356, ttOptions) end
+            return true
+        elseif data.InstanceID == 1194 then
+            -- Change the name of the TomTom waypoint when set for Tazavesh
+            ttOptions.title = "Oribos -> "..instanceName
+        end
+        if data.Waypoint then
+            AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(data.Waypoint.mapID, data.Waypoint.x, data.Waypoint.y, ttOptions)
+            return true
+        end
+
+        return false
+    end
+
+    frame.OtherInfoContainer.ICHWaypointButton:SetScript("OnClick", function()
+        local isPinSet = false
+        if C_AddOns.IsAddOnLoaded("TomTom") and AddOn.db.global.useTomTomPoints then
+            isPinSet = SetTomTomWaypoint(data)
+            AddOn:PrintChatMessage(isPinSet and L["TomTom waypoint set for"] or L["Unable to set TomTom waypoint for"], WrapTextInColor(instanceName, DARKYELLOW_FONT_COLOR))
+        else
+            isPinSet = SetBlizzardMapPin(data)
+            AddOn:PrintChatMessage(isPinSet and L["Map pin set for"] or L["Unable to set map pin for"], WrapTextInColor(instanceName, DARKYELLOW_FONT_COLOR))
+        end
     end)
 end
 

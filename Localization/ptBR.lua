@@ -41,8 +41,10 @@ L["Invalid raid difficulty provided."] = "Dificuldade de raide fornecida é inv�
 L["Accepted values:"] = "Valores aceitos:"
 L["Show/hide the minimap icon"] = "Mostrar/ocultar o ícone do minimapa"
 L["Updated available mount list"] = "Lista de montarias disponíveis atualizada"
-L["Waypoint set for"] = "Rota definida para"
-L["Unable to set waypoint for"] = "Não foi possível definir a rota para"
+L["Map pin set for"] = "Marcador de mapa definida para"
+L["Unable to set map pin for"] = "Não foi possível definir um marcador de mapa para"
+L["TomTom waypoint set for"] = "waypoint de TomTom definida para"
+L["Unable to set TomTom waypoint for"] = "Não foi possível definir um waypoint de TomTom para"
 
 --- Slash Commands ---
 L["Display all current instance difficulties"] = "Exibir todas as dificuldades atuais da instância"
@@ -62,6 +64,7 @@ L["raid"] = "raide"
 --- UI ---
 L["Search by mount/instance name, instance type, or difficulty"] = "Nome de montaria/instância, tipo de instância, dificuldade"
 L["Scale"] = "Escala"
+L["Use TomTom waypoints"] = "Usar waypoints de TomTom"
 L["Show Owned Mounts"] = "Mostrar montarias possuídas"
 L["How To Use:"] = "Como usar:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "Encontre a montaria que deseja coletar na lista e clique no botão da dificuldade em que quer executar"
@@ -85,6 +88,7 @@ L["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid d
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "Exige completar certos objetivos dentro de um tempo determinado, por isso é recomendado procurar um guia online para obter esta montaria antes de tentar"
 L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"] = "Não fale com nenhum dos Guardiões Titânicos, caso contrário esta montaria não cairá"
 L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "A entrada pode estar em "..WrapTextInColor("Uldum", DARKYELLOW_FONT_COLOR).." ou no "..WrapTextInColor("Vale das Flores Eternas", DARKYELLOW_FONT_COLOR)
-L["Waypoint tracking on the minimap may not always appear until you are in a specific zone."] = "O rastreamento de rota no minimapa pode não aparecer até você estar em uma zona específica."
+L["Waypoint tracking on the minimap may not always appear until you are in a specific zone."] = "O rastreamento de marcador no minimapa pode não aparecer até você estar em uma zona específica."
 L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "Por exemplo, uma seta apontando para o "..WrapTextInColor("Trono do Trovão", DARKYELLOW_FONT_COLOR).." só aparecerá quando você estiver na "..WrapTextInColor("Ilha do Trovão", DARKYELLOW_FONT_COLOR)
 L["Set map pin"] = "Definir marcador no mapa"
+L["Set TomTom waypoint"] "Colocar um waypoint TomTom"

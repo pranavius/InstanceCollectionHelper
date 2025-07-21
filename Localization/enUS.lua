@@ -42,6 +42,8 @@ L["Show/hide the minimap icon"] = "Show/hide the minimap icon"
 L["Updated available mount list"] = "Updated available mount list"
 L["Map pin set for"] = "Map pin set for"
 L["Unable to set map pin for"] = "Unable to set map pin for"
+L["TomTom waypoint set for"] = "TomTom waypoint set for"
+L["Unable to set TomTom waypoint for"] = "Unable to set TomTom waypoint for"
 
 --- Slash Commands ---
 L["Display all current instance difficulties"] = "Display all current instance difficulties"
@@ -61,6 +63,7 @@ L["raid"] = "raid"
 --- UI ---
 L["Search by mount/instance name, instance type, or difficulty"] = "Search by mount/instance name, instance type, or difficulty"
 L["Scale"] = "Scale"
+L["Use TomTom waypoints"] = "Use TomTom waypoints"
 L["Show Owned Mounts"] = "Show Owned Mounts"
 L["How To Use:"] = "How To Use:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "Find the mount you want to collect in the list and click the button for the difficulty you want to run on"
@@ -87,3 +90,4 @@ L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "Entrance can
 L["Waypoint tracking on the minimap may not always appear until you are in a specific zone."] = "Waypoint tracking on the minimap may not always appear until you are in a specific zone."
 L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "For example, an arrow pointing towards "..WrapTextInColor("Throne of Thunder", DARKYELLOW_FONT_COLOR).." will only appear when you are on the "..WrapTextInColor("Isle of Thunder", DARKYELLOW_FONT_COLOR)
 L["Set map pin"] = "Set map pin"
+L["Set TomTom waypoint"] = "Set TomTom waypoint"

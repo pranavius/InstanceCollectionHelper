@@ -328,7 +328,7 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6528,
         EncounterID = 1553,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Waypoint = { mapID = 745, x = 0.47, y = 0.749 }
+        Waypoint = { mapID = 42, x = 0.47, y = 0.749 }
     },
     {
         Name = "Flametalon of Alysrazor",
@@ -347,10 +347,12 @@ AddOn.InstanceMounts = {
         Instance = "Battle of Dazar'alor",
         InstanceID = 1176,
         MapID = 2070,
-        -- AreaPoiID = 6012 for Horde and 6013 for Alliance
+        -- AreaPoiID = 6012 -- Horde
+        -- AreaPoiID = 6013 -- Alliance
         EncounterID = 2343,
         DifficultyIDs = { RaidDifficulty.Mythic },
         -- Waypoint = { mapID = 862, x = 0.543, y = 0.299 } -- Zuldazar
+        -- Waypoint = { mapID = 1161, x = 0.704, y = 0.356 } -- Boralus
     },
     {
         Name = "G.M.O.D",
@@ -358,11 +360,13 @@ AddOn.InstanceMounts = {
         Instance = "Battle of Dazar'alor",
         InstanceID = 1176,
         MapID = 2070,
-        -- AreaPoiID = 6012 for Horde and 6013 for Alliance
+        -- AreaPoiID = 6012 -- Horde
+        -- AreaPoiID = 6013 -- Alliance
         EncounterID = 2334,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"],
         -- Waypoint = { mapID = 862, x = 0.543, y = 0.299 } -- Zuldazar
+        -- Waypoint = { mapID = 1161, x = 0.704, y = 0.356 } -- Boralus
     },
     {
         Name = "Grand Black War Mammoth",

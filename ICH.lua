@@ -47,6 +47,12 @@ function AddOn:OnInitialize()
     self:CreateMainFrame()
     self.Container:HookScript("OnShow", function() self:UpdateListContents("ICH_OPEN") end)
     self:RegisterEvent("ZONE_CHANGED", "UpdateListContents")
+    self:RegisterEvent("PLAYER_LOGOUT", function()
+        if C_AddOns.IsAddOnLoaded("TomTom") and self.db.global.currentTomTomWaypoint then
+            TomTom:RemoveWaypoint(self.db.global.currentTomTomWaypoint)
+            self.db.global.currentTomTomWaypoint = nil
+        end
+    end)
 end
 
 ---Initializes the AddOn window.<br/>
@@ -193,24 +199,52 @@ function AddOn:CreateFooter()
     foot.OwnedContainer:SetPoint("TOPRIGHT", foot, "TOPRIGHT", 0, 0)
     foot.OwnedContainer:SetPoint("BOTTOMRIGHT", foot, "BOTTOMRIGHT", 20, 0)
     
-    local checkbox = CreateFrame("CheckButton", nil, foot.OwnedContainer, "UICheckButtonTemplate")
-    checkbox:SetPoint("TOPRIGHT", foot.OwnedContainer, "TOPRIGHT", 0, 0)
-    checkbox:SetPoint("BOTTOMLEFT", foot.OwnedContainer, "BOTTOMRIGHT", -32, 0)
-    checkbox:SetChecked(self.db.global.showOwned)
+    local ownedCb = CreateFrame("CheckButton", nil, foot.OwnedContainer, "UICheckButtonTemplate")
+    ownedCb:SetPoint("TOPRIGHT", foot.OwnedContainer, "TOPRIGHT", 0, 0)
+    ownedCb:SetPoint("BOTTOMLEFT", foot.OwnedContainer, "BOTTOMRIGHT", -32, 0)
+    ownedCb:SetChecked(self.db.global.showOwned)
     
-    checkbox.Text:SetText(L["Show Owned Mounts"])
-    checkbox.Text:ClearAllPoints()
-    checkbox.Text:SetPoint("RIGHT", checkbox, "LEFT", -5, 2)
-    checkbox.Text:SetJustifyH("RIGHT")
-    checkbox.Text:SetFontObject("GameTooltipText")
+    ownedCb.Text:SetText(L["Show Owned Mounts"])
+    ownedCb.Text:ClearAllPoints()
+    ownedCb.Text:SetPoint("RIGHT", ownedCb, "LEFT", -5, 2)
+    ownedCb.Text:SetPoint("LEFT", foot.OwnedContainer, "LEFT")
+    ownedCb.Text:SetJustifyH("RIGHT")
+    ownedCb.Text:SetFontObject("GameTooltipText")
     
-    checkbox:HookScript("OnClick", function(cb)
+    ownedCb:HookScript("OnClick", function(cb)
         local value = cb:GetChecked()
         self.db.global.showOwned = value
         self:UpdateListContents("ICH_OWNED")
     end)
-    
-    foot.OwnedContainer.Checkbox = checkbox
+
+    foot.OwnedContainer.Checkbox = ownedCb
+
+    -- "Use TomTom Waypoints" Checkbox
+    foot.TomTomContainer = CreateFrame("Frame", nil, foot)
+    foot.TomTomContainer:SetWidth(175)
+    foot.TomTomContainer:SetPoint("TOPRIGHT", foot.OwnedContainer, "TOPLEFT", -10, 0)
+    foot.TomTomContainer:SetPoint("BOTTOMRIGHT", foot.OwnedContainer, "BOTTOMLEFT", -10, 0)
+
+    local tomtomCb = CreateFrame("CheckButton", nil, foot.TomTomContainer, "UICheckButtonTemplate")
+    tomtomCb:SetPoint("TOPRIGHT", foot.TomTomContainer, "TOPRIGHT", 0, 0)
+    tomtomCb:SetPoint("BOTTOMLEFT", foot.TomTomContainer, "BOTTOMRIGHT", -32, 0)
+    tomtomCb:SetChecked(self.db.global.useTomTomPoints)
+
+    tomtomCb.Text:SetText(L["Use TomTom waypoints"])
+    tomtomCb.Text:ClearAllPoints()
+    tomtomCb.Text:SetPoint("RIGHT", tomtomCb, "LEFT", -5, 0)
+    tomtomCb.Text:SetJustifyH("RIGHT")
+    tomtomCb.Text:SetFontObject("GameTooltipText")
+
+    tomtomCb:HookScript("OnClick", function(cb)
+        local value = cb:GetChecked()
+        self.db.global.useTomTomPoints = value
+        self:UpdateListContents("ICH_TOMTOM")
+    end)
+
+    foot.TomTomContainer.Checkbox = tomtomCb
+    if C_AddOns.IsAddOnLoaded("TomTom") then foot.TomTomContainer:Show()
+    else foot.TomTomContainer:Hide() end
 end
 
 ---Filters a list of data based on search parameters

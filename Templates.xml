@@ -279,7 +279,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                             <OnLeave>GameTooltip:Hide()</OnLeave>
                         </Scripts>
                     </Frame>
-                    <Button parentKey="ICHBlizzWaypoint" inherits="InsecureActionButtonTemplate">
+                    <Button parentKey="ICHWaypointButton" inherits="InsecureActionButtonTemplate" hidden="true">
                         <Size x="24" y="24"/>
                         <KeyValues><KeyValue key="instanceID" value="" type="number"/></KeyValues>
                         <Anchors><Anchor point="LEFT" x="25"/></Anchors>
@@ -290,14 +290,11 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                                 local instanceName = EJ_GetInstanceInfo(self.instanceID)
                                 GameTooltip:SetOwner(self, "ANCHOR_TOP")
                                 GameTooltip:SetText(instanceName)
-                                GameTooltip:AddLine(ICH_LANG["Set map pin"], 1, 1, 1)
-                                <!-- if self.instanceID == 946 then
-                                    GameTooltip:AddLine("\n")
-                                    GameTooltip:AddLine(ICH_LANG["Waypoint tracking will be visible on the mimap once you are in Argus"], 1, 1, 1)
-                                elseif self.instanceID == 362 then
-                                    GameTooltip:AddLine("\n")
-                                    GameTooltip:AddLine(ICH_LANG["Waypoint tracking will be visible on the mimap once you are in Isle of Thunder"], 1, 1, 1)
-                                end -->
+                                if C_AddOns.IsAddOnLoaded("TomTom") and ICH.db.global.useTomTomPoints then
+                                    GameTooltip:AddLine(ICH_LANG["Set TomTom waypoint", 1, 1, 1)
+                                else
+                                    GameTooltip:AddLine(ICH_LANG["Set map pin"], 1, 1, 1)
+                                end
                                 GameTooltip:Show()
                             </OnEnter>
                             <OnLeave>GameTooltip:Hide()</OnLeave>

@@ -40,8 +40,10 @@ L["Invalid raid difficulty provided."] = "Ungültige Schlachtzugsschwierigkeit a
 L["Accepted values:"] = "Akzeptierte Werte:"
 L["Show/hide the minimap icon"] = "Minimap-Symbol zeigen/verbergen"
 L["Updated available mount list"] = "Verfügbare Reittierliste aktualisiert"
-L["Waypoint set for"] = "Wegpunkt gesetzt für"
-L["Unable to set waypoint for"] = "Wegpunkt konnte nicht gesetzt werden für"
+L["Map pin set for"] = "Wegpunkt gesetzt für"
+L["Unable to set map pin for"] = "Wegpunkt konnte nicht gesetzt werden für"
+L["TomTom waypoint set for"] = "TomTom-Wegpunkt gesetzt für"
+L["Unable to set TomTom waypoint for"] = "TomTom-Wegpunkt konnte nicht gesetzt werden fürr"
 
 --- Slash Commands --- 
 L["Display all current instance difficulties"] = "Zeige alle aktuellen Instanz-Schwierigkeiten"
@@ -61,6 +63,7 @@ L["raid"] = "raid"
 --- UI --- 
 L["Search by mount/instance name, instance type, or difficulty"] = "Suche nach Reittier-/Instanzname, Instanztyp oder Schwierigkeit"
 L["Scale"] = "Skalierung"
+L["Use TomTom waypoints"] = "TomTom-Wegpunkte verwenden"
 L["Show Owned Mounts"] = "Gesammelte Reittiere anzeigen"
 L["How To Use:"] = "Anleitung:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "Finde das gewünschte Reittier in der Liste und klicke auf den Button für die gewünschte Schwierigkeit."
@@ -87,3 +90,4 @@ L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "Der Eingang 
 L["Waypoint tracking on the minimap may not always appear until you are in a specific zone."] = "Die Wegpunktverfolgung auf der Minimap erscheint möglicherweise nicht immer, bis du dich in einer bestimmten Zone befindest."
 L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "Zum Beispiel erscheint eine Wegpunktmarkierung, die auf den Thron des Donners zeigt, nur wenn du dich auf der Insel des Donners befindest."
 L["Set map pin"] = "Kartenmarkierung setzen"
+L["Set TomTom waypoint"] = "TomTom-Wegpunkt setzen"
