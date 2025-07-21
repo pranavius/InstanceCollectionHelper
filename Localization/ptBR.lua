@@ -91,4 +91,4 @@ L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "A entrada po
 L["Waypoint tracking on the minimap may not always appear until you are in a specific zone."] = "O rastreamento de marcador no minimapa pode não aparecer até você estar em uma zona específica."
 L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "Por exemplo, uma seta apontando para o "..WrapTextInColor("Trono do Trovão", DARKYELLOW_FONT_COLOR).." só aparecerá quando você estiver na "..WrapTextInColor("Ilha do Trovão", DARKYELLOW_FONT_COLOR)
 L["Set map pin"] = "Definir marcador no mapa"
-L["Set TomTom waypoint"] "Colocar um waypoint TomTom"
+L["Set TomTom waypoint"] = "Colocar um waypoint "..WrapTextInColor("TomTom", DARKYELLOW_FONT_COLOR)
