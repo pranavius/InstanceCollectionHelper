@@ -201,7 +201,7 @@ function AddOn.DataProviderInit(frame, data)
         frame.OtherInfoContainer.ICHNote:Hide()
     end
 
-    if data.InstanceID == 1176 or data.AreaPoiID or data.Waypoint then frame.OtherInfoContainer.ICHBlizzWaypoint:Show()
+    if data.InstanceID == 1176 or data.InstanceID == 1194 or data.AreaPoiID or data.Waypoint then frame.OtherInfoContainer.ICHBlizzWaypoint:Show()
     elseif frame.OtherInfoContainer.ICHBlizzWaypoint:IsShown() then frame.OtherInfoContainer.ICHBlizzWaypoint:Hide() end
     frame.OtherInfoContainer.ICHBlizzWaypoint.instanceID = data.InstanceID
 
@@ -235,8 +235,11 @@ function AddOn.DataProviderInit(frame, data)
             local faction = UnitFactionGroup("player")
             C_SuperTrack.SetSuperTrackedMapPin(0, faction == "Horde" and 6012 or 6013)
             isPinSet = true
-        end
-        if data.AreaPoiID then
+        elseif data.InstanceID == 1194 then
+            -- Special case for Tazavesh (AreaPoiID is a flight path from Oribos)
+            C_SuperTrack.SetSuperTrackedMapPin(2, data.AreaPoiID)
+            isPinSet = true
+        elseif data.AreaPoiID then
             C_SuperTrack.SetSuperTrackedMapPin(0, data.AreaPoiID)
             isPinSet = true
         elseif data.Waypoint then

@@ -230,9 +230,11 @@ AddOn.InstanceMounts = {
         Instance = "Tazavesh, the Veiled Market",
         InstanceID = 1194,
         MapID = 2441,
-        -- AreaPoiID = 8374,
+        AreaPoiID = 2395,
         EncounterID = 2455,
-        DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic }
+        DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
+        Notes = L["Requires completing the Tazavesh story line to unlock flight path, beginning with The Al'ley Cat of Oribos"],
+        Waypoint = { mapID = 1671, x = 0.602, y = 0.676 }
     },
     {
         Name = "Clutch of Ji-Kun",
