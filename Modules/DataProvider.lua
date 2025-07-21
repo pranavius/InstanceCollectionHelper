@@ -41,7 +41,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field ICHNote ICHNote
 ---@field ICHBlizzWaypoint ICHBlizzWaypoint
 
----@class ICHListItem: Frame List item that displays relevant information for a given collectible 
+---@class ICHListItem: Frame List item that displays relevant information for a given collectible
 ---@field Bg Texture The background texture for unowned list items
 ---@field OwnedBg Texture The background texture for owned list items
 ---@field NameContainer NameContainer
@@ -177,6 +177,8 @@ function AddOn.DataProviderInit(frame, data)
         frame.OwnedBg:Hide()
         if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
     end
+    AddOn:SetTruncatedText(frame.NameContainer.Text, mountName)
+    AddOn:SetTruncatedText(frame.InstanceContainer.Text, instanceName)
     frame.NameContainer.Text:SetText(mountName) -- Localized mount name
     frame.InstanceContainer.Text:SetText(instanceName) -- Localized instance name
 

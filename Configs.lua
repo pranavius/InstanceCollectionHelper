@@ -3,6 +3,11 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):NewAddon(name, "AceConsole-3.0", "AceEvent-3.0")
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
+-- Globals needed for displaying translated text via XML
+ICH_NAME_COL_TITLE = L["Name"]
+ICH_INSTANCE_COL_TITLE = L["Instance"]
+ICH_AVAIL_DIFFS_COL_TITLE = L["Available Difficulty(s)"]
+
 AddOn.DatabaseDefaults = {
     global = {
         minimap = { hide = false },
@@ -99,6 +104,32 @@ function AddOn:SetInstanceDifficulty(difficultyID)
             SetRaidDifficultyID(difficultyID)
         end
     end
+end
+
+function AddOn:SetTruncatedText(fs, text)
+    local maxWidth = fs:GetWidth()
+    fs:SetText(text)
+    if fs:GetStringWidth() <= maxWidth then return end
+
+    local ellipsis = "…"
+
+    -- now binary-search or just trim one char at a time
+    local low, high = 1, #text
+
+    while low < high do
+        local mid = math.floor((low + high) / 2)
+        local substr = text:sub(1, mid)
+        fs:SetText(substr..ellipsis)
+        if fs:GetStringWidth() + 1 > maxWidth then
+            high = mid - 1
+        else
+            low = mid + 1
+        end
+    end
+
+    -- final fit
+    local finalText = text:sub(1, low - 1) .. ellipsis
+    fs:SetText(finalText)
 end
 
 local counter = CreateCounter()

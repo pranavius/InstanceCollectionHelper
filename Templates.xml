@@ -14,24 +14,24 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </Texture>
             </Layer>
             <Layer level="OVERLAY">
-                <FontString parentKey="NameHeader" inherits="GameTooltipText" justifyH="LEFT" text="Name">
+                <FontString parentKey="NameHeader" inherits="GameTooltipText" justifyH="LEFT" text="ICH_NAME_COL_TITLE">
                     <Size x="180"/>
                     <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="29"/></Anchors>
                 </FontString>
-                <FontString parentKey="InstanceHeader" inherits="GameTooltipText" justifyH="LEFT" text="Instance">
+                <FontString parentKey="InstanceHeader" inherits="GameTooltipText" justifyH="LEFT" text="ICH_INSTANCE_COL_TITLE">
                     <Size x="225"/>
                     <Anchors><Anchor point="LEFT" relativeKey="$parent.NameHeader" relativePoint="RIGHT" x="25"/></Anchors>
                 </FontString>
-                <FontString parentKey="DiffHeader" inherits="GameTooltipText" justifyH="LEFT" text="Available Difficulty(s)">
+                <FontString parentKey="DiffHeader" inherits="GameTooltipText" justifyH="LEFT" text="ICH_AVAIL_DIFFS_COL_TITLE">
                     <Size x="250"/>
                     <Anchors><Anchor point="LEFT" relativeKey="$parent.InstanceHeader" relativePoint="RIGHT"/></Anchors>
                 </FontString>
-                <FontString parentKey="OtherInfoHeader" inherits="GameTooltipText" justifyH="LEFT" text="">
+                <!-- <FontString parentKey="OtherInfoHeader" inherits="GameTooltipText" justifyH="LEFT" text="">
                     <Anchors>
                         <Anchor point="LEFT" relativeKey="$parent.DiffHeader" relativePoint="RIGHT"/>
                         <Anchor point="RIGHT" relativePoint="RIGHT"/>
                     </Anchors>
-                </FontString>
+                </FontString> -->
             </Layer>
         </Layers>
     </Frame>
@@ -136,8 +136,8 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Anchors><Anchor point="LEFT" relativePoint="LEFT"/></Anchors>
                         <Scripts>
                             <OnEnter>
-                                GameTooltip:SetOwner(self, "ANCHOR_NONE")
-                                GameTooltip:SetPoint("RIGHT", self, "LEFT", -5, 0)
+                                GameTooltip:SetOwner(self, "ANCHOR_TOP")
+                                GameTooltip:SetText(self:GetParent().Text:GetText())
                                 GameTooltip:AddLine(ICH_LANG["View in mount journal"], 1, 1, 1, true)
                                 GameTooltip:Show()
                             </OnEnter>
@@ -147,8 +147,11 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </Frames>
                 <Layers>
                     <Layer level="OVERLAY">
-                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="">
-                            <Anchors><Anchor point="LEFT" relativeKey="$parent.ViewButton" relativePoint="RIGHT" x="5"/></Anchors>
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="" wordwrap="false">
+                            <Anchors>
+                                <Anchor point="LEFT" relativeKey="$parent.ViewButton" relativePoint="RIGHT" x="5"/>
+                                <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                            </Anchors>
                         </FontString>
                     </Layer>
                 </Layers>
@@ -166,8 +169,8 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Anchors><Anchor point="LEFT" relativePoint="LEFT"/></Anchors>
                         <Scripts>
                             <OnEnter>
-                                GameTooltip:SetOwner(self, "ANCHOR_NONE")
-                                GameTooltip:SetPoint("RIGHT", self, "LEFT", -5, 0)
+                                GameTooltip:SetOwner(self, "ANCHOR_TOP")
+                                GameTooltip:SetText(self:GetParent().Text:GetText())
                                 GameTooltip:AddLine(ICH_LANG["View in encounter journal"], 1, 1, 1, true)
                                 GameTooltip:Show()
                             </OnEnter>
@@ -177,8 +180,11 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </Frames>
                 <Layers>
                     <Layer level="OVERLAY">
-                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="">
-                            <Anchors><Anchor point="LEFT" relativeKey="$parent.ViewButton" relativePoint="RIGHT" x="5"/></Anchors>
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="" wordwrap="false">
+                            <Anchors>
+                                <Anchor point="LEFT" relativeKey="$parent.ViewButton" relativePoint="RIGHT" x="5"/>
+                                <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                            </Anchors>
                         </FontString>
                     </Layer>
                 </Layers>

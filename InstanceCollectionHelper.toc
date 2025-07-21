@@ -17,6 +17,7 @@ Templates.xml
 Localization\enUS.lua
 Localization\esMX.lua
 Localization\ptBR.lua
+Localization\deDE.lua
 
 Configs.lua
 Constants.lua
