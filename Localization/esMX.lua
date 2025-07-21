@@ -13,6 +13,7 @@ L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"]
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "Se obtiene para personajes de "..WrapTextInColor("Alianza", PLAYER_FACTION_COLOR_ALLIANCE)..", pero al obtenerlo también obtienes la versión de "..WrapTextInColor("Horda", PLAYER_FACTION_COLOR_HORDE)
 L["Drops for Horde characters, but obtaining this also gives you the Alliance version"] = "Se obtiene para personajes de "..WrapTextInColor("Horda", PLAYER_FACTION_COLOR_HORDE)..", pero al obtenerlo también obtienes la versión de "..WrapTextInColor("Alianza", PLAYER_FACTION_COLOR_ALLIANCE)
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "Al entrar en la instancia, la dificultad de banda se configurará automáticamente en Normal"
+L["Requires completing the Tazavesh story line to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Requiere completar la historia de Tazavesh para desbloquear la ruta de vuelo, comenzando con |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976), DARKYELLOW_FONT_COLOR)
 
 --- Instance Difficulties ---
 L["LFR"] = "LFR"
@@ -39,8 +40,10 @@ L["Invalid raid difficulty provided."] = "Se proporcionó una dificultad de band
 L["Accepted values:"] = "Valores aceptados:"
 L["Show/hide the minimap icon"] = "Mostrar/ocultar el icono del minimapa"
 L["Updated available mount list"] = "Lista de monturas disponibles actualizada"
-L["Map pin set for"] = "Ruta establecida para"
-L["Unable to set map pin for"] = "No se puede establecer la ruta para"
+L["Map pin set for"] = "Un marcador de mapa establecida para"
+L["Unable to set map pin for"] = "No se puede establecer un marcador de mapa para"
+L["TomTom waypoint set for"] = "Waypoint de TomTom establecida para"
+L["Unable to set TomTom waypoint for"] = "No se puede establecer un waypoint de TomTom para"
 
 --- Slash Commands ---
 L["Display all current instance difficulties"] = "Mostrar todas las dificultades actuales de la instancia"
@@ -53,9 +56,14 @@ L["Show/hide the minimap icon"] = "Mostrar/ocultar el icono del minimapa"
 L["Track available mounts from instances and easily set required instance difficulty"] = "Rastrear monturas disponibles de instancias y configurar fácilmente la dificultad requerida de la instancia"
 L["Type \"/ich help\" in the chat window for available slash commands"] = "Escribe \"/ich help\" en la ventana de chat para ver los comandos disponibles"
 
+-- Special Search Terms --
+L["dungeon"] = "calabozo"
+L["raid"] = "banda"
+
 --- UI ---
 L["Search by mount/instance name, instance type, or difficulty"] = "Buscar por nombre de montura/instancia, tipo de instancia o dificultad"
 L["Scale"] = "Escala"
+L["Use TomTom waypoints"] = "Usar waypoints de TomTom"
 L["Show Owned Mounts"] = "Mostrar monturas poseídas"
 L["How To Use:"] = "Cómo usar:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "Encuentra la montura que deseas coleccionar en la lista y haz clic en el botón de la dificultad en la que quieres jugar"
@@ -64,11 +72,14 @@ L["When you are locked out for a mount on a particular difficulty, the button fo
 L["A button will also be disabled for legacy raids completed on another difficulty since those lockouts"] = "Un botón también se desactivará para bandas clásicas completadas en otra dificultad ya que esos bloqueos"
 L["are shared across difficulties."] = "se comparten entre dificultades."
 L["Search Hints:"] = "Sugerencias de búsqueda:"
-L["\"raid\" will show all mounts that can be collected from a raid"] = WrapTextInColor("\"raid\"", DARKYELLOW_FONT_COLOR).." mostrará todas las monturas que se pueden coleccionar en una banda"
+L["\"raid\" will show all mounts that can be collected from a raid"] = WrapTextInColor("\"banda\"", DARKYELLOW_FONT_COLOR).." mostrará todas las monturas que se pueden coleccionar en una banda"
 L["\"10\" will show all mounts that can be collected from a legacy 10 player raid (Normal or Heroic)"] = WrapTextInColor("\"10\"", DARKYELLOW_FONT_COLOR).." mostrará todas las monturas que se pueden coleccionar en una banda de legado de 10 jugadores (Normal o Heroico)"
 L["\"fel\" will show all mounts and instances that contain \"fel\" in the name"] = WrapTextInColor("\"fel\"", DARKYELLOW_FONT_COLOR).." mostrará todas las monturas e instancias que contengan \"fel\" en el nombre"
 L["\"mythic\" will show all mounts that can be obtained from a Mythic dungeon or raid"] = WrapTextInColor("\"mítico\"", DARKYELLOW_FONT_COLOR).." mostrará todas las monturas que se pueden obtener en una calabozo o banda Mítica"
 L["\"lfr\" will show all mounts that can be obtained from Raid Finder (LFR) difficulty raids"] = WrapTextInColor("\"lfr\"", DARKYELLOW_FONT_COLOR).." mostrará todas las monturas que se pueden obtener en bandas en dificultad Buscador de bandas (LFR)"
+L["Name"] = "Nombre"
+L["Instance"] = "Instancia"
+L["Available Difficulty(s)"] = "Dificultad(es)"
 L["Shares lockout with:"] = "Comparte bloqueo con:"
 L["View in mount journal"] = "Ver en el diario de monturas"
 L["View in encounter journal"] = "Ver en el diario de encuentros"
@@ -76,6 +87,7 @@ L["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid d
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "Requiere completar ciertos objetivos dentro de un tiempo determinado, por lo que se recomienda buscar una guía en línea para obtener esta montura antes de intentarlo"
 L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"] = "No hables con ninguno de los Guardianes Titanes, de lo contrario esta montura no aparecerá como botín"
 L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "La entrada puede estar en "..WrapTextInColor("Uldum", DARKYELLOW_FONT_COLOR).." o en "..WrapTextInColor("Valle de la Flor Eterna", DARKYELLOW_FONT_COLOR)
-L["Waypoint tracking on the minimap may not always appear until you are in a specific zone."] = "El seguimiento de ruta en el minimapa puede no aparecer hasta que estés en una zona específica."
+L["Waypoint tracking on the minimap may not always appear until you are in a specific zone."] = "El seguimiento de marcador en el minimapa puede no aparecer hasta que estés en una zona específica."
 L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "Por ejemplo, una flecha apuntando hacia "..WrapTextInColor("Trono del Trueno", DARKYELLOW_FONT_COLOR).." solo aparecerá cuando estés en la "..WrapTextInColor("Isla del Trueno", DARKYELLOW_FONT_COLOR)
 L["Set map pin"] = "Colocar marcador en el mapa"
+L["Set TomTom waypoint"] = "Colocar un waypoint de "..WrapTextInColor("TomTom", DARKYELLOW_FONT_COLOR)

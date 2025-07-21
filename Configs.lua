@@ -3,11 +3,18 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):NewAddon(name, "AceConsole-3.0", "AceEvent-3.0")
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
+-- Globals needed for displaying translated text via XML
+ICH_NAME_COL_TITLE = L["Name"]
+ICH_INSTANCE_COL_TITLE = L["Instance"]
+ICH_AVAIL_DIFFS_COL_TITLE = L["Available Difficulty(s)"]
+
 AddOn.DatabaseDefaults = {
     global = {
         minimap = { hide = false },
         windowScale = 1,
-        showOwned = false
+        showOwned = false,
+        useTomTomPoints = true,
+        currentTomTomWaypoint = nil
     }
 }
 
@@ -99,6 +106,32 @@ function AddOn:SetInstanceDifficulty(difficultyID)
             SetRaidDifficultyID(difficultyID)
         end
     end
+end
+
+--- Determines if text length exceeds defined width and truncates with ellipsis when this happens
+--- @param fs FontString FontString containing the text
+--- @param text string The text to check for truncation
+function AddOn:SetTruncatedText(fs, text)
+    local maxWidth = fs:GetWidth()
+    fs:SetText(text)
+    -- If text already fits in the specified width, there's nothing to be done
+    if fs:GetStringWidth() <= maxWidth then return end
+
+    local ellipsis = "…"
+    local lastVisibleChar, totalChars = 1, #text
+
+    while lastVisibleChar < totalChars do
+        local midpointChar = math.floor((lastVisibleChar + totalChars) / 2)
+        local substr = text:sub(1, midpointChar)
+        fs:SetText(substr..ellipsis)
+        if fs:GetStringWidth() + 1 > maxWidth then
+            totalChars = midpointChar - 1
+        else
+            lastVisibleChar = midpointChar + 1
+        end
+    end
+
+    fs:SetText(text:sub(1, lastVisibleChar - 1) .. ellipsis)
 end
 
 local counter = CreateCounter()

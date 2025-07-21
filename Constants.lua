@@ -30,18 +30,18 @@ AddOn.RaidDifficulty = RaidDifficulty
 ---@field x number X coordinate of the location on the map
 ---@field y number Y coordinate of the location on the map
 
----@class InstanceMount The mount data to process and display as a list item
----@field Name string The name of the mount (for information only, displayed name is in user's locale)
----@field MountID number The ID number associated with the mount
----@field Instance string The instance from which the mount can be obtained (for information only, displayed name is in user's locale)
----@field InstanceID number The ID number for the associated instance
----@field MapID number The ID number of the map of the associated instance
----@field AreaPoiID? number ID number of the Point of Interest (POI) for the instance on the map (used for setting Blizzard map pins)
----@field EncounterID? number The ID number associated with the encounter that needs to be completed to obtain the mount
----@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[] A list of IDs associated with the instance difficulty(s) the mount can be obtained in
----@field SharedDifficulties? table<RaidDifficulty, RaidDifficulty> Provides associations for difficulties that are not listed in `DifficultyIDs` but share a lockout with the listed ID(s)
----@field Notes? string Additional notes about this mount or instance
----@field Waypoint? Waypoint Information to place a map pin on the entrance to the instance
+---@class InstanceMount Mount data to process and display as a list item in the AddOn
+---@field Name string Name of the mount (for information only, displayed name is in user's locale)
+---@field MountID number ID number for the mount
+---@field Instance string Instance from which the mount can be obtained (for information only, displayed name is in user's locale)
+---@field InstanceID number ID number for the instance
+---@field MapID number ID number for the map of the instance
+---@field AreaPoiID? number ID number for the Point of Interest (POI) marker showing the instance entrance on the map. Used to place Blizzard map pins for navigation guidance.
+---@field EncounterID? number ID number for the encounter from which the mount is obtainable
+---@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[] List of IDs for instance difficulty(s) the mount can be obtained in
+---@field SharedDifficulties? table<RaidDifficulty, RaidDifficulty> Provides associations for difficulties that share a lockout with the listed `DifficultyID`
+---@field Notes? string Additional notes about the mount or instance
+---@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance)
 
 ---@type InstanceMount[] List of mounts available from instances
 AddOn.InstanceMounts = {
@@ -230,9 +230,11 @@ AddOn.InstanceMounts = {
         Instance = "Tazavesh, the Veiled Market",
         InstanceID = 1194,
         MapID = 2441,
-        -- AreaPoiID = 8374,
+        AreaPoiID = 2395,
         EncounterID = 2455,
-        DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic }
+        DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
+        Notes = L["Requires completing the Tazavesh story line to unlock flight path, beginning with The Al'ley Cat of Oribos"],
+        Waypoint = { mapID = 1671, x = 0.602, y = 0.676 }
     },
     {
         Name = "Clutch of Ji-Kun",
@@ -326,7 +328,7 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6528,
         EncounterID = 1553,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Waypoint = { mapID = 745, x = 0.47, y = 0.749 }
+        Waypoint = { mapID = 42, x = 0.47, y = 0.749 }
     },
     {
         Name = "Flametalon of Alysrazor",
@@ -345,10 +347,12 @@ AddOn.InstanceMounts = {
         Instance = "Battle of Dazar'alor",
         InstanceID = 1176,
         MapID = 2070,
-        -- AreaPoiID = 6012 for Horde and 6013 for Alliance
+        -- AreaPoiID = 6012 -- Horde
+        -- AreaPoiID = 6013 -- Alliance
         EncounterID = 2343,
         DifficultyIDs = { RaidDifficulty.Mythic },
         -- Waypoint = { mapID = 862, x = 0.543, y = 0.299 } -- Zuldazar
+        -- Waypoint = { mapID = 1161, x = 0.704, y = 0.356 } -- Boralus
     },
     {
         Name = "G.M.O.D",
@@ -356,11 +360,13 @@ AddOn.InstanceMounts = {
         Instance = "Battle of Dazar'alor",
         InstanceID = 1176,
         MapID = 2070,
-        -- AreaPoiID = 6012 for Horde and 6013 for Alliance
+        -- AreaPoiID = 6012 -- Horde
+        -- AreaPoiID = 6013 -- Alliance
         EncounterID = 2334,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"],
         -- Waypoint = { mapID = 862, x = 0.543, y = 0.299 } -- Zuldazar
+        -- Waypoint = { mapID = 1161, x = 0.704, y = 0.356 } -- Boralus
     },
     {
         Name = "Grand Black War Mammoth",

@@ -3,12 +3,12 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----@class NameContainer: Frame Displays elements relevant to the "Name" column in the scrollable list<br/>
+---@class NameContainer: Frame Displays elements relevant to a collectible's name<br/>
 ---For frame definition and more layout information, see `Templates.xml`
----@field Text FontString Name of an item
----@field ViewButton Button Button to view the item in the appropriate collection journal in-game
+---@field Text FontString Name of a collectible
+---@field ViewButton Button Button to view the collectible in the appropriate collection journal in-game
 
----@class InstanceContainer: Frame Displays elements relevant to the "Instance" column in the scrollable list<br/>
+---@class InstanceContainer: Frame Displays elements relevant to the instance where a collectible can be obtained<br/>
 ---For frame definition and more layout information, see `Templates.xml`
 ---@field Text FontString Name of an instance
 ---@field ViewButton Button Button to view the instance in the encounter journal in-game
@@ -16,7 +16,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@class DifficultyButton: Button Sets instance difficulty to the associated value
 ---@field difficultyID number ID number for instance, scenario, and raid difficulty (see https://wago.tools/db2/Difficulty)
 
----@class DifficultyContainer: Frame Displays elements relevant to the "Difficulty" column in the scrollable list<br/>
+---@class DifficultyContainer: Frame Displays elements relevant to the instance difficulty for a collectible<br/>
 ---For frame definition and more layout information, see `Templates.xml`
 ---@field sharedDifficulties? table<RaidDifficulty, RaidDifficulty> Difficulties that share a lockout with a difficulty displayed using the appropriate button
 ---@field RaidDiffLFRButton DifficultyButton Button for tracking LFR lockout (no action taken when clicked)
@@ -31,29 +31,31 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field DungDiffHeroicButton DifficultyButton Button for setting Dungeon difficulty to Heroic
 ---@field DungDiffMythicButton DifficultyButton Button for setting Dungeon difficulty to Mythic
 
----@class ICHNote: Frame
----@field notes string?
+---@class ICHNote: Frame Handles displaying notes about a mount or instance in a tooltip when hovered
+---@field notes string? The note(s) to display when hovering over the texture in `ICHNote`
 
----@class ICHBlizzWaypoint: Button
----@field instanceID number
--- ---@field instance string
--- ---@field areaPoiID number
+---@class ICHWaypointButton: Button Creates a map pin or TomTom waypoint to the corresponding instance entrance based on user's preferences
+---@field instanceID number ID number for instance
 
-
----@class OtherInfoContainer: Frame
+---@class OtherInfoContainer: Frame Displays other elements associated with a collectible
 ---@field ICHNote ICHNote
----@field ICHBlizzWaypoint ICHBlizzWaypoint
+---@field ICHWaypointButton ICHWaypointButton
 
----@class ICHListItem: Frame
----@field Bg Texture The background texture for unowned list item
+---@class ICHListItem: Frame List item that displays relevant information for a given collectible
+---@field Bg Texture The background texture for unowned list items
 ---@field OwnedBg Texture The background texture for owned list items
 ---@field NameContainer NameContainer
 ---@field InstanceContainer InstanceContainer
 ---@field DifficultyContainer DifficultyContainer
 ---@field OtherInfoContainer OtherInfoContainer
+---@see NameContainer
+---@see InstanceContainer
+---@see DifficultyContainer
+---@see OtherInfoContainer
 
 ---Unsets all difficulty button points and hides them before showing the correct ones based on provided data
 ---@param container DifficultyContainer
+---@see DifficultyContainer
 local function HideAllDifficultyButtons(container)
     for _, button in ipairs({ container:GetChildren() }) do
         button:Hide()
@@ -99,7 +101,7 @@ end
 ---Determines which difficulty button(s) to display based on the provided data
 ---@param container DifficultyContainer
 ---@param data InstanceMount
----@param isOwned boolean? Whether or not the item is owned by the player. `nil` for this parameter is evaluated the same way as `false`
+---@param isOwned boolean? Whether or not the collectible is owned by the player. Omitting this argument is equivalent to providing `false`
 ---@see DifficultyContainer
 ---@see InstanceMount
 local function ShowDifficultyButtons(container, data, isOwned)
@@ -141,7 +143,7 @@ local function ShowDifficultyButtons(container, data, isOwned)
                 -- Tint dungeon buttons blue and raids green
                 if AddOn:IsInstanceRaid(data) then button.ButtonTint:SetVertexColor(0.082, 0.702, 0, 0.75)
                 else button.ButtonTint:SetVertexColor(0, 0.569, 0.949, 0.75) end
-                --Mask ButtonTint with the same texture as the button background
+                -- Mask ButtonTint with the same texture as the button background
                 if not button.TintMask then
                     button.TintMask = button:CreateMaskTexture()
                     button.TintMask:SetTexture("Interface/Buttons/UI-Panel-Button-Up")
@@ -175,6 +177,8 @@ function AddOn.DataProviderInit(frame, data)
         frame.OwnedBg:Hide()
         if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
     end
+    AddOn:SetTruncatedText(frame.NameContainer.Text, mountName)
+    AddOn:SetTruncatedText(frame.InstanceContainer.Text, instanceName)
     frame.NameContainer.Text:SetText(mountName) -- Localized mount name
     frame.InstanceContainer.Text:SetText(instanceName) -- Localized instance name
 
@@ -197,11 +201,19 @@ function AddOn.DataProviderInit(frame, data)
         frame.OtherInfoContainer.ICHNote:Hide()
     end
 
-    if data.InstanceID == 1176 or data.AreaPoiID or data.Waypoint then frame.OtherInfoContainer.ICHBlizzWaypoint:Show()
-    elseif frame.OtherInfoContainer.ICHBlizzWaypoint:IsShown() then frame.OtherInfoContainer.ICHBlizzWaypoint:Hide() end
-    -- frame.OtherInfoContainer.ICHBlizzWaypoint.instance = instanceName
-    frame.OtherInfoContainer.ICHBlizzWaypoint.instanceID = data.InstanceID
-    -- frame.OtherInfoContainer.ICHBlizzWaypoint.areaPoiID = data.AreaPoiID
+    if data.InstanceID == 1176 or data.InstanceID == 1194 or data.AreaPoiID or data.Waypoint then
+        if C_AddOns.IsAddOnLoaded("TomTom") and AddOn.db.global.useTomTomPoints then
+            frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/AddOns/TomTom/Images/GoldGreenDotNew")
+            frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/AddOns/TomTom/Images/GoldPurpleDotNew")
+            frame.OtherInfoContainer.ICHWaypointButton:SetSize(15, 15)
+        else
+            frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Untracked")
+            frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Tracked")
+            frame.OtherInfoContainer.ICHWaypointButton:SetSize(24, 24)
+        end
+        frame.OtherInfoContainer.ICHWaypointButton:Show()
+    elseif frame.OtherInfoContainer.ICHWaypointButton:IsShown() then frame.OtherInfoContainer.ICHWaypointButton:Hide() end
+    frame.OtherInfoContainer.ICHWaypointButton.instanceID = data.InstanceID
 
     frame.NameContainer.ViewButton:SetScript("OnClick", function()
         -- Currently only supports Mounts, but additional conditions could be added for showing things like Battle Pets and Achievements
@@ -223,26 +235,78 @@ function AddOn.DataProviderInit(frame, data)
         C_EncounterJournal.SetSlotFilter(Enum.ItemSlotFilterType.Other)
     end)
 
-    frame.OtherInfoContainer.ICHBlizzWaypoint:SetScript("OnClick", function()
-        local isPinSet = false
+    --- Sets and tracks navigation to a map marker at the coordinates or Area POI associated with an instance entrance
+    ---@param data InstanceMount
+    ---@return boolean isPinSet `true` if a map pin was successfully placed, `false` otherwise
+    ---@see InstanceMount
+    local function SetBlizzardMapPin(data)
+        -- Clear any previously supertracked pins and waypoints
         C_SuperTrack.ClearSuperTrackedMapPin()
         C_SuperTrack.SetSuperTrackedUserWaypoint(false)
         C_Map.ClearUserWaypoint()
+
         -- Special case for BoD (separate entrances based on faction)
         if data.InstanceID == 1176 then
             local faction = UnitFactionGroup("player")
             C_SuperTrack.SetSuperTrackedMapPin(0, faction == "Horde" and 6012 or 6013)
-            isPinSet = true
-        end
-        if data.AreaPoiID then
+            return true
+        elseif data.InstanceID == 1194 then
+            -- Special case for Tazavesh (AreaPoiID is a flight path from Oribos)
+            C_SuperTrack.SetSuperTrackedMapPin(2, data.AreaPoiID)
+            return true
+        elseif data.AreaPoiID then
             C_SuperTrack.SetSuperTrackedMapPin(0, data.AreaPoiID)
-            isPinSet = true
+            return true
         elseif data.Waypoint then
             C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(data.Waypoint.mapID, data.Waypoint.x, data.Waypoint.y))
             C_SuperTrack.SetSuperTrackedUserWaypoint(true)
-            isPinSet = true
+            return true
         end
-        AddOn:PrintChatMessage(isPinSet and L["Map pin set for"] or L["Unable to set map pin for"], WrapTextInColor(instanceName, DARKYELLOW_FONT_COLOR))
+        return false
+    end
+
+    --- Sets a TomTom waypoint at the coordinates associated with an instance entrance
+    ---@param data InstanceMount
+    ---@return boolean isPinSet `true` if a map pin was successfully placed, `false` otherwise
+    ---@see InstanceMount
+    local function SetTomTomWaypoint(data)
+        if AddOn.db.global.currentTomTomWaypoint then
+            TomTom:RemoveWaypoint(AddOn.db.global.currentTomTomWaypoint)
+            AddOn.db.global.currentTomTomWaypoint = nil
+        end
+        local ttOptions = {
+            title = instanceName,
+            from = name,
+            crazy = true,
+            silent = true
+        }
+        -- Special case for BoD (separate entrances based on faction)
+        if data.InstanceID == 1176 then
+            local faction = UnitFactionGroup("player")
+            if faction == "Horde" then AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(862, 0.543, 0.299, ttOptions)
+            else AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(1161, 0.704, .356, ttOptions) end
+            return true
+        elseif data.InstanceID == 1194 then
+            -- Change the name of the TomTom waypoint when set for Tazavesh
+            ttOptions.title = "Oribos -> "..instanceName
+        end
+        if data.Waypoint then
+            AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(data.Waypoint.mapID, data.Waypoint.x, data.Waypoint.y, ttOptions)
+            return true
+        end
+
+        return false
+    end
+
+    frame.OtherInfoContainer.ICHWaypointButton:SetScript("OnClick", function()
+        local isPinSet = false
+        if C_AddOns.IsAddOnLoaded("TomTom") and AddOn.db.global.useTomTomPoints then
+            isPinSet = SetTomTomWaypoint(data)
+            AddOn:PrintChatMessage(isPinSet and L["TomTom waypoint set for"] or L["Unable to set TomTom waypoint for"], WrapTextInColor(instanceName, DARKYELLOW_FONT_COLOR))
+        else
+            isPinSet = SetBlizzardMapPin(data)
+            AddOn:PrintChatMessage(isPinSet and L["Map pin set for"] or L["Unable to set map pin for"], WrapTextInColor(instanceName, DARKYELLOW_FONT_COLOR))
+        end
     end)
 end
 

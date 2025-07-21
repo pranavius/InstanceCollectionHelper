@@ -13,6 +13,7 @@ L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"]
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "Drops for "..WrapTextInColor("Alliance", PLAYER_FACTION_COLOR_ALLIANCE).." characters, but obtaining this also gives you the "..WrapTextInColor("Horde", PLAYER_FACTION_COLOR_HORDE).." version"
 L["Drops for Horde characters, but obtaining this also gives you the Alliance version"] = "Drops for "..WrapTextInColor("Horde", PLAYER_FACTION_COLOR_HORDE).." characters, but obtaining this also gives you the "..WrapTextInColor("Alliance", PLAYER_FACTION_COLOR_ALLIANCE).." version"
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "Upon entering the instance, raid difficulty will automatically be set to Normal"
+L["Requires completing the Tazavesh story line to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Erfordert den Abschluss der Tazavesh-Handlungsreihe, um den Flugpunkt freizuschalten, beginnend mit |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976), DARKYELLOW_FONT_COLOR)
 
 --- Instance Difficulties ---
 L["LFR"] = "LFR"
@@ -41,6 +42,8 @@ L["Show/hide the minimap icon"] = "Show/hide the minimap icon"
 L["Updated available mount list"] = "Updated available mount list"
 L["Map pin set for"] = "Map pin set for"
 L["Unable to set map pin for"] = "Unable to set map pin for"
+L["TomTom waypoint set for"] = "TomTom waypoint set for"
+L["Unable to set TomTom waypoint for"] = "Unable to set TomTom waypoint for"
 
 --- Slash Commands ---
 L["Display all current instance difficulties"] = "Display all current instance difficulties"
@@ -53,9 +56,14 @@ L["Show/hide the minimap icon"] = "Show/hide the minimap icon"
 L["Track available mounts from instances and easily set required instance difficulty"] = "Track available mounts from instances and easily set required instance difficulty"
 L["Type \"/ich help\" in the chat window for available slash commands"] = "Type \"/ich help\" in the chat window for available slash commands"
 
+-- Special Search Terms --
+L["dungeon"] = "dungeon"
+L["raid"] = "raid"
+
 --- UI ---
 L["Search by mount/instance name, instance type, or difficulty"] = "Search by mount/instance name, instance type, or difficulty"
 L["Scale"] = "Scale"
+L["Use TomTom waypoints"] = "Use TomTom waypoints"
 L["Show Owned Mounts"] = "Show Owned Mounts"
 L["How To Use:"] = "How To Use:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "Find the mount you want to collect in the list and click the button for the difficulty you want to run on"
@@ -69,6 +77,9 @@ L["\"10\" will show all mounts that can be collected from a legacy 10 player rai
 L["\"fel\" will show all mounts and instances that contain \"fel\" in the name"] = WrapTextInColor("\"fel\"", DARKYELLOW_FONT_COLOR).." will show all mounts and instances that contain \"fel\" in the name"
 L["\"mythic\" will show all mounts that can be obtained from a Mythic dungeon or raid"] = WrapTextInColor("\"mythic\"", DARKYELLOW_FONT_COLOR).." will show all mounts that can be obtained from a Mythic dungeon or raid"
 L["\"lfr\" will show all mounts that can be obtained from Raid Finder (LFR) difficulty raids"] = WrapTextInColor("\"lfr\"", DARKYELLOW_FONT_COLOR).." will show all mounts that can be obtained from Raid Finder (LFR) difficulty raids"
+L["Name"] = "Name"
+L["Instance"] = "Instance"
+L["Available Difficulty(s)"] = "Available Difficulty(s)"
 L["Shares lockout with:"] = "Shares lockout with:"
 L["View in mount journal"] = "View in mount journal"
 L["View in encounter journal"] = "View in encounter journal"
@@ -79,3 +90,4 @@ L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "Entrance can
 L["Waypoint tracking on the minimap may not always appear until you are in a specific zone."] = "Waypoint tracking on the minimap may not always appear until you are in a specific zone."
 L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "For example, an arrow pointing towards "..WrapTextInColor("Throne of Thunder", DARKYELLOW_FONT_COLOR).." will only appear when you are on the "..WrapTextInColor("Isle of Thunder", DARKYELLOW_FONT_COLOR)
 L["Set map pin"] = "Set map pin"
+L["Set TomTom waypoint"] = "Set "..WrapTextInColor("TomTom", DARKYELLOW_FONT_COLOR).." waypoint"

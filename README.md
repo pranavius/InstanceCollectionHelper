@@ -8,7 +8,7 @@ _Track available mounts from instances and easily set required instance difficul
 - Search for a mount by its name, an instance name or type, as well as a difficulty setting
 - Multi-column scrollable UI with Name, Instance, and Available Difficulty columns
 - Links to in-game mount journal as well as instance and encounter journal for each list item
-- Ability to drop a map pin at the dungeon or raid entrance to make navigating to each instance easier
+- Ability to drop a map pin or **TomTom** waypoint at the dungeon or raid entrance to make navigating to each instance easier
 - Simple buttons to set your desired instance difficulty with a single click
 - DataBroker integration for quick access to options via minimap icon or other DataBroker AddOns
 
@@ -21,7 +21,8 @@ Although this AddOn currently only supports mount collection, there are plans to
 All mount and instance names will appear in the language that the game is being played in, but other text may appear in English. Currently, the following languages are either supported or in the process of being localized:
 - English (`enUS`)
 - Spanish (`esMX`)
-- German (`deDE`) [**In progress**]
+- Portuguese (`ptBR`)
+- German (`deDE`) _\*credit: Fargoran\*_
 
 ## Usage
 Aside from the AddOn UI itself, **InstanceCollectionHelper** provides a few other utilities via slash commands. A comprehensive list of available commands is shown below:
@@ -42,8 +43,7 @@ Aside from the AddOn UI itself, **InstanceCollectionHelper** provides a few othe
 **InstanceCollectionHelper** was released in July 2025 to help players with tracking mounts and setting the correct instance difficulty for the [Collector's Bounty](https://www.wowhead.com/event=1674/collectors-bounty) event. After the event ends and the AddOn continues to exist, there are a number of features and improvements in line to be added:
 
 - Track Battle Pets and Achievements available from instances
-- Ability to view available mounts/lockouts on alt characters
-- Set TomTom waypoints for instance entrances
+- Ability to view lockouts/available attempts of alts
 - Allow AddOn properties such as text font to be configurable
 
 ## Contact

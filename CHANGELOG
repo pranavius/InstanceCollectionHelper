@@ -3,9 +3,15 @@ This document describes changes to each version of **InstanceCollectionHelper (I
 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
-## Latest Version: 1
+## Latest Version: 2
 
 ## Changes
+**2**
+- Added support for **TomTom** waypoints to be dropped at instance entrances with one click
+- Added support for `ptBR` and `deDE` locales (_still looking for translators!_)
+- Update AddOn for Patch 11.2 compatibility
+- Improved text localization for all supported locales
+- Documentation updates
 
 **1**
 - Added ability to set Blizzard map pins on instance entrances
