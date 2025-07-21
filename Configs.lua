@@ -108,30 +108,30 @@ function AddOn:SetInstanceDifficulty(difficultyID)
     end
 end
 
+--- Determines if text length exceeds defined width and truncates with ellipsis when this happens
+--- @param fs FontString FontString containing the text
+--- @param text string The text to check for truncation
 function AddOn:SetTruncatedText(fs, text)
     local maxWidth = fs:GetWidth()
     fs:SetText(text)
+    -- If text already fits in the specified width, there's nothing to be done
     if fs:GetStringWidth() <= maxWidth then return end
 
     local ellipsis = "…"
+    local lastVisibleChar, totalChars = 1, #text
 
-    -- now binary-search or just trim one char at a time
-    local low, high = 1, #text
-
-    while low < high do
-        local mid = math.floor((low + high) / 2)
-        local substr = text:sub(1, mid)
+    while lastVisibleChar < totalChars do
+        local midpointChar = math.floor((lastVisibleChar + totalChars) / 2)
+        local substr = text:sub(1, midpointChar)
         fs:SetText(substr..ellipsis)
         if fs:GetStringWidth() + 1 > maxWidth then
-            high = mid - 1
+            totalChars = midpointChar - 1
         else
-            low = mid + 1
+            lastVisibleChar = midpointChar + 1
         end
     end
 
-    -- final fit
-    local finalText = text:sub(1, low - 1) .. ellipsis
-    fs:SetText(finalText)
+    fs:SetText(text:sub(1, lastVisibleChar - 1) .. ellipsis)
 end
 
 local counter = CreateCounter()

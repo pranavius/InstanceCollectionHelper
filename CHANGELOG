@@ -7,8 +7,9 @@ Release versions suffixed with a lowercase letter are considered unofficial _alp
 
 ## Changes
 **2**
+- Added support for **TomTom** waypoints to be dropped at instance entrances with one click
+- Added support for `ptBR` and `deDE` locales (_still looking for translators!_)
 - Update AddOn for Patch 11.2 compatibility
-- Added support for `ptBR` locale (_still looking for translators!_)
 - Improved text localization for all supported locales
 - Documentation updates
 

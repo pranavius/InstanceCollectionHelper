@@ -235,8 +235,10 @@ function AddOn.DataProviderInit(frame, data)
         C_EncounterJournal.SetSlotFilter(Enum.ItemSlotFilterType.Other)
     end)
 
+    --- Sets and tracks navigation to a map marker at the coordinates or Area POI associated with an instance entrance
     ---@param data InstanceMount
-    ---@return boolean isPinSet
+    ---@return boolean isPinSet `true` if a map pin was successfully placed, `false` otherwise
+    ---@see InstanceMount
     local function SetBlizzardMapPin(data)
         -- Clear any previously supertracked pins and waypoints
         C_SuperTrack.ClearSuperTrackedMapPin()
@@ -263,8 +265,10 @@ function AddOn.DataProviderInit(frame, data)
         return false
     end
 
+    --- Sets a TomTom waypoint at the coordinates associated with an instance entrance
     ---@param data InstanceMount
-    ---@return boolean isPinSet
+    ---@return boolean isPinSet `true` if a map pin was successfully placed, `false` otherwise
+    ---@see InstanceMount
     local function SetTomTomWaypoint(data)
         if AddOn.db.global.currentTomTomWaypoint then
             TomTom:RemoveWaypoint(AddOn.db.global.currentTomTomWaypoint)

@@ -140,20 +140,6 @@ InstanceCollectionHelper
 
 ---
 
-# ICHBlizzWaypoint
-
-## instanceID
-
-
-```lua
-number
-```
-
-ID number for instance
-
-
----
-
 # ICHListItem
 
 ## Bg
@@ -219,7 +205,51 @@ The note(s) to display when hovering over the texture in `ICHNote`
 
 ---
 
+# ICHWaypointButton
+
+## instanceID
+
+
+```lua
+number
+```
+
+ID number for instance
+
+
+---
+
+# ICH_AVAIL_DIFFS_COL_TITLE
+
+
+```lua
+unknown
+```
+
+
+---
+
+# ICH_INSTANCE_COL_TITLE
+
+
+```lua
+unknown
+```
+
+
+---
+
 # ICH_LANG
+
+
+```lua
+unknown
+```
+
+
+---
+
+# ICH_NAME_COL_TITLE
 
 
 ```lua
@@ -284,13 +314,6 @@ See:
 
 ```lua
 table
-```
-
-## DungeonDifficulty
-
-
-```lua
-enum DungeonDifficulty
 ```
 
 ## FilterListContentsByQuery
@@ -358,15 +381,6 @@ unknown
 unknown
 ```
 
-## InstanceMounts
-
-
-```lua
-InstanceMount[]
-```
-
-List of mounts available from instances
-
 ## IsInstanceRaid
 
 
@@ -398,13 +412,6 @@ Prints a message to the chat window prefixed by the AddOn name
 @*param* `...` — Arguments to be printed to the chat window
 
 See: [print](file:///Users/pranavchary/.vscode/extensions/sumneko.lua-3.15.0-darwin-arm64/server/meta/Lua%205.4%20en-us%20utf8/basic.lua#235#9)
-
-## RaidDifficulty
-
-
-```lua
-enum RaidDifficulty
-```
 
 ## ScrollBar
 
@@ -438,6 +445,19 @@ Sets instance difficulty based on the provided value (Usable for all instance ty
 *Provides a consistent experience when changing difficulties either from the UI or chat command.*
 
 @*param* `difficultyID` — ID associated with an instance difficulty
+
+## SetTruncatedText
+
+
+```lua
+(method) InstanceCollectionHelper:SetTruncatedText(fs: FontString, text: string)
+```
+
+ Determines if text length exceeds defined width and truncates with ellipsis when this happens
+
+@*param* `fs` — FontString containing the text
+
+@*param* `text` — The text to check for truncation
 
 ## SlashOptions
 
@@ -626,18 +646,18 @@ Button to view the collectible in the appropriate collection journal in-game
 
 # OtherInfoContainer
 
-## ICHBlizzWaypoint
-
-
-```lua
-ICHBlizzWaypoint
-```
-
 ## ICHNote
 
 
 ```lua
 ICHNote
+```
+
+## ICHWaypointButton
+
+
+```lua
+ICHWaypointButton
 ```
 
 
