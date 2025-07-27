@@ -23,6 +23,7 @@ All mount and instance names will appear in the language that the game is being 
 - Spanish (`esMX`)
 - Portuguese (`ptBR`)
 - German (`deDE`) _\*credit: Fargoran\*_
+- Chinese (`zhTW`) _\*credit: BNS333\*_
 
 ## Usage
 Aside from the AddOn UI itself, **InstanceCollectionHelper** provides a few other utilities via slash commands. A comprehensive list of available commands is shown below:
