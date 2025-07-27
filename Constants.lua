@@ -328,7 +328,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6528,
         EncounterID = 1553,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Waypoint = { mapID = 42, x = 0.47, y = 0.749 }
+        Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
+        Notes = L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"]
     },
     {
         Name = "Flametalon of Alysrazor",

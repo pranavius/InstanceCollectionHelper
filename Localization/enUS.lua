@@ -4,6 +4,7 @@ local L = LibStub("AceLocale-3.0"):NewLocale(name, "enUS", true, true)
 if not L then return end
 
 --- Mount Notes ---
+L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"] = "This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"
 L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"] = "This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"
 L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"] = "Available in Normal Legacy Raid difficulty, but Heroic should be set if "..WrapTextInColor("Life-Binder's Handmaiden", DARKYELLOW_FONT_COLOR).." is not obtained yet"
 L["Drop from trash mobs around Temple of Ahn'Qiraj"] = "Drop from trash mobs around "..WrapTextInColor("Temple of Ahn'Qiraj", DARKYELLOW_FONT_COLOR)
@@ -13,7 +14,7 @@ L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"]
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "Drops for "..WrapTextInColor("Alliance", PLAYER_FACTION_COLOR_ALLIANCE).." characters, but obtaining this also gives you the "..WrapTextInColor("Horde", PLAYER_FACTION_COLOR_HORDE).." version"
 L["Drops for Horde characters, but obtaining this also gives you the Alliance version"] = "Drops for "..WrapTextInColor("Horde", PLAYER_FACTION_COLOR_HORDE).." characters, but obtaining this also gives you the "..WrapTextInColor("Alliance", PLAYER_FACTION_COLOR_ALLIANCE).." version"
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "Upon entering the instance, raid difficulty will automatically be set to Normal"
-L["Requires completing the Tazavesh story line to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Erfordert den Abschluss der Tazavesh-Handlungsreihe, um den Flugpunkt freizuschalten, beginnend mit |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976), DARKYELLOW_FONT_COLOR)
+L["Requires completing the Tazavesh story line to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Requires completing the Tazavesh story line to unlock flight path, beginning with |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976), DARKYELLOW_FONT_COLOR)
 
 --- Instance Difficulties ---
 L["LFR"] = "LFR"

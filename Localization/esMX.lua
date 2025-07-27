@@ -4,6 +4,7 @@ local L = LibStub("AceLocale-3.0"):NewLocale(name, "esMX")
 if not L then return end
 
 --- Mount Notes ---
+L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"] = "Esta incursión solo tiene dificultad de 10 jugadores, así que cualquier dificultad de banda puede configurarse antes de entrar en la instancia"
 L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"] = "Esta incursión solo tiene dificultad de 25 jugadores, así que cualquier dificultad de banda puede configurarse antes de entrar en la instancia"
 L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"] = "Disponible en la dificultad de banda de legado Normal, pero debe configurarse en Heroico si "..WrapTextInColor("Life-Binder's Handmaiden", DARKYELLOW_FONT_COLOR).." aún no se ha obtenido"
 L["Drop from trash mobs around Temple of Ahn'Qiraj"] = "Se obtiene de los esbirros alrededor de "..WrapTextInColor("Templo de Ahn'Qiraj", DARKYELLOW_FONT_COLOR)
