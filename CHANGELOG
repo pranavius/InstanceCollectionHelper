@@ -9,6 +9,7 @@ Release versions suffixed with a lowercase letter are considered unofficial _alp
 **3**
 - Added support for `zhTW` locale (_still looking for translators!_)
 - Added a note about Karazhan's instance difficulty being 10 player by default regardless of player's settings
+- Fixed a translation error where English users would see the note for Tazavesh in German
 
 **2**
 - Added support for **TomTom** waypoints to be dropped at instance entrances with one click
