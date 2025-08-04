@@ -13,7 +13,7 @@ _Track available mounts from instances and easily set required instance difficul
 - DataBroker integration for quick access to options via minimap icon or other DataBroker AddOns
 
 ## Summary
-**InstanceCollectionHelper** is designed to help collectors easily identify and set an appropriate instance difficulty when pursuing a mount from a dungeon or raid. Available mounts can be further filtered by mount name, instance name, instance type (dungeon or raid), as well as instance difficulty. When a mount cannot be obtained on a given difficulty, the button for that difficlty will be disabled. This effectively provides a simple and clean "to-do" list in the AddOn UI so you can decide to attempt to get the mount on another difficulty or pivot to hunting for a new one.
+**InstanceCollectionHelper** is designed to help collectors easily identify and set an appropriate instance difficulty when pursuing a mount from a dungeon or raid. Available mounts can be further filtered by mount name, instance name, instance type (dungeon or raid), as well as instance difficulty. When a mount cannot be obtained on a given difficulty, the button for that difficulty will be disabled. This effectively provides a simple and clean "to-do" list in the AddOn UI so you can decide to attempt to get the mount on another difficulty or pivot to hunting for a new one.
 
 Although this AddOn currently only supports mount collection, there are plans to add other collectibles such as Battle Pets in the future. If you see that any mounts are missing from this list, please let me know and I'll be happy to add them ASAP.
 
@@ -54,3 +54,5 @@ Aside from the AddOn UI itself, **InstanceCollectionHelper** provides a few othe
 **GitHub**: [Pranavius](https://github.com/pranavius)
 
 **Email**: [pranavius1@gmail.com](mailto:pranavius1@gmail.com)
+
+**Discord**: [Pranlabs](https://discord.gg/Vj3D5GeQZh)
