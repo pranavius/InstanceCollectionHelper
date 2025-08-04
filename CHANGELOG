@@ -3,9 +3,12 @@ This document describes changes to each version of **InstanceCollectionHelper (I
 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
-## Latest Version: 3
+## Latest Version: 4
 
 ## Changes
+**4**
+- Added support for `zhCN` locale (_still looking for translators!_)
+
 **3**
 - Added support for `zhTW` locale (_still looking for translators!_)
 - Added a note about Karazhan's instance difficulty being 10 player by default regardless of player's settings

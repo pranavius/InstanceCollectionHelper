@@ -19,6 +19,7 @@ Localization\esMX.lua
 Localization\ptBR.lua
 Localization\deDE.lua
 Localization\zhTW.lua
+Localization\zhCN.lua
 
 Configs.lua
 Constants.lua
