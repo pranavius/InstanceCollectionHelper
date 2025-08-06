@@ -8,6 +8,7 @@ Release versions suffixed with a lowercase letter are considered unofficial _alp
 ## Changes
 **5**
 - Added Unbound Star-Eater from Manaforge Omega
+- Fixed an issue that sometimes caused an error when viewing the note for **Cartel Master's Gearglider**
  
 **4**
 - Added support for `zhCN` locale (_still looking for translators!_)

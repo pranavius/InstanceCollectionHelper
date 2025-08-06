@@ -14,7 +14,7 @@ L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"]
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "Droppt für "..WrapTextInColor("Allianz", PLAYER_FACTION_COLOR_ALLIANCE).."-Charaktere, aber beim Erhalt bekommt man auch die "..WrapTextInColor("Horde", PLAYER_FACTION_COLOR_HORDE).."-Version."
 L["Drops for Horde characters, but obtaining this also gives you the Alliance version"] = "Droppt für "..WrapTextInColor("Horde", PLAYER_FACTION_COLOR_HORDE).."-Charaktere, aber beim Erhalt bekommt man auch die "..WrapTextInColor("Allianz", PLAYER_FACTION_COLOR_ALLIANCE).."-Version."
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "Beim Betreten der Instanz wird die Schlachtzugsschwierigkeit automatisch auf Normal gesetzt."
-L["Requires completing the Tazavesh story line to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Erfordert den Abschluss der Tazavesh-Handlung, um den Flugpunkt von Oribos freizuschalten, beginnend mit |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976), DARKYELLOW_FONT_COLOR)
+L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Erfordert den Abschluss der Tazavesh-Handlung, um den Flugpunkt von Oribos freizuschalten, beginnend mit |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos", DARKYELLOW_FONT_COLOR)
 
 --- Instance Difficulties --- 
 L["LFR"] = "LFR"

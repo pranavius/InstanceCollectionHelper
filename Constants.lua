@@ -233,7 +233,7 @@ AddOn.InstanceMounts = {
         AreaPoiID = 2395,
         EncounterID = 2455,
         DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
-        Notes = L["Requires completing the Tazavesh story line to unlock flight path, beginning with The Al'ley Cat of Oribos"],
+        Notes = L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"],
         Waypoint = { mapID = 1671, x = 0.602, y = 0.676 }
     },
     {
@@ -714,7 +714,7 @@ AddOn.InstanceMounts = {
         MapID = 2810,
         AreaPoiID = 8363,
         EncounterID = 2691,
-        DifficultyIDs = { DungeonDifficulty.Mythic },
+        DifficultyIDs = { RaidDifficulty.Mythic },
         Waypoint = { mapID = 2371, x = 0.417, y = 0.215 }
     },
     {

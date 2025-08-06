@@ -14,7 +14,7 @@ L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"]
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "只对"..WrapTextInColor("联盟", PLAYER_FACTION_COLOR_ALLIANCE).."角色掉落，但取得后也会获得"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."版本"
 L["Drops for Horde characters, but obtaining this also gives you the Alliance version"] = "只对"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."角色掉落，但取得后也会获得"..WrapTextInColor("联盟", PLAYER_FACTION_COLOR_ALLIANCE).."版本"
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "进入副本后，团队难度将自动设定为普通"
-L["Requires completing the Tazavesh story line to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..WrapTextInColor("塔扎维什", DARKYELLOW_FONT_COLOR).."的故事线才能解锁飞行路径，先从 |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976), DARKYELLOW_FONT_COLOR).." 开始" -- 注意: "塔札維許" -> "塔扎维什" (简体官方译名)
+L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..WrapTextInColor("塔扎维什", DARKYELLOW_FONT_COLOR).."的故事线才能解锁飞行路径，先从 |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos", DARKYELLOW_FONT_COLOR).." 开始" -- 注意: "塔札維許" -> "塔扎维什" (简体官方译名)
 
 --- Instance Difficulties ---
 L["LFR"] = "LFR" -- 通常保留缩写
