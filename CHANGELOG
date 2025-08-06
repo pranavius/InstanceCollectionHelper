@@ -3,9 +3,12 @@ This document describes changes to each version of **InstanceCollectionHelper (I
 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
-## Latest Version: 4
+## Latest Version: 5
 
 ## Changes
+**5**
+- Added Unbound Star-Eater from Manaforge Omega
+ 
 **4**
 - Added support for `zhCN` locale (_still looking for translators!_)
 

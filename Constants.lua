@@ -707,6 +707,17 @@ AddOn.InstanceMounts = {
         Waypoint = { mapID = 115, x = 0.6, y = 0.57 }
     },
     {
+        Name = "Unbound Star-Eater",
+        MountID = 2569,
+        Instance = "Manaforge Omega",
+        InstanceID = 1302,
+        MapID = 2810,
+        AreaPoiID = 8363,
+        EncounterID = 2691,
+        DifficultyIDs = { DungeonDifficulty.Mythic },
+        Waypoint = { mapID = 2371, x = 0.417, y = 0.215 }
+    },
+    {
         Name = "Underrot Crawg",
         MountID = 1053,
         Instance = "The Underrot",
