@@ -158,7 +158,8 @@ AddOn.InstanceMounts = {
         EncounterID = 1617,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 },
-        Waypoint = { mapID = 114, x = 0.275, y = 0.267 }
+        Waypoint = { mapID = 114, x = 0.275, y = 0.267 },
+        SearchTags = { "wrath of the lich king", "wotlk", "northrend", "borean tundra"}
     },
     {
         Name = "Black Drake",
@@ -169,7 +170,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6520,
         EncounterID = 1616,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Waypoint = { mapID = 115, x = 0.6, y = 0.57 }
+        Waypoint = { mapID = 115, x = 0.6, y = 0.57 },
+        SearchTags = { "wrath of the lich king", "wotlk", "wrath", "northrend", "dragonblight" }
     },
     {
         Name = "Blazing Drake",
