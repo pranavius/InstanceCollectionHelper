@@ -63,8 +63,8 @@ local function HideAllDifficultyButtons(container)
 end
 
 ---Determines whether or not an instance encounter has been completed for the reset period for a given difficulty
----@param data InstanceMount
----@see InstanceMount
+---@param data Mount
+---@see Mount
 local function IsEncounterCompleted(data, difficultyID)
     local encounterName
     if data.EncounterID then encounterName = select(1, EJ_GetEncounterInfo(data.EncounterID)) end
@@ -86,9 +86,9 @@ local function IsEncounterCompleted(data, difficultyID)
     return false
 end
 
----@param data InstanceMount
+---@param data Mount
 ---@return boolean isCompleted `true` if an encounter has been completed for the reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise
----@see InstanceMount
+---@see Mount
 local function IsEncounterCompletedOnSharedDifficulty(data)
     local isCompleted = false
     for shared, _ in pairs(data.SharedDifficulties) do
@@ -100,10 +100,10 @@ end
 
 ---Determines which difficulty button(s) to display based on the provided data
 ---@param container DifficultyContainer
----@param data InstanceMount
+---@param data Mount
 ---@param isOwned boolean? Whether or not the collectible is owned by the player. Omitting this argument is equivalent to providing `false`
 ---@see DifficultyContainer
----@see InstanceMount
+---@see Mount
 local function ShowDifficultyButtons(container, data, isOwned)
     for i, diffID in ipairs(data.DifficultyIDs) do
         local button
@@ -160,9 +160,9 @@ end
 
 ---Initializes how data in the scrollable list should be displayed
 ---@param frame ICHListItem
----@param data InstanceMount
+---@param data Mount
 ---@see ICHListItem
----@see InstanceMount
+---@see Mount
 function AddOn.DataProviderInit(frame, data)
     if not frame or not data then return end
 
@@ -236,9 +236,9 @@ function AddOn.DataProviderInit(frame, data)
     end)
 
     --- Sets and tracks navigation to a map marker at the coordinates or Area POI associated with an instance entrance
-    ---@param data InstanceMount
+    ---@param data Mount
     ---@return boolean isPinSet `true` if a map pin was successfully placed, `false` otherwise
-    ---@see InstanceMount
+    ---@see Mount
     local function SetBlizzardMapPin(data)
         -- Clear any previously supertracked pins and waypoints
         C_SuperTrack.ClearSuperTrackedMapPin()
@@ -266,9 +266,9 @@ function AddOn.DataProviderInit(frame, data)
     end
 
     --- Sets a TomTom waypoint at the coordinates associated with an instance entrance
-    ---@param data InstanceMount
+    ---@param data Mount
     ---@return boolean isPinSet `true` if a map pin was successfully placed, `false` otherwise
-    ---@see InstanceMount
+    ---@see Mount
     local function SetTomTomWaypoint(data)
         if AddOn.db.global.currentTomTomWaypoint then
             TomTom:RemoveWaypoint(AddOn.db.global.currentTomTomWaypoint)
@@ -310,9 +310,9 @@ function AddOn.DataProviderInit(frame, data)
     end)
 end
 
----@param data InstanceMount
+---@param data Mount
 ---@return boolean `true` if the instance is a raid, `false` otherwise
----@see InstanceMount
+---@see Mount
 function AddOn:IsInstanceRaid(data)
     -- AQ has no difficulty IDs listed since it defaults to a 40-man when zoned in (not settable from the UI)
     if #data.DifficultyIDs == 0 then return true end

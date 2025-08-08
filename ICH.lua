@@ -248,8 +248,8 @@ function AddOn:CreateFooter()
 end
 
 ---Filters a list of data based on search parameters
----@param listData InstanceMount[]
----@return InstanceMount[]
+---@param listData Mount[]
+---@return Mount[]
 function AddOn:FilterListContentsByQuery(listData)
     local filtered = {}
     local query = self.Container.SearchBox:GetText():lower()
@@ -288,7 +288,7 @@ end
 function AddOn:UpdateListContents(event)
     if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then UIParentLoadAddOn("Blizzard_Collections") end
     if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then UIParentLoadAddOn("Blizzard_EncounterJournal") end
-    ---@type InstanceMount[]
+    ---@type Mount[]
     local newData = {}
     for _, data in ipairs(self.InstanceMounts) do
         local isOwned = select(11, C_MountJournal.GetMountInfoByID(data.MountID))

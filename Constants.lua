@@ -30,7 +30,7 @@ AddOn.RaidDifficulty = RaidDifficulty
 ---@field x number X coordinate of the location on the map
 ---@field y number Y coordinate of the location on the map
 
----@class InstanceMount Mount data to process and display as a list item in the AddOn
+---@class Mount Mount data to process and display as a list item in the AddOn
 ---@field Name string Name of the mount (for information only, displayed name is in user's locale)
 ---@field MountID number ID number for the mount
 ---@field Instance string Instance from which the mount can be obtained (for information only, displayed name is in user's locale)
@@ -42,8 +42,9 @@ AddOn.RaidDifficulty = RaidDifficulty
 ---@field SharedDifficulties? table<RaidDifficulty, RaidDifficulty> Provides associations for difficulties that share a lockout with the listed `DifficultyID`
 ---@field Notes? string Additional notes about the mount or instance
 ---@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance)
+---@field SearchTags string[] A list of string identifiers to quickly search for a mount. This can include expansion abbreviations, expansion names, zones, continents, etc
 
----@type InstanceMount[] List of mounts available from instances
+---@type Mount[] List of mounts available from instances
 AddOn.InstanceMounts = {
     {
         Name = "Abyss Worm",
@@ -54,7 +55,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 5250,
         EncounterID = 1861,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 646, x = 0.64, y = 0.214 }
+        Waypoint = { mapID = 646, x = 0.64, y = 0.214 },
+        SearchTags = { "legion", "broken isles", "broken shore" }
     },
     {
         Name = "Amani Battle Bear",
@@ -65,7 +67,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6683,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Waypoint = { mapID = 95, x = 0.82, y = 0.643 },
-        Notes = L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"]
+        Notes = L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"],
+        SearchTags = { "cataclysm", "cata", "eastern kingdoms", "ghostlands" }
     },
     {
         Name = "Antoran Charhound",
@@ -76,7 +79,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 5440,
         EncounterID = 1987,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 885, x = 0.548, y = 0.625 }
+        Waypoint = { mapID = 885, x = 0.548, y = 0.625 },
+        SearchTags = { "legion", "argus", "antoran wastes" }
     },
     {
         Name = "Anu'relos, Flame's Guidance",
@@ -84,10 +88,11 @@ AddOn.InstanceMounts = {
         Instance = "Amirdrassil, the Dream's Hope",
         InstanceID = 1207,
         MapID = 2549,
-        AreaPoiID = 7631, -- C_SuperTrack.SetSuperTrackedMapPin(0, ID)
+        AreaPoiID = 7631,
         EncounterID = 2519,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2200, x = 0.273, y = 0.31 }
+        Waypoint = { mapID = 2200, x = 0.273, y = 0.31 },
+        SearchTags = { "dragonflight", "df", "emerald dream" }
     },
     {
         Name = "Armored Razzashi Raptor",
@@ -98,7 +103,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6682,
         EncounterID = 176,
         DifficultyIDs = { DungeonDifficulty.Heroic },
-        Waypoint = { mapID = 224, x = 0.64, y = 0.218 }
+        Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        SearchTags = { "cataclysm", "cata", "eastern kingdoms", "stanglethorn vale", "stv" }
     },
     {
         Name = "Ascendant Skyrazor",
@@ -109,7 +115,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 7546,
         EncounterID = 2602,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2255, x = 0.436, y = 0.903 }
+        Waypoint = { mapID = 2255, x = 0.436, y = 0.903 },
+        SearchTags = { "the war within", "tww", "khaz algar", "azj-kahet" }
     },
     {
         Name = "Ashes of Al'ar",
@@ -121,7 +128,8 @@ AddOn.InstanceMounts = {
         EncounterID = 1576,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
         Notes = L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"],
-        Waypoint = { mapID = 109, x = 0.736, y = 0.637 }
+        Waypoint = { mapID = 109, x = 0.736, y = 0.637 },
+        SearchTags = { "burning crusade", "tbc", "outland", "netherstorm" }
     },
     {
         Name = "Astral Cloud Serpent",
@@ -137,7 +145,8 @@ AddOn.InstanceMounts = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 379, x = 0.596, y = 0.392 }
+        Waypoint = { mapID = 379, x = 0.596, y = 0.392 },
+        SearchTags = { "mists of pandaria", "mop", "pandaria", "kun-lai summit" }
     },
     {
         Name = "Azure Drake",
@@ -638,6 +647,16 @@ AddOn.InstanceMounts = {
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
         Waypoint = { mapID = 504, x = 0.638, y = 0.32 }
+    },
+    {
+        Name = "Stonevalut Mechsuit",
+        MountID = 2119,
+        Instance = "The Stonevault",
+        InstanceID = 1269,
+        MapID = 2652,
+        DifficultyIDs = { DungeonDifficulty.Mythic },
+        -- Waypoint = { mapID = , x = 0, y = 0 },
+        Notes = L["Requires completing a short questline after looting the Malfunctioning Mechsuit item from Void Speaker Eirich"]
     },
     {
         Name = "Sureki Skyrazor",

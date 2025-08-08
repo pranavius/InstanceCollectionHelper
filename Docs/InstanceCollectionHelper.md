@@ -301,13 +301,13 @@ Currently only displays mount information.
 
 
 ```lua
-function InstanceCollectionHelper.DataProviderInit(frame: ICHListItem, data: InstanceMount)
+function InstanceCollectionHelper.DataProviderInit(frame: ICHListItem, data: Mount)
 ```
 
 Initializes how data in the scrollable list should be displayed
 See:
-  * [ICHListItem](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Modules/DataProvider.lua#44#10)
-  * [InstanceMount](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Constants.lua#33#10)
+  * [ICHListItem](InstanceCollectionHelper/Modules/DataProvider.lua#44#10)
+  * [Mount](InstanceCollectionHelper/Constants.lua#33#10)
 
 ## DatabaseDefaults
 
@@ -316,12 +316,19 @@ See:
 table
 ```
 
+## DungeonDifficulty
+
+
+```lua
+enum DungeonDifficulty
+```
+
 ## FilterListContentsByQuery
 
 
 ```lua
-(method) InstanceCollectionHelper:FilterListContentsByQuery(listData: InstanceMount[])
-  -> InstanceMount[]
+(method) InstanceCollectionHelper:FilterListContentsByQuery(listData: Mount[])
+  -> Mount[]
 ```
 
 Filters a list of data based on search parameters
@@ -381,17 +388,26 @@ unknown
 unknown
 ```
 
+## InstanceMounts
+
+
+```lua
+Mount[]
+```
+
+List of mounts available from instances
+
 ## IsInstanceRaid
 
 
 ```lua
-(method) InstanceCollectionHelper:IsInstanceRaid(data: InstanceMount)
+(method) InstanceCollectionHelper:IsInstanceRaid(data: Mount)
   -> boolean
 ```
 
 @*return* — `true` if the instance is a raid, `false` otherwise
 
-See: [InstanceMount](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Constants.lua#33#10)
+See: [Mount](InstanceCollectionHelper/Constants.lua#33#10)
 
 ## OnInitialize
 
@@ -412,6 +428,13 @@ Prints a message to the chat window prefixed by the AddOn name
 @*param* `...` — Arguments to be printed to the chat window
 
 See: [print](file:///Users/pranavchary/.vscode/extensions/sumneko.lua-3.15.0-darwin-arm64/server/meta/Lua%205.4%20en-us%20utf8/basic.lua#235#9)
+
+## RaidDifficulty
+
+
+```lua
+enum RaidDifficulty
+```
 
 ## ScrollBar
 
@@ -512,7 +535,12 @@ Button to view the instance in the encounter journal in-game
 
 ---
 
-# InstanceMount
+# LuaLS
+
+
+---
+
+# Mount
 
 ## AreaPoiID
 
@@ -595,6 +623,15 @@ string?
 
 Additional notes about the mount or instance
 
+## SearchTags
+
+
+```lua
+string[]
+```
+
+A list of string identifiers to quickly search for a mount. This can include expansion abbreviations, expansion names, zones, continents, etc
+
 ## SharedDifficulties
 
 
@@ -612,11 +649,6 @@ Waypoint?
 ```
 
 Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance)
-
-
----
-
-# LuaLS
 
 
 ---
