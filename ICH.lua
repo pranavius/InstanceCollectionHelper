@@ -254,10 +254,16 @@ function AddOn:FilterListContentsByQuery(listData)
     local filtered = {}
     local query = self.Container.SearchBox:GetText():lower()
     for _, item in ipairs(listData) do
-        -- Remove things like textures or atlases from names
-        local cleanName = item.Name:lower():gsub("|.+|.*", "")
-        local nameMatches = cleanName:match(query) and true or false
-        local instanceMatches = item.Instance:lower():match(query) and true or false
+        -- Using localized names for mounts, instances, encounters, etc for better search results
+        local mountName = C_MountJournal.GetMountInfoByID(item.MountID) or ""
+        local instanceName = EJ_GetInstanceInfo(item.InstanceID) or ""
+        local encounterName = item.EncounterID and EJ_GetEncounterInfo(item.EncounterID) or ""
+        
+        -- Replace non-alphabet characters with empty strings for ease of search?
+        -- mountName = mountName:lower():gsub("|.+|.*", "")
+        local nameMatches = mountName:lower():match(query) and true or false
+        local instanceMatches = instanceName:lower():match(query) and true or false
+        local encounterMatches = encounterName:lower():match(query) and true or false
         local instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(item) or (query == L["dungeon"] and not self:IsInstanceRaid(item))
         local difficultyMatches = false
         for _, diffID in ipairs(item.DifficultyIDs) do
@@ -275,7 +281,7 @@ function AddOn:FilterListContentsByQuery(listData)
             end
         end
 
-        if nameMatches or instanceMatches or instanceTypeMatches or difficultyMatches then
+        if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches then
             tinsert(filtered, item)
         end
     end
