@@ -10,7 +10,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 if self.action == "INFO" then
                     GameTooltip:SetOwner(self, "ANCHOR_TOP")
                     GameTooltip:SetText(ICH_LANG["About the AddOn"])
-                if self.action == "HELP" then
+                elseif self.action == "HELP" then
                     GameTooltip:SetOwner(self, "ANCHOR_TOP")
                     GameTooltip:SetText(ICH_LANG["How To Use:"])
                     GameTooltip:AddLine("\n")
