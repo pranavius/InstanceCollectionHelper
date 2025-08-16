@@ -9,6 +9,9 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             <OnEnter>
                 if self.action == "INFO" then
                     GameTooltip:SetOwner(self, "ANCHOR_TOP")
+                    GameTooltip:SetText(ICH_LANG["About the AddOn"])
+                if self.action == "HELP" then
+                    GameTooltip:SetOwner(self, "ANCHOR_TOP")
                     GameTooltip:SetText(ICH_LANG["How To Use:"])
                     GameTooltip:AddLine("\n")
                     GameTooltip:AddLine("- "..ICH_LANG["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"], 1, 1, 1)
@@ -34,6 +37,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             <OnLeave>
                 GameTooltip:Hide()
             </OnLeave>
+            <OnClick/>
         </Scripts>
     </Button>
 </Ui>

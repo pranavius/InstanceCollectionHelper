@@ -101,19 +101,33 @@ function AddOn:CreateMainFrame()
     f.SearchHintsButton:SetNormalTexture("Interface\\AddOns\\InstanceCollectionHelper\\Media\\SearchHintsIcon.png")
     f.SearchHintsButton:SetHighlightTexture("Interface\\AddOns\\InstanceCollectionHelper\\Media\\SearchHintsIcon.png")
 
+    -- Help button
+    f.HelpButton = CreateFrame("Button", "ICHHelpButton", f, "ICHGenericButtonTemplate")
+    f.HelpButton.action = "HELP"
+    f.HelpButton:SetPoint("RIGHT", f.SearchHintsButton, "LEFT", -10, 0)
+    f.HelpButton:SetNormalTexture("Interface\\AddOns\\InstanceCollectionHelper\\Media\\HelpIcon.png")
+    f.HelpButton:SetHighlightTexture("Interface\\AddOns\\InstanceCollectionHelper\\Media\\HelpIcon.png")
+
     -- Info button
     f.InfoButton = CreateFrame("Button", "ICHInfoButton", f, "ICHGenericButtonTemplate")
     f.InfoButton.action = "INFO"
-    f.InfoButton:SetPoint("RIGHT", f.SearchHintsButton, "LEFT", -10, 0)
+    f.InfoButton:SetPoint("RIGHT", f.HelpButton, "LEFT", -10, 0)
     f.InfoButton:SetNormalTexture("Interface\\AddOns\\InstanceCollectionHelper\\Media\\InfoIcon.png")
     f.InfoButton:SetHighlightTexture("Interface\\AddOns\\InstanceCollectionHelper\\Media\\InfoIcon.png")
-
-    -- Allows closing via ESC key
-    tinsert(UISpecialFrames, f:GetName())
 
     self.Container = f
     self:CreateScrollingView()
     self:CreateFooter()
+    self:CreateAboutFrame()
+
+    f.InfoButton:SetScript("OnClick", function()
+        self.About:Show()
+        self.Container:Hide()
+    end)
+
+    -- Allows closing via ESC key
+    tinsert(UISpecialFrames, self.Container:GetName())
+    tinsert(UISpecialFrames, self.About:GetName())
 
     -- Set window scale
     self.Container:SetScale(self.db.global.windowScale)
@@ -259,9 +273,9 @@ function AddOn:FilterListContentsByQuery(listData)
         local instanceName = EJ_GetInstanceInfo(item.InstanceID) or ""
         local encounterName = item.EncounterID and EJ_GetEncounterInfo(item.EncounterID) or ""
         
-        -- Replace non-alphabet characters with empty strings for ease of search?
-        -- mountName = mountName:lower():gsub("|.+|.*", "")
-        local nameMatches = mountName:lower():match(query) and true or false
+        -- Remove things like textures or atlases from names
+        local cleanName = mountName:lower():gsub("|.+|.*", "")
+        local nameMatches = cleanName:match(query) and true or false
         local instanceMatches = instanceName:lower():match(query) and true or false
         local encounterMatches = encounterName:lower():match(query) and true or false
         local instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(item) or (query == L["dungeon"] and not self:IsInstanceRaid(item))
