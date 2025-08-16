@@ -8,6 +8,7 @@ Release versions suffixed with a lowercase letter are considered unofficial _alp
 - Created an "About" window for crediting translators and providing contact info for the AddOn
 - Added a button for opening the "About" window with an _info_ icon
 - Updated the icon for the "How to Use" tooltip of the AddOn to a _question mark_
+- Updated the search bar functionality to filter results more accurately in all languages
 - Minor code refactoring
 
 **v5**
