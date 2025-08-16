@@ -3,6 +3,14 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
+-- All WoW supported locales
+-- "enUS"|"enGB"|"enAU"|"esES"|"esMX"|"ptBR"|"ptPT"|"frFR"|"deDE"|"itIT"|"ruRU"|"koKR"|"zhTW"|"zhCN"
+
+---@class Translator
+---@field name string
+---@field locale string
+
+---@type Translator[]
 local translators = {
     { name = "Fargoran", locale = "deDE" },
     { name = "BNS333", locale = "zhTW" },

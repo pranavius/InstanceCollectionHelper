@@ -92,3 +92,10 @@ L["Waypoint tracking on the minimap may not always appear until you are in a spe
 L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "Por ejemplo, una flecha apuntando hacia "..WrapTextInColor("Trono del Trueno", DARKYELLOW_FONT_COLOR).." solo aparecerá cuando estés en la "..WrapTextInColor("Isla del Trueno", DARKYELLOW_FONT_COLOR)
 L["Set map pin"] = "Colocar marcador en el mapa"
 L["Set TomTom waypoint"] = "Colocar un waypoint de "..WrapTextInColor("TomTom", DARKYELLOW_FONT_COLOR)
+
+--- About ---
+L["About the AddOn"] = "Acerca del AddOn"
+L["Created by Pranavius"] = "Creado por Pranavius"
+L["Translations:"] = "Traducciones:"
+L["Open ICH"] = "Abrir ICH"
+L["Close"] = "Cerrar"

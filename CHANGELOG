@@ -3,10 +3,11 @@ This document describes changes to each version of **InstanceCollectionHelper (I
 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
-## Latest Version: 6
-
 ## Changes
 **v6**
+- Created an "About" window for crediting translators and providing contact info for the AddOn
+- Added a button for opening the "About" window with an _info_ icon
+- Updated the icon for the "How to Use" tooltip of the AddOn to a _question mark_
 - Minor code refactoring
 
 **v5**

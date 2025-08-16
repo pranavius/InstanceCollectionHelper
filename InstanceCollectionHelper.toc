@@ -3,7 +3,7 @@
 ## Notes: Helps find and set the instance difficulty needed to obtain collectible items
 ## IconTexture: Interface\AddOns\InstanceCollectionHelper\Media\Logo.png
 ## Author: pranavius
-## Version: 5
+## Version: 6
 ## SavedVariables: ICH_DB
 ## X-Flavor: retail
 ## X-Category: Achievements

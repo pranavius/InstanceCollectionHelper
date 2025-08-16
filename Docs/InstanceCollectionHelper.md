@@ -261,11 +261,25 @@ unknown
 
 # InstanceCollectionHelper
 
+## About
+
+
+```lua
+unknown
+```
+
 ## Container
 
 
 ```lua
 unknown
+```
+
+## CreateAboutFrame
+
+
+```lua
+(method) InstanceCollectionHelper:CreateAboutFrame()
 ```
 
 ## CreateFooter
@@ -306,14 +320,21 @@ function InstanceCollectionHelper.DataProviderInit(frame: ICHListItem, data: Ins
 
 Initializes how data in the scrollable list should be displayed
 See:
-  * [ICHListItem](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Modules/DataProvider.lua#44#10)
-  * [InstanceMount](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Constants.lua#33#10)
+  * [ICHListItem](InstanceCollectionHelper/Modules/DataProvider.lua#44#10)
+  * [InstanceMount](InstanceCollectionHelper/Constants.lua#33#10)
 
 ## DatabaseDefaults
 
 
 ```lua
 table
+```
+
+## DungeonDifficulty
+
+
+```lua
+enum DungeonDifficulty
 ```
 
 ## FilterListContentsByQuery
@@ -381,6 +402,15 @@ unknown
 unknown
 ```
 
+## InstanceMounts
+
+
+```lua
+InstanceMount[]
+```
+
+List of mounts available from instances
+
 ## IsInstanceRaid
 
 
@@ -391,7 +421,7 @@ unknown
 
 @*return* — `true` if the instance is a raid, `false` otherwise
 
-See: [InstanceMount](file:///Users/pranavchary/Documents/repos/InstanceCollectionHelper/Constants.lua#33#10)
+See: [InstanceMount](InstanceCollectionHelper/Constants.lua#33#10)
 
 ## OnInitialize
 
@@ -412,6 +442,13 @@ Prints a message to the chat window prefixed by the AddOn name
 @*param* `...` — Arguments to be printed to the chat window
 
 See: [print](file:///Users/pranavchary/.vscode/extensions/sumneko.lua-3.15.0-darwin-arm64/server/meta/Lua%205.4%20en-us%20utf8/basic.lua#235#9)
+
+## RaidDifficulty
+
+
+```lua
+enum RaidDifficulty
+```
 
 ## ScrollBar
 
@@ -658,6 +695,25 @@ ICHNote
 
 ```lua
 ICHWaypointButton
+```
+
+
+---
+
+# Translator
+
+## locale
+
+
+```lua
+string
+```
+
+## name
+
+
+```lua
+string
 ```
 
 
