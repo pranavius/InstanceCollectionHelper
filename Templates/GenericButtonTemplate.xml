@@ -1,0 +1,43 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Blizzard_SharedXML/UI.xsd">
+    <Button name="ICHGenericButtonTemplate" virtual="true" inherits="InsecureActionButtonTemplate">
+        <KeyValues>
+            <KeyValue key="action" value="" type="string" />
+        </KeyValues>
+        <Size x="20" y="20"/>
+        <Scripts>
+            <OnEnter>
+                if self.action == "INFO" then
+                    GameTooltip:SetOwner(self, "ANCHOR_TOP")
+                    GameTooltip:SetText(ICH_LANG["About the AddOn"])
+                if self.action == "HELP" then
+                    GameTooltip:SetOwner(self, "ANCHOR_TOP")
+                    GameTooltip:SetText(ICH_LANG["How To Use:"])
+                    GameTooltip:AddLine("\n")
+                    GameTooltip:AddLine("- "..ICH_LANG["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"], 1, 1, 1)
+                    GameTooltip:AddLine(ICH_LANG["to make sure it is updated."], 1, 1, 1)
+                    GameTooltip:AddLine("- "..ICH_LANG["When you are locked out for a mount on a particular difficulty, the button for that difficulty will be disabled."], 1, 1, 1)
+                    GameTooltip:AddLine("- "..ICH_LANG["A button will also be disabled for legacy raids completed on another difficulty since those lockouts"], 1, 1, 1)
+                    GameTooltip:AddLine(ICH_LANG["are shared across difficulties."], 1, 1, 1)
+                    GameTooltip:AddLine("- "..ICH_LANG["Waypoint tracking on the minimap may not always appear until you are in a specific zone."], 1, 1, 1)
+                    GameTooltip:AddLine(ICH_LANG["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"], 1, 1, 1)
+                elseif self.action == "SEARCH" then
+                    GameTooltip:SetOwner(self:GetParent(), "ANCHOR_NONE")
+                    GameTooltip:SetPoint("TOPLEFT", self:GetParent(), "TOPRIGHT")
+                    GameTooltip:SetText(ICH_LANG["Search Hints:"])
+                    GameTooltip:AddLine("\n")
+                    GameTooltip:AddLine("- "..ICH_LANG["\"raid\" will show all mounts that can be collected from a raid"], 1, 1, 1)
+                    GameTooltip:AddLine("- "..ICH_LANG["\"10\" will show all mounts that can be collected from a legacy 10 player raid (Normal or Heroic)"], 1, 1, 1)
+                    GameTooltip:AddLine("- "..ICH_LANG["\"fel\" will show all mounts and instances that contain \"fel\" in the name"], 1, 1, 1)
+                    GameTooltip:AddLine("- "..ICH_LANG["\"mythic\" will show all mounts that can be obtained from a Mythic dungeon or raid"], 1, 1, 1)
+                    GameTooltip:AddLine("- "..ICH_LANG["\"lfr\" will show all mounts that can be obtained from Raid Finder (LFR) difficulty raids"], 1, 1, 1)
+                end
+                GameTooltip:Show()
+            </OnEnter>
+            <OnLeave>
+                GameTooltip:Hide()
+            </OnLeave>
+            <OnClick/>
+        </Scripts>
+    </Button>
+</Ui>

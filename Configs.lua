@@ -207,6 +207,16 @@ AddOn.SlashOptions = {
                 else AddOn.Icon:Show(name)
                 end
             end
+        },
+        about = {
+            type = "execute",
+            name = "about",
+            desc = L["About the AddOn"],
+            order = counter(),
+            func = function()
+                if AddOn.Container:IsVisible() then AddOn.Container:Hide() end
+                if AddOn.About then AddOn.About:Show() end
+            end
         }
     }
 }

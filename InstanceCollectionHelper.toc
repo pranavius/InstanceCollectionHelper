@@ -1,9 +1,9 @@
-## Interface: 110200, 110107
+## Interface: 110200
 ## Title: Instance Collection Helper
 ## Notes: Helps find and set the instance difficulty needed to obtain collectible items
 ## IconTexture: Interface\AddOns\InstanceCollectionHelper\Media\Logo.png
 ## Author: pranavius
-## Version: 5
+## Version: 6
 ## SavedVariables: ICH_DB
 ## X-Flavor: retail
 ## X-Category: Achievements
@@ -12,7 +12,11 @@
 ## X-Wago-ID: kGr0j76y
 
 embeds.xml
-Templates.xml
+Templates\ListHeadersTemplate.xml
+Templates\GenericButtonTemplate.xml
+Templates\DifficultyButtonTemplate.xml
+Templates\ListItemTemplate.xml
+Elements.xml
 
 Localization\enUS.lua
 Localization\esMX.lua
@@ -23,5 +27,6 @@ Localization\zhCN.lua
 
 Configs.lua
 Constants.lua
+Modules\AboutICH.lua
 Modules\DataProvider.lua
 ICH.lua

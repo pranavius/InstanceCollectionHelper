@@ -92,3 +92,10 @@ L["Waypoint tracking on the minimap may not always appear until you are in a spe
 L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "Zum Beispiel erscheint eine Wegpunktmarkierung, die auf den Thron des Donners zeigt, nur wenn du dich auf der Insel des Donners befindest."
 L["Set map pin"] = "Kartenmarkierung setzen"
 L["Set TomTom waypoint"] = WrapTextInColor("TomTom", DARKYELLOW_FONT_COLOR).."-Wegpunkt setzen"
+
+--- About ---
+L["About the AddOn"] = "Über das AddOn"
+L["Created by Pranavius"] = "Erstellt von Pranavius"
+L["Translations:"] = "Übersetzungen:"
+L["Open ICH"] = "ICH öffnen"
+L["Close"] = "Schließen"
