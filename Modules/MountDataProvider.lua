@@ -163,7 +163,7 @@ end
 ---@param data InstanceMount
 ---@see ICHListItem
 ---@see InstanceMount
-function AddOn.DataProviderInit(frame, data)
+function AddOn.MountDataProviderInit(frame, data)
     if not frame or not data then return end
 
     local index = AddOn.ICHDataProvider:FindIndex(data)

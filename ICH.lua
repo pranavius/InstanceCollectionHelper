@@ -119,6 +119,8 @@ function AddOn:CreateMainFrame()
     self:CreateScrollingView()
     self:CreateFooter()
     self:CreateAboutFrame()
+    self:CreateTabSystem()
+    self.Tabs:SetTab(self.Tabs.MountsTab)
 
     f.InfoButton:SetScript("OnClick", function()
         self.About:Show()
@@ -136,8 +138,7 @@ function AddOn:CreateMainFrame()
     self.Container:Hide()
 end
 
----Initializes the scrollable list of data to display in the AddOn.<br/>
----Currently only displays mount information.
+---Initializes the scrollable list of data to display in the AddOn
 function AddOn:CreateScrollingView()
     self.Container.ListHeaders = CreateFrame("Frame", "ICHListHeaders", self.Container, "ICHListHeadersTemplate")
     self.Container.ListHeaders:SetPoint("TOPLEFT", self.Container.Title, "BOTTOMLEFT", 10, -45)
@@ -157,7 +158,6 @@ function AddOn:CreateScrollingView()
     self.ScrollView:SetDataProvider(self.ICHDataProvider)
 
     ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView)
-    self.ScrollView:SetElementInitializer("ICHListItemTemplate", self.DataProviderInit)
 end
 
 ---Initializes the footer in the AddOn that contains some display options for the window
@@ -207,31 +207,32 @@ function AddOn:CreateFooter()
 
     foot.ScaleContainer.WindowScale = scale
 
-    -- "Show Owned Mounts" Checkbox
     foot.OwnedContainer = CreateFrame("Frame", nil, foot)
     foot.OwnedContainer:SetWidth(175)
     foot.OwnedContainer:SetPoint("TOPRIGHT", foot, "TOPRIGHT", 0, 0)
     foot.OwnedContainer:SetPoint("BOTTOMRIGHT", foot, "BOTTOMRIGHT", 20, 0)
+    if self.Tabs.selectedTabID == self.Tabs.MountsTab then
+        -- "Show Owned Mounts" Checkbox
+        local ownedCb = CreateFrame("CheckButton", nil, foot.OwnedContainer, "UICheckButtonTemplate")
+        ownedCb:SetPoint("TOPRIGHT", foot.OwnedContainer, "TOPRIGHT", 0, 0)
+        ownedCb:SetPoint("BOTTOMLEFT", foot.OwnedContainer, "BOTTOMRIGHT", -32, 0)
+        ownedCb:SetChecked(self.db.global.showOwned)
+        
+        ownedCb.Text:SetText(L["Show Owned Mounts"])
+        ownedCb.Text:ClearAllPoints()
+        ownedCb.Text:SetPoint("RIGHT", ownedCb, "LEFT", -5, 2)
+        ownedCb.Text:SetPoint("LEFT", foot.OwnedContainer, "LEFT")
+        ownedCb.Text:SetJustifyH("RIGHT")
+        ownedCb.Text:SetFontObject("GameTooltipText")
+        
+        ownedCb:HookScript("OnClick", function(cb)
+            local value = cb:GetChecked()
+            self.db.global.showOwned = value
+            self:UpdateListContents("ICH_OWNED")
+        end)
     
-    local ownedCb = CreateFrame("CheckButton", nil, foot.OwnedContainer, "UICheckButtonTemplate")
-    ownedCb:SetPoint("TOPRIGHT", foot.OwnedContainer, "TOPRIGHT", 0, 0)
-    ownedCb:SetPoint("BOTTOMLEFT", foot.OwnedContainer, "BOTTOMRIGHT", -32, 0)
-    ownedCb:SetChecked(self.db.global.showOwned)
-    
-    ownedCb.Text:SetText(L["Show Owned Mounts"])
-    ownedCb.Text:ClearAllPoints()
-    ownedCb.Text:SetPoint("RIGHT", ownedCb, "LEFT", -5, 2)
-    ownedCb.Text:SetPoint("LEFT", foot.OwnedContainer, "LEFT")
-    ownedCb.Text:SetJustifyH("RIGHT")
-    ownedCb.Text:SetFontObject("GameTooltipText")
-    
-    ownedCb:HookScript("OnClick", function(cb)
-        local value = cb:GetChecked()
-        self.db.global.showOwned = value
-        self:UpdateListContents("ICH_OWNED")
-    end)
-
-    foot.OwnedContainer.Checkbox = ownedCb
+        foot.OwnedContainer.Checkbox = ownedCb
+    end
 
     -- "Use TomTom Waypoints" Checkbox
     foot.TomTomContainer = CreateFrame("Frame", nil, foot)
@@ -259,6 +260,8 @@ function AddOn:CreateFooter()
     foot.TomTomContainer.Checkbox = tomtomCb
     if C_AddOns.IsAddOnLoaded("TomTom") then foot.TomTomContainer:Show()
     else foot.TomTomContainer:Hide() end
+
+    self.Footer = foot
 end
 
 ---Filters a list of data based on search parameters
@@ -267,36 +270,38 @@ end
 function AddOn:FilterListContentsByQuery(listData)
     local filtered = {}
     local query = self.Container.SearchBox:GetText():lower()
-    for _, item in ipairs(listData) do
-        -- Using localized names for mounts, instances, encounters, etc for better search results
-        local mountName = C_MountJournal.GetMountInfoByID(item.MountID) or ""
-        local instanceName = EJ_GetInstanceInfo(item.InstanceID) or ""
-        local encounterName = item.EncounterID and EJ_GetEncounterInfo(item.EncounterID) or ""
-        
-        -- Remove things like textures or atlases from names
-        local cleanName = mountName:lower():gsub("|.+|.*", "")
-        local nameMatches = cleanName:match(query) and true or false
-        local instanceMatches = instanceName:lower():match(query) and true or false
-        local encounterMatches = encounterName:lower():match(query) and true or false
-        local instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(item) or (query == L["dungeon"] and not self:IsInstanceRaid(item))
-        local difficultyMatches = false
-        for _, diffID in ipairs(item.DifficultyIDs) do
-            if self:GetDifficultyButtonText(diffID):lower() == query or self:GetInstanceDifficultyText(diffID):lower() == query then
-                difficultyMatches = true
-                break
-            end
-        end
-        if not difficultyMatches and item.SharedDifficulties then
-            for shared, _ in pairs(item.SharedDifficulties) do
-                if self:GetDifficultyButtonText(shared):lower() == query or self:GetInstanceDifficultyText(shared):lower() == query then
+    if self.Tabs.selectedTabID == self.Tabs.MountTab then
+        for _, item in ipairs(listData) do
+            -- Using localized names for mounts, instances, encounters, etc for better search results
+            local mountName = C_MountJournal.GetMountInfoByID(item.MountID) or ""
+            local instanceName = EJ_GetInstanceInfo(item.InstanceID) or ""
+            local encounterName = item.EncounterID and EJ_GetEncounterInfo(item.EncounterID) or ""
+            
+            -- Remove things like textures or atlases from names
+            local cleanName = mountName:lower():gsub("|.+|.*", "")
+            local nameMatches = cleanName:match(query) and true or false
+            local instanceMatches = instanceName:lower():match(query) and true or false
+            local encounterMatches = encounterName:lower():match(query) and true or false
+            local instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(item) or (query == L["dungeon"] and not self:IsInstanceRaid(item))
+            local difficultyMatches = false
+            for _, diffID in ipairs(item.DifficultyIDs) do
+                if self:GetDifficultyButtonText(diffID):lower() == query or self:GetInstanceDifficultyText(diffID):lower() == query then
                     difficultyMatches = true
                     break
                 end
             end
-        end
+            if not difficultyMatches and item.SharedDifficulties then
+                for shared, _ in pairs(item.SharedDifficulties) do
+                    if self:GetDifficultyButtonText(shared):lower() == query or self:GetInstanceDifficultyText(shared):lower() == query then
+                        difficultyMatches = true
+                        break
+                    end
+                end
+            end
 
-        if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches then
-            tinsert(filtered, item)
+            if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches then
+                tinsert(filtered, item)
+            end
         end
     end
 
@@ -308,11 +313,21 @@ end
 function AddOn:UpdateListContents(event)
     if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then UIParentLoadAddOn("Blizzard_Collections") end
     if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then UIParentLoadAddOn("Blizzard_EncounterJournal") end
-    ---@type InstanceMount[]
     local newData = {}
-    for _, data in ipairs(self.InstanceMounts) do
-        local isOwned = select(11, C_MountJournal.GetMountInfoByID(data.MountID))
-        if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, data) end
+    if self.Tabs.selectedTabID == self.Tabs.MountsTab then
+        for _, data in ipairs(self.InstanceMounts) do
+            local isOwned = select(11, C_MountJournal.GetMountInfoByID(data.MountID))
+            if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, data) end
+        end
+
+        -- Grand Black War Mammoth: Remove version that is not for the current character's faction
+        local faction = UnitFactionGroup("player")
+        for i, data in pairs(newData) do
+            if (data.MountID == 286 and faction == "Horde") or (data.MountID == 287 and faction == "Alliance") then
+                tremove(newData, i)
+                break
+            end
+        end
     end
 
     -- Filter list results based on search criteria when present
@@ -320,20 +335,11 @@ function AddOn:UpdateListContents(event)
         newData = self:FilterListContentsByQuery(newData)
     end
 
-    -- Grand Black War Mammoth: Remove version that is not for the current character's faction
-    local faction = UnitFactionGroup("player")
-    for i, data in pairs(newData) do
-        if (data.MountID == 286 and faction == "Horde") or (data.MountID == 287 and faction == "Alliance") then
-            tremove(newData, i)
-            break
-        end
-    end
-
     self.ICHDataProvider = CreateDataProvider(newData)
     self.ScrollView:SetDataProvider(self.ICHDataProvider)
-    if #newData ~= self.ICHDataProvider:GetSize() and event == "ZONE_CHANGED" then
-        self:PrintChatMessage(L["Updated available mount list"])
-    end
+    -- if #newData ~= self.ICHDataProvider:GetSize() and event == "ZONE_CHANGED" then
+        -- self:PrintChatMessage(L["Updated available mount list"])
+    -- end
 end
 
 -- Exposes AddOn functionality for use in XML Templates

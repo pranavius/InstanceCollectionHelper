@@ -28,5 +28,6 @@ Localization\zhCN.lua
 Configs.lua
 Constants.lua
 Modules\AboutICH.lua
-Modules\DataProvider.lua
+Modules\CategoryTabs.lua
+Modules\MountDataProvider.lua
 ICH.lua

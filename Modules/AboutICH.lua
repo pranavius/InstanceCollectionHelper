@@ -17,6 +17,7 @@ local translators = {
     { name = "柳心怡", locale = "zhCN" }
 }
 
+---Initializes the About frame that displays contact info and translation credit for the AddOn
 function AddOn:CreateAboutFrame()
     local a = CreateFrame("Frame", "ICHAbout", UIParent)
     a:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
