@@ -26,6 +26,9 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
         <Frames>
             <Frame parentKey="NameContainer">
                 <Size x="209"/>
+                <KeyValues>
+                    <KeyValue key="name" value="" type="string"/>
+                </KeyValues>
                 <Anchors>
                     <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
                     <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT"/>
@@ -33,15 +36,15 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 <Frames>
                     <Button name="ICHViewItemButton" parentKey="ViewButton" inherits="InsecureActionButtonTemplate">
                         <Size x="24" y="24"/>
-                        <Anchors><Anchor point="LEFT" relativePoint="LEFT"/></Anchors>
+                        <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="0" y="-1" /></Anchors>
                         <Scripts>
                             <OnEnter>
+                                GameTooltip:SetOwner(self, "ANCHOR_TOP")
+                                GameTooltip:SetText(self:GetParent().name)
                                 if not self:GetParent():GetParent().isToy then
-                                    GameTooltip:SetOwner(self, "ANCHOR_TOP")
-                                    GameTooltip:SetText(self:GetParent().Text:GetText())
                                     GameTooltip:AddLine(ICH_LANG["View in mount journal"], 1, 1, 1, true)
-                                    GameTooltip:Show()
-                                end
+                                    end
+                                GameTooltip:Show()
                             </OnEnter>
                             <OnLeave>GameTooltip:Hide()</OnLeave>
                         </Scripts>
@@ -163,7 +166,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Anchors><Anchor point="LEFT" relativePoint="LEFT"/></Anchors>
                         <Layers>
                             <Layer level="OVERLAY">
-                                <Texture parentKey="NotesIcon" file="interface/icons/inv_misc_note_04">
+                                <Texture parentKey="NotesIcon" file="Interface/AddOns/InstanceCollectionHelper/Media/NotesIcon.png">
                                     <Anchors>
                                         <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
                                         <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
