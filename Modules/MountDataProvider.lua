@@ -42,6 +42,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field ICHWaypointButton ICHWaypointButton
 
 ---@class ICHListItem: Frame List item that displays relevant information for a given collectible
+---@field isToy boolean Whether or not the list item is for a toy
 ---@field Bg Texture The background texture for unowned list items
 ---@field OwnedBg Texture The background texture for owned list items
 ---@field NameContainer NameContainer
@@ -158,7 +159,7 @@ local function ShowDifficultyButtons(container, data, isOwned)
     end
 end
 
----Initializes how data in the scrollable list should be displayed
+---Initializes how mount data in the scrollable list should be displayed
 ---@param frame ICHListItem
 ---@param data InstanceMount
 ---@see ICHListItem
@@ -168,8 +169,8 @@ function AddOn.MountDataProviderInit(frame, data)
 
     local index = AddOn.ICHDataProvider:FindIndex(data)
 
-    local mountName, mountSpellID, _, _, _, _, _, _, _, _, isOwned = C_MountJournal.GetMountInfoByID(data.MountID)
-    local instanceName = EJ_GetInstanceInfo(data.InstanceID)
+    local localizedMountName, mountSpellID, _, _, _, _, _, _, _, _, isOwned = C_MountJournal.GetMountInfoByID(data.MountID)
+    local localizedInstanceName = EJ_GetInstanceInfo(data.InstanceID)
     if isOwned then
         frame.Bg:Hide()
         frame.OwnedBg:Show()
@@ -177,10 +178,10 @@ function AddOn.MountDataProviderInit(frame, data)
         frame.OwnedBg:Hide()
         if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
     end
-    AddOn:SetTruncatedText(frame.NameContainer.Text, mountName)
-    AddOn:SetTruncatedText(frame.InstanceContainer.Text, instanceName)
-    frame.NameContainer.Text:SetText(mountName) -- Localized mount name
-    frame.InstanceContainer.Text:SetText(instanceName) -- Localized instance name
+    AddOn:SetTruncatedText(frame.NameContainer.Text, localizedMountName) -- Localized mount name truncated if text width exceeds allocated space
+    AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName)  -- Localized instance name truncated if text width exceeds allocated space
+    -- frame.NameContainer.Text:SetText(localizedMountName)
+    -- frame.InstanceContainer.Text:SetText(localizedInstanceName)
 
     local iconID = C_Spell.GetSpellInfo(mountSpellID) and C_Spell.GetSpellInfo(mountSpellID).originalIconID
     if iconID then
@@ -201,19 +202,7 @@ function AddOn.MountDataProviderInit(frame, data)
         frame.OtherInfoContainer.ICHNote:Hide()
     end
 
-    if data.InstanceID == 1176 or data.InstanceID == 1194 or data.AreaPoiID or data.Waypoint then
-        if C_AddOns.IsAddOnLoaded("TomTom") and AddOn.db.global.useTomTomPoints then
-            frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/AddOns/TomTom/Images/GoldGreenDotNew")
-            frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/AddOns/TomTom/Images/GoldPurpleDotNew")
-            frame.OtherInfoContainer.ICHWaypointButton:SetSize(15, 15)
-        else
-            frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Untracked")
-            frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Tracked")
-            frame.OtherInfoContainer.ICHWaypointButton:SetSize(24, 24)
-        end
-        frame.OtherInfoContainer.ICHWaypointButton:Show()
-    elseif frame.OtherInfoContainer.ICHWaypointButton:IsShown() then frame.OtherInfoContainer.ICHWaypointButton:Hide() end
-    frame.OtherInfoContainer.ICHWaypointButton.instanceID = data.InstanceID
+    AddOn:ConfigureWaypointButton(localizedInstanceName, frame, data)
 
     frame.NameContainer.ViewButton:SetScript("OnClick", function()
         -- Currently only supports Mounts, but additional conditions could be added for showing things like Battle Pets and Achievements
@@ -235,89 +224,4 @@ function AddOn.MountDataProviderInit(frame, data)
         C_EncounterJournal.SetSlotFilter(Enum.ItemSlotFilterType.Other)
     end)
 
-    --- Sets and tracks navigation to a map marker at the coordinates or Area POI associated with an instance entrance
-    ---@param data InstanceMount
-    ---@return boolean isPinSet `true` if a map pin was successfully placed, `false` otherwise
-    ---@see InstanceMount
-    local function SetBlizzardMapPin(data)
-        -- Clear any previously supertracked pins and waypoints
-        C_SuperTrack.ClearSuperTrackedMapPin()
-        C_SuperTrack.SetSuperTrackedUserWaypoint(false)
-        C_Map.ClearUserWaypoint()
-
-        -- Special case for BoD (separate entrances based on faction)
-        if data.InstanceID == 1176 then
-            local faction = UnitFactionGroup("player")
-            C_SuperTrack.SetSuperTrackedMapPin(0, faction == "Horde" and 6012 or 6013)
-            return true
-        elseif data.InstanceID == 1194 then
-            -- Special case for Tazavesh (AreaPoiID is a flight path from Oribos)
-            C_SuperTrack.SetSuperTrackedMapPin(2, data.AreaPoiID)
-            return true
-        elseif data.AreaPoiID then
-            C_SuperTrack.SetSuperTrackedMapPin(0, data.AreaPoiID)
-            return true
-        elseif data.Waypoint then
-            C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(data.Waypoint.mapID, data.Waypoint.x, data.Waypoint.y))
-            C_SuperTrack.SetSuperTrackedUserWaypoint(true)
-            return true
-        end
-        return false
-    end
-
-    --- Sets a TomTom waypoint at the coordinates associated with an instance entrance
-    ---@param data InstanceMount
-    ---@return boolean isPinSet `true` if a map pin was successfully placed, `false` otherwise
-    ---@see InstanceMount
-    local function SetTomTomWaypoint(data)
-        if AddOn.db.global.currentTomTomWaypoint then
-            TomTom:RemoveWaypoint(AddOn.db.global.currentTomTomWaypoint)
-            AddOn.db.global.currentTomTomWaypoint = nil
-        end
-        local ttOptions = {
-            title = instanceName,
-            from = name,
-            crazy = true,
-            silent = true
-        }
-        -- Special case for BoD (separate entrances based on faction)
-        if data.InstanceID == 1176 then
-            local faction = UnitFactionGroup("player")
-            if faction == "Horde" then AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(862, 0.543, 0.299, ttOptions)
-            else AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(1161, 0.704, .356, ttOptions) end
-            return true
-        elseif data.InstanceID == 1194 then
-            -- Change the name of the TomTom waypoint when set for Tazavesh
-            ttOptions.title = "Oribos -> "..instanceName
-        end
-        if data.Waypoint then
-            AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(data.Waypoint.mapID, data.Waypoint.x, data.Waypoint.y, ttOptions)
-            return true
-        end
-
-        return false
-    end
-
-    frame.OtherInfoContainer.ICHWaypointButton:SetScript("OnClick", function()
-        local isPinSet = false
-        if C_AddOns.IsAddOnLoaded("TomTom") and AddOn.db.global.useTomTomPoints then
-            isPinSet = SetTomTomWaypoint(data)
-            AddOn:PrintChatMessage(isPinSet and L["TomTom waypoint set for"] or L["Unable to set TomTom waypoint for"], WrapTextInColor(instanceName, DARKYELLOW_FONT_COLOR))
-        else
-            isPinSet = SetBlizzardMapPin(data)
-            AddOn:PrintChatMessage(isPinSet and L["Map pin set for"] or L["Unable to set map pin for"], WrapTextInColor(instanceName, DARKYELLOW_FONT_COLOR))
-        end
-    end)
-end
-
----@param data InstanceMount
----@return boolean `true` if the instance is a raid, `false` otherwise
----@see InstanceMount
-function AddOn:IsInstanceRaid(data)
-    -- AQ has no difficulty IDs listed since it defaults to a 40-man when zoned in (not settable from the UI)
-    if #data.DifficultyIDs == 0 then return true end
-    for _, id in pairs(self.DungeonDifficulty) do
-        if id == data.DifficultyIDs[1] then return false end
-    end
-    return true
 end

@@ -7,19 +7,23 @@ function AddOn:CreateTabSystem()
     self.Tabs = CreateFrame("Frame", nil, self.Footer, "TabSystemTemplate")
     self:CreateTab("Mounts")
     self:CreateTab("Toys")
-    self:CreateTab("Pets")
+    self:CreateTab("Pets", false)
+    self.Tabs:GetTabButton(self.Tabs.PetsTab):SetTooltipText("Coming soon™")
     self.Tabs:SetTabSelectedCallback(function(tabID) self:HandleTabSelected(tabID) end)
     self.Tabs:SetPoint("TOPLEFT", self.Footer, "BOTTOMLEFT", 0, 0)
     self.Tabs:SetPoint("TOPRIGHT", self.Footer, "BOTTOMRIGHT", 0, 0)
 end
 
-function AddOn:CreateTab(tabName)
+function AddOn:CreateTab(tabName, enabled)
     local parentKey = tabName .. "Tab"
      self.Tabs[parentKey] = self.Tabs:AddTab(tabName)
+
+     if enabled ~= nil then
+        self.Tabs:SetTabEnabled(self.Tabs[parentKey], enabled)
+     end
 end
 
 function AddOn:HandleTabSelected(tabID)
-    if tabID == self.Tabs.MountsTab then
-        self.ScrollView:SetElementInitializer("ICHListItemTemplate", self.MountDataProviderInit)
-    end
+    self.db.global.selectedTab = tabID
+    self:UpdateListContents("TAB_CHANGE")
 end

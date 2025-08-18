@@ -1,0 +1,97 @@
+local name, AddOn = ...
+---@class InstanceCollectionHelper
+AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
+local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
+
+function AddOn:ConfigureWaypointButton(localizedInstanceName, frame, data)
+    if data.InstanceID == 1176 or data.InstanceID == 1194 or data.AreaPoiID or data.Waypoint then
+        if C_AddOns.IsAddOnLoaded("TomTom") and self.db.global.useTomTomPoints then
+            frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/AddOns/TomTom/Images/GoldGreenDotNew")
+            frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/AddOns/TomTom/Images/GoldPurpleDotNew")
+            frame.OtherInfoContainer.ICHWaypointButton:SetSize(15, 15)
+        else
+            frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Untracked")
+            frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Tracked")
+            frame.OtherInfoContainer.ICHWaypointButton:SetSize(24, 24)
+        end
+        frame.OtherInfoContainer.ICHWaypointButton:Show()
+    elseif frame.OtherInfoContainer.ICHWaypointButton:IsShown() then frame.OtherInfoContainer.ICHWaypointButton:Hide() end
+    frame.OtherInfoContainer.ICHWaypointButton.instanceID = data.InstanceID
+
+    frame.OtherInfoContainer.ICHWaypointButton:SetScript("OnClick", function() AddOn:HandleWaypointClick(data, localizedInstanceName) end)
+
+end
+
+--- Sets and tracks navigation to a map marker at the coordinates or Area POI associated with an instance entrance
+---@param data InstanceMount
+---@return boolean isPinSet `true` if a map pin was successfully placed, `false` otherwise
+---@see InstanceMount
+local function SetBlizzardMapPin(data)
+    -- Clear any previously supertracked pins and waypoints
+    C_SuperTrack.ClearSuperTrackedMapPin()
+    C_SuperTrack.SetSuperTrackedUserWaypoint(false)
+    C_Map.ClearUserWaypoint()
+
+    -- Special case for BoD (separate entrances based on faction)
+    if data.InstanceID == 1176 then
+        local faction = UnitFactionGroup("player")
+        C_SuperTrack.SetSuperTrackedMapPin(0, faction == "Horde" and 6012 or 6013)
+        return true
+    elseif data.InstanceID == 1194 then
+        -- Special case for Tazavesh (AreaPoiID is a flight path from Oribos)
+        C_SuperTrack.SetSuperTrackedMapPin(2, data.AreaPoiID)
+        return true
+    elseif data.AreaPoiID then
+        C_SuperTrack.SetSuperTrackedMapPin(0, data.AreaPoiID)
+        return true
+    elseif data.Waypoint then
+        C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(data.Waypoint.mapID, data.Waypoint.x, data.Waypoint.y))
+        C_SuperTrack.SetSuperTrackedUserWaypoint(true)
+        return true
+    end
+    return false
+end
+
+--- Sets a TomTom waypoint at the coordinates associated with an instance entrance
+---@param data InstanceMount
+---@return boolean isPinSet `true` if a map pin was successfully placed, `false` otherwise
+---@see InstanceMount
+local function SetTomTomWaypoint(data, localizedInstanceName)
+    if AddOn.db.global.currentTomTomWaypoint then
+        TomTom:RemoveWaypoint(AddOn.db.global.currentTomTomWaypoint)
+        AddOn.db.global.currentTomTomWaypoint = nil
+    end
+    local ttOptions = {
+        title = localizedInstanceName,
+        from = name,
+        crazy = true,
+        silent = true
+    }
+    -- Special case for BoD (separate entrances based on faction)
+    if data.InstanceID == 1176 then
+        local faction = UnitFactionGroup("player")
+        if faction == "Horde" then AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(862, 0.543, 0.299, ttOptions)
+        else AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(1161, 0.704, .356, ttOptions) end
+        return true
+    elseif data.InstanceID == 1194 then
+        -- Change the name of the TomTom waypoint when set for Tazavesh
+        ttOptions.title = "Oribos -> "..localizedInstanceName
+    end
+    if data.Waypoint then
+        AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(data.Waypoint.mapID, data.Waypoint.x, data.Waypoint.y, ttOptions)
+        return true
+    end
+
+    return false
+end
+
+function AddOn:HandleWaypointClick(data, localizedInstanceName)
+    local isPinSet = false
+        if C_AddOns.IsAddOnLoaded("TomTom") and self.db.global.useTomTomPoints then
+            isPinSet = SetTomTomWaypoint(data, localizedInstanceName)
+            self:PrintChatMessage(isPinSet and L["TomTom waypoint set for"] or L["Unable to set TomTom waypoint for"], WrapTextInColor(localizedInstanceName, DARKYELLOW_FONT_COLOR))
+        else
+            isPinSet = SetBlizzardMapPin(data)
+            self:PrintChatMessage(isPinSet and L["Map pin set for"] or L["Unable to set map pin for"], WrapTextInColor(localizedInstanceName, DARKYELLOW_FONT_COLOR))
+        end
+end

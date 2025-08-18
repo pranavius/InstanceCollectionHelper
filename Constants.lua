@@ -41,7 +41,7 @@ AddOn.RaidDifficulty = RaidDifficulty
 ---@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[] List of IDs for instance difficulty(s) the mount can be obtained in
 ---@field SharedDifficulties? table<RaidDifficulty, RaidDifficulty> Provides associations for difficulties that share a lockout with the listed `DifficultyID`
 ---@field Notes? string Additional notes about the mount or instance
----@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance)
+---@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance). Also used for TomTom waypoint integration.
 
 ---@type InstanceMount[] List of mounts available from instances
 AddOn.InstanceMounts = {
@@ -782,5 +782,43 @@ AddOn.InstanceMounts = {
         EncounterID = 2464,
         DifficultyIDs = { RaidDifficulty.Mythic },
         Waypoint = { mapID = 1970, x = 0.805, y = 0.534 }
+    }
+}
+
+---@class InstanceToy Toy data to process and display as a list item in the AddOn
+---@field Name string Name of the toy (for information only?)
+---@field ToyItemID number Item ID number for the toy
+---@field Instance string Instance from which the toy can be obtained (for information only?)
+---@field InstanceID number ID number for the instance
+---@field IsRaid boolean Whether or not the instance is a raid
+---@field MapID number ID number for the map of the instance
+---@field AreaPoiID? number ID number for the Point of Interest (POI) marker showing the instance entrance on the map. Used to place Blizzard map pins for navigation guidance
+---@field EncounterID? number ID number for the encounter from which the toy is available
+---@field DifficultyIDs? (DungeonDifficulty|RaidDifficulty)[] List of IDs for instance difficulty(s) the toy can be obtained in (is this even needed for toys?)
+---@field Notes? string Additional notes about the toy or instance
+---@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance). Also used for TomTom waypoint integration.
+
+---@type InstanceToy[] List of toys available from instances
+AddOn.InstanceToys = {
+    {
+        Name = "Cosmic Hearthstone",
+        ToyItemID = 246565,
+        Instance = "Manaforge Omega",
+        InstanceID = 1302,
+        IsRaid = true,
+        MapID = 2810,
+        AreaPoiID = 8363,
+        EncounterID = 2691,
+        Waypoint = { mapID = 2371, x = 0.417, y = 0.215 }
+    },
+    {
+        Name = "Krastinov's Bag of Horrors",
+        ToyItemID = 88566,
+        Instance = "Scholomance",
+        InstanceID = 246,
+        IsRaid = false,
+        MapID = 1007,
+        AreaPoiID = 6726,
+        Waypoint = { mapID = 22, x = 0.698, y = 0.736 }
     }
 }
