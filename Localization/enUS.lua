@@ -23,6 +23,13 @@ L["This item is obtainable even though it does not appear on the loot table for 
 L["Can drop from every boss in the dungeon"] = "Can drop from every boss in the dungeon"
 L["Can only be looted and used by a Druid"] = "Can only be looted and used by a "..WrapTextInColor("Druid", C_ClassColor.GetClassColor("DRUID"))
 L["Can also be looting by fishing within the instance"] = "Can also be looting by fishing within the instance"
+L["Requires completion of the achievement Relics of a Fallen Empire"] = "Requires completion of the achievement "..WrapTextInColor(select(2, GetAchievementInfo(17366)), DARKYELLOW_FONT_COLOR)
+L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."
+L["Dropped by the hidden boss Endgineer Omegaplugg"] = "Dropped by the hidden boss "..WrapTextInColor("Endgineer Omegaplugg", DARKYELLOW_FONT_COLOR)
+L["It is highly recommended to attempt this encounter with a full party"] = "It is highly recommended to attempt this encounter with a full party"
+L["Can only be looted and used by a Demon Hunter"] = "Can only be looted and used by a "..WrapTextInColor("Demon Hunter", C_ClassColor.GetClassColor("DEMONHUNTER"))
+L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "Drops from "..WrapTextInColor("Don Carlos", DARKYELLOW_FONT_COLOR).." who patrols part of the path south of Tarren Mill"
+L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "There are some reports of "..WrapTextInColor("Don Carlos", DARKYELLOW_FONT_COLOR).." despawning after any bosses are killed, so proceed with caution"
 
 --- Instance Difficulties ---
 L["LFR"] = "LFR"

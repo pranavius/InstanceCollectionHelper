@@ -801,6 +801,18 @@ AddOn.InstanceMounts = {
 ---@type InstanceToy[] List of toys available from instances
 AddOn.InstanceToys = {
     {
+        Name = "Brazier of Madness",
+        ToyItemID = 203757,
+        Instance = "Zul'Gurub",
+        InstanceID = 76,
+        IsRaid = false,
+        MapID = 859,
+        AreaPoiID = 6682,
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Notes = L["Requires completion of the achievement Relics of a Fallen Empire"],
+        Waypoint = { mapID = 224, x = 0.64, y = 0.218 }
+    },
+    {
         Name = "Cosmic Hearthstone",
         ToyItemID = 246565,
         Instance = "Manaforge Omega",
@@ -811,6 +823,18 @@ AddOn.InstanceToys = {
         EncounterID = 2691,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Waypoint = { mapID = 2371, x = 0.417, y = 0.215 }
+    },
+    {
+        Name = "Don Carlos' Famous Hat",
+        ToyItemID = 134019,
+        Instance = "Old Hillsbrad Foothills",
+        InstanceID = 251,
+        IsRaid = false,
+        MapID = 560,
+        AreaPoiID = 6666,
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Notes = L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"].."\n\n"..L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"],
+        Waypoint = { mapID = 22, x = 0.698, y = 0.736 }
     },
     {
         Name = "Explosive Hearthstone",
@@ -824,6 +848,17 @@ AddOn.InstanceToys = {
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["Can also be looting by fishing within the instance"],
         Waypoint = { mapID = 2346, x = 0.416, y = 0.488 }
+    },
+    {
+        Name = "Familiar Journal",
+        ToyItemID = 208096,
+        Instance = "Scholomance (Classic)",
+        InstanceID = 246,
+        IsRaid = false,
+        MapID = 1007,
+        AreaPoiID = 6726,
+        Notes = L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."],
+        Waypoint = { mapID = 22, x = 0.698, y = 0.736 }
     },
     {
         Name = "Fandral's Seed Pouch",
@@ -888,6 +923,32 @@ AddOn.InstanceToys = {
         Waypoint = { mapID = 122, x = 0.61, y = 0.307 }
     },
     {
+        Name = "Piccolo of the Flaming Fire",
+        ToyItemID = 13379,
+        Instance = "Stratholme - Main Gate",
+        InstanceID = 236,
+        IsRaid = false,
+        MapID = 329,
+        EncounterID = 443,
+        AreaPoiID = 6724,
+        DifficultyIDs = { DungeonDifficulty.Normal },
+        Notes = L["Also obtainable in Timewalking"],
+        Waypoint = { mapID = 122, x = 0.61, y = 0.307 }
+    },
+    {
+        Name = "Skull of Corruption",
+        ToyItemID = 143544,
+        Instance = "The Nighthold",
+        InstanceID = 786,
+        IsRaid = true,
+        MapID = 1530,
+        AreaPoiID = 5101,
+        EncounterID = 1737,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Notes = L["Can only be looted and used by a Demon Hunter"].."\n\n"..L["This item is obtainable even though it does not appear on the loot table for Gul'dan"],
+        Waypoint = { mapID = 680, x = 0.437, y = 0.573 }
+    },
+    {
         Name = "Unstable Portal Emitter",
         ToyItemID = 153004,
         Instance = "Seat of the Triumvirate",
@@ -910,5 +971,17 @@ AddOn.InstanceToys = {
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Notes = L["Dropped by the Rare Elite Vixx the Collector"],
         Waypoint = { mapID = 882, x = 0.222, y = 0.566 }
+    },
+    {
+        Name = "Vial of Green Goo",
+        ToyItemID = 141331,
+        Instance = "Gnomeregan",
+        InstanceID = 231,
+        IsRaid = false,
+        MapID = 90,
+        AreaPoiID = 6502,
+        DifficultyIDs = { DungeonDifficulty.Normal },
+        Notes = L["Dropped by the hidden boss Endgineer Omegaplugg"].."\n\n"..L["It is highly recommended to attempt this encounter with a full party"],
+        Waypoint = { mapID = 27, x = 0.314, y = 0.380 }
     }
 }
