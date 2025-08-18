@@ -16,6 +16,23 @@ L["Drops for Horde characters, but obtaining this also gives you the Alliance ve
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "进入副本后，团队难度将自动设定为普通"
 L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..WrapTextInColor("塔扎维什", DARKYELLOW_FONT_COLOR).."的故事线才能解锁飞行路径，先从 |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos", DARKYELLOW_FONT_COLOR).." 开始" -- 注意: "塔札維許" -> "塔扎维什" (简体官方译名)
 
+--- Toy Notes ---
+-- zhCN (Simplified Chinese)
+L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "掉落自"..WrapTextInColor("瑟尔林·卡斯迪诺夫教授", DARKYELLOW_FONT_COLOR).."，在击杀"..WrapTextInColor("血骨傀儡", DARKYELLOW_FONT_COLOR).."后有几率出现"
+L["Dropped by the Rare Elite Vixx the Collector"] = "掉落自稀有精英"..WrapTextInColor("收集者维克斯", DARKYELLOW_FONT_COLOR)
+L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "该物品可获得，尽管它未显示在"..WrapTextInColor("古尔丹", DARKYELLOW_FONT_COLOR).."的掉落表中"
+L["Can drop from every boss in the dungeon"] = "可以从副本中的每个首领处掉落"
+L["Can only be looted and used by a Druid"] = "仅限"..WrapTextInColor(select(1, GetClassInfo(11)), C_ClassColor.GetClassColor("DRUID")).."拾取并使用"
+L["Can also be looting by fishing within the instance"] = "也可以通过在副本内钓鱼获得"
+L["Requires completion of the achievement Relics of a Fallen Empire"] = "需要完成成就 "..WrapTextInColor(select(2, GetAchievementInfo(17366)), DARKYELLOW_FONT_COLOR)
+L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "此物品仅在通灵学院经典版本中可收集。如果尚未解锁此副本，请先在线查找指南。"
+L["Dropped by the hidden boss Endgineer Omegaplugg"] = "掉落自隐藏首领"..WrapTextInColor("工程师欧米加普格", DARKYELLOW_FONT_COLOR)
+L["It is highly recommended to attempt this encounter with a full party"] = "强烈建议以完整小队尝试此首领战"
+L["Can only be looted and used by a Demon Hunter"] = "仅限"..WrapTextInColor(select(1, GetClassInfo(12)), C_ClassColor.GetClassColor("DEMONHUNTER")).."拾取并使用"
+L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "掉落自"..WrapTextInColor("卡洛斯", DARKYELLOW_FONT_COLOR).."，他在塔倫米爾(塔伦米尔)以南的道路部分巡逻"
+L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "有报告称在击杀一些首领后"..WrapTextInColor("卡洛斯", DARKYELLOW_FONT_COLOR).."会消失；请谨慎行事"
+L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "掉落自位于"..WrapTextInColor("墨格瑞拉", DARKYELLOW_FONT_COLOR).."与"..WrapTextInColor("季鹍", DARKYELLOW_FONT_COLOR).."之间的巨型蜗牛怪物"
+
 --- Instance Difficulties ---
 L["LFR"] = "LFR" -- 通常保留缩写
 L["Normal"] = "普通"

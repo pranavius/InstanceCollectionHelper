@@ -16,6 +16,22 @@ L["Drops for Horde characters, but obtaining this also gives you the Alliance ve
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "Beim Betreten der Instanz wird die Schlachtzugsschwierigkeit automatisch auf Normal gesetzt."
 L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Erfordert den Abschluss der Tazavesh-Handlung, um den Flugpunkt von Oribos freizuschalten, beginnend mit |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos", DARKYELLOW_FONT_COLOR)
 
+--- Toy Notes ---
+L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "Beute von "..WrapTextInColor("Doktor Theolen Krastinov", DARKYELLOW_FONT_COLOR)..", der nach dem Töten von "..WrapTextInColor("Blutrippe", DARKYELLOW_FONT_COLOR).." mit zufälliger Chance spawnen kann"
+L["Dropped by the Rare Elite Vixx the Collector"] = "Beute von dem seltenen Elitegegner "..WrapTextInColor("Vizz der Sammler", DARKYELLOW_FONT_COLOR)
+L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "Dieser Gegenstand ist erhältlich, obwohl er nicht in der Beutetabelle von "..WrapTextInColor("Gul'dan", DARKYELLOW_FONT_COLOR).." erscheint"
+L["Can drop from every boss in the dungeon"] = "Kann von jedem Boss im Verlies fallen"
+L["Can only be looted and used by a Druid"] = "Kann nur von einem "..WrapTextInColor(select(1, GetClassInfo(11)), C_ClassColor.GetClassColor("DRUID")).." geplündert und benutzt werden"
+L["Can also be looting by fishing within the instance"] = "Kann auch durch Angeln innerhalb der Instanz erbeutet werden"
+L["Requires completion of the achievement Relics of a Fallen Empire"] = "Erfordert den Abschluss der Errungenschaft "..WrapTextInColor(select(2, GetAchievementInfo(17366)), DARKYELLOW_FONT_COLOR)
+L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "Dies ist nur in der Classic-Version von Scholomance sammelbar. Falls die Instanz nicht freigeschaltet ist, suche zuerst online nach einer Anleitung."
+L["Dropped by the hidden boss Endgineer Omegaplugg"] = "Beute vom versteckten Boss "..WrapTextInColor("Endgenieur Omegadraht", DARKYELLOW_FONT_COLOR)
+L["It is highly recommended to attempt this encounter with a full party"] = "Es wird dringend empfohlen, diesen Kampf mit einer vollen Gruppe zu versuchen"
+L["Can only be looted and used by a Demon Hunter"] = "Kann nur von einem "..WrapTextInColor(select(1, GetClassInfo(12)), C_ClassColor.GetClassColor("DEMONHUNTER")).." geplündert und benutzt werden"
+L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "Beute von "..WrapTextInColor("Don Carlos", DARKYELLOW_FONT_COLOR)..", der einen Teil des Weges südlich von Tarrens Mühle patrouilliert"
+L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "Es gibt Berichte, dass "..WrapTextInColor("Don Carlos", DARKYELLOW_FONT_COLOR).." verschwindet, nachdem Bossgegner getötet wurden; mit Vorsicht vorgehen"
+L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "Beute von Bauchfüßer zwischen "..WrapTextInColor("Megaera", DARKYELLOW_FONT_COLOR).." und "..WrapTextInColor("Ji-Kun", DARKYELLOW_FONT_COLOR)
+
 --- Instance Difficulties --- 
 L["LFR"] = "LFR"
 L["Normal"] = "Normal"
