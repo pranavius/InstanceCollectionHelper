@@ -221,7 +221,7 @@ function AddOn:CreateFooter()
     foot.OwnedContainer:SetPoint("TOPRIGHT", foot, "TOPRIGHT", 0, 0)
     foot.OwnedContainer:SetPoint("BOTTOMRIGHT", foot, "BOTTOMRIGHT", 20, 0)
     
-    -- "Show Owned Mounts" Checkbox
+    -- "Show Owned" Checkbox
     local ownedCb = CreateFrame("CheckButton", nil, foot.OwnedContainer, "UICheckButtonTemplate")
     ownedCb:SetPoint("TOPRIGHT", foot.OwnedContainer, "TOPRIGHT", 0, 0)
     ownedCb:SetPoint("BOTTOMLEFT", foot.OwnedContainer, "BOTTOMRIGHT", -32, 0)

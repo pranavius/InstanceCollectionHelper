@@ -16,3 +16,41 @@ function AddOn:IsInstanceRaid(data)
     end
     return true
 end
+
+---Determines whether or not an instance encounter has been completed for the reset period for a given difficulty
+---@param data InstanceMount|InstanceToy
+---@see InstanceMount
+---@see InstanceToy
+function AddOn.IsEncounterCompleted(data, difficultyID)
+    local encounterName
+    if data.EncounterID then encounterName = select(1, EJ_GetEncounterInfo(data.EncounterID)) end
+    for i = 1, GetNumSavedInstances() do
+        local _, _, _, diff, isLocked, _, _, _, _, _, numEncounters, _, _, mapID = GetSavedInstanceInfo(i)
+        if isLocked and diff == difficultyID then
+            if mapID == data.MapID then
+                if not encounterName then return isLocked
+                else
+                    for idx = 1, numEncounters do
+                        local bossName, _, isKilled = GetSavedInstanceEncounterInfo(i, idx)
+                        if encounterName:match(bossName) then return isKilled end
+                    end
+                end
+            end
+        end
+    end
+
+    return false
+end
+
+
+---@param data InstanceMount
+---@return boolean isCompleted `true` if an encounter has been completed for the reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise
+---@see InstanceMount
+function AddOn:IsEncounterCompletedOnSharedDifficulty(data)
+    local isCompleted = false
+    for shared, _ in pairs(data.SharedDifficulties) do
+        if self.IsEncounterCompleted(data, shared) then isCompleted = true break end
+    end
+
+    return isCompleted
+end

@@ -16,6 +16,14 @@ L["Drops for Horde characters, but obtaining this also gives you the Alliance ve
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "Upon entering the instance, raid difficulty will automatically be set to Normal"
 L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Requires completing the Tazavesh storyline to unlock flight path, beginning with |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos", DARKYELLOW_FONT_COLOR)
 
+--- Toy Notes ---
+L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "Dropped by "..WrapTextInColor("Doctor Theolen Krastinov", DARKYELLOW_FONT_COLOR)..", who has a random chance to spawn after killing "..WrapTextInColor("Rattlegore", DARKYELLOW_FONT_COLOR)
+L["Dropped by the Rare Elite Vixx the Collector"] = "Dropped by the Rare Elite "..WrapTextInColor("Vixx the Collector", DARKYELLOW_FONT_COLOR)
+L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "This item is obtainable even though it does not appear on the loot table for "..WrapTextInColor("Gul'dan", DARKYELLOW_FONT_COLOR)
+L["Can drop from every boss in the dungeon"] = "Can drop from every boss in the dungeon"
+L["Can only be looted and used by a Druid"] = "Can only be looted and used by a "..WrapTextInColor("Druid", C_ClassColor.GetClassColor("DRUID"))
+L["Can also be looting by fishing within the instance"] = "Can also be looting by fishing within the instance"
+
 --- Instance Difficulties ---
 L["LFR"] = "LFR"
 L["Normal"] = "Normal"

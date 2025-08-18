@@ -31,6 +31,7 @@ Utils.lua
 Modules\AboutICH.lua
 Modules\CategoryTabs.lua
 Modules\Waypoints.lua
+Modules\DifficultyButtons.lua
 Modules\MountDataProvider.lua
 Modules\ToyDataProvider.lua
 ICH.lua

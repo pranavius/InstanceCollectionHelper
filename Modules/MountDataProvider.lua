@@ -5,7 +5,8 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---@class NameContainer: Frame Displays elements relevant to a collectible's name<br/>
 ---For frame definition and more layout information, see `Templates.xml`
----@field Text FontString Name of a collectible
+---@field name string The full name of the collectible
+---@field Text FontString Name of a collectible (can be truncated if length exceeds allocated space)
 ---@field ViewButton Button Button to view the collectible in the appropriate collection journal in-game
 
 ---@class InstanceContainer: Frame Displays elements relevant to the instance where a collectible can be obtained<br/>
@@ -54,111 +55,6 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@see DifficultyContainer
 ---@see OtherInfoContainer
 
----Unsets all difficulty button points and hides them before showing the correct ones based on provided data
----@param container DifficultyContainer
----@see DifficultyContainer
-local function HideAllDifficultyButtons(container)
-    for _, button in ipairs({ container:GetChildren() }) do
-        button:Hide()
-    end
-end
-
----Determines whether or not an instance encounter has been completed for the reset period for a given difficulty
----@param data InstanceMount
----@see InstanceMount
-local function IsEncounterCompleted(data, difficultyID)
-    local encounterName
-    if data.EncounterID then encounterName = select(1, EJ_GetEncounterInfo(data.EncounterID)) end
-    for i = 1, GetNumSavedInstances() do
-        local _, _, _, diff, isLocked, _, _, _, _, _, numEncounters, _, _, mapID = GetSavedInstanceInfo(i)
-        if isLocked and diff == difficultyID then
-            if mapID == data.MapID then
-                if not encounterName then return isLocked
-                else
-                    for idx = 1, numEncounters do
-                        local bossName, _, isKilled = GetSavedInstanceEncounterInfo(i, idx)
-                        if encounterName:match(bossName) then return isKilled end
-                    end
-                end
-            end
-        end
-    end
-
-    return false
-end
-
----@param data InstanceMount
----@return boolean isCompleted `true` if an encounter has been completed for the reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise
----@see InstanceMount
-local function IsEncounterCompletedOnSharedDifficulty(data)
-    local isCompleted = false
-    for shared, _ in pairs(data.SharedDifficulties) do
-        if IsEncounterCompleted(data, shared) then isCompleted = true break end
-    end
-
-    return isCompleted
-end
-
----Determines which difficulty button(s) to display based on the provided data
----@param container DifficultyContainer
----@param data InstanceMount
----@param isOwned boolean? Whether or not the collectible is owned by the player. Omitting this argument is equivalent to providing `false`
----@see DifficultyContainer
----@see InstanceMount
-local function ShowDifficultyButtons(container, data, isOwned)
-    for i, diffID in ipairs(data.DifficultyIDs) do
-        local button
-        if AddOn:IsInstanceRaid(data) then
-            if diffID == AddOn.RaidDifficulty.LFR then button = container.RaidDiffLFRButton
-            elseif diffID == AddOn.RaidDifficulty.Legacy10 then button = container.RaidDiff10Button
-            elseif diffID == AddOn.RaidDifficulty.Legacy10H then button = container.RaidDiff10HeroicButton
-            elseif diffID == AddOn.RaidDifficulty.Legacy25 then button = container.RaidDiff25Button
-            elseif diffID == AddOn.RaidDifficulty.Legacy25H then button = container.RaidDiff25HeroicButton
-            elseif diffID == AddOn.RaidDifficulty.Normal then button = container.RaidDiffNormalButton
-            elseif diffID == AddOn.RaidDifficulty.Heroic then button = container.RaidDiffHeroicButton
-            elseif diffID == AddOn.RaidDifficulty.Mythic then button = container.RaidDiffMythicButton
-            end
-            if data.SharedDifficulties then button.sharedDifficulties = data.SharedDifficulties end
-        else
-            if diffID == AddOn.DungeonDifficulty.Normal then button = container.DungDiffNormalButton
-            elseif diffID == AddOn.DungeonDifficulty.Heroic then button = container.DungDiffHeroicButton
-            elseif diffID == AddOn.DungeonDifficulty.Mythic then button = container.DungDiffMythicButton
-            end
-        end
-
-        if button then
-            button:ClearAllPoints()
-            button:SetPoint("TOPLEFT", container, "TOPLEFT", i == 1 and 0 or ((50 * (i - 1)) + 2), -2.5)
-            button:SetPoint("BOTTOMLEFT", container, "BOTTOMLEFT", i == 1 and 0 or ((50 * (i - 1)) + 2), 2.5)
-            button:SetText(AddOn:GetDifficultyButtonText(button.difficultyID))
-            button:GetFontString():SetTextColor(1, 1, 1, 1)
-            button:GetFontString():SetDrawLayer("OVERLAY")
-            button:Enable()
-            button.ButtonTint:Show()
-            if isOwned or IsEncounterCompleted(data, diffID) or (data.SharedDifficulties and IsEncounterCompletedOnSharedDifficulty(data)) then
-                -- If an encounter has already been completed in the current reset period, disable the button and don't show a tinted overlay
-                -- For legacy raids that share a single lockout for all difficulties, check if the encounter has been completed on any shared difficulties as well
-                button:Disable()
-                if button.ButtonTint:IsShown() then button.ButtonTint:Hide() end
-            else
-                -- Tint dungeon buttons blue and raids green
-                if AddOn:IsInstanceRaid(data) then button.ButtonTint:SetVertexColor(0.082, 0.702, 0, 0.75)
-                else button.ButtonTint:SetVertexColor(0, 0.569, 0.949, 0.75) end
-                -- Mask ButtonTint with the same texture as the button background
-                if not button.TintMask then
-                    button.TintMask = button:CreateMaskTexture()
-                    button.TintMask:SetTexture("Interface/Buttons/UI-Panel-Button-Up")
-                    button.ButtonTint:AddMaskTexture(button.TintMask)
-                end
-                button.TintMask:ClearAllPoints()
-                button.TintMask:SetPoint("TOPLEFT", button.ButtonTint, "TOPLEFT", 3, -3)
-                button.TintMask:SetPoint("BOTTOMRIGHT", button.ButtonTint, "TOPLEFT", 73, -24)
-            end
-            button:Show()
-        end
-    end
-end
-
 ---Initializes how mount data in the scrollable list should be displayed
 ---@param frame ICHListItem
 ---@param data InstanceMount
@@ -179,11 +75,14 @@ function AddOn.MountDataProviderInit(frame, data)
         if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
     end
     AddOn:SetTruncatedText(frame.NameContainer.Text, localizedMountName) -- Localized mount name truncated if text width exceeds allocated space
+    frame.NameContainer.name = localizedMountName
     AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName)  -- Localized instance name truncated if text width exceeds allocated space
     -- frame.NameContainer.Text:SetText(localizedMountName)
     -- frame.InstanceContainer.Text:SetText(localizedInstanceName)
 
     local iconID = C_Spell.GetSpellInfo(mountSpellID) and C_Spell.GetSpellInfo(mountSpellID).originalIconID
+    frame.NameContainer.ViewButton:ClearNormalTexture()
+    frame.NameContainer.ViewButton:ClearHighlightTexture()
     if iconID then
         frame.NameContainer.ViewButton:SetNormalTexture(iconID)
         frame.NameContainer.ViewButton:SetHighlightTexture(iconID)
@@ -192,8 +91,8 @@ function AddOn.MountDataProviderInit(frame, data)
     frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
     frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
 
-    HideAllDifficultyButtons(frame.DifficultyContainer)
-    ShowDifficultyButtons(frame.DifficultyContainer, data, isOwned)
+    AddOn.HideAllDifficultyButtons(frame.DifficultyContainer)
+    AddOn:ShowDifficultyButtons(frame.DifficultyContainer, data, isOwned)
 
     if data.Notes then
         frame.OtherInfoContainer.ICHNote.notes = data.Notes

@@ -809,7 +809,60 @@ AddOn.InstanceToys = {
         MapID = 2810,
         AreaPoiID = 8363,
         EncounterID = 2691,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Waypoint = { mapID = 2371, x = 0.417, y = 0.215 }
+    },
+    {
+        Name = "Explosive Hearthstone",
+        ToyItemID = 236687,
+        Instance = "Liberation of Undermine",
+        InstanceID = 1296,
+        IsRaid = true,
+        MapID = 2769,
+        AreaPoiID = 8240,
+        EncounterID = 2642,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Notes = L["Can also be looting by fishing within the instance"],
+        Waypoint = { mapID = 2346, x = 0.416, y = 0.488 }
+    },
+    {
+        Name = "Fandral's Seed Pouch",
+        ToyItemID = 122304,
+        Instance = "Firelands",
+        InstanceID = 78,
+        IsRaid = true,
+        MapID = 720,
+        AreaPoiID = 6514,
+        EncounterID = 197,
+        DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
+        Notes = L["Can only be looted and used by a Druid"],
+        Waypoint = { mapID = 198, x = 0.468, y = 0.784 }
+    },
+    {
+        Name = "Golden Hearthstone Card: Lord Jaraxxus",
+        ToyItemID = 119211,
+        Instance = "The Nighthold",
+        InstanceID = 786,
+        IsRaid = true,
+        MapID = 1530,
+        AreaPoiID = 5101,
+        EncounterID = 1737,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Notes = L["This item is obtainable even though it does not appear on the loot table for Gul'dan"],
+        Waypoint = { mapID = 680, x = 0.437, y = 0.573 }
+    },
+    {
+        Name = "Hearthstone of the Flame",
+        ToyItemID = 209035,
+        Instance = "Amirdrassil, the Dream's Hope",
+        InstanceID = 1207,
+        IsRaid = true,
+        MapID = 2549,
+        AreaPoiID = 7631,
+        EncounterID = 2553,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Notes = L["Can also be looting by fishing within the instance"],
+        Waypoint = { mapID = 2200, x = 0.273, y = 0.31 }
     },
     {
         Name = "Krastinov's Bag of Horrors",
@@ -819,6 +872,43 @@ AddOn.InstanceToys = {
         IsRaid = false,
         MapID = 1007,
         AreaPoiID = 6726,
+        Notes = L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"],
         Waypoint = { mapID = 22, x = 0.698, y = 0.736 }
+    },
+    {
+        Name = "Orb of the Sin'dorei",
+        ToyItemID = 35275,
+        Instance = "Magister's Terrace",
+        InstanceID = 249,
+        IsRaid = false,
+        MapID = 585,
+        AreaPoiID = 6718,
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Notes = L["Can drop from every boss in the dungeon"].."\n\n"..L["Also obtainable in Timewalking"],
+        Waypoint = { mapID = 122, x = 0.61, y = 0.307 }
+    },
+    {
+        Name = "Unstable Portal Emitter",
+        ToyItemID = 153004,
+        Instance = "Seat of the Triumvirate",
+        InstanceID = 945,
+        IsRaid = false,
+        MapID = 1753,
+        AreaPoiID = 5327,
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Notes = L["Dropped by the Rare Elite Vixx the Collector"],
+        Waypoint = { mapID = 882, x = 0.222, y = 0.566 }
+    },
+    {
+        Name = "Vixx's Chest of Tricks",
+        ToyItemID = 152982,
+        Instance = "Seat of the Triumvirate",
+        InstanceID = 945,
+        IsRaid = false,
+        MapID = 1753,
+        AreaPoiID = 5327,
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Notes = L["Dropped by the Rare Elite Vixx the Collector"],
+        Waypoint = { mapID = 882, x = 0.222, y = 0.566 }
     }
 }
