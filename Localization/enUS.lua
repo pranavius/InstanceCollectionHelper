@@ -30,6 +30,7 @@ L["It is highly recommended to attempt this encounter with a full party"] = "It 
 L["Can only be looted and used by a Demon Hunter"] = "Can only be looted and used by a "..WrapTextInColor("Demon Hunter", C_ClassColor.GetClassColor("DEMONHUNTER"))
 L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "Drops from "..WrapTextInColor("Don Carlos", DARKYELLOW_FONT_COLOR).." who patrols part of the path south of Tarren Mill"
 L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "There are some reports of "..WrapTextInColor("Don Carlos", DARKYELLOW_FONT_COLOR).." despawning after any bosses are killed, so proceed with caution"
+L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "Drops from Gastropod mobs found between "..WrapTextInColor("Megaera", DARKYELLOW_FONT_COLOR).." and "..WrapTextInColor("Ji-Kun", DARKYELLOW_FONT_COLOR)
 
 --- Instance Difficulties ---
 L["LFR"] = "LFR"

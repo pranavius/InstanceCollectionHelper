@@ -874,6 +874,23 @@ AddOn.InstanceToys = {
         Waypoint = { mapID = 198, x = 0.468, y = 0.784 }
     },
     {
+        Name = "Gastropod Shell",
+        ToyItemID = 98136,
+        Instance = "Throne of Thunder",
+        InstanceID = 362,
+        IsRaid = true,
+        MapID = 1098,
+        AreaPoiID = 6508,
+        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        SharedDifficulties = {
+            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
+        },
+        Notes = L["Drops from Gastropod mobs found between Megaera and Ji-Kun"],
+        Waypoint = { mapID = 504, x = 0.638, y = 0.32 }
+    },
+    {
         Name = "Golden Hearthstone Card: Lord Jaraxxus",
         ToyItemID = 119211,
         Instance = "The Nighthold",
@@ -907,6 +924,7 @@ AddOn.InstanceToys = {
         IsRaid = false,
         MapID = 1007,
         AreaPoiID = 6726,
+        DifficultyIDs = { DungeonDifficulty.Heroic },
         Notes = L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"],
         Waypoint = { mapID = 22, x = 0.698, y = 0.736 }
     },
