@@ -66,6 +66,7 @@ L["Search by mount/instance name, instance type, or difficulty"] = "搜尋根據
 L["Scale"] = "縮放"
 L["Use TomTom waypoints"] = "使用TomTom路徑點"
 L["Show Owned Mounts"] = "顯示已擁有的坐騎"
+L["Show Owned"] = "顯示收集的物品"
 L["How To Use:"] = "如何使用:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "尋找你想要在列表中收集的坐騎，並點擊你想要刷的難度按鈕。"
 L["to make sure it is updated."] = "為確保列表更新。"

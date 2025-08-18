@@ -66,6 +66,7 @@ L["Search by mount/instance name, instance type, or difficulty"] = "Suche nach R
 L["Scale"] = "Skalierung"
 L["Use TomTom waypoints"] = "TomTom-Wegpunkte verwenden"
 L["Show Owned Mounts"] = "Gesammelte Reittiere anzeigen"
+L["Show Owned"] = "Gesammelte Artikel anzeigen"
 L["How To Use:"] = "Anleitung:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "Finde das gewünschte Reittier in der Liste und klicke auf den Button für die gewünschte Schwierigkeit."
 L["to make sure it is updated."] = "um sicherzustellen, dass sie aktualisiert ist."

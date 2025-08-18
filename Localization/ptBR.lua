@@ -67,6 +67,7 @@ L["Search by mount/instance name, instance type, or difficulty"] = "Nome de mont
 L["Scale"] = "Escala"
 L["Use TomTom waypoints"] = "Usar waypoints de TomTom"
 L["Show Owned Mounts"] = "Mostrar montarias possuídas"
+L["Show Owned"] = "Mostrar itens possuídos"
 L["How To Use:"] = "Como usar:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "Encontre a montaria que deseja coletar na lista e clique no botão da dificuldade em que quer executar"
 L["to make sure it is updated."] = "para garantir que esteja atualizada."

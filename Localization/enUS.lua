@@ -66,6 +66,8 @@ L["Search by mount/instance name, instance type, or difficulty"] = "Search by mo
 L["Scale"] = "Scale"
 L["Use TomTom waypoints"] = "Use TomTom waypoints"
 L["Show Owned Mounts"] = "Show Owned Mounts"
+-- Below replaces "Show Owned Mounts"
+L["Show Owned"] = "Show Owned"
 L["How To Use:"] = "How To Use:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "Find the mount you want to collect in the list and click the button for the difficulty you want to run on"
 L["to make sure it is updated."] = "to make sure it is updated."
