@@ -1,24 +1,25 @@
 # InstanceCollectionHelper
 
-_Track available mounts from instances and easily set required instance difficulty_
+_Track available collectibles from instances and easily set required instance difficulty_
 
 **Important:** I am looking for translators to help bring this AddOn to those who may not understand English. If interested, please contact me via one of the means listed in the [Contact](#contact) section.
 
 ## Highlights
-- Search for a mount by its name, an instance name or type, as well as a difficulty setting
+- **NEW**: Tabs for both mounts and toys that are available from instances
+- Search for a mount or toy by its name, an instance name or type, as well as a difficulty setting
 - Multi-column scrollable UI with Name, Instance, and Available Difficulty columns
-- Links to in-game mount journal as well as instance and encounter journal for each list item
+- Links to in-game mount journal as well as instance and encounter journal for each item in the list
 - Ability to drop a map pin or **TomTom** waypoint at the dungeon or raid entrance to make navigating to each instance easier
 - Simple buttons to set your desired instance difficulty with a single click
 - DataBroker integration for quick access to options via minimap icon or other DataBroker AddOns
 
 ## Summary
-**InstanceCollectionHelper** is designed to help collectors easily identify and set an appropriate instance difficulty when pursuing a mount from a dungeon or raid. Available mounts can be further filtered by mount name, instance name, instance type (dungeon or raid), as well as instance difficulty. When a mount cannot be obtained on a given difficulty, the button for that difficulty will be disabled. This effectively provides a simple and clean "to-do" list in the AddOn UI so you can decide to attempt to get the mount on another difficulty or pivot to hunting for a new one.
+**InstanceCollectionHelper** is designed to help collectors easily identify and set an appropriate instance difficulty when pursuing a collectible from a dungeon or raid. Available items can be further filtered by name, instance name, instance type (dungeon or raid), as well as instance difficulty. When a collectible cannot be obtained on a given difficulty, the button for that difficulty will be disabled. This effectively provides a simple and clean "to-do" list in the AddOn UI so you can decide to attempt to get the item on another difficulty or pivot to hunting for a new one.
 
-Although this AddOn currently only supports mount collection, there are plans to add other collectibles such as Battle Pets in the future. If you see that any mounts are missing from this list, please let me know and I'll be happy to add them ASAP.
+Currently, this AddOn supports mount and toy collection with plans to add other collectibles such as Battle Pets and Achievements in the future. If you see that any items are missing from this list, please let me know and I'll be happy to add them ASAP.
 
 ### Supported Languages
-All mount and instance names will appear in the language that the game is being played in, but other text may appear in English. Currently, the following languages are either supported or in the process of being localized:
+All collectible and instance names will appear in the language that the game is being played in, but other text may appear in English. Currently, the following languages are either supported or in the process of being localized:
 - English (`enUS`)
 - Spanish (`esMX`)
 - Portuguese (`ptBR`)
