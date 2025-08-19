@@ -23,7 +23,7 @@ L["This item is obtainable even though it does not appear on the loot table for 
 L["Can drop from every boss in the dungeon"] = "Pode cair de todos os chefes da masmorra"
 L["Can only be looted and used by a Druid"] = "Só pode ser saqueado e usado por um "..WrapTextInColor(select(1, GetClassInfo(11)), C_ClassColor.GetClassColor("DRUID"))
 L["Can also be looting by fishing within the instance"] = "Também pode ser obtido pescando dentro da masmorra"
-L["Requires completion of the achievement Relics of a Fallen Empire"] = "Requer a conclusão do feito "..WrapTextInColor(select(2, GetAchievementInfo(17366)), DARKYELLOW_FONT_COLOR)
+L["Requires completion of the achievement Relics of a Fallen Empire"] = "Requer a conclusão do feito "..WrapTextInColor(select(2, GetAchievementInfo(17366)) or "Relics of a Fallen Empire", DARKYELLOW_FONT_COLOR)
 L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "Isto só é colecionável na versão Clássica de Scolomântia. Se não tiver essa instância desbloqueada, procure um guia online primeiro."
 L["Dropped by the hidden boss Endgineer Omegaplugg"] = "Obtido do chefe oculto "..WrapTextInColor("Engenheiro Omegaplugue", DARKYELLOW_FONT_COLOR)
 L["It is highly recommended to attempt this encounter with a full party"] = "Recomenda-se fortemente tentar este encontro com um grupo completo"

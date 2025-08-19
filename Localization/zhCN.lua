@@ -23,7 +23,7 @@ L["This item is obtainable even though it does not appear on the loot table for 
 L["Can drop from every boss in the dungeon"] = "可以从副本中的每个首领处掉落"
 L["Can only be looted and used by a Druid"] = "仅限"..WrapTextInColor(select(1, GetClassInfo(11)), C_ClassColor.GetClassColor("DRUID")).."拾取并使用"
 L["Can also be looting by fishing within the instance"] = "也可以通过在副本内钓鱼获得"
-L["Requires completion of the achievement Relics of a Fallen Empire"] = "需要完成成就 "..WrapTextInColor(select(2, GetAchievementInfo(17366)), DARKYELLOW_FONT_COLOR)
+L["Requires completion of the achievement Relics of a Fallen Empire"] = "需要完成成就 "..WrapTextInColor(select(2, GetAchievementInfo(17366)) or "Relics of a Fallen Empire", DARKYELLOW_FONT_COLOR)
 L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "此物品仅在通灵学院经典版本中可收集。如果尚未解锁此副本，请先在线查找指南。"
 L["Dropped by the hidden boss Endgineer Omegaplugg"] = "掉落自隐藏首领"..WrapTextInColor("工程师欧米加普格", DARKYELLOW_FONT_COLOR)
 L["It is highly recommended to attempt this encounter with a full party"] = "强烈建议以完整小队尝试此首领战"
