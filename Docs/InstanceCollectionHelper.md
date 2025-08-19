@@ -197,6 +197,15 @@ boolean
 
 Whether or not the list item is for a toy
 
+## relevantID
+
+
+```lua
+number
+```
+
+The ID number for the collectible. For mounts, this value is `mountID` and for toys it is `itemID`
+
 
 ---
 
@@ -367,13 +376,6 @@ Initializes the tab system for viewing different types of collectibles available
 table
 ```
 
-## DungeonDifficulty
-
-
-```lua
-enum DungeonDifficulty
-```
-
 ## FilterListContentsByQuery
 
 
@@ -482,24 +484,6 @@ unknown
 unknown
 ```
 
-## InstanceMounts
-
-
-```lua
-InstanceMount[]
-```
-
-List of mounts available from instances
-
-## InstanceToys
-
-
-```lua
-InstanceToy[]
-```
-
-List of toys available from instances
-
 ## IsEncounterCompleted
 
 
@@ -560,13 +544,6 @@ Prints a message to the chat window prefixed by the AddOn name
 @*param* `...` — Arguments to be printed to the chat window
 
 See: [print](file:///Users/pranavchary/.vscode/extensions/sumneko.lua-3.15.0-darwin-arm64/server/meta/Lua%205.4%20en-us%20utf8/basic.lua#235#9)
-
-## RaidDifficulty
-
-
-```lua
-enum RaidDifficulty
-```
 
 ## ScrollBar
 
