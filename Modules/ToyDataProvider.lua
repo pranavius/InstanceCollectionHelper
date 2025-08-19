@@ -3,6 +3,30 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
+---Attempts to fetch the toy information up to 3 times before displaying fallback values in the list until data can be retrieved<br/>
+---This prevents a bad user experience where multiple list entries are just missing information
+---@param data InstanceToy
+---@return string toyName The localized name of the toy. If toy information cannot be retrieved, this falls back to the `enUS` locale
+---@return number iconID The icon ID for the toy. If toy information cannot be retrieved, this falls back to the standard question mark icon used commonly in WoW
+local function RetryGetToyInfo(data)
+    if not C_Item.IsItemDataCachedByID(data.ToyItemID) then C_Item.RequestLoadItemDataByID(data.ToyItemID) end
+
+    local toyName, iconID
+    local attempts = 1
+    -- Attempt to fetch toy info multiple times
+    while attempts < 4 do
+        _, toyName, iconID = C_ToyBox.GetToyInfo(data.ToyItemID)
+        if toyName and iconID then break else attempts = attempts + 1 end
+    end
+    -- If values are not fetched, fallback on the English name stored in the AddOn table and a question mark icon
+    if not toyName or not iconID then
+        toyName = data.Name
+        iconID = 134400
+    end
+
+    return toyName, iconID
+end
+
 ---Initializes how toy data in the scrollable list should be displayed
 ---@param frame ICHListItem
 ---@param data InstanceToy
@@ -14,7 +38,7 @@ function AddOn.ToyDataProviderInit(frame, data)
 
     local index = AddOn.ICHDataProvider:FindIndex(data)
 
-    local _, localizedToyName, iconID = C_ToyBox.GetToyInfo(data.ToyItemID)
+    local localizedToyName, iconID = RetryGetToyInfo(data)
     local localizedInstanceName = EJ_GetInstanceInfo(data.InstanceID)
     local isOwned = PlayerHasToy(data.ToyItemID)
     if isOwned then
@@ -31,11 +55,7 @@ function AddOn.ToyDataProviderInit(frame, data)
 
     frame.NameContainer.ViewButton:ClearNormalTexture()
     frame.NameContainer.ViewButton:ClearHighlightTexture()
-    if iconID then
-        frame.NameContainer.ViewButton:SetNormalTexture(iconID)
-    else
-        print("iconID not found for toy", localizedToyName, "with ID", data.ToyItemID)
-    end
+    frame.NameContainer.ViewButton:SetNormalTexture(iconID)
 
     frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
     frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
