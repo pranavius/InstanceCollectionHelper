@@ -7,6 +7,7 @@ Release versions suffixed with a lowercase letter are considered unofficial _alp
 **v7**
 - **Major update:** Added tabs at the bottom of the window to switch between viewing mounts and toys available from instances
 - **Major update:** Added a list of toys that are available from dungeons and raids as of Patch 11.2 (Ghosts of K'aresh)
+- Updated all tooltips to match the one shown in-game for the given collectible
 - Refactored code and made minor updates to the UI so that both mounts and toys can be accomodated
 - Updated localization strings for supported locales (_still looking for translators!_)
 - Updated the icon used for indicating a note on a list item
