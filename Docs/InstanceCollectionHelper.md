@@ -378,8 +378,8 @@ enum DungeonDifficulty
 
 
 ```lua
-(method) InstanceCollectionHelper:FilterListContentsByQuery(listData: InstanceMount[])
-  -> InstanceMount[]
+(method) InstanceCollectionHelper:FilterListContentsByQuery(listData: (InstanceMount|InstanceToy)[])
+  -> (InstanceMount|InstanceToy)[]
 ```
 
 Filters a list of data based on search parameters
