@@ -77,8 +77,6 @@ function AddOn.MountDataProviderInit(frame, data)
     AddOn:SetTruncatedText(frame.NameContainer.Text, localizedMountName) -- Localized mount name truncated if text width exceeds allocated space
     frame.NameContainer.name = localizedMountName
     AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName)  -- Localized instance name truncated if text width exceeds allocated space
-    -- frame.NameContainer.Text:SetText(localizedMountName)
-    -- frame.InstanceContainer.Text:SetText(localizedInstanceName)
 
     local iconID = C_Spell.GetSpellInfo(mountSpellID) and C_Spell.GetSpellInfo(mountSpellID).originalIconID
     frame.NameContainer.ViewButton:ClearNormalTexture()

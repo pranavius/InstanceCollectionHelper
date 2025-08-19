@@ -5,6 +5,7 @@ AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 ---@param data InstanceMount|InstanceToy
 ---@return boolean `true` if the instance is a raid, `false` otherwise
 ---@see InstanceMount
+---@see InstanceToy
 function AddOn:IsInstanceRaid(data)
     -- For toys, we just check for the IsRaid property
     if data.IsRaid ~= nil then return data.IsRaid end
@@ -43,9 +44,10 @@ function AddOn.IsEncounterCompleted(data, difficultyID)
 end
 
 
----@param data InstanceMount
+---@param data InstanceMount|InstanceToy
 ---@return boolean isCompleted `true` if an encounter has been completed for the reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise
 ---@see InstanceMount
+---@see InstanceToy
 function AddOn:IsEncounterCompletedOnSharedDifficulty(data)
     local isCompleted = false
     for shared, _ in pairs(data.SharedDifficulties) do

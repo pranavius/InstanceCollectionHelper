@@ -15,10 +15,6 @@ function AddOn.ToyDataProviderInit(frame, data)
     local index = AddOn.ICHDataProvider:FindIndex(data)
 
     local _, localizedToyName, iconID = C_ToyBox.GetToyInfo(data.ToyItemID)
-    -- if localizedToyName == nil or iconID == nil then
-    --     --Retry.
-    --     _, localizedToyName, iconID = C_ToyBox.GetToyInfo(data.ToyItemID)
-    -- end
     local localizedInstanceName = EJ_GetInstanceInfo(data.InstanceID)
     local isOwned = PlayerHasToy(data.ToyItemID)
     if isOwned then
@@ -37,7 +33,6 @@ function AddOn.ToyDataProviderInit(frame, data)
     frame.NameContainer.ViewButton:ClearHighlightTexture()
     if iconID then
         frame.NameContainer.ViewButton:SetNormalTexture(iconID)
-        -- frame.NameContainer.ViewButton:SetHighlightTexture(iconID)
     else
         print("iconID not found for toy", localizedToyName, "with ID", data.ToyItemID)
     end

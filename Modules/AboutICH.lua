@@ -6,9 +6,9 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 -- All WoW supported locales
 -- "enUS"|"enGB"|"enAU"|"esES"|"esMX"|"ptBR"|"ptPT"|"frFR"|"deDE"|"itIT"|"ruRU"|"koKR"|"zhTW"|"zhCN"
 
----@class Translator
----@field name string
----@field locale string
+---@class Translator An individual who has contributed to the localization of ICH in another language/locale besides English (_enUS_)
+---@field name string The name of the translator
+---@field locale string The locale for which they provided translations
 
 ---@type Translator[]
 local translators = {
