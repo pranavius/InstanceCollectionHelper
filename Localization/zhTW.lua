@@ -110,6 +110,7 @@ L["Waypoint tracking on the minimap may not always appear until you are in a spe
 L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "舉例，指向的箭頭 "..WrapTextInColor("雷霆王座", DARKYELLOW_FONT_COLOR).." 會顯示只有當您位於 "..WrapTextInColor("雷王島", DARKYELLOW_FONT_COLOR)
 L["Set map pin"] = "設定地圖標記"
 L["Set TomTom waypoint"] = "設定 "..WrapTextInColor("TomTom", DARKYELLOW_FONT_COLOR).." 路徑點"
+L["Coming soon"] = "即將推出"
 
 --- About ---
 L["About the AddOn"] = "關於外掛"               -- note: could also be "關於插件" depending on preference

@@ -110,6 +110,7 @@ L["Waypoint tracking on the minimap may not always appear until you are in a spe
 L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "Por exemplo, uma seta apontando para o "..WrapTextInColor("Trono do Trovão", DARKYELLOW_FONT_COLOR).." só aparecerá quando você estiver na "..WrapTextInColor("Ilha do Trovão", DARKYELLOW_FONT_COLOR)
 L["Set map pin"] = "Definir marcador no mapa"
 L["Set TomTom waypoint"] = "Colocar um waypoint "..WrapTextInColor("TomTom", DARKYELLOW_FONT_COLOR)
+L["Coming soon"] = "Em breve"
 
 --- About ---
 L["About the AddOn"] = "Sobre o AddOn"
