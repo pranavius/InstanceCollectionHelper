@@ -79,6 +79,7 @@ L["raid"] = "raid"
 
 --- UI --- 
 L["Search by mount/instance name, instance type, or difficulty"] = "Suche nach Reittier-/Instanzname, Instanztyp oder Schwierigkeit"
+L["Search by toy/instance name, instance type, or difficulty"] = "Suche nach Spielzeug-/Instanzname, Instanztyp oder Schwierigkeit"
 L["Scale"] = "Skalierung"
 L["Use TomTom waypoints"] = "TomTom-Wegpunkte verwenden"
 L["Show Owned Mounts"] = "Gesammelte Reittiere anzeigen"

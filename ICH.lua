@@ -87,7 +87,6 @@ function AddOn:CreateMainFrame()
     f.SearchBox:SetPoint("TOPRIGHT", f.Title, "BOTTOMRIGHT", -25, -10)
     f.SearchBox:SetAutoFocus(false)
     f.SearchBox:SetSize(400, 30)
-    f.SearchBox.Instructions:SetText(L["Search by mount/instance name, instance type, or difficulty"])
     f.SearchBox:HookScript("OnTextChanged", function() self:UpdateListContents("ICH_SEARCH") end)
     
     -- Close button
@@ -276,34 +275,34 @@ function AddOn:CreateFooter()
 end
 
 ---Filters a list of data based on search parameters
----@param listData InstanceMount[]
----@return InstanceMount[]
+---@param listData (InstanceMount|InstanceToy)[]
+---@return (InstanceMount|InstanceToy)[]
 function AddOn:FilterListContentsByQuery(listData)
     local filtered = {}
     local query = self.Container.SearchBox:GetText():lower()
     local selectedTab = self.db.global.selectedTab
     if selectedTab == self.Tabs.MountTab then
-        for _, item in ipairs(listData) do
+        for _, mount in ipairs(listData) do
             -- Using localized names for mounts, instances, encounters, etc for better search results
-            local mountName = C_MountJournal.GetMountInfoByID(item.MountID) or ""
-            local instanceName = EJ_GetInstanceInfo(item.InstanceID) or ""
-            local encounterName = item.EncounterID and EJ_GetEncounterInfo(item.EncounterID) or ""
+            local mountName = C_MountJournal.GetMountInfoByID(mount.MountID) or ""
+            local instanceName = EJ_GetInstanceInfo(mount.InstanceID) or ""
+            local encounterName = mount.EncounterID and EJ_GetEncounterInfo(mount.EncounterID) or ""
             
             -- Remove things like textures or atlases from names
             local cleanName = mountName:lower():gsub("|.+|.*", "")
             local nameMatches = cleanName:match(query) and true or false
             local instanceMatches = instanceName:lower():match(query) and true or false
             local encounterMatches = encounterName:lower():match(query) and true or false
-            local instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(item) or (query == L["dungeon"] and not self:IsInstanceRaid(item))
+            local instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(mount) or (query == L["dungeon"] and not self:IsInstanceRaid(mount))
             local difficultyMatches = false
-            for _, diffID in ipairs(item.DifficultyIDs) do
+            for _, diffID in ipairs(mount.DifficultyIDs) do
                 if self:GetDifficultyButtonText(diffID):lower() == query or self:GetInstanceDifficultyText(diffID):lower() == query then
                     difficultyMatches = true
                     break
                 end
             end
-            if not difficultyMatches and item.SharedDifficulties then
-                for shared, _ in pairs(item.SharedDifficulties) do
+            if not difficultyMatches and mount.SharedDifficulties then
+                for shared, _ in pairs(mount.SharedDifficulties) do
                     if self:GetDifficultyButtonText(shared):lower() == query or self:GetInstanceDifficultyText(shared):lower() == query then
                         difficultyMatches = true
                         break
@@ -312,11 +311,43 @@ function AddOn:FilterListContentsByQuery(listData)
             end
 
             if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches then
-                tinsert(filtered, item)
+                tinsert(filtered, mount)
+            end
+        end
+    elseif selectedTab == self.Tabs.ToysTab then
+        for _, toy in ipairs(listData) do
+            local _, toyName = C_ToyBox.GetToyInfo(toy.ToyItemID)
+            if not toyName then toyName = "" end
+            local instanceName = EJ_GetInstanceInfo(toy.InstanceID) or ""
+            local encounterName = toy.EncounterID and EJ_GetEncounterInfo(toy.EncounterID) or ""
+
+            -- Remove things like textures or atlases from names
+            local cleanName = toyName:lower():gsub("|.+|.*", "")
+            local nameMatches = cleanName:match(query) and true or false
+            local instanceMatches = instanceName:lower():match(query) and true or false
+            local encounterMatches = encounterName:lower():match(query) and true or false
+            local instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(toy) or (query == L["dungeon"] and not self:IsInstanceRaid(toy))
+            local difficultyMatches = false
+            for _, diffID in ipairs(toy.DifficultyIDs or {}) do
+                if self:GetDifficultyButtonText(diffID):lower() == query or self:GetInstanceDifficultyText(diffID):lower() == query then
+                    difficultyMatches = true
+                    break
+                end
+            end
+            if not difficultyMatches and toy.SharedDifficulties then
+                for shared, _ in pairs(toy.SharedDifficulties) do
+                    if self:GetDifficultyButtonText(shared):lower() == query or self:GetInstanceDifficultyText(shared):lower() == query then
+                        difficultyMatches = true
+                        break
+                    end
+                end
+            end
+
+            if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches then
+                tinsert(filtered, toy)
             end
         end
     end
-
     return filtered
 end
 
@@ -342,11 +373,13 @@ function AddOn:UpdateListContents(event)
                 break
             end
         end
+        self.Container.SearchBox.Instructions:SetText(L["Search by mount/instance name, instance type, or difficulty"])
     elseif selectedTab == self.Tabs.ToysTab then
         for _, data in ipairs(self.InstanceToys) do
             local isOwned = PlayerHasToy(data.ToyItemID)
             if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, data) end
         end
+        self.Container.SearchBox.Instructions:SetText(L["Search by toy/instance name, instance type, or difficulty"])
     end
 
     -- Filter list results based on search criteria when present

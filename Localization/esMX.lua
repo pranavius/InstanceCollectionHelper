@@ -79,6 +79,7 @@ L["raid"] = "banda"
 
 --- UI ---
 L["Search by mount/instance name, instance type, or difficulty"] = "Buscar por nombre de montura/instancia, tipo de instancia o dificultad"
+L["Search by toy/instance name, instance type, or difficulty"] = "Buscar por nombre de juguete/instancia, tipo de instancia o dificultad"
 L["Scale"] = "Escala"
 L["Use TomTom waypoints"] = "Usar waypoints de TomTom"
 L["Show Owned Mounts"] = "Mostrar monturas poseídas"

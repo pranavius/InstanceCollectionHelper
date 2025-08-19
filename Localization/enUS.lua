@@ -79,6 +79,7 @@ L["raid"] = "raid"
 
 --- UI ---
 L["Search by mount/instance name, instance type, or difficulty"] = "Search by mount/instance name, instance type, or difficulty"
+L["Search by toy/instance name, instance type, or difficulty"] = "Search by toy/instance name, instance type, or difficulty"
 L["Scale"] = "Scale"
 L["Use TomTom waypoints"] = "Use TomTom waypoints"
 L["Show Owned Mounts"] = "Show Owned Mounts"

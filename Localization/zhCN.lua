@@ -79,6 +79,7 @@ L["raid"] = "团队"
 
 --- UI ---
 L["Search by mount/instance name, instance type, or difficulty"] = "搜索根据坐骑/副本名称，副本类型或难度"
+L["Search by toy/instance name, instance type, or difficulty"] = "按玩具/副本名称、副本类型或难度搜索"
 L["Scale"] = "缩放"
 L["Use TomTom waypoints"] = "使用TomTom路径点"
 L["Show Owned Mounts"] = "显示已拥有的坐骑"
