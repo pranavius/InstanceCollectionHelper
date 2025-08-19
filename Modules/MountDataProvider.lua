@@ -44,6 +44,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---@class ICHListItem: Frame List item that displays relevant information for a given collectible
 ---@field isToy boolean Whether or not the list item is for a toy
+---@field relevantID number The ID number for the collectible. For mounts, this value is `mountID` and for toys it is `itemID`
 ---@field Bg Texture The background texture for unowned list items
 ---@field OwnedBg Texture The background texture for owned list items
 ---@field NameContainer NameContainer
@@ -62,6 +63,9 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@see InstanceMount
 function AddOn.MountDataProviderInit(frame, data)
     if not frame or not data then return end
+    -- Resetting these values to avoid conflicts or incorrect tooltip displays
+    frame.isToy = false
+    frame.relevantID = data.MountID
 
     local index = AddOn.ICHDataProvider:FindIndex(data)
 
@@ -81,10 +85,8 @@ function AddOn.MountDataProviderInit(frame, data)
     local iconID = C_Spell.GetSpellInfo(mountSpellID) and C_Spell.GetSpellInfo(mountSpellID).originalIconID
     frame.NameContainer.ViewButton:ClearNormalTexture()
     frame.NameContainer.ViewButton:ClearHighlightTexture()
-    if iconID then
-        frame.NameContainer.ViewButton:SetNormalTexture(iconID)
-        frame.NameContainer.ViewButton:SetHighlightTexture(iconID)
-    end
+    frame.NameContainer.ViewButton:SetNormalTexture(iconID or 134400)
+    frame.NameContainer.ViewButton:SetHighlightTexture(iconID or 134400)
 
     frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
     frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")

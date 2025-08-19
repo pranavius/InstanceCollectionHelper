@@ -4,6 +4,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
         <Size y="25"/>
         <KeyValues>
             <KeyValue key="isToy" value="false" type="boolean"/>
+            <KeyValue key="relevantID" value="0" type="number"/>
         </KeyValues>
         <Layers>
             <Layer level="BACKGROUND">
@@ -39,11 +40,14 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="0" y="-1" /></Anchors>
                         <Scripts>
                             <OnEnter>
+                                local id = self:GetParent():GetParent().relevantID
                                 GameTooltip:SetOwner(self, "ANCHOR_TOP")
-                                GameTooltip:SetText(self:GetParent().name)
-                                if not self:GetParent():GetParent().isToy then
-                                    GameTooltip:AddLine(ICH_LANG["View in mount journal"], 1, 1, 1, true)
-                                    end
+                                if self:GetParent():GetParent().isToy then
+                                    GameTooltip:SetHyperlink("item:"..id)
+                                else
+                                    local spellID = select(2, C_MountJournal.GetMountInfoByID(id))
+                                    GameTooltip:SetHyperlink(C_MountJournal.GetMountLink(spellID))
+                                end
                                 GameTooltip:Show()
                             </OnEnter>
                             <OnLeave>GameTooltip:Hide()</OnLeave>

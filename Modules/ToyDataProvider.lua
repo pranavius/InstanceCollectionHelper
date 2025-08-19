@@ -35,6 +35,7 @@ end
 function AddOn.ToyDataProviderInit(frame, data)
     if not frame or not data then return end
     frame.isToy = true
+    frame.relevantID = data.ToyItemID
 
     local index = AddOn.ICHDataProvider:FindIndex(data)
 
