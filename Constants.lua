@@ -41,7 +41,7 @@ AddOn.RaidDifficulty = RaidDifficulty
 ---@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[] List of IDs for instance difficulty(s) the mount can be obtained in
 ---@field SharedDifficulties? table<RaidDifficulty, RaidDifficulty> Provides associations for difficulties that share a lockout with the listed `DifficultyID`
 ---@field Notes? string Additional notes about the mount or instance
----@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance)
+---@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance). Also used for TomTom waypoint integration.
 
 ---@type InstanceMount[] List of mounts available from instances
 AddOn.InstanceMounts = {
@@ -782,5 +782,224 @@ AddOn.InstanceMounts = {
         EncounterID = 2464,
         DifficultyIDs = { RaidDifficulty.Mythic },
         Waypoint = { mapID = 1970, x = 0.805, y = 0.534 }
+    }
+}
+
+---@class InstanceToy Toy data to process and display as a list item in the AddOn
+---@field Name string Name of the toy (for information only?)
+---@field ToyItemID number Item ID number for the toy
+---@field Instance string Instance from which the toy can be obtained (for information only?)
+---@field InstanceID number ID number for the instance
+---@field IsRaid boolean Whether or not the instance is a raid
+---@field MapID number ID number for the map of the instance
+---@field AreaPoiID? number ID number for the Point of Interest (POI) marker showing the instance entrance on the map. Used to place Blizzard map pins for navigation guidance
+---@field EncounterID? number ID number for the encounter from which the toy is available
+---@field DifficultyIDs? (DungeonDifficulty|RaidDifficulty)[] List of IDs for instance difficulty(s) the toy can be obtained in (is this even needed for toys?)
+---@field Notes? string Additional notes about the toy or instance
+---@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance). Also used for TomTom waypoint integration.
+
+---@type InstanceToy[] List of toys available from instances
+AddOn.InstanceToys = {
+    {
+        Name = "Brazier of Madness",
+        ToyItemID = 203757,
+        Instance = "Zul'Gurub",
+        InstanceID = 76,
+        IsRaid = false,
+        MapID = 859,
+        AreaPoiID = 6682,
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Notes = L["Requires completion of the achievement Relics of a Fallen Empire"],
+        Waypoint = { mapID = 224, x = 0.64, y = 0.218 }
+    },
+    {
+        Name = "Cosmic Hearthstone",
+        ToyItemID = 246565,
+        Instance = "Manaforge Omega",
+        InstanceID = 1302,
+        IsRaid = true,
+        MapID = 2810,
+        AreaPoiID = 8363,
+        EncounterID = 2691,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = { mapID = 2371, x = 0.417, y = 0.215 }
+    },
+    {
+        Name = "Don Carlos' Famous Hat",
+        ToyItemID = 134019,
+        Instance = "Old Hillsbrad Foothills",
+        InstanceID = 251,
+        IsRaid = false,
+        MapID = 560,
+        AreaPoiID = 6666,
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Notes = L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"].."\n\n"..L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"],
+        Waypoint = { mapID = 22, x = 0.698, y = 0.736 }
+    },
+    {
+        Name = "Explosive Hearthstone",
+        ToyItemID = 236687,
+        Instance = "Liberation of Undermine",
+        InstanceID = 1296,
+        IsRaid = true,
+        MapID = 2769,
+        AreaPoiID = 8240,
+        EncounterID = 2642,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Notes = L["Can also be looting by fishing within the instance"],
+        Waypoint = { mapID = 2346, x = 0.416, y = 0.488 }
+    },
+    {
+        Name = "Familiar Journal",
+        ToyItemID = 208096,
+        Instance = "Scholomance (Classic)",
+        InstanceID = 246,
+        IsRaid = false,
+        MapID = 1007,
+        AreaPoiID = 6726,
+        Notes = L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."],
+        Waypoint = { mapID = 22, x = 0.698, y = 0.736 }
+    },
+    {
+        Name = "Fandral's Seed Pouch",
+        ToyItemID = 122304,
+        Instance = "Firelands",
+        InstanceID = 78,
+        IsRaid = true,
+        MapID = 720,
+        AreaPoiID = 6514,
+        EncounterID = 197,
+        DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
+        Notes = L["Can only be looted and used by a Druid"],
+        Waypoint = { mapID = 198, x = 0.468, y = 0.784 }
+    },
+    {
+        Name = "Gastropod Shell",
+        ToyItemID = 98136,
+        Instance = "Throne of Thunder",
+        InstanceID = 362,
+        IsRaid = true,
+        MapID = 1098,
+        AreaPoiID = 6508,
+        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        SharedDifficulties = {
+            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
+        },
+        Notes = L["Drops from Gastropod mobs found between Megaera and Ji-Kun"],
+        Waypoint = { mapID = 504, x = 0.638, y = 0.32 }
+    },
+    {
+        Name = "Golden Hearthstone Card: Lord Jaraxxus",
+        ToyItemID = 119211,
+        Instance = "The Nighthold",
+        InstanceID = 786,
+        IsRaid = true,
+        MapID = 1530,
+        AreaPoiID = 5101,
+        EncounterID = 1737,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Notes = L["This item is obtainable even though it does not appear on the loot table for Gul'dan"],
+        Waypoint = { mapID = 680, x = 0.437, y = 0.573 }
+    },
+    {
+        Name = "Hearthstone of the Flame",
+        ToyItemID = 209035,
+        Instance = "Amirdrassil, the Dream's Hope",
+        InstanceID = 1207,
+        IsRaid = true,
+        MapID = 2549,
+        AreaPoiID = 7631,
+        EncounterID = 2553,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Notes = L["Can also be looting by fishing within the instance"],
+        Waypoint = { mapID = 2200, x = 0.273, y = 0.31 }
+    },
+    {
+        Name = "Krastinov's Bag of Horrors",
+        ToyItemID = 88566,
+        Instance = "Scholomance",
+        InstanceID = 246,
+        IsRaid = false,
+        MapID = 1007,
+        AreaPoiID = 6726,
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Notes = L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"],
+        Waypoint = { mapID = 22, x = 0.698, y = 0.736 }
+    },
+    {
+        Name = "Orb of the Sin'dorei",
+        ToyItemID = 35275,
+        Instance = "Magister's Terrace",
+        InstanceID = 249,
+        IsRaid = false,
+        MapID = 585,
+        AreaPoiID = 6718,
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Notes = L["Can drop from every boss in the dungeon"].."\n\n"..L["Also obtainable in Timewalking"],
+        Waypoint = { mapID = 122, x = 0.61, y = 0.307 }
+    },
+    {
+        Name = "Piccolo of the Flaming Fire",
+        ToyItemID = 13379,
+        Instance = "Stratholme - Main Gate",
+        InstanceID = 236,
+        IsRaid = false,
+        MapID = 329,
+        EncounterID = 443,
+        AreaPoiID = 6724,
+        DifficultyIDs = { DungeonDifficulty.Normal },
+        Notes = L["Also obtainable in Timewalking"],
+        Waypoint = { mapID = 122, x = 0.61, y = 0.307 }
+    },
+    {
+        Name = "Skull of Corruption",
+        ToyItemID = 143544,
+        Instance = "The Nighthold",
+        InstanceID = 786,
+        IsRaid = true,
+        MapID = 1530,
+        AreaPoiID = 5101,
+        EncounterID = 1737,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Notes = L["Can only be looted and used by a Demon Hunter"].."\n\n"..L["This item is obtainable even though it does not appear on the loot table for Gul'dan"],
+        Waypoint = { mapID = 680, x = 0.437, y = 0.573 }
+    },
+    {
+        Name = "Unstable Portal Emitter",
+        ToyItemID = 153004,
+        Instance = "Seat of the Triumvirate",
+        InstanceID = 945,
+        IsRaid = false,
+        MapID = 1753,
+        AreaPoiID = 5327,
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Notes = L["Dropped by the Rare Elite Vixx the Collector"],
+        Waypoint = { mapID = 882, x = 0.222, y = 0.566 }
+    },
+    {
+        Name = "Vixx's Chest of Tricks",
+        ToyItemID = 152982,
+        Instance = "Seat of the Triumvirate",
+        InstanceID = 945,
+        IsRaid = false,
+        MapID = 1753,
+        AreaPoiID = 5327,
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Notes = L["Dropped by the Rare Elite Vixx the Collector"],
+        Waypoint = { mapID = 882, x = 0.222, y = 0.566 }
+    },
+    {
+        Name = "Vial of Green Goo",
+        ToyItemID = 141331,
+        Instance = "Gnomeregan",
+        InstanceID = 231,
+        IsRaid = false,
+        MapID = 90,
+        AreaPoiID = 6502,
+        DifficultyIDs = { DungeonDifficulty.Normal },
+        Notes = L["Dropped by the hidden boss Endgineer Omegaplugg"].."\n\n"..L["It is highly recommended to attempt this encounter with a full party"],
+        Waypoint = { mapID = 27, x = 0.314, y = 0.380 }
     }
 }

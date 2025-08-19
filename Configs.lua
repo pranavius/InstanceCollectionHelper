@@ -14,7 +14,8 @@ AddOn.DatabaseDefaults = {
         windowScale = 1,
         showOwned = false,
         useTomTomPoints = true,
-        currentTomTomWaypoint = nil
+        currentTomTomWaypoint = nil,
+        selectedTab = nil
     }
 }
 

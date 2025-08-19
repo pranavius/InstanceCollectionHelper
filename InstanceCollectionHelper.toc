@@ -3,7 +3,7 @@
 ## Notes: Helps find and set the instance difficulty needed to obtain collectible items
 ## IconTexture: Interface\AddOns\InstanceCollectionHelper\Media\Logo.png
 ## Author: pranavius
-## Version: 6
+## Version: 7
 ## SavedVariables: ICH_DB
 ## X-Flavor: retail
 ## X-Category: Achievements
@@ -27,6 +27,11 @@ Localization\zhCN.lua
 
 Configs.lua
 Constants.lua
+Utils.lua
 Modules\AboutICH.lua
-Modules\DataProvider.lua
+Modules\CategoryTabs.lua
+Modules\Waypoints.lua
+Modules\DifficultyButtons.lua
+Modules\MountDataProvider.lua
+Modules\ToyDataProvider.lua
 ICH.lua
