@@ -17,7 +17,6 @@ L["Upon entering the instance, raid difficulty will automatically be set to Norm
 L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..WrapTextInColor("塔扎维什", DARKYELLOW_FONT_COLOR).."的故事线才能解锁飞行路径，先从 |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos", DARKYELLOW_FONT_COLOR).." 开始" -- 注意: "塔札維許" -> "塔扎维什" (简体官方译名)
 
 --- Toy Notes ---
--- zhCN (Simplified Chinese)
 L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "掉落自"..WrapTextInColor("瑟尔林·卡斯迪诺夫教授", DARKYELLOW_FONT_COLOR).."，在击杀"..WrapTextInColor("血骨傀儡", DARKYELLOW_FONT_COLOR).."后有几率出现"
 L["Dropped by the Rare Elite Vixx the Collector"] = "掉落自稀有精英"..WrapTextInColor("收集者维克斯", DARKYELLOW_FONT_COLOR)
 L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "该物品可获得，尽管它未显示在"..WrapTextInColor("古尔丹", DARKYELLOW_FONT_COLOR).."的掉落表中"
