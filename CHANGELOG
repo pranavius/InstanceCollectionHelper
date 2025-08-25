@@ -4,6 +4,9 @@ This document describes changes to each version of **InstanceCollectionHelper (I
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v8**
+- Fixed a bug causing mounts to not display when using the search bar
+
 **v7**
 - **Major update:** Added tabs at the bottom of the window to switch between viewing mounts and toys available from instances
 - **Major update:** Added a list of toys that are available from dungeons and raids as of Patch 11.2 (Ghosts of K'aresh)

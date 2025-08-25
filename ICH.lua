@@ -281,7 +281,7 @@ function AddOn:FilterListContentsByQuery(listData)
     local filtered = {}
     local query = self.Container.SearchBox:GetText():lower()
     local selectedTab = self.db.global.selectedTab
-    if selectedTab == self.Tabs.MountTab then
+    if selectedTab == self.Tabs.MountsTab then
         for _, mount in ipairs(listData) do
             -- Using localized names for mounts, instances, encounters, etc for better search results
             local mountName = C_MountJournal.GetMountInfoByID(mount.MountID) or ""
