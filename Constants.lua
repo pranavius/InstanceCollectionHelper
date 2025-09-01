@@ -806,7 +806,7 @@ AddOn.InstanceMounts = {
     }
 }
 
----@class InstanceToy Toy data to process and display as a list item in the AddOn
+---@class Toy Toy data to process and display as a list item in the AddOn
 ---@field Name string Name of the toy (for information only?)
 ---@field ToyItemID number Item ID number for the toy
 ---@field Instance string Instance from which the toy can be obtained (for information only?)
@@ -819,7 +819,7 @@ AddOn.InstanceMounts = {
 ---@field Notes? string Additional notes about the toy or instance
 ---@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance). Also used for TomTom waypoint integration.
 
----@type InstanceToy[] List of toys available from instances
+---@type Toy[] List of toys available from instances
 AddOn.InstanceToys = {
     {
         Name = "Brazier of Madness",

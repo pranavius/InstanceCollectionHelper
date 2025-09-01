@@ -290,7 +290,7 @@ unknown
 
 
 ```lua
-(method) InstanceCollectionHelper:ConfigureWaypointButton(localizedInstanceName: string, frame: ICHListItem, data: InstanceMount|InstanceToy)
+(method) InstanceCollectionHelper:ConfigureWaypointButton(localizedInstanceName: string, frame: ICHListItem, data: Mount|Toy)
 ```
 
 Sets up and displays the appropriate waypoint button based on user preferences and **TomTom** being enabled or not
@@ -299,8 +299,8 @@ Sets up and displays the appropriate waypoint button based on user preferences a
 
 See:
   * [ICHListItem](InstanceCollectionHelper/Modules/MountDataProvider.lua#46#10)
-  * [InstanceMount](InstanceCollectionHelper/Constants.lua#33#10)
-  * [InstanceToy](InstanceCollectionHelper/Constants.lua#788#10)
+  * [Mount](InstanceCollectionHelper/Constants.lua#33#10)
+  * [Toy](InstanceCollectionHelper/Constants.lua#809#10)
 
 ## Container
 
@@ -387,8 +387,8 @@ enum DungeonDifficulty
 
 
 ```lua
-(method) InstanceCollectionHelper:FilterListContentsByQuery(listData: (InstanceMount|InstanceToy)[])
-  -> (InstanceMount|InstanceToy)[]
+(method) InstanceCollectionHelper:FilterListContentsByQuery(listData: (Mount|Toy)[])
+  -> (Mount|Toy)[]
 ```
 
 Filters a list of data based on search parameters
@@ -456,7 +456,7 @@ Callback method that is fired when the active tab is changed
 
 
 ```lua
-(method) InstanceCollectionHelper:HandleWaypointClick(data: InstanceMount|InstanceToy, localizedInstanceName: string)
+(method) InstanceCollectionHelper:HandleWaypointClick(data: Mount|Toy, localizedInstanceName: string)
 ```
 
 Handles how waypoints should be set using either Blizzard's super tracking or TomTom
@@ -464,8 +464,8 @@ Handles how waypoints should be set using either Blizzard's super tracking or To
 @*param* `localizedInstanceName` — The localized name of the instance to set a waypoint for
 
 See:
-  * [InstanceMount](InstanceCollectionHelper/Constants.lua#33#10)
-  * [InstanceToy](InstanceCollectionHelper/Constants.lua#788#10)
+  * [Mount](InstanceCollectionHelper/Constants.lua#33#10)
+  * [Toy](InstanceCollectionHelper/Constants.lua#809#10)
 
 ## HideAllDifficultyButtons
 
@@ -495,7 +495,7 @@ unknown
 
 
 ```lua
-InstanceMount[]
+Mount[]
 ```
 
 List of mounts available from instances
@@ -504,7 +504,7 @@ List of mounts available from instances
 
 
 ```lua
-InstanceToy[]
+Toy[]
 ```
 
 List of toys available from instances
@@ -513,42 +513,42 @@ List of toys available from instances
 
 
 ```lua
-function InstanceCollectionHelper.IsEncounterCompleted(data: InstanceMount|InstanceToy, difficultyID: any)
+function InstanceCollectionHelper.IsEncounterCompleted(data: Mount|Toy, difficultyID: any)
   -> boolean
 ```
 
 Determines whether or not an instance encounter has been completed for the reset period for a given difficulty
 See:
-  * [InstanceMount](InstanceCollectionHelper/Constants.lua#33#10)
-  * [InstanceToy](InstanceCollectionHelper/Constants.lua#788#10)
+  * [Mount](InstanceCollectionHelper/Constants.lua#33#10)
+  * [Toy](InstanceCollectionHelper/Constants.lua#809#10)
 
 ## IsEncounterCompletedOnSharedDifficulty
 
 
 ```lua
-(method) InstanceCollectionHelper:IsEncounterCompletedOnSharedDifficulty(data: InstanceMount|InstanceToy)
+(method) InstanceCollectionHelper:IsEncounterCompletedOnSharedDifficulty(data: Mount|Toy)
   -> isCompleted: boolean
 ```
 
 @*return* `isCompleted` — `true` if an encounter has been completed for the reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise
 
 See:
-  * [InstanceMount](InstanceCollectionHelper/Constants.lua#33#10)
-  * [InstanceToy](InstanceCollectionHelper/Constants.lua#788#10)
+  * [Mount](InstanceCollectionHelper/Constants.lua#33#10)
+  * [Toy](InstanceCollectionHelper/Constants.lua#809#10)
 
 ## IsInstanceRaid
 
 
 ```lua
-(method) InstanceCollectionHelper:IsInstanceRaid(data: InstanceMount|InstanceToy)
+(method) InstanceCollectionHelper:IsInstanceRaid(data: Mount|Toy)
   -> boolean
 ```
 
 @*return* — `true` if the instance is a raid, `false` otherwise
 
 See:
-  * [InstanceMount](InstanceCollectionHelper/Constants.lua#33#10)
-  * [InstanceToy](InstanceCollectionHelper/Constants.lua#788#10)
+  * [Mount](InstanceCollectionHelper/Constants.lua#33#10)
+  * [Toy](InstanceCollectionHelper/Constants.lua#809#10)
 
 ## OnInitialize
 
@@ -568,14 +568,7 @@ Prints a message to the chat window prefixed by the AddOn name
 
 @*param* `...` — Arguments to be printed to the chat window
 
-See: [print](file:///.vscode/extensions/sumneko.lua-3.15.0-darwin-arm64/server/meta/Lua%205.4%20en-us%20utf8/basic.lua#235#9)
-
-## RaidDifficulty
-
-
-```lua
-enum RaidDifficulty
-```
+See: [print](file:///Users/pranavchary/.vscode/extensions/sumneko.lua-3.15.0-darwin-arm64/server/meta/Lua%205.4%20en-us%20utf8/basic.lua#235#9)
 
 ## RaidDifficulty
 
@@ -634,7 +627,7 @@ Sets instance difficulty based on the provided value (Usable for all instance ty
 
 
 ```lua
-(method) InstanceCollectionHelper:ShowDifficultyButtons(container: DifficultyContainer, data: InstanceMount|InstanceToy, isOwned?: boolean)
+(method) InstanceCollectionHelper:ShowDifficultyButtons(container: DifficultyContainer, data: Mount|Toy, isOwned?: boolean)
 ```
 
 Determines which difficulty button(s) to display based on the provided data
@@ -643,8 +636,8 @@ Determines which difficulty button(s) to display based on the provided data
 
 See:
   * [DifficultyContainer](InstanceCollectionHelper/Modules/MountDataProvider.lua#21#10)
-  * [InstanceMount](InstanceCollectionHelper/Constants.lua#33#10)
-  * [InstanceToy](InstanceCollectionHelper/Constants.lua#788#10)
+  * [Mount](InstanceCollectionHelper/Constants.lua#33#10)
+  * [Toy](InstanceCollectionHelper/Constants.lua#809#10)
 
 ## SlashOptions
 
@@ -833,7 +826,58 @@ Supplemental information to place a map pin on the entrance to the instance when
 
 ---
 
-# InstanceToy
+# NameContainer
+
+## Text
+
+
+```lua
+FontString
+```
+
+Name of a collectible (can be truncated if length exceeds allocated space)
+
+## ViewButton
+
+
+```lua
+Button
+```
+
+Button to view the collectible in the appropriate collection journal in-game
+
+## name
+
+
+```lua
+string
+```
+
+The full name of the collectible
+
+
+---
+
+# OtherInfoContainer
+
+## ICHNote
+
+
+```lua
+ICHNote
+```
+
+## ICHWaypointButton
+
+
+```lua
+ICHWaypointButton
+```
+
+
+---
+
+# Toy
 
 ## AreaPoiID
 
@@ -933,57 +977,6 @@ Waypoint?
 ```
 
 Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance). Also used for TomTom waypoint integration.
-
-
----
-
-# NameContainer
-
-## Text
-
-
-```lua
-FontString
-```
-
-Name of a collectible (can be truncated if length exceeds allocated space)
-
-## ViewButton
-
-
-```lua
-Button
-```
-
-Button to view the collectible in the appropriate collection journal in-game
-
-## name
-
-
-```lua
-string
-```
-
-The full name of the collectible
-
-
----
-
-# OtherInfoContainer
-
-## ICHNote
-
-
-```lua
-ICHNote
-```
-
-## ICHWaypointButton
-
-
-```lua
-ICHWaypointButton
-```
 
 
 ---

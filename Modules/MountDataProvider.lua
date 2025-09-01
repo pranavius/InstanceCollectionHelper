@@ -59,9 +59,9 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---Initializes how mount data in the scrollable list should be displayed
 ---@param frame ICHListItem
----@param data InstanceMount
+---@param data Mount
 ---@see ICHListItem
----@see InstanceMount
+---@see Mount
 function AddOn.MountDataProviderInit(frame, data)
     if not frame or not data then return end
     -- Resetting these values to avoid conflicts or incorrect tooltip displays
