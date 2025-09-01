@@ -1,18 +1,22 @@
-## Interface: 110200, 110107
+## Interface: 110200
 ## Title: Instance Collection Helper
 ## Notes: Helps find and set the instance difficulty needed to obtain collectible items
 ## IconTexture: Interface\AddOns\InstanceCollectionHelper\Media\Logo.png
 ## Author: pranavius
-## Version: 5
+## Version: 9
 ## SavedVariables: ICH_DB
 ## X-Flavor: retail
-## X-Category: Achievements
+## Category: Achievements
 ## X-Additional-Categories: Battle Pets, Boss Encounters, Miscellaneous
 ## X-Curse-Project-ID: 1302094
 ## X-Wago-ID: kGr0j76y
 
 embeds.xml
-Templates.xml
+Templates\ListHeadersTemplate.xml
+Templates\GenericButtonTemplate.xml
+Templates\DifficultyButtonTemplate.xml
+Templates\ListItemTemplate.xml
+Elements.xml
 
 Localization\enUS.lua
 Localization\esMX.lua
@@ -23,5 +27,11 @@ Localization\zhCN.lua
 
 Configs.lua
 Constants.lua
-Modules\DataProvider.lua
+Utils.lua
+Modules\AboutICH.lua
+Modules\CategoryTabs.lua
+Modules\Waypoints.lua
+Modules\DifficultyButtons.lua
+Modules\MountDataProvider.lua
+Modules\ToyDataProvider.lua
 ICH.lua

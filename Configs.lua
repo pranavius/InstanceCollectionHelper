@@ -14,7 +14,8 @@ AddOn.DatabaseDefaults = {
         windowScale = 1,
         showOwned = false,
         useTomTomPoints = true,
-        currentTomTomWaypoint = nil
+        currentTomTomWaypoint = nil,
+        selectedTab = nil
     }
 }
 
@@ -206,6 +207,16 @@ AddOn.SlashOptions = {
                 if AddOn.db.global.minimap.hide then AddOn.Icon:Hide(name)
                 else AddOn.Icon:Show(name)
                 end
+            end
+        },
+        about = {
+            type = "execute",
+            name = "about",
+            desc = L["About the AddOn"],
+            order = counter(),
+            func = function()
+                if AddOn.Container:IsVisible() then AddOn.Container:Hide() end
+                if AddOn.About then AddOn.About:Show() end
             end
         }
     }

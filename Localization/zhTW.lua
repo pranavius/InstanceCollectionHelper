@@ -14,7 +14,23 @@ L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"]
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "只對"..WrapTextInColor("聯盟", PLAYER_FACTION_COLOR_ALLIANCE).."角色掉落，但取得後也會獲得"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."版本"
 L["Drops for Horde characters, but obtaining this also gives you the Alliance version"] = "只對"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."角色掉落，但取得後也會獲得"..WrapTextInColor("聯盟", PLAYER_FACTION_COLOR_ALLIANCE).."版本"
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "進入副本後，團隊難度將自動設定為普通"
-L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..WrapTextInColor("塔札維許", DARKYELLOW_FONT_COLOR).."的故事線才能解鎖飛行路徑，先從 |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos", DARKYELLOW_FONT_COLOR).." 開始"
+L["Requires completing the Tazavesh story line to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..WrapTextInColor("塔札維許", DARKYELLOW_FONT_COLOR).."的故事線才能解鎖飛行路徑，先從 |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos", DARKYELLOW_FONT_COLOR).." 開始"
+
+--- Toy Notes ---
+L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "掉落自 "..WrapTextInColor("瑟爾林‧卡斯迪諾夫教授", DARKYELLOW_FONT_COLOR).."，在擊殺 "..WrapTextInColor("血骨傀儡", DARKYELLOW_FONT_COLOR).." 後有機率出現"
+L["Dropped by the Rare Elite Vixx the Collector"] = "掉落自稀有精英 "..WrapTextInColor("收藏家』維克斯", DARKYELLOW_FONT_COLOR)
+L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "此物品可獲得，儘管它未出現在 "..WrapTextInColor("古爾丹", DARKYELLOW_FONT_COLOR).." 的掉落表中"
+L["Can drop from every boss in the dungeon"] = "可從該副本的每個首領掉落"
+L["Can only be looted and used by a Druid"] = "僅限 "..WrapTextInColor(select(1, GetClassInfo(11)), C_ClassColor.GetClassColor("DRUID")).." 掠取並使用"
+L["Can also be looting by fishing within the instance"] = "也可在副本內透過釣魚獲得"
+L["Requires completion of the achievement Relics of a Fallen Empire"] = "需要完成成就 "..WrapTextInColor(select(2, GetAchievementInfo(17366)) or "Relics of a Fallen Empire", DARKYELLOW_FONT_COLOR)
+L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "此物僅可在通靈學院（經典版）中取得。如尚未解鎖此副本，請先線上尋找教學。"
+L["Dropped by the hidden boss Endgineer Omegaplugg"] = "掉落自隱藏首領 "..WrapTextInColor("終極工程師歐米茄布", DARKYELLOW_FONT_COLOR)
+L["It is highly recommended to attempt this encounter with a full party"] = "強烈建議使用完整小隊來嘗試此首領戰"
+L["Can only be looted and used by a Demon Hunter"] = "僅限 "..WrapTextInColor(select(1, GetClassInfo(12)), C_ClassColor.GetClassColor("DEMONHUNTER")).." 掠取並使用"
+L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "掉落自 "..WrapTextInColor("卡洛斯大爺", DARKYELLOW_FONT_COLOR).."，他巡邏塔倫米爾以南路徑的一部分"
+L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "有報告指出在擊殺某些首領後 "..WrapTextInColor("卡洛斯大爺", DARKYELLOW_FONT_COLOR).." 會消失；請小心行事"
+L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "掉落自位於 "..WrapTextInColor("梅賈拉", DARKYELLOW_FONT_COLOR).." 與 "..WrapTextInColor("稷坤", DARKYELLOW_FONT_COLOR).." 之間的巨蝸怪物"
 
 --- Instance Difficulties ---
 L["LFR"] = "LFR"
@@ -63,9 +79,11 @@ L["raid"] = "團隊"
 
 --- UI ---
 L["Search by mount/instance name, instance type, or difficulty"] = "搜尋根據坐騎/副本名稱，副本類型或難度"
+L["Search by toy/instance name, instance type, or difficulty"] = "搜尋根據玩具/副本名稱、副本類型或難度"
 L["Scale"] = "縮放"
 L["Use TomTom waypoints"] = "使用TomTom路徑點"
 L["Show Owned Mounts"] = "顯示已擁有的坐騎"
+L["Show Owned"] = "顯示收集的物品"
 L["How To Use:"] = "如何使用:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "尋找你想要在列表中收集的坐騎，並點擊你想要刷的難度按鈕。"
 L["to make sure it is updated."] = "為確保列表更新。"
@@ -82,7 +100,7 @@ L["Name"] = "名字"
 L["Instance"] = "副本"
 L["Available Difficulty(s)"] = "可用難度"
 L["Shares lockout with:"] = "共用進度在:"
-L["View in mount journal"] = "在坐騎日誌中觀看"
+L["View in mount journal"] = "在坐騎日誌中觀看" -- Deprecated
 L["View in encounter journal"] = "在冒險指南中觀看"
 L["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."] = "此按鈕僅用於追蹤團隊搜尋器(LFR）進度。團隊難度並未改變。"
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "需要在給定的時間內完成某些目標，因此建議搜尋指南以在嘗試之前在線上獲取此坐騎"
@@ -92,3 +110,11 @@ L["Waypoint tracking on the minimap may not always appear until you are in a spe
 L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "舉例，指向的箭頭 "..WrapTextInColor("雷霆王座", DARKYELLOW_FONT_COLOR).." 會顯示只有當您位於 "..WrapTextInColor("雷王島", DARKYELLOW_FONT_COLOR)
 L["Set map pin"] = "設定地圖標記"
 L["Set TomTom waypoint"] = "設定 "..WrapTextInColor("TomTom", DARKYELLOW_FONT_COLOR).." 路徑點"
+L["Coming soon"] = "即將推出"
+
+--- About ---
+L["About the AddOn"] = "關於外掛"               -- note: could also be "關於插件" depending on preference
+L["Created by Pranavius"] = "由 Pranavius 製作"
+L["Translations:"] = "翻譯："
+L["Open ICH"] = "開啟 ICH"
+L["Close"] = "關閉"

@@ -16,6 +16,22 @@ L["Drops for Horde characters, but obtaining this also gives you the Alliance ve
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "进入副本后，团队难度将自动设定为普通"
 L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..WrapTextInColor("塔扎维什", DARKYELLOW_FONT_COLOR).."的故事线才能解锁飞行路径，先从 |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos", DARKYELLOW_FONT_COLOR).." 开始" -- 注意: "塔札維許" -> "塔扎维什" (简体官方译名)
 
+--- Toy Notes ---
+L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "掉落自"..WrapTextInColor("瑟尔林·卡斯迪诺夫教授", DARKYELLOW_FONT_COLOR).."，在击杀"..WrapTextInColor("血骨傀儡", DARKYELLOW_FONT_COLOR).."后有几率出现"
+L["Dropped by the Rare Elite Vixx the Collector"] = "掉落自稀有精英"..WrapTextInColor("收集者维克斯", DARKYELLOW_FONT_COLOR)
+L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "该物品可获得，尽管它未显示在"..WrapTextInColor("古尔丹", DARKYELLOW_FONT_COLOR).."的掉落表中"
+L["Can drop from every boss in the dungeon"] = "可以从副本中的每个首领处掉落"
+L["Can only be looted and used by a Druid"] = "仅限"..WrapTextInColor(select(1, GetClassInfo(11)), C_ClassColor.GetClassColor("DRUID")).."拾取并使用"
+L["Can also be looting by fishing within the instance"] = "也可以通过在副本内钓鱼获得"
+L["Requires completion of the achievement Relics of a Fallen Empire"] = "需要完成成就 "..WrapTextInColor(select(2, GetAchievementInfo(17366)) or "Relics of a Fallen Empire", DARKYELLOW_FONT_COLOR)
+L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "此物品仅在通灵学院经典版本中可收集。如果尚未解锁此副本，请先在线查找指南。"
+L["Dropped by the hidden boss Endgineer Omegaplugg"] = "掉落自隐藏首领"..WrapTextInColor("工程师欧米加普格", DARKYELLOW_FONT_COLOR)
+L["It is highly recommended to attempt this encounter with a full party"] = "强烈建议以完整小队尝试此首领战"
+L["Can only be looted and used by a Demon Hunter"] = "仅限"..WrapTextInColor(select(1, GetClassInfo(12)), C_ClassColor.GetClassColor("DEMONHUNTER")).."拾取并使用"
+L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "掉落自"..WrapTextInColor("卡洛斯", DARKYELLOW_FONT_COLOR).."，他在塔倫米爾(塔伦米尔)以南的道路部分巡逻"
+L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "有报告称在击杀一些首领后"..WrapTextInColor("卡洛斯", DARKYELLOW_FONT_COLOR).."会消失；请谨慎行事"
+L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "掉落自位于"..WrapTextInColor("墨格瑞拉", DARKYELLOW_FONT_COLOR).."与"..WrapTextInColor("季鹍", DARKYELLOW_FONT_COLOR).."之间的巨型蜗牛怪物"
+
 --- Instance Difficulties ---
 L["LFR"] = "LFR" -- 通常保留缩写
 L["Normal"] = "普通"
@@ -63,9 +79,11 @@ L["raid"] = "团队"
 
 --- UI ---
 L["Search by mount/instance name, instance type, or difficulty"] = "搜索根据坐骑/副本名称，副本类型或难度"
+L["Search by toy/instance name, instance type, or difficulty"] = "按玩具/副本名称、副本类型或难度搜索"
 L["Scale"] = "缩放"
 L["Use TomTom waypoints"] = "使用TomTom路径点"
 L["Show Owned Mounts"] = "显示已拥有的坐骑"
+L["Show Owned"] = "显示收集的物品"
 L["How To Use:"] = "如何使用:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "寻找你想要在列表中收集的坐骑，并点击你想要刷的难度按钮。"
 L["to make sure it is updated."] = "为确保列表更新。"
@@ -82,7 +100,7 @@ L["Name"] = "名字"
 L["Instance"] = "副本"
 L["Available Difficulty(s)"] = "可用难度"
 L["Shares lockout with:"] = "共用进度在:"
-L["View in mount journal"] = "在坐骑日志中观看"
+L["View in mount journal"] = "在坐骑日志中观看" -- Deprecated
 L["View in encounter journal"] = "在冒险指南中观看" -- 注意: "冒險指南" 是简体中文客户端对冒险指南的称呼
 L["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."] = "此按钮仅用于追踪团队查找器(LFR)进度。团队难度并未改变。" -- 注意: "團隊搜尋器" -> "团队查找器"
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "需要在给定的时间内完成某些目标，因此建议搜索指南以在尝试之前在线获取此坐骑"
@@ -94,3 +112,11 @@ L["Waypoint tracking on the minimap may not always appear until you are in a spe
 L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "举例，指向的箭头 "..WrapTextInColor("雷电王座", DARKYELLOW_FONT_COLOR).." 会显示只有当您位于 "..WrapTextInColor("雷神岛", DARKYELLOW_FONT_COLOR) -- 注意: "雷霆王座" -> "雷电王座", "雷王島" -> "雷神岛" (简体官方译名)
 L["Set map pin"] = "设定地图标记"
 L["Set TomTom waypoint"] = "设定 "..WrapTextInColor("TomTom", DARKYELLOW_FONT_COLOR).." 路径点" -- TomTom 是插件名，保留
+L["Coming soon"] = "即将推出"
+
+--- About ---
+L["About the AddOn"] = "关于插件"
+L["Created by Pranavius"] = "由 Pranavius 创建"
+L["Translations:"] = "翻译："
+L["Open ICH"] = "打开 ICH"
+L["Close"] = "关闭"

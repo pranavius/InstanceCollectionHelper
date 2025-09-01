@@ -1,0 +1,35 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Blizzard_SharedXML/UI.xsd">
+    <!-- Unused for right now -->
+    <Frame name="ICHFooterTemplate" virtual="true">
+        <Size y="25"/>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Bg" setAllPoints="true">
+                    <Color r="0" g="0" b="0" a="1"/>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Frame parentKey="ScaleContainer">
+                <Size x="200"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                    <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Title" inherits="GameTooltipText" justifyH="LEFT" text="Scale">
+                            <Anchors>
+                                <Anchor point="LEFT" relativePoint="LEFT" x="5"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+                <Frames>
+                    <Slider parentKey="WindowScale" inherits="MinimalSliderWithSteppersTemplate"/>
+                </Frames>
+            </Frame>
+        </Frames>
+    </Frame>
+</Ui>

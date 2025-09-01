@@ -3,58 +3,83 @@ This document describes changes to each version of **InstanceCollectionHelper (I
 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
-## Latest Version: 5
-
 ## Changes
-**5**
+**v9**
+- Updated tooltip for instance icon to show which boss drops a collectible
+- Improved method for fetching toy info quicker
+- Updated available instance difficulties for toys from **Seat of the Triumvirate**
+- Updated notes for **Fandral's Seed Pouch** to indicate additional availability in Timewalking Firelands
+- Updated AddOn category
+- Updated code documentation
+
+**v8**
+- Fixed a bug causing mounts to not display when using the search bar
+
+**v7**
+- **Major update:** Added tabs at the bottom of the window to switch between viewing mounts and toys available from instances
+- **Major update:** Added a list of toys that are available from dungeons and raids as of Patch 11.2 (Ghosts of K'aresh)
+- Updated all tooltips to match the one shown in-game for the given collectible
+- Refactored code and made minor updates to the UI so that both mounts and toys can be accomodated
+- Updated localization strings for supported locales (_still looking for translators!_)
+- Updated the icon used for indicating a note on a list item
+- Updated AddOn description (_README.md_) and code documentation
+
+**v6**
+- Created an "About" window for crediting translators and providing contact info for the AddOn
+- Added a button for opening the "About" window with an _info_ icon
+- Updated the icon for the "How to Use" tooltip of the AddOn to a _question mark_
+- Updated the search bar functionality to filter results more accurately in all languages
+- Minor code refactoring
+
+**v5**
 - Added Unbound Star-Eater from Manaforge Omega
 - Fixed an issue that sometimes caused an error when viewing the note for **Cartel Master's Gearglider**
  
-**4**
+**v4**
 - Added support for `zhCN` locale (_still looking for translators!_)
 
-**3**
+**v3**
 - Added support for `zhTW` locale (_still looking for translators!_)
 - Added a note about Karazhan's instance difficulty being 10 player by default regardless of player's settings
 - Fixed a translation error where English users would see the note for Tazavesh in German
 
-**2**
+**v2**
 - Added support for **TomTom** waypoints to be dropped at instance entrances with one click
 - Added support for `ptBR` and `deDE` locales (_still looking for translators!_)
 - Update AddOn for Patch 11.2 compatibility
 - Improved text localization for all supported locales
 - Documentation updates
 
-**1**
+**v1**
 - Added ability to set Blizzard map pins on instance entrances
 - Added support for `esMX` locale (_still looking for more translators!_)
 - Updated AddOn UI and tooltip text
 - Documentation updates
 
-**8b**
+**v8b**
 - Added a missing required dependency to the embedded files of the AddOn
 - Minor code cleanup and documentation updates
 - Set up framework for localization into non-English languages (_looking for translators!_)
 
-**8a**
+**v8a**
 - Update slash commands for setting instance difficulty to display a message when the chosen difficulty is already set
 - Fix bug causing slider arrows to not resize the AddOn window
 - Reduce minimum allowed value for UI slider to decrease window size beyond default
 
-**7a**
+**v7a**
 - Create a "search hints" tooltip to provide examples of how to use the search functionality
 - Move the text explaining how the AddOn works into a tooltip
 - Create buttons for both "search hints" and "how it works" to show the appropriate tooltip
 - Added option to increase the UI size as desired
 - Added an option to show owned mounts in the list (indicated with a green background)
 
-**6a**
+**v6a**
 - Added a search bar to filter the list of available mounts
 - Fixed some typos in instance names
 - Added LFR button for tracking completed Raid Finder lockouts
 - Update difficulty buttons to be disabled when legacy raid is completed on a different difficulty (shared difficulty lockouts)
 
-**5a**
+**v5a**
 - Add difficulty button for **Ashes of Al'ar** to help track weekly lockout
 - Added slash commands to update instance difficulty from chat window:
   - `/ich dung` for dungeons
@@ -62,23 +87,23 @@ Release versions suffixed with a lowercase letter are considered unofficial _alp
   - `/ich lraid` for legacy raids
 - Updated notes for some mounts
 
-**4a**
+**v4a**
 - Update AddOn logo
 - Add missing mounts to list
 - Update difficulty button colors
 - Update some mount-related data
 - Added command `/ich diffs` to view all instance difficulty settings at once
 
-**3a**
+**v3a**
 - Fixed a bug where _Blizzard_ boss names sometimes didn't correctly match what Blizzard calls the boss in the Encounter Journal
 - Updated dependencies that caused issues on load sometimes
 - Updated the list to show correct lockout info immediately after opening
 
-**2b**
+**v2b**
 - Load necessary _Blizzard_ AddOns when initializing
 
-**2a**
+**v2a**
 - Fix bug where owned mounts weren't updated automatically on login
 
-**1a**
+**v1a**
 - Initial release

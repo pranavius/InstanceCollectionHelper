@@ -16,6 +16,22 @@ L["Drops for Horde characters, but obtaining this also gives you the Alliance ve
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "Beim Betreten der Instanz wird die Schlachtzugsschwierigkeit automatisch auf Normal gesetzt."
 L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Erfordert den Abschluss der Tazavesh-Handlung, um den Flugpunkt von Oribos freizuschalten, beginnend mit |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos", DARKYELLOW_FONT_COLOR)
 
+--- Toy Notes ---
+L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "Beute von "..WrapTextInColor("Doktor Theolen Krastinov", DARKYELLOW_FONT_COLOR)..", der nach dem Töten von "..WrapTextInColor("Blutrippe", DARKYELLOW_FONT_COLOR).." mit zufälliger Chance spawnen kann"
+L["Dropped by the Rare Elite Vixx the Collector"] = "Beute von dem seltenen Elitegegner "..WrapTextInColor("Vizz der Sammler", DARKYELLOW_FONT_COLOR)
+L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "Dieser Gegenstand ist erhältlich, obwohl er nicht in der Beutetabelle von "..WrapTextInColor("Gul'dan", DARKYELLOW_FONT_COLOR).." erscheint"
+L["Can drop from every boss in the dungeon"] = "Kann von jedem Boss im Verlies fallen"
+L["Can only be looted and used by a Druid"] = "Kann nur von einem "..WrapTextInColor(select(1, GetClassInfo(11)), C_ClassColor.GetClassColor("DRUID")).." geplündert und benutzt werden"
+L["Can also be looting by fishing within the instance"] = "Kann auch durch Angeln innerhalb der Instanz erbeutet werden"
+L["Requires completion of the achievement Relics of a Fallen Empire"] = "Erfordert den Abschluss der Errungenschaft "..WrapTextInColor(select(2, GetAchievementInfo(17366)) or "Relics of a Fallen Empire", DARKYELLOW_FONT_COLOR)
+L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "Dies ist nur in der Classic-Version von Scholomance sammelbar. Falls die Instanz nicht freigeschaltet ist, suche zuerst online nach einer Anleitung."
+L["Dropped by the hidden boss Endgineer Omegaplugg"] = "Beute vom versteckten Boss "..WrapTextInColor("Endgenieur Omegadraht", DARKYELLOW_FONT_COLOR)
+L["It is highly recommended to attempt this encounter with a full party"] = "Es wird dringend empfohlen, diesen Kampf mit einer vollen Gruppe zu versuchen"
+L["Can only be looted and used by a Demon Hunter"] = "Kann nur von einem "..WrapTextInColor(select(1, GetClassInfo(12)), C_ClassColor.GetClassColor("DEMONHUNTER")).." geplündert und benutzt werden"
+L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "Beute von "..WrapTextInColor("Don Carlos", DARKYELLOW_FONT_COLOR)..", der einen Teil des Weges südlich von Tarrens Mühle patrouilliert"
+L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "Es gibt Berichte, dass "..WrapTextInColor("Don Carlos", DARKYELLOW_FONT_COLOR).." verschwindet, nachdem Bossgegner getötet wurden; mit Vorsicht vorgehen"
+L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "Beute von Bauchfüßer zwischen "..WrapTextInColor("Megaera", DARKYELLOW_FONT_COLOR).." und "..WrapTextInColor("Ji-Kun", DARKYELLOW_FONT_COLOR)
+
 --- Instance Difficulties --- 
 L["LFR"] = "LFR"
 L["Normal"] = "Normal"
@@ -63,9 +79,11 @@ L["raid"] = "raid"
 
 --- UI --- 
 L["Search by mount/instance name, instance type, or difficulty"] = "Suche nach Reittier-/Instanzname, Instanztyp oder Schwierigkeit"
+L["Search by toy/instance name, instance type, or difficulty"] = "Suche nach Spielzeug-/Instanzname, Instanztyp oder Schwierigkeit"
 L["Scale"] = "Skalierung"
 L["Use TomTom waypoints"] = "TomTom-Wegpunkte verwenden"
 L["Show Owned Mounts"] = "Gesammelte Reittiere anzeigen"
+L["Show Owned"] = "Gesammelte Artikel anzeigen"
 L["How To Use:"] = "Anleitung:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "Finde das gewünschte Reittier in der Liste und klicke auf den Button für die gewünschte Schwierigkeit."
 L["to make sure it is updated."] = "um sicherzustellen, dass sie aktualisiert ist."
@@ -82,7 +100,7 @@ L["Name"] = "Name"
 L["Instance"] = "Instanz"
 L["Available Difficulty(s)"] = "Schwierigkeit(en)"
 L["Shares lockout with:"] = "Teilt ID-Sperre mit:"
-L["View in mount journal"] = "In Reittiersammlung anzeigen"
+L["View in mount journal"] = "In Reittiersammlung anzeigen" -- Deprecated
 L["View in encounter journal"] = "Im Dungeon-Kompendium anzeigen"
 L["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."] = "Dieser Button dient nur zur Verfolgung einer Schlachtzugsbrowser-Sperre (LFR). Die Schlachtzugsschwierigkeit wurde nicht geändert."
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "Erfordert das Abschließen bestimmter Ziele innerhalb eines bestimmten Zeitrahmens. Es wird empfohlen, online nach einem Leitfaden zu suchen, um dieses Reittier zu erhalten."
@@ -92,3 +110,11 @@ L["Waypoint tracking on the minimap may not always appear until you are in a spe
 L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "Zum Beispiel erscheint eine Wegpunktmarkierung, die auf den Thron des Donners zeigt, nur wenn du dich auf der Insel des Donners befindest."
 L["Set map pin"] = "Kartenmarkierung setzen"
 L["Set TomTom waypoint"] = WrapTextInColor("TomTom", DARKYELLOW_FONT_COLOR).."-Wegpunkt setzen"
+L["Coming soon"] = "Demnächst"
+
+--- About ---
+L["About the AddOn"] = "Über das AddOn"
+L["Created by Pranavius"] = "Erstellt von Pranavius"
+L["Translations:"] = "Übersetzungen:"
+L["Open ICH"] = "ICH öffnen"
+L["Close"] = "Schließen"

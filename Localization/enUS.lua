@@ -16,6 +16,22 @@ L["Drops for Horde characters, but obtaining this also gives you the Alliance ve
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "Upon entering the instance, raid difficulty will automatically be set to Normal"
 L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Requires completing the Tazavesh storyline to unlock flight path, beginning with |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos", DARKYELLOW_FONT_COLOR)
 
+--- Toy Notes ---
+L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "Dropped by "..WrapTextInColor("Doctor Theolen Krastinov", DARKYELLOW_FONT_COLOR)..", who has a random chance to spawn after killing "..WrapTextInColor("Rattlegore", DARKYELLOW_FONT_COLOR)
+L["Dropped by the Rare Elite Vixx the Collector"] = "Dropped by the Rare Elite "..WrapTextInColor("Vixx the Collector", DARKYELLOW_FONT_COLOR)
+L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "This item is obtainable even though it does not appear on the loot table for "..WrapTextInColor("Gul'dan", DARKYELLOW_FONT_COLOR)
+L["Can drop from every boss in the dungeon"] = "Can drop from every boss in the dungeon"
+L["Can only be looted and used by a Druid"] = "Can only be looted and used by a "..WrapTextInColor(select(1, GetClassInfo(11)), C_ClassColor.GetClassColor("DRUID"))
+L["Can also be looting by fishing within the instance"] = "Can also be looting by fishing within the instance"
+L["Requires completion of the achievement Relics of a Fallen Empire"] = "Requires completion of the achievement "..WrapTextInColor(select(2, GetAchievementInfo(17366)) or "Relics of a Fallen Empire", DARKYELLOW_FONT_COLOR)
+L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."
+L["Dropped by the hidden boss Endgineer Omegaplugg"] = "Dropped by the hidden boss "..WrapTextInColor("Endgineer Omegaplugg", DARKYELLOW_FONT_COLOR)
+L["It is highly recommended to attempt this encounter with a full party"] = "It is highly recommended to attempt this encounter with a full party"
+L["Can only be looted and used by a Demon Hunter"] = "Can only be looted and used by a "..WrapTextInColor(select(1, GetClassInfo(12)), C_ClassColor.GetClassColor("DEMONHUNTER"))
+L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "Drops from "..WrapTextInColor("Don Carlos", DARKYELLOW_FONT_COLOR).." who patrols part of the path south of Tarren Mill"
+L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "There are some reports of "..WrapTextInColor("Don Carlos", DARKYELLOW_FONT_COLOR).." despawning after any bosses are killed, so proceed with caution"
+L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "Drops from Gastropod mobs found between "..WrapTextInColor("Megaera", DARKYELLOW_FONT_COLOR).." and "..WrapTextInColor("Ji-Kun", DARKYELLOW_FONT_COLOR)
+
 --- Instance Difficulties ---
 L["LFR"] = "LFR"
 L["Normal"] = "Normal"
@@ -63,9 +79,12 @@ L["raid"] = "raid"
 
 --- UI ---
 L["Search by mount/instance name, instance type, or difficulty"] = "Search by mount/instance name, instance type, or difficulty"
+L["Search by toy/instance name, instance type, or difficulty"] = "Search by toy/instance name, instance type, or difficulty"
 L["Scale"] = "Scale"
 L["Use TomTom waypoints"] = "Use TomTom waypoints"
 L["Show Owned Mounts"] = "Show Owned Mounts"
+-- Below replaces "Show Owned Mounts"
+L["Show Owned"] = "Show Owned"
 L["How To Use:"] = "How To Use:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "Find the mount you want to collect in the list and click the button for the difficulty you want to run on"
 L["to make sure it is updated."] = "to make sure it is updated."
@@ -82,7 +101,7 @@ L["Name"] = "Name"
 L["Instance"] = "Instance"
 L["Available Difficulty(s)"] = "Available Difficulty(s)"
 L["Shares lockout with:"] = "Shares lockout with:"
-L["View in mount journal"] = "View in mount journal"
+L["View in mount journal"] = "View in mount journal" -- Deprecated
 L["View in encounter journal"] = "View in encounter journal"
 L["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."] = "This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"
@@ -92,3 +111,11 @@ L["Waypoint tracking on the minimap may not always appear until you are in a spe
 L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "For example, an arrow pointing towards "..WrapTextInColor("Throne of Thunder", DARKYELLOW_FONT_COLOR).." will only appear when you are on the "..WrapTextInColor("Isle of Thunder", DARKYELLOW_FONT_COLOR)
 L["Set map pin"] = "Set map pin"
 L["Set TomTom waypoint"] = "Set "..WrapTextInColor("TomTom", DARKYELLOW_FONT_COLOR).." waypoint"
+L["Coming soon"] = "Coming soon"
+
+--- About ---
+L["About the AddOn"] = "About the AddOn"
+L["Created by Pranavius"] = "Created by Pranavius"
+L["Translations:"] = "Translations:"
+L["Open ICH"] = "Open ICH"
+L["Close"] = "Close"
