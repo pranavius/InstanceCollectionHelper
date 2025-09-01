@@ -4,6 +4,14 @@ This document describes changes to each version of **InstanceCollectionHelper (I
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v9**
+- Updated tooltip for instance icon to show which boss drops a collectible
+- Improved method for fetching toy info quicker
+- Updated available instance difficulties for toys from **Seat of the Triumvirate**
+- Updated notes for **Fandral's Seed Pouch** to indicate additional availability in Timewalking Firelands
+- Updated AddOn category
+- Updated code documentation
+
 **v8**
 - Fixed a bug causing mounts to not display when using the search bar
 

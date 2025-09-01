@@ -870,7 +870,7 @@ AddOn.InstanceToys = {
         AreaPoiID = 6514,
         EncounterID = 197,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
-        Notes = L["Can only be looted and used by a Druid"],
+        Notes = L["Can only be looted and used by a Druid"].."\n\n"..L["Also obtainable in Timewalking"],
         Waypoint = { mapID = 198, x = 0.468, y = 0.784 }
     },
     {
@@ -881,7 +881,7 @@ AddOn.InstanceToys = {
         IsRaid = true,
         MapID = 1098,
         AreaPoiID = 6508,
-        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Legacy10 },
         SharedDifficulties = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
@@ -974,7 +974,7 @@ AddOn.InstanceToys = {
         IsRaid = false,
         MapID = 1753,
         AreaPoiID = 5327,
-        DifficultyIDs = { DungeonDifficulty.Heroic },
+        DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Dropped by the Rare Elite Vixx the Collector"],
         Waypoint = { mapID = 882, x = 0.222, y = 0.566 }
     },
@@ -986,7 +986,7 @@ AddOn.InstanceToys = {
         IsRaid = false,
         MapID = 1753,
         AreaPoiID = 5327,
-        DifficultyIDs = { DungeonDifficulty.Heroic },
+        DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Dropped by the Rare Elite Vixx the Collector"],
         Waypoint = { mapID = 882, x = 0.222, y = 0.566 }
     },

@@ -11,6 +11,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---@class InstanceContainer: Frame Displays elements relevant to the instance where a collectible can be obtained<br/>
 ---For frame definition and more layout information, see `Templates.xml`
+---@field encounterID? number ID number for the encounter that provides the collectible
 ---@field Text FontString Name of an instance
 ---@field ViewButton Button Button to view the instance in the encounter journal in-game
 
@@ -88,6 +89,7 @@ function AddOn.MountDataProviderInit(frame, data)
     frame.NameContainer.ViewButton:SetNormalTexture(iconID or 134400)
     frame.NameContainer.ViewButton:SetHighlightTexture(iconID or 134400)
 
+    frame.InstanceContainer.encounterID = data.EncounterID or -1
     frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
     frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
 

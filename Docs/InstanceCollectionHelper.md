@@ -298,7 +298,7 @@ Sets up and displays the appropriate waypoint button based on user preferences a
 @*param* `localizedInstanceName` — The localized name of the instance to set a waypoint for
 
 See:
-  * [ICHListItem](InstanceCollectionHelper/Modules/MountDataProvider.lua#45#10)
+  * [ICHListItem](InstanceCollectionHelper/Modules/MountDataProvider.lua#46#10)
   * [InstanceMount](InstanceCollectionHelper/Constants.lua#33#10)
   * [InstanceToy](InstanceCollectionHelper/Constants.lua#788#10)
 
@@ -374,6 +374,13 @@ Initializes the tab system for viewing different types of collectibles available
 
 ```lua
 table
+```
+
+## DungeonDifficulty
+
+
+```lua
+enum DungeonDifficulty
 ```
 
 ## FilterListContentsByQuery
@@ -468,7 +475,7 @@ function InstanceCollectionHelper.HideAllDifficultyButtons(container: Difficulty
 ```
 
 Unsets all difficulty button points and hides them before showing the correct ones based on provided data
-See: [DifficultyContainer](InstanceCollectionHelper/Modules/MountDataProvider.lua#20#10)
+See: [DifficultyContainer](InstanceCollectionHelper/Modules/MountDataProvider.lua#21#10)
 
 ## ICHDataProvider
 
@@ -483,6 +490,24 @@ unknown
 ```lua
 unknown
 ```
+
+## InstanceMounts
+
+
+```lua
+InstanceMount[]
+```
+
+List of mounts available from instances
+
+## InstanceToys
+
+
+```lua
+InstanceToy[]
+```
+
+List of toys available from instances
 
 ## IsEncounterCompleted
 
@@ -543,7 +568,14 @@ Prints a message to the chat window prefixed by the AddOn name
 
 @*param* `...` — Arguments to be printed to the chat window
 
-See: [print](file:///Users/pranavchary/.vscode/extensions/sumneko.lua-3.15.0-darwin-arm64/server/meta/Lua%205.4%20en-us%20utf8/basic.lua#235#9)
+See: [print](file:///.vscode/extensions/sumneko.lua-3.15.0-darwin-arm64/server/meta/Lua%205.4%20en-us%20utf8/basic.lua#235#9)
+
+## RaidDifficulty
+
+
+```lua
+enum RaidDifficulty
+```
 
 ## ScrollBar
 
@@ -603,7 +635,7 @@ Determines which difficulty button(s) to display based on the provided data
 @*param* `isOwned` — Whether or not the collectible is owned by the player. Omitting this argument is equivalent to providing `false`
 
 See:
-  * [DifficultyContainer](InstanceCollectionHelper/Modules/MountDataProvider.lua#20#10)
+  * [DifficultyContainer](InstanceCollectionHelper/Modules/MountDataProvider.lua#21#10)
   * [InstanceMount](InstanceCollectionHelper/Constants.lua#33#10)
   * [InstanceToy](InstanceCollectionHelper/Constants.lua#788#10)
 
@@ -663,6 +695,15 @@ Button
 ```
 
 Button to view the instance in the encounter journal in-game
+
+## encounterID
+
+
+```lua
+number?
+```
+
+ID number for the encounter that provides the collectible
 
 
 ---

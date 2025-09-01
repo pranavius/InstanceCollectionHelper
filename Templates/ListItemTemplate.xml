@@ -27,9 +27,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
         <Frames>
             <Frame parentKey="NameContainer">
                 <Size x="209"/>
-                <KeyValues>
-                    <KeyValue key="name" value="" type="string"/>
-                </KeyValues>
+                <KeyValues><KeyValue key="name" value="" type="string"/></KeyValues>
                 <Anchors>
                     <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
                     <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT"/>
@@ -68,6 +66,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
 
             <Frame parentKey="InstanceContainer">
                 <Size x="250"/>
+                <KeyValues><KeyValue key="encounterID" value="-1" type="number"/></KeyValues>
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeKey="$parent.NameContainer" relativePoint="TOPRIGHT"/>
                     <Anchor point="BOTTOMLEFT" relativeKey="$parent.NameContainer" relativePoint="BOTTOMRIGHT"/>
@@ -80,6 +79,11 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                             <OnEnter>
                                 GameTooltip:SetOwner(self, "ANCHOR_TOP")
                                 GameTooltip:SetText(self:GetParent().Text:GetText())
+                                if self:GetParent().encounterID ~= -1 then
+                                    local encounterName = EJ_GetEncounterInfo(self:GetParent().encounterID)
+                                    GameTooltip:AddLine(encounterName)
+                                    GameTooltip:AddLine("\n")
+                                end
                                 GameTooltip:AddLine(ICH_LANG["View in encounter journal"], 1, 1, 1, true)
                                 GameTooltip:Show()
                             </OnEnter>
