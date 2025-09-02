@@ -22,6 +22,22 @@ local RaidDifficulty = {
     Mythic = 16
 }
 
+---@type table<string, string[]>
+AddOn.ExpansionTags = {
+    Classic = { "classic", "vanilla" },
+    TheBurningCrusade = { "the burning crusade", "burning crusade", "tbc" },
+    WrathOfTheLichKing = { "wrath of the lich king", "wotlk" },
+    Cataclysm = { "cataclysm", "cata" },
+    MistsOfPandaria = { "mists of pandaria", "mop" },
+    WarlordsOfDraenor = { "warlords of draenor", "wod" },
+    Legion = { "legion" },
+    BattleForAzeroth = { "battle for azeroth", "bfa" },
+    Shadowlands = { "shadowlands", "sl" },
+    Dragonflight = { "dragonflight", "df" },
+    TheWarWithin = { "the war within", "war within", "tww" },
+    Midnight = { "midnight" },
+}
+
 AddOn.DungeonDifficulty = DungeonDifficulty
 AddOn.RaidDifficulty = RaidDifficulty
 
@@ -42,7 +58,7 @@ AddOn.RaidDifficulty = RaidDifficulty
 ---@field SharedDifficulties? table<RaidDifficulty, RaidDifficulty> Provides associations for difficulties that share a lockout with the listed `DifficultyID`
 ---@field Notes? string Additional notes about the mount or instance
 ---@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance). Also used for TomTom waypoint integration.
----@field SearchTags string[] A list of string identifiers to quickly search for a mount. This can include expansion abbreviations, expansion names, zones, continents, etc
+---@field SearchTags string[] A list of string identifiers to quickly search for a mount. This can include expansion abbreviations, expansion names, zones, continents, etc<br/>This field is extended upon AddOn initialization to include zones and only includes expansions by default
 
 ---@type Mount[] List of mounts available from instances
 AddOn.InstanceMounts = {
@@ -56,7 +72,7 @@ AddOn.InstanceMounts = {
         EncounterID = 1861,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Waypoint = { mapID = 646, x = 0.64, y = 0.214 },
-        SearchTags = { "legion", "broken isles", "broken shore" }
+        SearchTags = AddOn.ExpansionTags.Legion
     },
     {
         Name = "Amani Battle Bear",
@@ -68,7 +84,7 @@ AddOn.InstanceMounts = {
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Waypoint = { mapID = 95, x = 0.82, y = 0.643 },
         Notes = L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"],
-        SearchTags = { "cataclysm", "cata", "eastern kingdoms", "ghostlands" }
+        SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
         Name = "Antoran Charhound",
@@ -80,7 +96,7 @@ AddOn.InstanceMounts = {
         EncounterID = 1987,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Waypoint = { mapID = 885, x = 0.548, y = 0.625 },
-        SearchTags = { "legion", "argus", "antoran wastes" }
+        SearchTags = AddOn.ExpansionTags.Legion
     },
     {
         Name = "Anu'relos, Flame's Guidance",
@@ -92,7 +108,7 @@ AddOn.InstanceMounts = {
         EncounterID = 2519,
         DifficultyIDs = { RaidDifficulty.Mythic },
         Waypoint = { mapID = 2200, x = 0.273, y = 0.31 },
-        SearchTags = { "dragonflight", "df", "emerald dream" }
+        SearchTags = AddOn.ExpansionTags.Dragonflight
     },
     {
         Name = "Armored Razzashi Raptor",
@@ -104,7 +120,7 @@ AddOn.InstanceMounts = {
         EncounterID = 176,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
-        SearchTags = { "cataclysm", "cata", "eastern kingdoms", "stanglethorn vale", "stv" }
+        SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
         Name = "Ascendant Skyrazor",
@@ -116,7 +132,7 @@ AddOn.InstanceMounts = {
         EncounterID = 2602,
         DifficultyIDs = { RaidDifficulty.Mythic },
         Waypoint = { mapID = 2255, x = 0.436, y = 0.903 },
-        SearchTags = { "the war within", "tww", "khaz algar", "azj-kahet" }
+        SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
         Name = "Ashes of Al'ar",
@@ -129,7 +145,7 @@ AddOn.InstanceMounts = {
         DifficultyIDs = { RaidDifficulty.Legacy25 },
         Notes = L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"],
         Waypoint = { mapID = 109, x = 0.736, y = 0.637 },
-        SearchTags = { "burning crusade", "tbc", "outland", "netherstorm" }
+        SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
         Name = "Astral Cloud Serpent",
@@ -146,7 +162,7 @@ AddOn.InstanceMounts = {
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
         Waypoint = { mapID = 379, x = 0.596, y = 0.392 },
-        SearchTags = { "mists of pandaria", "mop", "pandaria", "kun-lai summit" }
+        SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
         Name = "Azure Drake",
@@ -159,7 +175,7 @@ AddOn.InstanceMounts = {
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 },
         Waypoint = { mapID = 114, x = 0.275, y = 0.267 },
-        SearchTags = { "wrath of the lich king", "wotlk", "northrend", "borean tundra"}
+        SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
         Name = "Black Drake",
@@ -171,7 +187,7 @@ AddOn.InstanceMounts = {
         EncounterID = 1616,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         Waypoint = { mapID = 115, x = 0.6, y = 0.57 },
-        SearchTags = { "wrath of the lich king", "wotlk", "wrath", "northrend", "dragonblight" }
+        SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
         Name = "Blazing Drake",
@@ -188,7 +204,8 @@ AddOn.InstanceMounts = {
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H
         },
         Notes = L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"],
-        Waypoint = { mapID = 71, x = 0.647, y = 0.513 }
+        Waypoint = { mapID = 71, x = 0.647, y = 0.513 },
+        SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
         Name = "Blue Drake",
@@ -200,7 +217,8 @@ AddOn.InstanceMounts = {
         EncounterID = 1617,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 },
-        Waypoint = { mapID = 114, x = 0.275, y = 0.267 }
+        Waypoint = { mapID = 114, x = 0.275, y = 0.267 },
+        SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
         Name = "Blue Proto-Drake",
@@ -211,7 +229,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6690,
         EncounterID = 643,
         DifficultyIDs = { DungeonDifficulty.Heroic },
-        Waypoint = { mapID = 117, x = 0.572, y = 0.465 }
+        Waypoint = { mapID = 117, x = 0.572, y = 0.465 },
+        SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
         Name = "Blue Qiraji Battle Tank",
@@ -222,7 +241,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6537,
         DifficultyIDs = {},
         Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
-        Waypoint = { mapID = 327, x = 0.468, y = 0.075 }
+        Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
+        SearchTags = AddOn.ExpansionTags.Classic
     },
     {
         Name = "Bronze Drake",
@@ -233,7 +253,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6663,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Waypoint = { mapID = 71, x = 0.647, y = 0.513 },
-        Notes = L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"]
+        Notes = L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"],
+        SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
         Name = "Cartel Master's Gearglider",
@@ -245,7 +266,8 @@ AddOn.InstanceMounts = {
         EncounterID = 2455,
         DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"],
-        Waypoint = { mapID = 1671, x = 0.602, y = 0.676 }
+        Waypoint = { mapID = 1671, x = 0.602, y = 0.676 },
+        SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
         Name = "Clutch of Ji-Kun",
@@ -261,7 +283,8 @@ AddOn.InstanceMounts = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 504, x = 0.638, y = 0.32 }
+        Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
+        SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
         Name = "Drake of the North Wind",
@@ -273,7 +296,8 @@ AddOn.InstanceMounts = {
         EncounterID = 115,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 1527, x = 0.767, y = 0.844 }
+        Waypoint = { mapID = 1527, x = 0.767, y = 0.844 },
+        SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
         Name = "Drake of the South Wind",
@@ -289,7 +313,8 @@ AddOn.InstanceMounts = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 1527, x = 0.37, y = 0.814 }
+        Waypoint = { mapID = 1527, x = 0.37, y = 0.814 },
+        SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
         Name = "Experiment 12-B",
@@ -306,7 +331,8 @@ AddOn.InstanceMounts = {
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H
         },
         Notes = L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"],
-        Waypoint = { mapID = 71, x = 0.647, y = 0.513 }
+        Waypoint = { mapID = 71, x = 0.647, y = 0.513 },
+        SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
         Name = "Felblaze Infernal",
@@ -317,7 +343,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 5101,
         EncounterID = 1737,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 680, x = 0.437, y = 0.573 }
+        Waypoint = { mapID = 680, x = 0.437, y = 0.573 },
+        SearchTags = AddOn.ExpansionTags.Legion
     },
     {
         Name = "Felsteel Annihilator",
@@ -328,7 +355,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6504,
         EncounterID = 1438,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 534, x = 0.47, y = 0.526 }
+        Waypoint = { mapID = 534, x = 0.47, y = 0.526 },
+        SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
     },
     {
         Name = "Fiery Warhorse",
@@ -340,7 +368,8 @@ AddOn.InstanceMounts = {
         EncounterID = 1553,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
-        Notes = L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"]
+        Notes = L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"],
+        SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
         Name = "Flametalon of Alysrazor",
@@ -351,7 +380,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6514,
         EncounterID = 194,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
-        Waypoint = { mapID = 198, x = 0.468, y = 0.784 }
+        Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
+        SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
         Name = "Glacial Tidestorm",
@@ -364,7 +394,8 @@ AddOn.InstanceMounts = {
         EncounterID = 2343,
         DifficultyIDs = { RaidDifficulty.Mythic },
         -- Waypoint = { mapID = 862, x = 0.543, y = 0.299 } -- Zuldazar
-        -- Waypoint = { mapID = 1161, x = 0.704, y = 0.356 } -- Boralus
+        -- Waypoint = { mapID = 1161, x = 0.704, y = 0.356 } -- Boralus,
+        SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
         Name = "G.M.O.D",
@@ -378,7 +409,8 @@ AddOn.InstanceMounts = {
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"],
         -- Waypoint = { mapID = 862, x = 0.543, y = 0.299 } -- Zuldazar
-        -- Waypoint = { mapID = 1161, x = 0.704, y = 0.356 } -- Boralus
+        -- Waypoint = { mapID = 1161, x = 0.704, y = 0.356 } -- Boralus,
+        SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
         Name = "Grand Black War Mammoth",
@@ -389,7 +421,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6526,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         Notes = L["Drops for Alliance characters, but obtaining this also gives you the Horde version"],
-        Waypoint = { mapID = 123, x = 0.5, y = 0.117 }
+        Waypoint = { mapID = 123, x = 0.5, y = 0.117 },
+        SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
         Name = "Grand Black War Mammoth",
@@ -400,7 +433,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6526,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         Notes = L["Drops for Horde characters, but obtaining this also gives you the Alliance version"],
-        Waypoint = { mapID = 123, x = 0.5, y = 0.117 }
+        Waypoint = { mapID = 123, x = 0.5, y = 0.117 },
+        SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
         Name = "Green Qiraji Battle Tank",
@@ -411,7 +445,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6537,
         DifficultyIDs = {},
         Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
-        Waypoint = { mapID = 327, x = 0.468, y = 0.075 }
+        Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
+        SearchTags = AddOn.ExpansionTags.Classic
     },
     {
         Name = "Hellfire Infernal",
@@ -422,7 +457,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 5101,
         EncounterID = 1737,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 680, x = 0.437, y = 0.573 }
+        Waypoint = { mapID = 680, x = 0.437, y = 0.573 },
+        SearchTags = AddOn.ExpansionTags.Legion
     },
     {
         Name = "Invincible",
@@ -433,7 +469,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6521,
         EncounterID = 1636,
         DifficultyIDs = { RaidDifficulty.Legacy25H },
-        Waypoint = { mapID = 118, x = 0.538, y = 0.871 }
+        Waypoint = { mapID = 118, x = 0.538, y = 0.871 },
+        SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
         Name = "Ironhoof Destroyer",
@@ -444,7 +481,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6505,
         EncounterID = 959,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 543, x = 0.516, y = 0.272 }
+        Waypoint = { mapID = 543, x = 0.516, y = 0.272 },
+        SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
     },
     {
         Name = "Kor'kron Juggernaut",
@@ -455,7 +493,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6507,
         EncounterID = 869,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 1530, x = 0.741, y = 0.401 }
+        Waypoint = { mapID = 1530, x = 0.741, y = 0.401 },
+        SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
         Name = "Life-Binder's Handmaiden",
@@ -467,7 +506,8 @@ AddOn.InstanceMounts = {
         EncounterID = 333,
         DifficultyIDs = { RaidDifficulty.Legacy10H },
         SharedDifficulties = { [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H },
-        Waypoint = { mapID = 71, x = 0.647, y = 0.513 }
+        Waypoint = { mapID = 71, x = 0.647, y = 0.513 },
+        SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
         Name = "Marrowfang",
@@ -478,7 +518,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6582,
         EncounterID = 2396,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 1533, x = 0.401, y = 0.552 }
+        Waypoint = { mapID = 1533, x = 0.401, y = 0.552 },
+        SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
         Name = "Mechagon Peacekeeper",
@@ -489,7 +530,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6129,
         EncounterID = 2355,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 1462, x = 0.729, y = 0.365 }
+        Waypoint = { mapID = 1462, x = 0.729, y = 0.365 },
+        SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
         Name = "Midnight",
@@ -499,7 +541,8 @@ AddOn.InstanceMounts = {
         MapID = 1651,
         EncounterID = 1835,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 42, x = 0.47, y = 0.749 }
+        Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
+        SearchTags = AddOn.ExpansionTags.Legion
     },
     {
         Name = "Mimiron's Head",
@@ -512,6 +555,7 @@ AddOn.InstanceMounts = {
         DifficultyIDs = { RaidDifficulty.Normal },
         Notes = L["Upon entering the instance, raid difficulty will automatically be set to Normal"].."\n\n"..L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"],
         Waypoint = { mapID = 120, x = 0.416, y = 0.178 },
+        SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
         Name = "Ny'alotha Allseer",
@@ -522,7 +566,8 @@ AddOn.InstanceMounts = {
         -- AreaPoiID = 6539, -- Or 6540 (Uldum)
         EncounterID = 2375,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Notes = L["Entrance can be in either Uldum or Vale of Eternal Blossoms"]
+        Notes = L["Entrance can be in either Uldum or Vale of Eternal Blossoms"],
+        SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
         Name = "Onyxian Drake",
@@ -534,7 +579,8 @@ AddOn.InstanceMounts = {
         EncounterID = 1651,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 },
-        Waypoint = { mapID = 70, x = 0.522, y = 0.759 }
+        Waypoint = { mapID = 70, x = 0.522, y = 0.759 },
+        SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
         Name = "Prototype A.S.M.R",
@@ -545,7 +591,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 8240,
         EncounterID = 2646,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2346, x = 0.416, y = 0.488 }
+        Waypoint = { mapID = 2346, x = 0.416, y = 0.488 },
+        SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
         Name = "Pureblood Fire Hawk",
@@ -556,7 +603,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6514,
         EncounterID = 198,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
-        Waypoint = { mapID = 198, x = 0.468, y = 0.784 }
+        Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
+        SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
         Name = "Raven Lord",
@@ -567,7 +615,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6717,
         EncounterID = 542,
         DifficultyIDs = { DungeonDifficulty.Heroic },
-        Waypoint = { mapID = 108, x = 0.446, y = 0.656 }
+        Waypoint = { mapID = 108, x = 0.446, y = 0.656 },
+        SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
         Name = "Red Qiraji Battle Tank",
@@ -578,7 +627,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6537,
         DifficultyIDs = {},
         Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
-        Waypoint = { mapID = 327, x = 0.468, y = 0.075 }
+        Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
+        SearchTags = AddOn.ExpansionTags.Classic
     },
     {
         Name = "Rivendare's Deathcharger",
@@ -589,7 +639,8 @@ AddOn.InstanceMounts = {
         EncounterID = 456,
         DifficultyIDs = { DungeonDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 23, x = 0.436, y = 0.191 }
+        Waypoint = { mapID = 23, x = 0.436, y = 0.191 },
+        SearchTags = AddOn.ExpansionTags.Classic
     },
     {
         Name = "Sanctum Gloomcharger",
@@ -600,7 +651,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6994,
         EncounterID = 2439,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 1543, x = 0.697, y = 0.32 }
+        Waypoint = { mapID = 1543, x = 0.697, y = 0.32 },
+        SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
         Name = "Shackled Ur'zul",
@@ -611,7 +663,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 5440,
         EncounterID = 2031,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 885, x = 0.548, y = 0.625 }
+        Waypoint = { mapID = 885, x = 0.548, y = 0.625 },
+        SearchTags = AddOn.ExpansionTags.Legion
     },
     {
         Name = "Sharkbait",
@@ -622,7 +675,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 5834,
         EncounterID = 2095,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 895, x = 0.846, y = 0.788 }
+        Waypoint = { mapID = 895, x = 0.846, y = 0.788 },
+        SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
         Name = "Smoldering Ember Wyrm",
@@ -632,7 +686,8 @@ AddOn.InstanceMounts = {
         MapID = 1651,
         DifficultyIDs = { DungeonDifficulty.Mythic },
         Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
-        Notes = L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"]
+        Notes = L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"],
+        SearchTags = AddOn.ExpansionTags.Legion
     },
     {
         Name = "Spawn of Horridon",
@@ -648,7 +703,8 @@ AddOn.InstanceMounts = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 504, x = 0.638, y = 0.32 }
+        Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
+        SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
         Name = "Stonevalut Mechsuit",
@@ -658,7 +714,8 @@ AddOn.InstanceMounts = {
         MapID = 2652,
         DifficultyIDs = { DungeonDifficulty.Mythic },
         -- Waypoint = { mapID = , x = 0, y = 0 },
-        Notes = L["Requires completing a short questline after looting the Malfunctioning Mechsuit item from Void Speaker Eirich"]
+        Notes = L["Requires completing a short questline after looting the Malfunctioning Mechsuit item from Void Speaker Eirich"],
+        SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
         Name = "Sureki Skyrazor",
@@ -669,7 +726,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 7546,
         EncounterID = 2602,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2255, x = 0.436, y = 0.903 }
+        Waypoint = { mapID = 2255, x = 0.436, y = 0.903 },
+        SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
         Name = "Swift White Hawkstrider",
@@ -681,7 +739,8 @@ AddOn.InstanceMounts = {
         EncounterID = 533,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 122, x = 0.61, y = 0.307 }
+        Waypoint = { mapID = 122, x = 0.61, y = 0.307 },
+        SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
         Name = "Swift Zulian Panther",
@@ -692,7 +751,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6682,
         EncounterID = 181,
         DifficultyIDs = { DungeonDifficulty.Heroic },
-        Waypoint = { mapID = 224, x = 0.64, y = 0.218 }
+        Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
         Name = "The Big G",
@@ -703,7 +763,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 8240,
         EncounterID = 2646,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2346, x = 0.416, y = 0.488 }
+        Waypoint = { mapID = 2346, x = 0.416, y = 0.488 },
+        SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
         Name = "Tomb Stalker",
@@ -714,7 +775,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 5839,
         EncounterID = 2172,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 862, x = 0.376, y = 0.395 }
+        Waypoint = { mapID = 862, x = 0.376, y = 0.395 },
+        SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
         Name = "Twilight Drake",
@@ -725,7 +787,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6520,
         EncounterID = 1616,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Waypoint = { mapID = 115, x = 0.6, y = 0.57 }
+        Waypoint = { mapID = 115, x = 0.6, y = 0.57 },
+        SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
         Name = "Unbound Star-Eater",
@@ -736,7 +799,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 8363,
         EncounterID = 2691,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2371, x = 0.417, y = 0.215 }
+        Waypoint = { mapID = 2371, x = 0.417, y = 0.215 },
+        SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
         Name = "Underrot Crawg",
@@ -747,7 +811,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 5841,
         EncounterID = 2158,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 863, x = 0.513, y = 0.646 }
+        Waypoint = { mapID = 863, x = 0.513, y = 0.646 },
+        SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
         Name = "Vengeance",
@@ -758,7 +823,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6994,
         EncounterID = 2441,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 1543, x = 0.697, y = 0.32 }
+        Waypoint = { mapID = 1543, x = 0.697, y = 0.32 },
+        SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
         Name = "Vitreous Stone Drake",
@@ -769,7 +835,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6687,
         EncounterID = 111,
         DifficultyIDs = { DungeonDifficulty.Normal },
-        Waypoint = { mapID = 207, x = 0.474, y = 0.521 }
+        Waypoint = { mapID = 207, x = 0.474, y = 0.521 },
+        SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
         Name = "Wick",
@@ -780,7 +847,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 7821,
         EncounterID = 2561,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 2214, x = 0.555, y = 0.216 }
+        Waypoint = { mapID = 2214, x = 0.555, y = 0.216 },
+        SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
         Name = "Yellow Qiraji Battle Tank",
@@ -791,7 +859,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 6537,
         DifficultyIDs = {},
         Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
-        Waypoint = { mapID = 327, x = 0.468, y = 0.075 }
+        Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
+        SearchTags = AddOn.ExpansionTags.Classic
     },
     {
         Name = "Zereth Overseer",
@@ -802,7 +871,8 @@ AddOn.InstanceMounts = {
         AreaPoiID = 7021,
         EncounterID = 2464,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 1970, x = 0.805, y = 0.534 }
+        Waypoint = { mapID = 1970, x = 0.805, y = 0.534 },
+        SearchTags = AddOn.ExpansionTags.Shadowlands
     }
 }
 
@@ -818,6 +888,7 @@ AddOn.InstanceMounts = {
 ---@field DifficultyIDs? (DungeonDifficulty|RaidDifficulty)[] List of IDs for instance difficulty(s) the toy can be obtained in (is this even needed for toys?)
 ---@field Notes? string Additional notes about the toy or instance
 ---@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance). Also used for TomTom waypoint integration.
+---@field SearchTags string[] A list of string identifiers to quickly search for a toy. This can include expansion abbreviations, expansion names, zones, continents, etc<br/>This field is extended upon AddOn initialization to include zones and only includes expansions by default
 
 ---@type Toy[] List of toys available from instances
 AddOn.InstanceToys = {
@@ -831,7 +902,8 @@ AddOn.InstanceToys = {
         AreaPoiID = 6682,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Notes = L["Requires completion of the achievement Relics of a Fallen Empire"],
-        Waypoint = { mapID = 224, x = 0.64, y = 0.218 }
+        Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
         Name = "Cosmic Hearthstone",
@@ -843,7 +915,8 @@ AddOn.InstanceToys = {
         AreaPoiID = 8363,
         EncounterID = 2691,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2371, x = 0.417, y = 0.215 }
+        Waypoint = { mapID = 2371, x = 0.417, y = 0.215 },
+        SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
         Name = "Don Carlos' Famous Hat",
@@ -855,7 +928,8 @@ AddOn.InstanceToys = {
         AreaPoiID = 6666,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Notes = L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"].."\n\n"..L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"],
-        Waypoint = { mapID = 22, x = 0.698, y = 0.736 }
+        Waypoint = { mapID = 22, x = 0.698, y = 0.736 },
+        SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
         Name = "Explosive Hearthstone",
@@ -868,7 +942,8 @@ AddOn.InstanceToys = {
         EncounterID = 2642,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["Can also be looting by fishing within the instance"],
-        Waypoint = { mapID = 2346, x = 0.416, y = 0.488 }
+        Waypoint = { mapID = 2346, x = 0.416, y = 0.488 },
+        SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
         Name = "Familiar Journal",
@@ -879,7 +954,8 @@ AddOn.InstanceToys = {
         MapID = 1007,
         AreaPoiID = 6726,
         Notes = L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."],
-        Waypoint = { mapID = 22, x = 0.698, y = 0.736 }
+        Waypoint = { mapID = 22, x = 0.698, y = 0.736 },
+        SearchTags = AddOn.ExpansionTags.Classic
     },
     {
         Name = "Fandral's Seed Pouch",
@@ -892,7 +968,8 @@ AddOn.InstanceToys = {
         EncounterID = 197,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
         Notes = L["Can only be looted and used by a Druid"].."\n\n"..L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 198, x = 0.468, y = 0.784 }
+        Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
+        SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
         Name = "Gastropod Shell",
@@ -909,7 +986,8 @@ AddOn.InstanceToys = {
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
         Notes = L["Drops from Gastropod mobs found between Megaera and Ji-Kun"],
-        Waypoint = { mapID = 504, x = 0.638, y = 0.32 }
+        Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
+        SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
         Name = "Golden Hearthstone Card: Lord Jaraxxus",
@@ -922,7 +1000,8 @@ AddOn.InstanceToys = {
         EncounterID = 1737,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["This item is obtainable even though it does not appear on the loot table for Gul'dan"],
-        Waypoint = { mapID = 680, x = 0.437, y = 0.573 }
+        Waypoint = { mapID = 680, x = 0.437, y = 0.573 },
+        SearchTags = AddOn.ExpansionTags.Legion
     },
     {
         Name = "Hearthstone of the Flame",
@@ -935,7 +1014,8 @@ AddOn.InstanceToys = {
         EncounterID = 2553,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["Can also be looting by fishing within the instance"],
-        Waypoint = { mapID = 2200, x = 0.273, y = 0.31 }
+        Waypoint = { mapID = 2200, x = 0.273, y = 0.31 },
+        SearchTags = AddOn.ExpansionTags.Dragonflight
     },
     {
         Name = "Krastinov's Bag of Horrors",
@@ -947,7 +1027,8 @@ AddOn.InstanceToys = {
         AreaPoiID = 6726,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Notes = L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"],
-        Waypoint = { mapID = 22, x = 0.698, y = 0.736 }
+        Waypoint = { mapID = 22, x = 0.698, y = 0.736 },
+        SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
         Name = "Orb of the Sin'dorei",
@@ -959,7 +1040,8 @@ AddOn.InstanceToys = {
         AreaPoiID = 6718,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Notes = L["Can drop from every boss in the dungeon"].."\n\n"..L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 122, x = 0.61, y = 0.307 }
+        Waypoint = { mapID = 122, x = 0.61, y = 0.307 },
+        SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
         Name = "Piccolo of the Flaming Fire",
@@ -972,7 +1054,8 @@ AddOn.InstanceToys = {
         AreaPoiID = 6724,
         DifficultyIDs = { DungeonDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 122, x = 0.61, y = 0.307 }
+        Waypoint = { mapID = 122, x = 0.61, y = 0.307 },
+        SearchTags = AddOn.ExpansionTags.Classic
     },
     {
         Name = "Skull of Corruption",
@@ -985,7 +1068,8 @@ AddOn.InstanceToys = {
         EncounterID = 1737,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["Can only be looted and used by a Demon Hunter"].."\n\n"..L["This item is obtainable even though it does not appear on the loot table for Gul'dan"],
-        Waypoint = { mapID = 680, x = 0.437, y = 0.573 }
+        Waypoint = { mapID = 680, x = 0.437, y = 0.573 },
+        SearchTags = AddOn.ExpansionTags.Legion
     },
     {
         Name = "Unstable Portal Emitter",
@@ -997,7 +1081,8 @@ AddOn.InstanceToys = {
         AreaPoiID = 5327,
         DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Dropped by the Rare Elite Vixx the Collector"],
-        Waypoint = { mapID = 882, x = 0.222, y = 0.566 }
+        Waypoint = { mapID = 882, x = 0.222, y = 0.566 },
+        SearchTags = AddOn.ExpansionTags.Legion
     },
     {
         Name = "Vixx's Chest of Tricks",
@@ -1009,7 +1094,8 @@ AddOn.InstanceToys = {
         AreaPoiID = 5327,
         DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Dropped by the Rare Elite Vixx the Collector"],
-        Waypoint = { mapID = 882, x = 0.222, y = 0.566 }
+        Waypoint = { mapID = 882, x = 0.222, y = 0.566 },
+        SearchTags = AddOn.ExpansionTags.Legion
     },
     {
         Name = "Vial of Green Goo",
@@ -1021,6 +1107,7 @@ AddOn.InstanceToys = {
         AreaPoiID = 6502,
         DifficultyIDs = { DungeonDifficulty.Normal },
         Notes = L["Dropped by the hidden boss Endgineer Omegaplugg"].."\n\n"..L["It is highly recommended to attempt this encounter with a full party"],
-        Waypoint = { mapID = 27, x = 0.314, y = 0.380 }
+        Waypoint = { mapID = 27, x = 0.314, y = 0.380 },
+        SearchTags = AddOn.ExpansionTags.Classic
     }
 }

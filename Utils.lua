@@ -56,3 +56,23 @@ function AddOn:IsEncounterCompletedOnSharedDifficulty(data)
 
     return isCompleted
 end
+
+---Append a list of map search tags for a collectibleto the existing `SearchTags` list based on the ID of the instance where it is obtained
+---@param data Mount|Toy
+---@see Mount
+---@see Toy
+function AddOn.AppendMapSearchTags(data)
+    -- Create a fresh list of tags to avoid modifying the original list for each expansion
+    local tags = {}
+    for _, xpacTag in ipairs(data.SearchTags) do tinsert(tags, xpacTag) end
+
+    local dungeonAreaMapID = select(7, EJ_GetInstanceInfo(data.InstanceID))
+    local map = C_Map.GetMapInfo(dungeonAreaMapID)
+    -- MapID 946 is "Cosmic"
+    while map and map.parentMapID ~= 946 do
+        -- expected: instance name, then zone names up to but excluding "Azeroth"
+        tinsert(tags, map.name:lower())
+        map = C_Map.GetMapInfo(map.parentMapID)
+    end
+    data.SearchTags = tags
+end
