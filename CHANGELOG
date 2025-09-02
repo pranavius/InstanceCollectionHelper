@@ -4,6 +4,11 @@ This document describes changes to each version of **InstanceCollectionHelper (I
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v10**
+- Expanded search capabilities to include expansion, instance zone, and continents
+- Refactored search code to reduce redundancy
+- Updated code documentation
+
 **v9**
 - Updated tooltip for instance icon to show which boss drops a collectible
 - Improved method for fetching toy info quicker

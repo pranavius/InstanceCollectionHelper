@@ -21,6 +21,10 @@ function AddOn.HandleSlashCommand(cmd, input)
 end
 
 function AddOn:OnInitialize()
+    -- Generate proper search tags for all collectibles
+    for _, mount in ipairs(AddOn.InstanceMounts) do self.AppendMapSearchTags(mount) end
+    for _, toy in ipairs(AddOn.InstanceToys) do self.AppendMapSearchTags(toy) end
+
     -- Load database
 	self.db = LibStub("AceDB-3.0"):New("ICH_DB", AddOn.DatabaseDefaults, true)
 
@@ -275,77 +279,55 @@ function AddOn:CreateFooter()
 end
 
 ---Filters a list of data based on search parameters
----@param listData (InstanceMount|InstanceToy)[]
----@return (InstanceMount|InstanceToy)[]
+---@param listData (Mount|Toy)[]
+---@return (Mount|Toy)[]
 function AddOn:FilterListContentsByQuery(listData)
     local filtered = {}
     local query = self.Container.SearchBox:GetText():lower()
     local selectedTab = self.db.global.selectedTab
-    if selectedTab == self.Tabs.MountsTab then
-        for _, mount in ipairs(listData) do
-            -- Using localized names for mounts, instances, encounters, etc for better search results
-            local mountName = C_MountJournal.GetMountInfoByID(mount.MountID) or ""
-            local instanceName = EJ_GetInstanceInfo(mount.InstanceID) or ""
-            local encounterName = mount.EncounterID and EJ_GetEncounterInfo(mount.EncounterID) or ""
-            
-            -- Remove things like textures or atlases from names
-            local cleanName = mountName:lower():gsub("|.+|.*", "")
-            local nameMatches = cleanName:match(query) and true or false
-            local instanceMatches = instanceName:lower():match(query) and true or false
-            local encounterMatches = encounterName:lower():match(query) and true or false
-            local instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(mount) or (query == L["dungeon"] and not self:IsInstanceRaid(mount))
-            local difficultyMatches = false
-            for _, diffID in ipairs(mount.DifficultyIDs) do
-                if self:GetDifficultyButtonText(diffID):lower() == query or self:GetInstanceDifficultyText(diffID):lower() == query then
-                    difficultyMatches = true
-                    break
-                end
-            end
-            if not difficultyMatches and mount.SharedDifficulties then
-                for shared, _ in pairs(mount.SharedDifficulties) do
-                    if self:GetDifficultyButtonText(shared):lower() == query or self:GetInstanceDifficultyText(shared):lower() == query then
-                        difficultyMatches = true
-                        break
-                    end
-                end
-            end
 
-            if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches then
-                tinsert(filtered, mount)
+    local nameMatches, instanceMatches, encounterMatches, instanceTypeMatches, difficultyMatches, searchTagMatches = false, false, false, false, false, false
+    for _, item in ipairs(listData) do
+        -- Using localized names for mounts, instances, encounters, etc for better search results
+        local itemName
+        local instanceName = EJ_GetInstanceInfo(item.InstanceID) or ""
+        local encounterName = item.EncounterID and EJ_GetEncounterInfo(item.EncounterID) or ""
+        if selectedTab == self.Tabs.MountsTab then
+            itemName = C_MountJournal.GetMountInfoByID(item.MountID) or ""
+        elseif selectedTab == self.Tabs.ToysTab then
+            itemName = select(2, C_ToyBox.GetToyInfo(item.ToyItemID))
+            if not itemName then itemName = "" end
+        end
+        local cleanName = itemName:lower():gsub("|.+|.*", "")
+        nameMatches = cleanName:match(query) and true or false
+        instanceMatches = instanceName:lower():match(query) and true or false
+        encounterMatches = encounterName:lower():match(query) and true or false
+        instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(item) or (query == L["dungeon"] and not self:IsInstanceRaid(item))
+        difficultyMatches = false
+        for _, diffID in ipairs(item.DifficultyIDs) do
+            if self:GetDifficultyButtonText(diffID):lower() == query or self:GetInstanceDifficultyText(diffID):lower() == query then
+                difficultyMatches = true
+                break
             end
         end
-    elseif selectedTab == self.Tabs.ToysTab then
-        for _, toy in ipairs(listData) do
-            local _, toyName = C_ToyBox.GetToyInfo(toy.ToyItemID)
-            if not toyName then toyName = "" end
-            local instanceName = EJ_GetInstanceInfo(toy.InstanceID) or ""
-            local encounterName = toy.EncounterID and EJ_GetEncounterInfo(toy.EncounterID) or ""
-
-            -- Remove things like textures or atlases from names
-            local cleanName = toyName:lower():gsub("|.+|.*", "")
-            local nameMatches = cleanName:match(query) and true or false
-            local instanceMatches = instanceName:lower():match(query) and true or false
-            local encounterMatches = encounterName:lower():match(query) and true or false
-            local instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(toy) or (query == L["dungeon"] and not self:IsInstanceRaid(toy))
-            local difficultyMatches = false
-            for _, diffID in ipairs(toy.DifficultyIDs or {}) do
-                if self:GetDifficultyButtonText(diffID):lower() == query or self:GetInstanceDifficultyText(diffID):lower() == query then
+        if not difficultyMatches and item.SharedDifficulties then
+            for shared, _ in pairs(item.SharedDifficulties) do
+                if self:GetDifficultyButtonText(shared):lower() == query or self:GetInstanceDifficultyText(shared):lower() == query then
                     difficultyMatches = true
                     break
                 end
             end
-            if not difficultyMatches and toy.SharedDifficulties then
-                for shared, _ in pairs(toy.SharedDifficulties) do
-                    if self:GetDifficultyButtonText(shared):lower() == query or self:GetInstanceDifficultyText(shared):lower() == query then
-                        difficultyMatches = true
-                        break
-                    end
-                end
+        end
+        searchTagMatches = false
+        for _, tag in ipairs(item.SearchTags) do
+            if tag:lower():match(query) then
+                searchTagMatches = true
+                break
             end
+        end
 
-            if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches then
-                tinsert(filtered, toy)
-            end
+        if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches or searchTagMatches then
+            tinsert(filtered, item)
         end
     end
     return filtered
@@ -356,7 +338,7 @@ end
 function AddOn:UpdateListContents(event)
     if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then UIParentLoadAddOn("Blizzard_Collections") end
     if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then UIParentLoadAddOn("Blizzard_EncounterJournal") end
-    ---@type (InstanceMount|InstanceToy)[]
+    ---@type (Mount|Toy)[]
     local newData = {}
     local selectedTab = self.db.global.selectedTab
     if selectedTab == self.Tabs.MountsTab then

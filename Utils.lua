@@ -2,10 +2,10 @@ local name, AddOn = ...
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 
----@param data InstanceMount|InstanceToy
+---@param data Mount|Toy
 ---@return boolean `true` if the instance is a raid, `false` otherwise
----@see InstanceMount
----@see InstanceToy
+---@see Mount
+---@see Toy
 function AddOn:IsInstanceRaid(data)
     -- For toys, we just check for the IsRaid property
     if data.IsRaid ~= nil then return data.IsRaid end
@@ -19,9 +19,9 @@ function AddOn:IsInstanceRaid(data)
 end
 
 ---Determines whether or not an instance encounter has been completed for the reset period for a given difficulty
----@param data InstanceMount|InstanceToy
----@see InstanceMount
----@see InstanceToy
+---@param data Mount|Toy
+---@see Mount
+---@see Toy
 function AddOn.IsEncounterCompleted(data, difficultyID)
     local encounterName
     if data.EncounterID then encounterName = select(1, EJ_GetEncounterInfo(data.EncounterID)) end
@@ -44,10 +44,10 @@ function AddOn.IsEncounterCompleted(data, difficultyID)
 end
 
 
----@param data InstanceMount|InstanceToy
+---@param data Mount|Toy
 ---@return boolean isCompleted `true` if an encounter has been completed for the reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise
----@see InstanceMount
----@see InstanceToy
+---@see Mount
+---@see Toy
 function AddOn:IsEncounterCompletedOnSharedDifficulty(data)
     local isCompleted = false
     for shared, _ in pairs(data.SharedDifficulties) do
@@ -55,4 +55,24 @@ function AddOn:IsEncounterCompletedOnSharedDifficulty(data)
     end
 
     return isCompleted
+end
+
+---Append a list of map search tags for a collectibleto the existing `SearchTags` list based on the ID of the instance where it is obtained
+---@param data Mount|Toy
+---@see Mount
+---@see Toy
+function AddOn.AppendMapSearchTags(data)
+    -- Create a fresh list of tags to avoid modifying the original list for each expansion
+    local tags = {}
+    for _, xpacTag in ipairs(data.SearchTags) do tinsert(tags, xpacTag) end
+
+    local dungeonAreaMapID = select(7, EJ_GetInstanceInfo(data.InstanceID))
+    local map = C_Map.GetMapInfo(dungeonAreaMapID)
+    -- MapID 946 is "Cosmic"
+    while map and map.parentMapID ~= 946 do
+        -- expected: instance name, then zone names up to but excluding "Azeroth"
+        tinsert(tags, map.name:lower())
+        map = C_Map.GetMapInfo(map.parentMapID)
+    end
+    data.SearchTags = tags
 end

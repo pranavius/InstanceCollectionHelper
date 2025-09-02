@@ -5,7 +5,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---Attempts to fetch and cache the toy information, displaying fallback values in the list until data can be retrieved<br/>
 ---This prevents a bad user experience where multiple list entries are just missing information
----@param data InstanceToy
+---@param data Toy
 ---@return string toyName The localized name of the toy. If toy information cannot be retrieved, this falls back to the `enUS` locale
 ---@return number iconID The icon ID for the toy. If toy information cannot be retrieved, this falls back to the standard question mark icon used commonly in WoW
 local function GetCachedToyInfo(data)
@@ -29,9 +29,9 @@ end
 
 ---Initializes how toy data in the scrollable list should be displayed
 ---@param frame ICHListItem
----@param data InstanceToy
+---@param data Toy
 ---@see ICHListItem
----@see InstanceToy
+---@see Toy
 function AddOn.ToyDataProviderInit(frame, data)
     if not frame or not data then return end
     frame.isToy = true
