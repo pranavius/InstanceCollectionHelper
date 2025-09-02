@@ -286,6 +286,18 @@ unknown
 unknown
 ```
 
+## AppendMapSearchTags
+
+
+```lua
+function InstanceCollectionHelper.AppendMapSearchTags(data: Mount|Toy)
+```
+
+Append a list of map search tags for a collectibleto the existing `SearchTags` list based on the ID of the instance where it is obtained
+See:
+  * [Mount](InstanceCollectionHelper/Constants.lua#49#10)
+  * [Toy](InstanceCollectionHelper/Constants.lua#879#10)
+
 ## ConfigureWaypointButton
 
 
@@ -299,8 +311,8 @@ Sets up and displays the appropriate waypoint button based on user preferences a
 
 See:
   * [ICHListItem](InstanceCollectionHelper/Modules/MountDataProvider.lua#46#10)
-  * [Mount](InstanceCollectionHelper/Constants.lua#33#10)
-  * [Toy](InstanceCollectionHelper/Constants.lua#809#10)
+  * [Mount](InstanceCollectionHelper/Constants.lua#49#10)
+  * [Toy](InstanceCollectionHelper/Constants.lua#879#10)
 
 ## Container
 
@@ -374,13 +386,6 @@ Initializes the tab system for viewing different types of collectibles available
 
 ```lua
 table
-```
-
-## DungeonDifficulty
-
-
-```lua
-enum DungeonDifficulty
 ```
 
 ## FilterListContentsByQuery
@@ -464,8 +469,8 @@ Handles how waypoints should be set using either Blizzard's super tracking or To
 @*param* `localizedInstanceName` — The localized name of the instance to set a waypoint for
 
 See:
-  * [Mount](InstanceCollectionHelper/Constants.lua#33#10)
-  * [Toy](InstanceCollectionHelper/Constants.lua#809#10)
+  * [Mount](InstanceCollectionHelper/Constants.lua#49#10)
+  * [Toy](InstanceCollectionHelper/Constants.lua#879#10)
 
 ## HideAllDifficultyButtons
 
@@ -491,24 +496,6 @@ unknown
 unknown
 ```
 
-## InstanceMounts
-
-
-```lua
-Mount[]
-```
-
-List of mounts available from instances
-
-## InstanceToys
-
-
-```lua
-Toy[]
-```
-
-List of toys available from instances
-
 ## IsEncounterCompleted
 
 
@@ -519,8 +506,8 @@ function InstanceCollectionHelper.IsEncounterCompleted(data: Mount|Toy, difficul
 
 Determines whether or not an instance encounter has been completed for the reset period for a given difficulty
 See:
-  * [Mount](InstanceCollectionHelper/Constants.lua#33#10)
-  * [Toy](InstanceCollectionHelper/Constants.lua#809#10)
+  * [Mount](InstanceCollectionHelper/Constants.lua#49#10)
+  * [Toy](InstanceCollectionHelper/Constants.lua#879#10)
 
 ## IsEncounterCompletedOnSharedDifficulty
 
@@ -533,8 +520,8 @@ See:
 @*return* `isCompleted` — `true` if an encounter has been completed for the reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise
 
 See:
-  * [Mount](InstanceCollectionHelper/Constants.lua#33#10)
-  * [Toy](InstanceCollectionHelper/Constants.lua#809#10)
+  * [Mount](InstanceCollectionHelper/Constants.lua#49#10)
+  * [Toy](InstanceCollectionHelper/Constants.lua#879#10)
 
 ## IsInstanceRaid
 
@@ -547,8 +534,8 @@ See:
 @*return* — `true` if the instance is a raid, `false` otherwise
 
 See:
-  * [Mount](InstanceCollectionHelper/Constants.lua#33#10)
-  * [Toy](InstanceCollectionHelper/Constants.lua#809#10)
+  * [Mount](InstanceCollectionHelper/Constants.lua#49#10)
+  * [Toy](InstanceCollectionHelper/Constants.lua#879#10)
 
 ## OnInitialize
 
@@ -569,13 +556,6 @@ Prints a message to the chat window prefixed by the AddOn name
 @*param* `...` — Arguments to be printed to the chat window
 
 See: [print](file:///Users/pranavchary/.vscode/extensions/sumneko.lua-3.15.0-darwin-arm64/server/meta/Lua%205.4%20en-us%20utf8/basic.lua#235#9)
-
-## RaidDifficulty
-
-
-```lua
-enum RaidDifficulty
-```
 
 ## ScrollBar
 
@@ -636,8 +616,8 @@ Determines which difficulty button(s) to display based on the provided data
 
 See:
   * [DifficultyContainer](InstanceCollectionHelper/Modules/MountDataProvider.lua#21#10)
-  * [Mount](InstanceCollectionHelper/Constants.lua#33#10)
-  * [Toy](InstanceCollectionHelper/Constants.lua#809#10)
+  * [Mount](InstanceCollectionHelper/Constants.lua#49#10)
+  * [Toy](InstanceCollectionHelper/Constants.lua#879#10)
 
 ## SlashOptions
 
@@ -803,7 +783,7 @@ Additional notes about the mount or instance
 string[]
 ```
 
-A list of string identifiers to quickly search for a mount. This can include expansion abbreviations, expansion names, zones, continents, etc
+A list of string identifiers to quickly search for a mount. This can include expansion abbreviations, expansion names, zones, continents, etc<br/>This field is extended upon AddOn initialization to include zones and only includes expansions by default
 
 ## SharedDifficulties
 
@@ -959,6 +939,15 @@ string?
 ```
 
 Additional notes about the toy or instance
+
+## SearchTags
+
+
+```lua
+string[]
+```
+
+A list of string identifiers to quickly search for a toy. This can include expansion abbreviations, expansion names, zones, continents, etc<br/>This field is extended upon AddOn initialization to include zones and only includes expansions by default
 
 ## ToyItemID
 
