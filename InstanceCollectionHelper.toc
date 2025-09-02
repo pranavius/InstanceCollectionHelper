@@ -3,10 +3,10 @@
 ## Notes: Helps find and set the instance difficulty needed to obtain collectible items
 ## IconTexture: Interface\AddOns\InstanceCollectionHelper\Media\Logo.png
 ## Author: pranavius
-## Version: 9
+## Version: 10
 ## SavedVariables: ICH_DB
-## X-Flavor: retail
 ## Category: Achievements
+## X-Flavor: retail
 ## X-Additional-Categories: Battle Pets, Boss Encounters, Miscellaneous
 ## X-Curse-Project-ID: 1302094
 ## X-Wago-ID: kGr0j76y
