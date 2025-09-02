@@ -22,10 +22,23 @@ local RaidDifficulty = {
     Mythic = 16
 }
 
----@type table<string, string[]>
+---@class ExpansionTags A table containing entries for each WoW expansion.<br/>
+---Each table entry consists of a list of strings associated with that expansion to use when searching for a collectible by expansion
+---@field Classic string[]
+---@field TheBurningCrusade string[]
+---@field WrathOfTheLichKing string[]
+---@field Cataclysm string[]
+---@field MistsOfPandaria string[]
+---@field WarlordsOfDraenor string[]
+---@field Legion string[]
+---@field BattleForAzeroth string[]
+---@field Shadowlands string[]
+---@field Dragonflight string[]
+---@field TheWarWithin string[]
+---@field Midnight string[]
 AddOn.ExpansionTags = {
     Classic = { "classic", "vanilla" },
-    TheBurningCrusade = { "the burning crusade", "burning crusade", "tbc" },
+    TheBurningCrusade = { "the burning crusade", "burning crusade", "tbc", "bc" },
     WrathOfTheLichKing = { "wrath of the lich king", "wotlk" },
     Cataclysm = { "cataclysm", "cata" },
     MistsOfPandaria = { "mists of pandaria", "mop" },
@@ -881,11 +894,10 @@ AddOn.InstanceMounts = {
 ---@field ToyItemID number Item ID number for the toy
 ---@field Instance string Instance from which the toy can be obtained (for information only?)
 ---@field InstanceID number ID number for the instance
----@field IsRaid boolean Whether or not the instance is a raid
 ---@field MapID number ID number for the map of the instance
 ---@field AreaPoiID? number ID number for the Point of Interest (POI) marker showing the instance entrance on the map. Used to place Blizzard map pins for navigation guidance
 ---@field EncounterID? number ID number for the encounter from which the toy is available
----@field DifficultyIDs? (DungeonDifficulty|RaidDifficulty)[] List of IDs for instance difficulty(s) the toy can be obtained in (is this even needed for toys?)
+---@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[] List of IDs for instance difficulty(s) the toy can be obtained in
 ---@field Notes? string Additional notes about the toy or instance
 ---@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance). Also used for TomTom waypoint integration.
 ---@field SearchTags string[] A list of string identifiers to quickly search for a toy. This can include expansion abbreviations, expansion names, zones, continents, etc<br/>This field is extended upon AddOn initialization to include zones and only includes expansions by default
@@ -897,7 +909,6 @@ AddOn.InstanceToys = {
         ToyItemID = 203757,
         Instance = "Zul'Gurub",
         InstanceID = 76,
-        IsRaid = false,
         MapID = 859,
         AreaPoiID = 6682,
         DifficultyIDs = { DungeonDifficulty.Heroic },
@@ -910,7 +921,6 @@ AddOn.InstanceToys = {
         ToyItemID = 246565,
         Instance = "Manaforge Omega",
         InstanceID = 1302,
-        IsRaid = true,
         MapID = 2810,
         AreaPoiID = 8363,
         EncounterID = 2691,
@@ -923,7 +933,6 @@ AddOn.InstanceToys = {
         ToyItemID = 134019,
         Instance = "Old Hillsbrad Foothills",
         InstanceID = 251,
-        IsRaid = false,
         MapID = 560,
         AreaPoiID = 6666,
         DifficultyIDs = { DungeonDifficulty.Heroic },
@@ -936,7 +945,6 @@ AddOn.InstanceToys = {
         ToyItemID = 236687,
         Instance = "Liberation of Undermine",
         InstanceID = 1296,
-        IsRaid = true,
         MapID = 2769,
         AreaPoiID = 8240,
         EncounterID = 2642,
@@ -950,9 +958,9 @@ AddOn.InstanceToys = {
         ToyItemID = 208096,
         Instance = "Scholomance (Classic)",
         InstanceID = 246,
-        IsRaid = false,
         MapID = 1007,
         AreaPoiID = 6726,
+        DifficultyIDs = { DungeonDifficulty.Normal },
         Notes = L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."],
         Waypoint = { mapID = 22, x = 0.698, y = 0.736 },
         SearchTags = AddOn.ExpansionTags.Classic
@@ -962,7 +970,6 @@ AddOn.InstanceToys = {
         ToyItemID = 122304,
         Instance = "Firelands",
         InstanceID = 78,
-        IsRaid = true,
         MapID = 720,
         AreaPoiID = 6514,
         EncounterID = 197,
@@ -976,7 +983,6 @@ AddOn.InstanceToys = {
         ToyItemID = 98136,
         Instance = "Throne of Thunder",
         InstanceID = 362,
-        IsRaid = true,
         MapID = 1098,
         AreaPoiID = 6508,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Legacy10 },
@@ -994,7 +1000,6 @@ AddOn.InstanceToys = {
         ToyItemID = 119211,
         Instance = "The Nighthold",
         InstanceID = 786,
-        IsRaid = true,
         MapID = 1530,
         AreaPoiID = 5101,
         EncounterID = 1737,
@@ -1008,7 +1013,6 @@ AddOn.InstanceToys = {
         ToyItemID = 209035,
         Instance = "Amirdrassil, the Dream's Hope",
         InstanceID = 1207,
-        IsRaid = true,
         MapID = 2549,
         AreaPoiID = 7631,
         EncounterID = 2553,
@@ -1022,7 +1026,6 @@ AddOn.InstanceToys = {
         ToyItemID = 88566,
         Instance = "Scholomance",
         InstanceID = 246,
-        IsRaid = false,
         MapID = 1007,
         AreaPoiID = 6726,
         DifficultyIDs = { DungeonDifficulty.Heroic },
@@ -1035,7 +1038,6 @@ AddOn.InstanceToys = {
         ToyItemID = 35275,
         Instance = "Magister's Terrace",
         InstanceID = 249,
-        IsRaid = false,
         MapID = 585,
         AreaPoiID = 6718,
         DifficultyIDs = { DungeonDifficulty.Heroic },
@@ -1048,7 +1050,6 @@ AddOn.InstanceToys = {
         ToyItemID = 13379,
         Instance = "Stratholme - Main Gate",
         InstanceID = 236,
-        IsRaid = false,
         MapID = 329,
         EncounterID = 443,
         AreaPoiID = 6724,
@@ -1062,7 +1063,6 @@ AddOn.InstanceToys = {
         ToyItemID = 143544,
         Instance = "The Nighthold",
         InstanceID = 786,
-        IsRaid = true,
         MapID = 1530,
         AreaPoiID = 5101,
         EncounterID = 1737,
@@ -1076,7 +1076,6 @@ AddOn.InstanceToys = {
         ToyItemID = 153004,
         Instance = "Seat of the Triumvirate",
         InstanceID = 945,
-        IsRaid = false,
         MapID = 1753,
         AreaPoiID = 5327,
         DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
@@ -1089,7 +1088,6 @@ AddOn.InstanceToys = {
         ToyItemID = 152982,
         Instance = "Seat of the Triumvirate",
         InstanceID = 945,
-        IsRaid = false,
         MapID = 1753,
         AreaPoiID = 5327,
         DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
@@ -1102,7 +1100,6 @@ AddOn.InstanceToys = {
         ToyItemID = 141331,
         Instance = "Gnomeregan",
         InstanceID = 231,
-        IsRaid = false,
         MapID = 90,
         AreaPoiID = 6502,
         DifficultyIDs = { DungeonDifficulty.Normal },
