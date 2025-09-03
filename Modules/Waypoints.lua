@@ -6,10 +6,11 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---Sets up and displays the appropriate waypoint button based on user preferences and **TomTom** being enabled or not
 ---@param localizedInstanceName string The localized name of the instance to set a waypoint for
 ---@param frame ICHListItem
----@param data Mount|Toy
+---@param data Mount|Toy|Pet
 ---@see ICHListItem
 ---@see Mount
 ---@see Toy
+---@see Pet
 function AddOn:ConfigureWaypointButton(localizedInstanceName, frame, data)
     if data.InstanceID == 1176 or data.InstanceID == 1194 or data.AreaPoiID or data.Waypoint then
         if C_AddOns.IsAddOnLoaded("TomTom") and self.db.global.useTomTomPoints then
@@ -30,10 +31,11 @@ function AddOn:ConfigureWaypointButton(localizedInstanceName, frame, data)
 end
 
 --- Sets and tracks navigation to a map marker at the coordinates or Area POI associated with an instance entrance
----@param data Mount|Toy
+---@param data Mount|Toy|Pet
 ---@return boolean isPinSet `true` if a map pin was successfully placed, `false` otherwise
 ---@see Mount
 ---@see Toy
+---@see Pet
 local function SetBlizzardMapPin(data)
     -- Clear any previously supertracked pins and waypoints
     C_SuperTrack.ClearSuperTrackedMapPin()
@@ -61,10 +63,11 @@ local function SetBlizzardMapPin(data)
 end
 
 --- Sets a TomTom waypoint at the coordinates associated with an instance entrance
----@param data Mount|Toy
+---@param data Mount|Toy|Pet
 ---@return boolean isPinSet `true` if a map pin was successfully placed, `false` otherwise
 ---@see Mount
 ---@see Toy
+---@see Pet
 local function SetTomTomWaypoint(data, localizedInstanceName)
     if AddOn.db.global.currentTomTomWaypoint then
         TomTom:RemoveWaypoint(AddOn.db.global.currentTomTomWaypoint)
@@ -95,10 +98,11 @@ local function SetTomTomWaypoint(data, localizedInstanceName)
 end
 
 ---Handles how waypoints should be set using either Blizzard's super tracking or TomTom
----@param data Mount|Toy
+---@param data Mount|Toy|Pet
 ---@param localizedInstanceName string The localized name of the instance to set a waypoint for
 ---@see Mount
 ---@see Toy
+---@see Pet
 function AddOn:HandleWaypointClick(data, localizedInstanceName)
     local isPinSet = false
         if C_AddOns.IsAddOnLoaded("TomTom") and self.db.global.useTomTomPoints then

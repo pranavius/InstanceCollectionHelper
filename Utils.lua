@@ -2,10 +2,11 @@ local name, AddOn = ...
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 
----@param data Mount|Toy
+---@param data Mount|Toy|Pet
 ---@return boolean `true` if the instance is a raid, `false` otherwise
 ---@see Mount
 ---@see Toy
+---@see Pet
 function AddOn:IsInstanceRaid(data)
     -- AQ has no difficulty IDs listed since it defaults to a 40-man when zoned in (not settable from the UI)
     if #data.DifficultyIDs == 0 then return true end
@@ -16,9 +17,10 @@ function AddOn:IsInstanceRaid(data)
 end
 
 ---Determines whether or not an instance encounter has been completed for the reset period for a given difficulty
----@param data Mount|Toy
+---@param data Mount|Toy|Pet
 ---@see Mount
 ---@see Toy
+---@---@see Pet
 function AddOn.IsEncounterCompleted(data, difficultyID)
     local encounterName
     if data.EncounterID then encounterName = select(1, EJ_GetEncounterInfo(data.EncounterID)) end
@@ -41,10 +43,11 @@ function AddOn.IsEncounterCompleted(data, difficultyID)
 end
 
 
----@param data Mount|Toy
+---@param data Mount|Toy|Pet
 ---@return boolean isCompleted `true` if an encounter has been completed for the reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise
 ---@see Mount
 ---@see Toy
+---@see Pet
 function AddOn:IsEncounterCompletedOnSharedDifficulty(data)
     local isCompleted = false
     for shared, _ in pairs(data.SharedDifficulties) do
@@ -55,9 +58,10 @@ function AddOn:IsEncounterCompletedOnSharedDifficulty(data)
 end
 
 ---Append a list of map search tags for a collectibleto the existing `SearchTags` list based on the ID of the instance where it is obtained
----@param data Mount|Toy
+---@param data Mount|Toy|Pet
 ---@see Mount
 ---@see Toy
+---@see Pet
 function AddOn.AppendMapSearchTags(data)
     -- Create a fresh list of tags to avoid modifying the original list for each expansion
     local tags = {}

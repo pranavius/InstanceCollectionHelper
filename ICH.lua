@@ -165,6 +165,7 @@ function AddOn:CreateScrollingView()
     self.ScrollView:SetElementFactory(function(factory, elementData)
         if elementData.MountID then factory("ICHListItemTemplate", self.MountDataProviderInit)
         elseif elementData.ToyItemID then factory("ICHListItemTemplate", self.ToyDataProviderInit)
+        elseif elementData.PetItemID then factory("ICHListItemTemplate", self.PetDataProviderInit)
         end
 
     end)
@@ -244,9 +245,7 @@ function AddOn:CreateFooter()
     end)
 
     foot.OwnedContainer.Checkbox = ownedCb
-    -- if self.Tabs and self.db.global.selectedTab == self.Tabs.MountsTab then
     foot.OwnedContainer.Checkbox:Show()
-    -- end
 
     -- "Use TomTom Waypoints" Checkbox
     foot.TomTomContainer = CreateFrame("Frame", nil, foot)
@@ -279,8 +278,8 @@ function AddOn:CreateFooter()
 end
 
 ---Filters a list of data based on search parameters
----@param listData (Mount|Toy)[]
----@return (Mount|Toy)[]
+---@param listData (Mount|Toy|Pet)[]
+---@return (Mount|Toy|Pet)[]
 function AddOn:FilterListContentsByQuery(listData)
     local filtered = {}
     local query = self.Container.SearchBox:GetText():lower()
@@ -297,6 +296,8 @@ function AddOn:FilterListContentsByQuery(listData)
         elseif selectedTab == self.Tabs.ToysTab then
             itemName = select(2, C_ToyBox.GetToyInfo(item.ToyItemID))
             if not itemName then itemName = "" end
+        elseif selectedTab == self.Tabs.PetsTab then
+            print(item.Name)
         end
         local cleanName = itemName:lower():gsub("|.+|.*", "")
         nameMatches = cleanName:match(query) and true or false
@@ -338,7 +339,7 @@ end
 function AddOn:UpdateListContents(event)
     if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then UIParentLoadAddOn("Blizzard_Collections") end
     if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then UIParentLoadAddOn("Blizzard_EncounterJournal") end
-    ---@type (Mount|Toy)[]
+    ---@type (Mount|Toy|Pet)[]
     local newData = {}
     local selectedTab = self.db.global.selectedTab
     if selectedTab == self.Tabs.MountsTab then
@@ -362,6 +363,11 @@ function AddOn:UpdateListContents(event)
             if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, data) end
         end
         self.Container.SearchBox.Instructions:SetText(L["Search by toy/instance name, instance type, or difficulty"])
+    elseif selectedTab == self.Tabs.PetsTab then
+        for _, data in ipairs(self.InstancePets) do
+            local isOwned = select(3, self:GetCachedPetInfo(data))
+            if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, data) end
+        end
     end
 
     -- Filter list results based on search criteria when present

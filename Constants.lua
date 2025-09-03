@@ -890,9 +890,9 @@ AddOn.InstanceMounts = {
 }
 
 ---@class Toy Toy data to process and display as a list item in the AddOn
----@field Name string Name of the toy (for information only?)
+---@field Name string Name of the toy (for information only, displayed name is in user's locale)
 ---@field ToyItemID number Item ID number for the toy
----@field Instance string Instance from which the toy can be obtained (for information only?)
+---@field Instance string Instance from which the toy can be obtained (for information only, displayed name is in user's locale)
 ---@field InstanceID number ID number for the instance
 ---@field MapID number ID number for the map of the instance
 ---@field AreaPoiID? number ID number for the Point of Interest (POI) marker showing the instance entrance on the map. Used to place Blizzard map pins for navigation guidance
@@ -1105,6 +1105,83 @@ AddOn.InstanceToys = {
         DifficultyIDs = { DungeonDifficulty.Normal },
         Notes = L["Dropped by the hidden boss Endgineer Omegaplugg"].."\n\n"..L["It is highly recommended to attempt this encounter with a full party"],
         Waypoint = { mapID = 27, x = 0.314, y = 0.380 },
+        SearchTags = AddOn.ExpansionTags.Classic
+    }
+}
+
+---@class Pet Pet data to process and display as a list item in the AddOn
+---@field Name string Name of the pet (for information only, displayed name is in user's locale)
+---@field PetItemID number Item ID number for the pet
+---@field Instance string Instance from which the pet can be obtained (for information only, displayed name is in user's locale)
+---@field InstanceID number ID number for the instance
+---@field MapID number ID number for the map of the instance
+---@field AreaPoiID? number ID number for the Point of Interest (POI) marker showing the instance entrance on the map. Used to place Blizzard map pins for navigation guidance
+---@field EncounterID? number ID number for the encounter from which the pet is available
+---@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[] List of IDs for instance difficulty(s) the pet can be obtained in
+---@field Notes? string Additional notes about the pet or instance
+---@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance). Also used for TomTom waypoint integration.
+---@field SearchTags string[] A list of string identifiers to quickly search for a pet. This can include expansion abbreviations, expansion names, zones, continents, etc<br/>This field is extended upon AddOn initialization to include zones and only includes expansions by default
+
+---@type Pet[] List of pets available from instances
+AddOn.InstancePets = {
+    {
+        Name = "Green Wing Macaw",
+        PetItemID = 8492,
+        Instance = "The Deadmines",
+        InstanceID = 63,
+        MapID = 36,
+        AreaPoiID = 6500,
+        DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic },
+        Notes = "Dropped by "..WrapTextInColor("Defias Pirates", DARKYELLOW_FONT_COLOR).." on the boat towards the end of the dungeon",
+        -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        SearchTags = AddOn.ExpansionTags.Classic
+    },
+    {
+        Name = "Mojo",
+        PetItemID = 33993,
+        Instance = "Zul'Aman",
+        InstanceID = 77,
+        MapID = 568,
+        AreaPoiID = 6683,
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Waypoint = { mapID = 95, x = 0.82, y = 0.643 },
+        SearchTags = AddOn.ExpansionTags.Cataclysm
+    },
+    {
+        Name = "Phoenix Hatchling",
+        PetItemID = 35504,
+        Instance = "Magister's Terrace",
+        InstanceID = 249,
+        MapID = 585,
+        AreaPoiID = 6718,
+        EncounterID = 533,
+        DifficultyIDs = { DungeonDifficulty.Heroic },
+        Notes = L["Also obtainable in Timewalking"],
+        Waypoint = { mapID = 122, x = 0.61, y = 0.307 },
+        SearchTags = AddOn.ExpansionTags.TheBurningCrusade
+    },
+    {
+        Name = "Smolderweb Hatchling",
+        PetItemID = 68673,
+        Instance = "Lower Blackrock Spire",
+        InstanceID = 229,
+        MapID = 229,
+        AreaPoiID = 6661,
+        EncounterID = 391,
+        DifficultyIDs = { DungeonDifficulty.Normal },
+        -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        SearchTags = AddOn.ExpansionTags.Classic
+    },
+    {
+        Name = "Worg Pup",
+        PetItemID = 12264,
+        Instance = "Lower Blackrock Spire",
+        InstanceID = 229,
+        MapID = 229,
+        AreaPoiID = 6661,
+        EncounterID = 393,
+        DifficultyIDs = { DungeonDifficulty.Normal },
+        -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
         SearchTags = AddOn.ExpansionTags.Classic
     }
 }

@@ -34,4 +34,5 @@ Modules\Waypoints.lua
 Modules\DifficultyButtons.lua
 Modules\MountDataProvider.lua
 Modules\ToyDataProvider.lua
+Modules\PetDataProvider.lua
 ICH.lua

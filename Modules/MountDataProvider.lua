@@ -44,7 +44,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field ICHWaypointButton ICHWaypointButton
 
 ---@class ICHListItem: Frame List item that displays relevant information for a given collectible
----@field isToy boolean Whether or not the list item is for a toy
+---@field isMount boolean Whether or not the list item is for a mount
 ---@field relevantID number The ID number for the collectible. For mounts, this value is `mountID` and for toys it is `itemID`
 ---@field Bg Texture The background texture for unowned list items
 ---@field OwnedBg Texture The background texture for owned list items
@@ -65,7 +65,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 function AddOn.MountDataProviderInit(frame, data)
     if not frame or not data then return end
     -- Resetting these values to avoid conflicts or incorrect tooltip displays
-    frame.isToy = false
+    frame.isMount = true
     frame.relevantID = data.MountID
 
     local index = AddOn.ICHDataProvider:FindIndex(data)

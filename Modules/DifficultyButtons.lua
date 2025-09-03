@@ -14,11 +14,12 @@ end
 
 ---Determines which difficulty button(s) to display based on the provided data
 ---@param container DifficultyContainer
----@param data Mount|Toy
+---@param data Mount|Toy|Pet
 ---@param isOwned boolean? Whether or not the collectible is owned by the player. Omitting this argument is equivalent to providing `false`
 ---@see DifficultyContainer
 ---@see Mount
 ---@see Toy
+---@see Pet
 function AddOn:ShowDifficultyButtons(container, data, isOwned)
     if not data.DifficultyIDs then return end
     

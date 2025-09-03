@@ -3,46 +3,50 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----Attempts to fetch and cache the toy information, displaying fallback values in the list until data can be retrieved<br/>
+---Attempts to fetch and cache the pet information, displaying fallback values in the list until data can be retrieved<br/>
 ---This prevents a bad user experience where multiple list entries are just missing information
----@param data Toy
----@return string toyName The localized name of the toy. If toy information cannot be retrieved, this falls back to the `enUS` locale
----@return number iconID The icon ID for the toy. If toy information cannot be retrieved, this falls back to the standard question mark icon used commonly in WoW
-local function GetCachedToyInfo(data)
+---@param data Pet
+---@return string petName The localized name of the pet. If pet cannot be retrieved, this falls back to the `enUS` locale
+---@return number iconID The icon ID for the pet. If pet information cannot be retrieved, this falls back to the standard question mark icon used commonly in WoW
+---@return boolean isMaxOwned `true` when the maximum number of a pet available are owned, `false` otherwise
+function AddOn:GetCachedPetInfo(data)
     -- Set fallback values for name and icon to be the English name stored in the AddOn table and a question mark icon
-    local toyName = data.Name
+    local petName = data.Name
     local iconID = 134400
+    local speciesID = 0
 
-    if C_Item.IsItemDataCachedByID(data.ToyItemID) then
-        _, toyName, iconID = C_ToyBox.GetToyInfo(data.ToyItemID)
+    if C_Item.IsItemDataCachedByID(data.PetItemID) then
+        petName, iconID, _, _, _, _, _, _, _, _, _, _, speciesID = C_PetJournal.GetPetInfoByItemID(data.PetItemID)
     else
         local continuableContainer = ContinuableContainer:Create()
-        for _, toy in ipairs(AddOn.InstanceToys) do
-            continuableContainer:AddContinuable(Item:CreateFromItemID(toy.ToyItemID))
+        for _, pet in ipairs(self.InstancePets) do
+            continuableContainer:AddContinuable(Item:CreateFromItemID(pet.PetItemID))
         end
         continuableContainer:ContinueOnLoad(function()
-            AddOn:UpdateListContents("ICH_ITEM_CACHE")
+            self:UpdateListContents("ICH_ITEM_CACHE")
         end)
     end
+    local numOwned, ownedLimit = C_PetJournal.GetNumCollectedInfo(speciesID)
+    if not numOwned then numOwned = 0 end
+    if not ownedLimit then ownedLimit = 0 end
 
-    return toyName, iconID
+    return petName, iconID, numOwned == ownedLimit and numOwned > 0
 end
 
----Initializes how toy data in the scrollable list should be displayed
+---Initializes how pet data in the scrollable list should be displayed
 ---@param frame ICHListItem
----@param data Toy
+---@param data Pet
 ---@see ICHListItem
----@see Toy
-function AddOn.ToyDataProviderInit(frame, data)
+---@see Pet
+function AddOn.PetDataProviderInit(frame, data)
     if not frame or not data then return end
     frame.isMount = false
-    frame.relevantID = data.ToyItemID
+    frame.relevantID = data.PetItemID
 
     local index = AddOn.ICHDataProvider:FindIndex(data)
 
-    local localizedToyName, iconID = GetCachedToyInfo(data)
+    local localizedPetName, iconID, isOwned = AddOn:GetCachedPetInfo(data)
     local localizedInstanceName = EJ_GetInstanceInfo(data.InstanceID)
-    local isOwned = PlayerHasToy(data.ToyItemID)
     if isOwned then
         frame.Bg:Hide()
         frame.OwnedBg:Show()
@@ -51,8 +55,8 @@ function AddOn.ToyDataProviderInit(frame, data)
         if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
     end
 
-    AddOn:SetTruncatedText(frame.NameContainer.Text, localizedToyName) -- Localized toy name truncated if text width exceeds allocated space
-    frame.NameContainer.name = localizedToyName
+    AddOn:SetTruncatedText(frame.NameContainer.Text, localizedPetName) -- Localized pet name truncated if text width exceeds allocated space
+    frame.NameContainer.name = localizedPetName
     AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName)  -- Localized instance name truncated if text width exceeds allocated space
 
     frame.NameContainer.ViewButton:ClearNormalTexture()
@@ -75,7 +79,7 @@ function AddOn.ToyDataProviderInit(frame, data)
     AddOn:ConfigureWaypointButton(localizedInstanceName, frame, data)
 
     frame.NameContainer.ViewButton:SetScript("OnClick", function()
-        -- Try to find a way to show in the toy journal
+        -- Try to find a way to show in the pet journal
     end)
 
     frame.InstanceContainer.ViewButton:SetScript("OnClick", function()

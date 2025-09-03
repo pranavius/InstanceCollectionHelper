@@ -3,7 +3,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
     <Frame name="ICHListItemTemplate" virtual="true" enableMouse="true">
         <Size y="25"/>
         <KeyValues>
-            <KeyValue key="isToy" value="false" type="boolean"/>
+            <KeyValue key="isMount" value="false" type="boolean"/>
             <KeyValue key="relevantID" value="0" type="number"/>
         </KeyValues>
         <Layers>
@@ -40,11 +40,11 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                             <OnEnter>
                                 local id = self:GetParent():GetParent().relevantID
                                 GameTooltip:SetOwner(self, "ANCHOR_TOP")
-                                if self:GetParent():GetParent().isToy then
-                                    GameTooltip:SetHyperlink("item:"..id)
-                                else
+                                if self:GetParent():GetParent().isMount then
                                     local spellID = select(2, C_MountJournal.GetMountInfoByID(id))
                                     GameTooltip:SetHyperlink(C_MountJournal.GetMountLink(spellID))
+                                else
+                                    GameTooltip:SetHyperlink("item:"..id)
                                 end
                                 GameTooltip:Show()
                             </OnEnter>
