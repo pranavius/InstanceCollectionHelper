@@ -1125,6 +1125,113 @@ AddOn.InstanceToys = {
 ---@type Pet[] List of pets available from instances
 AddOn.InstancePets = {
     {
+        Name = "Anubisath Idol",
+        PetItemID = 93040,
+        Instance = "Temple of Ahn'Qiraj",
+        InstanceID = 744,
+        MapID = 531,
+        AreaPoiID = 6537,
+        EncounterID = 1549,
+        DifficultyIDs = {},
+        Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
+        Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
+        SearchTags = AddOn.ExpansionTags.Classic
+    },
+    {
+        Name = "Ashstone Core",
+        PetItemID = 93035,
+        Instance = "Molten Core",
+        InstanceID = 741,
+        MapID = 409,
+        AreaPoiID = 6535,
+        EncounterID = 1526,
+        DifficultyIDs = {},
+        Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
+        -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        SearchTags = AddOn.ExpansionTags.Classic
+    },
+    {
+        Name = "Chrominius",
+        PetItemID = 93038,
+        Instance = "Blackwing Lair",
+        InstanceID = 742,
+        MapID = 469,
+        AreaPoiID = 6536,
+        EncounterID = 1535,
+        DifficultyIDs = {},
+        Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
+        -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        SearchTags = AddOn.ExpansionTags.Classic
+    },
+    {
+        Name = "Corefire Imp",
+        PetItemID = 93034,
+        Instance = "Molten Core",
+        InstanceID = 741,
+        MapID = 409,
+        AreaPoiID = 6535,
+        EncounterID = 1520,
+        DifficultyIDs = {},
+        Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
+        -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        SearchTags = AddOn.ExpansionTags.Classic
+    },
+    {
+        Name = "Death Talon Whelpguard",
+        PetItemID = 93037,
+        Instance = "Blackwing Lair",
+        InstanceID = 742,
+        MapID = 469,
+        AreaPoiID = 6536,
+        EncounterID = 1531,
+        DifficultyIDs = {},
+        Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
+        -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        SearchTags = AddOn.ExpansionTags.Classic
+    },
+    {
+        Name = "Deviate Hatchling",
+        PetItemID = 48114,
+        Instance = "Wailing Caverns",
+        InstanceID = 240,
+        MapID = 43,
+        AreaPoiID = 6720,
+        DifficultyIDs = { DungeonDifficulty.Normal },
+        -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        Notes = "Dropped by "..WrapTextInColor("Deviate Guardians", DARKYELLOW_FONT_COLOR).." and "..WrapTextInColor("Deviate Ravagers", DARKYELLOW_FONT_COLOR).." throughout the dungeon",
+        SearchTags = AddOn.ExpansionTags.Classic
+    },
+    {
+        Name = "Fungal Abomination",
+        PetItemID = 93032,
+        Instance = "Naxxramas",
+        InstanceID = 754,
+        MapID = 533,
+        AreaPoiID = 6524,
+        EncounterID = 1606,
+        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        SharedDifficulties = {
+            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10
+        },
+        -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
+    },
+    {
+        Name = "Giant Bone Spider",
+        PetItemID = 93030,
+        Instance = "Naxxramas",
+        InstanceID = 754,
+        MapID = 533,
+        AreaPoiID = 6524,
+        EncounterID = 1603,
+        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        SharedDifficulties = {
+            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10
+        },
+        -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
+    },
+    {
         Name = "Green Wing Macaw",
         PetItemID = 8492,
         Instance = "The Deadmines",
@@ -1134,6 +1241,79 @@ AddOn.InstancePets = {
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic },
         Notes = "Dropped by "..WrapTextInColor("Defias Pirates", DARKYELLOW_FONT_COLOR).." on the boat towards the end of the dungeon",
         -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        SearchTags = AddOn.ExpansionTags.Classic
+    },
+    {
+        Name = "Harbinger of Flame",
+        PetItemID = 93033,
+        Instance = "Molten Core",
+        InstanceID = 741,
+        MapID = 409,
+        AreaPoiID = 6535,
+        EncounterID = 1525,
+        DifficultyIDs = {},
+        Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
+        -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        SearchTags = AddOn.ExpansionTags.Classic
+    },
+    {
+        Name = "Ji-Kun Hatchling",
+        PetItemID = 94835,
+        Instance = "Throne of Thunder",
+        InstanceID = 362,
+        MapID = 1098,
+        AreaPoiID = 6508,
+        EncounterID = 828,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Legacy10 },
+        SharedDifficulties = {
+            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
+        },
+        Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
+        SearchTags = AddOn.ExpansionTags.MistsOfPandaria
+    },
+    {
+        Name = "Lil' Bad Wolf",
+        PetItemID = 97548,
+        Instance = "Karazhan",
+        InstanceID = 745,
+        MapID = 532,
+        AreaPoiID = 6528,
+        EncounterID = 1556,
+        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
+        Notes = L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"],
+        SearchTags = AddOn.ExpansionTags.TheBurningCrusade
+    },
+    {
+        Name = "Living Sandling",
+        PetItemID = 94125,
+        Instance = "Throne of Thunder",
+        InstanceID = 362,
+        MapID = 1098,
+        AreaPoiID = 6508,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Legacy10 },
+        SharedDifficulties = {
+            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
+        },
+        Notes = "Dropped by "..WrapTextInColor("Sand Elementals", DARKYELLOW_FONT_COLOR).." in Normal and Heroic, but can be looted from "..WrapTextInColor("Council of Elders", DARKYELLOW_FONT_COLOR).." in LFR",
+        Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
+        SearchTags = AddOn.ExpansionTags.MistsOfPandaria
+    },
+    {
+        Name = "Mini Mindslayer",
+        PetItemID = 93041,
+        Instance = "Temple of Ahn'Qiraj",
+        InstanceID = 744,
+        MapID = 531,
+        AreaPoiID = 6537,
+        EncounterID = 1543,
+        DifficultyIDs = {},
+        Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
+        Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -1161,6 +1341,23 @@ AddOn.InstancePets = {
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
+        Name = "Pigmy Direhorn",
+        PetItemID = 94574,
+        Instance = "Throne of Thunder",
+        InstanceID = 362,
+        MapID = 1098,
+        AreaPoiID = 6508,
+        EncounterID = 819,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Legacy10 },
+        SharedDifficulties = {
+            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
+        },
+        Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
+        SearchTags = AddOn.ExpansionTags.MistsOfPandaria
+    },
+    {
         Name = "Smolderweb Hatchling",
         PetItemID = 68673,
         Instance = "Lower Blackrock Spire",
@@ -1170,6 +1367,64 @@ AddOn.InstancePets = {
         EncounterID = 391,
         DifficultyIDs = { DungeonDifficulty.Normal },
         -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        SearchTags = AddOn.ExpansionTags.Classic
+    },
+    {
+        Name = "Son of Animus",
+        PetItemID = 94152,
+        Instance = "Throne of Thunder",
+        InstanceID = 362,
+        MapID = 1098,
+        AreaPoiID = 6508,
+        EncounterID = 824,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Legacy10 },
+        SharedDifficulties = {
+            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
+            [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
+        },
+        Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
+        SearchTags = AddOn.ExpansionTags.MistsOfPandaria
+    },
+    {
+        Name = "Stitched Pup",
+        PetItemID = 93029,
+        Instance = "Naxxramas",
+        InstanceID = 754,
+        MapID = 533,
+        AreaPoiID = 6524,
+        EncounterID = 1612,
+        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        SharedDifficulties = {
+            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10
+        },
+        -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
+    },
+    {
+        Name = "Untamed Hatchling",
+        PetItemID = 93036,
+        Instance = "Blackwing Lair",
+        InstanceID = 742,
+        MapID = 469,
+        AreaPoiID = 6536,
+        EncounterID = 1529,
+        DifficultyIDs = {},
+        Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
+        -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        SearchTags = AddOn.ExpansionTags.Classic
+    },
+    {
+        Name = "Viscidus Globule",
+        PetItemID = 93039,
+        Instance = "Temple of Ahn'Qiraj",
+        InstanceID = 744,
+        MapID = 531,
+        AreaPoiID = 6537,
+        EncounterID = 1548,
+        DifficultyIDs = {},
+        Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
+        Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {

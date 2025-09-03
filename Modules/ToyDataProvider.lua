@@ -37,6 +37,8 @@ function AddOn.ToyDataProviderInit(frame, data)
     if not frame or not data then return end
     frame.isMount = false
     frame.relevantID = data.ToyItemID
+    -- Hide the pet count frame for non-pets
+    frame.OtherInfoContainer.ICHPetCount:Hide()
 
     local index = AddOn.ICHDataProvider:FindIndex(data)
 

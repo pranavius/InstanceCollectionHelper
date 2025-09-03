@@ -40,6 +40,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field instanceID number ID number for instance
 
 ---@class OtherInfoContainer: Frame Displays other elements associated with a collectible
+---@field ICHPetCount FontString
 ---@field ICHNote ICHNote
 ---@field ICHWaypointButton ICHWaypointButton
 
@@ -67,6 +68,8 @@ function AddOn.MountDataProviderInit(frame, data)
     -- Resetting these values to avoid conflicts or incorrect tooltip displays
     frame.isMount = true
     frame.relevantID = data.MountID
+    -- Hide the pet count frame for non-pets
+    frame.OtherInfoContainer.ICHPetCount:Hide()
 
     local index = AddOn.ICHDataProvider:FindIndex(data)
 

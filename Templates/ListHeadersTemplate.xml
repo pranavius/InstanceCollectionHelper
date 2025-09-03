@@ -23,7 +23,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     <Anchors><Anchor point="LEFT" relativeKey="$parent.NameHeader" relativePoint="RIGHT" x="25"/></Anchors>
                 </FontString>
                 <FontString parentKey="DiffHeader" inherits="GameTooltipText" justifyH="LEFT" text="ICH_AVAIL_DIFFS_COL_TITLE">
-                    <Size x="250"/>
+                    <Size x="200"/>
                     <Anchors><Anchor point="LEFT" relativeKey="$parent.InstanceHeader" relativePoint="RIGHT"/></Anchors>
                 </FontString>
             </Layer>

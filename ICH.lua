@@ -294,10 +294,10 @@ function AddOn:FilterListContentsByQuery(listData)
         if selectedTab == self.Tabs.MountsTab then
             itemName = C_MountJournal.GetMountInfoByID(item.MountID) or ""
         elseif selectedTab == self.Tabs.ToysTab then
-            itemName = select(2, C_ToyBox.GetToyInfo(item.ToyItemID))
+            itemName = select(2, C_ToyBox.GetToyInfo(item.ToyItemID)) or ""
             if not itemName then itemName = "" end
         elseif selectedTab == self.Tabs.PetsTab then
-            print(item.Name)
+            itemName = C_PetJournal.GetPetInfoByItemID(item.PetItemID) or ""
         end
         local cleanName = itemName:lower():gsub("|.+|.*", "")
         nameMatches = cleanName:match(query) and true or false
@@ -365,7 +365,8 @@ function AddOn:UpdateListContents(event)
         self.Container.SearchBox.Instructions:SetText(L["Search by toy/instance name, instance type, or difficulty"])
     elseif selectedTab == self.Tabs.PetsTab then
         for _, data in ipairs(self.InstancePets) do
-            local isOwned = select(3, self:GetCachedPetInfo(data))
+            local numOwned, ownedLimit = select(3, self:GetCachedPetInfo(data))
+            local isOwned = numOwned > 0 and numOwned == ownedLimit
             if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, data) end
         end
     end

@@ -35,7 +35,7 @@ function AddOn:ShowDifficultyButtons(container, data, isOwned)
             elseif diffID == self.RaidDifficulty.Heroic then button = container.RaidDiffHeroicButton
             elseif diffID == self.RaidDifficulty.Mythic then button = container.RaidDiffMythicButton
             end
-            if data.SharedDifficulties then button.sharedDifficulties = data.SharedDifficulties end
+            if data.SharedDifficulties and button.difficultyID ~= self.RaidDifficulty.LFR then button.sharedDifficulties = data.SharedDifficulties end
         else
             if diffID == self.DungeonDifficulty.Normal then button = container.DungDiffNormalButton
             elseif diffID == self.DungeonDifficulty.Heroic then button = container.DungDiffHeroicButton

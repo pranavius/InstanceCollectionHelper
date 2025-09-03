@@ -8,7 +8,8 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@param data Pet
 ---@return string petName The localized name of the pet. If pet cannot be retrieved, this falls back to the `enUS` locale
 ---@return number iconID The icon ID for the pet. If pet information cannot be retrieved, this falls back to the standard question mark icon used commonly in WoW
----@return boolean isMaxOwned `true` when the maximum number of a pet available are owned, `false` otherwise
+---@return number owned Number of this pet owned
+---@return number ownedLimit Maximum number of this pet that can be owned
 function AddOn:GetCachedPetInfo(data)
     -- Set fallback values for name and icon to be the English name stored in the AddOn table and a question mark icon
     local petName = data.Name
@@ -30,7 +31,18 @@ function AddOn:GetCachedPetInfo(data)
     if not numOwned then numOwned = 0 end
     if not ownedLimit then ownedLimit = 0 end
 
-    return petName, iconID, numOwned == ownedLimit and numOwned > 0
+    return petName, iconID, numOwned, ownedLimit
+end
+
+local function ColorOwnedCountText(numOwned, ownedLimit)
+    local text = numOwned.."/"..ownedLimit
+    local percOwned = numOwned/ownedLimit
+    if percOwned == 0 then return WrapTextInColor(text, RED_FONT_COLOR)
+    elseif percOwned <= 0.5 then return WrapTextInColor(text, DARKYELLOW_FONT_COLOR)
+    elseif percOwned > 0.5 and percOwned < 1 then return WrapTextInColor(text, UNCOMMON_GREEN_COLOR)
+    end
+
+    return text
 end
 
 ---Initializes how pet data in the scrollable list should be displayed
@@ -45,7 +57,8 @@ function AddOn.PetDataProviderInit(frame, data)
 
     local index = AddOn.ICHDataProvider:FindIndex(data)
 
-    local localizedPetName, iconID, isOwned = AddOn:GetCachedPetInfo(data)
+    local localizedPetName, iconID, numOwned, ownedLimit = AddOn:GetCachedPetInfo(data)
+    local isOwned = numOwned > 0 and numOwned == ownedLimit
     local localizedInstanceName = EJ_GetInstanceInfo(data.InstanceID)
     if isOwned then
         frame.Bg:Hide()
@@ -69,6 +82,10 @@ function AddOn.PetDataProviderInit(frame, data)
 
     AddOn.HideAllDifficultyButtons(frame.DifficultyContainer)
     AddOn:ShowDifficultyButtons(frame.DifficultyContainer, data, isOwned)
+
+    frame.OtherInfoContainer.ICHPetCount:SetText(ColorOwnedCountText(numOwned, ownedLimit))
+    frame.OtherInfoContainer.ICHPetCount:Show()
+
     if data.Notes then
         frame.OtherInfoContainer.ICHNote.notes = data.Notes
         frame.OtherInfoContainer.ICHNote:Show()
