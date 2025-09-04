@@ -12,6 +12,17 @@ function AddOn.HideAllDifficultyButtons(container)
     end
 end
 
+---Determines if a difficulty should share any lockouts with other difficulties
+---@param difficultyID number ID associated with an instance difficulty (currently only used by raids)
+---@return boolean isShareable `true` if the instance difficulty shares a lockout with other difficulties, `false` otherwise
+local function IsDifficultyIDShareable(difficultyID)
+    return difficultyID == AddOn.RaidDifficulty.Legacy10
+        or difficultyID == AddOn.RaidDifficulty.Legacy10H
+        or difficultyID == AddOn.RaidDifficulty.Legacy25
+        or difficultyID == AddOn.RaidDifficulty.Legacy25H
+        or false
+end
+
 ---Determines which difficulty button(s) to display based on the provided data
 ---@param container DifficultyContainer
 ---@param data Mount|Toy|Pet
@@ -27,6 +38,8 @@ function AddOn:ShowDifficultyButtons(container, data, isOwned)
         local button
         if self:IsInstanceRaid(data) then
             if diffID == self.RaidDifficulty.LFR then button = container.RaidDiffLFRButton
+            elseif diffID == self.RaidDifficulty.LegacyLFR then button = container.RaidDiffLegacyLFRButton
+            elseif diffID == self.RaidDifficulty.Legacy40 then button = container.RaidDiff40Button
             elseif diffID == self.RaidDifficulty.Legacy10 then button = container.RaidDiff10Button
             elseif diffID == self.RaidDifficulty.Legacy10H then button = container.RaidDiff10HeroicButton
             elseif diffID == self.RaidDifficulty.Legacy25 then button = container.RaidDiff25Button
@@ -35,7 +48,9 @@ function AddOn:ShowDifficultyButtons(container, data, isOwned)
             elseif diffID == self.RaidDifficulty.Heroic then button = container.RaidDiffHeroicButton
             elseif diffID == self.RaidDifficulty.Mythic then button = container.RaidDiffMythicButton
             end
-            if data.SharedDifficulties and button.difficultyID ~= self.RaidDifficulty.LFR then button.sharedDifficulties = data.SharedDifficulties end
+            if data.SharedDifficulties and IsDifficultyIDShareable(button.difficultyID) then
+                button.sharedDifficulties = data.SharedDifficulties
+            end
         else
             if diffID == self.DungeonDifficulty.Normal then button = container.DungDiffNormalButton
             elseif diffID == self.DungeonDifficulty.Heroic then button = container.DungDiffHeroicButton

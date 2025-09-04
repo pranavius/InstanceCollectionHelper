@@ -12,6 +12,8 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---@enum RaidDifficulty
 local RaidDifficulty = {
+    LegacyLFR = 7,
+    Legacy40 = 9,
     Legacy10 = 3,
     Legacy25 = 4,
     Legacy10H = 5,
@@ -252,7 +254,7 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         AreaPoiID = 6537,
-        DifficultyIDs = {},
+        DifficultyIDs = { RaidDifficulty.Legacy40 },
         Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
         Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
         SearchTags = AddOn.ExpansionTags.Classic
@@ -456,7 +458,7 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         AreaPoiID = 6537,
-        DifficultyIDs = {},
+        DifficultyIDs = { RaidDifficulty.Legacy40 },
         Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
         Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
         SearchTags = AddOn.ExpansionTags.Classic
@@ -638,7 +640,7 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         AreaPoiID = 6537,
-        DifficultyIDs = {},
+        DifficultyIDs = { RaidDifficulty.Legacy40 },
         Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
         Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
         SearchTags = AddOn.ExpansionTags.Classic
@@ -725,8 +727,9 @@ AddOn.InstanceMounts = {
         Instance = "The Stonevault",
         InstanceID = 1269,
         MapID = 2652,
+        AreaPoiID = 7820,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        -- Waypoint = { mapID = , x = 0, y = 0 },
+        Waypoint = { mapID = 2214, x = 0.427, y = 0.086 },
         Notes = L["Requires completing a short questline after looting the Malfunctioning Mechsuit item from Void Speaker Eirich"],
         SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
@@ -870,7 +873,7 @@ AddOn.InstanceMounts = {
         InstanceID = 744,
         MapID = 531,
         AreaPoiID = 6537,
-        DifficultyIDs = {},
+        DifficultyIDs = { RaidDifficulty.Legacy40 },
         Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"].."\n\n"..L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
         Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
         SearchTags = AddOn.ExpansionTags.Classic
@@ -985,7 +988,7 @@ AddOn.InstanceToys = {
         InstanceID = 362,
         MapID = 1098,
         AreaPoiID = 6508,
-        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Legacy10 },
+        DifficultyIDs = { RaidDifficulty.LegacyLFR, RaidDifficulty.Legacy10 },
         SharedDifficulties = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
@@ -1132,7 +1135,7 @@ AddOn.InstancePets = {
         MapID = 531,
         AreaPoiID = 6537,
         EncounterID = 1549,
-        DifficultyIDs = {},
+        DifficultyIDs = { RaidDifficulty.Legacy40 },
         Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
         Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
         SearchTags = AddOn.ExpansionTags.Classic
@@ -1145,7 +1148,7 @@ AddOn.InstancePets = {
         MapID = 409,
         AreaPoiID = 6535,
         EncounterID = 1526,
-        DifficultyIDs = {},
+        DifficultyIDs = { RaidDifficulty.Legacy40 },
         Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
         -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
         SearchTags = AddOn.ExpansionTags.Classic
@@ -1158,7 +1161,7 @@ AddOn.InstancePets = {
         MapID = 469,
         AreaPoiID = 6536,
         EncounterID = 1535,
-        DifficultyIDs = {},
+        DifficultyIDs = { RaidDifficulty.Legacy40 },
         Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
         -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
         SearchTags = AddOn.ExpansionTags.Classic
@@ -1171,7 +1174,7 @@ AddOn.InstancePets = {
         MapID = 409,
         AreaPoiID = 6535,
         EncounterID = 1520,
-        DifficultyIDs = {},
+        DifficultyIDs = { RaidDifficulty.Legacy40 },
         Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
         -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
         SearchTags = AddOn.ExpansionTags.Classic
@@ -1184,7 +1187,7 @@ AddOn.InstancePets = {
         MapID = 469,
         AreaPoiID = 6536,
         EncounterID = 1531,
-        DifficultyIDs = {},
+        DifficultyIDs = { RaidDifficulty.Legacy40 },
         Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
         -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
         SearchTags = AddOn.ExpansionTags.Classic
@@ -1213,7 +1216,7 @@ AddOn.InstancePets = {
         SharedDifficulties = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10
         },
-        -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        Waypoint = { mapID = 115, x = 0.873, y = 0.51 },
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -1228,7 +1231,7 @@ AddOn.InstancePets = {
         SharedDifficulties = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10
         },
-        -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        Waypoint = { mapID = 115, x = 0.873, y = 0.51 },
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -1251,7 +1254,7 @@ AddOn.InstancePets = {
         MapID = 409,
         AreaPoiID = 6535,
         EncounterID = 1525,
-        DifficultyIDs = {},
+        DifficultyIDs = { RaidDifficulty.Legacy40 },
         Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
         -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
         SearchTags = AddOn.ExpansionTags.Classic
@@ -1264,7 +1267,7 @@ AddOn.InstancePets = {
         MapID = 1098,
         AreaPoiID = 6508,
         EncounterID = 828,
-        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Legacy10 },
+        DifficultyIDs = { RaidDifficulty.LegacyLFR, RaidDifficulty.Legacy10 },
         SharedDifficulties = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
@@ -1293,7 +1296,7 @@ AddOn.InstancePets = {
         InstanceID = 362,
         MapID = 1098,
         AreaPoiID = 6508,
-        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Legacy10 },
+        DifficultyIDs = { RaidDifficulty.LegacyLFR, RaidDifficulty.Legacy10 },
         SharedDifficulties = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
@@ -1311,7 +1314,7 @@ AddOn.InstancePets = {
         MapID = 531,
         AreaPoiID = 6537,
         EncounterID = 1543,
-        DifficultyIDs = {},
+        DifficultyIDs = { RaidDifficulty.Legacy40 },
         Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
         Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
         SearchTags = AddOn.ExpansionTags.Classic
@@ -1348,7 +1351,7 @@ AddOn.InstancePets = {
         MapID = 1098,
         AreaPoiID = 6508,
         EncounterID = 819,
-        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Legacy10 },
+        DifficultyIDs = { RaidDifficulty.LegacyLFR, RaidDifficulty.Legacy10 },
         SharedDifficulties = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
@@ -1377,7 +1380,7 @@ AddOn.InstancePets = {
         MapID = 1098,
         AreaPoiID = 6508,
         EncounterID = 824,
-        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Legacy10 },
+        DifficultyIDs = { RaidDifficulty.LegacyLFR, RaidDifficulty.Legacy10 },
         SharedDifficulties = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
@@ -1398,7 +1401,7 @@ AddOn.InstancePets = {
         SharedDifficulties = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10
         },
-        -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        Waypoint = { mapID = 115, x = 0.873, y = 0.51 },
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -1409,7 +1412,7 @@ AddOn.InstancePets = {
         MapID = 469,
         AreaPoiID = 6536,
         EncounterID = 1529,
-        DifficultyIDs = {},
+        DifficultyIDs = { RaidDifficulty.Legacy40 },
         Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
         -- Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
         SearchTags = AddOn.ExpansionTags.Classic
@@ -1422,7 +1425,7 @@ AddOn.InstancePets = {
         MapID = 531,
         AreaPoiID = 6537,
         EncounterID = 1548,
-        DifficultyIDs = {},
+        DifficultyIDs = { RaidDifficulty.Legacy40 },
         Notes = L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"],
         Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
         SearchTags = AddOn.ExpansionTags.Classic

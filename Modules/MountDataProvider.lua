@@ -22,6 +22,8 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---For frame definition and more layout information, see `Templates.xml`
 ---@field sharedDifficulties? table<RaidDifficulty, RaidDifficulty> Difficulties that share a lockout with a difficulty displayed using the appropriate button
 ---@field RaidDiffLFRButton DifficultyButton Button for tracking LFR lockout (no action taken when clicked)
+---@field RaidDiffLegacyLFRButton DifficultyButton Button for tracking legacy LFR lockout (no action taken when clicked)
+---@field RaidDiff40Button DifficultyButton Button for setting Legacy Raid difficulty to 40 player
 ---@field RaidDiff10Button DifficultyButton Button for setting Legacy Raid difficulty to 10 player
 ---@field RaidDiff10HeroicButton DifficultyButton Button for setting Legacy Raid difficulty to 10 player (Heroic)
 ---@field RaidDiff25Button DifficultyButton Button for setting Legacy Raid difficulty to 25 player

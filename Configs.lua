@@ -41,10 +41,11 @@ function AddOn:GetDifficultyButtonText(difficultyID)
         end
     end
 
-    if dKey == "LFR" then return dKey
+    if dKey == "LFR" or dKey == "LegacyLFR" then return "LFR"
     elseif dKey == "Normal" then return "N"
     elseif dKey == "Heroic" then return "H"
     elseif dKey == "Mythic" then return "M"
+    elseif dKey == "Legacy40" then return "40"
     elseif dKey == "Legacy10" then return "10"
     elseif dKey == "Legacy25" then return "25"
     elseif dKey == "Legacy10H" then return "10H"
@@ -69,6 +70,8 @@ function AddOn:GetInstanceDifficultyText(difficultyID)
     end
 
     if not dKey then return L["Unknown"]
+    elseif dKey == "LegacyLFR" then return L["LFR"]
+    elseif dKey == "Legacy40" then return "40 Player"
     elseif dKey == "Legacy10" then return L["10 Player"]
     elseif dKey == "Legacy25" then return L["25 Player"]
     elseif dKey == "Legacy10H" then return L["10 Player (Heroic)"]

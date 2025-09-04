@@ -8,7 +8,7 @@ AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 ---@see Toy
 ---@see Pet
 function AddOn:IsInstanceRaid(data)
-    -- AQ has no difficulty IDs listed since it defaults to a 40-man when zoned in (not settable from the UI)
+    -- Continue treating empty DifficultyIDs lists as raids even though this is likely deprecated
     if #data.DifficultyIDs == 0 then return true end
     for _, id in pairs(self.DungeonDifficulty) do
         if id == data.DifficultyIDs[1] then return false end

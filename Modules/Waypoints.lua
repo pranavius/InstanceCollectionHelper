@@ -13,16 +13,19 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@see Pet
 function AddOn:ConfigureWaypointButton(localizedInstanceName, frame, data)
     if data.InstanceID == 1176 or data.InstanceID == 1194 or data.AreaPoiID or data.Waypoint then
-        if C_AddOns.IsAddOnLoaded("TomTom") and self.db.global.useTomTomPoints then
+        local isPinSettable = false
+        if C_AddOns.IsAddOnLoaded("TomTom") and self.db.global.useTomTomPoints and data.Waypoint then
             frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/AddOns/TomTom/Images/GoldGreenDotNew")
             frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/AddOns/TomTom/Images/GoldPurpleDotNew")
             frame.OtherInfoContainer.ICHWaypointButton:SetSize(15, 15)
-        else
+            isPinSettable = true
+        elseif data.AreaPoiID then
             frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Untracked")
             frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Tracked")
             frame.OtherInfoContainer.ICHWaypointButton:SetSize(24, 24)
+            isPinSettable = true
         end
-        frame.OtherInfoContainer.ICHWaypointButton:Show()
+        if isPinSettable then frame.OtherInfoContainer.ICHWaypointButton:Show() else frame.OtherInfoContainer.ICHWaypointButton:Hide() end
     elseif frame.OtherInfoContainer.ICHWaypointButton:IsShown() then frame.OtherInfoContainer.ICHWaypointButton:Hide() end
     frame.OtherInfoContainer.ICHWaypointButton.instanceID = data.InstanceID
 

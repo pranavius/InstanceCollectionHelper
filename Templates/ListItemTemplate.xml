@@ -130,6 +130,18 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <KeyValues><KeyValue key="difficultyID" value="16" type="number"/></KeyValues>
                         <Scripts><OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick></Scripts>
                     </Button>
+                    <Button parentKey="RaidDiffLegacyLFRButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="7" type="number"/></KeyValues>
+                        <Scripts>
+                            <OnClick>
+                                ICH:PrintChatMessage(WrapTextInColor(ICH_LANG["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."], DARKYELLOW_FONT_COLOR))
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button parentKey="RaidDiff40Button" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="9" type="number"/></KeyValues>
+                        <Scripts><OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick></Scripts>
+                    </Button>
                     <Button parentKey="RaidDiff10Button" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="3" type="number"/></KeyValues>
                         <Scripts><OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick></Scripts>
