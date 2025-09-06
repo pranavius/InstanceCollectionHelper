@@ -16,6 +16,7 @@ local function GetCachedToyInfo(data)
     if C_Item.IsItemDataCachedByID(data.ToyItemID) then
         _, toyName, iconID = C_ToyBox.GetToyInfo(data.ToyItemID)
     else
+        -- This should be completed during AddOn initialization, but will be done so here if it wasn't successful for some reason
         local continuableContainer = ContinuableContainer:Create()
         for _, toy in ipairs(AddOn.InstanceToys) do
             continuableContainer:AddContinuable(Item:CreateFromItemID(toy.ToyItemID))

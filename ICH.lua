@@ -49,6 +49,17 @@ function AddOn:OnInitialize()
     self:RegisterChatCommand("ich", function(input) self.HandleSlashCommand("ich", input) end)
     
     self:CreateMainFrame()
+    local continuableContainer = ContinuableContainer:Create()
+    for _, pet in ipairs(self.InstancePets) do
+        continuableContainer:AddContinuable(Item:CreateFromItemID(pet.PetItemID))
+    end
+    for _, toy in ipairs(AddOn.InstanceToys) do
+        continuableContainer:AddContinuable(Item:CreateFromItemID(toy.ToyItemID))
+    end
+    continuableContainer:ContinueOnLoad(function()
+        self:UpdateListContents("ICH_ITEM_CACHE")
+        self:PrintChatMessage("Collectible data loaded successfully")
+    end)
     self.Container:HookScript("OnShow", function() self:UpdateListContents("ICH_OPEN") end)
     self:RegisterEvent("ZONE_CHANGED", "UpdateListContents")
     self:RegisterEvent("PLAYER_LOGOUT", function()
@@ -67,7 +78,7 @@ function AddOn:CreateMainFrame()
     f:SetSize(800, 600)
     f:EnableMouse(true)
     f:SetMovable(true)
-    f:SetFrameStrata("HIGH")
+    f:SetFrameStrata("MEDIUM")
 
     f:RegisterForDrag("LeftButton")
     f:SetScript("OnDragStart", function(frame)
@@ -366,9 +377,10 @@ function AddOn:UpdateListContents(event)
     elseif selectedTab == self.Tabs.PetsTab then
         for _, data in ipairs(self.InstancePets) do
             local numOwned, ownedLimit = select(3, self:GetCachedPetInfo(data))
-            local isOwned = numOwned > 0 and numOwned == ownedLimit
+            local isOwned = numOwned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and numOwned == ownedLimit or true)
             if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, data) end
         end
+        self.Container.SearchBox.Instructions:SetText("Search by pet/instance name, instance type, difficulty, or expansion")
     end
 
     -- Filter list results based on search criteria when present

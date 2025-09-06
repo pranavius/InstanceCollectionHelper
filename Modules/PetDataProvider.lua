@@ -19,6 +19,7 @@ function AddOn:GetCachedPetInfo(data)
     if C_Item.IsItemDataCachedByID(data.PetItemID) then
         petName, iconID, _, _, _, _, _, _, _, _, _, _, speciesID = C_PetJournal.GetPetInfoByItemID(data.PetItemID)
     else
+        -- This should be completed during AddOn initialization, but will be done so here if it wasn't successful for some reason
         local continuableContainer = ContinuableContainer:Create()
         for _, pet in ipairs(self.InstancePets) do
             continuableContainer:AddContinuable(Item:CreateFromItemID(pet.PetItemID))
@@ -27,9 +28,15 @@ function AddOn:GetCachedPetInfo(data)
             self:UpdateListContents("ICH_ITEM_CACHE")
         end)
     end
-    local numOwned, ownedLimit = C_PetJournal.GetNumCollectedInfo(speciesID)
-    if not numOwned then numOwned = 0 end
-    if not ownedLimit then ownedLimit = 0 end
+
+    local numOwned, ownedLimit
+    if speciesID then
+        local o, l = C_PetJournal.GetNumCollectedInfo(speciesID)
+        numOwned = o or 0
+        ownedLimit = l or 0
+    else
+        numOwned, ownedLimit = 0, 0
+    end
 
     return petName, iconID, numOwned, ownedLimit
 end
@@ -37,7 +44,7 @@ end
 local function ColorOwnedCountText(numOwned, ownedLimit)
     local text = numOwned.."/"..ownedLimit
     local percOwned = numOwned/ownedLimit
-    if percOwned == 0 then return WrapTextInColor(text, RED_FONT_COLOR)
+    if percOwned == 0 then return ""
     elseif percOwned <= 0.5 then return WrapTextInColor(text, DARKYELLOW_FONT_COLOR)
     elseif percOwned > 0.5 and percOwned < 1 then return WrapTextInColor(text, UNCOMMON_GREEN_COLOR)
     end
@@ -58,7 +65,7 @@ function AddOn.PetDataProviderInit(frame, data)
     local index = AddOn.ICHDataProvider:FindIndex(data)
 
     local localizedPetName, iconID, numOwned, ownedLimit = AddOn:GetCachedPetInfo(data)
-    local isOwned = numOwned > 0 and numOwned == ownedLimit
+    local isOwned = numOwned > 0 and (AddOn.db.global.countPetOwnedOnlyIfMaxOwned and numOwned == ownedLimit or true)
     local localizedInstanceName = EJ_GetInstanceInfo(data.InstanceID)
     if isOwned then
         frame.Bg:Hide()

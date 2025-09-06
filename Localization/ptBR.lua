@@ -4,11 +4,11 @@ local L = LibStub("AceLocale-3.0"):NewLocale(name, "ptBR")
 if not L then return end
 
 --- Mount Notes ---
-L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"] = "Esta raide só tem dificuldade de 10 jogadores, então qualquer dificuldade de raide pode ser definida antes de entrar na instância"
-L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"] = "Esta raide só tem dificuldade de 25 jogadores, então qualquer dificuldade de raide pode ser definida antes de entrar na instância"
+-- L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"] = "Esta raide só tem dificuldade de 10 jogadores, então qualquer dificuldade de raide pode ser definida antes de entrar na instância"
+-- L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"] = "Esta raide só tem dificuldade de 25 jogadores, então qualquer dificuldade de raide pode ser definida antes de entrar na instância"
 L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"] = "Disponível na dificuldade de Raide de Legado Normal, mas deve ser configurada para Heróico se "..WrapTextInColor("Aia da Mãe da Vida", DARKYELLOW_FONT_COLOR).." ainda não tiver sido obtida"
 L["Drop from trash mobs around Temple of Ahn'Qiraj"] = "Obtido de inimigos menores ao redor do "..WrapTextInColor("Templo de Ahn'Qiraj", DARKYELLOW_FONT_COLOR)
-L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"] = "Esta raide só tem dificuldade de 40 jogadores, então qualquer dificuldade de raide pode ser definida antes de entrar na instância"
+-- L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"] = "Esta raide só tem dificuldade de 40 jogadores, então qualquer dificuldade de raide pode ser definida antes de entrar na instância"
 L["Also obtainable in Timewalking"] = "Também obtido em Caminhada Temporal"
 L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"] = "Obtido na dificuldade Localizador de Raides (LFR) ao matar "..WrapTextInColor("Grã-senhora Jaina Proudmore", DARKYELLOW_FONT_COLOR)
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "Obtido por personagens da "..WrapTextInColor("Aliança", PLAYER_FACTION_COLOR_ALLIANCE)..", mas ao obtê-lo também recebe a versão da "..WrapTextInColor("Horda", PLAYER_FACTION_COLOR_HORDE)
@@ -82,7 +82,7 @@ L["Search by mount/instance name, instance type, or difficulty"] = "Nome de mont
 L["Search by toy/instance name, instance type, or difficulty"] = "Pesquisar por nome do brinquedo/instância, tipo de instância ou dificuldade"
 L["Scale"] = "Escala"
 L["Use TomTom waypoints"] = "Usar waypoints de TomTom"
-L["Show Owned Mounts"] = "Mostrar montarias possuídas"
+-- L["Show Owned Mounts"] = "Mostrar montarias possuídas"
 L["Show Owned"] = "Mostrar itens possuídos"
 L["How To Use:"] = "Como usar:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "Encontre a montaria que deseja coletar na lista e clique no botão da dificuldade em que quer executar"

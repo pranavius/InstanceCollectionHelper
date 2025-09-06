@@ -222,10 +222,12 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                                 local instanceName = EJ_GetInstanceInfo(self.instanceID)
                                 GameTooltip:SetOwner(self, "ANCHOR_TOP")
                                 GameTooltip:SetText(instanceName)
-                                if C_AddOns.IsAddOnLoaded("TomTom") and ICH.db.global.useTomTomPoints then
-                                    GameTooltip:AddLine(ICH_LANG["Set TomTom waypoint"], 1, 1, 1)
-                                else
+                                -- Apparently you can't use the less than symbol for comparisons within XML files
+                                -- TomTom icon should have a negative fileID, so this can help determine the tooltip text
+                                if self:GetNormalTexture():GetTextureFileID() > 0 then
                                     GameTooltip:AddLine(ICH_LANG["Set map pin"], 1, 1, 1)
+                                else
+                                    GameTooltip:AddLine(ICH_LANG["Set TomTom waypoint"], 1, 1, 1)
                                 end
                                 GameTooltip:Show()
                             </OnEnter>

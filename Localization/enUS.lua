@@ -4,11 +4,11 @@ local L = LibStub("AceLocale-3.0"):NewLocale(name, "enUS", true, true)
 if not L then return end
 
 --- Mount Notes ---
-L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"] = "This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"
-L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"] = "This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"
+-- L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"] = "This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"
+-- L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"] = "This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"
 L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"] = "Available in Normal Legacy Raid difficulty, but Heroic should be set if "..WrapTextInColor("Life-Binder's Handmaiden", DARKYELLOW_FONT_COLOR).." is not obtained yet"
 L["Drop from trash mobs around Temple of Ahn'Qiraj"] = "Drop from trash mobs around "..WrapTextInColor("Temple of Ahn'Qiraj", DARKYELLOW_FONT_COLOR)
-L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"] = "This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"
+-- L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"] = "This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"
 L["Also obtainable in Timewalking"] = "Also obtainable in Timewalking"
 L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"] = "Obtainable in Raid Finder (LFR) difficulty by killing "..WrapTextInColor("Lady Jaina Proudmoore", DARKYELLOW_FONT_COLOR)
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "Drops for "..WrapTextInColor("Alliance", PLAYER_FACTION_COLOR_ALLIANCE).." characters, but obtaining this also gives you the "..WrapTextInColor("Horde", PLAYER_FACTION_COLOR_HORDE).." version"
@@ -82,8 +82,7 @@ L["Search by mount/instance name, instance type, or difficulty"] = "Search by mo
 L["Search by toy/instance name, instance type, or difficulty"] = "Search by toy/instance name, instance type, or difficulty"
 L["Scale"] = "Scale"
 L["Use TomTom waypoints"] = "Use TomTom waypoints"
-L["Show Owned Mounts"] = "Show Owned Mounts"
--- Below replaces "Show Owned Mounts"
+-- L["Show Owned Mounts"] = "Show Owned Mounts"
 L["Show Owned"] = "Show Owned"
 L["How To Use:"] = "How To Use:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "Find the mount you want to collect in the list and click the button for the difficulty you want to run on"

@@ -22,7 +22,7 @@ function AddOn:CreateAboutFrame()
     local a = CreateFrame("Frame", "ICHAbout", UIParent)
     a:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
     a:SetSize(400, 400)
-    a:SetFrameStrata("HIGH")
+    a:SetFrameStrata("MEDIUM")
 
     -- Frame background
     a.Bg = a:CreateTexture(nil, "BACKGROUND")

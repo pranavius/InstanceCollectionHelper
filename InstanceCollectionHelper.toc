@@ -28,6 +28,9 @@ Localization\zhCN.lua
 Configs.lua
 Constants.lua
 Utils.lua
+Data\Mounts.lua
+Data\Toys.lua
+Data\Pets.lua
 Modules\AboutICH.lua
 Modules\CategoryTabs.lua
 Modules\Waypoints.lua

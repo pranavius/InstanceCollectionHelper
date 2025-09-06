@@ -3,34 +3,12 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----Sets up and displays the appropriate waypoint button based on user preferences and **TomTom** being enabled or not
----@param localizedInstanceName string The localized name of the instance to set a waypoint for
----@param frame ICHListItem
 ---@param data Mount|Toy|Pet
----@see ICHListItem
----@see Mount
----@see Toy
----@see Pet
-function AddOn:ConfigureWaypointButton(localizedInstanceName, frame, data)
-    if data.InstanceID == 1176 or data.InstanceID == 1194 or data.AreaPoiID or data.Waypoint then
-        local isPinSettable = false
-        if C_AddOns.IsAddOnLoaded("TomTom") and self.db.global.useTomTomPoints and data.Waypoint then
-            frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/AddOns/TomTom/Images/GoldGreenDotNew")
-            frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/AddOns/TomTom/Images/GoldPurpleDotNew")
-            frame.OtherInfoContainer.ICHWaypointButton:SetSize(15, 15)
-            isPinSettable = true
-        elseif data.AreaPoiID then
-            frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Untracked")
-            frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Tracked")
-            frame.OtherInfoContainer.ICHWaypointButton:SetSize(24, 24)
-            isPinSettable = true
-        end
-        if isPinSettable then frame.OtherInfoContainer.ICHWaypointButton:Show() else frame.OtherInfoContainer.ICHWaypointButton:Hide() end
-    elseif frame.OtherInfoContainer.ICHWaypointButton:IsShown() then frame.OtherInfoContainer.ICHWaypointButton:Hide() end
-    frame.OtherInfoContainer.ICHWaypointButton.instanceID = data.InstanceID
-
-    frame.OtherInfoContainer.ICHWaypointButton:SetScript("OnClick", function() AddOn:HandleWaypointClick(data, localizedInstanceName) end)
-
+---@return boolean result `true` if conditions to use TomTom waypoints are satisfied, `false` otherwise
+local function ShouldUseTomTom(data)
+    return C_AddOns.IsAddOnLoaded("TomTom")
+        and AddOn.db.global.useTomTomPoints
+        and (data.Waypoint or data.InstanceID == 1176)
 end
 
 --- Sets and tracks navigation to a map marker at the coordinates or Area POI associated with an instance entrance
@@ -50,10 +28,11 @@ local function SetBlizzardMapPin(data)
         local faction = UnitFactionGroup("player")
         C_SuperTrack.SetSuperTrackedMapPin(0, faction == "Horde" and 6012 or 6013)
         return true
-    elseif data.InstanceID == 1194 then
-        -- Special case for Tazavesh (AreaPoiID is a flight path from Oribos)
-        C_SuperTrack.SetSuperTrackedMapPin(2, data.AreaPoiID)
-        return true
+    -- Commenting the below condition due to alternate Tazavesh entrace available in K'aresh. Unsure if this will be a permanent entrance or not as of now
+    -- elseif data.InstanceID == 1194 then
+    --     -- Special case for Tazavesh (AreaPoiID is a flight path from Oribos)
+    --     C_SuperTrack.SetSuperTrackedMapPin(2, data.AreaPoiID)
+    --     return true
     elseif data.AreaPoiID then
         C_SuperTrack.SetSuperTrackedMapPin(0, data.AreaPoiID)
         return true
@@ -88,9 +67,10 @@ local function SetTomTomWaypoint(data, localizedInstanceName)
         if faction == "Horde" then AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(862, 0.543, 0.299, ttOptions)
         else AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(1161, 0.704, .356, ttOptions) end
         return true
-    elseif data.InstanceID == 1194 then
-        -- Change the name of the TomTom waypoint when set for Tazavesh
-        ttOptions.title = "Oribos -> "..localizedInstanceName
+    -- Commenting the below condition due to alternate Tazavesh entrace available in K'aresh. Unsure if this will be a permanent entrance or not as of now
+    -- elseif data.InstanceID == 1194 then
+    --     -- Change the name of the TomTom waypoint when set for Tazavesh
+    --     ttOptions.title = "Oribos -> "..localizedInstanceName
     end
     if data.Waypoint then
         AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(data.Waypoint.mapID, data.Waypoint.x, data.Waypoint.y, ttOptions)
@@ -106,13 +86,47 @@ end
 ---@see Mount
 ---@see Toy
 ---@see Pet
-function AddOn:HandleWaypointClick(data, localizedInstanceName)
+local function HandleWaypointClick(data, localizedInstanceName)
     local isPinSet = false
-        if C_AddOns.IsAddOnLoaded("TomTom") and self.db.global.useTomTomPoints then
-            isPinSet = SetTomTomWaypoint(data, localizedInstanceName)
-            self:PrintChatMessage(isPinSet and L["TomTom waypoint set for"] or L["Unable to set TomTom waypoint for"], WrapTextInColor(localizedInstanceName, DARKYELLOW_FONT_COLOR))
-        else
-            isPinSet = SetBlizzardMapPin(data)
-            self:PrintChatMessage(isPinSet and L["Map pin set for"] or L["Unable to set map pin for"], WrapTextInColor(localizedInstanceName, DARKYELLOW_FONT_COLOR))
+    if ShouldUseTomTom(data) then
+        isPinSet = SetTomTomWaypoint(data, localizedInstanceName)
+        AddOn:PrintChatMessage(isPinSet and L["TomTom waypoint set for"] or L["Unable to set TomTom waypoint for"], WrapTextInColor(localizedInstanceName, DARKYELLOW_FONT_COLOR))
+    elseif data.AreaPoiID then
+        isPinSet = SetBlizzardMapPin(data)
+        AddOn:PrintChatMessage(isPinSet and L["Map pin set for"] or L["Unable to set map pin for"], WrapTextInColor(localizedInstanceName, DARKYELLOW_FONT_COLOR))
+    end
+end
+
+---Sets up and displays the appropriate waypoint button based on user preferences and **TomTom** being enabled or not
+---@param localizedInstanceName string The localized name of the instance to set a waypoint for
+---@param frame ICHListItem
+---@param data Mount|Toy|Pet
+---@see ICHListItem
+---@see Mount
+---@see Toy
+---@see Pet
+function AddOn:ConfigureWaypointButton(localizedInstanceName, frame, data)
+    -- Commenting the below condition due to alternate Tazavesh entrace available in K'aresh. Unsure if this will be a permanent entrance or not as of now
+    -- if data.InstanceID == 1176 or data.InstanceID == 1194 or data.AreaPoiID or data.Waypoint then
+    if data.InstanceID == 1176 or data.AreaPoiID or data.Waypoint then
+        local isPinSettable = false
+        -- Might need to include instance ID 1194 (Tazavesh) in the last and condition after Patch 11.2 if the K'aresh entrance is removed
+        if ShouldUseTomTom(data) then
+            frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/AddOns/TomTom/Images/GoldGreenDotNew")
+            frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/AddOns/TomTom/Images/GoldPurpleDotNew")
+            frame.OtherInfoContainer.ICHWaypointButton:SetSize(15, 15)
+            frame.OtherInfoContainer.ICHWaypointButton:SetPoint("RIGHT", -2, 0)
+            isPinSettable = true
+        elseif data.AreaPoiID then
+            frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Untracked")
+            frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Tracked")
+            frame.OtherInfoContainer.ICHWaypointButton:SetSize(24, 24)
+            frame.OtherInfoContainer.ICHWaypointButton:SetPoint("RIGHT", 3, 0)
+            isPinSettable = true
         end
+        if isPinSettable then frame.OtherInfoContainer.ICHWaypointButton:Show() else frame.OtherInfoContainer.ICHWaypointButton:Hide() end
+    elseif frame.OtherInfoContainer.ICHWaypointButton:IsShown() then frame.OtherInfoContainer.ICHWaypointButton:Hide() end
+    frame.OtherInfoContainer.ICHWaypointButton.instanceID = data.InstanceID
+
+    frame.OtherInfoContainer.ICHWaypointButton:SetScript("OnClick", function() HandleWaypointClick(data, localizedInstanceName) end)
 end

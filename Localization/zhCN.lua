@@ -4,11 +4,11 @@ local L = LibStub("AceLocale-3.0"):NewLocale(name, "zhCN")
 if not L then return end
 
 --- Mount Notes ---
-L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"] = "此团队副本只有10人的难度，因此在进入副本之前可以设置任何团队难度"
-L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"] = "此团队副本只有25人的难度，因此在进入副本之前可以设置任何团队难度"
+-- L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"] = "此团队副本只有10人的难度，因此在进入副本之前可以设置任何团队难度"
+-- L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"] = "此团队副本只有25人的难度，因此在进入副本之前可以设置任何团队难度"
 L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"] = "只有普通旧团队副本难度可用，but Heroic should be set if "..WrapTextInColor("生命缚誓者的侍女", DARKYELLOW_FONT_COLOR).." is not obtained yet" -- 注意: "生命守縛者的女僕" -> "生命缚誓者的侍女" (简体官方译名)
 L["Drop from trash mobs around Temple of Ahn'Qiraj"] = "掉落于小怪围绕于"..WrapTextInColor("安其拉神殿", DARKYELLOW_FONT_COLOR) -- 注意: "安其拉神廟" -> "安其拉神殿" (简体通用译法)
-L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"] = "此团队副本只有40人的难度，因此在进入副本之前可以设置任何团队难度"
+-- L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"] = "此团队副本只有40人的难度，因此在进入副本之前可以设置任何团队难度"
 L["Also obtainable in Timewalking"] = "也可以在时光漫游中获得"
 L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"] = "在团队查找器难度(LFR)中获得，须击杀 "..WrapTextInColor("吉安娜·普罗德摩尔女士", DARKYELLOW_FONT_COLOR) -- 注意: "珍娜·普羅德摩爾女士" -> "吉安娜·普罗德摩尔女士" (简体官方译名)
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "只对"..WrapTextInColor("联盟", PLAYER_FACTION_COLOR_ALLIANCE).."角色掉落，但取得后也会获得"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."版本"
@@ -82,7 +82,7 @@ L["Search by mount/instance name, instance type, or difficulty"] = "搜索根据
 L["Search by toy/instance name, instance type, or difficulty"] = "按玩具/副本名称、副本类型或难度搜索"
 L["Scale"] = "缩放"
 L["Use TomTom waypoints"] = "使用TomTom路径点"
-L["Show Owned Mounts"] = "显示已拥有的坐骑"
+-- L["Show Owned Mounts"] = "显示已拥有的坐骑"
 L["Show Owned"] = "显示收集的物品"
 L["How To Use:"] = "如何使用:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "寻找你想要在列表中收集的坐骑，并点击你想要刷的难度按钮。"

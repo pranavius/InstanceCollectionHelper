@@ -4,11 +4,11 @@ local L = LibStub("AceLocale-3.0"):NewLocale(name, "deDE")
 if not L then return end
 
 -- Mount Notes --- 
-L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"] = "Diesen Schlachtzug gibt es nur in 10-Spieler-Schwierigkeit. Daher kann jede Schlachtzugsschwierigkeit vor dem Betreten der Instanz eingestellt werden."
-L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"] = "Diesen Schlachtzug gibt es nur in 25-Spieler-Schwierigkeit. Daher kann jede Schlachtzugsschwierigkeit vor dem Betreten der Instanz eingestellt werden."
+-- L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"] = "Diesen Schlachtzug gibt es nur in 10-Spieler-Schwierigkeit. Daher kann jede Schlachtzugsschwierigkeit vor dem Betreten der Instanz eingestellt werden."
+-- L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"] = "Diesen Schlachtzug gibt es nur in 25-Spieler-Schwierigkeit. Daher kann jede Schlachtzugsschwierigkeit vor dem Betreten der Instanz eingestellt werden."
 L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"] = "Verfügbar im normalen Schwierigkeitsgrad für klassiche Schlachtzüge. Heroisch sollte jedoch eingestellt werden, wenn die "..WrapTextInColor("Erste Dame der Lebensbinderin", DARKYELLOW_FONT_COLOR).." noch nicht erbeutet wurde."
 L["Drop from trash mobs around Temple of Ahn'Qiraj"] = "Beute von Trash-Gegnern rund um den "..WrapTextInColor("Tempel von Ahn'Qiraj", DARKYELLOW_FONT_COLOR)
-L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"] = "Diesen Schlachtzug gibt es nur in 40-Spieler-Schwierigkeit. Daher kann jede Schlachtzugsschwierigkeit vor dem Betreten der Instanz eingestellt werden."
+-- L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"] = "Diesen Schlachtzug gibt es nur in 40-Spieler-Schwierigkeit. Daher kann jede Schlachtzugsschwierigkeit vor dem Betreten der Instanz eingestellt werden."
 L["Also obtainable in Timewalking"] = "Auch in Zeitwanderungen erhältlich."
 L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"] = "Erhältlich im Schlachtzugsbrowser (LFR) durch das Besiegen von "..WrapTextInColor("Lady Jaina Prachtmeer", DARKYELLOW_FONT_COLOR)
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "Droppt für "..WrapTextInColor("Allianz", PLAYER_FACTION_COLOR_ALLIANCE).."-Charaktere, aber beim Erhalt bekommt man auch die "..WrapTextInColor("Horde", PLAYER_FACTION_COLOR_HORDE).."-Version."
@@ -82,7 +82,7 @@ L["Search by mount/instance name, instance type, or difficulty"] = "Suche nach R
 L["Search by toy/instance name, instance type, or difficulty"] = "Suche nach Spielzeug-/Instanzname, Instanztyp oder Schwierigkeit"
 L["Scale"] = "Skalierung"
 L["Use TomTom waypoints"] = "TomTom-Wegpunkte verwenden"
-L["Show Owned Mounts"] = "Gesammelte Reittiere anzeigen"
+-- L["Show Owned Mounts"] = "Gesammelte Reittiere anzeigen"
 L["Show Owned"] = "Gesammelte Artikel anzeigen"
 L["How To Use:"] = "Anleitung:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "Finde das gewünschte Reittier in der Liste und klicke auf den Button für die gewünschte Schwierigkeit."
