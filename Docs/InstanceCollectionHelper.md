@@ -77,6 +77,15 @@ DifficultyButton
 
 Button for setting Legacy Raid difficulty to 25 player (Heroic)
 
+## RaidDiff40Button
+
+
+```lua
+DifficultyButton
+```
+
+Button for setting Legacy Raid difficulty to 40 player
+
 ## RaidDiffHeroicButton
 
 
@@ -94,6 +103,15 @@ DifficultyButton
 ```
 
 Button for tracking LFR lockout (no action taken when clicked)
+
+## RaidDiffLegacyLFRButton
+
+
+```lua
+DifficultyButton
+```
+
+Button for tracking legacy LFR lockout (no action taken when clicked)
 
 ## RaidDiffMythicButton
 
@@ -121,6 +139,97 @@ table<RaidDifficulty, RaidDifficulty>?
 ```
 
 Difficulties that share a lockout with a difficulty displayed using the appropriate button
+
+
+---
+
+# ExpansionTags
+
+## BattleForAzeroth
+
+
+```lua
+string[]
+```
+
+## Cataclysm
+
+
+```lua
+string[]
+```
+
+## Classic
+
+
+```lua
+string[]
+```
+
+Each table entry consists of a list of strings associated with that expansion to use when searching for a collectible by expansion
+
+## Dragonflight
+
+
+```lua
+string[]
+```
+
+## Legion
+
+
+```lua
+string[]
+```
+
+## Midnight
+
+
+```lua
+string[]
+```
+
+## MistsOfPandaria
+
+
+```lua
+string[]
+```
+
+## Shadowlands
+
+
+```lua
+string[]
+```
+
+## TheBurningCrusade
+
+
+```lua
+string[]
+```
+
+## TheWarWithin
+
+
+```lua
+string[]
+```
+
+## WarlordsOfDraenor
+
+
+```lua
+string[]
+```
+
+## WrathOfTheLichKing
+
+
+```lua
+string[]
+```
 
 
 ---
@@ -188,14 +297,14 @@ Texture
 
 The background texture for owned list items
 
-## isToy
+## isMount
 
 
 ```lua
 boolean
 ```
 
-Whether or not the list item is for a toy
+Whether or not the list item is for a mount
 
 ## relevantID
 
@@ -232,7 +341,7 @@ The note(s) to display when hovering over the texture in `ICHNote`
 number
 ```
 
-ID number for instance
+ID number for the instance where the collectible can be obtained
 
 
 ---
@@ -290,19 +399,20 @@ unknown
 
 
 ```lua
-function InstanceCollectionHelper.AppendMapSearchTags(data: Mount|Toy)
+function InstanceCollectionHelper.AppendMapSearchTags(data: Mount|Pet|Toy)
 ```
 
 Append a list of map search tags for a collectibleto the existing `SearchTags` list based on the ID of the instance where it is obtained
 See:
-  * [Mount](InstanceCollectionHelper/Constants.lua#49#10)
-  * [Toy](InstanceCollectionHelper/Constants.lua#879#10)
+  * [Mount](InstanceCollectionHelper/Data/Mounts.lua#9#10)
+  * [Toy](InstanceCollectionHelper/Data/Toys.lua#9#10)
+  * [Pet](InstanceCollectionHelper/Data/Pets.lua#9#10)
 
 ## ConfigureWaypointButton
 
 
 ```lua
-(method) InstanceCollectionHelper:ConfigureWaypointButton(localizedInstanceName: string, frame: ICHListItem, data: Mount|Toy)
+(method) InstanceCollectionHelper:ConfigureWaypointButton(localizedInstanceName: string, frame: ICHListItem, data: Mount|Pet|Toy)
 ```
 
 Sets up and displays the appropriate waypoint button based on user preferences and **TomTom** being enabled or not
@@ -310,9 +420,10 @@ Sets up and displays the appropriate waypoint button based on user preferences a
 @*param* `localizedInstanceName` — The localized name of the instance to set a waypoint for
 
 See:
-  * [ICHListItem](InstanceCollectionHelper/Modules/MountDataProvider.lua#46#10)
-  * [Mount](InstanceCollectionHelper/Constants.lua#49#10)
-  * [Toy](InstanceCollectionHelper/Constants.lua#879#10)
+  * [ICHListItem](InstanceCollectionHelper/Modules/MountDataProvider.lua#49#10)
+  * [Mount](InstanceCollectionHelper/Data/Mounts.lua#9#10)
+  * [Toy](InstanceCollectionHelper/Data/Toys.lua#9#10)
+  * [Pet](InstanceCollectionHelper/Data/Pets.lua#9#10)
 
 ## Container
 
@@ -388,12 +499,26 @@ Initializes the tab system for viewing different types of collectibles available
 table
 ```
 
+## DungeonDifficulty
+
+
+```lua
+enum DungeonDifficulty
+```
+
+## ExpansionTags
+
+
+```lua
+ExpansionTags
+```
+
 ## FilterListContentsByQuery
 
 
 ```lua
-(method) InstanceCollectionHelper:FilterListContentsByQuery(listData: (Mount|Toy)[])
-  -> (Mount|Toy)[]
+(method) InstanceCollectionHelper:FilterListContentsByQuery(listData: (Mount|Pet|Toy)[])
+  -> (Mount|Pet|Toy)[]
 ```
 
 Filters a list of data based on search parameters
@@ -410,26 +535,26 @@ unknown
 
 ```lua
 (method) InstanceCollectionHelper:GetDifficultyButtonText(difficultyID: number)
-  -> text: string
+  -> string
 ```
 
 @*param* `difficultyID` — ID associated with an instance difficulty
 
-@*return* `text` — The text to be shown on the button that sets the desired instance difficulty
+@*return* — The text to be shown on the button that sets the desired instance difficulty
 
 ## GetInstanceDifficultyText
 
 
 ```lua
 (method) InstanceCollectionHelper:GetInstanceDifficultyText(difficultyID?: number)
-  -> text: string
+  -> string
 ```
 
 Returns the difficulty text that corresponds to the given `difficultyID`
 
 @*param* `difficultyID` — ID associated with an instance difficulty. Marked optional due to `GetLegacyRaidDifficultyID()` return a `number?` value, but required for this function.
 
-@*return* `text` — The text to be shown when referencing the desired instance difficulty
+@*return* — The text to be shown when referencing the desired instance difficulty
 
 ## HandleSlashCommand
 
@@ -456,21 +581,6 @@ and all other arguments are handled using Ace3's default behavior.
 Callback method that is fired when the active tab is changed
 
 @*param* `tabID` — ID number for the new active tab
-
-## HandleWaypointClick
-
-
-```lua
-(method) InstanceCollectionHelper:HandleWaypointClick(data: Mount|Toy, localizedInstanceName: string)
-```
-
-Handles how waypoints should be set using either Blizzard's super tracking or TomTom
-
-@*param* `localizedInstanceName` — The localized name of the instance to set a waypoint for
-
-See:
-  * [Mount](InstanceCollectionHelper/Constants.lua#49#10)
-  * [Toy](InstanceCollectionHelper/Constants.lua#879#10)
 
 ## HideAllDifficultyButtons
 
@@ -500,42 +610,55 @@ unknown
 
 
 ```lua
-function InstanceCollectionHelper.IsEncounterCompleted(data: Mount|Toy, difficultyID: any)
+function InstanceCollectionHelper.IsEncounterCompleted(data: Mount|Pet|Toy, difficultyID: any)
   -> boolean
 ```
 
-Determines whether or not an instance encounter has been completed for the reset period for a given difficulty
+@*return* — `true` if an instance encounter has been completed for the current reset period on a given difficulty, `false` otherwise
+
 See:
-  * [Mount](InstanceCollectionHelper/Constants.lua#49#10)
-  * [Toy](InstanceCollectionHelper/Constants.lua#879#10)
+  * [Mount](InstanceCollectionHelper/Data/Mounts.lua#9#10)
+  * [Toy](InstanceCollectionHelper/Data/Toys.lua#9#10)
+  * [Pet](InstanceCollectionHelper/Data/Pets.lua#9#10)
 
 ## IsEncounterCompletedOnSharedDifficulty
 
 
 ```lua
-(method) InstanceCollectionHelper:IsEncounterCompletedOnSharedDifficulty(data: Mount|Toy)
-  -> isCompleted: boolean
+(method) InstanceCollectionHelper:IsEncounterCompletedOnSharedDifficulty(data: Mount|Pet|Toy)
+  -> boolean
 ```
 
-@*return* `isCompleted` — `true` if an encounter has been completed for the reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise
+@*return* — `true` if an encounter has been completed for the current reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise
 
 See:
-  * [Mount](InstanceCollectionHelper/Constants.lua#49#10)
-  * [Toy](InstanceCollectionHelper/Constants.lua#879#10)
+  * [Mount](InstanceCollectionHelper/Data/Mounts.lua#9#10)
+  * [Toy](InstanceCollectionHelper/Data/Toys.lua#9#10)
+  * [Pet](InstanceCollectionHelper/Data/Pets.lua#9#10)
 
 ## IsInstanceRaid
 
 
 ```lua
-(method) InstanceCollectionHelper:IsInstanceRaid(data: Mount|Toy)
+(method) InstanceCollectionHelper:IsInstanceRaid(data: Mount|Pet|Toy)
   -> boolean
 ```
 
 @*return* — `true` if the instance is a raid, `false` otherwise
 
 See:
-  * [Mount](InstanceCollectionHelper/Constants.lua#49#10)
-  * [Toy](InstanceCollectionHelper/Constants.lua#879#10)
+  * [Mount](InstanceCollectionHelper/Data/Mounts.lua#9#10)
+  * [Toy](InstanceCollectionHelper/Data/Toys.lua#9#10)
+  * [Pet](InstanceCollectionHelper/Data/Pets.lua#9#10)
+
+## Mounts
+
+
+```lua
+Mount[]
+```
+
+List of mounts available from instances
 
 ## OnInitialize
 
@@ -543,6 +666,15 @@ See:
 ```lua
 (method) InstanceCollectionHelper:OnInitialize()
 ```
+
+## Pets
+
+
+```lua
+Pet[]
+```
+
+List of pets available from instances
 
 ## PrintChatMessage
 
@@ -556,6 +688,13 @@ Prints a message to the chat window prefixed by the AddOn name
 @*param* `...` — Arguments to be printed to the chat window
 
 See: [print](file:///Users/pranavchary/.vscode/extensions/sumneko.lua-3.15.0-darwin-arm64/server/meta/Lua%205.4%20en-us%20utf8/basic.lua#235#9)
+
+## RaidDifficulty
+
+
+```lua
+enum RaidDifficulty
+```
 
 ## ScrollBar
 
@@ -607,7 +746,7 @@ Sets instance difficulty based on the provided value (Usable for all instance ty
 
 
 ```lua
-(method) InstanceCollectionHelper:ShowDifficultyButtons(container: DifficultyContainer, data: Mount|Toy, isOwned?: boolean)
+(method) InstanceCollectionHelper:ShowDifficultyButtons(container: DifficultyContainer, data: Mount|Pet|Toy, isOwned?: boolean)
 ```
 
 Determines which difficulty button(s) to display based on the provided data
@@ -616,8 +755,9 @@ Determines which difficulty button(s) to display based on the provided data
 
 See:
   * [DifficultyContainer](InstanceCollectionHelper/Modules/MountDataProvider.lua#21#10)
-  * [Mount](InstanceCollectionHelper/Constants.lua#49#10)
-  * [Toy](InstanceCollectionHelper/Constants.lua#879#10)
+  * [Mount](InstanceCollectionHelper/Data/Mounts.lua#9#10)
+  * [Toy](InstanceCollectionHelper/Data/Toys.lua#9#10)
+  * [Pet](InstanceCollectionHelper/Data/Pets.lua#9#10)
 
 ## SlashOptions
 
@@ -633,16 +773,23 @@ table
 unknown
 ```
 
+## Toys
+
+
+```lua
+Toy[]
+```
+
+List of toys available from instances
+
 ## UpdateListContents
 
 
 ```lua
-(method) InstanceCollectionHelper:UpdateListContents(event: string)
+(method) InstanceCollectionHelper:UpdateListContents()
 ```
 
 Update the contents of the list shown in the UI
-
-@*param* `event` — The event that triggered the list update
 
 ## db
 
@@ -722,6 +869,15 @@ number?
 
 ID number for the encounter from which the mount is obtainable
 
+## ID
+
+
+```lua
+number
+```
+
+ID number for the mount
+
 ## Instance
 
 
@@ -738,7 +894,7 @@ Instance from which the mount can be obtained (for information only, displayed n
 number
 ```
 
-ID number for the instance
+ID number for the instance where the mount can be obtained
 
 ## MapID
 
@@ -748,15 +904,6 @@ number
 ```
 
 ID number for the map of the instance
-
-## MountID
-
-
-```lua
-number
-```
-
-ID number for the mount
 
 ## Name
 
@@ -847,12 +994,191 @@ The full name of the collectible
 ICHNote
 ```
 
+## ICHPetCount
+
+
+```lua
+FontString
+```
+
 ## ICHWaypointButton
 
 
 ```lua
 ICHWaypointButton
 ```
+
+
+---
+
+# Pet
+
+## AreaPoiID
+
+
+```lua
+number?
+```
+
+ID number for the Point of Interest (POI) marker showing the instance entrance on the map. Used to place Blizzard map pins for navigation guidance
+
+## DifficultyIDs
+
+
+```lua
+(DungeonDifficulty|RaidDifficulty)[]
+```
+
+List of IDs for instance difficulty(s) the pet can be obtained in
+
+## EncounterID
+
+
+```lua
+number?
+```
+
+ID number for the encounter from which the pet is available
+
+## Instance
+
+
+```lua
+string
+```
+
+Instance from which the pet can be obtained (for information only, displayed name is in user's locale)
+
+## InstanceID
+
+
+```lua
+number
+```
+
+ID number for the instance where the pet can be obtained
+
+## ItemID
+
+
+```lua
+number
+```
+
+ID number for item that adds the pet to the collection
+
+## MapID
+
+
+```lua
+number
+```
+
+ID number for the map of the instance
+
+## Name
+
+
+```lua
+string
+```
+
+Name of the pet (for information only, displayed name is in user's locale)
+
+## Notes
+
+
+```lua
+string?
+```
+
+Additional notes about the pet or instance
+
+## SearchTags
+
+
+```lua
+string[]
+```
+
+A list of string identifiers to quickly search for a pet. This can include expansion abbreviations, expansion names, zones, continents, etc<br/>This field is extended upon AddOn initialization to include zones and only includes expansions by default
+
+## Waypoint
+
+
+```lua
+Waypoint?
+```
+
+Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance). Also used for TomTom waypoint integration.
+
+
+---
+
+# PetCacheData
+
+## iconID
+
+
+```lua
+integer
+```
+
+ID for the icon associated with the pet
+
+## itemID
+
+
+```lua
+integer
+```
+
+ID for the item that adds the pet to the collection
+
+## itemName
+
+
+```lua
+string
+```
+
+Localized name for the item that adds the pet to the collection
+
+## limit
+
+
+```lua
+integer
+```
+
+Maximum number of the pet that can be owned
+
+## owned
+
+
+```lua
+integer
+```
+
+Number of the pet currently owned
+
+## petName
+
+
+```lua
+string
+```
+
+Localized pet name
+
+## speciesID
+
+
+```lua
+integer
+```
+
+ID for the pet species
 
 
 ---
@@ -872,10 +1198,10 @@ ID number for the Point of Interest (POI) marker showing the instance entrance o
 
 
 ```lua
-(DungeonDifficulty|RaidDifficulty)[]?
+(DungeonDifficulty|RaidDifficulty)[]
 ```
 
-List of IDs for instance difficulty(s) the toy can be obtained in (is this even needed for toys?)
+List of IDs for instance difficulty(s) the toy can be obtained in
 
 ## EncounterID
 
@@ -893,7 +1219,7 @@ ID number for the encounter from which the toy is available
 string
 ```
 
-Instance from which the toy can be obtained (for information only?)
+Instance from which the toy can be obtained (for information only, displayed name is in user's locale)
 
 ## InstanceID
 
@@ -902,16 +1228,16 @@ Instance from which the toy can be obtained (for information only?)
 number
 ```
 
-ID number for the instance
+ID number for the instance where the toy can be obtained
 
-## IsRaid
+## ItemID
 
 
 ```lua
-boolean
+number
 ```
 
-Whether or not the instance is a raid
+ID number for item that adds the toy to the collection
 
 ## MapID
 
@@ -929,7 +1255,7 @@ ID number for the map of the instance
 string
 ```
 
-Name of the toy (for information only?)
+Name of the toy (for information only, displayed name is in user's locale)
 
 ## Notes
 
@@ -949,15 +1275,6 @@ string[]
 
 A list of string identifiers to quickly search for a toy. This can include expansion abbreviations, expansion names, zones, continents, etc<br/>This field is extended upon AddOn initialization to include zones and only includes expansions by default
 
-## ToyItemID
-
-
-```lua
-number
-```
-
-Item ID number for the toy
-
 ## Waypoint
 
 
@@ -966,6 +1283,56 @@ Waypoint?
 ```
 
 Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance). Also used for TomTom waypoint integration.
+
+
+---
+
+# ToyCacheData
+
+## iconID
+
+
+```lua
+integer
+```
+
+ID for the icon associated with the toy
+
+## isOwned
+
+
+```lua
+boolean
+```
+
+`true` if the toy is owned, `false` otherwise
+
+## itemID
+
+
+```lua
+integer
+```
+
+ID for the item that adds the toy to the collection
+
+## itemName
+
+
+```lua
+string
+```
+
+Localized name for the item that adds the toy to the collection
+
+## toyName
+
+
+```lua
+string
+```
+
+Localized toy name
 
 
 ---
