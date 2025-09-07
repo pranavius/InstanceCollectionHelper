@@ -166,8 +166,6 @@ string[]
 string[]
 ```
 
-Each table entry consists of a list of strings associated with that expansion to use when searching for a collectible by expansion
-
 ## Dragonflight
 
 
@@ -334,7 +332,7 @@ The note(s) to display when hovering over the texture in `ICHNote`
 
 # ICHWaypointButton
 
-## instanceID
+## InstanceID
 
 
 ```lua
@@ -457,7 +455,7 @@ Initializes the footer in the AddOn that contains some display options for the w
 (method) InstanceCollectionHelper:CreateMainFrame()
 ```
 
-Initializes the AddOn window.<br/>
+Initializes the AddOn window.<br>
 Internally creates a scrollable list of data to display initially as well.
 
 ## CreateScrollingView
@@ -467,7 +465,7 @@ Internally creates a scrollable list of data to display initially as well.
 (method) InstanceCollectionHelper:CreateScrollingView()
 ```
 
-Initializes the scrollable list of data to display in the AddOn<br/>
+Initializes the scrollable list of data to display in the AddOn<br>
 By default, the list of mounts is shown
 
 ## CreateTab
@@ -512,6 +510,9 @@ enum DungeonDifficulty
 ```lua
 ExpansionTags
 ```
+
+A table containing entries for each WoW expansion.<br>
+Each table entry consists of a list of strings associated with that expansion to use when searching for a collectible by expansion
 
 ## FilterListContentsByQuery
 
@@ -724,7 +725,7 @@ unknown
 (method) InstanceCollectionHelper:SetInstanceDifficulty(difficultyID: number)
 ```
 
-Sets instance difficulty based on the provided value (Usable for all instance types)<br/>
+Sets instance difficulty based on the provided value (Usable for all instance types)<br>
 *Provides a consistent experience when changing difficulties either from the UI or chat command.*
 
 @*param* `difficultyID` — ID associated with an instance difficulty
@@ -930,7 +931,7 @@ Additional notes about the mount or instance
 string[]
 ```
 
-A list of string identifiers to quickly search for a mount. This can include expansion abbreviations, expansion names, zones, continents, etc<br/>This field is extended upon AddOn initialization to include zones and only includes expansions by default
+A list of string identifiers to quickly search for a mount. This can include expansion abbreviations, expansion names, zones, continents, etc<br>This field is extended upon AddOn initialization to include zones and only includes expansions by default
 
 ## SharedDifficulties
 
@@ -1101,7 +1102,7 @@ Additional notes about the pet or instance
 string[]
 ```
 
-A list of string identifiers to quickly search for a pet. This can include expansion abbreviations, expansion names, zones, continents, etc<br/>This field is extended upon AddOn initialization to include zones and only includes expansions by default
+A list of string identifiers to quickly search for a pet. This can include expansion abbreviations, expansion names, zones, continents, etc<br>This field is extended upon AddOn initialization to include zones and only includes expansions by default
 
 ## Waypoint
 
@@ -1273,7 +1274,7 @@ Additional notes about the toy or instance
 string[]
 ```
 
-A list of string identifiers to quickly search for a toy. This can include expansion abbreviations, expansion names, zones, continents, etc<br/>This field is extended upon AddOn initialization to include zones and only includes expansions by default
+A list of string identifiers to quickly search for a toy. This can include expansion abbreviations, expansion names, zones, continents, etc<br>This field is extended upon AddOn initialization to include zones and only includes expansions by default
 
 ## Waypoint
 

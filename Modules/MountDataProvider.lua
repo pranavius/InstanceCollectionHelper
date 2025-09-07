@@ -3,13 +3,13 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----@class NameContainer: Frame Displays elements relevant to a collectible's name<br/>
+---@class NameContainer: Frame Displays elements relevant to a collectible's name<br>
 ---For frame definition and more layout information, see `Templates.xml`
 ---@field name string The full name of the collectible
 ---@field Text FontString Name of a collectible (can be truncated if length exceeds allocated space)
 ---@field ViewButton Button Button to view the collectible in the appropriate collection journal in-game
 
----@class InstanceContainer: Frame Displays elements relevant to the instance where a collectible can be obtained<br/>
+---@class InstanceContainer: Frame Displays elements relevant to the instance where a collectible can be obtained<br>
 ---For frame definition and more layout information, see `Templates.xml`
 ---@field encounterID? number ID number for the encounter that provides the collectible
 ---@field Text FontString Name of an instance
@@ -18,7 +18,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@class DifficultyButton: Button Sets instance difficulty to the associated value
 ---@field difficultyID number ID number for instance, scenario, and raid difficulty (see https://wago.tools/db2/Difficulty)
 
----@class DifficultyContainer: Frame Displays elements relevant to the instance difficulty for a collectible<br/>
+---@class DifficultyContainer: Frame Displays elements relevant to the instance difficulty for a collectible<br>
 ---For frame definition and more layout information, see `Templates.xml`
 ---@field sharedDifficulties? table<RaidDifficulty, RaidDifficulty> Difficulties that share a lockout with a difficulty displayed using the appropriate button
 ---@field RaidDiffLFRButton DifficultyButton Button for tracking LFR lockout (no action taken when clicked)
@@ -39,7 +39,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field notes string? The note(s) to display when hovering over the texture in `ICHNote`
 
 ---@class ICHWaypointButton: Button Creates a map pin or TomTom waypoint to the corresponding instance entrance based on user's preferences
----@field instanceID number ID number for the instance where the collectible can be obtained
+---@field InstanceID number ID number for the instance where the collectible can be obtained
 
 ---@class OtherInfoContainer: Frame Displays other elements associated with a collectible
 ---@field ICHPetCount FontString

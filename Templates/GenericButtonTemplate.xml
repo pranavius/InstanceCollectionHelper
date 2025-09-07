@@ -31,7 +31,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     GameTooltip:AddLine("- "..ICH_LANG["\"fel\" will show all mounts and instances that contain \"fel\" in the name"], 1, 1, 1)
                     GameTooltip:AddLine("- "..ICH_LANG["\"mythic\" will show all mounts that can be obtained from a Mythic dungeon or raid"], 1, 1, 1)
                     GameTooltip:AddLine("- "..ICH_LANG["\"lfr\" will show all mounts that can be obtained from Raid Finder (LFR) difficulty raids"], 1, 1, 1)
-                    GameTooltip:AddLine("- ".."\"wotlk\" or \"wrath\" will show all mounts that can be obtained from Wrath of the Lich King instances", 1, 1, 1)
+                    GameTooltip:AddLine("- "..ICH_LANG["\"wotlk\" or \"wrath\" will show all mounts that can be obtained from Wrath of the Lich King instances"], 1, 1, 1)
                 end
                 GameTooltip:Show()
             </OnEnter>

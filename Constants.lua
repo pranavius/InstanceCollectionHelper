@@ -24,8 +24,9 @@ AddOn.RaidDifficulty = {
     Mythic = 16
 }
 
----@class ExpansionTags A table containing entries for each WoW expansion.<br/>
+---A table containing entries for each WoW expansion.<br>
 ---Each table entry consists of a list of strings associated with that expansion to use when searching for a collectible by expansion
+---@class ExpansionTags
 ---@field Classic string[]
 ---@field TheBurningCrusade string[]
 ---@field WrathOfTheLichKing string[]

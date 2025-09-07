@@ -59,7 +59,7 @@ function AddOn:OnInitialize()
     end)
 end
 
----Initializes the AddOn window.<br/>
+---Initializes the AddOn window.<br>
 ---Internally creates a scrollable list of data to display initially as well.
 function AddOn:CreateMainFrame()
     local f = CreateFrame("Frame", "ICHMain", UIParent)
@@ -141,7 +141,7 @@ function AddOn:CreateMainFrame()
     self.Container:Hide()
 end
 
----Initializes the scrollable list of data to display in the AddOn<br/>
+---Initializes the scrollable list of data to display in the AddOn<br>
 ---By default, the list of mounts is shown
 function AddOn:CreateScrollingView()
     self.Container.ListHeaders = CreateFrame("Frame", "ICHListHeaders", self.Container, "ICHListHeadersTemplate")

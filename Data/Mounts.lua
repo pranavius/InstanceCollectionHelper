@@ -18,7 +18,7 @@ local RaidDifficulty = AddOn.RaidDifficulty
 ---@field SharedDifficulties? table<RaidDifficulty, RaidDifficulty> Provides associations for difficulties that share a lockout with the listed `DifficultyID`
 ---@field Notes? string Additional notes about the mount or instance
 ---@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance). Also used for TomTom waypoint integration.
----@field SearchTags string[] A list of string identifiers to quickly search for a mount. This can include expansion abbreviations, expansion names, zones, continents, etc<br/>This field is extended upon AddOn initialization to include zones and only includes expansions by default
+---@field SearchTags string[] A list of string identifiers to quickly search for a mount. This can include expansion abbreviations, expansion names, zones, continents, etc<br>This field is extended upon AddOn initialization to include zones and only includes expansions by default
 
 ---@type Mount[] List of mounts available from instances
 AddOn.Mounts = {
@@ -678,7 +678,7 @@ AddOn.Mounts = {
         EncounterID = 2582,
         DifficultyIDs = { DungeonDifficulty.Mythic },
         Waypoint = { mapID = 2214, x = 0.427, y = 0.086 },
-        Notes = "Requires completing a short questline after looting "..(select(2, C_Item.GetItemInfo(226683)) or WrapTextInColor("[Malfunctioning Mechsuit]", EPIC_PURPLE_COLOR)),
+        Notes = L["Requires completing a short questline after looting Malfunctioning Mechsuit"],
         SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {

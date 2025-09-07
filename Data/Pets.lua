@@ -17,7 +17,7 @@ local RaidDifficulty = AddOn.RaidDifficulty
 ---@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[] List of IDs for instance difficulty(s) the pet can be obtained in
 ---@field Notes? string Additional notes about the pet or instance
 ---@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance). Also used for TomTom waypoint integration.
----@field SearchTags string[] A list of string identifiers to quickly search for a pet. This can include expansion abbreviations, expansion names, zones, continents, etc<br/>This field is extended upon AddOn initialization to include zones and only includes expansions by default
+---@field SearchTags string[] A list of string identifiers to quickly search for a pet. This can include expansion abbreviations, expansion names, zones, continents, etc<br>This field is extended upon AddOn initialization to include zones and only includes expansions by default
 
 ---@type Pet[] List of pets available from instances
 AddOn.Pets = {
@@ -206,7 +206,7 @@ AddOn.Pets = {
         AreaPoiID = 7857,
         EncounterID = 2589,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
-        Notes = "Also obtainable in a Follower dungeon".."\n\n".."This item is obtainable even though it does not appear on the loot table for "..WrapTextInColor("Goldie Baronbottom", DARKYELLOW_FONT_COLOR),
+        Notes = L["Also obtainable in a Follower dungeon"].."\n\n"..L["This item is obtainable even though it does not appear on the loot table for Goldie Baronbottom"],
         Waypoint = { mapID = 2248, x = 0.766, y = 0.438 },
         SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
@@ -224,7 +224,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Notes = "Instance entrance is at the very top of the tower where the waypoint is located",
+        Notes = L["Instance entrance is at the very top of the tower where the waypoint is located"],
         Waypoint = { mapID = 241, x = 0.348, y = 0.772 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -358,7 +358,7 @@ AddOn.Pets = {
         AreaPoiID = 8162,
         EncounterID = 2650,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
-        Notes = "Also obtainable in a Follower dungeon",
+        Notes = L["Also obtainable in a Follower dungeon"],
         Waypoint = { mapID = 2214, x = 0.421, y = 0.395 },
         SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
@@ -396,7 +396,7 @@ AddOn.Pets = {
         AreaPoiID = 6720,
         DifficultyIDs = { DungeonDifficulty.Normal },
         Waypoint = { mapID = 240, x = 0.405, y = 0.687 },
-        Notes = "Dropped by "..WrapTextInColor("Deviate Guardians", DARKYELLOW_FONT_COLOR).." and "..WrapTextInColor("Deviate Ravagers", DARKYELLOW_FONT_COLOR).." throughout the dungeon",
+        Notes = L["Dropped by Deviate Guardians and Deviate Ravagers throughout the dungeon"],
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -541,7 +541,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Notes = "Instance entrance is at the very top of the tower where the waypoint is located",
+        Notes = L["Instance entrance is at the very top of the tower where the waypoint is located"],
         Waypoint = { mapID = 241, x = 0.348, y = 0.772 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -565,7 +565,7 @@ AddOn.Pets = {
         MapID = 1771,
         AreaPoiID = 5831,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Notes = "Dropped by the Rare Elite "..WrapTextInColor("Gol'than the Malodorous", DARKYELLOW_FONT_COLOR).."\n\n".."Guides for how to spawn this mob can be found online",
+        Notes = L["Dropped by the Rare Elite Gol'than the Malodorous"].."\n\n"..L["Guides for how to spawn this mob can be found online"],
         Waypoint = { mapID = 864, x = 0.519, y = 0.255 },
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
@@ -698,7 +698,7 @@ AddOn.Pets = {
         MapID = 36,
         AreaPoiID = 6500,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic },
-        Notes = "Dropped by "..WrapTextInColor("Defias Pirates", DARKYELLOW_FONT_COLOR).." on the boat towards the end of the dungeon",
+        Notes = L["Dropped by Defias Pirates on the boat towards the end of the dungeon"],
         Waypoint = { mapID = 52, x = 0.426, y = 0.716 },
         SearchTags = AddOn.ExpansionTags.Classic
     },
@@ -830,7 +830,7 @@ AddOn.Pets = {
         MapID = 1358,
         AreaPoiID = 6660,
         DifficultyIDs = { DungeonDifficulty.Heroic },
-        Notes = "Dropped by "..WrapTextInColor("The Lanticore", DARKYELLOW_FONT_COLOR)..", who has a random chance to spawn after killing "..WrapTextInColor("Orebender Gor'ashan", DARKYELLOW_FONT_COLOR),
+        Notes = L["Dropped by The Lanticore, which has a random chance to spawn after killing Orebender Gor'ashan"],
         Waypoint = { mapID = 33, x = 0.790, y = 0.338 },
         SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
     },
@@ -868,7 +868,7 @@ AddOn.Pets = {
         -- AreaPoiID = 6510,
         EncounterID = 2354,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = "Access to the raid entrance requires completing the quest |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(select(1, UnitFactionGroup("player")) == "Horde" and 55799 or 56325) or select(1, UnitFactionGroup("player")) == "Horde" and "The Tide Turns" or "Changing Tides", DARKYELLOW_FONT_COLOR),
+        Notes = L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"],
         -- Waypoint = { mapID = 422, x = 0.389, y = 0.35 },
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
@@ -926,7 +926,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Notes = "Dropped by "..WrapTextInColor("Sand Elementals", DARKYELLOW_FONT_COLOR).." in Normal and Heroic, but can be looted from "..WrapTextInColor("Council of Elders", DARKYELLOW_FONT_COLOR).." in LFR",
+        Notes = L["Dropped by Sand Elementals in Normal and Heroic, but can be looted from Council of Elders in LFR"],
         Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
@@ -988,7 +988,7 @@ AddOn.Pets = {
         -- AreaPoiID = 6510,
         EncounterID = 2347,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = "Access to the raid entrance requires completing the quest |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(select(1, UnitFactionGroup("player")) == "Horde" and 55799 or 56325) or select(1, UnitFactionGroup("player")) == "Horde" and "The Tide Turns" or "Changing Tides", DARKYELLOW_FONT_COLOR),
+        Notes = L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"],
         -- Waypoint = { mapID = 422, x = 0.389, y = 0.35 },
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
@@ -1012,7 +1012,7 @@ AddOn.Pets = {
         MapID = 568,
         AreaPoiID = 6683,
         DifficultyIDs = { DungeonDifficulty.Heroic },
-        Notes = "Obtained by using an "..(select(2, C_Item.GetItemInfo(33865)) or WrapTextInColor("[Amani Hex Stick]", GREEN_FONT_COLOR)).." on "..WrapTextInColor("Forest Frogs", DARKYELLOW_FONT_COLOR).."\n\n".."Detailed guides for how to obtain this pet can be found online",
+        Notes = L["Obtained by using an Amani Hex Stick on Forest Frogs"].."\n\n"..L["Detailed guides for how to obtain this pet can be found online"],
         Waypoint = { mapID = 95, x = 0.82, y = 0.643 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -1037,7 +1037,7 @@ AddOn.Pets = {
         -- AreaPoiID = 6510,
         EncounterID = 2349,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = "Access to the raid entrance requires completing the quest |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(select(1, UnitFactionGroup("player")) == "Horde" and 55799 or 56325) or select(1, UnitFactionGroup("player")) == "Horde" and "The Tide Turns" or "Changing Tides", DARKYELLOW_FONT_COLOR),
+        Notes = L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"],
         -- Waypoint = { mapID = 422, x = 0.389, y = 0.35 },
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
@@ -1080,7 +1080,7 @@ AddOn.Pets = {
         EncounterID = 1704,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Waypoint = { mapID = 641, x = 0.567, y = 0.375 },
-        Notes = "This item is obtainable even though it does not appear on the loot table for "..WrapTextInColor("Dragons of Nightmare", DARKYELLOW_FONT_COLOR),
+        Notes = L["This item is obtainable even though it does not appear on the loot table for Dragons of Nightmare"],
         SearchTags = AddOn.ExpansionTags.Legion
     },
     {
@@ -1362,7 +1362,7 @@ AddOn.Pets = {
         AreaPoiID = 5840,
         EncounterID = 2143,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Notes = "This pet takes 3 days to hatch after looting "..(select(2, C_Item.GetItemInfo(160832)) or WrapTextInColor("[Viable Cobra Egg]", RARE_BLUE_COLOR)),
+        Notes = L["This pet takes 3 days to hatch after looting Viable Cobra Egg"],
         Waypoint = { mapID = 864, x = 0.519, y = 0.255 },
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
@@ -1533,7 +1533,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Notes = "Instance entrance is at the very top of the tower where the waypoint is located",
+        Notes = L["Instance entrance is at the very top of the tower where the waypoint is located"],
         Waypoint = { mapID = 241, x = 0.348, y = 0.772 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -1650,7 +1650,7 @@ AddOn.Pets = {
         AreaPoiID = 6590,
         EncounterID = 2424,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = "This item is obtainable even though it does not appear on the loot table for "..WrapTextInColor("Sire Denathrius", DARKYELLOW_FONT_COLOR),
+        Notes = L["This item is obtainable even though it does not appear on the loot table for Sire Denathrius"],
         Waypoint = { mapID = 1525, x = 0.464, y = 0.415 },
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
@@ -1700,7 +1700,7 @@ AddOn.Pets = {
         -- AreaPoiID = 6510,
         EncounterID = 2361,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = "Access to the raid entrance requires completing the quest |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(select(1, UnitFactionGroup("player")) == "Horde" and 55799 or 56325) or select(1, UnitFactionGroup("player")) == "Horde" and "The Tide Turns" or "Changing Tides", DARKYELLOW_FONT_COLOR),
+        Notes = L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"],
         -- Waypoint = { mapID = 422, x = 0.389, y = 0.35 },
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },

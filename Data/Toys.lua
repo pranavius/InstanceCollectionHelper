@@ -17,7 +17,7 @@ local RaidDifficulty = AddOn.RaidDifficulty
 ---@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[] List of IDs for instance difficulty(s) the toy can be obtained in
 ---@field Notes? string Additional notes about the toy or instance
 ---@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance). Also used for TomTom waypoint integration.
----@field SearchTags string[] A list of string identifiers to quickly search for a toy. This can include expansion abbreviations, expansion names, zones, continents, etc<br/>This field is extended upon AddOn initialization to include zones and only includes expansions by default
+---@field SearchTags string[] A list of string identifiers to quickly search for a toy. This can include expansion abbreviations, expansion names, zones, continents, etc<br>This field is extended upon AddOn initialization to include zones and only includes expansions by default
 
 ---@type Toy[] List of toys available from instances
 AddOn.Toys = {
