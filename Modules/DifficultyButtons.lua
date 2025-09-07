@@ -14,7 +14,7 @@ end
 
 ---Determines if a difficulty should share any lockouts with other difficulties
 ---@param difficultyID number ID associated with an instance difficulty (currently only used by raids)
----@return boolean isShareable `true` if the instance difficulty shares a lockout with other difficulties, `false` otherwise
+---@return boolean "`true` if the instance difficulty shares a lockout with other difficulties, `false` otherwise"
 local function IsDifficultyIDShareable(difficultyID)
     return difficultyID == AddOn.RaidDifficulty.Legacy10
         or difficultyID == AddOn.RaidDifficulty.Legacy10H

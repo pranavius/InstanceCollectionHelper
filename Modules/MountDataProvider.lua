@@ -39,7 +39,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field notes string? The note(s) to display when hovering over the texture in `ICHNote`
 
 ---@class ICHWaypointButton: Button Creates a map pin or TomTom waypoint to the corresponding instance entrance based on user's preferences
----@field instanceID number ID number for instance
+---@field instanceID number ID number for the instance where the collectible can be obtained
 
 ---@class OtherInfoContainer: Frame Displays other elements associated with a collectible
 ---@field ICHPetCount FontString
@@ -69,13 +69,13 @@ function AddOn.MountDataProviderInit(frame, data)
     if not frame or not data then return end
     -- Resetting these values to avoid conflicts or incorrect tooltip displays
     frame.isMount = true
-    frame.relevantID = data.MountID
+    frame.relevantID = data.ID
     -- Hide the pet count frame for non-pets
     frame.OtherInfoContainer.ICHPetCount:Hide()
 
     local index = AddOn.ICHDataProvider:FindIndex(data)
 
-    local localizedMountName, mountSpellID, _, _, _, _, _, _, _, _, isOwned = C_MountJournal.GetMountInfoByID(data.MountID)
+    local localizedMountName, mountSpellID, _, _, _, _, _, _, _, _, isOwned = C_MountJournal.GetMountInfoByID(data.ID)
     local localizedInstanceName = EJ_GetInstanceInfo(data.InstanceID)
     if isOwned then
         frame.Bg:Hide()
@@ -112,9 +112,9 @@ function AddOn.MountDataProviderInit(frame, data)
 
     frame.NameContainer.ViewButton:SetScript("OnClick", function()
         -- Currently only supports Mounts, but additional conditions could be added for showing things like Battle Pets and Achievements
-        if data.MountID then
+        if data.ID then
             SetCollectionsJournalShown(true, 1)
-            MountJournal_SetSelected(data.MountID, mountSpellID)
+            MountJournal_SetSelected(data.ID, mountSpellID)
         end
     end)
 

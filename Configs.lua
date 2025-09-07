@@ -30,7 +30,7 @@ function AddOn:PrintChatMessage(...)
 end
 
 ---@param difficultyID number ID associated with an instance difficulty
----@return string text The text to be shown on the button that sets the desired instance difficulty
+---@return string "The text to be shown on the button that sets the desired instance difficulty"
 function AddOn:GetDifficultyButtonText(difficultyID)
     local dKey
     for key, dd in pairs(AddOn.DungeonDifficulty) do
@@ -58,7 +58,7 @@ end
 
 ---Returns the difficulty text that corresponds to the given `difficultyID`
 ---@param difficultyID number? ID associated with an instance difficulty. Marked optional due to `GetLegacyRaidDifficultyID()` return a `number?` value, but required for this function.
----@return string text The text to be shown when referencing the desired instance difficulty
+---@return string "The text to be shown when referencing the desired instance difficulty"
 function AddOn:GetInstanceDifficultyText(difficultyID)
     local dKey
     for key, dd in pairs(AddOn.DungeonDifficulty) do

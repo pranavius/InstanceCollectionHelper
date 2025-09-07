@@ -8,9 +8,9 @@ local RaidDifficulty = AddOn.RaidDifficulty
 
 ---@class Pet Pet data to process and display as a list item in the AddOn
 ---@field Name string Name of the pet (for information only, displayed name is in user's locale)
----@field PetItemID number Item ID number for the pet
+---@field ItemID number ID number for item that adds the pet to the collection
 ---@field Instance string Instance from which the pet can be obtained (for information only, displayed name is in user's locale)
----@field InstanceID number ID number for the instance
+---@field InstanceID number ID number for the instance where the pet can be obtained
 ---@field MapID number ID number for the map of the instance
 ---@field AreaPoiID? number ID number for the Point of Interest (POI) marker showing the instance entrance on the map. Used to place Blizzard map pins for navigation guidance
 ---@field EncounterID? number ID number for the encounter from which the pet is available
@@ -20,10 +20,10 @@ local RaidDifficulty = AddOn.RaidDifficulty
 ---@field SearchTags string[] A list of string identifiers to quickly search for a pet. This can include expansion abbreviations, expansion names, zones, continents, etc<br/>This field is extended upon AddOn initialization to include zones and only includes expansions by default
 
 ---@type Pet[] List of pets available from instances
-AddOn.InstancePets = {
+AddOn.Pets = {
     {
         Name = "Abyssius",
-        PetItemID = 122106,
+        ItemID = 122106,
         Instance = "Black Temple",
         InstanceID = 751,
         MapID = 564,
@@ -36,7 +36,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Amberglow Stinger",
-        PetItemID = 167053,
+        ItemID = 167053,
         Instance = "Heart of Fear",
         InstanceID = 330,
         MapID = 1009,
@@ -53,7 +53,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Anubisath Idol",
-        PetItemID = 93040,
+        ItemID = 93040,
         Instance = "Temple of Ahn'Qiraj",
         InstanceID = 744,
         MapID = 531,
@@ -65,7 +65,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Aqir Hivespawn",
-        PetItemID = 174448,
+        ItemID = 174448,
         Instance = "Ny'alotha, the Waking City",
         InstanceID = 1180,
         MapID = 2217,
@@ -77,7 +77,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Ashstone Core",
-        PetItemID = 93035,
+        ItemID = 93035,
         Instance = "Molten Core",
         InstanceID = 741,
         MapID = 409,
@@ -89,7 +89,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Azure Windseeker",
-        PetItemID = 167051,
+        ItemID = 167051,
         Instance = "Terrace of Endless Spring",
         InstanceID = 320,
         MapID = 996,
@@ -106,7 +106,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Baoh-Xi",
-        PetItemID = 167050,
+        ItemID = 167050,
         Instance = "Mogu'shan Vaults",
         InstanceID = 317,
         MapID = 1008,
@@ -123,7 +123,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Blackfuse Bombling",
-        PetItemID = 104158,
+        ItemID = 104158,
         Instance = "Siege of Orgimmar",
         InstanceID = 369,
         MapID = 1136,
@@ -135,7 +135,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Blazehound",
-        PetItemID = 152975,
+        ItemID = 152975,
         Instance = "Firelands",
         InstanceID = 78,
         MapID = 720,
@@ -148,7 +148,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Blightbreath",
-        PetItemID = 142096,
+        ItemID = 142096,
         Instance = "Icecrown Citadel",
         InstanceID = 758,
         MapID = 631,
@@ -165,7 +165,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Blood Boil",
-        PetItemID = 142095,
+        ItemID = 142095,
         Instance = "Icecrown Citadel",
         InstanceID = 758,
         MapID = 631,
@@ -182,7 +182,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Boneshard",
-        PetItemID = 142094,
+        ItemID = 142094,
         Instance = "Icecrown Citadel",
         InstanceID = 758,
         MapID = 631,
@@ -199,7 +199,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Bop",
-        PetItemID = 223155,
+        ItemID = 223155,
         Instance = "Cinderbrew Meadery",
         InstanceID = 1272,
         MapID = 2661,
@@ -212,7 +212,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Bound Stream",
-        PetItemID = 152970,
+        ItemID = 152970,
         Instance = "Bastion of Twilight",
         InstanceID = 72,
         MapID = 671,
@@ -230,7 +230,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Cinderweb Recluse",
-        PetItemID = 152976,
+        ItemID = 152976,
         Instance = "Firelands",
         InstanceID = 78,
         MapID = 720,
@@ -243,7 +243,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Chaos Pup",
-        PetItemID = 122114,
+        ItemID = 122114,
         Instance = "Sunwell Plateau",
         InstanceID = 752,
         MapID = 580,
@@ -255,7 +255,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Child of Pa'ku",
-        PetItemID = 165846,
+        ItemID = 165846,
         Instance = "Battle of Dazar'alor",
         InstanceID = 1176,
         MapID = 2070,
@@ -269,7 +269,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Chrominius",
-        PetItemID = 93038,
+        ItemID = 93038,
         Instance = "Blackwing Lair",
         InstanceID = 742,
         MapID = 469,
@@ -281,7 +281,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Coilfang Stalker",
-        PetItemID = 97554,
+        ItemID = 97554,
         Instance = "Serpentshrine Cavern",
         InstanceID = 748,
         MapID = 548,
@@ -293,7 +293,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Comet",
-        PetItemID = 167049,
+        ItemID = 167049,
         Instance = "Mogu'shan Vaults",
         InstanceID = 317,
         MapID = 1008,
@@ -310,7 +310,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Corefire Imp",
-        PetItemID = 93034,
+        ItemID = 93034,
         Instance = "Molten Core",
         InstanceID = 741,
         MapID = 409,
@@ -322,7 +322,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Corrupted Blood",
-        PetItemID = 152980,
+        ItemID = 152980,
         Instance = "Dragon Soul",
         InstanceID = 187,
         MapID = 967,
@@ -339,7 +339,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Corrupted Nest Guardian",
-        PetItemID = 127749,
+        ItemID = 127749,
         Instance = "Hellfire Citadel",
         InstanceID = 669,
         MapID = 1448,
@@ -351,7 +351,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Craboom",
-        PetItemID = 236768,
+        ItemID = 236768,
         Instance = "Operation: Floodgate",
         InstanceID = 1298,
         MapID = 2773,
@@ -364,7 +364,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Creeping Tentacle",
-        PetItemID = 142093,
+        ItemID = 142093,
         Instance = "Ulduar",
         InstanceID = 759,
         MapID = 603,
@@ -377,7 +377,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Death Talon Whelpguard",
-        PetItemID = 93037,
+        ItemID = 93037,
         Instance = "Blackwing Lair",
         InstanceID = 742,
         MapID = 469,
@@ -389,7 +389,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Deviate Hatchling",
-        PetItemID = 48114,
+        ItemID = 48114,
         Instance = "Wailing Caverns",
         InstanceID = 240,
         MapID = 43,
@@ -401,7 +401,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Discarded Experiment",
-        PetItemID = 152967,
+        ItemID = 152967,
         Instance = "Blackwing Descent",
         InstanceID = 73,
         MapID = 669,
@@ -418,7 +418,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Drafty",
-        PetItemID = 152974,
+        ItemID = 152974,
         Instance = "Throne of the Four Winds",
         InstanceID = 74,
         MapID = 754,
@@ -435,7 +435,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Dreadmaw",
-        PetItemID = 142083,
+        ItemID = 142083,
         Instance = "Trial of the Crusader",
         InstanceID = 757,
         MapID = 649,
@@ -452,7 +452,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Droplet of Y'Shaarj",
-        PetItemID = 104162,
+        ItemID = 104162,
         Instance = "Siege of Orgimmar",
         InstanceID = 369,
         MapID = 1136,
@@ -464,7 +464,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Drudge Ghoul",
-        PetItemID = 142098,
+        ItemID = 142098,
         Instance = "Icecrown Citadel",
         InstanceID = 758,
         MapID = 631,
@@ -476,7 +476,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Eye of Allseeing",
-        PetItemID = 186554,
+        ItemID = 186554,
         Instance = "Sanctum of Domination",
         InstanceID = 1193,
         MapID = 2450,
@@ -488,7 +488,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Eye of Corruption",
-        PetItemID = 174452,
+        ItemID = 174452,
         Instance = "Ny'alotha, the Waking City",
         InstanceID = 1180,
         MapID = 2217,
@@ -500,7 +500,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Eye of Extermination",
-        PetItemID = 186555,
+        ItemID = 186555,
         Instance = "Sanctum of Domination",
         InstanceID = 1193,
         MapID = 2450,
@@ -512,7 +512,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Faceless Mindlasher",
-        PetItemID = 152979,
+        ItemID = 152979,
         Instance = "Dragon Soul",
         InstanceID = 187,
         MapID = 967,
@@ -529,7 +529,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Faceless Minion",
-        PetItemID = 152972,
+        ItemID = 152972,
         Instance = "Bastion of Twilight",
         InstanceID = 72,
         MapID = 671,
@@ -547,7 +547,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Fiendish Imp",
-        PetItemID = 97551,
+        ItemID = 97551,
         Instance = "Karazhan",
         InstanceID = 745,
         MapID = 532,
@@ -559,7 +559,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Filthy Slime",
-        PetItemID = 160704,
+        ItemID = 160704,
         Instance = "Tol Dagor",
         InstanceID = 1002,
         MapID = 1771,
@@ -571,7 +571,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Fragment of Anger",
-        PetItemID = 122107,
+        ItemID = 122107,
         Instance = "Black Temple",
         InstanceID = 751,
         MapID = 564,
@@ -584,7 +584,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Fragment of Anger",
-        PetItemID = 122109,
+        ItemID = 122109,
         Instance = "Black Temple",
         InstanceID = 751,
         MapID = 564,
@@ -597,7 +597,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Fragment of Suffering",
-        PetItemID = 122108,
+        ItemID = 122108,
         Instance = "Black Temple",
         InstanceID = 751,
         MapID = 564,
@@ -610,7 +610,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Fungal Abomination",
-        PetItemID = 93032,
+        ItemID = 93032,
         Instance = "Naxxramas",
         InstanceID = 754,
         MapID = 533,
@@ -625,7 +625,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "G0-R41-0N Ultratonk",
-        PetItemID = 142092,
+        ItemID = 142092,
         Instance = "Ulduar",
         InstanceID = 759,
         MapID = 603,
@@ -638,7 +638,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Giant Bone Spider",
-        PetItemID = 93030,
+        ItemID = 93030,
         Instance = "Naxxramas",
         InstanceID = 754,
         MapID = 533,
@@ -653,7 +653,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Gizmo",
-        PetItemID = 186534,
+        ItemID = 186534,
         Instance = "Tazavesh, the Veiled Market",
         InstanceID = 1194,
         MapID = 2441,
@@ -668,7 +668,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Golden Snorf",
-        PetItemID = 169378,
+        ItemID = 169378,
         Instance = "Operation: Mechagon (Workshop)",
         InstanceID = 1178,
         MapID = 2097,
@@ -680,7 +680,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Gooey Sha-ling",
-        PetItemID = 104163,
+        ItemID = 104163,
         Instance = "Siege of Orgimmar",
         InstanceID = 369,
         MapID = 1136,
@@ -692,7 +692,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Green Wing Macaw",
-        PetItemID = 8492,
+        ItemID = 8492,
         Instance = "The Deadmines",
         InstanceID = 63,
         MapID = 36,
@@ -704,7 +704,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Grotesque",
-        PetItemID = 122105,
+        ItemID = 122105,
         Instance = "The Battle for Mount Hyjal",
         InstanceID = 750,
         MapID = 534,
@@ -716,7 +716,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Harbinger of Flame",
-        PetItemID = 93033,
+        ItemID = 93033,
         Instance = "Molten Core",
         InstanceID = 741,
         MapID = 409,
@@ -728,7 +728,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Hyjal Wisp",
-        PetItemID = 122112,
+        ItemID = 122112,
         Instance = "The Battle for Mount Hyjal",
         InstanceID = 750,
         MapID = 534,
@@ -740,7 +740,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Infernal Pyreclaw",
-        PetItemID = 152978,
+        ItemID = 152978,
         Instance = "Firelands",
         InstanceID = 78,
         MapID = 720,
@@ -753,7 +753,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Ironbound Proto-Whelp",
-        PetItemID = 142087,
+        ItemID = 142087,
         Instance = "Ulduar",
         InstanceID = 759,
         MapID = 603,
@@ -766,7 +766,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Irongrasp",
-        PetItemID = 186558,
+        ItemID = 186558,
         Instance = "Sanctum of Domination",
         InstanceID = 1193,
         MapID = 2450,
@@ -778,7 +778,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Ji-Kun Hatchling",
-        PetItemID = 94835,
+        ItemID = 94835,
         Instance = "Throne of Thunder",
         InstanceID = 362,
         MapID = 1098,
@@ -795,7 +795,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Kor'thik Swarmling",
-        PetItemID = 167058,
+        ItemID = 167058,
         Instance = "Heart of Fear",
         InstanceID = 330,
         MapID = 1009,
@@ -812,7 +812,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Kovok",
-        PetItemID = 104165,
+        ItemID = 104165,
         Instance = "Siege of Orgimmar",
         InstanceID = 369,
         MapID = 1136,
@@ -824,7 +824,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Lanticore Spawnling",
-        PetItemID = 117528,
+        ItemID = 117528,
         Instance = "Upper Blackrock Spire",
         InstanceID = 559,
         MapID = 1358,
@@ -836,7 +836,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Lesser Voidcaller",
-        PetItemID = 97556,
+        ItemID = 97556,
         Instance = "The Eye",
         InstanceID = 749,
         MapID = 550,
@@ -848,7 +848,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Leviathan Hatchling",
-        PetItemID = 122104,
+        ItemID = 122104,
         Instance = "Black Temple",
         InstanceID = 751,
         MapID = 564,
@@ -861,7 +861,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Lightless Ambusher",
-        PetItemID = 169358,
+        ItemID = 169358,
         Instance = "The Eternal Palace",
         InstanceID = 1179,
         MapID = 2164,
@@ -874,7 +874,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Lil' Bad Wolf",
-        PetItemID = 97548,
+        ItemID = 97548,
         Instance = "Karazhan",
         InstanceID = 745,
         MapID = 532,
@@ -886,7 +886,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Living Amber",
-        PetItemID = 167055,
+        ItemID = 167055,
         Instance = "Heart of Fear",
         InstanceID = 330,
         MapID = 1009,
@@ -903,7 +903,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Living Fluid",
-        PetItemID = 97959,
+        ItemID = 97959,
         Instance = "Throne of Thunder",
         InstanceID = 362,
         MapID = 1098,
@@ -915,7 +915,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Living Sandling",
-        PetItemID = 94125,
+        ItemID = 94125,
         Instance = "Throne of Thunder",
         InstanceID = 362,
         MapID = 1098,
@@ -932,7 +932,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Magma Rageling",
-        PetItemID = 142086,
+        ItemID = 142086,
         Instance = "Ulduar",
         InstanceID = 759,
         MapID = 603,
@@ -945,7 +945,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Mawsworn Minion",
-        PetItemID = 186550,
+        ItemID = 186550,
         Instance = "Sanctum of Domination",
         InstanceID = 1193,
         MapID = 2450,
@@ -957,7 +957,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Menagerie Custodian",
-        PetItemID = 97549,
+        ItemID = 97549,
         Instance = "Karazhan",
         InstanceID = 745,
         MapID = 532,
@@ -969,7 +969,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Microbot 8D",
-        PetItemID = 169385,
+        ItemID = 169385,
         Instance = "Operation: Mechagon (Junkyard)",
         InstanceID = 1178,
         MapID = 2097,
@@ -981,7 +981,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Mindlost Bloodfrenzy",
-        PetItemID = 169360,
+        ItemID = 169360,
         Instance = "The Eternal Palace",
         InstanceID = 1179,
         MapID = 2164,
@@ -994,7 +994,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Mini Mindslayer",
-        PetItemID = 93041,
+        ItemID = 93041,
         Instance = "Temple of Ahn'Qiraj",
         InstanceID = 744,
         MapID = 531,
@@ -1006,7 +1006,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Mojo",
-        PetItemID = 33993,
+        ItemID = 33993,
         Instance = "Zul'Aman",
         InstanceID = 77,
         MapID = 568,
@@ -1018,7 +1018,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Muar",
-        PetItemID = 174446,
+        ItemID = 174446,
         Instance = "Ny'alotha, the Waking City",
         InstanceID = 1180,
         MapID = 2217,
@@ -1030,7 +1030,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Nameless Octopode",
-        PetItemID = 169362,
+        ItemID = 169362,
         Instance = "The Eternal Palace",
         InstanceID = 1179,
         MapID = 2164,
@@ -1043,7 +1043,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Nerubian Swarmer",
-        PetItemID = 142085,
+        ItemID = 142085,
         Instance = "Trial of the Crusader",
         InstanceID = 757,
         MapID = 649,
@@ -1060,7 +1060,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Netherspace Abyssal",
-        PetItemID = 97550,
+        ItemID = 97550,
         Instance = "Karazhan",
         InstanceID = 745,
         MapID = 532,
@@ -1072,7 +1072,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Nightmare Whelpling",
-        PetItemID = 136903,
+        ItemID = 136903,
         Instance = "The Emerald Nightmare",
         InstanceID = 768,
         MapID = 1520,
@@ -1085,7 +1085,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Phoenix Hatchling",
-        PetItemID = 35504,
+        ItemID = 35504,
         Instance = "Magister's Terrace",
         InstanceID = 249,
         MapID = 585,
@@ -1098,7 +1098,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Phoenix Hawk Hatchling",
-        PetItemID = 97557,
+        ItemID = 97557,
         Instance = "The Eye",
         InstanceID = 749,
         MapID = 550,
@@ -1110,7 +1110,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Pigmy Direhorn",
-        PetItemID = 94574,
+        ItemID = 94574,
         Instance = "Throne of Thunder",
         InstanceID = 362,
         MapID = 1098,
@@ -1127,7 +1127,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Pocket Reaver",
-        PetItemID = 97555,
+        ItemID = 97555,
         Instance = "The Eye",
         InstanceID = 749,
         MapID = 550,
@@ -1139,7 +1139,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Ra'kim",
-        PetItemID = 174449,
+        ItemID = 174449,
         Instance = "Ny'alotha, the Waking City",
         InstanceID = 1180,
         MapID = 2217,
@@ -1151,7 +1151,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Rattlejar",
-        PetItemID = 152968,
+        ItemID = 152968,
         Instance = "Blackwing Descent",
         InstanceID = 73,
         MapID = 669,
@@ -1168,7 +1168,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Ravenous Prideling",
-        PetItemID = 167056,
+        ItemID = 167056,
         Instance = "Heart of Fear",
         InstanceID = 330,
         MapID = 1009,
@@ -1185,7 +1185,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Raw Emotion",
-        PetItemID = 180591,
+        ItemID = 180591,
         Instance = "Sanguine Depths",
         InstanceID = 1189,
         MapID = 2284,
@@ -1197,7 +1197,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Runeforged Servitor",
-        PetItemID = 142088,
+        ItemID = 142088,
         Instance = "Ulduar",
         InstanceID = 759,
         MapID = 603,
@@ -1210,7 +1210,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Sanctum Cub",
-        PetItemID = 142089,
+        ItemID = 142089,
         Instance = "Ulduar",
         InstanceID = 759,
         MapID = 603,
@@ -1223,7 +1223,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Sister of Temptation",
-        PetItemID = 122110,
+        ItemID = 122110,
         Instance = "Black Temple",
         InstanceID = 751,
         MapID = 564,
@@ -1236,7 +1236,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Sludge Feeler",
-        PetItemID = 181271,
+        ItemID = 181271,
         Instance = "Plaguefall",
         InstanceID = 1183,
         MapID = 2289,
@@ -1248,7 +1248,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Smolderweb Hatchling",
-        PetItemID = 68673,
+        ItemID = 68673,
         Instance = "Lower Blackrock Spire",
         InstanceID = 229,
         MapID = 229,
@@ -1260,7 +1260,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Snaplasher",
-        PetItemID = 142091,
+        ItemID = 142091,
         Instance = "Ulduar",
         InstanceID = 759,
         MapID = 603,
@@ -1273,7 +1273,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Snobold Runt",
-        PetItemID = 142084,
+        ItemID = 142084,
         Instance = "Trial of the Crusader",
         InstanceID = 757,
         MapID = 649,
@@ -1290,7 +1290,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Son of Animus",
-        PetItemID = 94152,
+        ItemID = 94152,
         Instance = "Throne of Thunder",
         InstanceID = 362,
         MapID = 1098,
@@ -1307,7 +1307,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Soulbroken Whelpling",
-        PetItemID = 142097,
+        ItemID = 142097,
         Instance = "Icecrown Citadel",
         InstanceID = 758,
         MapID = 631,
@@ -1324,7 +1324,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Spawn of Garalon",
-        PetItemID = 167054,
+        ItemID = 167054,
         Instance = "Heart of Fear",
         InstanceID = 330,
         MapID = 1009,
@@ -1341,7 +1341,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Spawn of Krag'wa",
-        PetItemID = 165848,
+        ItemID = 165848,
         Instance = "Battle of Dazar'alor",
         InstanceID = 1176,
         MapID = 2070,
@@ -1355,7 +1355,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Spawn of Merektha",
-        PetItemID = 160702,
+        ItemID = 160702,
         Instance = "Temple of Sethraliss",
         InstanceID = 1030,
         MapID = 1877,
@@ -1368,7 +1368,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Spinemaw Gormling",
-        PetItemID = 183623,
+        ItemID = 183623,
         Instance = "Mists of Tirna Scithe",
         InstanceID = 1184,
         MapID = 2290,
@@ -1380,7 +1380,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Spirit of the Spring",
-        PetItemID = 167052,
+        ItemID = 167052,
         Instance = "Terrace of Endless Spring",
         InstanceID = 320,
         MapID = 996,
@@ -1397,7 +1397,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Stinkrot",
-        PetItemID = 122111,
+        ItemID = 122111,
         Instance = "The Battle for Mount Hyjal",
         InstanceID = 750,
         MapID = 534,
@@ -1409,7 +1409,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Stitched Pup",
-        PetItemID = 93029,
+        ItemID = 93029,
         Instance = "Naxxramas",
         InstanceID = 754,
         MapID = 533,
@@ -1424,7 +1424,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Stoneclaw",
-        PetItemID = 167047,
+        ItemID = 167047,
         Instance = "Mogu'shan Vaults",
         InstanceID = 317,
         MapID = 1008,
@@ -1441,7 +1441,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Sunblade Micro-Defender",
-        PetItemID = 122113,
+        ItemID = 122113,
         Instance = "Sunwell Plateau",
         InstanceID = 752,
         MapID = 580,
@@ -1453,7 +1453,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Surger",
-        PetItemID = 152977,
+        ItemID = 152977,
         Instance = "Firelands",
         InstanceID = 78,
         MapID = 720,
@@ -1466,7 +1466,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Tainted Waveling",
-        PetItemID = 97553,
+        ItemID = 97553,
         Instance = "Serpentshrine Cavern",
         InstanceID = 748,
         MapID = 548,
@@ -1478,7 +1478,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Thunder Lizard Runt",
-        PetItemID = 165847,
+        ItemID = 165847,
         Instance = "Battle of Dazar'alor",
         InstanceID = 1176,
         MapID = 2070,
@@ -1492,7 +1492,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Tideskipper",
-        PetItemID = 97552,
+        ItemID = 97552,
         Instance = "Serpentshrine Cavern",
         InstanceID = 748,
         MapID = 548,
@@ -1504,7 +1504,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Tinytron",
-        PetItemID = 152966,
+        ItemID = 152966,
         Instance = "Blackwing Descent",
         InstanceID = 73,
         MapID = 669,
@@ -1521,7 +1521,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Twilight Clutch-Sister",
-        PetItemID = 152969,
+        ItemID = 152969,
         Instance = "Bastion of Twilight",
         InstanceID = 72,
         MapID = 671,
@@ -1539,7 +1539,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Unstable Tendril",
-        PetItemID = 152981,
+        ItemID = 152981,
         Instance = "Dragon Soul",
         InstanceID = 187,
         MapID = 967,
@@ -1556,7 +1556,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Untamed Hatchling",
-        PetItemID = 93036,
+        ItemID = 93036,
         Instance = "Blackwing Lair",
         InstanceID = 742,
         MapID = 469,
@@ -1568,7 +1568,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Viscidus Globule",
-        PetItemID = 93039,
+        ItemID = 93039,
         Instance = "Temple of Ahn'Qiraj",
         InstanceID = 744,
         MapID = 531,
@@ -1580,7 +1580,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Viscous Horror",
-        PetItemID = 97960,
+        ItemID = 97960,
         Instance = "Throne of Thunder",
         InstanceID = 362,
         MapID = 1098,
@@ -1597,7 +1597,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Void-Scarred Anubisath",
-        PetItemID = 174447,
+        ItemID = 174447,
         Instance = "Ny'alotha, the Waking City",
         InstanceID = 1180,
         MapID = 2217,
@@ -1609,7 +1609,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Wayward Spirit",
-        PetItemID = 167048,
+        ItemID = 167048,
         Instance = "Mogu'shan Vaults",
         InstanceID = 317,
         MapID = 1008,
@@ -1626,7 +1626,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Wicked Soul",
-        PetItemID = 142099,
+        ItemID = 142099,
         Instance = "Icecrown Citadel",
         InstanceID = 758,
         MapID = 631,
@@ -1643,7 +1643,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Will of Remornia",
-        PetItemID = 183395,
+        ItemID = 183395,
         Instance = "Castle Nathria",
         InstanceID = 1190,
         MapID = 2296,
@@ -1656,7 +1656,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Winter Rageling",
-        PetItemID = 142090,
+        ItemID = 142090,
         Instance = "Ulduar",
         InstanceID = 759,
         MapID = 603,
@@ -1669,7 +1669,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Worg Pup",
-        PetItemID = 12264,
+        ItemID = 12264,
         Instance = "Lower Blackrock Spire",
         InstanceID = 229,
         MapID = 229,
@@ -1681,7 +1681,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Wretched Servant",
-        PetItemID = 122115,
+        ItemID = 122115,
         Instance = "Sunwell Plateau",
         InstanceID = 752,
         MapID = 580,
@@ -1693,7 +1693,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Zanj'ir Poker",
-        PetItemID = 169348,
+        ItemID = 169348,
         Instance = "The Eternal Palace",
         InstanceID = 1179,
         MapID = 2164,
@@ -1706,7 +1706,7 @@ AddOn.InstancePets = {
     },
     {
         Name = "Zephyrian Prince",
-        PetItemID = 152973,
+        ItemID = 152973,
         Instance = "Throne of the Four Winds",
         InstanceID = 74,
         MapID = 754,

@@ -3,50 +3,53 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----Attempts to fetch and cache the toy information, displaying fallback values in the list until data can be retrieved<br/>
----This prevents a bad user experience where multiple list entries are just missing information
----@param data Toy
----@return string toyName The localized name of the toy. If toy information cannot be retrieved, this falls back to the `enUS` locale
----@return number iconID The icon ID for the toy. If toy information cannot be retrieved, this falls back to the standard question mark icon used commonly in WoW
-local function GetCachedToyInfo(data)
-    -- Set fallback values for name and icon to be the English name stored in the AddOn table and a question mark icon
-    local toyName = data.Name
-    local iconID = 134400
+---@class ToyCacheData
+---@field itemName string Localized name for the item that adds the toy to the collection
+---@field itemID integer ID for the item that adds the toy to the collection
+---@field toyName string Localized toy name
+---@field iconID integer ID for the icon associated with the toy
+---@field isOwned boolean `true` if the toy is owned, `false` otherwise
 
-    if C_Item.IsItemDataCachedByID(data.ToyItemID) then
-        _, toyName, iconID = C_ToyBox.GetToyInfo(data.ToyItemID)
-    else
-        -- This should be completed during AddOn initialization, but will be done so here if it wasn't successful for some reason
-        local continuableContainer = ContinuableContainer:Create()
-        for _, toy in ipairs(AddOn.InstanceToys) do
-            continuableContainer:AddContinuable(Item:CreateFromItemID(toy.ToyItemID))
+---@type table<number, ToyCacheData> Stores necessary toy data in a local cache - attempting to reduce the amount of stutter/freezing when viewing toys
+AddOn.ToyCache = {}
+local toLoad = #AddOn.Toys
+
+for _, toy in ipairs(AddOn.Toys) do
+    Item:CreateFromItemID(toy.ItemID):ContinueOnItemLoad(function()
+        toLoad = toLoad - 1
+        local _, toyName, iconID = C_ToyBox.GetToyInfo(toy.ItemID)
+
+        AddOn.ToyCache[toy.ItemID] = {
+            itemName = C_Item.GetItemNameByID(toy.ItemID) or "",
+            itemID = toy.ItemID,
+            toyName = toyName or toy.Name,
+            iconID = iconID or 134400,
+            isOwned = PlayerHasToy(toy.ItemID)
+        }
+
+        if toLoad == 0 then
+            AddOn:PrintChatMessage("Toy data loaded")
         end
-        continuableContainer:ContinueOnLoad(function()
-            AddOn:UpdateListContents("ICH_ITEM_CACHE")
-        end)
-    end
-
-    return toyName, iconID
+    end)
 end
 
 ---Initializes how toy data in the scrollable list should be displayed
 ---@param frame ICHListItem
----@param data Toy
+---@param toy Toy
 ---@see ICHListItem
 ---@see Toy
-function AddOn.ToyDataProviderInit(frame, data)
-    if not frame or not data then return end
+function AddOn.ToyDataProviderInit(frame, toy)
+    if not frame or not toy then return end
     frame.isMount = false
-    frame.relevantID = data.ToyItemID
+    frame.relevantID = toy.ItemID
     -- Hide the pet count frame for non-pets
     frame.OtherInfoContainer.ICHPetCount:Hide()
 
-    local index = AddOn.ICHDataProvider:FindIndex(data)
+    local index = AddOn.ICHDataProvider:FindIndex(toy)
 
-    local localizedToyName, iconID = GetCachedToyInfo(data)
-    local localizedInstanceName = EJ_GetInstanceInfo(data.InstanceID)
-    local isOwned = PlayerHasToy(data.ToyItemID)
-    if isOwned then
+    local toyData = AddOn.ToyCache[toy.ItemID]
+    local localizedInstanceName = EJ_GetInstanceInfo(toy.InstanceID)
+    if toyData.isOwned then
         frame.Bg:Hide()
         frame.OwnedBg:Show()
     else
@@ -54,28 +57,28 @@ function AddOn.ToyDataProviderInit(frame, data)
         if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
     end
 
-    AddOn:SetTruncatedText(frame.NameContainer.Text, localizedToyName) -- Localized toy name truncated if text width exceeds allocated space
-    frame.NameContainer.name = localizedToyName
-    AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName)  -- Localized instance name truncated if text width exceeds allocated space
+    AddOn:SetTruncatedText(frame.NameContainer.Text, toyData.toyName)
+    frame.NameContainer.name = toyData.toyName
+    AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName)
 
     frame.NameContainer.ViewButton:ClearNormalTexture()
     frame.NameContainer.ViewButton:ClearHighlightTexture()
-    frame.NameContainer.ViewButton:SetNormalTexture(iconID)
+    frame.NameContainer.ViewButton:SetNormalTexture(toyData.iconID)
 
-    frame.InstanceContainer.encounterID = data.EncounterID or -1
-    frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
-    frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
+    frame.InstanceContainer.encounterID = toy.EncounterID or -1
+    frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(toy) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
+    frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(toy) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
 
     AddOn.HideAllDifficultyButtons(frame.DifficultyContainer)
-    AddOn:ShowDifficultyButtons(frame.DifficultyContainer, data, isOwned)
-    if data.Notes then
-        frame.OtherInfoContainer.ICHNote.notes = data.Notes
+    AddOn:ShowDifficultyButtons(frame.DifficultyContainer, toy, toyData.isOwned)
+    if toy.Notes then
+        frame.OtherInfoContainer.ICHNote.notes = toy.Notes
         frame.OtherInfoContainer.ICHNote:Show()
     elseif frame.OtherInfoContainer.ICHNote:IsShown() then
         frame.OtherInfoContainer.ICHNote:Hide()
     end
 
-    AddOn:ConfigureWaypointButton(localizedInstanceName, frame, data)
+    AddOn:ConfigureWaypointButton(localizedInstanceName, frame, toy)
 
     frame.NameContainer.ViewButton:SetScript("OnClick", function()
         -- Try to find a way to show in the toy journal
@@ -83,7 +86,7 @@ function AddOn.ToyDataProviderInit(frame, data)
 
     frame.InstanceContainer.ViewButton:SetScript("OnClick", function()
         -- Open the Encounter Journal to the specified instance, difficulty, and encounter
-        EncounterJournal_OpenJournal(data.DifficultyIDs and data.DifficultyIDs[1] or nil, data.InstanceID, data.EncounterID)
+        EncounterJournal_OpenJournal(toy.DifficultyIDs and toy.DifficultyIDs[1] or nil, toy.InstanceID, toy.EncounterID)
         -- If the loot tab is not already opened, open it by clicking on it programmatically
         if EncounterJournalEncounterFrameInfo.tab ~= 2 then
             EncounterJournalEncounterFrameInfoLootTab:Click()

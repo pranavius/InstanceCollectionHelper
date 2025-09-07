@@ -8,9 +8,9 @@ local RaidDifficulty = AddOn.RaidDifficulty
 
 ---@class Mount Mount data to process and display as a list item in the AddOn
 ---@field Name string Name of the mount (for information only, displayed name is in user's locale)
----@field MountID number ID number for the mount
+---@field ID number ID number for the mount
 ---@field Instance string Instance from which the mount can be obtained (for information only, displayed name is in user's locale)
----@field InstanceID number ID number for the instance
+---@field InstanceID number ID number for the instance where the mount can be obtained
 ---@field MapID number ID number for the map of the instance
 ---@field AreaPoiID? number ID number for the Point of Interest (POI) marker showing the instance entrance on the map. Used to place Blizzard map pins for navigation guidance.
 ---@field EncounterID? number ID number for the encounter from which the mount is obtainable
@@ -21,10 +21,10 @@ local RaidDifficulty = AddOn.RaidDifficulty
 ---@field SearchTags string[] A list of string identifiers to quickly search for a mount. This can include expansion abbreviations, expansion names, zones, continents, etc<br/>This field is extended upon AddOn initialization to include zones and only includes expansions by default
 
 ---@type Mount[] List of mounts available from instances
-AddOn.InstanceMounts = {
+AddOn.Mounts = {
     {
         Name = "Abyss Worm",
-        MountID = 899,
+        ID = 899,
         Instance = "Tomb of Sargeras",
         InstanceID = 875,
         MapID = 1676,
@@ -36,7 +36,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Amani Battle Bear",
-        MountID = 419,
+        ID = 419,
         Instance = "Zul'Aman",
         InstanceID = 77,
         MapID = 568,
@@ -48,7 +48,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Antoran Charhound",
-        MountID = 971,
+        ID = 971,
         Instance = "Antorus, the Burning Throne",
         InstanceID = 946,
         MapID = 1712,
@@ -60,7 +60,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Anu'relos, Flame's Guidance",
-        MountID = 1818,
+        ID = 1818,
         Instance = "Amirdrassil, the Dream's Hope",
         InstanceID = 1207,
         MapID = 2549,
@@ -72,7 +72,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Armored Razzashi Raptor",
-        MountID = 410,
+        ID = 410,
         Instance = "Zul'Gurub",
         InstanceID = 76,
         MapID = 859,
@@ -84,7 +84,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Ascendant Skyrazor",
-        MountID = 2223,
+        ID = 2223,
         Instance = "Nerub-ar Palace",
         InstanceID = 1273,
         MapID = 2657,
@@ -96,7 +96,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Ashes of Al'ar",
-        MountID = 183,
+        ID = 183,
         Instance = "The Eye",
         InstanceID = 749,
         MapID = 550,
@@ -108,7 +108,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Astral Cloud Serpent",
-        MountID = 478,
+        ID = 478,
         Instance = "Mogu'shan Vaults",
         InstanceID = 317,
         MapID = 1008,
@@ -125,7 +125,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Azure Drake",
-        MountID = 246,
+        ID = 246,
         Instance = "Eye of Eternity",
         InstanceID = 756,
         MapID = 616,
@@ -138,7 +138,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Black Drake",
-        MountID = 253,
+        ID = 253,
         Instance = "The Obsidian Sanctum",
         InstanceID = 755,
         MapID = 615,
@@ -150,7 +150,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Blazing Drake",
-        MountID = 442,
+        ID = 442,
         Instance = "Dragon Soul",
         InstanceID = 187,
         MapID = 967,
@@ -168,7 +168,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Blue Drake",
-        MountID = 247,
+        ID = 247,
         Instance = "Eye of Eternity",
         InstanceID = 756,
         MapID = 616,
@@ -181,7 +181,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Blue Proto-Drake",
-        MountID = 264,
+        ID = 264,
         Instance = "Utgarde Pinnacle",
         InstanceID = 286,
         MapID = 575,
@@ -193,7 +193,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Blue Qiraji Battle Tank",
-        MountID = 117,
+        ID = 117,
         Instance = "Temple of Ahn'Qiraj",
         InstanceID = 744,
         MapID = 531,
@@ -205,7 +205,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Bronze Drake",
-        MountID = 248,
+        ID = 248,
         Instance = "The Culling of Stratholme",
         InstanceID = 279,
         MapID = 595,
@@ -217,7 +217,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Cartel Master's Gearglider",
-        MountID = 1481,
+        ID = 1481,
         Instance = "Tazavesh, the Veiled Market",
         InstanceID = 1194,
         MapID = 2441,
@@ -232,7 +232,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Clutch of Ji-Kun",
-        MountID = 543,
+        ID = 543,
         Instance = "Throne of Thunder",
         InstanceID = 362,
         MapID = 1098,
@@ -249,7 +249,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Drake of the North Wind",
-        MountID = 395,
+        ID = 395,
         Instance = "The Vortex Pinnacle",
         InstanceID = 68,
         MapID = 657,
@@ -262,7 +262,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Drake of the South Wind",
-        MountID = 396,
+        ID = 396,
         Instance = "Throne of the Four Winds",
         InstanceID = 74,
         MapID = 754,
@@ -279,7 +279,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Experiment 12-B",
-        MountID = 445,
+        ID = 445,
         Instance = "Dragon Soul",
         InstanceID = 187,
         MapID = 967,
@@ -297,7 +297,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Felblaze Infernal",
-        MountID = 791,
+        ID = 791,
         Instance = "The Nighthold",
         InstanceID = 786,
         MapID = 1530,
@@ -309,7 +309,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Felsteel Annihilator",
-        MountID = 751,
+        ID = 751,
         Instance = "Hellfire Citadel",
         InstanceID = 669,
         MapID = 1448,
@@ -321,7 +321,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Fiery Warhorse",
-        MountID = 168,
+        ID = 168,
         Instance = "Karazhan",
         InstanceID = 745,
         MapID = 532,
@@ -333,7 +333,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Flametalon of Alysrazor",
-        MountID = 425,
+        ID = 425,
         Instance = "Firelands",
         InstanceID = 78,
         MapID = 720,
@@ -346,7 +346,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Glacial Tidestorm",
-        MountID = 1219,
+        ID = 1219,
         Instance = "Battle of Dazar'alor",
         InstanceID = 1176,
         MapID = 2070,
@@ -360,7 +360,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "G.M.O.D",
-        MountID = 1217,
+        ID = 1217,
         Instance = "Battle of Dazar'alor",
         InstanceID = 1176,
         MapID = 2070,
@@ -375,7 +375,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Grand Black War Mammoth",
-        MountID = 286,
+        ID = 286,
         Instance = "Vault of Archavon",
         InstanceID = 753,
         MapID = 624,
@@ -387,7 +387,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Grand Black War Mammoth",
-        MountID = 287,
+        ID = 287,
         Instance = "Vault of Archavon",
         InstanceID = 753,
         MapID = 624,
@@ -399,7 +399,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Green Qiraji Battle Tank",
-        MountID = 120,
+        ID = 120,
         Instance = "Temple of Ahn'Qiraj",
         InstanceID = 744,
         MapID = 531,
@@ -411,7 +411,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Hellfire Infernal",
-        MountID = 633,
+        ID = 633,
         Instance = "The Nighthold",
         InstanceID = 786,
         MapID = 1530,
@@ -423,7 +423,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Invincible",
-        MountID = 363,
+        ID = 363,
         Instance = "Icecrown Citadel",
         InstanceID = 758,
         MapID = 631,
@@ -435,7 +435,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Ironhoof Destroyer",
-        MountID = 613,
+        ID = 613,
         Instance = "Blackrock Foundry",
         InstanceID = 457,
         MapID = 1205,
@@ -447,7 +447,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Kor'kron Juggernaut",
-        MountID = 559,
+        ID = 559,
         Instance = "Siege of Orgimmar",
         InstanceID = 369,
         MapID = 1136,
@@ -459,7 +459,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Life-Binder's Handmaiden",
-        MountID = 444,
+        ID = 444,
         Instance = "Dragon Soul",
         InstanceID = 187,
         MapID = 967,
@@ -472,7 +472,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Marrowfang",
-        MountID = 1406,
+        ID = 1406,
         Instance = "The Necrotic Wake",
         InstanceID = 1182,
         MapID = 2286,
@@ -484,7 +484,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Mechagon Peacekeeper",
-        MountID = 1252,
+        ID = 1252,
         Instance = "Operation: Mechagon",
         InstanceID = 1178,
         MapID = 2097,
@@ -496,7 +496,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Midnight",
-        MountID = 875,
+        ID = 875,
         Instance = "Return to Karazhan",
         InstanceID = 860,
         MapID = 1651,
@@ -507,7 +507,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Mimiron's Head",
-        MountID = 304,
+        ID = 304,
         Instance = "Ulduar",
         InstanceID = 759,
         MapID = 603,
@@ -520,7 +520,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Ny'alotha Allseer",
-        MountID = 1293,
+        ID = 1293,
         Instance = "Ny'alotha, the Waking City",
         InstanceID = 1180,
         MapID = 2217,
@@ -532,7 +532,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Onyxian Drake",
-        MountID = 349,
+        ID = 349,
         Instance = "Onyxia's Lair",
         InstanceID = 760,
         MapID = 249,
@@ -545,7 +545,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Prototype A.S.M.R",
-        MountID = 2507,
+        ID = 2507,
         Instance = "Liberation of Undermine",
         InstanceID = 1296,
         MapID = 2769,
@@ -557,7 +557,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Pureblood Fire Hawk",
-        MountID = 415,
+        ID = 415,
         Instance = "Firelands",
         InstanceID = 78,
         MapID = 720,
@@ -570,7 +570,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Raven Lord",
-        MountID = 185,
+        ID = 185,
         Instance = "Sethekk Halls",
         InstanceID = 252,
         MapID = 556,
@@ -582,7 +582,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Red Qiraji Battle Tank",
-        MountID = 118,
+        ID = 118,
         Instance = "Temple of Ahn'Qiraj",
         InstanceID = 744,
         MapID = 531,
@@ -594,7 +594,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Rivendare's Deathcharger",
-        MountID = 69, -- Nice
+        ID = 69, -- Nice
         Instance = "Stratholme - Service Entrance",
         InstanceID = 1292,
         MapID = 329,
@@ -606,7 +606,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Sanctum Gloomcharger",
-        MountID = 1500,
+        ID = 1500,
         Instance = "Sanctum of Domination",
         InstanceID = 1193,
         MapID = 2450,
@@ -618,7 +618,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Shackled Ur'zul",
-        MountID = 954,
+        ID = 954,
         Instance = "Antorus, the Burning Throne",
         InstanceID = 946,
         MapID = 1712,
@@ -630,7 +630,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Sharkbait",
-        MountID = 995,
+        ID = 995,
         Instance = "Freehold",
         InstanceID = 1001,
         MapID = 1754,
@@ -642,7 +642,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Smoldering Ember Wyrm",
-        MountID = 883,
+        ID = 883,
         Instance = "Return to Karazhan",
         InstanceID = 860,
         MapID = 1651,
@@ -653,7 +653,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Spawn of Horridon",
-        MountID = 531,
+        ID = 531,
         Instance = "Throne of Thunder",
         InstanceID = 362,
         MapID = 1098,
@@ -670,7 +670,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Stonevalut Mechsuit",
-        MountID = 2119,
+        ID = 2119,
         Instance = "The Stonevault",
         InstanceID = 1269,
         MapID = 2652,
@@ -683,7 +683,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Sureki Skyrazor",
-        MountID = 2219,
+        ID = 2219,
         Instance = "Nerub-ar Palace",
         InstanceID = 1273,
         MapID = 2657,
@@ -695,7 +695,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Swift White Hawkstrider",
-        MountID = 213,
+        ID = 213,
         Instance = "Magister's Terrace",
         InstanceID = 249,
         MapID = 585,
@@ -708,7 +708,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Swift Zulian Panther",
-        MountID = 411,
+        ID = 411,
         Instance = "Zul'Gurub",
         InstanceID = 76,
         MapID = 859,
@@ -720,7 +720,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "The Big G",
-        MountID = 2487,
+        ID = 2487,
         Instance = "Liberation of Undermine",
         InstanceID = 1296,
         MapID = 2769,
@@ -732,7 +732,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Tomb Stalker",
-        MountID = 1040,
+        ID = 1040,
         Instance = "Kings' Rest",
         InstanceID = 1041,
         MapID = 1762,
@@ -744,7 +744,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Twilight Drake",
-        MountID = 250,
+        ID = 250,
         Instance = "The Obsidian Sanctum",
         InstanceID = 755,
         MapID = 615,
@@ -756,7 +756,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Unbound Star-Eater",
-        MountID = 2569,
+        ID = 2569,
         Instance = "Manaforge Omega",
         InstanceID = 1302,
         MapID = 2810,
@@ -768,7 +768,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Underrot Crawg",
-        MountID = 1053,
+        ID = 1053,
         Instance = "The Underrot",
         InstanceID = 1022,
         MapID = 1841,
@@ -780,7 +780,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Vengeance",
-        MountID = 1471,
+        ID = 1471,
         Instance = "Sanctum of Domination",
         InstanceID = 1193,
         MapID = 2450,
@@ -792,7 +792,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Vitreous Stone Drake",
-        MountID = 397,
+        ID = 397,
         Instance = "The Stonecore",
         InstanceID = 67,
         MapID = 725,
@@ -804,7 +804,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Wick",
-        MountID = 2204,
+        ID = 2204,
         Instance = "Darkflame Cleft",
         InstanceID = 1210,
         MapID = 2651,
@@ -816,7 +816,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Yellow Qiraji Battle Tank",
-        MountID = 119,
+        ID = 119,
         Instance = "Temple of Ahn'Qiraj",
         InstanceID = 744,
         MapID = 531,
@@ -828,7 +828,7 @@ AddOn.InstanceMounts = {
     },
     {
         Name = "Zereth Overseer",
-        MountID = 1587,
+        ID = 1587,
         Instance = "Sepulcher of the First Ones",
         InstanceID = 1195,
         MapID = 2481,

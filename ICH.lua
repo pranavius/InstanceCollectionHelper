@@ -22,8 +22,8 @@ end
 
 function AddOn:OnInitialize()
     -- Generate proper search tags for all collectibles
-    for _, mount in ipairs(AddOn.InstanceMounts) do self.AppendMapSearchTags(mount) end
-    for _, toy in ipairs(AddOn.InstanceToys) do self.AppendMapSearchTags(toy) end
+    for _, mount in ipairs(AddOn.Mounts) do self.AppendMapSearchTags(mount) end
+    for _, toy in ipairs(AddOn.Toys) do self.AppendMapSearchTags(toy) end
 
     -- Load database
 	self.db = LibStub("AceDB-3.0"):New("ICH_DB", AddOn.DatabaseDefaults, true)
@@ -49,18 +49,7 @@ function AddOn:OnInitialize()
     self:RegisterChatCommand("ich", function(input) self.HandleSlashCommand("ich", input) end)
     
     self:CreateMainFrame()
-    local continuableContainer = ContinuableContainer:Create()
-    for _, pet in ipairs(self.InstancePets) do
-        continuableContainer:AddContinuable(Item:CreateFromItemID(pet.PetItemID))
-    end
-    for _, toy in ipairs(AddOn.InstanceToys) do
-        continuableContainer:AddContinuable(Item:CreateFromItemID(toy.ToyItemID))
-    end
-    continuableContainer:ContinueOnLoad(function()
-        self:UpdateListContents("ICH_ITEM_CACHE")
-        self:PrintChatMessage("Collectible data loaded successfully")
-    end)
-    self.Container:HookScript("OnShow", function() self:UpdateListContents("ICH_OPEN") end)
+    self.Container:HookScript("OnShow", function() self:UpdateListContents() end)
     self:RegisterEvent("ZONE_CHANGED", "UpdateListContents")
     self:RegisterEvent("PLAYER_LOGOUT", function()
         if C_AddOns.IsAddOnLoaded("TomTom") and self.db.global.currentTomTomWaypoint then
@@ -102,7 +91,7 @@ function AddOn:CreateMainFrame()
     f.SearchBox:SetPoint("TOPRIGHT", f.Title, "BOTTOMRIGHT", -25, -10)
     f.SearchBox:SetAutoFocus(false)
     f.SearchBox:SetSize(400, 30)
-    f.SearchBox:HookScript("OnTextChanged", function() self:UpdateListContents("ICH_SEARCH") end)
+    f.SearchBox:HookScript("OnTextChanged", function() self:UpdateListContents() end)
     
     -- Close button
     f.CloseButton = CreateFrame("Button", "ICHCloseButton", f, "UIPanelCloseButtonDefaultAnchors")
@@ -174,9 +163,9 @@ function AddOn:CreateScrollingView()
 
     ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView)
     self.ScrollView:SetElementFactory(function(factory, elementData)
-        if elementData.MountID then factory("ICHListItemTemplate", self.MountDataProviderInit)
-        elseif elementData.ToyItemID then factory("ICHListItemTemplate", self.ToyDataProviderInit)
-        elseif elementData.PetItemID then factory("ICHListItemTemplate", self.PetDataProviderInit)
+        if elementData.ID then factory("ICHListItemTemplate", self.MountDataProviderInit)
+        elseif elementData.ItemID then factory("ICHListItemTemplate", self.ToyDataProviderInit)
+        elseif elementData.ItemID then factory("ICHListItemTemplate", self.PetDataProviderInit)
         end
 
     end)
@@ -252,7 +241,7 @@ function AddOn:CreateFooter()
     ownedCb:HookScript("OnClick", function(cb)
         local value = cb:GetChecked()
         self.db.global.showOwned = value
-        self:UpdateListContents("ICH_OWNED")
+        self:UpdateListContents()
     end)
 
     foot.OwnedContainer.Checkbox = ownedCb
@@ -278,7 +267,7 @@ function AddOn:CreateFooter()
     tomtomCb:HookScript("OnClick", function(cb)
         local value = cb:GetChecked()
         self.db.global.useTomTomPoints = value
-        self:UpdateListContents("ICH_TOMTOM")
+        self:UpdateListContents()
     end)
 
     foot.TomTomContainer.Checkbox = tomtomCb
@@ -297,33 +286,33 @@ function AddOn:FilterListContentsByQuery(listData)
     local selectedTab = self.db.global.selectedTab
 
     local nameMatches, instanceMatches, encounterMatches, instanceTypeMatches, difficultyMatches, searchTagMatches = false, false, false, false, false, false
-    for _, item in ipairs(listData) do
+    for _, data in ipairs(listData) do
         -- Using localized names for mounts, instances, encounters, etc for better search results
         local itemName
-        local instanceName = EJ_GetInstanceInfo(item.InstanceID) or ""
-        local encounterName = item.EncounterID and EJ_GetEncounterInfo(item.EncounterID) or ""
+        local instanceName = EJ_GetInstanceInfo(data.InstanceID) or ""
+        local encounterName = data.EncounterID and EJ_GetEncounterInfo(data.EncounterID) or ""
         if selectedTab == self.Tabs.MountsTab then
-            itemName = C_MountJournal.GetMountInfoByID(item.MountID) or ""
+            itemName = C_MountJournal.GetMountInfoByID(data.ID) or ""
         elseif selectedTab == self.Tabs.ToysTab then
-            itemName = select(2, C_ToyBox.GetToyInfo(item.ToyItemID)) or ""
+            itemName = select(2, C_ToyBox.GetToyInfo(data.ItemID)) or ""
             if not itemName then itemName = "" end
         elseif selectedTab == self.Tabs.PetsTab then
-            itemName = C_PetJournal.GetPetInfoByItemID(item.PetItemID) or ""
+            itemName = C_PetJournal.GetPetInfoByItemID(data.ItemID) or ""
         end
         local cleanName = itemName:lower():gsub("|.+|.*", "")
         nameMatches = cleanName:match(query) and true or false
         instanceMatches = instanceName:lower():match(query) and true or false
         encounterMatches = encounterName:lower():match(query) and true or false
-        instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(item) or (query == L["dungeon"] and not self:IsInstanceRaid(item))
+        instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(data) or (query == L["dungeon"] and not self:IsInstanceRaid(data))
         difficultyMatches = false
-        for _, diffID in ipairs(item.DifficultyIDs) do
+        for _, diffID in ipairs(data.DifficultyIDs) do
             if self:GetDifficultyButtonText(diffID):lower() == query or self:GetInstanceDifficultyText(diffID):lower() == query then
                 difficultyMatches = true
                 break
             end
         end
-        if not difficultyMatches and item.SharedDifficulties then
-            for shared, _ in pairs(item.SharedDifficulties) do
+        if not difficultyMatches and data.SharedDifficulties then
+            for shared, _ in pairs(data.SharedDifficulties) do
                 if self:GetDifficultyButtonText(shared):lower() == query or self:GetInstanceDifficultyText(shared):lower() == query then
                     difficultyMatches = true
                     break
@@ -331,54 +320,45 @@ function AddOn:FilterListContentsByQuery(listData)
             end
         end
         searchTagMatches = false
-        for _, tag in ipairs(item.SearchTags) do
-            if tag:lower():match(query) then
+        for _, tag in ipairs(data.SearchTags) do
+            if tag:lower() == query then
                 searchTagMatches = true
                 break
             end
         end
 
         if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches or searchTagMatches then
-            tinsert(filtered, item)
+            tinsert(filtered, data)
         end
     end
     return filtered
 end
 
 ---Update the contents of the list shown in the UI
----@param event string The event that triggered the list update
-function AddOn:UpdateListContents(event)
+function AddOn:UpdateListContents()
     if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then UIParentLoadAddOn("Blizzard_Collections") end
     if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then UIParentLoadAddOn("Blizzard_EncounterJournal") end
     ---@type (Mount|Toy|Pet)[]
     local newData = {}
     local selectedTab = self.db.global.selectedTab
     if selectedTab == self.Tabs.MountsTab then
-        for _, data in ipairs(self.InstanceMounts) do
-            local isOwned = select(11, C_MountJournal.GetMountInfoByID(data.MountID))
-            if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, data) end
+        for _, mount in ipairs(self.Mounts) do
+            -- Checking hideOnChar for mounts like Grand Black War Mammoth, which has a faction specific version
+            local _, _, _, _, _, _, _, _, _, hideOnChar, isOwned = C_MountJournal.GetMountInfoByID(mount.ID)
+            if not hideOnChar and (not isOwned or (isOwned and self.db.global.showOwned)) then tinsert(newData, mount) end
         end
-
-        -- Grand Black War Mammoth: Remove version that is not for the current character's faction
-        local faction = UnitFactionGroup("player")
-        for i, data in pairs(newData) do
-            if (data.MountID == 286 and faction == "Horde") or (data.MountID == 287 and faction == "Alliance") then
-                tremove(newData, i)
-                break
-            end
-        end
-        self.Container.SearchBox.Instructions:SetText(L["Search by mount/instance name, instance type, or difficulty"])
+        self.Container.SearchBox.Instructions:SetText(L["Search by mount/instance name, instance type, difficulty, or expansion"])
     elseif selectedTab == self.Tabs.ToysTab then
-        for _, data in ipairs(self.InstanceToys) do
-            local isOwned = PlayerHasToy(data.ToyItemID)
-            if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, data) end
+        for _, toy in ipairs(self.Toys) do
+            local toyData = self.ToyCache[toy.ItemID]
+            if not toyData.isOwned or (toyData.isOwned and self.db.global.showOwned) then tinsert(newData, toy) end
         end
-        self.Container.SearchBox.Instructions:SetText(L["Search by toy/instance name, instance type, or difficulty"])
+        self.Container.SearchBox.Instructions:SetText(L["Search by toy/instance name, instance type, difficulty, or expansion"])
     elseif selectedTab == self.Tabs.PetsTab then
-        for _, data in ipairs(self.InstancePets) do
-            local numOwned, ownedLimit = select(3, self:GetCachedPetInfo(data))
-            local isOwned = numOwned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and numOwned == ownedLimit or true)
-            if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, data) end
+        for _, pet in ipairs(self.Pets) do
+            local petData = self.PetCache[pet.ItemID]
+            local isOwned = petData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and petData.owned == petData.limit or true)
+            if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, pet) end
         end
         self.Container.SearchBox.Instructions:SetText("Search by pet/instance name, instance type, difficulty, or expansion")
     end

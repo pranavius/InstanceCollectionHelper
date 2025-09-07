@@ -4,7 +4,7 @@ AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---@param data Mount|Toy|Pet
----@return boolean result `true` if conditions to use TomTom waypoints are satisfied, `false` otherwise
+---@return boolean "`true` if conditions to use TomTom waypoints are satisfied, `false` otherwise"
 local function ShouldUseTomTom(data)
     return C_AddOns.IsAddOnLoaded("TomTom")
         and AddOn.db.global.useTomTomPoints
@@ -13,7 +13,7 @@ end
 
 --- Sets and tracks navigation to a map marker at the coordinates or Area POI associated with an instance entrance
 ---@param data Mount|Toy|Pet
----@return boolean isPinSet `true` if a map pin was successfully placed, `false` otherwise
+---@return boolean "`true` if a map pin was successfully placed, `false` otherwise"
 ---@see Mount
 ---@see Toy
 ---@see Pet
@@ -46,7 +46,7 @@ end
 
 --- Sets a TomTom waypoint at the coordinates associated with an instance entrance
 ---@param data Mount|Toy|Pet
----@return boolean isPinSet `true` if a map pin was successfully placed, `false` otherwise
+---@return boolean "`true` if a TomTom waypoint was successfully created, `false` otherwise"
 ---@see Mount
 ---@see Toy
 ---@see Pet

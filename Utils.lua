@@ -3,7 +3,7 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 
 ---@param data Mount|Toy|Pet
----@return boolean `true` if the instance is a raid, `false` otherwise
+---@return boolean "`true` if the instance is a raid, `false` otherwise"
 ---@see Mount
 ---@see Toy
 ---@see Pet
@@ -16,11 +16,11 @@ function AddOn:IsInstanceRaid(data)
     return true
 end
 
----Determines whether or not an instance encounter has been completed for the reset period for a given difficulty
 ---@param data Mount|Toy|Pet
+---@return boolean "`true` if an instance encounter has been completed for the current reset period on a given difficulty, `false` otherwise"
 ---@see Mount
 ---@see Toy
----@---@see Pet
+---@see Pet
 function AddOn.IsEncounterCompleted(data, difficultyID)
     local encounterName
     if data.EncounterID then encounterName = select(1, EJ_GetEncounterInfo(data.EncounterID)) end
@@ -44,7 +44,7 @@ end
 
 
 ---@param data Mount|Toy|Pet
----@return boolean isCompleted `true` if an encounter has been completed for the reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise
+---@return boolean "`true` if an encounter has been completed for the current reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise"
 ---@see Mount
 ---@see Toy
 ---@see Pet
@@ -68,12 +68,16 @@ function AddOn.AppendMapSearchTags(data)
     for _, xpacTag in ipairs(data.SearchTags) do tinsert(tags, xpacTag) end
 
     local dungeonAreaMapID = select(7, EJ_GetInstanceInfo(data.InstanceID))
-    local map = C_Map.GetMapInfo(dungeonAreaMapID)
-    -- MapID 946 is "Cosmic"
-    while map and map.parentMapID ~= 946 do
-        -- expected: instance name, then zone names up to but excluding "Azeroth"
-        tinsert(tags, map.name:lower())
-        map = C_Map.GetMapInfo(map.parentMapID)
+    -- This value will always be 0 for instances that existed before Siege of Orgimmar was released
+    if dungeonAreaMapID ~= 0 then
+        local map = C_Map.GetMapInfo(dungeonAreaMapID)
+        -- MapID 946 is "Cosmic"
+        while map and map.parentMapID ~= 946 do
+            -- expected: instance name, then zone names up to but excluding "Azeroth"
+            tinsert(tags, map.name:lower())
+            map = C_Map.GetMapInfo(map.parentMapID)
+        end
     end
+
     data.SearchTags = tags
 end

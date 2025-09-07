@@ -3,70 +3,76 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----Attempts to fetch and cache the pet information, displaying fallback values in the list until data can be retrieved<br/>
----This prevents a bad user experience where multiple list entries are just missing information
----@param data Pet
----@return string petName The localized name of the pet. If pet cannot be retrieved, this falls back to the `enUS` locale
----@return number iconID The icon ID for the pet. If pet information cannot be retrieved, this falls back to the standard question mark icon used commonly in WoW
----@return number owned Number of this pet owned
----@return number ownedLimit Maximum number of this pet that can be owned
-function AddOn:GetCachedPetInfo(data)
-    -- Set fallback values for name and icon to be the English name stored in the AddOn table and a question mark icon
-    local petName = data.Name
-    local iconID = 134400
-    local speciesID = 0
+---@class PetCacheData
+---@field itemName string Localized name for the item that adds the pet to the collection
+---@field itemID integer ID for the item that adds the pet to the collection
+---@field petName string Localized pet name
+---@field iconID integer ID for the icon associated with the pet
+---@field speciesID integer ID for the pet species
+---@field owned integer Number of the pet currently owned
+---@field limit integer Maximum number of the pet that can be owned
 
-    if C_Item.IsItemDataCachedByID(data.PetItemID) then
-        petName, iconID, _, _, _, _, _, _, _, _, _, _, speciesID = C_PetJournal.GetPetInfoByItemID(data.PetItemID)
-    else
-        -- This should be completed during AddOn initialization, but will be done so here if it wasn't successful for some reason
-        local continuableContainer = ContinuableContainer:Create()
-        for _, pet in ipairs(self.InstancePets) do
-            continuableContainer:AddContinuable(Item:CreateFromItemID(pet.PetItemID))
+---@type table<number, PetCacheData> Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
+AddOn.PetCache = {}
+local toLoad = #AddOn.Pets
+
+for _, pet in ipairs(AddOn.Pets) do
+    Item:CreateFromItemID(pet.ItemID):ContinueOnItemLoad(function()
+        toLoad = toLoad - 1
+        local petName, iconID, _, _, _, _, _, _, _, _, _, _, speciesID = C_PetJournal.GetPetInfoByItemID(pet.ItemID)
+        local owned, limit
+        if speciesID then
+            local o, l = C_PetJournal.GetNumCollectedInfo(speciesID)
+            owned = o or 0
+            limit = l or 0
+        else
+            owned, limit = 0, 0
         end
-        continuableContainer:ContinueOnLoad(function()
-            self:UpdateListContents("ICH_ITEM_CACHE")
-        end)
-    end
 
-    local numOwned, ownedLimit
-    if speciesID then
-        local o, l = C_PetJournal.GetNumCollectedInfo(speciesID)
-        numOwned = o or 0
-        ownedLimit = l or 0
-    else
-        numOwned, ownedLimit = 0, 0
-    end
+        AddOn.PetCache[pet.ItemID] = {
+            itemName = C_Item.GetItemNameByID(pet.ItemID) or "",
+            itemID = pet.ItemID,
+            petName = petName or pet.Name,
+            iconID = iconID or 134400,
+            speciesID = speciesID,
+            owned = owned,
+            limit = limit
+        }
 
-    return petName, iconID, numOwned, ownedLimit
+        if toLoad == 0 then
+            AddOn:PrintChatMessage("Pet data loaded")
+        end
+    end)
 end
 
-local function ColorOwnedCountText(numOwned, ownedLimit)
-    local text = numOwned.."/"..ownedLimit
-    local percOwned = numOwned/ownedLimit
+---Formats and returns text indicating the number of a pet owned against the maximum number that can be owned
+---@param petData PetCacheData
+---@return string
+local function ColorOwnedCountText(petData)
+    local text = petData.owned.."/"..petData.limit
+    local percOwned = petData.owned / petData.limit
     if percOwned == 0 then return ""
-    elseif percOwned <= 0.5 then return WrapTextInColor(text, DARKYELLOW_FONT_COLOR)
-    elseif percOwned > 0.5 and percOwned < 1 then return WrapTextInColor(text, UNCOMMON_GREEN_COLOR)
+    elseif percOwned <= 0.5 then return WrapTextInColor(text, RED_FONT_COLOR)
+    elseif percOwned > 0.5 and percOwned < 1 then return WrapTextInColor(text, DARKYELLOW_FONT_COLOR)
+    else return text
     end
-
-    return text
 end
 
 ---Initializes how pet data in the scrollable list should be displayed
 ---@param frame ICHListItem
----@param data Pet
+---@param pet Pet
 ---@see ICHListItem
 ---@see Pet
-function AddOn.PetDataProviderInit(frame, data)
-    if not frame or not data then return end
+function AddOn.PetDataProviderInit(frame, pet)
+    if not frame or not pet then return end
     frame.isMount = false
-    frame.relevantID = data.PetItemID
+    frame.relevantID = pet.ItemID
 
-    local index = AddOn.ICHDataProvider:FindIndex(data)
+    local index = AddOn.ICHDataProvider:FindIndex(pet)
 
-    local localizedPetName, iconID, numOwned, ownedLimit = AddOn:GetCachedPetInfo(data)
-    local isOwned = numOwned > 0 and (AddOn.db.global.countPetOwnedOnlyIfMaxOwned and numOwned == ownedLimit or true)
-    local localizedInstanceName = EJ_GetInstanceInfo(data.InstanceID)
+    local petData = AddOn.PetCache[pet.ItemID]
+    local isOwned = petData.owned > 0 and (AddOn.db.global.countPetOwnedOnlyIfMaxOwned and petData.owned == petData.limit or true)
+    local localizedInstanceName = EJ_GetInstanceInfo(pet.InstanceID)
     if isOwned then
         frame.Bg:Hide()
         frame.OwnedBg:Show()
@@ -75,32 +81,32 @@ function AddOn.PetDataProviderInit(frame, data)
         if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
     end
 
-    AddOn:SetTruncatedText(frame.NameContainer.Text, localizedPetName) -- Localized pet name truncated if text width exceeds allocated space
-    frame.NameContainer.name = localizedPetName
-    AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName)  -- Localized instance name truncated if text width exceeds allocated space
+    AddOn:SetTruncatedText(frame.NameContainer.Text, petData.petName)
+    frame.NameContainer.name = petData.petName
+    AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName)
 
     frame.NameContainer.ViewButton:ClearNormalTexture()
     frame.NameContainer.ViewButton:ClearHighlightTexture()
-    frame.NameContainer.ViewButton:SetNormalTexture(iconID)
+    frame.NameContainer.ViewButton:SetNormalTexture(petData.iconID)
 
-    frame.InstanceContainer.encounterID = data.EncounterID or -1
-    frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
-    frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
+    frame.InstanceContainer.encounterID = pet.EncounterID or -1
+    frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(pet) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
+    frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(pet) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
 
     AddOn.HideAllDifficultyButtons(frame.DifficultyContainer)
-    AddOn:ShowDifficultyButtons(frame.DifficultyContainer, data, isOwned)
+    AddOn:ShowDifficultyButtons(frame.DifficultyContainer, pet, isOwned)
 
-    frame.OtherInfoContainer.ICHPetCount:SetText(ColorOwnedCountText(numOwned, ownedLimit))
+    frame.OtherInfoContainer.ICHPetCount:SetText(ColorOwnedCountText(petData))
     frame.OtherInfoContainer.ICHPetCount:Show()
 
-    if data.Notes then
-        frame.OtherInfoContainer.ICHNote.notes = data.Notes
+    if pet.Notes then
+        frame.OtherInfoContainer.ICHNote.notes = pet.Notes
         frame.OtherInfoContainer.ICHNote:Show()
     elseif frame.OtherInfoContainer.ICHNote:IsShown() then
         frame.OtherInfoContainer.ICHNote:Hide()
     end
 
-    AddOn:ConfigureWaypointButton(localizedInstanceName, frame, data)
+    AddOn:ConfigureWaypointButton(localizedInstanceName, frame, pet)
 
     frame.NameContainer.ViewButton:SetScript("OnClick", function()
         -- Try to find a way to show in the pet journal
@@ -108,7 +114,7 @@ function AddOn.PetDataProviderInit(frame, data)
 
     frame.InstanceContainer.ViewButton:SetScript("OnClick", function()
         -- Open the Encounter Journal to the specified instance, difficulty, and encounter
-        EncounterJournal_OpenJournal(data.DifficultyIDs and data.DifficultyIDs[1] or nil, data.InstanceID, data.EncounterID)
+        EncounterJournal_OpenJournal(pet.DifficultyIDs and pet.DifficultyIDs[1] or nil, pet.InstanceID, pet.EncounterID)
         -- If the loot tab is not already opened, open it by clicking on it programmatically
         if EncounterJournalEncounterFrameInfo.tab ~= 2 then
             EncounterJournalEncounterFrameInfoLootTab:Click()

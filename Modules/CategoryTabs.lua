@@ -31,5 +31,5 @@ end
 ---@param tabID number ID number for the new active tab
 function AddOn:HandleTabSelected(tabID)
     self.db.global.selectedTab = tabID
-    self:UpdateListContents("ICH_TAB_CHANGE")
+    self:UpdateListContents()
 end

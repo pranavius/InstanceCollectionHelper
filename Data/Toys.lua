@@ -8,9 +8,9 @@ local RaidDifficulty = AddOn.RaidDifficulty
 
 ---@class Toy Toy data to process and display as a list item in the AddOn
 ---@field Name string Name of the toy (for information only, displayed name is in user's locale)
----@field ToyItemID number Item ID number for the toy
+---@field ItemID number ID number for item that adds the toy to the collection
 ---@field Instance string Instance from which the toy can be obtained (for information only, displayed name is in user's locale)
----@field InstanceID number ID number for the instance
+---@field InstanceID number ID number for the instance where the toy can be obtained
 ---@field MapID number ID number for the map of the instance
 ---@field AreaPoiID? number ID number for the Point of Interest (POI) marker showing the instance entrance on the map. Used to place Blizzard map pins for navigation guidance
 ---@field EncounterID? number ID number for the encounter from which the toy is available
@@ -20,10 +20,10 @@ local RaidDifficulty = AddOn.RaidDifficulty
 ---@field SearchTags string[] A list of string identifiers to quickly search for a toy. This can include expansion abbreviations, expansion names, zones, continents, etc<br/>This field is extended upon AddOn initialization to include zones and only includes expansions by default
 
 ---@type Toy[] List of toys available from instances
-AddOn.InstanceToys = {
+AddOn.Toys = {
     {
         Name = "Brazier of Madness",
-        ToyItemID = 203757,
+        ItemID = 203757,
         Instance = "Zul'Gurub",
         InstanceID = 76,
         MapID = 859,
@@ -35,7 +35,7 @@ AddOn.InstanceToys = {
     },
     {
         Name = "Cosmic Hearthstone",
-        ToyItemID = 246565,
+        ItemID = 246565,
         Instance = "Manaforge Omega",
         InstanceID = 1302,
         MapID = 2810,
@@ -47,7 +47,7 @@ AddOn.InstanceToys = {
     },
     {
         Name = "Don Carlos' Famous Hat",
-        ToyItemID = 134019,
+        ItemID = 134019,
         Instance = "Old Hillsbrad Foothills",
         InstanceID = 251,
         MapID = 560,
@@ -59,7 +59,7 @@ AddOn.InstanceToys = {
     },
     {
         Name = "Explosive Hearthstone",
-        ToyItemID = 236687,
+        ItemID = 236687,
         Instance = "Liberation of Undermine",
         InstanceID = 1296,
         MapID = 2769,
@@ -72,7 +72,7 @@ AddOn.InstanceToys = {
     },
     {
         Name = "Familiar Journal",
-        ToyItemID = 208096,
+        ItemID = 208096,
         Instance = "Scholomance (Classic)",
         InstanceID = 246,
         MapID = 1007,
@@ -84,7 +84,7 @@ AddOn.InstanceToys = {
     },
     {
         Name = "Fandral's Seed Pouch",
-        ToyItemID = 122304,
+        ItemID = 122304,
         Instance = "Firelands",
         InstanceID = 78,
         MapID = 720,
@@ -97,7 +97,7 @@ AddOn.InstanceToys = {
     },
     {
         Name = "Gastropod Shell",
-        ToyItemID = 98136,
+        ItemID = 98136,
         Instance = "Throne of Thunder",
         InstanceID = 362,
         MapID = 1098,
@@ -114,7 +114,7 @@ AddOn.InstanceToys = {
     },
     {
         Name = "Golden Hearthstone Card: Lord Jaraxxus",
-        ToyItemID = 119211,
+        ItemID = 119211,
         Instance = "The Nighthold",
         InstanceID = 786,
         MapID = 1530,
@@ -127,7 +127,7 @@ AddOn.InstanceToys = {
     },
     {
         Name = "Hearthstone of the Flame",
-        ToyItemID = 209035,
+        ItemID = 209035,
         Instance = "Amirdrassil, the Dream's Hope",
         InstanceID = 1207,
         MapID = 2549,
@@ -140,7 +140,7 @@ AddOn.InstanceToys = {
     },
     {
         Name = "Krastinov's Bag of Horrors",
-        ToyItemID = 88566,
+        ItemID = 88566,
         Instance = "Scholomance",
         InstanceID = 246,
         MapID = 1007,
@@ -152,7 +152,7 @@ AddOn.InstanceToys = {
     },
     {
         Name = "Orb of the Sin'dorei",
-        ToyItemID = 35275,
+        ItemID = 35275,
         Instance = "Magister's Terrace",
         InstanceID = 249,
         MapID = 585,
@@ -164,7 +164,7 @@ AddOn.InstanceToys = {
     },
     {
         Name = "Piccolo of the Flaming Fire",
-        ToyItemID = 13379,
+        ItemID = 13379,
         Instance = "Stratholme - Main Gate",
         InstanceID = 236,
         MapID = 329,
@@ -177,7 +177,7 @@ AddOn.InstanceToys = {
     },
     {
         Name = "Skull of Corruption",
-        ToyItemID = 143544,
+        ItemID = 143544,
         Instance = "The Nighthold",
         InstanceID = 786,
         MapID = 1530,
@@ -190,7 +190,7 @@ AddOn.InstanceToys = {
     },
     {
         Name = "Unstable Portal Emitter",
-        ToyItemID = 153004,
+        ItemID = 153004,
         Instance = "Seat of the Triumvirate",
         InstanceID = 945,
         MapID = 1753,
@@ -202,7 +202,7 @@ AddOn.InstanceToys = {
     },
     {
         Name = "Vixx's Chest of Tricks",
-        ToyItemID = 152982,
+        ItemID = 152982,
         Instance = "Seat of the Triumvirate",
         InstanceID = 945,
         MapID = 1753,
@@ -214,7 +214,7 @@ AddOn.InstanceToys = {
     },
     {
         Name = "Vial of Green Goo",
-        ToyItemID = 141331,
+        ItemID = 141331,
         Instance = "Gnomeregan",
         InstanceID = 231,
         MapID = 90,
