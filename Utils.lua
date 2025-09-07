@@ -26,7 +26,7 @@ function AddOn:GetInstanceDifficultyText(difficultyID)
 
     if not dKey then return L["Unknown"]
     elseif dKey == "LegacyLFR" then return L["LFR"]
-    elseif dKey == "Legacy40" then return "40 Player"
+    elseif dKey == "Legacy40" then return L["40 player"]
     elseif dKey == "Legacy10" then return L["10 Player"]
     elseif dKey == "Legacy25" then return L["25 Player"]
     elseif dKey == "Legacy10H" then return L["10 Player (Heroic)"]
