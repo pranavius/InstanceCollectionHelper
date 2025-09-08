@@ -12,37 +12,37 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field owned integer Number of the pet currently owned
 ---@field limit integer Maximum number of the pet that can be owned
 
----@type table<number, PetCacheData> Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
-AddOn.PetCache = {}
-local toLoad = #AddOn.Pets
-
-for _, pet in ipairs(AddOn.Pets) do
-    Item:CreateFromItemID(pet.PetItemID):ContinueOnItemLoad(function()
-        toLoad = toLoad - 1
-        local petName, iconID, _, _, _, _, _, _, _, _, _, _, speciesID = C_PetJournal.GetPetInfoByItemID(pet.PetItemID)
-        local owned, limit
-        if speciesID then
-            local o, l = C_PetJournal.GetNumCollectedInfo(speciesID)
-            owned = o or 0
-            limit = l or 0
-        else
-            owned, limit = 0, 0
-        end
-
-        AddOn.PetCache[pet.PetItemID] = {
-            itemName = C_Item.GetItemNameByID(pet.PetItemID) or "",
-            itemID = pet.PetItemID,
-            petName = petName or pet.Name,
-            iconID = iconID or 134400,
-            speciesID = speciesID,
-            owned = owned,
-            limit = limit
-        }
-
-        if toLoad == 0 then
-            AddOn:PrintChatMessage("Pet data loaded")
-        end
-    end)
+function AddOn:CreatePetCache()
+    ---@type table<number, PetCacheData> Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
+    self.PetCache = {}
+    local toLoad = #self.Pets
+    
+    for _, pet in ipairs(self.Pets) do
+        Item:CreateFromItemID(pet.PetItemID):ContinueOnItemLoad(function()
+            toLoad = toLoad - 1
+            local petName, iconID, _, _, _, _, _, _, _, _, _, _, speciesID = C_PetJournal.GetPetInfoByItemID(pet.PetItemID)
+            local owned, limit
+            if speciesID then
+                local o, l = C_PetJournal.GetNumCollectedInfo(speciesID)
+                owned = o or 0
+                limit = l or 0
+            else
+                owned, limit = 0, 0
+            end
+    
+            self.PetCache[pet.PetItemID] = {
+                itemName = C_Item.GetItemNameByID(pet.PetItemID) or "",
+                itemID = pet.PetItemID,
+                petName = petName or pet.Name,
+                iconID = iconID or 134400,
+                speciesID = speciesID,
+                owned = owned,
+                limit = limit
+            }
+    
+            if toLoad == 0 then self:PrintDebugMessage("Pet data loaded") end
+        end)
+    end
 end
 
 ---Formats and returns text indicating the number of a pet owned against the maximum number that can be owned

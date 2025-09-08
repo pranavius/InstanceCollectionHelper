@@ -10,6 +10,12 @@ function AddOn:PrintChatMessage(...)
     print(WrapTextInColor("InstanceCollectionHelper:", HEIRLOOM_BLUE_COLOR), ...)
 end
 
+---Prints a debugging message to the chat window prefixed by the AddOn name
+---@param ... any Arguments to be printed as part of the debug message
+function AddOn:PrintDebugMessage(...)
+    if self.db.global.debugMessages then self:PrintChatMessage(WrapTextInColor("[Debug]", LEGENDARY_ORANGE_COLOR), ...) end
+end
+
 ---Returns the difficulty text that corresponds to the given `difficultyID`
 ---@param difficultyID number? ID associated with an instance difficulty. Marked optional due to `GetLegacyRaidDifficultyID()` return a `number?` value, but required for this function.
 ---@return string "The text to be shown when referencing the desired instance difficulty"

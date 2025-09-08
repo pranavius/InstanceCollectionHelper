@@ -10,27 +10,27 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field iconID integer ID for the icon associated with the toy
 ---@field isOwned boolean `true` if the toy is owned, `false` otherwise
 
----@type table<number, ToyCacheData> Stores necessary toy data in a local cache - attempting to reduce the amount of stutter/freezing when viewing toys
-AddOn.ToyCache = {}
-local toLoad = #AddOn.Toys
-
-for _, toy in ipairs(AddOn.Toys) do
-    Item:CreateFromItemID(toy.ItemID):ContinueOnItemLoad(function()
-        toLoad = toLoad - 1
-        local _, toyName, iconID = C_ToyBox.GetToyInfo(toy.ItemID)
-
-        AddOn.ToyCache[toy.ItemID] = {
-            itemName = C_Item.GetItemNameByID(toy.ItemID) or "",
-            itemID = toy.ItemID,
-            toyName = toyName or toy.Name,
-            iconID = iconID or 134400,
-            isOwned = PlayerHasToy(toy.ItemID)
-        }
-
-        if toLoad == 0 then
-            AddOn:PrintChatMessage("Toy data loaded")
-        end
-    end)
+function AddOn:CreateToyCache()
+    ---@type table<number, ToyCacheData> Stores necessary toy data in a local cache - attempting to reduce the amount of stutter/freezing when viewing toys
+    self.ToyCache = {}
+    local toLoad = #self.Toys
+    
+    for _, toy in ipairs(self.Toys) do
+        Item:CreateFromItemID(toy.ItemID):ContinueOnItemLoad(function()
+            toLoad = toLoad - 1
+            local _, toyName, iconID = C_ToyBox.GetToyInfo(toy.ItemID)
+    
+            self.ToyCache[toy.ItemID] = {
+                itemName = C_Item.GetItemNameByID(toy.ItemID) or "",
+                itemID = toy.ItemID,
+                toyName = toyName or toy.Name,
+                iconID = iconID or 134400,
+                isOwned = PlayerHasToy(toy.ItemID)
+            }
+    
+            if toLoad == 0 then self:PrintDebugMessage("Toy data loaded") end
+        end)
+    end
 end
 
 ---Initializes how toy data in the scrollable list should be displayed

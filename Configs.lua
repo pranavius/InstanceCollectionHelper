@@ -16,7 +16,8 @@ AddOn.DatabaseDefaults = {
         useTomTomPoints = true,
         currentTomTomWaypoint = nil,
         selectedTab = nil,
-        countPetOwnedOnlyIfMaxOwned = false
+        countPetOwnedOnlyIfMaxOwned = false,
+        debugMessages = false,
     }
 }
 

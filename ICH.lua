@@ -11,10 +11,17 @@ ICH = {}
 ---@param cmd string The slash command used (should be exactly `ich`)
 ---@param input string The argument provided to the slash command
 function AddOn.HandleSlashCommand(cmd, input)
-    input = strtrim(input)
+    input = strtrim(input):lower()
     local AceConfigCmd = LibStub("AceConfigCmd-3.0")
     if input == "" then
-        if AddOn.Container and not AddOn.Container:IsShown() then AddOn.Container:Show() elseif AddOn.Container then AddOn.Container:Hide() end
+        if AddOn.Container and not AddOn.Container:IsShown() then
+            AddOn.Container:Show()
+        elseif AddOn.Container then
+            AddOn.Container:Hide()
+        end
+    elseif input == "debug" then
+        AddOn.db.global.debugMessages = not AddOn.db.global.debugMessages
+        AddOn:PrintChatMessage("Debug messages", AddOn.db.global.debugMessages and "enabled" or "disabled")
     elseif input == "help" then AceConfigCmd:HandleCommand(cmd, name, "")
     else AceConfigCmd:HandleCommand(cmd, name, input)
     end
@@ -27,6 +34,9 @@ function AddOn:OnInitialize()
 
     -- Load database
 	self.db = LibStub("AceDB-3.0"):New("ICH_DB", AddOn.DatabaseDefaults, true)
+    -- Create local caches for Toys and Pets
+    self:CreateToyCache()
+    self:CreatePetCache()
 
     -- Data broker registration for minimap icon
     local broker = LDB:NewDataObject(name, {
@@ -221,7 +231,7 @@ function AddOn:CreateFooter()
     foot.ScaleContainer.WindowScale = scale
 
     foot.OwnedContainer = CreateFrame("Frame", nil, foot)
-    foot.OwnedContainer:SetWidth(175)
+    foot.OwnedContainer:SetWidth(125)
     foot.OwnedContainer:SetPoint("TOPRIGHT", foot, "TOPRIGHT", 0, 0)
     foot.OwnedContainer:SetPoint("BOTTOMRIGHT", foot, "BOTTOMRIGHT", 20, 0)
     
