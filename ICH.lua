@@ -165,7 +165,7 @@ function AddOn:CreateScrollingView()
     self.ScrollView:SetElementFactory(function(factory, elementData)
         if elementData.ID then factory("ICHListItemTemplate", self.MountDataProviderInit)
         elseif elementData.ItemID then factory("ICHListItemTemplate", self.ToyDataProviderInit)
-        elseif elementData.ItemID then factory("ICHListItemTemplate", self.PetDataProviderInit)
+        elseif elementData.PetItemID then factory("ICHListItemTemplate", self.PetDataProviderInit)
         end
 
     end)
@@ -297,7 +297,7 @@ function AddOn:FilterListContentsByQuery(listData)
             itemName = select(2, C_ToyBox.GetToyInfo(data.ItemID)) or ""
             if not itemName then itemName = "" end
         elseif selectedTab == self.Tabs.PetsTab then
-            itemName = C_PetJournal.GetPetInfoByItemID(data.ItemID) or ""
+            itemName = C_PetJournal.GetPetInfoByItemID(data.PetItemID) or ""
         end
         local cleanName = itemName:lower():gsub("|.+|.*", "")
         nameMatches = cleanName:match(query) and true or false
@@ -356,7 +356,7 @@ function AddOn:UpdateListContents()
         self.Container.SearchBox.Instructions:SetText(L["Search by toy/instance name, instance type, difficulty, or expansion"])
     elseif selectedTab == self.Tabs.PetsTab then
         for _, pet in ipairs(self.Pets) do
-            local petData = self.PetCache[pet.ItemID]
+            local petData = self.PetCache[pet.PetItemID]
             local isOwned = petData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and petData.owned == petData.limit or true)
             if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, pet) end
         end

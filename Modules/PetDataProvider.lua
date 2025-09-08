@@ -17,9 +17,9 @@ AddOn.PetCache = {}
 local toLoad = #AddOn.Pets
 
 for _, pet in ipairs(AddOn.Pets) do
-    Item:CreateFromItemID(pet.ItemID):ContinueOnItemLoad(function()
+    Item:CreateFromItemID(pet.PetItemID):ContinueOnItemLoad(function()
         toLoad = toLoad - 1
-        local petName, iconID, _, _, _, _, _, _, _, _, _, _, speciesID = C_PetJournal.GetPetInfoByItemID(pet.ItemID)
+        local petName, iconID, _, _, _, _, _, _, _, _, _, _, speciesID = C_PetJournal.GetPetInfoByItemID(pet.PetItemID)
         local owned, limit
         if speciesID then
             local o, l = C_PetJournal.GetNumCollectedInfo(speciesID)
@@ -29,9 +29,9 @@ for _, pet in ipairs(AddOn.Pets) do
             owned, limit = 0, 0
         end
 
-        AddOn.PetCache[pet.ItemID] = {
-            itemName = C_Item.GetItemNameByID(pet.ItemID) or "",
-            itemID = pet.ItemID,
+        AddOn.PetCache[pet.PetItemID] = {
+            itemName = C_Item.GetItemNameByID(pet.PetItemID) or "",
+            itemID = pet.PetItemID,
             petName = petName or pet.Name,
             iconID = iconID or 134400,
             speciesID = speciesID,
@@ -66,11 +66,11 @@ end
 function AddOn.PetDataProviderInit(frame, pet)
     if not frame or not pet then return end
     frame.isMount = false
-    frame.relevantID = pet.ItemID
+    frame.relevantID = pet.PetItemID
 
     local index = AddOn.ICHDataProvider:FindIndex(pet)
 
-    local petData = AddOn.PetCache[pet.ItemID]
+    local petData = AddOn.PetCache[pet.PetItemID]
     local isOwned = petData.owned > 0 and (AddOn.db.global.countPetOwnedOnlyIfMaxOwned and petData.owned == petData.limit or true)
     local localizedInstanceName = EJ_GetInstanceInfo(pet.InstanceID)
     if isOwned then
