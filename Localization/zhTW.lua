@@ -4,11 +4,11 @@ local L = LibStub("AceLocale-3.0"):NewLocale(name, "zhTW")
 if not L then return end
 
 --- Mount Notes ---
-L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"] = "此團隊副本只有10人的難度，因此在進入副本之前可以設置任何團隊難度"
-L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"] = "此團隊副本只有25人的難度，因此在進入副本之前可以設置任何團隊難度"
+-- L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"] = "此團隊副本只有10人的難度，因此在進入副本之前可以設置任何團隊難度"
+-- L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"] = "此團隊副本只有25人的難度，因此在進入副本之前可以設置任何團隊難度"
 L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"] = "只有普通舊團隊副本難度可用，but Heroic should be set if "..WrapTextInColor("生命守縛者的女僕", DARKYELLOW_FONT_COLOR).." is not obtained yet"
 L["Drop from trash mobs around Temple of Ahn'Qiraj"] = "掉落於小怪圍繞於"..WrapTextInColor("安其拉神廟", DARKYELLOW_FONT_COLOR)
-L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"] = "此團隊副本只有40人的難度，因此在進入副本之前可以設置任何團隊難度"
+-- L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"] = "此團隊副本只有40人的難度，因此在進入副本之前可以設置任何團隊難度"
 L["Also obtainable in Timewalking"] = "也可以在時光漫遊中獲得"
 L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"] = "在團隊搜尋器難度(LFR)中獲得，須擊殺 "..WrapTextInColor("珍娜·普羅德摩爾女士", DARKYELLOW_FONT_COLOR)
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "只對"..WrapTextInColor("聯盟", PLAYER_FACTION_COLOR_ALLIANCE).."角色掉落，但取得後也會獲得"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."版本"
@@ -82,7 +82,7 @@ L["Search by mount/instance name, instance type, or difficulty"] = "搜尋根據
 L["Search by toy/instance name, instance type, or difficulty"] = "搜尋根據玩具/副本名稱、副本類型或難度"
 L["Scale"] = "縮放"
 L["Use TomTom waypoints"] = "使用TomTom路徑點"
-L["Show Owned Mounts"] = "顯示已擁有的坐騎"
+-- L["Show Owned Mounts"] = "顯示已擁有的坐騎"
 L["Show Owned"] = "顯示收集的物品"
 L["How To Use:"] = "如何使用:"
 L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "尋找你想要在列表中收集的坐騎，並點擊你想要刷的難度按鈕。"
@@ -100,7 +100,7 @@ L["Name"] = "名字"
 L["Instance"] = "副本"
 L["Available Difficulty(s)"] = "可用難度"
 L["Shares lockout with:"] = "共用進度在:"
-L["View in mount journal"] = "在坐騎日誌中觀看" -- Deprecated
+-- L["View in mount journal"] = "在坐騎日誌中觀看"
 L["View in encounter journal"] = "在冒險指南中觀看"
 L["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."] = "此按鈕僅用於追蹤團隊搜尋器(LFR）進度。團隊難度並未改變。"
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "需要在給定的時間內完成某些目標，因此建議搜尋指南以在嘗試之前在線上獲取此坐騎"

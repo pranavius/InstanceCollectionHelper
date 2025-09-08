@@ -8,8 +8,7 @@ function AddOn:CreateTabSystem()
     self.Tabs = CreateFrame("Frame", nil, self.Footer, "TabSystemTemplate")
     self:CreateTab("Mounts")
     self:CreateTab("Toys")
-    self:CreateTab("Pets", false)
-    self.Tabs:GetTabButton(self.Tabs.PetsTab):SetTooltipText(L["Coming soon"].."™")
+    self:CreateTab("Pets")
     self.Tabs:SetTabSelectedCallback(function(tabID) self:HandleTabSelected(tabID) end)
     self.Tabs:SetPoint("TOPLEFT", self.Footer, "BOTTOMLEFT", 0, 0)
     self.Tabs:SetPoint("TOPRIGHT", self.Footer, "BOTTOMRIGHT", 0, 0)
@@ -31,5 +30,6 @@ end
 ---@param tabID number ID number for the new active tab
 function AddOn:HandleTabSelected(tabID)
     self.db.global.selectedTab = tabID
-    self:UpdateListContents("ICH_TAB_CHANGE")
+    self:PrintDebugMessage("Selected tab:", self.Tabs:GetTabButton(tabID).tabText)
+    self:UpdateListContents()
 end

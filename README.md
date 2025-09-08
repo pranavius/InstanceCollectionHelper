@@ -5,18 +5,19 @@ _Track available collectibles from instances and easily set required instance di
 **Important:** I am looking for translators to help bring this AddOn to those who may not understand English. If interested, please contact me via one of the means listed in the [Contact](#contact) section.
 
 ## Highlights
-- **NEW**: Tabs for both mounts and toys that are available from instances
-- Search for a mount or toy by its name, an instance name or type, as well as a difficulty setting
+- Tabs for mounts, toys, and pets (**NEW**) that are available from instances
+- Search for a collectible by its name, an instance name or type, a difficulty setting, or by expansion (**NEW**)
 - Multi-column scrollable UI with Name, Instance, and Available Difficulty columns
 - Links to in-game mount journal as well as instance and encounter journal for each item in the list
-- Ability to drop a map pin or **TomTom** waypoint at the dungeon or raid entrance to make navigating to each instance easier
+- Ability to drop a map pin at the instance entrance to make navigating easier
+  - If the **TomTom** addon is enabled, an option to use **TomTom** waypoints instead of Blizzard map pins is available
 - Simple buttons to set your desired instance difficulty with a single click
 - DataBroker integration for quick access to options via minimap icon or other DataBroker AddOns
 
 ## Summary
 **InstanceCollectionHelper** is designed to help collectors easily identify and set an appropriate instance difficulty when pursuing a collectible from a dungeon or raid. Available items can be further filtered by name, instance name, instance type (dungeon or raid), as well as instance difficulty. When a collectible cannot be obtained on a given difficulty, the button for that difficulty will be disabled. This effectively provides a simple and clean "to-do" list in the AddOn UI so you can decide to attempt to get the item on another difficulty or pivot to hunting for a new one.
 
-Currently, this AddOn supports mount and toy collection with plans to add other collectibles such as Battle Pets and Achievements in the future. If you see that any items are missing from this list, please let me know and I'll be happy to add them ASAP.
+Currently, this AddOn supports mount, toy, and pet collection with plans to add other collectibles (Achievements, Timewalking vendor items, etc.) in the future. If you see that any items are missing from this list, please let me know and I'll be happy to add them ASAP.
 
 ### Supported Languages
 All collectible and instance names will appear in the language that the game is being played in, but other text may appear in English. Currently, the following languages are either supported or in the process of being localized:
@@ -40,12 +41,12 @@ Aside from the AddOn UI itself, **InstanceCollectionHelper** provides a few othe
 
 ### Notes
 - For both `/ich dung` and `/ich raid`, `<difficulty>` can be one of `norm` (Normal), `hero` (Heroic), or `myth` (Mythic)
-- For `/ich lraid`, `<difficulty>` can be one of `10` (10 player), `25` (25 player), `10h` (10 player (Heroic)), or `25h` (25 player (Heroic))
+- For `/ich lraid`, `<difficulty>` can be one of `10` (10 player), `25` (25 player), `10h` (10 player (Heroic)), `25h` (25 player (Heroic)), or `40` (40 player)
 
 ## Planned Updates
 **InstanceCollectionHelper** was released in July 2025 to help players with tracking mounts and setting the correct instance difficulty for the [Collector's Bounty](https://www.wowhead.com/event=1674/collectors-bounty) event. After the event ends and the AddOn continues to exist, there are a number of features and improvements in line to be added:
 
-- Track Battle Pets and Achievements available from instances
+- Track Achievements available in instances
 - Ability to view lockouts/available attempts of alts
 - Allow AddOn properties such as text font to be configurable
 

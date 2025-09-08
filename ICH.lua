@@ -8,13 +8,20 @@ ICH = {}
 ---Handles slash commands in a way that overrides the default behavior of Ace3 slash commands. Executing the command with no arguments
 ---opens the AddOn options window, providing the `help` argument displays a list of available arguments and uses for the slash command,
 ---and all other arguments are handled using Ace3's default behavior.
----@param cmd string The slash command used (should be exactly `/ich`)
+---@param cmd string The slash command used (should be exactly `ich`)
 ---@param input string The argument provided to the slash command
 function AddOn.HandleSlashCommand(cmd, input)
-    input = strtrim(input)
+    input = strtrim(input):lower()
     local AceConfigCmd = LibStub("AceConfigCmd-3.0")
     if input == "" then
-        if AddOn.Container then AddOn.Container:Show() end
+        if AddOn.Container and not AddOn.Container:IsShown() then
+            AddOn.Container:Show()
+        elseif AddOn.Container then
+            AddOn.Container:Hide()
+        end
+    elseif input == "debug" then
+        AddOn.db.global.debugMessages = not AddOn.db.global.debugMessages
+        AddOn:PrintChatMessage("Debug messages", AddOn.db.global.debugMessages and "enabled" or "disabled")
     elseif input == "help" then AceConfigCmd:HandleCommand(cmd, name, "")
     else AceConfigCmd:HandleCommand(cmd, name, input)
     end
@@ -22,11 +29,14 @@ end
 
 function AddOn:OnInitialize()
     -- Generate proper search tags for all collectibles
-    for _, mount in ipairs(AddOn.InstanceMounts) do self.AppendMapSearchTags(mount) end
-    for _, toy in ipairs(AddOn.InstanceToys) do self.AppendMapSearchTags(toy) end
+    for _, mount in ipairs(AddOn.Mounts) do self.AppendMapSearchTags(mount) end
+    for _, toy in ipairs(AddOn.Toys) do self.AppendMapSearchTags(toy) end
 
     -- Load database
 	self.db = LibStub("AceDB-3.0"):New("ICH_DB", AddOn.DatabaseDefaults, true)
+    -- Create local caches for Toys and Pets
+    self:CreateToyCache()
+    self:CreatePetCache()
 
     -- Data broker registration for minimap icon
     local broker = LDB:NewDataObject(name, {
@@ -36,7 +46,7 @@ function AddOn:OnInitialize()
         OnClick = function() if self.Container then self.Container:Show() end end,
         OnTooltipShow = function(tooltip)
             tooltip:SetText(name)
-            tooltip:AddLine(L["Track available mounts from instances and easily set required instance difficulty"], 1, 1, 1, true)
+            tooltip:AddLine(L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"], 1, 1, 1, true)
             tooltip:AddLine(L["Type \"/ich help\" in the chat window for available slash commands"])
         end
     })
@@ -48,8 +58,9 @@ function AddOn:OnInitialize()
     -- Override default slash command behavior so /ich opens the addon
     self:RegisterChatCommand("ich", function(input) self.HandleSlashCommand("ich", input) end)
     
+    self:PrintDebugMessage("TomTom is", C_AddOns.IsAddOnLoaded("TomTom") and "enabled" or "disabled")
     self:CreateMainFrame()
-    self.Container:HookScript("OnShow", function() self:UpdateListContents("ICH_OPEN") end)
+    self.Container:HookScript("OnShow", function() self:UpdateListContents() end)
     self:RegisterEvent("ZONE_CHANGED", "UpdateListContents")
     self:RegisterEvent("PLAYER_LOGOUT", function()
         if C_AddOns.IsAddOnLoaded("TomTom") and self.db.global.currentTomTomWaypoint then
@@ -59,7 +70,7 @@ function AddOn:OnInitialize()
     end)
 end
 
----Initializes the AddOn window.<br/>
+---Initializes the AddOn window.<br>
 ---Internally creates a scrollable list of data to display initially as well.
 function AddOn:CreateMainFrame()
     local f = CreateFrame("Frame", "ICHMain", UIParent)
@@ -67,7 +78,7 @@ function AddOn:CreateMainFrame()
     f:SetSize(800, 600)
     f:EnableMouse(true)
     f:SetMovable(true)
-    f:SetFrameStrata("HIGH")
+    f:SetFrameStrata("MEDIUM")
 
     f:RegisterForDrag("LeftButton")
     f:SetScript("OnDragStart", function(frame)
@@ -91,7 +102,7 @@ function AddOn:CreateMainFrame()
     f.SearchBox:SetPoint("TOPRIGHT", f.Title, "BOTTOMRIGHT", -25, -10)
     f.SearchBox:SetAutoFocus(false)
     f.SearchBox:SetSize(400, 30)
-    f.SearchBox:HookScript("OnTextChanged", function() self:UpdateListContents("ICH_SEARCH") end)
+    f.SearchBox:HookScript("OnTextChanged", function() self:UpdateListContents() end)
     
     -- Close button
     f.CloseButton = CreateFrame("Button", "ICHCloseButton", f, "UIPanelCloseButtonDefaultAnchors")
@@ -141,7 +152,7 @@ function AddOn:CreateMainFrame()
     self.Container:Hide()
 end
 
----Initializes the scrollable list of data to display in the AddOn<br/>
+---Initializes the scrollable list of data to display in the AddOn<br>
 ---By default, the list of mounts is shown
 function AddOn:CreateScrollingView()
     self.Container.ListHeaders = CreateFrame("Frame", "ICHListHeaders", self.Container, "ICHListHeadersTemplate")
@@ -163,13 +174,13 @@ function AddOn:CreateScrollingView()
 
     ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView)
     self.ScrollView:SetElementFactory(function(factory, elementData)
-        if elementData.MountID then factory("ICHListItemTemplate", self.MountDataProviderInit)
-        elseif elementData.ToyItemID then factory("ICHListItemTemplate", self.ToyDataProviderInit)
+        if elementData.ID then factory("ICHListItemTemplate", self.MountDataProviderInit)
+        elseif elementData.ItemID then factory("ICHListItemTemplate", self.ToyDataProviderInit)
+        elseif elementData.PetItemID then factory("ICHListItemTemplate", self.PetDataProviderInit)
         end
 
     end)
     self.ScrollView:SetElementExtent(self.ScrollView:GetTemplateExtent("ICHListItemTemplate"))
-    -- self.ScrollView:SetElementInitializer("ICHListItemTemplate", self.MountDataProviderInit)
 end
 
 ---Initializes the footer in the AddOn that contains some display options for the window
@@ -205,22 +216,25 @@ function AddOn:CreateFooter()
     scale.Slider:HookScript("OnMouseUp", function(slider)
         self.db.global.windowScale = slider:GetValue()
         self.Container:SetScale(slider:GetValue())
+        self:PrintDebugMessage("AddOn scale:", self.db.global.windowScale)
     end)
     scale.Back:HookScript("OnClick", function()
         local val = scale.Slider:GetValue()
         self.db.global.windowScale = val
         self.Container:SetScale(val)
+        self:PrintDebugMessage("AddOn scale:", self.db.global.windowScale)
     end)
     scale.Forward:HookScript("OnClick", function()
         local val = scale.Slider:GetValue()
         self.db.global.windowScale = val
         self.Container:SetScale(val)
+        self:PrintDebugMessage("AddOn scale:", self.db.global.windowScale)
     end)
 
     foot.ScaleContainer.WindowScale = scale
 
     foot.OwnedContainer = CreateFrame("Frame", nil, foot)
-    foot.OwnedContainer:SetWidth(175)
+    foot.OwnedContainer:SetWidth(125)
     foot.OwnedContainer:SetPoint("TOPRIGHT", foot, "TOPRIGHT", 0, 0)
     foot.OwnedContainer:SetPoint("BOTTOMRIGHT", foot, "BOTTOMRIGHT", 20, 0)
     
@@ -240,13 +254,11 @@ function AddOn:CreateFooter()
     ownedCb:HookScript("OnClick", function(cb)
         local value = cb:GetChecked()
         self.db.global.showOwned = value
-        self:UpdateListContents("ICH_OWNED")
+        self:UpdateListContents()
     end)
 
     foot.OwnedContainer.Checkbox = ownedCb
-    -- if self.Tabs and self.db.global.selectedTab == self.Tabs.MountsTab then
     foot.OwnedContainer.Checkbox:Show()
-    -- end
 
     -- "Use TomTom Waypoints" Checkbox
     foot.TomTomContainer = CreateFrame("Frame", nil, foot)
@@ -268,7 +280,7 @@ function AddOn:CreateFooter()
     tomtomCb:HookScript("OnClick", function(cb)
         local value = cb:GetChecked()
         self.db.global.useTomTomPoints = value
-        self:UpdateListContents("ICH_TOMTOM")
+        self:UpdateListContents()
     end)
 
     foot.TomTomContainer.Checkbox = tomtomCb
@@ -279,39 +291,41 @@ function AddOn:CreateFooter()
 end
 
 ---Filters a list of data based on search parameters
----@param listData (Mount|Toy)[]
----@return (Mount|Toy)[]
+---@param listData (Mount|Toy|Pet)[]
+---@return (Mount|Toy|Pet)[]
 function AddOn:FilterListContentsByQuery(listData)
     local filtered = {}
     local query = self.Container.SearchBox:GetText():lower()
     local selectedTab = self.db.global.selectedTab
 
     local nameMatches, instanceMatches, encounterMatches, instanceTypeMatches, difficultyMatches, searchTagMatches = false, false, false, false, false, false
-    for _, item in ipairs(listData) do
+    for _, data in ipairs(listData) do
         -- Using localized names for mounts, instances, encounters, etc for better search results
         local itemName
-        local instanceName = EJ_GetInstanceInfo(item.InstanceID) or ""
-        local encounterName = item.EncounterID and EJ_GetEncounterInfo(item.EncounterID) or ""
+        local instanceName = EJ_GetInstanceInfo(data.InstanceID) or ""
+        local encounterName = data.EncounterID and EJ_GetEncounterInfo(data.EncounterID) or ""
         if selectedTab == self.Tabs.MountsTab then
-            itemName = C_MountJournal.GetMountInfoByID(item.MountID) or ""
+            itemName = C_MountJournal.GetMountInfoByID(data.ID) or ""
         elseif selectedTab == self.Tabs.ToysTab then
-            itemName = select(2, C_ToyBox.GetToyInfo(item.ToyItemID))
+            itemName = select(2, C_ToyBox.GetToyInfo(data.ItemID)) or ""
             if not itemName then itemName = "" end
+        elseif selectedTab == self.Tabs.PetsTab then
+            itemName = C_PetJournal.GetPetInfoByItemID(data.PetItemID) or ""
         end
         local cleanName = itemName:lower():gsub("|.+|.*", "")
         nameMatches = cleanName:match(query) and true or false
         instanceMatches = instanceName:lower():match(query) and true or false
         encounterMatches = encounterName:lower():match(query) and true or false
-        instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(item) or (query == L["dungeon"] and not self:IsInstanceRaid(item))
+        instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(data) or (query == L["dungeon"] and not self:IsInstanceRaid(data))
         difficultyMatches = false
-        for _, diffID in ipairs(item.DifficultyIDs) do
+        for _, diffID in ipairs(data.DifficultyIDs) do
             if self:GetDifficultyButtonText(diffID):lower() == query or self:GetInstanceDifficultyText(diffID):lower() == query then
                 difficultyMatches = true
                 break
             end
         end
-        if not difficultyMatches and item.SharedDifficulties then
-            for shared, _ in pairs(item.SharedDifficulties) do
+        if not difficultyMatches and data.SharedDifficulties then
+            for shared, _ in pairs(data.SharedDifficulties) do
                 if self:GetDifficultyButtonText(shared):lower() == query or self:GetInstanceDifficultyText(shared):lower() == query then
                     difficultyMatches = true
                     break
@@ -319,49 +333,47 @@ function AddOn:FilterListContentsByQuery(listData)
             end
         end
         searchTagMatches = false
-        for _, tag in ipairs(item.SearchTags) do
-            if tag:lower():match(query) then
+        for _, tag in ipairs(data.SearchTags) do
+            if tag:lower() == query then
                 searchTagMatches = true
                 break
             end
         end
 
         if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches or searchTagMatches then
-            tinsert(filtered, item)
+            tinsert(filtered, data)
         end
     end
     return filtered
 end
 
 ---Update the contents of the list shown in the UI
----@param event string The event that triggered the list update
-function AddOn:UpdateListContents(event)
+function AddOn:UpdateListContents()
     if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then UIParentLoadAddOn("Blizzard_Collections") end
     if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then UIParentLoadAddOn("Blizzard_EncounterJournal") end
-    ---@type (Mount|Toy)[]
+    ---@type (Mount|Toy|Pet)[]
     local newData = {}
     local selectedTab = self.db.global.selectedTab
     if selectedTab == self.Tabs.MountsTab then
-        for _, data in ipairs(self.InstanceMounts) do
-            local isOwned = select(11, C_MountJournal.GetMountInfoByID(data.MountID))
-            if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, data) end
+        for _, mount in ipairs(self.Mounts) do
+            -- Checking hideOnChar for mounts like Grand Black War Mammoth, which has a faction specific version
+            local _, _, _, _, _, _, _, _, _, hideOnChar, isOwned = C_MountJournal.GetMountInfoByID(mount.ID)
+            if not hideOnChar and (not isOwned or (isOwned and self.db.global.showOwned)) then tinsert(newData, mount) end
         end
-
-        -- Grand Black War Mammoth: Remove version that is not for the current character's faction
-        local faction = UnitFactionGroup("player")
-        for i, data in pairs(newData) do
-            if (data.MountID == 286 and faction == "Horde") or (data.MountID == 287 and faction == "Alliance") then
-                tremove(newData, i)
-                break
-            end
-        end
-        self.Container.SearchBox.Instructions:SetText(L["Search by mount/instance name, instance type, or difficulty"])
+        self.Container.SearchBox.Instructions:SetText(L["Search by mount/instance name, instance type, difficulty, or expansion"])
     elseif selectedTab == self.Tabs.ToysTab then
-        for _, data in ipairs(self.InstanceToys) do
-            local isOwned = PlayerHasToy(data.ToyItemID)
-            if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, data) end
+        for _, toy in ipairs(self.Toys) do
+            local toyData = self.ToyCache[toy.ItemID]
+            if not toyData.isOwned or (toyData.isOwned and self.db.global.showOwned) then tinsert(newData, toy) end
         end
-        self.Container.SearchBox.Instructions:SetText(L["Search by toy/instance name, instance type, or difficulty"])
+        self.Container.SearchBox.Instructions:SetText(L["Search by toy/instance name, instance type, difficulty, or expansion"])
+    elseif selectedTab == self.Tabs.PetsTab then
+        for _, pet in ipairs(self.Pets) do
+            local petData = self.PetCache[pet.PetItemID]
+            local isOwned = petData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and petData.owned == petData.limit or true)
+            if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, pet) end
+        end
+        self.Container.SearchBox.Instructions:SetText(L["Search by pet/instance name, instance type, difficulty, or expansion"])
     end
 
     -- Filter list results based on search criteria when present

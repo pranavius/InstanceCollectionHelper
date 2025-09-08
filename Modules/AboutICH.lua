@@ -22,7 +22,7 @@ function AddOn:CreateAboutFrame()
     local a = CreateFrame("Frame", "ICHAbout", UIParent)
     a:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
     a:SetSize(400, 400)
-    a:SetFrameStrata("HIGH")
+    a:SetFrameStrata("MEDIUM")
 
     -- Frame background
     a.Bg = a:CreateTexture(nil, "BACKGROUND")
@@ -43,12 +43,12 @@ function AddOn:CreateAboutFrame()
     a.Twitter = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightMedium")
     a.Twitter:SetPoint("TOPLEFT", a.Author, "BOTTOMLEFT", 0, -20)
     a.Twitter:SetPoint("TOPRIGHT", a.Author, "BOTTOMRIGHT", 0, -20)
-    a.Twitter:SetText("|TInterface\\AddOns\\PranGearView\\Media\\X-logo:20:20|t   "..WrapTextInColor("@PranaviusWoW", LEGENDARY_ORANGE_COLOR))
+    a.Twitter:SetText("|TInterface\\AddOns\\InstanceCollectionHelper\\Media\\X-logo:20:20|t   "..WrapTextInColor("@PranaviusWoW", LEGENDARY_ORANGE_COLOR))
     
     a.GitHub = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightMedium")
     a.GitHub:SetPoint("TOPLEFT", a.Twitter, "BOTTOMLEFT", 0, 0)
     a.GitHub:SetPoint("TOPRIGHT", a.Twitter, "BOTTOMRIGHT", 0, 0)
-    a.GitHub:SetText("|TInterface\\AddOns\\PranGearView\\Media\\Github-logo:20:20|t   "..WrapTextInColor("Pranavius", LEGENDARY_ORANGE_COLOR))
+    a.GitHub:SetText("|TInterface\\AddOns\\InstanceCollectionHelper\\Media\\Github-logo:20:20|t   "..WrapTextInColor("Pranavius", LEGENDARY_ORANGE_COLOR))
 
     a.Translators = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightHuge")
     a.Translators:SetPoint("TOPLEFT", a.Twitter, "BOTTOMLEFT", 0, -40)
