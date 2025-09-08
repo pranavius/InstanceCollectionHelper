@@ -14,7 +14,7 @@ L["Upon entering the instance, raid difficulty will automatically be set to Norm
 L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"] = "Não fale com nenhum dos Guardiões Titânicos, caso contrário esta montaria não cairá"
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "Exige completar certos objetivos dentro de um tempo determinado, por isso é recomendado procurar um guia online para obter esta montaria antes de tentar"
 L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "A entrada pode estar em "..WrapTextInColor("Uldum", DARKYELLOW_FONT_COLOR).." ou no "..WrapTextInColor("Vale das Flores Eternas", DARKYELLOW_FONT_COLOR)
-L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Exige completar a linha de história de Tazavesh para desbloquear o caminho de voo, começando com |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos", DARKYELLOW_FONT_COLOR)
+L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Exige completar a linha de história de Tazavesh para desbloquear o caminho de voo, começando com |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976) or "O gato de Oribos", DARKYELLOW_FONT_COLOR)
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "Requer completar uma curta linha de missões após saquear "..(select(2, C_Item.GetItemInfo(226683)) or WrapTextInColor("[Traje de Meca Defeituoso]", EPIC_PURPLE_COLOR))
 
 --- Toy Notes ---

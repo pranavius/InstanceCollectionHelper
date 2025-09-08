@@ -36,7 +36,7 @@ function AddOn:OnInitialize()
         OnClick = function() if self.Container then self.Container:Show() end end,
         OnTooltipShow = function(tooltip)
             tooltip:SetText(name)
-            tooltip:AddLine(L["Track available mounts from instances and easily set required instance difficulty"], 1, 1, 1, true)
+            tooltip:AddLine(L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"], 1, 1, 1, true)
             tooltip:AddLine(L["Type \"/ich help\" in the chat window for available slash commands"])
         end
     })
@@ -360,7 +360,7 @@ function AddOn:UpdateListContents()
             local isOwned = petData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and petData.owned == petData.limit or true)
             if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, pet) end
         end
-        self.Container.SearchBox.Instructions:SetText("Search by pet/instance name, instance type, difficulty, or expansion")
+        self.Container.SearchBox.Instructions:SetText(L["Search by pet/instance name, instance type, difficulty, or expansion"])
     end
 
     -- Filter list results based on search criteria when present
