@@ -3,7 +3,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
     <Frame name="ICHListItemTemplate" virtual="true" enableMouse="true">
         <Size y="25"/>
         <KeyValues>
-            <KeyValue key="isToy" value="false" type="boolean"/>
+            <KeyValue key="isMount" value="false" type="boolean"/>
             <KeyValue key="relevantID" value="0" type="number"/>
         </KeyValues>
         <Layers>
@@ -40,11 +40,11 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                             <OnEnter>
                                 local id = self:GetParent():GetParent().relevantID
                                 GameTooltip:SetOwner(self, "ANCHOR_TOP")
-                                if self:GetParent():GetParent().isToy then
-                                    GameTooltip:SetHyperlink("item:"..id)
-                                else
+                                if self:GetParent():GetParent().isMount then
                                     local spellID = select(2, C_MountJournal.GetMountInfoByID(id))
                                     GameTooltip:SetHyperlink(C_MountJournal.GetMountLink(spellID))
+                                else
+                                    GameTooltip:SetHyperlink("item:"..id)
                                 end
                                 GameTooltip:Show()
                             </OnEnter>
@@ -104,7 +104,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             </Frame>
 
             <Frame parentKey="DifficultyContainer">
-                <Size x="250"/>
+                <Size x="200"/>
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeKey="$parent.InstanceContainer" relativePoint="TOPRIGHT"></Anchor>
                     <Anchor point="BOTTOMLEFT" relativeKey="$parent.InstanceContainer" relativePoint="BOTTOMRIGHT"></Anchor>
@@ -128,6 +128,18 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     </Button>
                     <Button parentKey="RaidDiffMythicButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues><KeyValue key="difficultyID" value="16" type="number"/></KeyValues>
+                        <Scripts><OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick></Scripts>
+                    </Button>
+                    <Button parentKey="RaidDiffLegacyLFRButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="7" type="number"/></KeyValues>
+                        <Scripts>
+                            <OnClick>
+                                ICH:PrintChatMessage(WrapTextInColor(ICH_LANG["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."], DARKYELLOW_FONT_COLOR))
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                    <Button parentKey="RaidDiff40Button" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues><KeyValue key="difficultyID" value="9" type="number"/></KeyValues>
                         <Scripts><OnClick>ICH:SetInstanceDifficulty(self.difficultyID)</OnClick></Scripts>
                     </Button>
                     <Button parentKey="RaidDiff10Button" inherits="ICHDifficultyButtonTemplate" hidden="true">
@@ -167,11 +179,18 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     <Anchor point="BOTTOMLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="BOTTOMRIGHT"></Anchor>
                     <Anchor point="RIGHT" relativePoint="RIGHT"/>
                 </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="ICHPetCount" inherits="GameTooltipText" justifyH="RIGHT" text="" wordwrap="false">
+                            <Anchors><Anchor point="RIGHT" x="-50"/></Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
                 <Frames>
                     <Frame parentKey="ICHNote" enableMouse="true">
                         <Size x="17.5" y="17.5"/>
                         <KeyValues><KeyValue key="notes" value="" type="string"/></KeyValues>
-                        <Anchors><Anchor point="LEFT" relativePoint="LEFT"/></Anchors>
+                        <Anchors><Anchor point="RIGHT" x="-25" /></Anchors>
                         <Layers>
                             <Layer level="OVERLAY">
                                 <Texture parentKey="NotesIcon" file="Interface/AddOns/InstanceCollectionHelper/Media/NotesIcon.png">
@@ -195,7 +214,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     <Button parentKey="ICHWaypointButton" inherits="InsecureActionButtonTemplate" hidden="true">
                         <Size x="24" y="24"/>
                         <KeyValues><KeyValue key="instanceID" value="" type="number"/></KeyValues>
-                        <Anchors><Anchor point="LEFT" x="25"/></Anchors>
+                        <Anchors><Anchor point="RIGHT"/></Anchors>
                         <NormalTexture file="Interface/Minimap/Minimap-Waypoint-MapPin-Untracked"/>
                         <HighlightTexture file="Interface/Minimap/Minimap-Waypoint-MapPin-Tracked"/>
                         <Scripts>
@@ -203,10 +222,12 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                                 local instanceName = EJ_GetInstanceInfo(self.instanceID)
                                 GameTooltip:SetOwner(self, "ANCHOR_TOP")
                                 GameTooltip:SetText(instanceName)
-                                if C_AddOns.IsAddOnLoaded("TomTom") and ICH.db.global.useTomTomPoints then
-                                    GameTooltip:AddLine(ICH_LANG["Set TomTom waypoint"], 1, 1, 1)
-                                else
+                                -- Apparently you can't use the less than symbol for comparisons within XML files
+                                -- TomTom icon should have a negative fileID, so this can help determine the tooltip text
+                                if self:GetNormalTexture():GetTextureFileID() > 0 then
                                     GameTooltip:AddLine(ICH_LANG["Set map pin"], 1, 1, 1)
+                                else
+                                    GameTooltip:AddLine(ICH_LANG["Set TomTom waypoint"], 1, 1, 1)
                                 end
                                 GameTooltip:Show()
                             </OnEnter>

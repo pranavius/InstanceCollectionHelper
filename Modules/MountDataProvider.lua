@@ -3,13 +3,13 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----@class NameContainer: Frame Displays elements relevant to a collectible's name<br/>
+---@class NameContainer: Frame Displays elements relevant to a collectible's name<br>
 ---For frame definition and more layout information, see `Templates.xml`
 ---@field name string The full name of the collectible
 ---@field Text FontString Name of a collectible (can be truncated if length exceeds allocated space)
 ---@field ViewButton Button Button to view the collectible in the appropriate collection journal in-game
 
----@class InstanceContainer: Frame Displays elements relevant to the instance where a collectible can be obtained<br/>
+---@class InstanceContainer: Frame Displays elements relevant to the instance where a collectible can be obtained<br>
 ---For frame definition and more layout information, see `Templates.xml`
 ---@field encounterID? number ID number for the encounter that provides the collectible
 ---@field Text FontString Name of an instance
@@ -18,10 +18,12 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@class DifficultyButton: Button Sets instance difficulty to the associated value
 ---@field difficultyID number ID number for instance, scenario, and raid difficulty (see https://wago.tools/db2/Difficulty)
 
----@class DifficultyContainer: Frame Displays elements relevant to the instance difficulty for a collectible<br/>
+---@class DifficultyContainer: Frame Displays elements relevant to the instance difficulty for a collectible<br>
 ---For frame definition and more layout information, see `Templates.xml`
 ---@field sharedDifficulties? table<RaidDifficulty, RaidDifficulty> Difficulties that share a lockout with a difficulty displayed using the appropriate button
 ---@field RaidDiffLFRButton DifficultyButton Button for tracking LFR lockout (no action taken when clicked)
+---@field RaidDiffLegacyLFRButton DifficultyButton Button for tracking legacy LFR lockout (no action taken when clicked)
+---@field RaidDiff40Button DifficultyButton Button for setting Legacy Raid difficulty to 40 player
 ---@field RaidDiff10Button DifficultyButton Button for setting Legacy Raid difficulty to 10 player
 ---@field RaidDiff10HeroicButton DifficultyButton Button for setting Legacy Raid difficulty to 10 player (Heroic)
 ---@field RaidDiff25Button DifficultyButton Button for setting Legacy Raid difficulty to 25 player
@@ -37,14 +39,15 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field notes string? The note(s) to display when hovering over the texture in `ICHNote`
 
 ---@class ICHWaypointButton: Button Creates a map pin or TomTom waypoint to the corresponding instance entrance based on user's preferences
----@field instanceID number ID number for instance
+---@field InstanceID number ID number for the instance where the collectible can be obtained
 
 ---@class OtherInfoContainer: Frame Displays other elements associated with a collectible
+---@field ICHPetCount FontString
 ---@field ICHNote ICHNote
 ---@field ICHWaypointButton ICHWaypointButton
 
 ---@class ICHListItem: Frame List item that displays relevant information for a given collectible
----@field isToy boolean Whether or not the list item is for a toy
+---@field isMount boolean Whether or not the list item is for a mount
 ---@field relevantID number The ID number for the collectible. For mounts, this value is `mountID` and for toys it is `itemID`
 ---@field Bg Texture The background texture for unowned list items
 ---@field OwnedBg Texture The background texture for owned list items
@@ -65,12 +68,14 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 function AddOn.MountDataProviderInit(frame, data)
     if not frame or not data then return end
     -- Resetting these values to avoid conflicts or incorrect tooltip displays
-    frame.isToy = false
-    frame.relevantID = data.MountID
+    frame.isMount = true
+    frame.relevantID = data.ID
+    -- Hide the pet count frame for non-pets
+    frame.OtherInfoContainer.ICHPetCount:Hide()
 
     local index = AddOn.ICHDataProvider:FindIndex(data)
 
-    local localizedMountName, mountSpellID, _, _, _, _, _, _, _, _, isOwned = C_MountJournal.GetMountInfoByID(data.MountID)
+    local localizedMountName, mountSpellID, _, _, _, _, _, _, _, _, isOwned = C_MountJournal.GetMountInfoByID(data.ID)
     local localizedInstanceName = EJ_GetInstanceInfo(data.InstanceID)
     if isOwned then
         frame.Bg:Hide()
@@ -107,9 +112,9 @@ function AddOn.MountDataProviderInit(frame, data)
 
     frame.NameContainer.ViewButton:SetScript("OnClick", function()
         -- Currently only supports Mounts, but additional conditions could be added for showing things like Battle Pets and Achievements
-        if data.MountID then
+        if data.ID then
             SetCollectionsJournalShown(true, 1)
-            MountJournal_SetSelected(data.MountID, mountSpellID)
+            MountJournal_SetSelected(data.ID, mountSpellID)
         end
     end)
 
