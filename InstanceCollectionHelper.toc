@@ -16,7 +16,6 @@ Templates\ListHeadersTemplate.xml
 Templates\GenericButtonTemplate.xml
 Templates\DifficultyButtonTemplate.xml
 Templates\ListItemTemplate.xml
-Elements.xml
 
 Localization\enUS.lua
 Localization\esMX.lua

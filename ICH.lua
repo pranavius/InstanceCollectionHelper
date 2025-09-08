@@ -8,13 +8,13 @@ ICH = {}
 ---Handles slash commands in a way that overrides the default behavior of Ace3 slash commands. Executing the command with no arguments
 ---opens the AddOn options window, providing the `help` argument displays a list of available arguments and uses for the slash command,
 ---and all other arguments are handled using Ace3's default behavior.
----@param cmd string The slash command used (should be exactly `/ich`)
+---@param cmd string The slash command used (should be exactly `ich`)
 ---@param input string The argument provided to the slash command
 function AddOn.HandleSlashCommand(cmd, input)
     input = strtrim(input)
     local AceConfigCmd = LibStub("AceConfigCmd-3.0")
     if input == "" then
-        if AddOn.Container then AddOn.Container:Show() end
+        if AddOn.Container and not AddOn.Container:IsShown() then AddOn.Container:Show() elseif AddOn.Container then AddOn.Container:Hide() end
     elseif input == "help" then AceConfigCmd:HandleCommand(cmd, name, "")
     else AceConfigCmd:HandleCommand(cmd, name, input)
     end

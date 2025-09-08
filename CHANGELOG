@@ -5,8 +5,13 @@ Release versions suffixed with a lowercase letter are considered unofficial _alp
 
 ## Changes
 **v10**
-- Expanded search capabilities to include expansion, instance zone, and continents
+- **Major update**: Added a list of pets that are available from dungeons and raids as of Patch 11.2 (*Ghosts of K'aresh*)
+- **Major update**: Expanded search capabilities to include expansion, instance zone, and continents for select instances
+- Added **Stonevault Mechsuit** to list of available mounts from instances
+- Added lockout tracking for 40 player raids and pre-Seige of Orgrimmar LFR raids
 - Refactored search code to reduce redundancy
+- Updated text displayed for `enUS`, `esMX`, `ptBR`, and `deDE` locales
+- Updated `/ich` command to toggle the AddOn window instead of just showing it
 - Updated code documentation
 
 **v9**
@@ -22,7 +27,7 @@ Release versions suffixed with a lowercase letter are considered unofficial _alp
 
 **v7**
 - **Major update:** Added tabs at the bottom of the window to switch between viewing mounts and toys available from instances
-- **Major update:** Added a list of toys that are available from dungeons and raids as of Patch 11.2 (Ghosts of K'aresh)
+- **Major update:** Added a list of toys that are available from dungeons and raids as of Patch 11.2 (*Ghosts of K'aresh*)
 - Updated all tooltips to match the one shown in-game for the given collectible
 - Refactored code and made minor updates to the UI so that both mounts and toys can be accomodated
 - Updated localization strings for supported locales (_still looking for translators!_)

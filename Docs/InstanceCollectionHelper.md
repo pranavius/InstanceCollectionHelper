@@ -1059,15 +1059,6 @@ number
 
 ID number for the instance where the pet can be obtained
 
-## ItemID
-
-
-```lua
-number
-```
-
-ID number for item that adds the pet to the collection
-
 ## MapID
 
 
@@ -1094,6 +1085,15 @@ string?
 ```
 
 Additional notes about the pet or instance
+
+## PetItemID
+
+
+```lua
+number
+```
+
+ID number for item that adds the pet to the collection
 
 ## SearchTags
 

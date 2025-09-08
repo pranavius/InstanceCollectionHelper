@@ -85,15 +85,16 @@ AddOn.SlashOptions = {
         lraid = {
             type = "input",
             name = "lraid",
-            desc = L["Set legacy raid difficulty."].."\n        "..L["Accepted values:"].." 10, 25, 10h, 25h",
+            desc = L["Set legacy raid difficulty."].."\n        "..L["Accepted values:"].." 10, 25, 10h, 25h, 40",
             order = counter(),
             set = function(_, difficulty)
                 if tostring(difficulty):lower() == "10" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Legacy10)
                 elseif tostring(difficulty):lower() == "25" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Legacy25)
                 elseif tostring(difficulty):lower() == "10h" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Legacy10H)
                 elseif tostring(difficulty):lower() == "25h" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Legacy25H)
+                elseif tostring(difficulty):lower() == "40" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Legacy40)
                 else
-                    AddOn:PrintChatMessage(WrapTextInColor(L["Invalid legacy raid difficulty provided."].."\n"..L["Accepted values:"], ERROR_COLOR), WrapTextInColor("10, 25, 10h, 25h", WHITE_FONT_COLOR))
+                    AddOn:PrintChatMessage(WrapTextInColor(L["Invalid legacy raid difficulty provided."].."\n"..L["Accepted values:"], ERROR_COLOR), WrapTextInColor("10, 25, 10h, 25h, 40", WHITE_FONT_COLOR))
                 end
             end
         },
