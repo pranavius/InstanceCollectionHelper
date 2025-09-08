@@ -30,5 +30,6 @@ end
 ---@param tabID number ID number for the new active tab
 function AddOn:HandleTabSelected(tabID)
     self.db.global.selectedTab = tabID
+    self:PrintDebugMessage("Selected tab:", self.Tabs:GetTabButton(tabID).tabText)
     self:UpdateListContents()
 end

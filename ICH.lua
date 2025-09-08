@@ -58,6 +58,7 @@ function AddOn:OnInitialize()
     -- Override default slash command behavior so /ich opens the addon
     self:RegisterChatCommand("ich", function(input) self.HandleSlashCommand("ich", input) end)
     
+    self:PrintDebugMessage("TomTom is", C_AddOns.IsAddOnLoaded("TomTom") and "enabled" or "disabled")
     self:CreateMainFrame()
     self.Container:HookScript("OnShow", function() self:UpdateListContents() end)
     self:RegisterEvent("ZONE_CHANGED", "UpdateListContents")
@@ -180,7 +181,6 @@ function AddOn:CreateScrollingView()
 
     end)
     self.ScrollView:SetElementExtent(self.ScrollView:GetTemplateExtent("ICHListItemTemplate"))
-    -- self.ScrollView:SetElementInitializer("ICHListItemTemplate", self.MountDataProviderInit)
 end
 
 ---Initializes the footer in the AddOn that contains some display options for the window
@@ -216,16 +216,19 @@ function AddOn:CreateFooter()
     scale.Slider:HookScript("OnMouseUp", function(slider)
         self.db.global.windowScale = slider:GetValue()
         self.Container:SetScale(slider:GetValue())
+        self:PrintDebugMessage("AddOn scale:", self.db.global.windowScale)
     end)
     scale.Back:HookScript("OnClick", function()
         local val = scale.Slider:GetValue()
         self.db.global.windowScale = val
         self.Container:SetScale(val)
+        self:PrintDebugMessage("AddOn scale:", self.db.global.windowScale)
     end)
     scale.Forward:HookScript("OnClick", function()
         local val = scale.Slider:GetValue()
         self.db.global.windowScale = val
         self.Container:SetScale(val)
+        self:PrintDebugMessage("AddOn scale:", self.db.global.windowScale)
     end)
 
     foot.ScaleContainer.WindowScale = scale
