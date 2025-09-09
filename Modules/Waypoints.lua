@@ -91,7 +91,7 @@ local function HandleWaypointClick(data, localizedInstanceName)
     if ShouldUseTomTom(data) then
         isPinSet = SetTomTomWaypoint(data, localizedInstanceName)
         AddOn:PrintChatMessage(isPinSet and L["TomTom waypoint set for"] or L["Unable to set TomTom waypoint for"], WrapTextInColor(localizedInstanceName, DARKYELLOW_FONT_COLOR))
-    elseif data.AreaPoiID then
+    elseif data.AreaPoiID or data.InstanceID == 1176 then
         isPinSet = SetBlizzardMapPin(data)
         AddOn:PrintChatMessage(isPinSet and L["Map pin set for"] or L["Unable to set map pin for"], WrapTextInColor(localizedInstanceName, DARKYELLOW_FONT_COLOR))
     end
@@ -117,7 +117,7 @@ function AddOn:ConfigureWaypointButton(localizedInstanceName, frame, data)
             frame.OtherInfoContainer.ICHWaypointButton:SetSize(15, 15)
             frame.OtherInfoContainer.ICHWaypointButton:SetPoint("RIGHT", -2, 0)
             isPinSettable = true
-        elseif data.AreaPoiID then
+        elseif data.AreaPoiID or data.InstanceID == 1176 then
             frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Untracked")
             frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Tracked")
             frame.OtherInfoContainer.ICHWaypointButton:SetSize(24, 24)
