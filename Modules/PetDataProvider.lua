@@ -52,8 +52,8 @@ local function ColorOwnedCountText(petData)
     local text = petData.owned.."/"..petData.limit
     local percOwned = petData.owned / petData.limit
     if percOwned == 0 then return ""
-    elseif percOwned <= 0.5 then return WrapTextInColor(text, RED_FONT_COLOR)
-    elseif percOwned > 0.5 and percOwned < 1 then return WrapTextInColor(text, DARKYELLOW_FONT_COLOR)
+    elseif percOwned <= 0.5 then return RED_FONT_COLOR:WrapTextInColorCode(text)
+    elseif percOwned > 0.5 and percOwned < 1 then return DARKYELLOW_FONT_COLOR:WrapTextInColorCode(text)
     else return text
     end
 end

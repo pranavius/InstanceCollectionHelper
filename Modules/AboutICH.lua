@@ -33,27 +33,27 @@ function AddOn:CreateAboutFrame()
     a.Name = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightMedium")
     a.Name:SetPoint("TOPLEFT", a, "TOPLEFT", 0, -10)
     a.Name:SetPoint("TOPRIGHT", a, "TOPRIGHT", 0, -10)
-    a.Name:SetText(WrapTextInColor(name, DARKYELLOW_FONT_COLOR))
+    a.Name:SetText(DARKYELLOW_FONT_COLOR:WrapTextInColorCode(name))
 
     a.Author = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     a.Author:SetPoint("TOPLEFT", a.Name, "BOTTOMLEFT", 0, -10)
     a.Author:SetPoint("TOPRIGHT", a.Name, "BOTTOMRIGHT", 0, -10)
-    a.Author:SetText(WrapTextInColor(L["Created by Pranavius"], HEIRLOOM_BLUE_COLOR))
+    a.Author:SetText(HEIRLOOM_BLUE_COLOR:WrapTextInColorCode(L["Created by Pranavius"]))
 
     a.Twitter = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightMedium")
     a.Twitter:SetPoint("TOPLEFT", a.Author, "BOTTOMLEFT", 0, -20)
     a.Twitter:SetPoint("TOPRIGHT", a.Author, "BOTTOMRIGHT", 0, -20)
-    a.Twitter:SetText("|TInterface\\AddOns\\InstanceCollectionHelper\\Media\\X-logo:20:20|t   "..WrapTextInColor("@PranaviusWoW", LEGENDARY_ORANGE_COLOR))
+    a.Twitter:SetText("|TInterface\\AddOns\\InstanceCollectionHelper\\Media\\X-logo:20:20|t   "..LEGENDARY_ORANGE_COLOR:WrapTextInColorCode("@PranaviusWoW"))
     
     a.GitHub = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightMedium")
     a.GitHub:SetPoint("TOPLEFT", a.Twitter, "BOTTOMLEFT", 0, 0)
     a.GitHub:SetPoint("TOPRIGHT", a.Twitter, "BOTTOMRIGHT", 0, 0)
-    a.GitHub:SetText("|TInterface\\AddOns\\InstanceCollectionHelper\\Media\\Github-logo:20:20|t   "..WrapTextInColor("Pranavius", LEGENDARY_ORANGE_COLOR))
+    a.GitHub:SetText("|TInterface\\AddOns\\InstanceCollectionHelper\\Media\\Github-logo:20:20|t   "..LEGENDARY_ORANGE_COLOR:WrapTextInColorCode("Pranavius"))
 
     a.Translators = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightHuge")
     a.Translators:SetPoint("TOPLEFT", a.Twitter, "BOTTOMLEFT", 0, -40)
     a.Translators:SetPoint("TOPRIGHT", a.Twitter, "BOTTOMRIGHT", 0, -40)
-    a.Translators:SetText(WrapTextInColor(L["Translations:"], DARKYELLOW_FONT_COLOR))
+    a.Translators:SetText(DARKYELLOW_FONT_COLOR:WrapTextInColorCode(L["Translations:"]))
 
     for idx, translator in ipairs(translators) do
         local parentKey = "Translator"..tostring(idx)

@@ -7,13 +7,13 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@param ... any Arguments to be printed to the chat window
 ---@see print
 function AddOn:PrintChatMessage(...)
-    print(WrapTextInColor("InstanceCollectionHelper:", HEIRLOOM_BLUE_COLOR), ...)
+    print(HEIRLOOM_BLUE_COLOR:WrapTextInColorCode("InstanceCollectionHelper:"), ...)
 end
 
 ---Prints a debugging message to the chat window prefixed by the AddOn name
 ---@param ... any Arguments to be printed as part of the debug message
 function AddOn:PrintDebugMessage(...)
-    if self.db.global.debugMessages then self:PrintChatMessage(WrapTextInColor("[Debug]", LEGENDARY_ORANGE_COLOR), ...) end
+    if self.db.global.debugMessages then self:PrintChatMessage(LEGENDARY_ORANGE_COLOR:WrapTextInColorCode("[Debug]"), ...) end
 end
 
 ---Returns the difficulty text that corresponds to the given `difficultyID`
@@ -49,7 +49,7 @@ function AddOn:SetInstanceDifficulty(difficultyID)
     for _, id in pairs(self.DungeonDifficulty) do
         if difficultyID == id then
             if GetDungeonDifficultyID() == difficultyID then
-                self:PrintChatMessage(L["Dungeon Difficulty is already set to"], WrapTextInColor(self:GetInstanceDifficultyText(difficultyID), DARKYELLOW_FONT_COLOR))
+                self:PrintChatMessage(L["Dungeon Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
             else
                 SetDungeonDifficultyID(difficultyID)
             end
@@ -60,13 +60,13 @@ function AddOn:SetInstanceDifficulty(difficultyID)
     -- Raid difficulty ID less than 10 indicates legacy raid
     if difficultyID < 10 then
         if GetLegacyRaidDifficultyID() == difficultyID then
-            self:PrintChatMessage(L["Legacy Raid Difficulty is already set to"], WrapTextInColor(self:GetInstanceDifficultyText(difficultyID), DARKYELLOW_FONT_COLOR))
+            self:PrintChatMessage(L["Legacy Raid Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
         else
             SetLegacyRaidDifficultyID(difficultyID)
         end
     else
         if GetRaidDifficultyID() == difficultyID then
-            self:PrintChatMessage(L["Raid Difficulty is already set to"], WrapTextInColor(self:GetInstanceDifficultyText(difficultyID), DARKYELLOW_FONT_COLOR))
+            self:PrintChatMessage(L["Raid Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
         else
             SetRaidDifficultyID(difficultyID)
         end

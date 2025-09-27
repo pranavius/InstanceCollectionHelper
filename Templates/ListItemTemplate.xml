@@ -114,7 +114,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <KeyValues><KeyValue key="difficultyID" value="17" type="number"/></KeyValues>
                         <Scripts>
                             <OnClick>
-                                ICH:PrintChatMessage(WrapTextInColor(ICH_LANG["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."], DARKYELLOW_FONT_COLOR))
+                                ICH:PrintChatMessage(DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_LANG["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."]))
                             </OnClick>
                         </Scripts>
                     </Button>
@@ -134,7 +134,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <KeyValues><KeyValue key="difficultyID" value="7" type="number"/></KeyValues>
                         <Scripts>
                             <OnClick>
-                                ICH:PrintChatMessage(WrapTextInColor(ICH_LANG["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."], DARKYELLOW_FONT_COLOR))
+                                ICH:PrintChatMessage(DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_LANG["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."]))
                             </OnClick>
                         </Scripts>
                     </Button>

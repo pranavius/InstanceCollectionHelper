@@ -90,10 +90,10 @@ local function HandleWaypointClick(data, localizedInstanceName)
     local isPinSet = false
     if ShouldUseTomTom(data) then
         isPinSet = SetTomTomWaypoint(data, localizedInstanceName)
-        AddOn:PrintChatMessage(isPinSet and L["TomTom waypoint set for"] or L["Unable to set TomTom waypoint for"], WrapTextInColor(localizedInstanceName, DARKYELLOW_FONT_COLOR))
+        AddOn:PrintChatMessage(isPinSet and L["TomTom waypoint set for"] or L["Unable to set TomTom waypoint for"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(localizedInstanceName))
     elseif data.AreaPoiID or data.InstanceID == 1176 then
         isPinSet = SetBlizzardMapPin(data)
-        AddOn:PrintChatMessage(isPinSet and L["Map pin set for"] or L["Unable to set map pin for"], WrapTextInColor(localizedInstanceName, DARKYELLOW_FONT_COLOR))
+        AddOn:PrintChatMessage(isPinSet and L["Map pin set for"] or L["Unable to set map pin for"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(localizedInstanceName))
     end
 end
 
