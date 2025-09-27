@@ -10,6 +10,7 @@ function AddOn:CreateTabSystem()
     self:CreateTab("Toys")
     self:CreateTab("Pets")
     self:CreateTab("Timewalking Vendor")
+    self.Tabs:GetTabButton(self.Tabs.TimewalkingVendorTab):SetWidth(120)
     self.Tabs:SetTabSelectedCallback(function(tabID) self:HandleTabSelected(tabID) end)
     self.Tabs:SetPoint("TOPLEFT", self.Footer, "BOTTOMLEFT", 0, 0)
     self.Tabs:SetPoint("TOPRIGHT", self.Footer, "BOTTOMRIGHT", 0, 0)
@@ -20,11 +21,9 @@ end
 ---@param enabled boolean? Whether the tab should be enabled or not (tabs are enabled by default if no value is provided)
 function AddOn:CreateTab(tabName, enabled)
     local parentKey = tabName:gsub(" ", "") .. "Tab"
-     self.Tabs[parentKey] = self.Tabs:AddTab(L[tabName])
-
-     if enabled ~= nil then
-        self.Tabs:SetTabEnabled(self.Tabs[parentKey], enabled)
-     end
+    self.Tabs[parentKey] = self.Tabs:AddTab(L[tabName])
+    if enabled ~= nil then self.Tabs:SetTabEnabled(self.Tabs[parentKey], enabled) end
+    self:PrintDebugMessage(parentKey, "Created")
 end
 
 ---Callback method that is fired when the active tab is changed
@@ -32,5 +31,10 @@ end
 function AddOn:HandleTabSelected(tabID)
     self.db.global.selectedTab = tabID
     self:PrintDebugMessage("Selected tab:", self.Tabs:GetTabButton(tabID).tabText)
+    if tabID == self.Tabs.TimewalkingVendorTab then
+        self.Container.TimewalkingListHeaders:SetAlpha(1)
+    else
+        self.Container.ListHeaders:SetAlpha(1)
+    end
     self:UpdateListContents()
 end

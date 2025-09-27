@@ -30,6 +30,7 @@ Utils.lua
 Data\Mounts.lua
 Data\Toys.lua
 Data\Pets.lua
+Data\Timewalking.lua
 Modules\AboutICH.lua
 Modules\CategoryTabs.lua
 Modules\Waypoints.lua
@@ -37,4 +38,5 @@ Modules\DifficultyButtons.lua
 Modules\MountDataProvider.lua
 Modules\ToyDataProvider.lua
 Modules\PetDataProvider.lua
+Modules\TimewalkingDataProvider.lua
 ICH.lua

@@ -34,9 +34,10 @@ function AddOn:OnInitialize()
 
     -- Load database
 	self.db = LibStub("AceDB-3.0"):New("ICH_DB", AddOn.DatabaseDefaults, true)
-    -- Create local caches for Toys and Pets
+    -- Create local caches for Toys, Pets, and Timewalking Items
     self:CreateToyCache()
     self:CreatePetCache()
+    self:CreateTimewalkingCache()
 
     -- Data broker registration for minimap icon
     local broker = LDB:NewDataObject(name, {
@@ -159,6 +160,17 @@ function AddOn:CreateScrollingView()
     self.Container.ListHeaders:SetPoint("TOPLEFT", self.Container.Title, "BOTTOMLEFT", 10, -45)
     self.Container.ListHeaders:SetPoint("TOPRIGHT", self.Container.Title, "BOTTOMRIGHT", -10, -45)
 
+    self.Container.TimewalkingListHeaders = CreateFrame("Frame", "ICHListHeaders", self.Container, "ICHTimewalkingListHeadersTemplate")
+    self.Container.TimewalkingListHeaders:SetAllPoints(self.Container.ListHeaders)
+
+    -- Autohide one header when the other is made visible
+    hooksecurefunc(self.Container.ListHeaders, "SetAlpha", function(_, value)
+        if value > 0 then self.Container.TimewalkingListHeaders:SetAlpha(0) end
+    end)
+    hooksecurefunc(self.Container.TimewalkingListHeaders, "SetAlpha", function(_, value)
+        if value > 0 then self.Container.ListHeaders:SetAlpha(0) end
+    end)
+
     self.ScrollBox = CreateFrame("Frame", "ICHScrollBox", self.Container, "WowScrollBoxList")
     self.ScrollBox:SetPoint("TOPLEFT", self.Container.ListHeaders, "BOTTOMLEFT", 0, -5)
     self.ScrollBox:SetPoint("BOTTOMRIGHT", self.Container, "BOTTOMRIGHT", -30, 20)
@@ -175,9 +187,9 @@ function AddOn:CreateScrollingView()
     ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView)
     self.ScrollView:SetElementFactory(function(factory, elementData)
         if elementData.ID then factory("ICHListItemTemplate", self.MountDataProviderInit)
+        elseif elementData.Expansion then factory("ICHTimewalkingListItemTemplate", self.TimewalkingDataProviderInit)
         elseif elementData.ItemID then factory("ICHListItemTemplate", self.ToyDataProviderInit)
         elseif elementData.PetItemID then factory("ICHListItemTemplate", self.PetDataProviderInit)
-        elseif elementData.VendorNPCID then factory("ICHTimewalkingListItemTemplate", self.TimewalkingDataProviderInit)
         end
 
     end)
@@ -292,8 +304,8 @@ function AddOn:CreateFooter()
 end
 
 ---Filters a list of data based on search parameters
----@param listData (Mount|Toy|Pet)[]
----@return (Mount|Toy|Pet)[]
+---@param listData (Mount|Toy|Pet|TimewalkingItem)[]
+---@return (Mount|Toy|Pet|TimewalkingItem)[]
 function AddOn:FilterListContentsByQuery(listData)
     local filtered = {}
     local query = self.Container.SearchBox:GetText():lower()
@@ -313,8 +325,7 @@ function AddOn:FilterListContentsByQuery(listData)
         elseif selectedTab == self.Tabs.PetsTab then
             itemName = C_PetJournal.GetPetInfoByItemID(data.PetItemID) or ""
         elseif selectedTab == self.Tabs.TimewalkingVendorTab then
-            -- Condition to check whether the item is a mount, pet, or toy
-            -- Utilize C_MountJournal.GetMountFromItem(itemID) for mounts?
+            itemName = self.TimewalkingCache[data.ItemID].itemName or ""
 
         end
         local cleanName = itemName:lower():gsub("|.+|.*", "")
@@ -323,7 +334,7 @@ function AddOn:FilterListContentsByQuery(listData)
         encounterMatches = encounterName:lower():match(query) and true or false
         instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(data) or (query == L["dungeon"] and not self:IsInstanceRaid(data))
         difficultyMatches = false
-        for _, diffID in ipairs(data.DifficultyIDs) do
+        for _, diffID in ipairs(data.DifficultyIDs or {}) do
             if self:GetDifficultyButtonText(diffID):lower() == query or self:GetInstanceDifficultyText(diffID):lower() == query then
                 difficultyMatches = true
                 break
@@ -383,14 +394,14 @@ function AddOn:UpdateListContents()
         for _, item in ipairs(self.TimewalkingItems) do
             local itemData = self.TimewalkingCache[item.ItemID]
             if item.Type == "Mount" then
-                local mountID = C_MountJournal.GetMountFromItem(item.ItemID)
-                local hideOnChar = select(10, C_MountJournal.GetMountInfoByID(mountID))
+                local hideOnChar = select(10, C_MountJournal.GetMountInfoByID(itemData.mountID))
                 if not hideOnChar and (not itemData.owned or (itemData.owned and self.db.global.showOwned)) then tinsert(newData, item) end
             elseif item.Type == "Pet" then
                 local isOwned = itemData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and itemData.owned == itemData.limit or true)
                 if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, item) end
+            else
+                if not itemData.owned or (itemData.owned and self.db.global.showOwned) then tinsert(newData, item) end
             end
-            if not itemData.owned or (itemData.owned and self.db.global.showOwned) then tinsert(newData, item) end
         end
         -- Update search box instructions somehow
     end
@@ -402,9 +413,6 @@ function AddOn:UpdateListContents()
 
     self.ICHDataProvider = CreateDataProvider(newData)
     self.ScrollView:SetDataProvider(self.ICHDataProvider)
-    -- if #newData ~= self.ICHDataProvider:GetSize() and event == "ZONE_CHANGED" then
-        -- self:PrintChatMessage(L["Updated available mount list"])
-    -- end
 end
 
 -- Exposes AddOn functionality for use in XML Templates

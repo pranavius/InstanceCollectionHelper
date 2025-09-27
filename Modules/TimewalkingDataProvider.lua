@@ -28,9 +28,10 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---@class TimewalkingCacheData
 ---@field itemName string Localized name for the item that adds the collectible to the collection
----@field itemID integer ID for the item that adds the collectible to the collection
+---@field itemID integer ID number for the item that adds the collectible to the collection
 ---@field collectibleName string Localized collectible name
 ---@field iconID integer ID for the icon associated with the collectible
+---@field mountID? integer ID number for the mount (applies to mounts only)
 ---@field speciesID? integer ID for the pet species (applies to pets only)
 ---@field owned integer|boolean If the collectible is a pet, this is the number of the pet currently owned. For other collectibles, this is `true` if owned and `false` otherwise
 ---@field limit? integer Maximum number of the pet that can be owned (applies to pets only)
@@ -53,6 +54,7 @@ function AddOn:CreateTimewalkingCache()
                     itemID = item.ItemID,
                     collectibleName = name or item.Name,
                     iconID = iconID or 134400,
+                    mountID = mountID,
                     owned = isOwned
                 }
             elseif item.Type == "Toy" then
@@ -111,9 +113,10 @@ end
 function AddOn.TimewalkingDataProviderInit(frame, item)
     if not frame or not item then return end
     frame.isMount = item.Type == "Mount" or false
-
+    
     local index = AddOn.ICHDataProvider:FindIndex(item)
     local data = AddOn.TimewalkingCache[item.ItemID]
+    frame.relevantID = item.Type == "Mount" and data.mountID or data.itemID
 
     local isOwned = data.owned
     if item.Type == "Pet" then
@@ -131,9 +134,17 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     frame.NameContainer.name = data.collectibleName
     frame.NameContainer.ViewButton:ClearNormalTexture()
     frame.NameContainer.ViewButton:ClearHighlightTexture()
-    frame.NameContainer.ViewButton:SetNormalTexture(data.iconID)
+    frame.NameContainer.ViewButton:SetNormalTexture(data.iconID or 134400)
+    frame.NameContainer.ViewButton:SetHighlightTexture(data.iconID or 134400)
 
     AddOn:SetTruncatedText(frame.ExpansionContainer.Text, item.Expansion)
+
+    frame.CostContainer.CurrencyButton:ClearNormalTexture()
+    frame.CostContainer.CurrencyButton:ClearHighlightTexture()
+    frame.CostContainer.CurrencyButton:SetNormalAtlas("timewalkingvendor-32x32")
+    frame.CostContainer.CurrencyButton:SetHighlightAtlas("timewalkingvendor-32x32")
+
+    frame.CostContainer.Text:SetText("x"..item.Cost)
 
     if item.Type == "Pet" then
         frame.OtherInfoContainer.ICHPetCount:SetText(ColorOwnedPetCountText(data))
@@ -150,6 +161,18 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     end
 
     AddOn:ConfigureWaypointButton(item.VendorName, frame, item)
+
+    if item.Type == "Mount" then
+        frame.NameContainer.ViewButton:SetScript("OnClick", function()
+            local spellID = select(2, C_MountJournal.GetMountInfoByID(data.mountID))
+            if data.mountID then
+                SetCollectionsJournalShown(true, 1)
+                MountJournal_SetSelected(data.mountID, spellID)
+            end
+        end)
+    else
+        frame.NameContainer.ViewButton:SetScript("OnClick", function() end)
+    end
 
     frame.CostContainer.CurrencyButton:SetScript("OnClick", function()
         AddOn:PrintDebugMessage("Clicking to begin currency transfer")

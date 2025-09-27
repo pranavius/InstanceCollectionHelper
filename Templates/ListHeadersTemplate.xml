@@ -48,11 +48,11 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     <Size x="180"/>
                     <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="29"/></Anchors>
                 </FontString>
-                <FontString parentKey="ExpansionHeader" inherits="GameTooltipText" justifyH="LEFT" text="">
+                <FontString parentKey="ExpansionHeader" inherits="GameTooltipText" justifyH="LEFT" text="ICH_EXPANSION_COL_TITLE">
                     <Size x="225"/>
                     <Anchors><Anchor point="LEFT" relativeKey="$parent.NameHeader" relativePoint="RIGHT" x="25"/></Anchors>
                 </FontString>
-                <FontString parentKey="CostHeader" inherits="GameTooltipText" justifyH="LEFT" text="">
+                <FontString parentKey="CostHeader" inherits="GameTooltipText" justifyH="LEFT" text="ICH_COST_COL_TITLE">
                     <Size x="200"/>
                     <Anchors><Anchor point="LEFT" relativeKey="$parent.ExpansionHeader" relativePoint="RIGHT"/></Anchors>
                 </FontString>

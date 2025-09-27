@@ -111,7 +111,6 @@ function AddOn.MountDataProviderInit(frame, data)
     AddOn:ConfigureWaypointButton(localizedInstanceName, frame, data)
 
     frame.NameContainer.ViewButton:SetScript("OnClick", function()
-        -- Currently only supports Mounts, but additional conditions could be added for showing things like Battle Pets and Achievements
         if data.ID then
             SetCollectionsJournalShown(true, 1)
             MountJournal_SetSelected(data.ID, mountSpellID)
