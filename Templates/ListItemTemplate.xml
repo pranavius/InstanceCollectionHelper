@@ -238,4 +238,179 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             </Frame>
         </Frames>
     </Frame>
+
+    <Frame name="ICHTimewalkingListItemTemplate" virtual="true" enableMouse="true">
+        <Size y="25"/>
+        <KeyValues>
+            <KeyValue key="isMount" value="false" type="boolean"/>
+            <KeyValue key="relevantID" value="0" type="number"/>
+        </KeyValues>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Bg" hidden="true">
+                    <Color r="1" g="1" b="1" a="0.1"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+                <Texture parentKey="OwnedBg" hidden="true">
+                    <Color r="0.082" g="0.702" b="0" a="0.5"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Frame parentKey="NameContainer">
+                <Size x="209"/>
+                <KeyValues><KeyValue key="name" value="" type="string"/></KeyValues>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                    <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Frames>
+                    <Button name="ICHViewItemButton" parentKey="ViewButton" inherits="InsecureActionButtonTemplate">
+                        <Size x="24" y="24"/>
+                        <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="0" y="-1" /></Anchors>
+                        <Scripts>
+                            <OnEnter>
+                                local id = self:GetParent():GetParent().relevantID
+                                GameTooltip:SetOwner(self, "ANCHOR_TOP")
+                                if self:GetParent():GetParent().isMount then
+                                    local spellID = select(2, C_MountJournal.GetMountInfoByID(id))
+                                    GameTooltip:SetHyperlink(C_MountJournal.GetMountLink(spellID))
+                                else
+                                    GameTooltip:SetHyperlink("item:"..id)
+                                end
+                                GameTooltip:Show()
+                            </OnEnter>
+                            <OnLeave>GameTooltip:Hide()</OnLeave>
+                        </Scripts>
+                    </Button>
+                </Frames>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="" wordwrap="false">
+                            <Anchors>
+                                <Anchor point="LEFT" relativeKey="$parent.ViewButton" relativePoint="RIGHT" x="5"/>
+                                <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <Frame parentKey="ExpansionContainer">
+                <Size x="250"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.NameContainer" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.NameContainer" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="" wordwrap="false">
+                            <Anchors>
+                                <Anchor point="LEFT" relativePoint="LEFT"/>
+                                <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <Frame parentKey="CostContainer">
+                <Size x="200"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.ExpansionContainer" relativePoint="TOPRIGHT"></Anchor>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.ExpansionContainer" relativePoint="BOTTOMRIGHT"></Anchor>
+                </Anchors>
+                <Frames>
+                    <Button name="ICHCurrencyButton" parentKey="CurrencyButton" inherits="InsecureActionButtonTemplate">
+                        <Size x="24" y="24"/>
+                        <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="0" y="-1" /></Anchors>
+                        <Scripts>
+                            <OnEnter>
+                                GameTooltip:SetOwner(self, "ANCHOR_TOP")
+                                GameTooltip:SetHyperlink("currency:1166")
+                                GameTooltip:AddLine("\n")
+                                GameTooltip:AddLine("&lt;Click to begin transfer&gt;")
+                                GameTooltip:Show()
+                            </OnEnter>
+                            <OnLeave>GameTooltip:Hide()</OnLeave>
+                        </Scripts>
+                    </Button>
+                </Frames>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="" wordwrap="false">
+                            <Anchors>
+                                <Anchor point="LEFT" relativeKey="$parent.CurrencyButton" relativePoint="RIGHT" x="5"/>
+                                <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <Frame parentKey="OtherInfoContainer">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.CostContainer" relativePoint="TOPRIGHT"></Anchor>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.CostContainer" relativePoint="BOTTOMRIGHT"></Anchor>
+                    <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                </Anchors>
+                <Frames>
+                    <Frame parentKey="ICHNote" enableMouse="true">
+                        <Size x="17.5" y="17.5"/>
+                        <KeyValues><KeyValue key="notes" value="" type="string"/></KeyValues>
+                        <Anchors><Anchor point="RIGHT" x="-25" /></Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <Texture parentKey="NotesIcon" file="Interface/AddOns/InstanceCollectionHelper/Media/NotesIcon.png">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                                        <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                        </Layers>
+                        <Scripts>
+                            <OnEnter>
+                                GameTooltip:SetOwner(self, "ANCHOR_NONE")
+                                GameTooltip:SetPoint("LEFT", self, "RIGHT", 5, 0)
+                                GameTooltip:AddLine(self.notes, 1, 1, 1, true)
+                                GameTooltip:Show()
+                            </OnEnter>
+                            <OnLeave>GameTooltip:Hide()</OnLeave>
+                        </Scripts>
+                    </Frame>
+                    <Button parentKey="ICHWaypointButton" inherits="InsecureActionButtonTemplate" hidden="true">
+                        <Size x="24" y="24"/>
+                        <KeyValues><KeyValue key="instanceID" value="" type="number"/></KeyValues>
+                        <Anchors><Anchor point="RIGHT"/></Anchors>
+                        <NormalTexture file="Interface/Minimap/Minimap-Waypoint-MapPin-Untracked"/>
+                        <HighlightTexture file="Interface/Minimap/Minimap-Waypoint-MapPin-Tracked"/>
+                        <Scripts>
+                            <OnEnter>
+                                local instanceName = EJ_GetInstanceInfo(self.instanceID)
+                                GameTooltip:SetOwner(self, "ANCHOR_TOP")
+                                GameTooltip:SetText(instanceName)
+                                -- Apparently you can't use the less than symbol for comparisons within XML files
+                                -- TomTom icon should have a negative fileID, so this can help determine the tooltip text
+                                if self:GetNormalTexture():GetTextureFileID() > 0 then
+                                    GameTooltip:AddLine(ICH_LANG["Set map pin"], 1, 1, 1)
+                                else
+                                    GameTooltip:AddLine(ICH_LANG["Set TomTom waypoint"], 1, 1, 1)
+                                end
+                                GameTooltip:Show()
+                            </OnEnter>
+                            <OnLeave>GameTooltip:Hide()</OnLeave>
+                        </Scripts>
+                    </Button>
+                </Frames>
+            </Frame>
+        </Frames>
+    </Frame>
 </Ui>

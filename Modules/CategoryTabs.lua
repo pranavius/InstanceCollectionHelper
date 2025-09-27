@@ -9,6 +9,7 @@ function AddOn:CreateTabSystem()
     self:CreateTab("Mounts")
     self:CreateTab("Toys")
     self:CreateTab("Pets")
+    self:CreateTab("Timewalking Vendor")
     self.Tabs:SetTabSelectedCallback(function(tabID) self:HandleTabSelected(tabID) end)
     self.Tabs:SetPoint("TOPLEFT", self.Footer, "BOTTOMLEFT", 0, 0)
     self.Tabs:SetPoint("TOPRIGHT", self.Footer, "BOTTOMRIGHT", 0, 0)
@@ -18,7 +19,7 @@ end
 ---@param tabName string The text displayed on the newly created tab
 ---@param enabled boolean? Whether the tab should be enabled or not (tabs are enabled by default if no value is provided)
 function AddOn:CreateTab(tabName, enabled)
-    local parentKey = tabName .. "Tab"
+    local parentKey = tabName:gsub(" ", "") .. "Tab"
      self.Tabs[parentKey] = self.Tabs:AddTab(L[tabName])
 
      if enabled ~= nil then

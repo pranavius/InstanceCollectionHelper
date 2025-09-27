@@ -39,7 +39,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field notes string? The note(s) to display when hovering over the texture in `ICHNote`
 
 ---@class ICHWaypointButton: Button Creates a map pin or TomTom waypoint to the corresponding instance entrance based on user's preferences
----@field InstanceID number ID number for the instance where the collectible can be obtained
+---@field instanceID number ID number for the instance where the collectible can be obtained
 
 ---@class OtherInfoContainer: Frame Displays other elements associated with a collectible
 ---@field ICHPetCount FontString

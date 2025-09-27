@@ -177,6 +177,7 @@ function AddOn:CreateScrollingView()
         if elementData.ID then factory("ICHListItemTemplate", self.MountDataProviderInit)
         elseif elementData.ItemID then factory("ICHListItemTemplate", self.ToyDataProviderInit)
         elseif elementData.PetItemID then factory("ICHListItemTemplate", self.PetDataProviderInit)
+        elseif elementData.VendorNPCID then factory("ICHTimewalkingListItemTemplate", self.TimewalkingDataProviderInit)
         end
 
     end)
@@ -311,6 +312,10 @@ function AddOn:FilterListContentsByQuery(listData)
             if not itemName then itemName = "" end
         elseif selectedTab == self.Tabs.PetsTab then
             itemName = C_PetJournal.GetPetInfoByItemID(data.PetItemID) or ""
+        elseif selectedTab == self.Tabs.TimewalkingVendorTab then
+            -- Condition to check whether the item is a mount, pet, or toy
+            -- Utilize C_MountJournal.GetMountFromItem(itemID) for mounts?
+
         end
         local cleanName = itemName:lower():gsub("|.+|.*", "")
         nameMatches = cleanName:match(query) and true or false
@@ -351,7 +356,7 @@ end
 function AddOn:UpdateListContents()
     if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then UIParentLoadAddOn("Blizzard_Collections") end
     if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then UIParentLoadAddOn("Blizzard_EncounterJournal") end
-    ---@type (Mount|Toy|Pet)[]
+    ---@type (Mount|Toy|Pet|TimewalkingItem)[]
     local newData = {}
     local selectedTab = self.db.global.selectedTab
     if selectedTab == self.Tabs.MountsTab then
@@ -374,6 +379,20 @@ function AddOn:UpdateListContents()
             if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, pet) end
         end
         self.Container.SearchBox.Instructions:SetText(L["Search by pet/instance name, instance type, difficulty, or expansion"])
+    elseif selectedTab == self.Tabs.TimewalkingVendorTab then
+        for _, item in ipairs(self.TimewalkingItems) do
+            local itemData = self.TimewalkingCache[item.ItemID]
+            if item.Type == "Mount" then
+                local mountID = C_MountJournal.GetMountFromItem(item.ItemID)
+                local hideOnChar = select(10, C_MountJournal.GetMountInfoByID(mountID))
+                if not hideOnChar and (not itemData.owned or (itemData.owned and self.db.global.showOwned)) then tinsert(newData, item) end
+            elseif item.Type == "Pet" then
+                local isOwned = itemData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and itemData.owned == itemData.limit or true)
+                if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, item) end
+            end
+            if not itemData.owned or (itemData.owned and self.db.global.showOwned) then tinsert(newData, item) end
+        end
+        -- Update search box instructions somehow
     end
 
     -- Filter list results based on search criteria when present

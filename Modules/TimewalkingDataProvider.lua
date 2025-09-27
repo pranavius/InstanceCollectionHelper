@@ -1,0 +1,157 @@
+local name, AddOn = ...
+---@class InstanceCollectionHelper
+AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
+local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
+
+---@class ExpansionContainer: Frame Displays elements relevant to a collectible's expansion(s)<br>
+---For frame definition and more layout information, see `Templates.xml`
+---@field Text FontString
+
+---@class CostContainer: Frame Displays elements relevant to a collectible's cost<br>
+---For frame definition and more layout information, see `Templates.xml`
+---@field Text FontString
+---@field CurrencyButton Button
+
+---@class ICHTimewalkingListItem: Frame List item that displays relevant information for a given collectible
+---@field isMount boolean Whether or not the list item is for a mount
+---@field relevantID number The ID number for the collectible. For mounts, this value is `mountID` and for toys it is `itemID`
+---@field Bg Texture The background texture for unowned list items
+---@field OwnedBg Texture The background texture for owned list items
+---@field NameContainer NameContainer
+---@field ExpansionContainer ExpansionContainer
+---@field CostContainer CostContainer
+---@field OtherInfoContainer OtherInfoContainer
+---@see NameContainer
+---@see ExpansionContainer
+---@see CostContainer
+---@see OtherInfoContainer
+
+---@class TimewalkingCacheData
+---@field itemName string Localized name for the item that adds the collectible to the collection
+---@field itemID integer ID for the item that adds the collectible to the collection
+---@field collectibleName string Localized collectible name
+---@field iconID integer ID for the icon associated with the collectible
+---@field speciesID? integer ID for the pet species (applies to pets only)
+---@field owned integer|boolean If the collectible is a pet, this is the number of the pet currently owned. For other collectibles, this is `true` if owned and `false` otherwise
+---@field limit? integer Maximum number of the pet that can be owned (applies to pets only)
+
+function AddOn:CreateTimewalkingCache()
+    ---@type table<number, TimewalkingCacheData> Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
+    self.TimewalkingCache = {}
+    local toLoad = #self.TimewalkingItems
+
+    for _, item in ipairs(self.TimewalkingItems) do
+        Item:CreateFromItemID(item.ItemID):ContinueOnItemLoad(function()
+            toLoad = toLoad - 1
+            if item.Type == "Mount" then
+                local mountID = C_MountJournal.GetMountFromItem(item.ItemID)
+                local name, spellID, _, _, _, _, _, _, _, _, isOwned = C_MountJournal.GetMountInfoByID(mountID)
+                local iconID = C_Spell.GetSpellInfo(spellID) and C_Spell.GetSpellInfo(spellID).originalIconID
+
+                self.TimewalkingCache[item.ItemID] = {
+                    itemName = C_Item.GetItemNameByID(item.ItemID) or "",
+                    itemID = item.ItemID,
+                    collectibleName = name or item.Name,
+                    iconID = iconID or 134400,
+                    owned = isOwned
+                }
+            elseif item.Type == "Toy" then
+                local _, toyName, iconID = C_ToyBox.GetToyInfo(item.ItemID)
+    
+                self.TimewalkingCache[item.ItemID] = {
+                    itemName = C_Item.GetItemNameByID(item.ItemID) or "",
+                    itemID = item.ItemID,
+                    collectibleName = toyName or item.Name,
+                    iconID = iconID or 134400,
+                    owned = PlayerHasToy(item.ItemID)
+                }
+            elseif item.Type == "Pet" then
+                local petName, iconID, _, _, _, _, _, _, _, _, _, _, speciesID = C_PetJournal.GetPetInfoByItemID(item.ItemID)
+                local owned, limit
+                if speciesID then
+                    local o, l = C_PetJournal.GetNumCollectedInfo(speciesID)
+                    owned = o or 0
+                    limit = l or 0
+                else
+                    owned, limit = 0, 0
+                end
+        
+                self.TimewalkingCache[item.ItemID] = {
+                    itemName = C_Item.GetItemNameByID(item.ItemID) or "",
+                    itemID = item.ItemID,
+                    collectibleName = petName or item.Name,
+                    iconID = iconID or 134400,
+                    speciesID = speciesID,
+                    owned = owned,
+                    limit = limit
+                }
+            end
+
+            if toLoad == 0 then self:PrintDebugMessage("Timewalking data loaded") end
+        end)
+    end
+end
+
+---Formats and returns text indicating the number of a pet owned against the maximum number that can be owned<br/>
+---This is a variation on the function `ColorOwnedCountText` that is local to `PetDataProvider.lua` adapted for `TimewalkingCacheData` objects
+---@param data TimewalkingCacheData
+---@return string
+local function ColorOwnedPetCountText(data)
+    local text = data.owned.."/"..data.limit
+    local percOwned = data.owned / data.limit
+    if percOwned == 0 then return ""
+    elseif percOwned <= 0.5 then return WrapTextInColor(text, RED_FONT_COLOR)
+    elseif percOwned > 0.5 and percOwned < 1 then return WrapTextInColor(text, DARKYELLOW_FONT_COLOR)
+    else return text
+    end
+end
+
+---@param frame ICHTimewalkingListItem
+---@param item TimewalkingItem
+function AddOn.TimewalkingDataProviderInit(frame, item)
+    if not frame or not item then return end
+    frame.isMount = item.Type == "Mount" or false
+
+    local index = AddOn.ICHDataProvider:FindIndex(item)
+    local data = AddOn.TimewalkingCache[item.ItemID]
+
+    local isOwned = data.owned
+    if item.Type == "Pet" then
+         isOwned = data.owned > 0 and (AddOn.db.global.countPetOwnedOnlyIfMaxOwned and data.owned == data.limit or true)
+    end
+    if isOwned then
+        frame.Bg:Hide()
+        frame.OwnedBg:Show()
+    else
+        frame.OwnedBg:Hide()
+        if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
+    end
+
+    AddOn:SetTruncatedText(frame.NameContainer.Text, data.collectibleName)
+    frame.NameContainer.name = data.collectibleName
+    frame.NameContainer.ViewButton:ClearNormalTexture()
+    frame.NameContainer.ViewButton:ClearHighlightTexture()
+    frame.NameContainer.ViewButton:SetNormalTexture(data.iconID)
+
+    AddOn:SetTruncatedText(frame.ExpansionContainer.Text, item.Expansion)
+
+    if item.Type == "Pet" then
+        frame.OtherInfoContainer.ICHPetCount:SetText(ColorOwnedPetCountText(data))
+        frame.OtherInfoContainer.ICHPetCount:Show()
+    elseif frame.OtherInfoContainer.ICHPetCount:IsShown() then
+        frame.OtherInfoContainer.ICHPetCount:Hide()
+    end
+
+    if item.Notes then
+        frame.OtherInfoContainer.ICHNote.notes = item.Notes
+        frame.OtherInfoContainer.ICHNote:Show()
+    elseif frame.OtherInfoContainer.ICHNote:IsShown() then
+        frame.OtherInfoContainer.ICHNote:Hide()
+    end
+
+    AddOn:ConfigureWaypointButton(item.VendorName, frame, item)
+
+    frame.CostContainer.CurrencyButton:SetScript("OnClick", function()
+        AddOn:PrintDebugMessage("Clicking to begin currency transfer")
+    end)
+end
