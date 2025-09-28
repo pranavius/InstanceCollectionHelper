@@ -21,7 +21,7 @@ local translators = {
 function AddOn:CreateAboutFrame()
     local a = CreateFrame("Frame", "ICHAbout", UIParent)
     a:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
-    a:SetSize(400, 400)
+    a:SetSize(400, 500)
     a:SetFrameStrata("MEDIUM")
 
     -- Frame background
@@ -33,7 +33,7 @@ function AddOn:CreateAboutFrame()
     a.Name = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightMedium")
     a.Name:SetPoint("TOPLEFT", a, "TOPLEFT", 0, -10)
     a.Name:SetPoint("TOPRIGHT", a, "TOPRIGHT", 0, -10)
-    a.Name:SetText(DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Instance Collection Helper v.11"))
+    a.Name:SetText(DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Instance Collection Helper v11"))
 
     a.Author = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     a.Author:SetPoint("TOPLEFT", a.Name, "BOTTOMLEFT", 0, -10)
@@ -60,9 +60,14 @@ function AddOn:CreateAboutFrame()
     a.SpecialThanks1:SetPoint("TOPRIGHT", a.SpecialThanksHeader, "BOTTOMRIGHT", 0, -10)
     a.SpecialThanks1:SetText(HEIRLOOM_BLUE_COLOR:WrapTextInColorCode("Plusmouse"))
 
+    a.SpecialThanks2 = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    a.SpecialThanks2:SetPoint("TOPLEFT", a.SpecialThanks1, "BOTTOMLEFT", 0, -10)
+    a.SpecialThanks2:SetPoint("TOPRIGHT", a.SpecialThanks1, "BOTTOMRIGHT", 0, -10)
+    a.SpecialThanks2:SetText(HEIRLOOM_BLUE_COLOR:WrapTextInColorCode("Tuskyouup"))
+
     a.Translators = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightHuge")
-    a.Translators:SetPoint("TOPLEFT", a.SpecialThanks1, "BOTTOMLEFT", 0, -40)
-    a.Translators:SetPoint("TOPRIGHT", a.SpecialThanks1, "BOTTOMRIGHT", 0, -40)
+    a.Translators:SetPoint("TOPLEFT", a.SpecialThanks2, "BOTTOMLEFT", 0, -40)
+    a.Translators:SetPoint("TOPRIGHT", a.SpecialThanks2, "BOTTOMRIGHT", 0, -40)
     a.Translators:SetText(DARKYELLOW_FONT_COLOR:WrapTextInColorCode(L["Translations:"]))
 
     for idx, translator in ipairs(translators) do
