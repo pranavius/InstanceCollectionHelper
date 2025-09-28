@@ -311,7 +311,7 @@ function AddOn:FilterListContentsByQuery(listData)
     local query = self.Container.SearchBox:GetText():lower()
     local selectedTab = self.db.global.selectedTab
 
-    local nameMatches, instanceMatches, encounterMatches, instanceTypeMatches, difficultyMatches, searchTagMatches = false, false, false, false, false, false
+    local nameMatches, instanceMatches, encounterMatches, instanceTypeMatches, difficultyMatches, searchTagMatches, itemTypeMatches = false, false, false, false, false, false, false
     for _, data in ipairs(listData) do
         -- Using localized names for mounts, instances, encounters, etc for better search results
         local itemName
@@ -355,8 +355,10 @@ function AddOn:FilterListContentsByQuery(listData)
                 break
             end
         end
+        itemTypeMatches = false
+        if data.Type then itemTypeMatches = query == data.Type:lower() end
 
-        if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches or searchTagMatches then
+        if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches or searchTagMatches or itemTypeMatches then
             tinsert(filtered, data)
         end
     end

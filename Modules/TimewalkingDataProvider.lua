@@ -3,7 +3,7 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----@class ExpansionContainer: Frame Displays elements relevant to a collectible's expansion(s)<br>
+---@class TextContainer: Frame Generic frame that displays text relevant to a collectible<br>
 ---For frame definition and more layout information, see `Templates.xml`
 ---@field Text FontString
 
@@ -18,11 +18,12 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field Bg Texture The background texture for unowned list items
 ---@field OwnedBg Texture The background texture for owned list items
 ---@field NameContainer NameContainer
----@field ExpansionContainer ExpansionContainer
+---@field TypeContainer TextContainer
+---@field ExpansionContainer TextContainer
 ---@field CostContainer CostContainer
 ---@field OtherInfoContainer OtherInfoContainer
 ---@see NameContainer
----@see ExpansionContainer
+---@see TextContainer
 ---@see CostContainer
 ---@see OtherInfoContainer
 
@@ -137,6 +138,7 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     frame.NameContainer.ViewButton:SetNormalTexture(data.iconID or 134400)
     frame.NameContainer.ViewButton:SetHighlightTexture(data.iconID or 134400)
 
+    AddOn:SetTruncatedText(frame.TypeContainer.Text, DARKYELLOW_FONT_COLOR:WrapTextInColorCode(item.Type))
     AddOn:SetTruncatedText(frame.ExpansionContainer.Text, item.Expansion)
 
     frame.CostContainer.CurrencyButton:ClearNormalTexture()
@@ -160,7 +162,14 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
         frame.OtherInfoContainer.ICHNote:Hide()
     end
 
-    AddOn:ConfigureWaypointButton(item.VendorName, frame, item)
+    -- Set Timewalking vendor info for correct faction before setting Waypoint
+    if item.Expansion == "Warlords of Draenor" then
+        local faction = UnitFactionGroup("player")
+        item.VendorName = faction == "Horde" and "Kronnus" or "Tempra"
+        item.VendorNpcID = faction == "Horde" and 151987 or 151985
+    end
+
+    AddOn:ConfigureWaypointButton(item.VendorName or "", frame, item)
 
     if item.Type == "Mount" then
         frame.NameContainer.ViewButton:SetScript("OnClick", function()
@@ -175,6 +184,22 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     end
 
     frame.CostContainer.CurrencyButton:SetScript("OnClick", function()
-        AddOn:PrintDebugMessage("Clicking to begin currency transfer")
+        AddOn:PrintDebugMessage("Timewarped Badges transfer requested")
+        if not C_CurrencyInfo.CanTransferCurrency(1166) then
+            AddOn:PrintChatMessage("Unable to transfer Timewarped Badges to this character right now.")
+            return
+        end
+
+        if CurrencyTransferMenu and (not CurrencyTransferMenu.currencyInfo or (CurrencyTransferMenu.currencyInfo and CurrencyTransferMenu.currencyInfo.currencyID ~= 1166) or not CurrencyTransferMenu:IsVisible()) then
+            AddOn:PrintDebugMessage("Currency ID is:", CurrencyTransferMenu.currencyInfo and CurrencyTransferMenu.currencyInfo.currencyID or 'n/a')
+            AddOn:PrintDebugMessage("Currency Transfer Frame visible:", CurrencyTransferMenu:IsVisible())
+            CurrencyTransferMenu:OnCurrencyTransferRequested(1166)
+        elseif CurrencyTransferMenu and CurrencyTransferMenu.currencyInfo.currencyID == 1166 then
+            AddOn:PrintDebugMessage("Timewarped Badges already selected and window is already open")
+            CurrencyTransferMenu:OnCurrencyTransferAmountUpdated(item.Cost)
+            CurrencyTransferMenu:FullRefresh()
+        else
+            AddOn:PrintChatMessage("Unable to open the currency transfer menu. Please open it manually or try again.")
+        end
     end)
 end

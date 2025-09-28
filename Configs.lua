@@ -7,6 +7,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ICH_NAME_COL_TITLE = L["Name"]
 ICH_INSTANCE_COL_TITLE = L["Instance"]
 ICH_AVAIL_DIFFS_COL_TITLE = L["Available Difficulty(s)"]
+ICH_TYPE_COL_TITLE = "Type"
 ICH_EXPANSION_COL_TITLE = "Expansion"
 ICH_COST_COL_TITLE = "Cost"
 
