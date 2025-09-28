@@ -3,6 +3,7 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 local LDB = LibStub("LibDataBroker-1.1")
+local addonTitle = "Instance Collection Helper"
 ICH = {}
 
 ---Handles slash commands in a way that overrides the default behavior of Ace3 slash commands. Executing the command with no arguments
@@ -46,7 +47,7 @@ function AddOn:OnInitialize()
         icon = "Interface/AddOns/InstanceCollectionHelper/Media/Logo.png",
         OnClick = function() if self.Container then self.Container:Show() end end,
         OnTooltipShow = function(tooltip)
-            tooltip:SetText(name)
+            tooltip:SetText(addonTitle)
             tooltip:AddLine(L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"], 1, 1, 1, true)
             tooltip:AddLine(L["Type \"/ich help\" in the chat window for available slash commands"])
         end
@@ -96,7 +97,7 @@ function AddOn:CreateMainFrame()
     f.Title = f:CreateFontString("ICHTitle", "OVERLAY", "GameFontHighlightMedium")
     f.Title:SetPoint("TOPLEFT", f, "TOPLEFT", 0, -10)
     f.Title:SetPoint("TOPRIGHT", f, "TOPRIGHT", 0, -10)
-    f.Title:SetText(name)
+    f.Title:SetText(addonTitle)
 
     -- Search box
     f.SearchBox = CreateFrame("EditBox", "ICHSearchBox", f, "SearchBoxTemplate")
@@ -415,6 +416,24 @@ function AddOn:UpdateListContents()
 
     self.ICHDataProvider = CreateDataProvider(newData)
     self.ScrollView:SetDataProvider(self.ICHDataProvider)
+end
+
+-- AddOn Compartment Functions
+function ICH_AddonCompartmentOnClick()
+    -- Same as typing "/ich" in a chat window
+    AddOn.HandleSlashCommand("ich", "")
+end
+
+function ICH_AddonCompartmentOnEnter(_, btn)
+    MenuUtil.ShowTooltip(btn, function(tooltip)
+        tooltip:SetText(addonTitle)
+        tooltip:AddLine(L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"], 1, 1, 1, true)
+        tooltip:AddLine(L["Type \"/ich help\" in the chat window for available slash commands"])
+    end)
+end
+
+function ICH_AddonCompartmentOnLeave(_, btn)
+    MenuUtil.HideTooltip(btn)
 end
 
 -- Exposes AddOn functionality for use in XML Templates

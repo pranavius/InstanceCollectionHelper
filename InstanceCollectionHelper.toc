@@ -6,6 +6,9 @@
 ## Version: 10
 ## SavedVariables: ICH_DB
 ## Category: Achievements
+## AddonCompartmentFunc: ICH_AddonCompartmentOnClick
+## AddonCompartmentFuncOnEnter: ICH_AddonCompartmentOnEnter
+## AddonCompartmentFuncOnLeave: ICH_AddonCompartmentOnLeave
 ## X-Flavor: retail
 ## X-Additional-Categories: Battle Pets, Boss Encounters, Miscellaneous
 ## X-Curse-Project-ID: 1302094
