@@ -39,7 +39,8 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field notes string? The note(s) to display when hovering over the texture in `ICHNote`
 
 ---@class ICHWaypointButton: Button Creates a map pin or TomTom waypoint to the corresponding instance entrance based on user's preferences
----@field InstanceID number ID number for the instance where the collectible can be obtained
+---@field instanceID? number ID number for the instance where the collectible can be obtained
+---@field vendorName? string Name of the vendor from whom the collectible can be purcahsed (for Timewalking items only)
 
 ---@class OtherInfoContainer: Frame Displays other elements associated with a collectible
 ---@field ICHPetCount FontString
@@ -111,7 +112,6 @@ function AddOn.MountDataProviderInit(frame, data)
     AddOn:ConfigureWaypointButton(localizedInstanceName, frame, data)
 
     frame.NameContainer.ViewButton:SetScript("OnClick", function()
-        -- Currently only supports Mounts, but additional conditions could be added for showing things like Battle Pets and Achievements
         if data.ID then
             SetCollectionsJournalShown(true, 1)
             MountJournal_SetSelected(data.ID, mountSpellID)
