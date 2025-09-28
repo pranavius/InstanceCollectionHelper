@@ -33,7 +33,7 @@ function AddOn:CreateAboutFrame()
     a.Name = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightMedium")
     a.Name:SetPoint("TOPLEFT", a, "TOPLEFT", 0, -10)
     a.Name:SetPoint("TOPRIGHT", a, "TOPRIGHT", 0, -10)
-    a.Name:SetText(DARKYELLOW_FONT_COLOR:WrapTextInColorCode(name))
+    a.Name:SetText(DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Instance Collection Helper v.11"))
 
     a.Author = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     a.Author:SetPoint("TOPLEFT", a.Name, "BOTTOMLEFT", 0, -10)
@@ -50,9 +50,19 @@ function AddOn:CreateAboutFrame()
     a.GitHub:SetPoint("TOPRIGHT", a.Twitter, "BOTTOMRIGHT", 0, 0)
     a.GitHub:SetText("|TInterface\\AddOns\\InstanceCollectionHelper\\Media\\Github-logo:20:20|t   "..LEGENDARY_ORANGE_COLOR:WrapTextInColorCode("Pranavius"))
 
+    a.SpecialThanksHeader = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightHuge")
+    a.SpecialThanksHeader:SetPoint("TOPLEFT", a.Twitter, "BOTTOMLEFT", 0, -40)
+    a.SpecialThanksHeader:SetPoint("TOPRIGHT", a.Twitter, "BOTTOMRIGHT", 0, -40)
+    a.SpecialThanksHeader:SetText(DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Special Thanks"))
+
+    a.SpecialThanks1 = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    a.SpecialThanks1:SetPoint("TOPLEFT", a.SpecialThanksHeader, "BOTTOMLEFT", 0, -10)
+    a.SpecialThanks1:SetPoint("TOPRIGHT", a.SpecialThanksHeader, "BOTTOMRIGHT", 0, -10)
+    a.SpecialThanks1:SetText(HEIRLOOM_BLUE_COLOR:WrapTextInColorCode("Plusmouse"))
+
     a.Translators = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightHuge")
-    a.Translators:SetPoint("TOPLEFT", a.Twitter, "BOTTOMLEFT", 0, -40)
-    a.Translators:SetPoint("TOPRIGHT", a.Twitter, "BOTTOMRIGHT", 0, -40)
+    a.Translators:SetPoint("TOPLEFT", a.SpecialThanks1, "BOTTOMLEFT", 0, -40)
+    a.Translators:SetPoint("TOPRIGHT", a.SpecialThanks1, "BOTTOMRIGHT", 0, -40)
     a.Translators:SetText(DARKYELLOW_FONT_COLOR:WrapTextInColorCode(L["Translations:"]))
 
     for idx, translator in ipairs(translators) do
