@@ -166,7 +166,6 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     if item.Expansion == "Warlords of Draenor" then
         local faction = UnitFactionGroup("player")
         item.VendorName = faction == "Horde" and "Kronnus" or "Tempra"
-        item.VendorNpcID = faction == "Horde" and 151987 or 151985
     end
 
     AddOn:ConfigureWaypointButton(item.VendorName or "", frame, item)

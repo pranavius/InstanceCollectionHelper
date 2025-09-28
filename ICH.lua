@@ -32,6 +32,7 @@ function AddOn:OnInitialize()
     -- Generate proper search tags for all collectibles
     for _, mount in ipairs(AddOn.Mounts) do self.AppendMapSearchTags(mount) end
     for _, toy in ipairs(AddOn.Toys) do self.AppendMapSearchTags(toy) end
+    for _, pet in ipairs(AddOn.Pets) do self.AppendMapSearchTags(pet) end
 
     -- Load database
 	self.db = LibStub("AceDB-3.0"):New("ICH_DB", AddOn.DatabaseDefaults, true)
@@ -307,6 +308,10 @@ end
 ---Filters a list of data based on search parameters
 ---@param listData (Mount|Toy|Pet|TimewalkingItem)[]
 ---@return (Mount|Toy|Pet|TimewalkingItem)[]
+---@see Mount
+---@see Toy
+---@see Pet
+---@see TimewalkingItem
 function AddOn:FilterListContentsByQuery(listData)
     local filtered = {}
     local query = self.Container.SearchBox:GetText():lower()

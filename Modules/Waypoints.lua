@@ -3,8 +3,12 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----@param data Mount|Toy|Pet
+---@param data Mount|Toy|Pet|TimewalkingItem
 ---@return boolean "`true` if conditions to use TomTom waypoints are satisfied, `false` otherwise"
+---@see Mount
+---@see Toy
+---@see Pet
+---@see TimewalkingItem
 local function ShouldUseTomTom(data)
     return C_AddOns.IsAddOnLoaded("TomTom")
         and AddOn.db.global.useTomTomPoints
@@ -56,11 +60,12 @@ local function SetBlizzardMapPin(data)
 end
 
 --- Sets a TomTom waypoint at the coordinates associated with an instance entrance
----@param data Mount|Toy|Pet
+---@param data Mount|Toy|Pet|TimewalkingItem
 ---@return boolean "`true` if a TomTom waypoint was successfully created, `false` otherwise"
 ---@see Mount
 ---@see Toy
 ---@see Pet
+---@see TimewalkingItem
 local function SetTomTomWaypoint(data, localizedInstanceName)
     if AddOn.db.global.currentTomTomWaypoint then
         TomTom:RemoveWaypoint(AddOn.db.global.currentTomTomWaypoint)
@@ -131,7 +136,8 @@ function AddOn:ConfigureWaypointButton(destinationName, frame, data)
             frame.OtherInfoContainer.ICHWaypointButton:SetSize(15, 15)
             frame.OtherInfoContainer.ICHWaypointButton:SetPoint("RIGHT", -2, 0)
             isPinSettable = true
-        elseif data.AreaPoiID or data.Expansion or data.InstanceID == 1176 then
+        -- Currently excluding BfA from the condition due to vendors not having an AreaPoiID
+        elseif data.AreaPoiID or (data.Expansion and data.Expansion ~= "Battle for Azeroth") or data.InstanceID == 1176 then
             frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Untracked")
             frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Tracked")
             frame.OtherInfoContainer.ICHWaypointButton:SetSize(24, 24)
@@ -141,6 +147,7 @@ function AddOn:ConfigureWaypointButton(destinationName, frame, data)
         if isPinSettable then frame.OtherInfoContainer.ICHWaypointButton:Show() else frame.OtherInfoContainer.ICHWaypointButton:Hide() end
     elseif frame.OtherInfoContainer.ICHWaypointButton:IsShown() then frame.OtherInfoContainer.ICHWaypointButton:Hide() end
     frame.OtherInfoContainer.ICHWaypointButton.instanceID = data.InstanceID
+    frame.OtherInfoContainer.ICHWaypointButton.vendorName = data.VendorName
 
     frame.OtherInfoContainer.ICHWaypointButton:SetScript("OnClick", function() HandleWaypointClick(data, destinationName) end)
 end

@@ -1,3 +1,24 @@
+# CostContainer
+
+## CurrencyButton
+
+
+```lua
+Button
+```
+
+## Text
+
+
+```lua
+FontString
+```
+
+For frame definition and more layout information, see `Templates.xml`
+
+
+---
+
 # DifficultyButton
 
 ## difficultyID
@@ -330,16 +351,101 @@ The note(s) to display when hovering over the texture in `ICHNote`
 
 ---
 
-# ICHWaypointButton
+# ICHTimewalkingListItem
 
-## InstanceID
+## Bg
+
+
+```lua
+Texture
+```
+
+The background texture for unowned list items
+
+## CostContainer
+
+
+```lua
+CostContainer
+```
+
+## ExpansionContainer
+
+
+```lua
+TextContainer
+```
+
+## NameContainer
+
+
+```lua
+NameContainer
+```
+
+## OtherInfoContainer
+
+
+```lua
+OtherInfoContainer
+```
+
+## OwnedBg
+
+
+```lua
+Texture
+```
+
+The background texture for owned list items
+
+## TypeContainer
+
+
+```lua
+TextContainer
+```
+
+## isMount
+
+
+```lua
+boolean
+```
+
+Whether or not the list item is for a mount
+
+## relevantID
 
 
 ```lua
 number
 ```
 
+The ID number for the collectible. For mounts, this value is `mountID` and for toys it is `itemID`
+
+
+---
+
+# ICHWaypointButton
+
+## instanceID
+
+
+```lua
+number?
+```
+
 ID number for the instance where the collectible can be obtained
+
+## vendorName
+
+
+```lua
+string?
+```
+
+Name of the vendor from whom the collectible can be purcahsed (for Timewalking items only)
 
 
 ---
@@ -349,6 +455,56 @@ ID number for the instance where the collectible can be obtained
 
 ```lua
 unknown
+```
+
+
+---
+
+# ICH_AddonCompartmentOnClick
+
+
+```lua
+function ICH_AddonCompartmentOnClick()
+```
+
+
+---
+
+# ICH_AddonCompartmentOnEnter
+
+
+```lua
+function ICH_AddonCompartmentOnEnter(_: any, btn: any)
+```
+
+
+---
+
+# ICH_AddonCompartmentOnLeave
+
+
+```lua
+function ICH_AddonCompartmentOnLeave(_: any, btn: any)
+```
+
+
+---
+
+# ICH_COST_COL_TITLE
+
+
+```lua
+string
+```
+
+
+---
+
+# ICH_EXPANSION_COL_TITLE
+
+
+```lua
+string
 ```
 
 
@@ -384,6 +540,16 @@ unknown
 
 ---
 
+# ICH_TYPE_COL_TITLE
+
+
+```lua
+string
+```
+
+
+---
+
 # InstanceCollectionHelper
 
 ## About
@@ -402,26 +568,28 @@ function InstanceCollectionHelper.AppendMapSearchTags(data: Mount|Pet|Toy)
 
 Append a list of map search tags for a collectibleto the existing `SearchTags` list based on the ID of the instance where it is obtained
 See:
-  * [Mount](InstanceCollectionHelper/Data/Mounts.lua#9#10)
-  * [Toy](InstanceCollectionHelper/Data/Toys.lua#9#10)
-  * [Pet](InstanceCollectionHelper/Data/Pets.lua#9#10)
+  * [Mount](AddOns/InstanceCollectionHelper/Data/Mounts.lua#9#10)
+  * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
+  * [Pet](AddOns/InstanceCollectionHelper/Data/Pets.lua#9#10)
 
 ## ConfigureWaypointButton
 
 
 ```lua
-(method) InstanceCollectionHelper:ConfigureWaypointButton(localizedInstanceName: string, frame: ICHListItem, data: Mount|Pet|Toy)
+(method) InstanceCollectionHelper:ConfigureWaypointButton(destinationName: string, frame: ICHListItem|ICHTimewalkingListItem, data: Mount|Pet|TimewalkingItem|Toy)
 ```
 
 Sets up and displays the appropriate waypoint button based on user preferences and **TomTom** being enabled or not
 
-@*param* `localizedInstanceName` — The localized name of the instance to set a waypoint for
+@*param* `destinationName` — The name of the destination to set a waypoint for, such as an NPC or an instance
 
 See:
-  * [ICHListItem](InstanceCollectionHelper/Modules/MountDataProvider.lua#49#10)
-  * [Mount](InstanceCollectionHelper/Data/Mounts.lua#9#10)
-  * [Toy](InstanceCollectionHelper/Data/Toys.lua#9#10)
-  * [Pet](InstanceCollectionHelper/Data/Pets.lua#9#10)
+  * [ICHListItem](AddOns/InstanceCollectionHelper/Modules/MountDataProvider.lua#50#10)
+  * [ICHTimewalkingListItem](AddOns/InstanceCollectionHelper/Modules/TimewalkingDataProvider.lua#15#10)
+  * [Mount](AddOns/InstanceCollectionHelper/Data/Mounts.lua#9#10)
+  * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
+  * [Pet](AddOns/InstanceCollectionHelper/Data/Pets.lua#9#10)
+  * [TimewalkingItem](AddOns/InstanceCollectionHelper/Data/Timewalking.lua#6#10)
 
 ## Container
 
@@ -458,6 +626,13 @@ Initializes the footer in the AddOn that contains some display options for the w
 Initializes the AddOn window.<br>
 Internally creates a scrollable list of data to display initially as well.
 
+## CreatePetCache
+
+
+```lua
+(method) InstanceCollectionHelper:CreatePetCache()
+```
+
 ## CreateScrollingView
 
 
@@ -490,6 +665,20 @@ Adds a tab to the existing tab system and creates a variable in the AddOn table 
 
 Initializes the tab system for viewing different types of collectibles available in instances
 
+## CreateTimewalkingCache
+
+
+```lua
+(method) InstanceCollectionHelper:CreateTimewalkingCache()
+```
+
+## CreateToyCache
+
+
+```lua
+(method) InstanceCollectionHelper:CreateToyCache()
+```
+
 ## DatabaseDefaults
 
 
@@ -518,11 +707,16 @@ Each table entry consists of a list of strings associated with that expansion to
 
 
 ```lua
-(method) InstanceCollectionHelper:FilterListContentsByQuery(listData: (Mount|Pet|Toy)[])
-  -> (Mount|Pet|Toy)[]
+(method) InstanceCollectionHelper:FilterListContentsByQuery(listData: (Mount|Pet|TimewalkingItem|Toy)[])
+  -> (Mount|Pet|TimewalkingItem|Toy)[]
 ```
 
 Filters a list of data based on search parameters
+See:
+  * [Mount](AddOns/InstanceCollectionHelper/Data/Mounts.lua#9#10)
+  * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
+  * [Pet](AddOns/InstanceCollectionHelper/Data/Pets.lua#9#10)
+  * [TimewalkingItem](AddOns/InstanceCollectionHelper/Data/Timewalking.lua#6#10)
 
 ## Footer
 
@@ -568,7 +762,7 @@ Handles slash commands in a way that overrides the default behavior of Ace3 slas
 opens the AddOn options window, providing the `help` argument displays a list of available arguments and uses for the slash command,
 and all other arguments are handled using Ace3's default behavior.
 
-@*param* `cmd` — The slash command used (should be exactly `/ich`)
+@*param* `cmd` — The slash command used (should be exactly `ich`)
 
 @*param* `input` — The argument provided to the slash command
 
@@ -591,7 +785,7 @@ function InstanceCollectionHelper.HideAllDifficultyButtons(container: Difficulty
 ```
 
 Unsets all difficulty button points and hides them before showing the correct ones based on provided data
-See: [DifficultyContainer](InstanceCollectionHelper/Modules/MountDataProvider.lua#21#10)
+See: [DifficultyContainer](AddOns/InstanceCollectionHelper/Modules/MountDataProvider.lua#21#10)
 
 ## ICHDataProvider
 
@@ -618,9 +812,9 @@ function InstanceCollectionHelper.IsEncounterCompleted(data: Mount|Pet|Toy, diff
 @*return* — `true` if an instance encounter has been completed for the current reset period on a given difficulty, `false` otherwise
 
 See:
-  * [Mount](InstanceCollectionHelper/Data/Mounts.lua#9#10)
-  * [Toy](InstanceCollectionHelper/Data/Toys.lua#9#10)
-  * [Pet](InstanceCollectionHelper/Data/Pets.lua#9#10)
+  * [Mount](AddOns/InstanceCollectionHelper/Data/Mounts.lua#9#10)
+  * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
+  * [Pet](AddOns/InstanceCollectionHelper/Data/Pets.lua#9#10)
 
 ## IsEncounterCompletedOnSharedDifficulty
 
@@ -633,9 +827,9 @@ See:
 @*return* — `true` if an encounter has been completed for the current reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise
 
 See:
-  * [Mount](InstanceCollectionHelper/Data/Mounts.lua#9#10)
-  * [Toy](InstanceCollectionHelper/Data/Toys.lua#9#10)
-  * [Pet](InstanceCollectionHelper/Data/Pets.lua#9#10)
+  * [Mount](AddOns/InstanceCollectionHelper/Data/Mounts.lua#9#10)
+  * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
+  * [Pet](AddOns/InstanceCollectionHelper/Data/Pets.lua#9#10)
 
 ## IsInstanceRaid
 
@@ -648,9 +842,9 @@ See:
 @*return* — `true` if the instance is a raid, `false` otherwise
 
 See:
-  * [Mount](InstanceCollectionHelper/Data/Mounts.lua#9#10)
-  * [Toy](InstanceCollectionHelper/Data/Toys.lua#9#10)
-  * [Pet](InstanceCollectionHelper/Data/Pets.lua#9#10)
+  * [Mount](AddOns/InstanceCollectionHelper/Data/Mounts.lua#9#10)
+  * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
+  * [Pet](AddOns/InstanceCollectionHelper/Data/Pets.lua#9#10)
 
 ## Mounts
 
@@ -667,6 +861,27 @@ List of mounts available from instances
 ```lua
 (method) InstanceCollectionHelper:OnInitialize()
 ```
+
+## PetCache
+
+
+```lua
+{ [number]: PetCacheData }
+```
+
+Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
+
+## PetDataProviderInit
+
+
+```lua
+function InstanceCollectionHelper.PetDataProviderInit(frame: ICHListItem, pet: Pet)
+```
+
+Initializes how pet data in the scrollable list should be displayed
+See:
+  * [ICHListItem](AddOns/InstanceCollectionHelper/Modules/MountDataProvider.lua#50#10)
+  * [Pet](AddOns/InstanceCollectionHelper/Data/Pets.lua#9#10)
 
 ## Pets
 
@@ -689,6 +904,17 @@ Prints a message to the chat window prefixed by the AddOn name
 @*param* `...` — Arguments to be printed to the chat window
 
 See: [print](file:///Users/pranavchary/.vscode/extensions/sumneko.lua-3.15.0-darwin-arm64/server/meta/Lua%205.4%20en-us%20utf8/basic.lua#235#9)
+
+## PrintDebugMessage
+
+
+```lua
+(method) InstanceCollectionHelper:PrintDebugMessage(...any)
+```
+
+Prints a debugging message to the chat window prefixed by the AddOn name
+
+@*param* `...` — Arguments to be printed as part of the debug message
 
 ## RaidDifficulty
 
@@ -755,10 +981,10 @@ Determines which difficulty button(s) to display based on the provided data
 @*param* `isOwned` — Whether or not the collectible is owned by the player. Omitting this argument is equivalent to providing `false`
 
 See:
-  * [DifficultyContainer](InstanceCollectionHelper/Modules/MountDataProvider.lua#21#10)
-  * [Mount](InstanceCollectionHelper/Data/Mounts.lua#9#10)
-  * [Toy](InstanceCollectionHelper/Data/Toys.lua#9#10)
-  * [Pet](InstanceCollectionHelper/Data/Pets.lua#9#10)
+  * [DifficultyContainer](AddOns/InstanceCollectionHelper/Modules/MountDataProvider.lua#21#10)
+  * [Mount](AddOns/InstanceCollectionHelper/Data/Mounts.lua#9#10)
+  * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
+  * [Pet](AddOns/InstanceCollectionHelper/Data/Pets.lua#9#10)
 
 ## SlashOptions
 
@@ -773,6 +999,50 @@ table
 ```lua
 unknown
 ```
+
+## TimewalkingCache
+
+
+```lua
+{ [number]: TimewalkingCacheData }
+```
+
+Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
+
+## TimewalkingDataProviderInit
+
+
+```lua
+function InstanceCollectionHelper.TimewalkingDataProviderInit(frame: ICHTimewalkingListItem, item: TimewalkingItem)
+```
+
+## TimewalkingItems
+
+
+```lua
+TimewalkingItem[]
+```
+
+## ToyCache
+
+
+```lua
+{ [number]: ToyCacheData }
+```
+
+Stores necessary toy data in a local cache - attempting to reduce the amount of stutter/freezing when viewing toys
+
+## ToyDataProviderInit
+
+
+```lua
+function InstanceCollectionHelper.ToyDataProviderInit(frame: ICHListItem, toy: Toy)
+```
+
+Initializes how toy data in the scrollable list should be displayed
+See:
+  * [ICHListItem](AddOns/InstanceCollectionHelper/Modules/MountDataProvider.lua#50#10)
+  * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
 
 ## Toys
 
@@ -1180,6 +1450,192 @@ integer
 ```
 
 ID for the pet species
+
+
+---
+
+# TextContainer
+
+## Text
+
+
+```lua
+FontString
+```
+
+For frame definition and more layout information, see `Templates.xml`
+
+
+---
+
+# TimewalkingCacheData
+
+## collectibleName
+
+
+```lua
+string
+```
+
+Localized collectible name
+
+## iconID
+
+
+```lua
+integer
+```
+
+ID for the icon associated with the collectible
+
+## itemID
+
+
+```lua
+integer
+```
+
+ID number for the item that adds the collectible to the collection
+
+## itemName
+
+
+```lua
+string
+```
+
+Localized name for the item that adds the collectible to the collection
+
+## limit
+
+
+```lua
+integer?
+```
+
+Maximum number of the pet that can be owned (applies to pets only)
+
+## mountID
+
+
+```lua
+integer?
+```
+
+ID number for the mount (applies to mounts only)
+
+## owned
+
+
+```lua
+boolean|integer
+```
+
+If the collectible is a pet, this is the number of the pet currently owned. For other collectibles, this is `true` if owned and `false` otherwise
+
+## speciesID
+
+
+```lua
+integer?
+```
+
+ID for the pet species (applies to pets only)
+
+
+---
+
+# TimewalkingItem
+
+## AreaPoiID
+
+
+```lua
+number?
+```
+
+ID number for the Point of Interest (POI) marker showing the vendor location on the map. Used to place Blizzard map pins for navigation guidance
+
+## Cost
+
+
+```lua
+number
+```
+
+Number of Timewarped badges required to purchase the item
+
+## Expansion
+
+
+```lua
+string
+```
+
+Expansion for which the timewalking vendor that the collectible can be purchased from will be available
+
+## ItemID
+
+
+```lua
+number
+```
+
+ID number for item that adds the collectible to the collection
+
+## Name
+
+
+```lua
+string
+```
+
+Name of the collectible (for information only, displayed name is in user's locale)
+
+## Notes
+
+
+```lua
+string?
+```
+
+Additional notes about the collectible
+
+## SearchTags
+
+
+```lua
+string[]
+```
+
+A list of string identifiers to quickly search for a collectible. This can include expansion abbreviations, expansion names, zones, continents, etc<br>This field is extended upon AddOn initialization to include zones and only includes expansions by default
+
+## Type
+
+
+```lua
+"Mount"|"Pet"|"Toy"
+```
+
+The type of collectible that the item provides (one of "Mount", "Pet", "Toy")
+
+## VendorName
+
+
+```lua
+string?
+```
+
+Name of the vendor that sells this collectible (for information only, displayed name is in user's locale)
+
+## Waypoint
+
+
+```lua
+Waypoint?
+```
+
+Supplemental information to place a map pin on the entrance to the instance when a POI is not available. Also used for TomTom waypoint integration.
 
 
 ---
