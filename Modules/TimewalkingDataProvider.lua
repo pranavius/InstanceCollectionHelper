@@ -138,7 +138,7 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     frame.NameContainer.ViewButton:SetNormalTexture(data.iconID or 134400)
     frame.NameContainer.ViewButton:SetHighlightTexture(data.iconID or 134400)
 
-    AddOn:SetTruncatedText(frame.TypeContainer.Text, DARKYELLOW_FONT_COLOR:WrapTextInColorCode(item.Type))
+    AddOn:SetTruncatedText(frame.TypeContainer.Text, DARKYELLOW_FONT_COLOR:WrapTextInColorCode(L[item.Type]))
     AddOn:SetTruncatedText(frame.ExpansionContainer.Text, item.Expansion)
 
     frame.CostContainer.CurrencyButton:ClearNormalTexture()
@@ -185,7 +185,7 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     frame.CostContainer.CurrencyButton:SetScript("OnClick", function()
         AddOn:PrintDebugMessage("Timewarped Badges transfer requested")
         if not C_CurrencyInfo.CanTransferCurrency(1166) then
-            AddOn:PrintChatMessage("Unable to transfer Timewarped Badges to this character right now.")
+            AddOn:PrintChatMessage(L["Unable to transfer Timewarped Badges to this character right now."])
             return
         end
 
@@ -198,7 +198,7 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
             CurrencyTransferMenu:OnCurrencyTransferAmountUpdated(item.Cost)
             CurrencyTransferMenu:FullRefresh()
         else
-            AddOn:PrintChatMessage("Unable to open the currency transfer menu. Please open it manually or try again.")
+            AddOn:PrintChatMessage(L["Unable to open the currency transfer menu. Please open it manually or try again."])
         end
     end)
 end

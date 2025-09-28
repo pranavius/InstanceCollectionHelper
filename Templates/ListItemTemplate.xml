@@ -355,9 +355,9 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                                 GameTooltip:SetHyperlink("currency:1166")
                                 GameTooltip:AddLine("\n")
                                 if C_CurrencyInfo.CanTransferCurrency(1166) then
-                                    GameTooltip:AddLine("[Click to open currency transfer menu]", 0.098, 1.000, 0.098)
+                                    GameTooltip:AddLine("["..ICH_LANG["Click to open currency transfer menu"].."]", 0.098, 1.000, 0.098)
                                 else
-                                    GameTooltip:AddLine("[Cannot transfer to this character]", 1.000, 0.125, 0.125)
+                                    GameTooltip:AddLine("["..ICH_LANG["Cannot transfer to this character"].."]", 1.000, 0.125, 0.125)
                                 end
                                 GameTooltip:Show()
                             </OnEnter>

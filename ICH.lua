@@ -362,7 +362,7 @@ function AddOn:FilterListContentsByQuery(listData)
             end
         end
         itemTypeMatches = false
-        if data.Type then itemTypeMatches = query == data.Type:lower() end
+        if data.Type then itemTypeMatches = query == L[data.Type]:lower() end
 
         if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches or searchTagMatches or itemTypeMatches then
             tinsert(filtered, data)

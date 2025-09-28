@@ -53,7 +53,7 @@ function AddOn:CreateAboutFrame()
     a.SpecialThanksHeader = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightHuge")
     a.SpecialThanksHeader:SetPoint("TOPLEFT", a.Twitter, "BOTTOMLEFT", 0, -40)
     a.SpecialThanksHeader:SetPoint("TOPRIGHT", a.Twitter, "BOTTOMRIGHT", 0, -40)
-    a.SpecialThanksHeader:SetText(DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Special Thanks"))
+    a.SpecialThanksHeader:SetText(DARKYELLOW_FONT_COLOR:WrapTextInColorCode(L["Special Thanks"]))
 
     a.SpecialThanks1 = a:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     a.SpecialThanks1:SetPoint("TOPLEFT", a.SpecialThanksHeader, "BOTTOMLEFT", 0, -10)

@@ -6,7 +6,7 @@ if not L then return end
 --- Mount Notes ---
 L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"] = "Disponible en la dificultad de banda de legado Normal, pero debe configurarse en Heroico si "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Fámula de la Protectora").." aún no se ha obtenido"
 L["Drop from trash mobs around Temple of Ahn'Qiraj"] = "Se obtiene de los esbirros alrededor de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Templo de Ahn'Qiraj")
-L["Also obtainable in Timewalking"] = "También obtenible en Paseo del Tiempo"
+L["Also obtainable in Timewalking"] = "También obtenible en Cronoviajes"
 L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"] = "Obtenible en la dificultad Buscador de bandas (LFR) al derrotar a "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Lady Jaina Valiente")
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "Se obtiene para personajes de "..WrapTextInColor("Alianza", PLAYER_FACTION_COLOR_ALLIANCE)..", pero al obtenerlo también obtienes la versión de "..WrapTextInColor("Horda", PLAYER_FACTION_COLOR_HORDE)
 L["Drops for Horde characters, but obtaining this also gives you the Alliance version"] = "Se obtiene para personajes de "..WrapTextInColor("Horda", PLAYER_FACTION_COLOR_HORDE)..", pero al obtenerlo también obtienes la versión de "..WrapTextInColor("Alianza", PLAYER_FACTION_COLOR_ALLIANCE)
@@ -135,19 +135,19 @@ L["Translations:"] = "Traducciones:"
 L["Open ICH"] = "Abrir ICH"
 L["Close"] = "Cerrar"
 
---- Deprecated: to be removed in future release once it has been confirmed they are not needed or used ---
-L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"] = "Esta incursión solo tiene dificultad de 10 jugadores, así que cualquier dificultad de banda puede configurarse antes de entrar en la instancia"
-L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"] = "Esta incursión solo tiene dificultad de 25 jugadores, así que cualquier dificultad de banda puede configurarse antes de entrar en la instancia"
-L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"] = "Esta incursión solo tiene dificultad de 40 jugadores, así que cualquier dificultad de banda puede configurarse antes de entrar en la instancia"
-L["Search by mount/instance name, instance type, or difficulty"] = "Buscar por nombre de montura/instancia, tipo de instancia o dificultad"
-L["Search by toy/instance name, instance type, or difficulty"] = "Buscar por nombre de juguete/instancia, tipo de instancia o dificultad"
-L["Show Owned Mounts"] = "Mostrar monturas poseídas"
-L["View in mount journal"] = "Ver en el diario de monturas"
-L["Track available mounts from instances and easily set required instance difficulty"] = "Rastrear monturas disponibles de instancias y configurar fácilmente la dificultad requerida de la instancia"
-L["Find the mount you want to collect in the list and click the button for the difficulty you want to run on"] = "Encuentra la montura que deseas coleccionar en la lista y haz clic en el botón de la dificultad en la que quieres jugar"
-L["When you are locked out for a mount on a particular difficulty, the button for that difficulty will be disabled."] = "Cuando estés bloqueado para una montura en una dificultad determinada, el botón de esa dificultad se desactivará."
-L["\"raid\" will show all mounts that can be collected from a raid"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"banda\"").." mostrará todas las monturas que se pueden coleccionar en una banda"
-L["\"10\" will show all mounts that can be collected from a legacy 10 player raid (Normal or Heroic)"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"10\"").." mostrará todas las monturas que se pueden coleccionar en una banda de legado de 10 jugadores (Normal o Heroico)"
-L["\"fel\" will show all mounts and instances that contain \"fel\" in the name"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"fel\"").." mostrará todas las monturas e instancias que contengan \"fel\" en el nombre"
-L["\"mythic\" will show all mounts that can be obtained from a Mythic dungeon or raid"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"mítico\"").." mostrará todas las monturas que se pueden obtener en una mazmorra o banda Mítica"
-L["\"lfr\" will show all mounts that can be obtained from Raid Finder (LFR) difficulty raids"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"lfr\"").." mostrará todas las monturas que se pueden obtener en bandas en dificultad Buscador de bandas (LFR)"
+--- New in v11: To be categorized ---
+L["Type"] = "Tipo"
+L["Expansion"] = "Expansión"
+L["Cost"] = "Costo"
+L["Random chance to obtain when opening a Bag of Fishing Treasures"] = "Probabilidad aleatoria de obtenerse al abrir un "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Bag of Fishing Treasures")
+L["Originally rewarded for completing the achievement Master of the Turbulent Timeways. Can now be purchased from any Timewalking vendor."] = "Originalmente recompensado por completar el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(19079)) or "Master of the Turbulent Timeways")..". Ahora puede comprarse a cualquier vendedora de Cronaviajes"
+L["Originally rewarded for completing the achievement Master of the Turbulent Timeways II. Can now be purchased from any Timewalking vendor."] = "Originalmente recompensado por completar el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(41056)) or "Master of the Turbulent Timeways II")..". Ahora puede comprarse a cualquier vendedora de Cronaviajes"
+L["Special Thanks"] = "Agradecimientos especiales"
+L["Mount"] = "Montura"
+L["Pet"] = "Mascota"
+L["Toy"] = "Juguete"
+L["Timewalking Vendor"] = "Cronoviajes"
+L["Unable to transfer Timewarped Badges to this character right now."] = "No se pueden transferir las Divisas cronoanómalas a este personaje en este momento."
+L["Unable to open the currency transfer menu. Please open it manually or try again."] = "No se pudo abrir el menú de transferencia de divisa. Ábrelo manualmente o inténtalo de nuevo."
+L["Click to open currency transfer menu"] = "Haz clic para abrir el menú de transferencia de divisa"
+L["Cannot transfer to this character"] = "No se puede transferir a este personaje"

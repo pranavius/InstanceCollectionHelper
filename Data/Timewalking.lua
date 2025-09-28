@@ -103,7 +103,7 @@ AddOn.TimewalkingItems = {
         Expansion = "The Burning Crusade",
         Cost = 25,
         AreaPoiID = 6981,
-        Notes = "Random chance to obtain when opening a "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Bag of Fishing Treasures"),
+        Notes = L["Random chance to obtain when opening a Bag of Fishing Treasures"],
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -309,7 +309,7 @@ AddOn.TimewalkingItems = {
         Expansion = "The Burning Crusade",
         Cost = 25,
         AreaPoiID = 6981,
-        Notes = "Random chance to obtain when opening a "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Bag of Fishing Treasures"),
+        Notes = L["Random chance to obtain when opening a Bag of Fishing Treasures"],
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -367,7 +367,7 @@ AddOn.TimewalkingItems = {
         Type = "Mount",
         Expansion = "-",
         Cost = 5000,
-        Notes = "Originally rewarded for completing the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Master of the Turbulent Timeways")..". Can now be purchased from any Timewalking vendor",
+        Notes = L["Originally rewarded for completing the achievement Master of the Turbulent Timeways. Can now be purchased from any Timewalking vendor."],
         SearchTags = combineLists(AddOn.ExpansionTags.Classic,
             AddOn.ExpansionTags.TheBurningCrusade,
             AddOn.ExpansionTags.WrathOfTheLichKing,
@@ -393,7 +393,7 @@ AddOn.TimewalkingItems = {
         Expansion = "The Burning Crusade",
         Cost = 25,
         AreaPoiID = 6981,
-        Notes = "Random chance to obtain when opening a "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Bag of Fishing Treasures"),
+        Notes = L["Random chance to obtain when opening a Bag of Fishing Treasures"],
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -402,7 +402,7 @@ AddOn.TimewalkingItems = {
         Type = "Mount",
         Expansion = "-",
         Cost = 5000,
-        Notes = "Originally rewarded for completing the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Master of the Turbulent Timeways II")..". Can now be purchased from any Timewalking vendor",
+        Notes = L["Originally rewarded for completing the achievement Master of the Turbulent Timeways II. Can now be purchased from any Timewalking vendor."],
         SearchTags = combineLists(AddOn.ExpansionTags.Classic,
             AddOn.ExpansionTags.TheBurningCrusade,
             AddOn.ExpansionTags.WrathOfTheLichKing,
@@ -419,7 +419,7 @@ AddOn.TimewalkingItems = {
         Expansion = "The Burning Crusade",
         Cost = 25,
         AreaPoiID = 6981,
-        Notes = "Random chance to obtain when opening a "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Bag of Fishing Treasures"),
+        Notes = L["Random chance to obtain when opening a Bag of Fishing Treasures"],
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -450,7 +450,7 @@ AddOn.TimewalkingItems = {
         Expansion = "Wrath of the Lich King",
         Cost = 150,
         AreaPoiID = 6982,
-        Notes = "Random chance to obtain when opening a "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Bag of Fishing Treasures"),
+        Notes = L["Random chance to obtain when opening a Bag of Fishing Treasures"],
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -461,7 +461,7 @@ AddOn.TimewalkingItems = {
         Expansion = "Wrath of the Lich King",
         Cost = 150,
         AreaPoiID = 6982,
-        Notes = "Random chance to obtain when opening a "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Bag of Fishing Treasures"),
+        Notes = L["Random chance to obtain when opening a Bag of Fishing Treasures"],
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
