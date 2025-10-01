@@ -16,6 +16,7 @@ L["Requires completing certain objectives within a given amount of time, so it's
 L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "A entrada pode estar em "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Uldum").." ou no "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vale das Flores Eternas")
 L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Exige completar a linha de história de Tazavesh para desbloquear o caminho de voo, começando com |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(63976) or "O gato de Oribos")
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "Requer completar uma curta linha de missões após saquear "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Traje de Meca Defeituoso]"))
+L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "Requer completar a masmorra após ativar o Modo Difícil. Guias sobre como fazê-lo podem ser encontrados online."
 
 --- Toy Notes ---
 L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "Obtido de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Doutor Theolen Krastinov")..", que tem uma chance aleatória de aparecer após matar "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Ossorrange")

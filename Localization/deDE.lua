@@ -16,6 +16,7 @@ L["Requires completing certain objectives within a given amount of time, so it's
 L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "Der Eingang befindet sich entweder in "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Uldum").." oder im "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Tal der Ewigen Blüten")
 L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Erfordert den Abschluss der Tazavesh-Handlung, um den Flugpunkt von Oribos freizuschalten, beginnend mit |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(63976) or "Al'ter Gauner von Oribos")
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "Erfordert das Abschließen einer kurzen Questreihe nach dem Plündern von "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Defekter Mechanzug]"))
+L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "Erfordert das Abschließen des Dungeons, nachdem der Hardmode aktiviert wurde. Anleitungen dazu findet man online."
 
 --- Toy Notes ---
 L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "Beute von "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Doktor Theolen Krastinov")..", der nach dem Töten von "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Blutrippe").." mit zufälliger Chance spawnen kann"

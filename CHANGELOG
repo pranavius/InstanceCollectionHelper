@@ -4,6 +4,9 @@ This document describes changes to each version of **InstanceCollectionHelper (I
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v11.1**
+- Added **Aerial Unit R-21/X** to list of available mounts since it is actually dropped by King Mechagon and not awarded for the Hard Mode achievement
+
 **v11**
 - **Major update**: New tab for items available at Timewalking vendors along with each of their cost
 - **Major update**: AddOn Compartment button to enable hiding the minimap button as per preference is now available

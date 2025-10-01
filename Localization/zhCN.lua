@@ -15,6 +15,7 @@ L["Drops for Alliance characters, but obtaining this also gives you the Horde ve
 L["Drops for Horde characters, but obtaining this also gives you the Alliance version"] = "只对"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."角色掉落，但取得后也会获得"..WrapTextInColor("联盟", PLAYER_FACTION_COLOR_ALLIANCE).."版本"
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "进入副本后，团队难度将自动设定为普通"
 L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("塔扎维什").."的故事线才能解锁飞行路径，先从 |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos").." 开始" -- 注意: "塔札維許" -> "塔扎维什" (简体官方译名)
+L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "在激活困难模式后需要完成该地下城。有关如何进行的指南可在网上找到。"
 
 --- Toy Notes ---
 L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "掉落自"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("瑟尔林·卡斯迪诺夫教授").."，在击杀"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("血骨傀儡").."后有几率出现"

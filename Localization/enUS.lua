@@ -16,6 +16,7 @@ L["Requires completing certain objectives within a given amount of time, so it's
 L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "Entrance can be in either "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Uldum").." or "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vale of Eternal Blossoms")
 L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Requires completing the Tazavesh storyline to unlock flight path, beginning with |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos") -- Currently unused
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "Requires completing a short questline after looting "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Malfunctioning Mechsuit]"))
+L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."
 
 --- Toy Notes ---
 L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "Dropped by "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Doctor Theolen Krastinov")..", who has a random chance to spawn after killing "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Rattlegore")
