@@ -7,6 +7,9 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ICH_NAME_COL_TITLE = L["Name"]
 ICH_INSTANCE_COL_TITLE = L["Instance"]
 ICH_AVAIL_DIFFS_COL_TITLE = L["Available Difficulty(s)"]
+ICH_TYPE_COL_TITLE = L["Type"]
+ICH_EXPANSION_COL_TITLE = L["Expansion"]
+ICH_COST_COL_TITLE = L["Cost"]
 
 AddOn.DatabaseDefaults = {
     global = {
@@ -64,9 +67,9 @@ AddOn.SlashOptions = {
             order = counter(),
             func = function()
                 AddOn:PrintChatMessage(L["Current Instance Difficulties"])
-                print(L["Dungeon Difficulty:"], WrapTextInColor(AddOn:GetInstanceDifficultyText(GetDungeonDifficultyID()), DARKYELLOW_FONT_COLOR))
-                print(L["Legacy Raid Difficulty:"], WrapTextInColor(AddOn:GetInstanceDifficultyText(GetLegacyRaidDifficultyID()), DARKYELLOW_FONT_COLOR))
-                print(L["Raid Difficulty:"], WrapTextInColor(AddOn:GetInstanceDifficultyText(GetRaidDifficultyID()), DARKYELLOW_FONT_COLOR))
+                print(L["Dungeon Difficulty:"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(AddOn:GetInstanceDifficultyText(GetDungeonDifficultyID())))
+                print(L["Legacy Raid Difficulty:"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(AddOn:GetInstanceDifficultyText(GetLegacyRaidDifficultyID())))
+                print(L["Raid Difficulty:"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(AddOn:GetInstanceDifficultyText(GetRaidDifficultyID())))
             end
         },
         dung = {
@@ -79,7 +82,7 @@ AddOn.SlashOptions = {
                 elseif tostring(difficulty):lower() == "hero" then AddOn:SetInstanceDifficulty(AddOn.DungeonDifficulty.Heroic)
                 elseif tostring(difficulty):lower() == "myth" then AddOn:SetInstanceDifficulty(AddOn.DungeonDifficulty.Mythic)
                 else
-                    AddOn:PrintChatMessage(WrapTextInColor(L["Invalid dungeon difficulty provided."].."\n"..L["Accepted values:"], ERROR_COLOR), WrapTextInColor("norm, hero, myth", WHITE_FONT_COLOR))
+                    AddOn:PrintChatMessage(ERROR_COLOR:WrapTextInColorCode(L["Invalid dungeon difficulty provided."].."\n"..L["Accepted values:"]), WHITE_FONT_COLOR:WrapTextInColorCode("norm, hero, myth"))
                 end
             end
         },
@@ -95,7 +98,7 @@ AddOn.SlashOptions = {
                 elseif tostring(difficulty):lower() == "25h" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Legacy25H)
                 elseif tostring(difficulty):lower() == "40" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Legacy40)
                 else
-                    AddOn:PrintChatMessage(WrapTextInColor(L["Invalid legacy raid difficulty provided."].."\n"..L["Accepted values:"], ERROR_COLOR), WrapTextInColor("10, 25, 10h, 25h, 40", WHITE_FONT_COLOR))
+                    AddOn:PrintChatMessage(ERROR_COLOR:WrapTextInColorCode(L["Invalid legacy raid difficulty provided."].."\n"..L["Accepted values:"]), WHITE_FONT_COLOR:WrapTextInColorCode("10, 25, 10h, 25h, 40"))
                 end
             end
         },
@@ -109,7 +112,7 @@ AddOn.SlashOptions = {
                 elseif tostring(difficulty):lower() == "hero" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Heroic)
                 elseif tostring(difficulty):lower() == "myth" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Mythic)
                 else
-                    AddOn:PrintChatMessage(WrapTextInColor(L["Invalid raid difficulty provided."].."\n"..L["Accepted values:"], ERROR_COLOR), WrapTextInColor("norm, hero, myth", WHITE_FONT_COLOR))
+                    AddOn:PrintChatMessage(ERROR_COLOR:WrapTextInColorCode(L["Invalid raid difficulty provided."].."\n"..L["Accepted values:"]), WHITE_FONT_COLOR:WrapTextInColorCode("norm, hero, myth"))
                 end
             end
         },

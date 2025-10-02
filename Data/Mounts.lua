@@ -35,6 +35,19 @@ AddOn.Mounts = {
         SearchTags = AddOn.ExpansionTags.Legion
     },
     {
+        Name = "Aerial Unit R-21/X",
+        ID = 1227,
+        Instance = "Operation: Mechagon",
+        InstanceID = 1178,
+        MapID = 2097,
+        AreaPoiID = 6129,
+        EncounterID = 2331,
+        DifficultyIDs = { DungeonDifficulty.Mythic },
+        Waypoint = { mapID = 1462, x = 0.729, y = 0.365 },
+        Notes = L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."],
+        SearchTags = AddOn.ExpansionTags.BattleForAzeroth
+    },
+    {
         Name = "Amani Battle Bear",
         ID = 419,
         Instance = "Zul'Aman",

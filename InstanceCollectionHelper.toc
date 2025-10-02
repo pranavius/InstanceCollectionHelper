@@ -3,9 +3,12 @@
 ## Notes: Helps find and set the instance difficulty needed to obtain collectible items
 ## IconTexture: Interface\AddOns\InstanceCollectionHelper\Media\Logo.png
 ## Author: pranavius
-## Version: 10
+## Version: 11.1
 ## SavedVariables: ICH_DB
 ## Category: Achievements
+## AddonCompartmentFunc: ICH_AddonCompartmentOnClick
+## AddonCompartmentFuncOnEnter: ICH_AddonCompartmentOnEnter
+## AddonCompartmentFuncOnLeave: ICH_AddonCompartmentOnLeave
 ## X-Flavor: retail
 ## X-Additional-Categories: Battle Pets, Boss Encounters, Miscellaneous
 ## X-Curse-Project-ID: 1302094
@@ -30,6 +33,7 @@ Utils.lua
 Data\Mounts.lua
 Data\Toys.lua
 Data\Pets.lua
+Data\Timewalking.lua
 Modules\AboutICH.lua
 Modules\CategoryTabs.lua
 Modules\Waypoints.lua
@@ -37,4 +41,5 @@ Modules\DifficultyButtons.lua
 Modules\MountDataProvider.lua
 Modules\ToyDataProvider.lua
 Modules\PetDataProvider.lua
+Modules\TimewalkingDataProvider.lua
 ICH.lua

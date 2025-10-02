@@ -6,31 +6,32 @@ if not L then return end
 --- Mount Notes ---
 -- L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"] = "此團隊副本只有10人的難度，因此在進入副本之前可以設置任何團隊難度"
 -- L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"] = "此團隊副本只有25人的難度，因此在進入副本之前可以設置任何團隊難度"
-L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"] = "只有普通舊團隊副本難度可用，but Heroic should be set if "..WrapTextInColor("生命守縛者的女僕", DARKYELLOW_FONT_COLOR).." is not obtained yet"
-L["Drop from trash mobs around Temple of Ahn'Qiraj"] = "掉落於小怪圍繞於"..WrapTextInColor("安其拉神廟", DARKYELLOW_FONT_COLOR)
+L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"] = "只有普通舊團隊副本難度可用，but Heroic should be set if "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("生命守縛者的女僕").." is not obtained yet"
+L["Drop from trash mobs around Temple of Ahn'Qiraj"] = "掉落於小怪圍繞於"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("安其拉神廟")
 -- L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"] = "此團隊副本只有40人的難度，因此在進入副本之前可以設置任何團隊難度"
 L["Also obtainable in Timewalking"] = "也可以在時光漫遊中獲得"
-L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"] = "在團隊搜尋器難度(LFR)中獲得，須擊殺 "..WrapTextInColor("珍娜·普羅德摩爾女士", DARKYELLOW_FONT_COLOR)
+L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"] = "在團隊搜尋器難度(LFR)中獲得，須擊殺 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("珍娜·普羅德摩爾女士")
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "只對"..WrapTextInColor("聯盟", PLAYER_FACTION_COLOR_ALLIANCE).."角色掉落，但取得後也會獲得"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."版本"
 L["Drops for Horde characters, but obtaining this also gives you the Alliance version"] = "只對"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."角色掉落，但取得後也會獲得"..WrapTextInColor("聯盟", PLAYER_FACTION_COLOR_ALLIANCE).."版本"
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "進入副本後，團隊難度將自動設定為普通"
-L["Requires completing the Tazavesh story line to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..WrapTextInColor("塔札維許", DARKYELLOW_FONT_COLOR).."的故事線才能解鎖飛行路徑，先從 |A:QuestNormal:15:15|a"..WrapTextInColor(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos", DARKYELLOW_FONT_COLOR).." 開始"
+L["Requires completing the Tazavesh story line to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("塔札維許").."的故事線才能解鎖飛行路徑，先從 |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos").." 開始"
+L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "在啟動困難模式後需要完成此副本。可在線上找到如何進行的指南。"
 
 --- Toy Notes ---
-L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "掉落自 "..WrapTextInColor("瑟爾林‧卡斯迪諾夫教授", DARKYELLOW_FONT_COLOR).."，在擊殺 "..WrapTextInColor("血骨傀儡", DARKYELLOW_FONT_COLOR).." 後有機率出現"
-L["Dropped by the Rare Elite Vixx the Collector"] = "掉落自稀有精英 "..WrapTextInColor("收藏家』維克斯", DARKYELLOW_FONT_COLOR)
-L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "此物品可獲得，儘管它未出現在 "..WrapTextInColor("古爾丹", DARKYELLOW_FONT_COLOR).." 的掉落表中"
+L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "掉落自 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("瑟爾林‧卡斯迪諾夫教授").."，在擊殺 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("血骨傀儡").." 後有機率出現"
+L["Dropped by the Rare Elite Vixx the Collector"] = "掉落自稀有精英 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("收藏家』維克斯")
+L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "此物品可獲得，儘管它未出現在 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("古爾丹").." 的掉落表中"
 L["Can drop from every boss in the dungeon"] = "可從該副本的每個首領掉落"
 L["Can only be looted and used by a Druid"] = "僅限 "..WrapTextInColor(select(1, GetClassInfo(11)), C_ClassColor.GetClassColor("DRUID")).." 掠取並使用"
 L["Can also be looting by fishing within the instance"] = "也可在副本內透過釣魚獲得"
-L["Requires completion of the achievement Relics of a Fallen Empire"] = "需要完成成就 "..WrapTextInColor(select(2, GetAchievementInfo(17366)) or "Relics of a Fallen Empire", DARKYELLOW_FONT_COLOR)
+L["Requires completion of the achievement Relics of a Fallen Empire"] = "需要完成成就 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(17366)) or "Relics of a Fallen Empire")
 L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "此物僅可在通靈學院（經典版）中取得。如尚未解鎖此副本，請先線上尋找教學。"
-L["Dropped by the hidden boss Endgineer Omegaplugg"] = "掉落自隱藏首領 "..WrapTextInColor("終極工程師歐米茄布", DARKYELLOW_FONT_COLOR)
+L["Dropped by the hidden boss Endgineer Omegaplugg"] = "掉落自隱藏首領 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("終極工程師歐米茄布")
 L["It is highly recommended to attempt this encounter with a full party"] = "強烈建議使用完整小隊來嘗試此首領戰"
 L["Can only be looted and used by a Demon Hunter"] = "僅限 "..WrapTextInColor(select(1, GetClassInfo(12)), C_ClassColor.GetClassColor("DEMONHUNTER")).." 掠取並使用"
-L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "掉落自 "..WrapTextInColor("卡洛斯大爺", DARKYELLOW_FONT_COLOR).."，他巡邏塔倫米爾以南路徑的一部分"
-L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "有報告指出在擊殺某些首領後 "..WrapTextInColor("卡洛斯大爺", DARKYELLOW_FONT_COLOR).." 會消失；請小心行事"
-L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "掉落自位於 "..WrapTextInColor("梅賈拉", DARKYELLOW_FONT_COLOR).." 與 "..WrapTextInColor("稷坤", DARKYELLOW_FONT_COLOR).." 之間的巨蝸怪物"
+L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "掉落自 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("卡洛斯大爺").."，他巡邏塔倫米爾以南路徑的一部分"
+L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "有報告指出在擊殺某些首領後 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("卡洛斯大爺").." 會消失；請小心行事"
+L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "掉落自位於 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("梅賈拉").." 與 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("稷坤").." 之間的巨蝸怪物"
 
 --- Instance Difficulties ---
 L["LFR"] = "LFR"
@@ -91,11 +92,11 @@ L["When you are locked out for a mount on a particular difficulty, the button fo
 L["A button will also be disabled for legacy raids completed on another difficulty since those lockouts"] = "對於那些進度鎖定，在另一個難度的舊團隊副本的按鈕也將禁用。"
 L["are shared across difficulties."] = "因為難度是共用的。"
 L["Search Hints:"] = "搜尋提示:"
-L["\"raid\" will show all mounts that can be collected from a raid"] = WrapTextInColor("\"團隊\"", DARKYELLOW_FONT_COLOR).." 將顯示所有可以從團隊中收集的坐騎"
-L["\"10\" will show all mounts that can be collected from a legacy 10 player raid (Normal or Heroic)"] = WrapTextInColor("\"10\"", DARKYELLOW_FONT_COLOR).." 將顯示所有可以從舊10人團隊(普通或英雄)中收集的坐騎"
-L["\"fel\" will show all mounts and instances that contain \"fel\" in the name"] = WrapTextInColor("\"fel\"", DARKYELLOW_FONT_COLOR).." 將顯示所有坐騎與副本名字中包含 \"fel\" 的"
-L["\"mythic\" will show all mounts that can be obtained from a Mythic dungeon or raid"] = WrapTextInColor("\"史詩\"", DARKYELLOW_FONT_COLOR).." 將顯示所有可以從史詩地下城或團隊副本中獲得的坐騎"
-L["\"lfr\" will show all mounts that can be obtained from Raid Finder (LFR) difficulty raids"] = WrapTextInColor("\"lfr\"", DARKYELLOW_FONT_COLOR).." 將顯示所有可以從團隊搜尋器難度(LFR)中收集的坐騎"
+L["\"raid\" will show all mounts that can be collected from a raid"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"團隊\"").." 將顯示所有可以從團隊中收集的坐騎"
+L["\"10\" will show all mounts that can be collected from a legacy 10 player raid (Normal or Heroic)"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"10\"").." 將顯示所有可以從舊10人團隊(普通或英雄)中收集的坐騎"
+L["\"fel\" will show all mounts and instances that contain \"fel\" in the name"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"fel\"").." 將顯示所有坐騎與副本名字中包含 \"fel\" 的"
+L["\"mythic\" will show all mounts that can be obtained from a Mythic dungeon or raid"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"史詩\"").." 將顯示所有可以從史詩地下城或團隊副本中獲得的坐騎"
+L["\"lfr\" will show all mounts that can be obtained from Raid Finder (LFR) difficulty raids"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"lfr\"").." 將顯示所有可以從團隊搜尋器難度(LFR)中收集的坐騎"
 L["Name"] = "名字"
 L["Instance"] = "副本"
 L["Available Difficulty(s)"] = "可用難度"
@@ -105,11 +106,11 @@ L["View in encounter journal"] = "在冒險指南中觀看"
 L["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."] = "此按鈕僅用於追蹤團隊搜尋器(LFR）進度。團隊難度並未改變。"
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "需要在給定的時間內完成某些目標，因此建議搜尋指南以在嘗試之前在線上獲取此坐騎"
 L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"] = "不要與任何泰坦守護者交談，否則該坐騎不會掉落"
-L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "入口可以在任何一個 "..WrapTextInColor("奧丹姆", DARKYELLOW_FONT_COLOR).." 或 "..WrapTextInColor("恆春谷", DARKYELLOW_FONT_COLOR)
+L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "入口可以在任何一個 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("奧丹姆").." 或 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("恆春谷")
 L["Waypoint tracking on the minimap may not always appear until you are in a specific zone."] = "在您處於特定區域之前，在小地圖上的路徑點追蹤可能並不總是出現。"
-L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "舉例，指向的箭頭 "..WrapTextInColor("雷霆王座", DARKYELLOW_FONT_COLOR).." 會顯示只有當您位於 "..WrapTextInColor("雷王島", DARKYELLOW_FONT_COLOR)
+L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "舉例，指向的箭頭 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("雷霆王座").." 會顯示只有當您位於 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("雷王島")
 L["Set map pin"] = "設定地圖標記"
-L["Set TomTom waypoint"] = "設定 "..WrapTextInColor("TomTom", DARKYELLOW_FONT_COLOR).." 路徑點"
+L["Set TomTom waypoint"] = "設定 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("TomTom").." 路徑點"
 L["Coming soon"] = "即將推出"
 
 --- About ---
@@ -118,3 +119,20 @@ L["Created by Pranavius"] = "由 Pranavius 製作"
 L["Translations:"] = "翻譯："
 L["Open ICH"] = "開啟 ICH"
 L["Close"] = "關閉"
+
+--- New in v11: To be categorized ---
+L["Type"] = "類型"
+L["Expansion"] = "資料片"
+L["Cost"] = "價格"
+L["Random chance to obtain when opening a  Bag of Fishing Treasures"] = "打開一個 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Bag of Fishing Treasures").." 時有隨機幾率獲得"
+L["Originally rewarded for completing the achievement Master of the Turbulent Timeways. Can now be purchased from any Timewalking vendor."] = "最初作為完成成就 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(19079)) or "Master of the Turbulent Timeways").." 的獎勵。現在可從任何時光漫遊供應商處購買"
+L["Originally rewarded for completing the achievement Master of the Turbulent Timeways II. Can now be purchased from any Timewalking vendor."] = "最初作為完成成就 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(41056)) or "Master of the Turbulent Timeways II").." 的獎勵。現在可從任何時光漫遊供應商處購買"
+L["Special Thanks"] = "特別鳴謝"
+L["Mount"] = "坐騎"
+L["Pet"] = "寵物"
+L["Toy"] = "玩具"
+L["Timewalking Vendor"] = "时空漫游商人"
+L["Unable to transfer Timewarped Badges to this character right now."] = "目前無法將時光扭曲徽章移到此角色。"
+L["Unable to open the currency transfer menu. Please open it manually or try again."] = "無法打開貨幣轉移選單。請手動打開或再試一次。"
+L["Click to open currency transfer menu"] = "點擊以打開貨幣轉移選單"
+L["Cannot transfer to this character"] = "無法轉移給此角色"
