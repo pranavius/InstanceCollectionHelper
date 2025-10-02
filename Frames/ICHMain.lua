@@ -4,10 +4,19 @@ AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 
 ICHMainMixin = {}
 
-function ICHMainMixin:OnLoad()
-    self.Text:SetText(name)
+function ICHMainMixin:OnTitleLoad()
+    self.Text:SetText(AddOn.Title)
 end
 
-function ICHMainMixin:OnDragStart() self:StartMoving() end
+function ICHMainMixin:OnDragStart()
+    self:StartMoving()
+end
 
-function ICHMainMixin:OnDragStop() self:StopMovingOrSizing() end
+function ICHMainMixin:OnDragStop()
+    self:StopMovingOrSizing()
+end
+
+function ICHMainMixin:OnSearchBoxTextChanged()
+    AddOn:PrintDebugMessage("Search box text changed!")
+    AddOn:UpdateListContents()
+end

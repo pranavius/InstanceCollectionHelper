@@ -42,4 +42,8 @@ Modules\MountDataProvider.lua
 Modules\ToyDataProvider.lua
 Modules\PetDataProvider.lua
 Modules\TimewalkingDataProvider.lua
+
+Frames\ICHMain.lua
+Frames\ICHMain.xml
+
 ICH.lua
