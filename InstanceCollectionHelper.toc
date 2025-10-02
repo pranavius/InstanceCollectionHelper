@@ -5,12 +5,12 @@
 ## Author: pranavius
 ## Version: 11.1
 ## SavedVariables: ICH_DB
-## Category: Achievements
+## Category: Collections
 ## AddonCompartmentFunc: ICH_AddonCompartmentOnClick
 ## AddonCompartmentFuncOnEnter: ICH_AddonCompartmentOnEnter
 ## AddonCompartmentFuncOnLeave: ICH_AddonCompartmentOnLeave
 ## X-Flavor: retail
-## X-Additional-Categories: Battle Pets, Boss Encounters, Miscellaneous
+## X-Additional-Categories: Achievements, Battle Pets, Boss Encounters, Miscellaneous
 ## X-Curse-Project-ID: 1302094
 ## X-Wago-ID: kGr0j76y
 
