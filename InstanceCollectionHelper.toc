@@ -16,7 +16,6 @@
 
 embeds.xml
 Templates\ListHeadersTemplate.xml
-Templates\GenericButtonTemplate.xml
 Templates\DifficultyButtonTemplate.xml
 Templates\ListItemTemplate.xml
 
@@ -43,7 +42,10 @@ Modules\ToyDataProvider.lua
 Modules\PetDataProvider.lua
 Modules\TimewalkingDataProvider.lua
 
-Frames\ICHMain.lua
+Templates\ICHSquareButtonMixin.lua
+Templates\ICHSquareButtonTemplate.xml
+
+Frames\ICHMainMixin.lua
 Frames\ICHMain.xml
 
 ICH.lua

@@ -17,30 +17,58 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="0" y="-10"/>
                         <Anchor point="TOPRIGHT" relativePoint="TOPRIGHT" x="0" y="-10"/>
                     </Anchors>
-                    <Scripts>
-                        <OnLoad function="OnTitleLoad"/> <!-- Not working -->
-                    </Scripts>
                 </FontString>
             </Layer>
         </Layers>
         <Frames>
             <EditBox parentKey="SearchBox" inherits="SearchBoxTemplate" autoFocus="false">
-                <Size x="400" y="300"/>
+                <Size x="400" y="30"/>
                 <Anchors>
-                    <Anchor point="TOPRIGHT" relativeKey="Title" relativePoint="BOTTOMRIGHT" x ="-25" y="-10"/> <!-- Anchoring issue? -->
+                    <Anchor point="TOPRIGHT" relativeKey="$parent.Title" relativePoint="BOTTOMRIGHT" x ="-25" y="-10"/>
                 </Anchors>
-                <Scripts>
-                    <OnTextChanged function="$parent:OnSearchBoxTextChanged" /> <!-- Not working -->
-                </Scripts>
             </EditBox>
 
             <Button parentKey="CloseButton" inherits="UIPanelCloseButtonDefaultAnchors">
                 <Size x="20" y="20"/>
             </Button>
+
+            <Button parentKey="SearchHintsButton" inherits="ICHSquareButtonTemplate">
+                <KeyValues>
+                    <KeyValue key="action" type="string" value="SEARCH"></KeyValue>
+                </KeyValues>
+                <Anchors>
+                    <Anchor point="RIGHT" relativeKey="$parent.CloseButton" relativePoint="LEFT" x="-10"/>
+                </Anchors>
+                <NormalTexture file="Interface\AddOns\InstanceCollectionHelper\Media\SearchHintsIcon.png"/>
+                <HighlightTexture file="Interface\AddOns\InstanceCollectionHelper\Media\SearchHintsIcon.png"/>
+            </Button>
+            
+            <Button parentKey="HelpButton" inherits="ICHSquareButtonTemplate">
+                <KeyValues>
+                    <KeyValue key="action" type="string" value="HELP"></KeyValue>
+                </KeyValues>
+                <Anchors>
+                    <Anchor point="RIGHT" relativeKey="$parent.SearchHintsButton" relativePoint="LEFT" x="-10"/>
+                </Anchors>
+                <NormalTexture file="Interface\AddOns\InstanceCollectionHelper\Media\HelpIcon.png"/>
+                <HighlightTexture file="Interface\AddOns\InstanceCollectionHelper\Media\HelpIcon.png"/>
+            </Button>
+            
+            <Button parentKey="InfoButton" inherits="ICHSquareButtonTemplate">
+                <KeyValues>
+                    <KeyValue key="action" type="string" value="INFO"></KeyValue>
+                </KeyValues>
+                <Anchors>
+                    <Anchor point="RIGHT" relativeKey="$parent.HelpButton" relativePoint="LEFT" x="-10"/>
+                </Anchors>
+                <NormalTexture file="Interface\AddOns\InstanceCollectionHelper\Media\InfoIcon.png"/>
+                <HighlightTexture file="Interface\AddOns\InstanceCollectionHelper\Media\InfoIcon.png"/>
+            </Button>
         </Frames>
         <Scripts>
             <OnDragStart method="OnDragStart"/>
             <OnDragStop method="OnDragStop"/>
+            <OnLoad method="OnLoad"/>
         </Scripts>
     </Frame>
 </Ui>
