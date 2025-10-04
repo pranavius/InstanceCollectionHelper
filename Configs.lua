@@ -3,14 +3,6 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):NewAddon(name, "AceConsole-3.0", "AceEvent-3.0")
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
--- Globals needed for displaying translated text via XML
-ICH_NAME_COL_TITLE = L["Name"]
-ICH_INSTANCE_COL_TITLE = L["Instance"]
-ICH_AVAIL_DIFFS_COL_TITLE = L["Available Difficulty(s)"]
-ICH_TYPE_COL_TITLE = L["Type"]
-ICH_EXPANSION_COL_TITLE = L["Expansion"]
-ICH_COST_COL_TITLE = L["Cost"]
-
 AddOn.DatabaseDefaults = {
     global = {
         minimap = { hide = false },

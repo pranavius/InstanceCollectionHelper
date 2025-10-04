@@ -50,14 +50,3 @@ end
 function ICHMainMixin:OnShow()
     AddOn:UpdateListContents()
 end
-
-------- ANNOTATIONS -------
----------------------------
----@class ICHListHeaders : Frame Column headers for the currently viewed list of collectibles
----@field BorderBottom Texture A separator between the list headers and the list items in the AddOn interface
----@field NameHeader FontString
----@field InstanceHeader? FontString Exclusive to `ICHListItemTemplate`
----@field DiffHeader? FontString Exclusive to `ICHListItemTemplate`
----@field TypeHeader? FontString Exclusive to `ICHVendorListItemTemplate`
----@field ExpansionHeader? FontString Exclusive to `ICHVendorListItemTemplate`
----@field CostHeader? FontString Exclusive to `ICHVendorListItemTemplate`

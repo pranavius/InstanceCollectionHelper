@@ -40,9 +40,10 @@ Modules\TimewalkingDataProvider.lua
 
 Templates\ICHSquareButtonMixin.lua
 Templates\ICHSquareButtonTemplate.xml
-Templates\ListHeadersTemplate.xml
 Templates\DifficultyButtonMixin.lua
 Templates\DifficultyButtonTemplate.xml
+Templates\ListHeadersMixin.lua
+Templates\ListHeadersTemplate.xml
 Templates\ListItemMixin.lua
 Templates\ListItemTemplate.xml
 
