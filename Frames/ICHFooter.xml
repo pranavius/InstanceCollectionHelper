@@ -9,7 +9,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
         <Layers>
             <Layer level="BACKGROUND">
                 <Texture parentKey="Bg" setAllPoints="true">
-                    <Color r="0" g="0" b="0"/>
+                    <Color color="BLACK_FONT_COLOR"/>
                 </Texture>
             </Layer>
         </Layers>

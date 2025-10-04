@@ -1,0 +1,96 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Blizzard_SharedXML/UI.xsd">
+    <Frame name="ICHAbout" parent="UIParent" mixin="ICHAboutMixin" frameStrata="MEDIUM" hidden="true">
+        <Size x="400" y="500"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Bg" setAllPoints="true">
+                    <Color color="BLACK_FONT_COLOR" a="0.8"/>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString parentKey="Name" inherits="GameFontHighlightMedium" text="Instance Collection Helper">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" y="-10"/>
+                        <Anchor point="TOPRIGHT" y="-10"/>
+                    </Anchors>
+                    <Color color="DARKYELLOW_FONT_COLOR"/>
+                </FontString>
+                <FontString parentKey="Author" inherits="GameFontHighlightSmall" text="Created by Pranavius">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Name" relativePoint="BOTTOMLEFT" y="-10"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent.Name" relativePoint="BOTTOMRIGHT" y="-10"/>
+                    </Anchors>
+                    <Color color="HEIRLOOM_BLUE_COLOR"/>
+                </FontString>
+
+                <FontString parentKey="Twitter" inherits="GameFontHighlightMedium" text="@PranaviusWoW">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Author" relativePoint="BOTTOMLEFT" y="-20"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent.Author" relativePoint="BOTTOMRIGHT" y="-20"/>
+                    </Anchors>
+                    <Color color="LEGENDARY_ORANGE_COLOR"/>
+                </FontString>
+            
+                <FontString parentKey="GitHub" inherits="GameFontHighlightMedium" text="Pranavius">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Twitter" relativePoint="BOTTOMLEFT"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent.Twitter" relativePoint="BOTTOMRIGHT"/>
+                    </Anchors>
+                    <Color color="LEGENDARY_ORANGE_COLOR"/>
+                </FontString>
+                
+                <FontString parentKey="SpecialThanksHeader" inherits="GameFontHighlightHuge" text="Special Thanks">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.GitHub" relativePoint="BOTTOMLEFT" y="-20"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent.GitHub" relativePoint="BOTTOMRIGHT" y="-20"/>
+                    </Anchors>
+                    <Color color="DARKYELLOW_FONT_COLOR"/>
+                </FontString>
+                <FontString parentKey="SpecialThanks1" inherits="GameFontHighlightSmall" text="Plusmouse">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.SpecialThanksHeader" relativePoint="BOTTOMLEFT" y="-10"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent.SpecialThanksHeader" relativePoint="BOTTOMRIGHT" y="-10"/>
+                    </Anchors>
+                    <Color color="HEIRLOOM_BLUE_COLOR"/>
+                </FontString>
+                <FontString parentKey="SpecialThanks2" inherits="GameFontHighlightSmall" text="Tuskyouup">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.SpecialThanks1" relativePoint="BOTTOMLEFT" y="-10"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent.SpecialThanks1" relativePoint="BOTTOMRIGHT" y="-10"/>
+                    </Anchors>
+                    <Color color="HEIRLOOM_BLUE_COLOR"/>
+                </FontString>
+
+                <FontString parentKey="Translators" inherits="GameFontHighlightHuge" text="Translators:">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.SpecialThanks2" relativePoint="BOTTOMLEFT" y="-40"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent.SpecialThanks2" relativePoint="BOTTOMRIGHT" y="-40"/>
+                    </Anchors>
+                    <Color color="DARKYELLOW_FONT_COLOR"/>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Button parentKey="OpenICH" inherits="UIPanelButtonTemplate" text="Open ICH">
+                <Size x="100" y="40"/>
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" x="50" y="20"/>
+                </Anchors>
+            </Button>
+            
+            <Button parentKey="Close" inherits="UIPanelButtonTemplate" text="Close">
+                <Size x="100" y="40"/>
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT" x="-50" y="20"/>
+                </Anchors>
+            </Button>
+        </Frames>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+        </Scripts>
+    </Frame>
+</Ui>

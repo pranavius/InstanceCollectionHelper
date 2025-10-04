@@ -30,7 +30,6 @@ Data\Mounts.lua
 Data\Toys.lua
 Data\Pets.lua
 Data\Timewalking.lua
-Modules\AboutICH.lua
 Modules\CategoryTabs.lua
 Modules\Waypoints.lua
 Modules\DifficultyButtons.lua
@@ -42,7 +41,9 @@ Modules\TimewalkingDataProvider.lua
 Templates\ICHSquareButtonMixin.lua
 Templates\ICHSquareButtonTemplate.xml
 Templates\ListHeadersTemplate.xml
+Templates\DifficultyButtonMixin.lua
 Templates\DifficultyButtonTemplate.xml
+Templates\ListItemMixin.lua
 Templates\ListItemTemplate.xml
 
 Frames\ICHMainMixin.lua
@@ -51,5 +52,7 @@ Frames\ICHScrollBoxMixin.lua
 Frames\ICHScrollBox.xml
 Frames\ICHFooterMixin.lua
 Frames\ICHFooter.xml
+Frames\ICHAboutMixin.lua
+Frames\ICHAbout.xml
 
 ICH.lua

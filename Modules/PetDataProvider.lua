@@ -82,7 +82,6 @@ function AddOn.PetDataProviderInit(frame, pet)
     end
 
     AddOn:SetTruncatedText(frame.NameContainer.Text, petData.petName)
-    frame.NameContainer.name = petData.petName
     AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName)
 
     frame.NameContainer.ViewButton:ClearNormalTexture()
@@ -108,11 +107,11 @@ function AddOn.PetDataProviderInit(frame, pet)
 
     AddOn:ConfigureWaypointButton(localizedInstanceName, frame, pet)
 
-    frame.NameContainer.ViewButton:SetScript("OnClick", function()
+    frame.NameContainer.ViewButton:HookScript("OnClick", function()
         -- Try to find a way to show in the pet journal
     end)
 
-    frame.InstanceContainer.ViewButton:SetScript("OnClick", function()
+    frame.InstanceContainer.ViewButton:HookScript("OnClick", function()
         -- Open the Encounter Journal to the specified instance, difficulty, and encounter
         EncounterJournal_OpenJournal(pet.DifficultyIDs and pet.DifficultyIDs[1] or nil, pet.InstanceID, pet.EncounterID)
         -- If the loot tab is not already opened, open it by clicking on it programmatically

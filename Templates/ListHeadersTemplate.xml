@@ -6,7 +6,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             <Layer level="BACKGROUND">
                 <Texture parentKey="BorderBottom">
                     <Size y="3"/>
-                    <Color r="1" g="1" b="1"/>
+                    <Color color="WHITE_FONT_COLOR"/>
                     <Anchors>
                         <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT"/>
                         <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
@@ -16,15 +16,21 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             <Layer level="OVERLAY">
                 <FontString parentKey="NameHeader" inherits="GameTooltipText" justifyH="LEFT" text="ICH_NAME_COL_TITLE">
                     <Size x="180"/>
-                    <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="29"/></Anchors>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT" x="29"/>
+                    </Anchors>
                 </FontString>
                 <FontString parentKey="InstanceHeader" inherits="GameTooltipText" justifyH="LEFT" text="ICH_INSTANCE_COL_TITLE">
                     <Size x="225"/>
-                    <Anchors><Anchor point="LEFT" relativeKey="$parent.NameHeader" relativePoint="RIGHT" x="25"/></Anchors>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.NameHeader" relativePoint="RIGHT" x="25"/>
+                    </Anchors>
                 </FontString>
                 <FontString parentKey="DiffHeader" inherits="GameTooltipText" justifyH="LEFT" text="ICH_AVAIL_DIFFS_COL_TITLE">
                     <Size x="200"/>
-                    <Anchors><Anchor point="LEFT" relativeKey="$parent.InstanceHeader" relativePoint="RIGHT"/></Anchors>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.InstanceHeader" relativePoint="RIGHT"/>
+                    </Anchors>
                 </FontString>
             </Layer>
         </Layers>
@@ -36,7 +42,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             <Layer level="BACKGROUND">
                 <Texture parentKey="BorderBottom">
                     <Size y="3"/>
-                    <Color r="1" g="1" b="1"/>
+                    <Color color="WHITE_FONT_COLOR"/>
                     <Anchors>
                         <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT"/>
                         <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
@@ -46,19 +52,27 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             <Layer level="OVERLAY">
                 <FontString parentKey="NameHeader" inherits="GameTooltipText" justifyH="LEFT" text="ICH_NAME_COL_TITLE">
                     <Size x="180"/>
-                    <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="29"/></Anchors>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT" x="29"/>
+                    </Anchors>
                 </FontString>
                 <FontString parentKey="TypeHeader" inherits="GameTooltipText" justifyH="LEFT" text="ICH_TYPE_COL_TITLE">
                     <Size x="100"/>
-                    <Anchors><Anchor point="LEFT" relativeKey="$parent.NameHeader" relativePoint="RIGHT" x="25"/></Anchors>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.NameHeader" relativePoint="RIGHT" x="25"/>
+                    </Anchors>
                 </FontString>
                 <FontString parentKey="ExpansionHeader" inherits="GameTooltipText" justifyH="LEFT" text="ICH_EXPANSION_COL_TITLE">
                     <Size x="225"/>
-                    <Anchors><Anchor point="LEFT" relativeKey="$parent.TypeHeader" relativePoint="RIGHT"/></Anchors>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.TypeHeader" relativePoint="RIGHT"/>
+                    </Anchors>
                 </FontString>
                 <FontString parentKey="CostHeader" inherits="GameTooltipText" justifyH="LEFT" text="ICH_COST_COL_TITLE">
                     <Size x="100"/>
-                    <Anchors><Anchor point="LEFT" relativeKey="$parent.ExpansionHeader" relativePoint="RIGHT"/></Anchors>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.ExpansionHeader" relativePoint="RIGHT"/>
+                    </Anchors>
                 </FontString>
             </Layer>
         </Layers>

@@ -9,6 +9,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---@class CostContainer: Frame Displays elements relevant to a collectible's cost<br>
 ---For frame definition and more layout information, see `Templates.xml`
+---@field currencyID integer
 ---@field Text FontString
 ---@field CurrencyButton Button
 
@@ -112,6 +113,7 @@ end
 ---@param frame ICHTimewalkingListItem
 ---@param item TimewalkingItem
 function AddOn.TimewalkingDataProviderInit(frame, item)
+    frame.CostContainer.currencyID = 1166
     if not frame or not item then return end
     frame.isMount = item.Type == "Mount" or false
     
@@ -132,7 +134,6 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     end
 
     AddOn:SetTruncatedText(frame.NameContainer.Text, data.collectibleName)
-    frame.NameContainer.name = data.collectibleName
     frame.NameContainer.ViewButton:ClearNormalTexture()
     frame.NameContainer.ViewButton:ClearHighlightTexture()
     frame.NameContainer.ViewButton:SetNormalTexture(data.iconID or 134400)
@@ -171,7 +172,7 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     AddOn:ConfigureWaypointButton(item.VendorName or "", frame, item)
 
     if item.Type == "Mount" then
-        frame.NameContainer.ViewButton:SetScript("OnClick", function()
+        frame.NameContainer.ViewButton:HookScript("OnClick", function()
             local spellID = select(2, C_MountJournal.GetMountInfoByID(data.mountID))
             if data.mountID then
                 SetCollectionsJournalShown(true, 1)
@@ -179,10 +180,10 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
             end
         end)
     else
-        frame.NameContainer.ViewButton:SetScript("OnClick", function() end)
+        frame.NameContainer.ViewButton:HookScript("OnClick", function() end)
     end
 
-    frame.CostContainer.CurrencyButton:SetScript("OnClick", function()
+    frame.CostContainer.CurrencyButton:HookScript("OnClick", function()
         AddOn:PrintDebugMessage("Timewarped Badges transfer requested")
         if not C_CurrencyInfo.CanTransferCurrency(1166) then
             AddOn:PrintChatMessage(L["Unable to transfer Timewarped Badges to this character right now."])

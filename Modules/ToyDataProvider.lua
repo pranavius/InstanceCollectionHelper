@@ -58,7 +58,6 @@ function AddOn.ToyDataProviderInit(frame, toy)
     end
 
     AddOn:SetTruncatedText(frame.NameContainer.Text, toyData.toyName)
-    frame.NameContainer.name = toyData.toyName
     AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName)
 
     frame.NameContainer.ViewButton:ClearNormalTexture()
@@ -80,11 +79,11 @@ function AddOn.ToyDataProviderInit(frame, toy)
 
     AddOn:ConfigureWaypointButton(localizedInstanceName, frame, toy)
 
-    frame.NameContainer.ViewButton:SetScript("OnClick", function()
+    frame.NameContainer.ViewButton:HookScript("OnClick", function()
         -- Try to find a way to show in the toy journal
     end)
 
-    frame.InstanceContainer.ViewButton:SetScript("OnClick", function()
+    frame.InstanceContainer.ViewButton:HookScript("OnClick", function()
         -- Open the Encounter Journal to the specified instance, difficulty, and encounter
         EncounterJournal_OpenJournal(toy.DifficultyIDs and toy.DifficultyIDs[1] or nil, toy.InstanceID, toy.EncounterID)
         -- If the loot tab is not already opened, open it by clicking on it programmatically

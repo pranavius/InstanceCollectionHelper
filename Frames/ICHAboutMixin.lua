@@ -1,0 +1,58 @@
+local name, AddOn = ...
+---@class InstanceCollectionHelper
+AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
+local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
+
+ICHAboutMixin = {}
+
+local CURRENT_VERSION = 11
+
+---@class Translator An individual who has contributed to the localization of ICH in another language/locale besides English (_enUS_)
+---@field name string The name of the translator
+---@field locale "enUS"|"enGB"|"enAU"|"esES"|"esMX"|"ptBR"|"ptPT"|"frFR"|"deDE"|"itIT"|"ruRU"|"koKR"|"zhTW"|"zhCN" The locale for which they provided translations
+
+---@type Translator[]
+local translators = {
+    { name = "Fargoran", locale = "deDE" },
+    { name = "BNS333", locale = "zhTW" },
+    { name = "柳心怡", locale = "zhCN" }
+}
+
+function ICHAboutMixin:OnLoad()
+    -- Allows closing via ESC key
+    tinsert(UISpecialFrames, self:GetName())
+
+    self.Name:SetText("Instance Collection Helper v"..CURRENT_VERSION)
+    self.Author:SetText(L["Created by Pranavius"])
+    self.Twitter:SetText("|TInterface\\AddOns\\InstanceCollectionHelper\\Media\\X-logo:20:20|t   ".."@PranaviusWoW")
+    self.GitHub:SetText("|TInterface\\AddOns\\InstanceCollectionHelper\\Media\\Github-logo:20:20|t   ".."Pranavius")
+    self.SpecialThanksHeader:SetText(L["Special Thanks"])
+    self.Translators:SetText(L["Translations:"])
+    self.OpenICH:SetText(L["Open ICH"])
+    self.Close:SetText(L["Close"])
+
+    -- FontString for each translator is generated dynamically since this can increase more regularly than other sections
+    for idx, translator in ipairs(translators) do
+        local parentKey = "Translator"..tostring(idx)
+        self[parentKey] = self:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        if idx == 1 then
+            self[parentKey]:SetPoint("TOPLEFT", self.Translators, "BOTTOMLEFT", 0, -10)
+            self[parentKey]:SetPoint("TOPRIGHT", self.Translators, "BOTTOMRIGHT", 0, -10)
+        else
+            self[parentKey]:SetPoint("TOPLEFT", self["Translator"..tostring(idx - 1)], "BOTTOMLEFT", 0, -10)
+            self[parentKey]:SetPoint("TOPRIGHT", self["Translator"..tostring(idx - 1)], "BOTTOMRIGHT", 0, -10)
+        end
+        self[parentKey]:SetText(HEIRLOOM_BLUE_COLOR:WrapTextInColorCode(translator.name).." ("..translator.locale..")")
+    end
+
+    self.OpenICH:SetScript("OnClick", function()
+        self:Hide()
+        AddOn.Container:Show()
+    end)
+
+    self.Close:SetScript("OnClick", function()
+        self:Hide()
+    end)
+
+    AddOn.About = self
+end

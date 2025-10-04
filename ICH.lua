@@ -61,16 +61,7 @@ function AddOn:OnInitialize()
     self:RegisterChatCommand("ich", function(input) self.HandleSlashCommand("ich", input) end)
     
     self:PrintDebugMessage("TomTom is", C_AddOns.IsAddOnLoaded("TomTom") and "enabled" or "disabled")
-    -- Begin remaining addon config
-    ICHScrollBox:InitializeScrollView()
-    local isInvalidScale = tonumber(self.db.global.windowScale) == nil or tonumber(self.db.global.windowScale) == 0
-    if isInvalidScale then self.db.global.windowScale = 1 end
-    ICHFooter.ScaleContainer.WindowScale:Init(AddOn.db.global.windowScale, 0.8, 1.2, 80)
-    ICHFooter.OwnedContainer.Checkbox:SetChecked(self.db.global.showOwned)
-    ICHFooter.TomTomContainer.Checkbox:SetChecked(self.db.global.useTomTomPoints)
-    self:CreateMainFrame() -- This isn't what it actually does, deleting later
-    -- End remaining addon config
-    -- self.Container:HookScript("OnShow", function() self:UpdateListContents() end)
+    self:ConfigureOnInit()
     self:RegisterEvent("ZONE_CHANGED", "UpdateListContents")
     self:RegisterEvent("PLAYER_LOGOUT", function()
         if C_AddOns.IsAddOnLoaded("TomTom") and self.db.global.currentTomTomWaypoint then
@@ -80,14 +71,15 @@ function AddOn:OnInitialize()
     end)
 end
 
-function AddOn:CreateMainFrame()
-    self:CreateAboutFrame()
+function AddOn:ConfigureOnInit()
+    ICHScrollBox:InitializeScrollView()
+    local isInvalidScale = tonumber(self.db.global.windowScale) == nil or tonumber(self.db.global.windowScale) == 0
+    if isInvalidScale then self.db.global.windowScale = 1 end
+    ICHFooter.ScaleContainer.WindowScale:Init(AddOn.db.global.windowScale, 0.8, 1.2, 80)
+    ICHFooter.OwnedContainer.Checkbox:SetChecked(self.db.global.showOwned)
+    ICHFooter.TomTomContainer.Checkbox:SetChecked(self.db.global.useTomTomPoints)
     self:CreateTabSystem()
     self.Tabs:SetTab(self.Tabs.MountsTab)
-
-    -- Allows closing via ESC key
-    tinsert(UISpecialFrames, self.About:GetName())
-
     -- Set window scale
     self.Container:SetScale(self.db.global.windowScale)
 end

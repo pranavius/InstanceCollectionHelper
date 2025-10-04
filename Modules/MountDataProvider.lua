@@ -86,7 +86,6 @@ function AddOn.MountDataProviderInit(frame, data)
         if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
     end
     AddOn:SetTruncatedText(frame.NameContainer.Text, localizedMountName) -- Localized mount name truncated if text width exceeds allocated space
-    frame.NameContainer.name = localizedMountName
     AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName)  -- Localized instance name truncated if text width exceeds allocated space
 
     local iconID = C_Spell.GetSpellInfo(mountSpellID) and C_Spell.GetSpellInfo(mountSpellID).originalIconID
@@ -111,14 +110,14 @@ function AddOn.MountDataProviderInit(frame, data)
 
     AddOn:ConfigureWaypointButton(localizedInstanceName, frame, data)
 
-    frame.NameContainer.ViewButton:SetScript("OnClick", function()
+    frame.NameContainer.ViewButton:HookScript("OnClick", function()
         if data.ID then
             SetCollectionsJournalShown(true, 1)
             MountJournal_SetSelected(data.ID, mountSpellID)
         end
     end)
 
-    frame.InstanceContainer.ViewButton:SetScript("OnClick", function()
+    frame.InstanceContainer.ViewButton:HookScript("OnClick", function()
         -- Open the Encounter Journal to the specified instance, difficulty, and encounter
         EncounterJournal_OpenJournal(data.DifficultyIDs and data.DifficultyIDs[1] or nil, data.InstanceID, data.EncounterID)
         -- If the loot tab is not already opened, open it by clicking on it programmatically

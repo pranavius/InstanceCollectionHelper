@@ -15,10 +15,14 @@ function ICHScrollBoxMixin:InitializeScrollView()
 
         ScrollUtil.InitScrollBoxListWithScrollBar(AddOn.ScrollBox, AddOn.ScrollBar, AddOn.ScrollView)
         AddOn.ScrollView:SetElementFactory(function(factory, elementData)
-            if elementData.ID then factory("ICHListItemTemplate", AddOn.MountDataProviderInit)
-            elseif elementData.Expansion then factory("ICHTimewalkingListItemTemplate", AddOn.TimewalkingDataProviderInit)
-            elseif elementData.ItemID then factory("ICHListItemTemplate", AddOn.ToyDataProviderInit)
-            elseif elementData.PetItemID then factory("ICHListItemTemplate", AddOn.PetDataProviderInit)
+            if elementData.Cost and elementData.Expansion then
+                factory("ICHVendorListItemTemplate", AddOn.TimewalkingDataProviderInit)
+            elseif elementData.PetItemID then
+                factory("ICHListItemTemplate", AddOn.PetDataProviderInit)
+            elseif elementData.ItemID then
+                factory("ICHListItemTemplate", AddOn.ToyDataProviderInit)
+            elseif elementData.ID then
+                factory("ICHListItemTemplate", AddOn.MountDataProviderInit)
             end
         end)
         AddOn.ScrollView:SetElementExtent(AddOn.ScrollView:GetTemplateExtent("ICHListItemTemplate"))
