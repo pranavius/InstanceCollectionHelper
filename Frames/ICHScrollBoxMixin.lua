@@ -12,7 +12,6 @@ function ICHScrollBoxMixin:InitializeScrollView()
     if AddOn.Container and AddOn.ScrollBox and AddOn.ScrollBar then
         AddOn.ICHDataProvider = CreateDataProvider()
         AddOn.ScrollView = CreateScrollBoxListLinearView()
-        AddOn.ScrollView:SetDataProvider(AddOn.ICHDataProvider)
 
         ScrollUtil.InitScrollBoxListWithScrollBar(AddOn.ScrollBox, AddOn.ScrollBar, AddOn.ScrollView)
         AddOn.ScrollView:SetElementFactory(function(factory, elementData)
@@ -27,5 +26,7 @@ function ICHScrollBoxMixin:InitializeScrollView()
             end
         end)
         AddOn.ScrollView:SetElementExtent(AddOn.ScrollView:GetTemplateExtent("ICHListItemTemplate"))
+
+        AddOn.ScrollView:SetDataProvider(AddOn.ICHDataProvider)
     end
 end
