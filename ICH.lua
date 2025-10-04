@@ -61,8 +61,16 @@ function AddOn:OnInitialize()
     self:RegisterChatCommand("ich", function(input) self.HandleSlashCommand("ich", input) end)
     
     self:PrintDebugMessage("TomTom is", C_AddOns.IsAddOnLoaded("TomTom") and "enabled" or "disabled")
-    self:CreateMainFrame()
-    self.Container:HookScript("OnShow", function() self:UpdateListContents() end)
+    -- Begin remaining addon config
+    ICHScrollBox:InitializeScrollView()
+    local isInvalidScale = tonumber(self.db.global.windowScale) == nil or tonumber(self.db.global.windowScale) == 0
+    if isInvalidScale then self.db.global.windowScale = 1 end
+    ICHFooter.ScaleContainer.WindowScale:Init(AddOn.db.global.windowScale, 0.8, 1.2, 80)
+    ICHFooter.OwnedContainer.Checkbox:SetChecked(self.db.global.showOwned)
+    ICHFooter.TomTomContainer.Checkbox:SetChecked(self.db.global.useTomTomPoints)
+    self:CreateMainFrame() -- This isn't what it actually does, deleting later
+    -- End remaining addon config
+    -- self.Container:HookScript("OnShow", function() self:UpdateListContents() end)
     self:RegisterEvent("ZONE_CHANGED", "UpdateListContents")
     self:RegisterEvent("PLAYER_LOGOUT", function()
         if C_AddOns.IsAddOnLoaded("TomTom") and self.db.global.currentTomTomWaypoint then
@@ -72,182 +80,16 @@ function AddOn:OnInitialize()
     end)
 end
 
----Initializes the AddOn window.<br>
----Internally creates a scrollable list of data to display initially as well.
 function AddOn:CreateMainFrame()
-    local f = ICHMain or {}
-
-    self.Container = f
-    self:CreateScrollingView()
-    self:CreateFooter()
     self:CreateAboutFrame()
     self:CreateTabSystem()
     self.Tabs:SetTab(self.Tabs.MountsTab)
 
-    f.InfoButton:SetScript("OnClick", function()
-        self.About:Show()
-        self.Container:Hide()
-    end)
-
     -- Allows closing via ESC key
-    tinsert(UISpecialFrames, self.Container:GetName())
     tinsert(UISpecialFrames, self.About:GetName())
 
     -- Set window scale
     self.Container:SetScale(self.db.global.windowScale)
-
-    -- Hide by default
-    self.Container:Hide()
-end
-
----Initializes the scrollable list of data to display in the AddOn<br>
----By default, the list of mounts is shown
-function AddOn:CreateScrollingView()
-    self.Container.ListHeaders = CreateFrame("Frame", "ICHListHeaders", self.Container, "ICHListHeadersTemplate")
-    self.Container.ListHeaders:SetPoint("TOPLEFT", self.Container.Title, "BOTTOMLEFT", 10, -45)
-    self.Container.ListHeaders:SetPoint("TOPRIGHT", self.Container.Title, "BOTTOMRIGHT", -10, -45)
-
-    self.Container.TimewalkingListHeaders = CreateFrame("Frame", "ICHListHeaders", self.Container, "ICHTimewalkingListHeadersTemplate")
-    self.Container.TimewalkingListHeaders:SetAllPoints(self.Container.ListHeaders)
-
-    -- Autohide one header when the other is made visible
-    hooksecurefunc(self.Container.ListHeaders, "SetAlpha", function(_, value)
-        if value > 0 then self.Container.TimewalkingListHeaders:SetAlpha(0) end
-    end)
-    hooksecurefunc(self.Container.TimewalkingListHeaders, "SetAlpha", function(_, value)
-        if value > 0 then self.Container.ListHeaders:SetAlpha(0) end
-    end)
-
-    self.ScrollBox = CreateFrame("Frame", "ICHScrollBox", self.Container, "WowScrollBoxList")
-    self.ScrollBox:SetPoint("TOPLEFT", self.Container.ListHeaders, "BOTTOMLEFT", 0, -5)
-    self.ScrollBox:SetPoint("BOTTOMRIGHT", self.Container, "BOTTOMRIGHT", -30, 20)
-
-    self.ScrollBar = CreateFrame("EventFrame", "ICHScrollBar", self.Container, "MinimalScrollBar")
-    self.ScrollBar:SetPoint("TOPLEFT", self.ScrollBox, "TOPRIGHT", 15, -10)
-    self.ScrollBar:SetPoint("BOTTOMLEFT", self.ScrollBox, "BOTTOMRIGHT", 15, 0)
-    self.ScrollBar:SetHideIfUnscrollable(true)
-
-    self.ICHDataProvider = CreateDataProvider()
-    self.ScrollView = CreateScrollBoxListLinearView()
-    self.ScrollView:SetDataProvider(self.ICHDataProvider)
-
-    ScrollUtil.InitScrollBoxListWithScrollBar(self.ScrollBox, self.ScrollBar, self.ScrollView)
-    self.ScrollView:SetElementFactory(function(factory, elementData)
-        if elementData.ID then factory("ICHListItemTemplate", self.MountDataProviderInit)
-        elseif elementData.Expansion then factory("ICHTimewalkingListItemTemplate", self.TimewalkingDataProviderInit)
-        elseif elementData.ItemID then factory("ICHListItemTemplate", self.ToyDataProviderInit)
-        elseif elementData.PetItemID then factory("ICHListItemTemplate", self.PetDataProviderInit)
-        end
-
-    end)
-    self.ScrollView:SetElementExtent(self.ScrollView:GetTemplateExtent("ICHListItemTemplate"))
-end
-
----Initializes the footer in the AddOn that contains some display options for the window
-function AddOn:CreateFooter()
-    local foot = CreateFrame("Frame", "ICHFooter", self.Container)
-    foot:SetHeight(35)
-    foot:SetPoint("TOPLEFT", self.Container, "BOTTOMLEFT")
-    foot:SetPoint("TOPRIGHT", self.Container, "BOTTOMRIGHT")
-    -- Footer background
-    foot.Bg = foot:CreateTexture("ICHFooterBackground", "BACKGROUND")
-    foot.Bg:SetAllPoints(foot)
-    foot.Bg:SetColorTexture(0, 0, 0, 1)
-
-    -- AddOn Window Scale
-    foot.ScaleContainer = CreateFrame("Frame", nil, foot)
-    foot.ScaleContainer:SetWidth(200)
-    foot.ScaleContainer:SetPoint("TOPLEFT")
-    foot.ScaleContainer:SetPoint("BOTTOMLEFT")
-
-    foot.ScaleContainer.Text = foot.ScaleContainer:CreateFontString(nil, "OVERLAY", "GameTooltipText")
-    foot.ScaleContainer.Text:SetJustifyH("LEFT")
-    foot.ScaleContainer.Text:SetPoint("TOPLEFT", 5, -5)
-    foot.ScaleContainer.Text:SetPoint("BOTTOMLEFT", 5, 5)
-    foot.ScaleContainer.Text:SetText(L["Scale"])
-
-    local scale = CreateFrame("Slider", nil, foot.ScaleContainer, "MinimalSliderWithSteppersTemplate")
-    scale:SetObeyStepOnDrag(true)
-    scale:SetPoint("TOPLEFT", foot.ScaleContainer.Text, "TOPRIGHT", 5, 0)
-    scale:SetPoint("BOTTOMRIGHT", foot.ScaleContainer, "BOTTOMRIGHT", 0, 5)
-    -- Initialize the DB to have a default scale of 1 if there is not already an existing value
-    if tonumber(self.db.global.windowScale) == nil then self.db.global.windowScale = 1 end
-    scale:Init(self.db.global.windowScale, 0.8, 1.2, 80)
-    scale.Slider:HookScript("OnMouseUp", function(slider)
-        self.db.global.windowScale = slider:GetValue()
-        self.Container:SetScale(slider:GetValue())
-        self:PrintDebugMessage("AddOn scale:", self.db.global.windowScale)
-    end)
-    scale.Back:HookScript("OnClick", function()
-        local val = scale.Slider:GetValue()
-        self.db.global.windowScale = val
-        self.Container:SetScale(val)
-        self:PrintDebugMessage("AddOn scale:", self.db.global.windowScale)
-    end)
-    scale.Forward:HookScript("OnClick", function()
-        local val = scale.Slider:GetValue()
-        self.db.global.windowScale = val
-        self.Container:SetScale(val)
-        self:PrintDebugMessage("AddOn scale:", self.db.global.windowScale)
-    end)
-
-    foot.ScaleContainer.WindowScale = scale
-
-    foot.OwnedContainer = CreateFrame("Frame", nil, foot)
-    foot.OwnedContainer:SetWidth(125)
-    foot.OwnedContainer:SetPoint("TOPRIGHT", foot, "TOPRIGHT", 0, 0)
-    foot.OwnedContainer:SetPoint("BOTTOMRIGHT", foot, "BOTTOMRIGHT", 20, 0)
-    
-    -- "Show Owned" Checkbox
-    local ownedCb = CreateFrame("CheckButton", nil, foot.OwnedContainer, "UICheckButtonTemplate")
-    ownedCb:SetPoint("TOPRIGHT", foot.OwnedContainer, "TOPRIGHT", 0, 0)
-    ownedCb:SetPoint("BOTTOMLEFT", foot.OwnedContainer, "BOTTOMRIGHT", -32, 0)
-    ownedCb:SetChecked(self.db.global.showOwned)
-    
-    ownedCb.Text:SetText(L["Show Owned"])
-    ownedCb.Text:ClearAllPoints()
-    ownedCb.Text:SetPoint("RIGHT", ownedCb, "LEFT", -5, 2)
-    ownedCb.Text:SetPoint("LEFT", foot.OwnedContainer, "LEFT")
-    ownedCb.Text:SetJustifyH("RIGHT")
-    ownedCb.Text:SetFontObject("GameTooltipText")
-    
-    ownedCb:HookScript("OnClick", function(cb)
-        local value = cb:GetChecked()
-        self.db.global.showOwned = value
-        self:UpdateListContents()
-    end)
-
-    foot.OwnedContainer.Checkbox = ownedCb
-    foot.OwnedContainer.Checkbox:Show()
-
-    -- "Use TomTom Waypoints" Checkbox
-    foot.TomTomContainer = CreateFrame("Frame", nil, foot)
-    foot.TomTomContainer:SetWidth(175)
-    foot.TomTomContainer:SetPoint("TOPRIGHT", foot.OwnedContainer, "TOPLEFT", -10, 0)
-    foot.TomTomContainer:SetPoint("BOTTOMRIGHT", foot.OwnedContainer, "BOTTOMLEFT", -10, 0)
-
-    local tomtomCb = CreateFrame("CheckButton", nil, foot.TomTomContainer, "UICheckButtonTemplate")
-    tomtomCb:SetPoint("TOPRIGHT", foot.TomTomContainer, "TOPRIGHT", 0, 0)
-    tomtomCb:SetPoint("BOTTOMLEFT", foot.TomTomContainer, "BOTTOMRIGHT", -32, 0)
-    tomtomCb:SetChecked(self.db.global.useTomTomPoints)
-
-    tomtomCb.Text:SetText(L["Use TomTom waypoints"])
-    tomtomCb.Text:ClearAllPoints()
-    tomtomCb.Text:SetPoint("RIGHT", tomtomCb, "LEFT", -5, 0)
-    tomtomCb.Text:SetJustifyH("RIGHT")
-    tomtomCb.Text:SetFontObject("GameTooltipText")
-
-    tomtomCb:HookScript("OnClick", function(cb)
-        local value = cb:GetChecked()
-        self.db.global.useTomTomPoints = value
-        self:UpdateListContents()
-    end)
-
-    foot.TomTomContainer.Checkbox = tomtomCb
-    if C_AddOns.IsAddOnLoaded("TomTom") then foot.TomTomContainer:Show()
-    else foot.TomTomContainer:Hide() end
-
-    self.Footer = foot
 end
 
 ---Filters a list of data based on search parameters

@@ -15,9 +15,6 @@
 ## X-Wago-ID: kGr0j76y
 
 embeds.xml
-Templates\ListHeadersTemplate.xml
-Templates\DifficultyButtonTemplate.xml
-Templates\ListItemTemplate.xml
 
 Localization\enUS.lua
 Localization\esMX.lua
@@ -44,8 +41,15 @@ Modules\TimewalkingDataProvider.lua
 
 Templates\ICHSquareButtonMixin.lua
 Templates\ICHSquareButtonTemplate.xml
+Templates\ListHeadersTemplate.xml
+Templates\DifficultyButtonTemplate.xml
+Templates\ListItemTemplate.xml
 
 Frames\ICHMainMixin.lua
 Frames\ICHMain.xml
+Frames\ICHScrollBoxMixin.lua
+Frames\ICHScrollBox.xml
+Frames\ICHFooterMixin.lua
+Frames\ICHFooter.xml
 
 ICH.lua

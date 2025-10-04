@@ -7,13 +7,13 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@param ... any Arguments to be printed to the chat window
 ---@see print
 function AddOn:PrintChatMessage(...)
-    print(HEIRLOOM_BLUE_COLOR:WrapTextInColorCode("InstanceCollectionHelper:"), ...)
+    print(HEIRLOOM_BLUE_COLOR:WrapTextInColorCode("Instance Collection Helper:"), ...)
 end
 
 ---Prints a debugging message to the chat window prefixed by the AddOn name
 ---@param ... any Arguments to be printed as part of the debug message
 function AddOn:PrintDebugMessage(...)
-    if self.db.global.debugMessages then self:PrintChatMessage(LEGENDARY_ORANGE_COLOR:WrapTextInColorCode("[Debug]"), ...) end
+    if self.db and self.db.global.debugMessages then self:PrintChatMessage(LEGENDARY_ORANGE_COLOR:WrapTextInColorCode("[Debug]"), ...) end
 end
 
 ---Returns the difficulty text that corresponds to the given `difficultyID`

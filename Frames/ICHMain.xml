@@ -1,6 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Blizzard_SharedXML/UI.xsd">
-    <Frame name="ICHMain" parent="UIParent" mixin="ICHMainMixin" enableMouse="true" movable="true" frameStrata="MEDIUM" registerForDrag="LeftButton">
+    <Frame name="ICHMain" parent="UIParent" mixin="ICHMainMixin" enableMouse="true" movable="true" frameStrata="MEDIUM" registerForDrag="LeftButton" hidden="true">
         <Size x="800" y="600"/>
         <Anchors>
             <Anchor point="CENTER"/>
@@ -64,11 +64,25 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 <NormalTexture file="Interface\AddOns\InstanceCollectionHelper\Media\InfoIcon.png"/>
                 <HighlightTexture file="Interface\AddOns\InstanceCollectionHelper\Media\InfoIcon.png"/>
             </Button>
+
+            <Frame parentKey="ListHeaders" inherits="ICHListHeadersTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.Title" relativePoint="BOTTOMLEFT" x="10" y="-45"/>
+                    <Anchor point="TOPRIGHT" relativeKey="$parent.Title" relativePoint="BOTTOMRIGHT" x="-10" y="-45"/>
+                </Anchors>
+            </Frame>
+            <Frame parentKey="TimewalkingListHeaders" inherits="ICHTimewalkingListHeadersTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.Title" relativePoint="BOTTOMLEFT" x="10" y="-45"/>
+                    <Anchor point="TOPRIGHT" relativeKey="$parent.Title" relativePoint="BOTTOMRIGHT" x="-10" y="-45"/>
+                </Anchors>
+            </Frame>
         </Frames>
         <Scripts>
             <OnDragStart method="OnDragStart"/>
             <OnDragStop method="OnDragStop"/>
             <OnLoad method="OnLoad"/>
+            <OnShow method="OnShow"/>
         </Scripts>
     </Frame>
 </Ui>
