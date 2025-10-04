@@ -138,3 +138,4 @@ L["Unable to transfer Timewarped Badges to this character right now."] = "当前
 L["Unable to open the currency transfer menu. Please open it manually or try again."] = "无法打开货币转移菜单。请手动打开或重试。"
 L["Click to open currency transfer menu"] = "点击以打开货币转移菜单"
 L["Cannot transfer to this character"] = "无法转移到此角色"
+L["Legion: Remix Vendor"] = "军团再临：Remix 供应商"

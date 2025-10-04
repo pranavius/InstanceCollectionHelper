@@ -152,3 +152,4 @@ L["Unable to transfer Timewarped Badges to this character right now."] = "No se 
 L["Unable to open the currency transfer menu. Please open it manually or try again."] = "No se pudo abrir el menú de transferencia de divisa. Ábrelo manualmente o inténtalo de nuevo."
 L["Click to open currency transfer menu"] = "Haz clic para abrir el menú de transferencia de divisa"
 L["Cannot transfer to this character"] = "No se puede transferir a este personaje"
+L["Legion: Remix Vendor"] = "Vendedor de Legion: Remix"
