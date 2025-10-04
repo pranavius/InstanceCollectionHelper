@@ -35,6 +35,7 @@ function AddOn:ShowDifficultyButtons(container, data, isOwned)
     if not data.DifficultyIDs then return end
     
     for i, diffID in ipairs(data.DifficultyIDs) do
+        ---@type DifficultyButton
         local button
         if self:IsInstanceRaid(data) then
             if diffID == self.RaidDifficulty.LFR then button = container.RaidDiffLFRButton
@@ -77,6 +78,7 @@ function AddOn:ShowDifficultyButtons(container, data, isOwned)
                 if self:IsInstanceRaid(data) then button.ButtonTint:SetVertexColor(0.082, 0.702, 0, 0.75)
                 else button.ButtonTint:SetVertexColor(0, 0.569, 0.949, 0.75) end
                 -- Mask ButtonTint with the same texture as the button background
+                -- TODO: Figure out how to translate the TintMask into XML
                 if not button.TintMask then
                     button.TintMask = button:CreateMaskTexture()
                     button.TintMask:SetTexture("Interface/Buttons/UI-Panel-Button-Up")

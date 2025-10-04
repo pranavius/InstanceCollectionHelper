@@ -3,6 +3,11 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
+---@class DifficultyButton: Button Sets instance difficulty to the associated value
+---@field difficultyID integer ID number for instance, scenario, and raid difficulty (see https://wago.tools/db2/Difficulty)
+---@field sharedDifficulties table<RaidDifficulty, RaidDifficulty> Difficulties that share a lockout with the associated `difficultyID`
+---@field ButtonTint Texture A texture applied over the button to recolor it based on instance type
+---@field TintMask MaskTexture A texture mask applied over `ButtonTint` to prevent the color from bleeding past the boundaries of the button art
 DifficultyButtonMixin = CreateFromMixins(UIPanelButtonMixin) or {}
 
 function DifficultyButtonMixin:OnEnter()

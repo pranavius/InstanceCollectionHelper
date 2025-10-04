@@ -2,11 +2,12 @@ local name, AddOn = ...
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 
-ICHScrollBoxMixin = {}
+---@class ICHScrollBox : Frame
+ICHScrollBoxMixin = CreateFromMixins(ScrollBoxListMixin, {})
 
 function ICHScrollBoxMixin:InitializeScrollView()
     AddOn.ScrollBox = self
-    AddOn.ScrollBar = self:GetParent().ScrollBar;
+    AddOn.ScrollBar = ICHScrollBar
 
     if AddOn.Container and AddOn.ScrollBox and AddOn.ScrollBar then
         AddOn.ICHDataProvider = CreateDataProvider()
@@ -28,5 +29,3 @@ function ICHScrollBoxMixin:InitializeScrollView()
         AddOn.ScrollView:SetElementExtent(AddOn.ScrollView:GetTemplateExtent("ICHListItemTemplate"))
     end
 end
-
-ICHScrollBoxMixin = CreateFromMixins(ScrollBoxListMixin, ICHScrollBoxMixin)

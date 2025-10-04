@@ -3,6 +3,8 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
+---@class ICHSquareButton : Button A square button that displays a tooltip based on the defined `action`
+---@field action string Describes the funcitonality associated with the button
 ICHSquareButtonMixin = {}
 
 function ICHSquareButtonMixin:OnEnter()

@@ -5,11 +5,6 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             <Anchor point="TOPLEFT" relativeKey="$parent.ListHeaders" relativePoint="BOTTOMLEFT" y="-5"/>
             <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="-30" y="20"/>
         </Anchors>
-        <Scripts>
-            <OnLoad>
-                self:OnLoad()
-            </OnLoad>
-        </Scripts>
     </Frame>
 
     <EventFrame name="ICHScrollBar" parent="ICHMain" parentKey="ScrollBar" inherits="MinimalScrollBar">
@@ -17,10 +12,5 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             <Anchor point="TOPLEFT" relativeKey="$parent.ScrollBox" relativePoint="TOPRIGHT" x="15" y="-10"/>
             <Anchor point="BOTTOMLEFT" relativeKey="$parent.ScrollBox" relativePoint="BOTTOMRIGHT" x="15"/>
         </Anchors>
-        <Scripts>
-            <OnLoad>
-                self:OnLoad()
-            </OnLoad>
-        </Scripts>
     </EventFrame>
 </Ui>

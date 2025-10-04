@@ -3,6 +3,14 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
+---@class ICHFooter Footer that provides options for tweaking the AddOn interface as per the user's preferences
+---@field Bg Texture The background texture for the footer
+---@field ScaleContainer ScaleContainer
+---@field OwnedContainer OwnedContainer
+---@field TomTomContainer TomTomContainer
+---@see ScaleContainer
+---@see OwnedContainer
+---@see TomTomContainer
 ICHFooterMixin = {}
 
 function ICHFooterMixin:OnLoad()
@@ -62,3 +70,26 @@ function ICHFooterMixin:OnLoad()
 
     AddOn.Footer = self
 end
+
+------- ANNOTATIONS -------
+---------------------------
+---@class MinimalSliderWithSteppers A variation of the Slider element that includes buttons for stepping up or down in value by a defined increment
+---@field Slider Slider A Slider bar to quickly change a value within the range of the defined minimum and maximum values
+---@field Back Button Decrease value by the specified increment
+---@field Forward Button Increase value by the specified increment
+
+---@class ScaleContainer: Frame Container for the option to modify the AddOn interface scale
+---@field Text FontString
+---@field WindowScale MinimalSliderWithSteppers
+---@see MinimalSliderWithSteppers
+
+---@class Checkbox: CheckButton Extension of the `CheckButton` element that includes Text as a child frame
+---@field Text FontString The text to display alongside the `CheckButton`
+
+---@class OwnedContainer: Frame Container for the option to show or hide owned collectibles in the AddOn interface
+---@field Checkbox Checkbox
+---@see Checkbox
+
+---@class TomTomContainer: Frame Container for the option to toggle between setting TomTom waypoints or Blizzard map pins for collectibles in the AddOn interface
+---@field Checkbox Checkbox
+---@see Checkbox

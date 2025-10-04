@@ -3,31 +3,6 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----@class TextContainer: Frame Generic frame that displays text relevant to a collectible<br>
----For frame definition and more layout information, see `Templates.xml`
----@field Text FontString
-
----@class CostContainer: Frame Displays elements relevant to a collectible's cost<br>
----For frame definition and more layout information, see `Templates.xml`
----@field currencyID integer
----@field Text FontString
----@field CurrencyButton Button
-
----@class ICHTimewalkingListItem: Frame List item that displays relevant information for a given collectible
----@field isMount boolean Whether or not the list item is for a mount
----@field relevantID number The ID number for the collectible. For mounts, this value is `mountID` and for toys it is `itemID`
----@field Bg Texture The background texture for unowned list items
----@field OwnedBg Texture The background texture for owned list items
----@field NameContainer NameContainer
----@field TypeContainer TextContainer
----@field ExpansionContainer TextContainer
----@field CostContainer CostContainer
----@field OtherInfoContainer OtherInfoContainer
----@see NameContainer
----@see TextContainer
----@see CostContainer
----@see OtherInfoContainer
-
 ---@class TimewalkingCacheData
 ---@field itemName string Localized name for the item that adds the collectible to the collection
 ---@field itemID integer ID number for the item that adds the collectible to the collection
@@ -110,7 +85,7 @@ local function ColorOwnedPetCountText(data)
     end
 end
 
----@param frame ICHTimewalkingListItem
+---@param frame ICHListItem
 ---@param item TimewalkingItem
 function AddOn.TimewalkingDataProviderInit(frame, item)
     frame.CostContainer.currencyID = 1166

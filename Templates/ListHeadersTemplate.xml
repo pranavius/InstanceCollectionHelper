@@ -36,7 +36,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
         </Layers>
     </Frame>
 
-    <Frame name="ICHTimewalkingListHeadersTemplate" virtual="true" enableMouse="true">
+    <Frame name="ICHVendorListHeadersTemplate" virtual="true" enableMouse="true">
         <Size y="25"/>
         <Layers>
             <Layer level="BACKGROUND">

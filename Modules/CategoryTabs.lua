@@ -32,7 +32,7 @@ function AddOn:HandleTabSelected(tabID)
     self.db.global.selectedTab = tabID
     self:PrintDebugMessage("Selected tab:", self.Tabs:GetTabButton(tabID).tabText)
     if tabID == self.Tabs.TimewalkingVendorTab then
-        self.Container.TimewalkingListHeaders:SetAlpha(1)
+        self.Container.VendorListHeaders:SetAlpha(1)
     else
         self.Container.ListHeaders:SetAlpha(1)
     end

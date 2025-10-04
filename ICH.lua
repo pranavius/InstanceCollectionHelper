@@ -3,7 +3,6 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 local LDB = LibStub("LibDataBroker-1.1")
-ICH = {}
 
 ---Handles slash commands in a way that overrides the default behavior of Ace3 slash commands. Executing the command with no arguments
 ---opens the AddOn options window, providing the `help` argument displays a list of available arguments and uses for the slash command,
@@ -219,7 +218,3 @@ end
 function ICH_AddonCompartmentOnLeave(_, btn)
     MenuUtil.HideTooltip(btn)
 end
-
--- Exposes AddOn functionality for use in XML Templates
-ICH = AddOn
-ICH_LANG = L
