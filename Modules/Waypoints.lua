@@ -116,10 +116,9 @@ end
 
 ---Sets up and displays the appropriate waypoint button based on user preferences and **TomTom** being enabled or not
 ---@param destinationName string The name of the destination to set a waypoint for, such as an NPC or an instance
----@param frame ICHListItem|ICHTimewalkingListItem
+---@param frame ICHListItem
 ---@param data Mount|Toy|Pet|TimewalkingItem
 ---@see ICHListItem
----@see ICHTimewalkingListItem
 ---@see Mount
 ---@see Toy
 ---@see Pet

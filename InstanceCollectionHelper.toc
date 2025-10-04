@@ -3,22 +3,18 @@
 ## Notes: Helps find and set the instance difficulty needed to obtain collectible items
 ## IconTexture: Interface\AddOns\InstanceCollectionHelper\Media\Logo.png
 ## Author: pranavius
-## Version: 11.1
+## Version: 11.2
 ## SavedVariables: ICH_DB
-## Category: Achievements
+## Category: Collections
 ## AddonCompartmentFunc: ICH_AddonCompartmentOnClick
 ## AddonCompartmentFuncOnEnter: ICH_AddonCompartmentOnEnter
 ## AddonCompartmentFuncOnLeave: ICH_AddonCompartmentOnLeave
 ## X-Flavor: retail
-## X-Additional-Categories: Battle Pets, Boss Encounters, Miscellaneous
+## X-Additional-Categories: Achievements, Battle Pets, Boss Encounters, Miscellaneous
 ## X-Curse-Project-ID: 1302094
 ## X-Wago-ID: kGr0j76y
 
 embeds.xml
-Templates\ListHeadersTemplate.xml
-Templates\GenericButtonTemplate.xml
-Templates\DifficultyButtonTemplate.xml
-Templates\ListItemTemplate.xml
 
 Localization\enUS.lua
 Localization\esMX.lua
@@ -34,7 +30,6 @@ Data\Mounts.lua
 Data\Toys.lua
 Data\Pets.lua
 Data\Timewalking.lua
-Modules\AboutICH.lua
 Modules\CategoryTabs.lua
 Modules\Waypoints.lua
 Modules\DifficultyButtons.lua
@@ -42,4 +37,23 @@ Modules\MountDataProvider.lua
 Modules\ToyDataProvider.lua
 Modules\PetDataProvider.lua
 Modules\TimewalkingDataProvider.lua
+
+Templates\ICHSquareButtonMixin.lua
+Templates\ICHSquareButtonTemplate.xml
+Templates\DifficultyButtonMixin.lua
+Templates\DifficultyButtonTemplate.xml
+Templates\ListHeadersMixin.lua
+Templates\ListHeadersTemplate.xml
+Templates\ListItemMixin.lua
+Templates\ListItemTemplate.xml
+
+Frames\ICHMainMixin.lua
+Frames\ICHMain.xml
+Frames\ICHScrollBoxMixin.lua
+Frames\ICHScrollBox.xml
+Frames\ICHFooterMixin.lua
+Frames\ICHFooter.xml
+Frames\ICHAboutMixin.lua
+Frames\ICHAbout.xml
+
 ICH.lua

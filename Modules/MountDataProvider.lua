@@ -3,64 +3,6 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----@class NameContainer: Frame Displays elements relevant to a collectible's name<br>
----For frame definition and more layout information, see `Templates.xml`
----@field name string The full name of the collectible
----@field Text FontString Name of a collectible (can be truncated if length exceeds allocated space)
----@field ViewButton Button Button to view the collectible in the appropriate collection journal in-game
-
----@class InstanceContainer: Frame Displays elements relevant to the instance where a collectible can be obtained<br>
----For frame definition and more layout information, see `Templates.xml`
----@field encounterID? number ID number for the encounter that provides the collectible
----@field Text FontString Name of an instance
----@field ViewButton Button Button to view the instance in the encounter journal in-game
-
----@class DifficultyButton: Button Sets instance difficulty to the associated value
----@field difficultyID number ID number for instance, scenario, and raid difficulty (see https://wago.tools/db2/Difficulty)
-
----@class DifficultyContainer: Frame Displays elements relevant to the instance difficulty for a collectible<br>
----For frame definition and more layout information, see `Templates.xml`
----@field sharedDifficulties? table<RaidDifficulty, RaidDifficulty> Difficulties that share a lockout with a difficulty displayed using the appropriate button
----@field RaidDiffLFRButton DifficultyButton Button for tracking LFR lockout (no action taken when clicked)
----@field RaidDiffLegacyLFRButton DifficultyButton Button for tracking legacy LFR lockout (no action taken when clicked)
----@field RaidDiff40Button DifficultyButton Button for setting Legacy Raid difficulty to 40 player
----@field RaidDiff10Button DifficultyButton Button for setting Legacy Raid difficulty to 10 player
----@field RaidDiff10HeroicButton DifficultyButton Button for setting Legacy Raid difficulty to 10 player (Heroic)
----@field RaidDiff25Button DifficultyButton Button for setting Legacy Raid difficulty to 25 player
----@field RaidDiff25HeroicButton DifficultyButton Button for setting Legacy Raid difficulty to 25 player (Heroic)
----@field RaidDiffNormalButton DifficultyButton Button for setting Raid difficulty to Normal
----@field RaidDiffHeroicButton DifficultyButton Button for setting Raid difficulty to Heroic
----@field RaidDiffMythicButton DifficultyButton Button for setting Raid difficulty to Mythic
----@field DungDiffNormalButton DifficultyButton Button for setting Dungeon difficulty to Normal
----@field DungDiffHeroicButton DifficultyButton Button for setting Dungeon difficulty to Heroic
----@field DungDiffMythicButton DifficultyButton Button for setting Dungeon difficulty to Mythic
-
----@class ICHNote: Frame Handles displaying notes about a mount or instance in a tooltip when hovered
----@field notes string? The note(s) to display when hovering over the texture in `ICHNote`
-
----@class ICHWaypointButton: Button Creates a map pin or TomTom waypoint to the corresponding instance entrance based on user's preferences
----@field instanceID? number ID number for the instance where the collectible can be obtained
----@field vendorName? string Name of the vendor from whom the collectible can be purcahsed (for Timewalking items only)
-
----@class OtherInfoContainer: Frame Displays other elements associated with a collectible
----@field ICHPetCount FontString
----@field ICHNote ICHNote
----@field ICHWaypointButton ICHWaypointButton
-
----@class ICHListItem: Frame List item that displays relevant information for a given collectible
----@field isMount boolean Whether or not the list item is for a mount
----@field relevantID number The ID number for the collectible. For mounts, this value is `mountID` and for toys it is `itemID`
----@field Bg Texture The background texture for unowned list items
----@field OwnedBg Texture The background texture for owned list items
----@field NameContainer NameContainer
----@field InstanceContainer InstanceContainer
----@field DifficultyContainer DifficultyContainer
----@field OtherInfoContainer OtherInfoContainer
----@see NameContainer
----@see InstanceContainer
----@see DifficultyContainer
----@see OtherInfoContainer
-
 ---Initializes how mount data in the scrollable list should be displayed
 ---@param frame ICHListItem
 ---@param data Mount
@@ -86,7 +28,6 @@ function AddOn.MountDataProviderInit(frame, data)
         if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
     end
     AddOn:SetTruncatedText(frame.NameContainer.Text, localizedMountName) -- Localized mount name truncated if text width exceeds allocated space
-    frame.NameContainer.name = localizedMountName
     AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName)  -- Localized instance name truncated if text width exceeds allocated space
 
     local iconID = C_Spell.GetSpellInfo(mountSpellID) and C_Spell.GetSpellInfo(mountSpellID).originalIconID
@@ -111,14 +52,14 @@ function AddOn.MountDataProviderInit(frame, data)
 
     AddOn:ConfigureWaypointButton(localizedInstanceName, frame, data)
 
-    frame.NameContainer.ViewButton:SetScript("OnClick", function()
+    frame.NameContainer.ViewButton:HookScript("OnClick", function()
         if data.ID then
             SetCollectionsJournalShown(true, 1)
             MountJournal_SetSelected(data.ID, mountSpellID)
         end
     end)
 
-    frame.InstanceContainer.ViewButton:SetScript("OnClick", function()
+    frame.InstanceContainer.ViewButton:HookScript("OnClick", function()
         -- Open the Encounter Journal to the specified instance, difficulty, and encounter
         EncounterJournal_OpenJournal(data.DifficultyIDs and data.DifficultyIDs[1] or nil, data.InstanceID, data.EncounterID)
         -- If the loot tab is not already opened, open it by clicking on it programmatically

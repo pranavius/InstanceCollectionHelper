@@ -1,3 +1,17 @@
+# Checkbox
+
+## Text
+
+
+```lua
+FontString
+```
+
+The text to display alongside the `CheckButton`
+
+
+---
+
 # CostContainer
 
 ## CurrencyButton
@@ -7,6 +21,8 @@
 Button
 ```
 
+If currency is Warband Transferable, this button should open the transfer menu
+
 ## Text
 
 
@@ -14,21 +30,118 @@ Button
 FontString
 ```
 
-For frame definition and more layout information, see `Templates.xml`
+Text to display alongside the currency icon (typically the cost of the collectible)
+
+## currencyID
+
+
+```lua
+integer
+```
+
+ID number of the currency required to purchase the collectible
 
 
 ---
 
 # DifficultyButton
 
+## ButtonTint
+
+
+```lua
+Texture
+```
+
+A texture applied over the button to recolor it based on instance type
+
+## OnClick
+
+
+```lua
+(method) DifficultyButtonMixin:OnClick()
+```
+
+## OnEnter
+
+
+```lua
+(method) DifficultyButtonMixin:OnEnter()
+```
+
+## OnLeave
+
+
+```lua
+(method) DifficultyButtonMixin:OnLeave()
+```
+
+## TintMask
+
+
+```lua
+MaskTexture
+```
+
+A texture mask applied over `ButtonTint` to prevent the color from bleeding past the boundaries of the button art
+
 ## difficultyID
 
 
 ```lua
-number
+integer
 ```
 
 ID number for instance, scenario, and raid difficulty (see https://wago.tools/db2/Difficulty)
+
+## sharedDifficulties
+
+
+```lua
+table<RaidDifficulty, RaidDifficulty>
+```
+
+Difficulties that share a lockout with the associated `difficultyID`
+
+
+---
+
+# DifficultyButtonMixin
+
+
+```lua
+table
+```
+
+
+---
+
+# DifficultyButtonMixin.OnClick
+
+
+```lua
+(method) DifficultyButtonMixin:OnClick()
+```
+
+
+---
+
+# DifficultyButtonMixin.OnEnter
+
+
+```lua
+(method) DifficultyButtonMixin:OnEnter()
+```
+
+
+---
+
+# DifficultyButtonMixin.OnLeave
+
+
+```lua
+(method) DifficultyButtonMixin:OnLeave()
+```
 
 
 ---
@@ -152,15 +265,6 @@ DifficultyButton
 
 Button for setting Raid difficulty to Normal
 
-## sharedDifficulties
-
-
-```lua
-table<RaidDifficulty, RaidDifficulty>?
-```
-
-Difficulties that share a lockout with a difficulty displayed using the appropriate button
-
 
 ---
 
@@ -253,7 +357,155 @@ string[]
 
 ---
 
-# ICH
+# ICHAbout
+
+## Author
+
+
+```lua
+FontString
+```
+
+AddOn author
+
+## Bg
+
+
+```lua
+Texture
+```
+
+The background texture for the frame
+
+## Close
+
+
+```lua
+Button
+```
+
+Closes the About information
+
+## GitHub
+
+
+```lua
+FontString
+```
+
+AddOn author's GitHub username
+
+## Name
+
+
+```lua
+FontString
+```
+
+AddOn name
+
+## OnLoad
+
+
+```lua
+(method) ICHAboutMixin:OnLoad()
+```
+
+## OpenICH
+
+
+```lua
+Button
+```
+
+Closes the About information and re-opens the AddOn
+
+## SpecialThanksHeader
+
+
+```lua
+FontString
+```
+
+Heading for list of people to give a special thanks to for their contributions to the AddOn
+
+## Translators
+
+
+```lua
+FontString
+```
+
+Heading for list of people to thank for providing translations into other languages for the AddOn
+
+## Twitter
+
+
+```lua
+FontString
+```
+
+AddOn author's Twitter/X handle
+
+
+---
+
+# ICHAboutMixin
+
+
+```lua
+ICHAbout
+```
+
+
+---
+
+# ICHAboutMixin.OnLoad
+
+
+```lua
+(method) ICHAboutMixin:OnLoad()
+```
+
+
+---
+
+# ICHFooter
+
+## Bg
+
+
+```lua
+Texture
+```
+
+The background texture for the footer
+
+## OwnedContainer
+
+
+```lua
+OwnedContainer
+```
+
+## ScaleContainer
+
+
+```lua
+ScaleContainer
+```
+
+## TomTomContainer
+
+
+```lua
+TomTomContainer
+```
+
+
+---
+
+# ICHFooterMixin
 
 
 ```lua
@@ -261,9 +513,80 @@ table
 ```
 
 
+---
+
+# ICHFooterMixin.OnLoad
+
+
 ```lua
-InstanceCollectionHelper
+(method) ICHFooterMixin:OnLoad()
 ```
+
+
+---
+
+# ICHListHeaders
+
+## BorderBottom
+
+
+```lua
+Texture
+```
+
+A separator between the list headers and the list items in the AddOn interface
+
+## CostHeader
+
+
+```lua
+FontString?
+```
+
+Exclusive to `ICHVendorListItemTemplate`
+
+## DiffHeader
+
+
+```lua
+FontString?
+```
+
+Exclusive to `ICHListItemTemplate`
+
+## ExpansionHeader
+
+
+```lua
+FontString?
+```
+
+Exclusive to `ICHVendorListItemTemplate`
+
+## InstanceHeader
+
+
+```lua
+FontString?
+```
+
+Exclusive to `ICHListItemTemplate`
+
+## NameHeader
+
+
+```lua
+FontString
+```
+
+## TypeHeader
+
+
+```lua
+FontString?
+```
+
+Exclusive to `ICHVendorListItemTemplate`
 
 
 ---
@@ -279,108 +602,55 @@ Texture
 
 The background texture for unowned list items
 
-## DifficultyContainer
-
-
-```lua
-DifficultyContainer
-```
-
-## InstanceContainer
-
-
-```lua
-InstanceContainer
-```
-
-## NameContainer
-
-
-```lua
-NameContainer
-```
-
-## OtherInfoContainer
-
-
-```lua
-OtherInfoContainer
-```
-
-## OwnedBg
-
-
-```lua
-Texture
-```
-
-The background texture for owned list items
-
-## isMount
-
-
-```lua
-boolean
-```
-
-Whether or not the list item is for a mount
-
-## relevantID
-
-
-```lua
-number
-```
-
-The ID number for the collectible. For mounts, this value is `mountID` and for toys it is `itemID`
-
-
----
-
-# ICHNote
-
-## notes
-
-
-```lua
-string?
-```
-
-The note(s) to display when hovering over the texture in `ICHNote`
-
-
----
-
-# ICHTimewalkingListItem
-
-## Bg
-
-
-```lua
-Texture
-```
-
-The background texture for unowned list items
-
 ## CostContainer
 
 
 ```lua
-CostContainer
+CostContainer?
 ```
+
+## DifficultyContainer
+
+
+```lua
+DifficultyContainer?
+```
+
+Exclusive to `ICHListItemTemplate`
 
 ## ExpansionContainer
 
 
 ```lua
-TextContainer
+TextContainer?
 ```
+
+Exclusive to `ICHVendorListItemTemplate`
+
+## InstanceContainer
+
+
+```lua
+InstanceContainer?
+```
+
+Exclusive to `ICHListItemTemplate`
 
 ## NameContainer
 
 
 ```lua
 NameContainer
+```
+
+---- ANNOTATIONS -------
+------------------------
+
+## OnLoad
+
+
+```lua
+(method) ICHListItemMixin:OnLoad()
 ```
 
 ## OtherInfoContainer
@@ -403,8 +673,10 @@ The background texture for owned list items
 
 
 ```lua
-TextContainer
+TextContainer?
 ```
+
+Exclusive to `ICHVendorListItemTemplate`
 
 ## isMount
 
@@ -427,6 +699,230 @@ The ID number for the collectible. For mounts, this value is `mountID` and for t
 
 ---
 
+# ICHListItemMixin
+
+
+```lua
+ICHListItem
+```
+
+
+---
+
+# ICHListItemMixin.OnLoad
+
+
+```lua
+(method) ICHListItemMixin:OnLoad()
+```
+
+
+---
+
+# ICHMain
+
+## InfoButton
+
+
+```lua
+ICHSquareButton
+```
+
+## ListHeaders
+
+
+```lua
+ICHListHeaders
+```
+
+---- ANNOTATIONS -------
+------------------------
+
+## SearchBox
+
+
+```lua
+EditBox
+```
+
+An input field that allows users to search for a collectible in the currently viewed list
+
+## Title
+
+
+```lua
+FontString
+```
+
+The name of the AddOn
+
+## VendorListHeaders
+
+
+```lua
+ICHListHeaders
+```
+
+---- ANNOTATIONS -------
+------------------------
+
+
+---
+
+# ICHMainMixin
+
+
+```lua
+table
+```
+
+
+---
+
+# ICHMainMixin.OnDragStart
+
+
+```lua
+(method) ICHMainMixin:OnDragStart()
+```
+
+
+---
+
+# ICHMainMixin.OnDragStop
+
+
+```lua
+(method) ICHMainMixin:OnDragStop()
+```
+
+
+---
+
+# ICHMainMixin.OnLoad
+
+
+```lua
+(method) ICHMainMixin:OnLoad()
+```
+
+
+---
+
+# ICHMainMixin.OnShow
+
+
+```lua
+(method) ICHMainMixin:OnShow()
+```
+
+
+---
+
+# ICHNote
+
+## notes
+
+
+```lua
+string
+```
+
+The note(s) to display when hovering over the texture in `ICHNote`
+
+
+---
+
+# ICHScrollBox
+
+## InitializeScrollView
+
+
+```lua
+(method) ICHScrollBoxMixin:InitializeScrollView()
+```
+
+
+---
+
+# ICHScrollBoxMixin
+
+
+```lua
+unknown
+```
+
+
+---
+
+# ICHScrollBoxMixin.InitializeScrollView
+
+
+```lua
+(method) ICHScrollBoxMixin:InitializeScrollView()
+```
+
+
+---
+
+# ICHSquareButton
+
+## OnEnter
+
+
+```lua
+(method) ICHSquareButtonMixin:OnEnter()
+```
+
+## OnLeave
+
+
+```lua
+(method) ICHSquareButtonMixin:OnLeave()
+```
+
+## action
+
+
+```lua
+string
+```
+
+Describes the funcitonality associated with the button
+
+
+---
+
+# ICHSquareButtonMixin
+
+
+```lua
+ICHSquareButton
+```
+
+
+---
+
+# ICHSquareButtonMixin.OnEnter
+
+
+```lua
+(method) ICHSquareButtonMixin:OnEnter()
+```
+
+
+---
+
+# ICHSquareButtonMixin.OnLeave
+
+
+```lua
+(method) ICHSquareButtonMixin:OnLeave()
+```
+
+
+---
+
 # ICHWaypointButton
 
 ## instanceID
@@ -445,7 +941,7 @@ ID number for the instance where the collectible can be obtained
 string?
 ```
 
-Name of the vendor from whom the collectible can be purcahsed (for Timewalking items only)
+Name of the vendor from whom the collectible can be purcahsed (for vendor items only)
 
 
 ---
@@ -494,7 +990,7 @@ function ICH_AddonCompartmentOnLeave(_: any, btn: any)
 
 
 ```lua
-string
+unknown
 ```
 
 
@@ -504,23 +1000,13 @@ string
 
 
 ```lua
-string
-```
-
-
----
-
-# ICH_INSTANCE_COL_TITLE
-
-
-```lua
 unknown
 ```
 
 
 ---
 
-# ICH_LANG
+# ICH_INSTANCE_COL_TITLE
 
 
 ```lua
@@ -544,7 +1030,7 @@ unknown
 
 
 ```lua
-string
+unknown
 ```
 
 
@@ -556,7 +1042,7 @@ string
 
 
 ```lua
-unknown
+ICHAbout
 ```
 
 ## AppendMapSearchTags
@@ -572,11 +1058,18 @@ See:
   * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
   * [Pet](AddOns/InstanceCollectionHelper/Data/Pets.lua#9#10)
 
+## ConfigureOnInit
+
+
+```lua
+(method) InstanceCollectionHelper:ConfigureOnInit()
+```
+
 ## ConfigureWaypointButton
 
 
 ```lua
-(method) InstanceCollectionHelper:ConfigureWaypointButton(destinationName: string, frame: ICHListItem|ICHTimewalkingListItem, data: Mount|Pet|TimewalkingItem|Toy)
+(method) InstanceCollectionHelper:ConfigureWaypointButton(destinationName: string, frame: ICHListItem, data: Mount|Pet|TimewalkingItem|Toy)
 ```
 
 Sets up and displays the appropriate waypoint button based on user preferences and **TomTom** being enabled or not
@@ -584,47 +1077,11 @@ Sets up and displays the appropriate waypoint button based on user preferences a
 @*param* `destinationName` — The name of the destination to set a waypoint for, such as an NPC or an instance
 
 See:
-  * [ICHListItem](AddOns/InstanceCollectionHelper/Modules/MountDataProvider.lua#50#10)
-  * [ICHTimewalkingListItem](AddOns/InstanceCollectionHelper/Modules/TimewalkingDataProvider.lua#15#10)
+  * [ICHListItem](AddOns/InstanceCollectionHelper/Templates/ListItemMixin.lua#6#10)
   * [Mount](AddOns/InstanceCollectionHelper/Data/Mounts.lua#9#10)
   * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
   * [Pet](AddOns/InstanceCollectionHelper/Data/Pets.lua#9#10)
   * [TimewalkingItem](AddOns/InstanceCollectionHelper/Data/Timewalking.lua#6#10)
-
-## Container
-
-
-```lua
-unknown
-```
-
-## CreateAboutFrame
-
-
-```lua
-(method) InstanceCollectionHelper:CreateAboutFrame()
-```
-
-Initializes the About frame that displays contact info and translation credit for the AddOn
-
-## CreateFooter
-
-
-```lua
-(method) InstanceCollectionHelper:CreateFooter()
-```
-
-Initializes the footer in the AddOn that contains some display options for the window
-
-## CreateMainFrame
-
-
-```lua
-(method) InstanceCollectionHelper:CreateMainFrame()
-```
-
-Initializes the AddOn window.<br>
-Internally creates a scrollable list of data to display initially as well.
 
 ## CreatePetCache
 
@@ -632,16 +1089,6 @@ Internally creates a scrollable list of data to display initially as well.
 ```lua
 (method) InstanceCollectionHelper:CreatePetCache()
 ```
-
-## CreateScrollingView
-
-
-```lua
-(method) InstanceCollectionHelper:CreateScrollingView()
-```
-
-Initializes the scrollable list of data to display in the AddOn<br>
-By default, the list of mounts is shown
 
 ## CreateTab
 
@@ -722,7 +1169,7 @@ See:
 
 
 ```lua
-unknown
+table
 ```
 
 ## GetDifficultyButtonText
@@ -785,7 +1232,7 @@ function InstanceCollectionHelper.HideAllDifficultyButtons(container: Difficulty
 ```
 
 Unsets all difficulty button points and hides them before showing the correct ones based on provided data
-See: [DifficultyContainer](AddOns/InstanceCollectionHelper/Modules/MountDataProvider.lua#21#10)
+See: [DifficultyContainer](AddOns/InstanceCollectionHelper/Templates/ListItemMixin.lua#140#10)
 
 ## ICHDataProvider
 
@@ -880,7 +1327,7 @@ function InstanceCollectionHelper.PetDataProviderInit(frame: ICHListItem, pet: P
 
 Initializes how pet data in the scrollable list should be displayed
 See:
-  * [ICHListItem](AddOns/InstanceCollectionHelper/Modules/MountDataProvider.lua#50#10)
+  * [ICHListItem](AddOns/InstanceCollectionHelper/Templates/ListItemMixin.lua#6#10)
   * [Pet](AddOns/InstanceCollectionHelper/Data/Pets.lua#9#10)
 
 ## Pets
@@ -923,27 +1370,6 @@ Prints a debugging message to the chat window prefixed by the AddOn name
 enum RaidDifficulty
 ```
 
-## ScrollBar
-
-
-```lua
-unknown
-```
-
-## ScrollBox
-
-
-```lua
-unknown
-```
-
-## ScrollView
-
-
-```lua
-unknown
-```
-
 ## SetInstanceDifficulty
 
 
@@ -981,7 +1407,7 @@ Determines which difficulty button(s) to display based on the provided data
 @*param* `isOwned` — Whether or not the collectible is owned by the player. Omitting this argument is equivalent to providing `false`
 
 See:
-  * [DifficultyContainer](AddOns/InstanceCollectionHelper/Modules/MountDataProvider.lua#21#10)
+  * [DifficultyContainer](AddOns/InstanceCollectionHelper/Templates/ListItemMixin.lua#140#10)
   * [Mount](AddOns/InstanceCollectionHelper/Data/Mounts.lua#9#10)
   * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
   * [Pet](AddOns/InstanceCollectionHelper/Data/Pets.lua#9#10)
@@ -1013,7 +1439,7 @@ Stores necessary pet data in a local cache - attempting to reduce the amount of 
 
 
 ```lua
-function InstanceCollectionHelper.TimewalkingDataProviderInit(frame: ICHTimewalkingListItem, item: TimewalkingItem)
+function InstanceCollectionHelper.TimewalkingDataProviderInit(frame: ICHListItem, item: TimewalkingItem)
 ```
 
 ## TimewalkingItems
@@ -1021,6 +1447,13 @@ function InstanceCollectionHelper.TimewalkingDataProviderInit(frame: ICHTimewalk
 
 ```lua
 TimewalkingItem[]
+```
+
+## Title
+
+
+```lua
+string
 ```
 
 ## ToyCache
@@ -1041,7 +1474,7 @@ function InstanceCollectionHelper.ToyDataProviderInit(frame: ICHListItem, toy: T
 
 Initializes how toy data in the scrollable list should be displayed
 See:
-  * [ICHListItem](AddOns/InstanceCollectionHelper/Modules/MountDataProvider.lua#50#10)
+  * [ICHListItem](AddOns/InstanceCollectionHelper/Templates/ListItemMixin.lua#6#10)
   * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
 
 ## Toys
@@ -1107,6 +1540,38 @@ ID number for the encounter that provides the collectible
 ---
 
 # LuaLS
+
+
+---
+
+# MinimalSliderWithSteppers
+
+## Back
+
+
+```lua
+Button
+```
+
+Decrease value by the specified increment
+
+## Forward
+
+
+```lua
+Button
+```
+
+Increase value by the specified increment
+
+## Slider
+
+
+```lua
+Slider
+```
+
+A Slider bar to quickly change a value within the range of the defined minimum and maximum values
 
 
 ---
@@ -1244,15 +1709,6 @@ Button
 
 Button to view the collectible in the appropriate collection journal in-game
 
-## name
-
-
-```lua
-string
-```
-
-The full name of the collectible
-
 
 ---
 
@@ -1272,11 +1728,25 @@ ICHNote
 FontString
 ```
 
+Displays the total number of a pet owned against the maximum number that can be owned (for pets only)
+
 ## ICHWaypointButton
 
 
 ```lua
 ICHWaypointButton
+```
+
+
+---
+
+# OwnedContainer
+
+## Checkbox
+
+
+```lua
+Checkbox
 ```
 
 
@@ -1454,6 +1924,28 @@ ID for the pet species
 
 ---
 
+# ScaleContainer
+
+## Text
+
+
+```lua
+FontString
+```
+
+## WindowScale
+
+
+```lua
+MinimalSliderWithSteppers
+```
+
+---- ANNOTATIONS -------
+------------------------
+
+
+---
+
 # TextContainer
 
 ## Text
@@ -1463,7 +1955,7 @@ ID for the pet species
 FontString
 ```
 
-For frame definition and more layout information, see `Templates.xml`
+The text to be displayed
 
 
 ---
@@ -1640,6 +2132,18 @@ Supplemental information to place a map pin on the entrance to the instance when
 
 ---
 
+# TomTomContainer
+
+## Checkbox
+
+
+```lua
+Checkbox
+```
+
+
+---
+
 # Toy
 
 ## AreaPoiID
@@ -1800,7 +2304,7 @@ Localized toy name
 
 
 ```lua
-string
+"deDE"|"enAU"|"enGB"|"enUS"|"esES"...(+9)
 ```
 
 The locale for which they provided translations

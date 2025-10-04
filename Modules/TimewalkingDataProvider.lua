@@ -3,30 +3,6 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----@class TextContainer: Frame Generic frame that displays text relevant to a collectible<br>
----For frame definition and more layout information, see `Templates.xml`
----@field Text FontString
-
----@class CostContainer: Frame Displays elements relevant to a collectible's cost<br>
----For frame definition and more layout information, see `Templates.xml`
----@field Text FontString
----@field CurrencyButton Button
-
----@class ICHTimewalkingListItem: Frame List item that displays relevant information for a given collectible
----@field isMount boolean Whether or not the list item is for a mount
----@field relevantID number The ID number for the collectible. For mounts, this value is `mountID` and for toys it is `itemID`
----@field Bg Texture The background texture for unowned list items
----@field OwnedBg Texture The background texture for owned list items
----@field NameContainer NameContainer
----@field TypeContainer TextContainer
----@field ExpansionContainer TextContainer
----@field CostContainer CostContainer
----@field OtherInfoContainer OtherInfoContainer
----@see NameContainer
----@see TextContainer
----@see CostContainer
----@see OtherInfoContainer
-
 ---@class TimewalkingCacheData
 ---@field itemName string Localized name for the item that adds the collectible to the collection
 ---@field itemID integer ID number for the item that adds the collectible to the collection
@@ -109,9 +85,10 @@ local function ColorOwnedPetCountText(data)
     end
 end
 
----@param frame ICHTimewalkingListItem
+---@param frame ICHListItem
 ---@param item TimewalkingItem
 function AddOn.TimewalkingDataProviderInit(frame, item)
+    frame.CostContainer.currencyID = 1166
     if not frame or not item then return end
     frame.isMount = item.Type == "Mount" or false
     
@@ -132,7 +109,6 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     end
 
     AddOn:SetTruncatedText(frame.NameContainer.Text, data.collectibleName)
-    frame.NameContainer.name = data.collectibleName
     frame.NameContainer.ViewButton:ClearNormalTexture()
     frame.NameContainer.ViewButton:ClearHighlightTexture()
     frame.NameContainer.ViewButton:SetNormalTexture(data.iconID or 134400)
@@ -171,7 +147,7 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     AddOn:ConfigureWaypointButton(item.VendorName or "", frame, item)
 
     if item.Type == "Mount" then
-        frame.NameContainer.ViewButton:SetScript("OnClick", function()
+        frame.NameContainer.ViewButton:HookScript("OnClick", function()
             local spellID = select(2, C_MountJournal.GetMountInfoByID(data.mountID))
             if data.mountID then
                 SetCollectionsJournalShown(true, 1)
@@ -179,10 +155,10 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
             end
         end)
     else
-        frame.NameContainer.ViewButton:SetScript("OnClick", function() end)
+        frame.NameContainer.ViewButton:HookScript("OnClick", function() end)
     end
 
-    frame.CostContainer.CurrencyButton:SetScript("OnClick", function()
+    frame.CostContainer.CurrencyButton:HookScript("OnClick", function()
         AddOn:PrintDebugMessage("Timewarped Badges transfer requested")
         if not C_CurrencyInfo.CanTransferCurrency(1166) then
             AddOn:PrintChatMessage(L["Unable to transfer Timewarped Badges to this character right now."])
