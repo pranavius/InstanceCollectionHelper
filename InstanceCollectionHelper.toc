@@ -30,6 +30,7 @@ Data\Mounts.lua
 Data\Toys.lua
 Data\Pets.lua
 Data\Timewalking.lua
+Data\Lemix.lua
 Modules\CategoryTabs.lua
 Modules\Waypoints.lua
 Modules\DifficultyButtons.lua
@@ -37,6 +38,7 @@ Modules\MountDataProvider.lua
 Modules\ToyDataProvider.lua
 Modules\PetDataProvider.lua
 Modules\TimewalkingDataProvider.lua
+Modules\LemixDataProvider.lua
 
 Templates\ICHSquareButtonMixin.lua
 Templates\ICHSquareButtonTemplate.xml

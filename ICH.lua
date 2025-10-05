@@ -38,6 +38,7 @@ function AddOn:OnInitialize()
     self:CreateToyCache()
     self:CreatePetCache()
     self:CreateTimewalkingCache()
+    self:CreateLemixCache()
 
     -- Data broker registration for minimap icon
     local broker = LDB:NewDataObject(name, {
@@ -180,6 +181,22 @@ function AddOn:UpdateListContents()
         for _, item in ipairs(self.TimewalkingItems) do
             local itemData = self.TimewalkingCache[item.ItemID]
             if item.Type == "Mount" then
+                local hideOnChar = select(10, C_MountJournal.GetMountInfoByID(itemData.mountID))
+                if not hideOnChar and (not itemData.owned or (itemData.owned and self.db.global.showOwned)) then tinsert(newData, item) end
+            elseif item.Type == "Pet" then
+                local isOwned = itemData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and itemData.owned == itemData.limit or true)
+                if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, item) end
+            else
+                if not itemData.owned or (itemData.owned and self.db.global.showOwned) then tinsert(newData, item) end
+            end
+        end
+    elseif selectedTab == self.Tabs.LegionRemixVendorTab then
+        for _, item in ipairs(self.LemixItems) do
+            local itemData = self.LemixCache[item.ItemID]
+            if item.Type == "Mount" then
+                DevTools_Dump(item)
+                DevTools_Dump(itemData)
+                DevTools_Dump("*******************")
                 local hideOnChar = select(10, C_MountJournal.GetMountInfoByID(itemData.mountID))
                 if not hideOnChar and (not itemData.owned or (itemData.owned and self.db.global.showOwned)) then tinsert(newData, item) end
             elseif item.Type == "Pet" then
