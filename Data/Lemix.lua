@@ -42,12 +42,48 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Acid Belcher",
+        ItemID = 152904,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 40000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
         Name = "Albino Mana Ray",
         ItemID = 250747,
         Type = "Mount",
-        VendorName = "Grandmaster Jakkus",
-        Cost = 20000,
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 10000,
         Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Antoran Charhound",
+        ItemID = 152816,
+        Type = "Mount",
+        Instance = "Antorus, the Burning Throne",
+        InstanceID = 946,
+        EncounterID = 1987,
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 100000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Aquamarine Basilisk",
+        ItemID = 250426,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 10000,
+        Phase = LemixPhases.Phase1,
         AreaPoiID = nil,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
@@ -97,15 +133,26 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
-        Name = "Aquamarine Basilisk",
-        ItemID = 250426,
+        Name = "Avenging Felcrusher",
+        ItemID = 153044,
         Type = "Mount",
         VendorName = "Hemet Nesingwary XVII",
-        Cost = 10000,
-        Phase = LemixPhases.Phase1,
+        Cost = 20000,
+        Phase = LemixPhases.Phase4,
         AreaPoiID = nil,
         SearchTags = AddOn.ExpansionTags.Legion,
-        IsLemixExclusive = true
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Biletooth Gnasher",
+        ItemID = 125903,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 40000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Bloodhunter Fel Bat",
@@ -117,6 +164,28 @@ AddOn.LemixItems = {
         AreaPoiID = nil,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
+    },
+    {
+        Name = "Bloodtooth Mana Ray",
+        ItemID = 250746,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 10000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Blessed Felcrusher",
+        ItemID = 153043,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 20000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Bonesteed of Bloodshed",
@@ -196,6 +265,28 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Crimson Slavermaw",
+        ItemID = 152905,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 40000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Darkspore Mana Ray",
+        ItemID = 152843,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 40000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
         Name = "Farseer's Felscorned Tempest",
         ItemID = 253031,
         Type = "Mount",
@@ -227,6 +318,17 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 100000,
         Phase = LemixPhases.Phase2,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Felglow Mana Ray",
+        ItemID = 152841,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 40000,
+        Phase = LemixPhases.Phase4,
         AreaPoiID = nil,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
@@ -309,6 +411,39 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Fel-Scarred Mana Ray",
+        ItemID = 250745,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 10000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Garnet Ruinstrider",
+        ItemID = 250803,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 10000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ghastly Ur'zul",
+        ItemID = 250192,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 10000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Gloomdark Nightmare",
         ItemID = 250757,
         Type = "Mount",
@@ -318,6 +453,17 @@ AddOn.LemixItems = {
         AreaPoiID = nil,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
+    },
+    {
+        Name = "Glorious Felcrusher",
+        ItemID = 153042,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 20000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Golden Sunrunner",
@@ -415,6 +561,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Lambent Mana Ray",
+        ItemID = 152844,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 40000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
         Name = "Leystone Basilisk",
         ItemID = 250424,
         Type = "Mount",
@@ -437,12 +594,78 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Longhorned Argussian Talbuk",
+        ItemID = 250805,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 10000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Longhorned Beryl Talbuk",
+        ItemID = 250806,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 10000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Longhorned Bleakhoof Talbuk",
+        ItemID = 250804,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 10000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Longhorned Sable Talbuk",
+        ItemID = 250802,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 10000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Long-Forgotten Hippogryph",
         ItemID = 138258,
         Type = "Mount",
         VendorName = "Hemet Nesingwary XVII",
         Cost = 20000,
         Phase = LemixPhases.Phase1,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Luminous Mana Ray",
+        ItemID = 250748,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 10000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Maddened Chaosrunner",
+        ItemID = 152814,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 40000,
+        Phase = LemixPhases.Phase4,
         AreaPoiID = nil,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
@@ -462,17 +685,13 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
-        Name = "Scythe of the Unmaker",
-        ItemID = 253273,
-        Type = "Cosmetic",
-        Instance = "Antorus, the Burning Throne",
-        InstanceID = 946,
-        EncounterID = 2031,
-        VendorName = "Pythagorus",
-        Cost = 30000,
-        AdditionalResource = { ItemID = 253304, Amount = 20 },
+        Name = "Scintillating Mana Ray",
+        ItemID = 152840,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 40000,
+        Phase = LemixPhases.Phase4,
         AreaPoiID = nil,
-        Notes = (select(2, C_Item.GetItemInfo(253304)) or WHITE_FONT_COLOR:WrapTextInColorCode("[Cosmic Soulsliver]")).." are obtained from defeating "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(1, EJ_GetEncounterInfo(2031)) or "Argus the Unmaker")..".".."\n\n".."The number dropped increases based on raid difficulty.",
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -487,6 +706,35 @@ AddOn.LemixItems = {
         Notes = "Obtainable for free by reaching level 80 with a Druid Timerunner and earning the achievement "..(select(2, GetAchievementInfo(61086)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Druid")),
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
+    },
+    {
+        Name = "Scythe of the Unmaker",
+        ItemID = 253273,
+        Type = "Cosmetic",
+        Instance = "Antorus, the Burning Throne",
+        InstanceID = 946,
+        EncounterID = 2031,
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        AdditionalResource = { ItemID = 253304, Amount = 20 },
+        AreaPoiID = nil,
+        Notes = (select(2, C_Item.GetItemInfo(253304)) or WHITE_FONT_COLOR:WrapTextInColorCode("[Cosmic Soulsliver]")).." are obtained from defeating "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(1, EJ_GetEncounterInfo(2031)) or "Argus the Unmaker")..".".."\n\n".."The number dropped increases based on raid difficulty.",
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Shackled Ur'zul",
+        ItemID = 152789,
+        Type = "Mount",
+        Instance = "Antorus, the Burning Throne",
+        InstanceID = 946,
+        EncounterID = 2031,
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 100000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Shadowblade's Felscorned Omen",
@@ -618,7 +866,29 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
-        Name = "Wild Dreamunner",
+        Name = "Vibrant Mana Ray",
+        ItemID = 152842,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 40000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Vile Fiend",
+        ItemID = 152790,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 40000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = nil,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Wild Dreamrunner",
         ItemID = 147804,
         Type = "Mount",
         VendorName = "Hemet Nesingwary XVII",
