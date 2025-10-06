@@ -4,10 +4,39 @@ AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---@class LemixCacheData
+---@field itemName string Localized name for the item that adds the collectible to the collection
+---@field itemID integer ID number for the item that adds the collectible to the collection
+---@field collectibleName string Localized collectible name
+---@field iconID integer ID for the icon associated with the collectible
+---@field mountID? integer ID number for the mount (applies to mounts only)
+---@field speciesID? integer ID for the pet species (applies to pets only)
+---@field owned integer|boolean If the collectible is a pet, this is the number of the pet currently owned. For other collectibles, this is `true` if owned and `false` otherwise
+---@field limit? integer Maximum number of the pet that can be owned (applies to pets only)
+
+---@class LemixResourceCacheData
+---@field itemName string
+---@field itemID integer
+---@field iconID integer
+
+---@param type? "Mount"|"Pet"|"Toy"|"Cosmetic"
+---@return WowRemixItem[]
+local function GetFilteredLemixItemList(type)
+    if not type then return AddOn.LemixItems end
+    local result = {}
+    for _, item in ipairs(AddOn.LemixItems) do
+        if item.Type == type then
+            tinsert(result, item)
+        end
+    end
+
+    return result
+end
 
 function AddOn:CreateLemixCache()
-    ---@type LemixCacheData
+    ---@type table<integer, LemixCacheData> Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
     self.LemixCache = {}
+    ---@type table<integer, LemixResourceCacheData>
+    self.LemixResourceCache = {}
     local toLoad = #self.LemixItems
 
     for _, item in ipairs(self.LemixItems) do
@@ -58,18 +87,32 @@ function AddOn:CreateLemixCache()
                     limit = limit
                 }
             elseif item.Type == "Cosmetic" then
-                -- Do cosmetic stuff
+                local sourceID = select(2, C_TransmogCollection.GetItemInfo(item.ItemID))
+                print(item.Name, sourceID, C_TransmogCollection.PlayerKnowsSource(sourceID))
                 self.LemixCache[item.ItemID] = {
                     itemName = C_Item.GetItemNameByID(item.ItemID) or "",
                     itemID = item.ItemID,
                     collectibleName = item.Name,
-                    iconID = 134400,
-                    owned = false
+                    iconID = C_TransmogCollection.GetSourceIcon(sourceID) or 134400,
+                    owned = C_TransmogCollection.PlayerKnowsSource(sourceID)
                 }
             end
-
             if toLoad == 0 then self:PrintDebugMessage("Legion: Remix data loaded") end
         end)
+
+        -- Special: For items that are considered Additional Resources, cache these separately
+        if item.AdditionalResource then
+            Item:CreateFromItemID(item.AdditionalResource.ItemID):ContinueOnItemLoad(function()
+                local itemName, _, _, _, _, _, _, _, _, iconID = C_Item.GetItemInfo(item.AdditionalResource.ItemID)
+                self.LemixResourceCache[item.AdditionalResource.ItemID] = {
+                    itemName = itemName or "Unknown Item",
+                    itemID = item.AdditionalResource.ItemID,
+                    iconID = iconID or 134400,
+                }
+                -- print("Additional resource found, dumping resource cache")
+                -- DevTools_Dump(self.LemixResourceCache)
+            end)
+        end
     end
 end
 
@@ -87,14 +130,20 @@ local function ColorOwnedPetCountText(data)
     end
 end
 
----@param frame ICHListItem
----@param item LemixItem
+---@param frame ICHLemixListItem
+---@param item WowRemixItem
 function AddOn.LemixDataProviderInit(frame, item)
     frame.CostContainer.currencyID = 2778
     if not frame or not item then return end
     frame.isMount = item.Type == "Mount" or false
     
     local index = AddOn.ICHDataProvider:FindIndex(item)
+    if item.Type == "Cosmetic" then
+        local sourceID = select(2, C_TransmogCollection.GetItemInfo(item.ItemID))
+        print("Is owned cosmetic", item.Name, C_TransmogCollection.PlayerKnowsSource(sourceID))
+        -- Sometimes the function to check if a cosmetic is known is dumb on initialization. So check here again to be safe
+        AddOn.LemixCache[item.ItemID].owned = C_TransmogCollection.PlayerKnowsSource(sourceID)
+    end
     local data = AddOn.LemixCache[item.ItemID]
     frame.relevantID = item.Type == "Mount" and data.mountID or data.itemID
 
@@ -117,14 +166,34 @@ function AddOn.LemixDataProviderInit(frame, item)
     frame.NameContainer.ViewButton:SetHighlightTexture(data.iconID or 134400)
 
     AddOn:SetTruncatedText(frame.TypeContainer.Text, DARKYELLOW_FONT_COLOR:WrapTextInColorCode(L[item.Type]))
-    AddOn:SetTruncatedText(frame.ExpansionContainer.Text, item.Expansion)
+    if item.Phase then
+        frame.PhaseContainer.fullName = item.Phase
+        local phase = string.split(":", item.Phase)
+        AddOn:SetTruncatedText(frame.PhaseContainer.Text, phase)
+    end
+
+    if item.IsLemixExclusive then
+        frame.ExclusiveContainer.Checkmark:Show()
+    elseif frame.ExclusiveContainer.Checkmark:IsShown() then
+        frame.ExclusiveContainer.Checkmark:Hide()
+    end
 
     frame.CostContainer.CurrencyButton:ClearNormalTexture()
     frame.CostContainer.CurrencyButton:ClearHighlightTexture()
-    frame.CostContainer.CurrencyButton:SetNormalTexture("interface/icons/inv_10_fishing_dragonislescoins_bronze.")
-    frame.CostContainer.CurrencyButton:SetHighlightTexture("interface/icons/inv_10_fishing_dragonislescoins_bronze.")
+    frame.CostContainer.CurrencyButton:SetNormalTexture("interface/icons/inv_10_fishing_dragonislescoins_bronze")
+    frame.CostContainer.CurrencyButton:SetHighlightTexture("interface/icons/inv_10_fishing_dragonislescoins_bronze")
 
-    frame.CostContainer.Text:SetText("x"..item.Cost)
+    local costText = "x"..FormatLargeNumber(item.Cost)
+
+    if item.AdditionalResource then
+        local resourceIconID = AddOn.LemixResourceCache[item.AdditionalResource.ItemID].iconID
+        costText = costText.."\n|T"..resourceIconID..":12:12|t x"..item.AdditionalResource.Amount
+        frame.CostContainer.Text:SetFontObject("GameTooltipTextSmall")
+    elseif frame.CostContainer.Text:GetFontObject() == GameTooltipTextSmall then
+        frame.CostContainer.Text:SetFontObject("GameTooltipText")
+    end
+
+    frame.CostContainer.Text:SetText(costText)
 
     if item.Type == "Pet" then
         frame.OtherInfoContainer.ICHPetCount:SetText(ColorOwnedPetCountText(data))
@@ -140,12 +209,6 @@ function AddOn.LemixDataProviderInit(frame, item)
         frame.OtherInfoContainer.ICHNote:Hide()
     end
 
-    -- Set Lemix vendor info for correct faction before setting Waypoint
-    if item.Expansion == "Warlords of Draenor" then
-        local faction = UnitFactionGroup("player")
-        item.VendorName = faction == "Horde" and "Kronnus" or "Tempra"
-    end
-
     AddOn:ConfigureWaypointButton(item.VendorName or "", frame, item)
 
     if item.Type == "Mount" then
@@ -159,24 +222,4 @@ function AddOn.LemixDataProviderInit(frame, item)
     else
         frame.NameContainer.ViewButton:HookScript("OnClick", function() end)
     end
-
-    frame.CostContainer.CurrencyButton:HookScript("OnClick", function()
-        AddOn:PrintDebugMessage("Timewarped Badges transfer requested")
-        if not C_CurrencyInfo.CanTransferCurrency(1166) then
-            AddOn:PrintChatMessage(L["Unable to transfer Timewarped Badges to this character right now."])
-            return
-        end
-
-        if CurrencyTransferMenu and (not CurrencyTransferMenu.currencyInfo or (CurrencyTransferMenu.currencyInfo and CurrencyTransferMenu.currencyInfo.currencyID ~= 1166) or not CurrencyTransferMenu:IsVisible()) then
-            AddOn:PrintDebugMessage("Currency ID is:", CurrencyTransferMenu.currencyInfo and CurrencyTransferMenu.currencyInfo.currencyID or 'n/a')
-            AddOn:PrintDebugMessage("Currency Transfer Frame visible:", CurrencyTransferMenu:IsVisible())
-            CurrencyTransferMenu:OnCurrencyTransferRequested(1166)
-        elseif CurrencyTransferMenu and CurrencyTransferMenu.currencyInfo.currencyID == 1166 then
-            AddOn:PrintDebugMessage("Timewarped Badges already selected and window is already open")
-            CurrencyTransferMenu:OnCurrencyTransferAmountUpdated(item.Cost)
-            CurrencyTransferMenu:FullRefresh()
-        else
-            AddOn:PrintChatMessage(L["Unable to open the currency transfer menu. Please open it manually or try again."])
-        end
-    end)
 end

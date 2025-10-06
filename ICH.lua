@@ -161,49 +161,81 @@ function AddOn:UpdateListContents()
         for _, mount in ipairs(self.Mounts) do
             -- Checking hideOnChar for mounts like Grand Black War Mammoth, which has a faction specific version
             local _, _, _, _, _, _, _, _, _, hideOnChar, isOwned = C_MountJournal.GetMountInfoByID(mount.ID)
-            if not hideOnChar and (not isOwned or (isOwned and self.db.global.showOwned)) then tinsert(newData, mount) end
+            if not hideOnChar and (not isOwned or (isOwned and self.db.global.showOwned)) then
+                tinsert(newData, mount)
+            else
+                self:PrintDebugMessage("Failed to curate table data for mount:", mount.Name)
+            end
         end
         self.Container.SearchBox.Instructions:SetText(L["Search by mount/instance name, instance type, difficulty, or expansion"])
     elseif selectedTab == self.Tabs.ToysTab then
         for _, toy in ipairs(self.Toys) do
             local toyData = self.ToyCache[toy.ItemID]
-            if not toyData.isOwned or (toyData.isOwned and self.db.global.showOwned) then tinsert(newData, toy) end
+            if toyData and not toyData.isOwned or (toyData.isOwned and self.db.global.showOwned) then
+                tinsert(newData, toy)
+            else
+                self:PrintDebugMessage("Failed to curate table data for toy:", toy.Name)
+            end
         end
         self.Container.SearchBox.Instructions:SetText(L["Search by toy/instance name, instance type, difficulty, or expansion"])
     elseif selectedTab == self.Tabs.PetsTab then
         for _, pet in ipairs(self.Pets) do
             local petData = self.PetCache[pet.PetItemID]
-            local isOwned = petData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and petData.owned == petData.limit or true)
-            if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, pet) end
+            local isOwned = (petData and petData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and petData.owned == petData.limit or true)) or false
+            if not isOwned or (isOwned and self.db.global.showOwned) then
+                tinsert(newData, pet)
+            else
+                self:PrintDebugMessage("Failed to curate table data for pet:", pet.Name)
+            end
         end
         self.Container.SearchBox.Instructions:SetText(L["Search by pet/instance name, instance type, difficulty, or expansion"])
     elseif selectedTab == self.Tabs.TimewalkingVendorTab then
         for _, item in ipairs(self.TimewalkingItems) do
             local itemData = self.TimewalkingCache[item.ItemID]
-            if item.Type == "Mount" then
-                local hideOnChar = select(10, C_MountJournal.GetMountInfoByID(itemData.mountID))
-                if not hideOnChar and (not itemData.owned or (itemData.owned and self.db.global.showOwned)) then tinsert(newData, item) end
-            elseif item.Type == "Pet" then
-                local isOwned = itemData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and itemData.owned == itemData.limit or true)
-                if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, item) end
+
+            if itemData then
+                local shouldInsert = false
+                if item.Type == "Mount" then
+                    local hideOnChar = select(10, C_MountJournal.GetMountInfoByID(itemData.mountID))
+                    shouldInsert = not hideOnChar and (not itemData.owned or (itemData.owned and self.db.global.showOwned))
+                elseif item.Type == "Pet" then
+                    local isOwned = itemData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and itemData.owned == itemData.limit or true)
+                    shouldInsert = not isOwned or (isOwned and self.db.global.showOwned)
+                else
+                    shouldInsert = not itemData.owned or (itemData.owned and self.db.global.showOwned)
+                end
+
+                if shouldInsert then
+                    tinsert(newData, item)
+                else
+                    self:PrintDebugMessage("Failed to curate table data for Timewalking item:", item.Name)
+                end
             else
-                if not itemData.owned or (itemData.owned and self.db.global.showOwned) then tinsert(newData, item) end
+                self:PrintDebugMessage("Item data not found in Timewalking cache for:", item.Name)
             end
         end
     elseif selectedTab == self.Tabs.LegionRemixVendorTab then
         for _, item in ipairs(self.LemixItems) do
             local itemData = self.LemixCache[item.ItemID]
-            if item.Type == "Mount" then
-                DevTools_Dump(item)
-                DevTools_Dump(itemData)
-                DevTools_Dump("*******************")
-                local hideOnChar = select(10, C_MountJournal.GetMountInfoByID(itemData.mountID))
-                if not hideOnChar and (not itemData.owned or (itemData.owned and self.db.global.showOwned)) then tinsert(newData, item) end
-            elseif item.Type == "Pet" then
-                local isOwned = itemData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and itemData.owned == itemData.limit or true)
-                if not isOwned or (isOwned and self.db.global.showOwned) then tinsert(newData, item) end
+
+            if itemData then
+                local shouldInsert = false
+                if item.Type == "Mount" then
+                    local hideOnChar = select(10, C_MountJournal.GetMountInfoByID(itemData.mountID))
+                    shouldInsert = not hideOnChar and (not itemData.owned or (itemData.owned and self.db.global.showOwned))
+                elseif item.Type == "Pet" then
+                    local isOwned = itemData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and itemData.owned == itemData.limit or true)
+                    shouldInsert = not isOwned or (isOwned and self.db.global.showOwned)
+                else
+                    shouldInsert = not itemData.owned or (itemData.owned and self.db.global.showOwned)
+                end
+                if shouldInsert then
+                    tinsert(newData, item)
+                else
+                    self:PrintDebugMessage("Failed to curate table data for Legion: Remix item:", item.Name)
+                end
             else
-                if not itemData.owned or (itemData.owned and self.db.global.showOwned) then tinsert(newData, item) end
+                self:PrintDebugMessage("Item data not found in Legion: Remix cache for:", item.Name)
             end
         end
         -- Update search box instructions somehow

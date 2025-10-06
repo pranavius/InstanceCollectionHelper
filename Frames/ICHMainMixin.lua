@@ -8,6 +8,7 @@ AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 ---@field InfoButton ICHSquareButton
 ---@field ListHeaders ICHListHeaders
 ---@field VendorListHeaders ICHListHeaders
+---@field LemixListHeaders ICHLemixListHeaders
 ---@see ICHSquareButton
 ---@see ICHListHeaders
 ICHMainMixin = {}
@@ -30,10 +31,22 @@ function ICHMainMixin:OnLoad()
 
     -- Automatically hide one set of headers when the other is made visible
     hooksecurefunc(self.ListHeaders, "SetAlpha", function(_, value)
-        if value > 0 then self.VendorListHeaders:SetAlpha(0) end
+        if value > 0 then
+            self.VendorListHeaders:SetAlpha(0)
+            self.LemixListHeaders:SetAlpha(0)
+        end
     end)
     hooksecurefunc(self.VendorListHeaders, "SetAlpha", function(_, value)
-        if value > 0 then self.ListHeaders:SetAlpha(0) end
+        if value > 0 then
+            self.ListHeaders:SetAlpha(0)
+            self.LemixListHeaders:SetAlpha(0)
+        end
+    end)
+    hooksecurefunc(self.LemixListHeaders, "SetAlpha", function(_, value)
+        if value > 0 then
+            self.ListHeaders:SetAlpha(0)
+            self.VendorListHeaders:SetAlpha(0)
+        end
     end)
     
     AddOn.Container = self

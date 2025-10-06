@@ -34,8 +34,10 @@ end
 function AddOn:HandleTabSelected(tabID)
     self.db.global.selectedTab = tabID
     self:PrintDebugMessage("Selected tab:", self.Tabs:GetTabButton(tabID).tabText)
-    if tabID == self.Tabs.TimewalkingVendorTab or tabID == self.Tabs.LegionRemixVendorTab then
+    if tabID == self.Tabs.TimewalkingVendorTab then
         self.Container.VendorListHeaders:SetAlpha(1)
+    elseif tabID == self.Tabs.LegionRemixVendorTab then
+        self.Container.LemixListHeaders:SetAlpha(1)
     else
         self.Container.ListHeaders:SetAlpha(1)
     end

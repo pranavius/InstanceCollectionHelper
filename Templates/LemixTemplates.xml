@@ -1,0 +1,292 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Blizzard_SharedXML/UI.xsd">
+    <Frame name="ICHLemixListHeadersTemplate" virtual="true" enableMouse="true" mixin="ICHLemixListHeadersMixin">
+        <Size y="25"/>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="BorderBottom">
+                    <Size y="3"/>
+                    <Color color="WHITE_FONT_COLOR"/>
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT"/>
+                        <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString parentKey="NameHeader" inherits="GameTooltipText" justifyH="LEFT" text="Name">
+                    <Size x="180"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="LEFT" x="29"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="TypeHeader" inherits="GameTooltipText" justifyH="LEFT" text="Type">
+                    <Size x="100"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.NameHeader" relativePoint="RIGHT" x="25"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="PhaseHeader" inherits="GameTooltipText" justifyH="LEFT" text="Available In">
+                    <Size x="100"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.TypeHeader" relativePoint="RIGHT"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="ExclusiveHeader" inherits="GameTooltipText" justifyH="LEFT" text="Event Exclusive">
+                    <Size x="125"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.PhaseHeader" relativePoint="RIGHT"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="CostHeader" inherits="GameTooltipText" justifyH="LEFT" text="Cost">
+                    <Size x="100"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.ExclusiveHeader" relativePoint="RIGHT"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+        </Scripts>
+    </Frame>
+
+    <Frame name="ICHLemixListItemTemplate" virtual="true" mixin="ICHLemixListItemMixin" enableMouse="true">
+        <Size y="25"/>
+        <KeyValues>
+            <KeyValue key="isMount" value="false" type="boolean"/>
+            <KeyValue key="relevantID" value="0" type="number"/>
+        </KeyValues>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Bg" hidden="true">
+                    <Color color="WHITE_FONT_COLOR" a="0.1"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+                <Texture parentKey="OwnedBg" hidden="true">
+                    <Color color="UNCOMMON_GREEN_COLOR" a="0.5"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Frame parentKey="NameContainer">
+                <Size x="209"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                    <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+                <Frames>
+                    <Button parentKey="ViewButton" inherits="InsecureActionButtonTemplate">
+                        <Size x="24" y="24"/>
+                        <Anchors>
+                            <Anchor point="LEFT" relativePoint="LEFT" x="0" y="-1" />
+                        </Anchors>
+                        <Scripts>
+                            <OnEnter/>
+                            <OnLeave/>
+                            <OnClick/>
+                        </Scripts>
+                    </Button>
+                </Frames>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="" wordwrap="false">
+                            <Anchors>
+                                <Anchor point="LEFT" relativeKey="$parent.ViewButton" relativePoint="RIGHT" x="5"/>
+                                <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <Frame parentKey="TypeContainer">
+                <Size x="125"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.NameContainer" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.NameContainer" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="" wordwrap="false">
+                            <Anchors>
+                                <Anchor point="LEFT" relativePoint="LEFT" x="25"/>
+                                <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <Frame parentKey="PhaseContainer">
+                <Size x="100"/>
+                <KeyValues>
+                    <KeyValue key="fullName" value="" type="string"/>
+                </KeyValues>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.TypeContainer" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.TypeContainer" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="" wordwrap="true">
+                            <Anchors>
+                                <Anchor point="LEFT" relativePoint="LEFT"/>
+                                <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                            </Anchors>
+                            <Scripts>
+                                <OnEnter/>
+                                <OnLeave/>
+                            </Scripts>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+            
+            <Frame parentKey="ExclusiveContainer">
+                <Size x="125"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.PhaseContainer" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.PhaseContainer" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <Texture parentKey="Checkmark" atlas="common-icon-checkmark" hidden="true">
+                            <Size x="17.5" y="17.5"/>
+                            <Anchors>
+                                <Anchor point="CENTER" x="-25"/>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <Frame parentKey="CostContainer">
+                <Size x="100"/>
+                <KeyValues>
+                    <KeyValue key="currencyID" value="-1" type="number"/>
+                </KeyValues>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.ExclusiveContainer" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.ExclusiveContainer" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+                <Frames>
+                    <Button parentKey="CurrencyButton" inherits="InsecureActionButtonTemplate">
+                        <Size x="20" y="20"/>
+                        <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="0" y="-1" /></Anchors>
+                        <Scripts>
+                            <OnEnter/>
+                            <OnLeave/>
+                            <OnClick/>
+                        </Scripts>
+                    </Button>
+                </Frames>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="" wordwrap="true">
+                            <Anchors>
+                                <Anchor point="LEFT" relativeKey="$parent.CurrencyButton" relativePoint="RIGHT" x="5"/>
+                                <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+            <Frame parentKey="AdditionalResourceContainer">
+                <KeyValues>
+                    <KeyValue key="resourceID" value="-1" type="number"/>
+                </KeyValues>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.CostContainer" relativePoint="BOTTOMLEFT"/>
+                    <Anchor point="TOPRIGHT" relativeKey="$parent.CostContainer" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <Texture parentKey="Icon" file="interface/icons/inv_misc_questionmark">
+                            <Size x="20" y="20"/>
+                            <Anchors>
+                                <Anchor point="LEFT" relativePoint="LEFT" y="-1"/>
+                            </Anchors>
+                            <Scripts>
+                                <OnEnter/>
+                                <OnLeave/>
+                            </Scripts>
+                        </Texture>
+                        <FontString parentKey="Text" inherits="GameTooltipTextSmall" justifyH="LEFT" text="" wordwrap="false">
+                            <Anchors>
+                                <Anchor point="LEFT" relativeKey="$parent.Icon" relativePoint="RIGHT" x="5"/>
+                                <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <Frame parentKey="OtherInfoContainer">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.ExclusiveContainer" relativePoint="TOPRIGHT" x="100"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.ExclusiveContainer" relativePoint="BOTTOMRIGHT" x="100"/>
+                    <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="ICHPetCount" inherits="GameTooltipText" justifyH="RIGHT" text="" wordwrap="false">
+                            <Anchors><Anchor point="RIGHT" x="-50"/></Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+                <Frames>
+                    <Frame parentKey="ICHNote" enableMouse="true">
+                        <Size x="17.5" y="17.5"/>
+                        <KeyValues>
+                            <KeyValue key="notes" value="" type="string"/>
+                        </KeyValues>
+                        <Anchors>
+                            <Anchor point="RIGHT" x="-25" />
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <Texture parentKey="NotesIcon" file="Interface/AddOns/InstanceCollectionHelper/Media/NotesIcon.png">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
+                                        <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                        </Layers>
+                        <Scripts>
+                            <OnEnter/>
+                            <OnLeave/>
+                        </Scripts>
+                    </Frame>
+                    <Button parentKey="ICHWaypointButton" inherits="InsecureActionButtonTemplate" hidden="true">
+                        <KeyValues>
+                            <KeyValue key="vendorName" value="" type="string"/>
+                        </KeyValues>
+                        <Size x="24" y="24"/>
+                        <Anchors>
+                            <Anchor point="RIGHT"/>
+                        </Anchors>
+                        <NormalTexture file="Interface/Minimap/Minimap-Waypoint-MapPin-Untracked"/>
+                        <HighlightTexture file="Interface/Minimap/Minimap-Waypoint-MapPin-Tracked"/>
+                        <Scripts>
+                            <OnEnter/>
+                            <OnLeave/>
+                            <OnClick/>
+                        </Scripts>
+                    </Button>
+                </Frames>
+            </Frame>
+        </Frames>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+        </Scripts>
+    </Frame>
+</Ui>

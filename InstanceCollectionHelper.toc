@@ -48,6 +48,8 @@ Templates\ListHeadersMixin.lua
 Templates\ListHeadersTemplate.xml
 Templates\ListItemMixin.lua
 Templates\ListItemTemplate.xml
+Templates\LemixMixins.lua
+Templates\LemixTemplates.xml
 
 Frames\ICHMainMixin.lua
 Frames\ICHMain.xml
