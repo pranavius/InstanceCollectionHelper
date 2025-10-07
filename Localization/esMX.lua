@@ -153,3 +153,27 @@ L["Unable to open the currency transfer menu. Please open it manually or try aga
 L["Click to open currency transfer menu"] = "Haz clic para abrir el menú de transferencia de divisa"
 L["Cannot transfer to this character"] = "No se puede transferir a este personaje"
 L["Legion: Remix Vendor"] = "Vendedor de Legion: Remix"
+--- New in v12: To be categorized ---
+L["Obtainable for free by reaching level 80 with a Death Knight Timerunner and earning the achievement Timerunner: Death Knight"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Caballero de la Muerte y conseguir el logro "..(select(2, GetAchievementInfo(61089)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Death Knight"))
+L["Obtainable for free by reaching level 80 with a Demon Hunter Timerunner and earning the achievement Timerunner: Demon Hunter"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Cazador de demonios y conseguir el logro "..(select(2, GetAchievementInfo(61089)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Demon Hunter"))
+L["Obtainable for free by reaching level 80 with a Druid Timerunner and earning the achievement Timerunner: Druid"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Druida y conseguir el logro "..(select(2, GetAchievementInfo(61089)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Druid"))
+L["Obtainable for free by reaching level 80 with a Hunter Timerunner and earning the achievement Timerunner: Hunter"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Cazador y conseguir el logro "..(select(2, GetAchievementInfo(61089)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Hunter"))
+L["Obtainable for free by reaching level 80 with a Mage Timerunner and earning the achievement Timerunner: Mage"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Mago y conseguir el logro "..(select(2, GetAchievementInfo(61089)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Mage"))
+L["Obtainable for free by reaching level 80 with a Monk Timerunner and earning the achievement Timerunner: Monk"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Monje y conseguir el logro "..(select(2, GetAchievementInfo(61089)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Monk"))
+L["Obtainable for free by reaching level 80 with a Paladin Timerunner and earning the achievement Timerunner: Paladin"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Paladín y conseguir el logro "..(select(2, GetAchievementInfo(61089)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Paladin"))
+L["Obtainable for free by reaching level 80 with a Priest Timerunner and earning the achievement Timerunner: Priest"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Sacerdote y conseguir el logro "..(select(2, GetAchievementInfo(61089)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Priest"))
+L["Obtainable for free by reaching level 80 with a Rogue Timerunner and earning the achievement Timerunner: Rogue"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Pícaro y conseguir el logro "..(select(2, GetAchievementInfo(61089)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Rogue"))
+L["Obtainable for free by reaching level 80 with a Shaman Timerunner and earning the achievement Timerunner: Shaman"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Chamán y conseguir el logro "..(select(2, GetAchievementInfo(61089)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Shaman"))
+L["Obtainable for free by reaching level 80 with a Warlock Timerunner and earning the achievement Timerunner: Warlock"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Brujo y conseguir el logro "..(select(2, GetAchievementInfo(61089)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Warlock"))
+L["Obtainable for free by reaching level 80 with a Warrior Timerunner and earning the achievement Timerunner: Warrior"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Guerrero y conseguir el logro "..(select(2, GetAchievementInfo(61089)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Warrior"))
+L["This pet is a reward from a quest chain started by the item Strange Humming Crystal, which is purchasable from the vendor."] = "Esta mascota es la recompensa de una cadena de misiones iniciada por el objeto "..(select(2, C_Item.GetItemInfo(141349)) or WHITE_FONT_COLOR:WrapTextInColorCode("[Strange Humming Crystal]"))..", que se puede comprar al vendedor."
+L["Marked as event exclusive due to it only having been obtaininable during the Legion Pre-Patch event"] = "Marcado como exclusivo de evento porque sólo estuvo disponible durante el evento de pre-parche de Legion."
+L["Available In"] = "Disponible en"
+L["Event Exclusive"] = "Exclusivo de evento"
+L["Phase 1: Skies of Fire"] = "Phase 1: Skies of Fire"
+L["Phase 2: Rise of the Nightfallen"] = "Phase 2: Rise of the Nightfallen"
+L["Phase 3: Legionfall"] = "Phase 3: Legionfall"
+L["Phase 4: Argus Eternal"] = "Phase 4: Argus Eternal"
+L["Phase 5: Infinite Echoes"] = "Phase 5: Infinite Echoes"
+L["Search by collectible name/type or expansion"] = "Buscar por nombre/tipo de coleccionable o por expansión"
+
