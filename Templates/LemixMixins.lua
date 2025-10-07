@@ -21,12 +21,11 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field TypeContainer TextContainer
 ---@field PhaseContainer PhaseContainer
 ---@field ExclusiveContainer ExclusiveContainer
----@field CostContainer CostContainer
----@field AdditionalResourceContainer AdditionalResourceContainer
+---@field CostContainer LemixCostContainer
 ---@field OtherInfoContainer OtherInfoContainer
 ---@see NameContainer
 ---@see TextContainer
----@see CostContainer
+---@see LemixCostContainer
 ---@see OtherInfoContainer
 
 ---@class ICHLemixListHeaders
@@ -47,8 +46,8 @@ function ICHLemixListItemMixin:OnLoad()
     local nContainer = self.NameContainer
     local pContainer = self.PhaseContainer
     local cContainer = self.CostContainer
-    local arContainer = self.AdditionalResourceContainer
     local note = self.OtherInfoContainer.ICHNote
+    local waypointButton = self.OtherInfoContainer.ICHWaypointButton
 
 
     nContainer.ViewButton:HookScript("OnEnter", function()
@@ -99,14 +98,14 @@ function ICHLemixListItemMixin:OnLoad()
         GameTooltip:Hide()
     end)
 
-    arContainer.Icon:SetScript("OnEnter", function()
-        if arContainer.resourceID ~= -1 then
-            GameTooltip:SetOwner(arContainer.Icon, "ANCHOR_RIGHT")
-            GameTooltip:SetHyperlink("item:"..arContainer.resourceID)
+    cContainer.Text:HookScript("OnEnter", function()
+        if cContainer.resourceItemID ~= -1 then
+            GameTooltip:SetOwner(cContainer.Text, "ANCHOR_RIGHT")
+            GameTooltip:SetHyperlink("item:"..cContainer.resourceItemID)
             GameTooltip:Show()
         end
     end)
-    arContainer.Icon:SetScript("OnEnter", function()
+    cContainer.Text:HookScript("OnLeave", function()
         GameTooltip:Hide()
     end)
 
@@ -119,14 +118,31 @@ function ICHLemixListItemMixin:OnLoad()
     note:HookScript("OnLeave", function()
         GameTooltip:Hide()
     end)
+
+    waypointButton:HookScript("OnEnter", function()
+    GameTooltip:SetOwner(waypointButton, "ANCHOR_TOP")
+    if waypointButton.instanceID then
+        local instanceName = EJ_GetInstanceInfo(waypointButton.instanceID)
+        GameTooltip:SetText(instanceName)
+    elseif waypointButton.vendorName then
+        GameTooltip:SetText(waypointButton.vendorName)
+    end
+    if waypointButton:GetNormalTexture():GetTextureFileID() > 0 then
+        GameTooltip:AddLine(L["Set map pin"], 1, 1, 1)
+    else
+        GameTooltip:AddLine(L["Set TomTom waypoint"], 1, 1, 1)
+    end
+    GameTooltip:Show()
+end)
+waypointButton:HookScript("OnLeave", function()
+    GameTooltip:Hide()
+end)
 end
 
 ------- ANNOTATIONS -------
 ---------------------------
----@class AdditionalResourceContainer : Frame
----@field resourceID integer
----@field Icon Texture
----@field Text FontString
+---@class LemixCostContainer : CostContainer
+---@field resourceItemID integer
 
 ---@class PhaseContainer : Frame
 ---@field fullName string

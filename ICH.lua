@@ -28,9 +28,11 @@ end
 
 function AddOn:OnInitialize()
     -- Generate proper search tags for all collectibles
-    for _, mount in ipairs(AddOn.Mounts) do self.AppendMapSearchTags(mount) end
-    for _, toy in ipairs(AddOn.Toys) do self.AppendMapSearchTags(toy) end
-    for _, pet in ipairs(AddOn.Pets) do self.AppendMapSearchTags(pet) end
+    for _, mount in ipairs(self.Mounts) do self.AppendMapSearchTags(mount) end
+    for _, toy in ipairs(self.Toys) do self.AppendMapSearchTags(toy) end
+    for _, pet in ipairs(self.Pets) do self.AppendMapSearchTags(pet) end
+    for _, item in ipairs(self.TimewalkingItems) do self.AppendMapSearchTags(item) end
+    for _, item in ipairs(self.LemixItems) do self.AppendMapSearchTags(item) end
 
     -- Load database
 	self.db = LibStub("AceDB-3.0"):New("ICH_DB", AddOn.DatabaseDefaults, true)
@@ -85,18 +87,19 @@ function AddOn:ConfigureOnInit()
 end
 
 ---Filters a list of data based on search parameters
----@param listData (Mount|Toy|Pet|TimewalkingItem)[]
----@return (Mount|Toy|Pet|TimewalkingItem)[]
+---@param listData (Mount|Toy|Pet|TimewalkingItem|WowRemixItem)[]
+---@return (Mount|Toy|Pet|TimewalkingItem|WowRemixItem)[]
 ---@see Mount
 ---@see Toy
 ---@see Pet
 ---@see TimewalkingItem
+---@see WowRemixItem
 function AddOn:FilterListContentsByQuery(listData)
     local filtered = {}
     local query = self.Container.SearchBox:GetText():lower()
     local selectedTab = self.db.global.selectedTab
 
-    local nameMatches, instanceMatches, encounterMatches, instanceTypeMatches, difficultyMatches, searchTagMatches, itemTypeMatches = false, false, false, false, false, false, false
+    local nameMatches, instanceMatches, encounterMatches, instanceTypeMatches, difficultyMatches, searchTagMatches, itemTypeMatches, isRemixExclusive = false, false, false, false, false, false, false, false
     for _, data in ipairs(listData) do
         -- Using localized names for mounts, instances, encounters, etc for better search results
         local itemName
@@ -111,7 +114,8 @@ function AddOn:FilterListContentsByQuery(listData)
             itemName = C_PetJournal.GetPetInfoByItemID(data.PetItemID) or ""
         elseif selectedTab == self.Tabs.TimewalkingVendorTab then
             itemName = self.TimewalkingCache[data.ItemID].itemName or ""
-
+        elseif selectedTab == self.Tabs.LegionRemixVendorTab then
+            itemName = self.LemixCache[data.ItemID].itemName or ""
         end
         local cleanName = itemName:lower():gsub("|.+|.*", "")
         nameMatches = cleanName:match(query) and true or false
@@ -143,7 +147,10 @@ function AddOn:FilterListContentsByQuery(listData)
         itemTypeMatches = false
         if data.Type then itemTypeMatches = query == L[data.Type]:lower() end
 
-        if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches or searchTagMatches or itemTypeMatches then
+        isRemixExclusive = false
+        if data.IsLemixExclusive then isRemixExclusive = query:match("remix") or query:match("legion") end
+
+        if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches or searchTagMatches or itemTypeMatches or isRemixExclusive then
             tinsert(filtered, data)
         end
     end
@@ -154,7 +161,7 @@ end
 function AddOn:UpdateListContents()
     if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then UIParentLoadAddOn("Blizzard_Collections") end
     if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then UIParentLoadAddOn("Blizzard_EncounterJournal") end
-    ---@type (Mount|Toy|Pet|TimewalkingItem)[]
+    ---@type (Mount|Toy|Pet|TimewalkingItem|WowRemixItem)[]
     local newData = {}
     local selectedTab = self.db.global.selectedTab
     if selectedTab == self.Tabs.MountsTab then
