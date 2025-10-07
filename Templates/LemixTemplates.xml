@@ -229,7 +229,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         </Anchors>
                         <Layers>
                             <Layer level="OVERLAY">
-                                <Texture parentKey="NotesIcon" file="Interface/AddOns/InstanceCollectionHelper/Media/NotesIcon.png">
+                                <Texture parentKey="NotesIcon" file="Interface\AddOns\InstanceCollectionHelper\Media\NotesIcon.png">
                                     <Anchors>
                                         <Anchor point="TOPLEFT" relativePoint="TOPLEFT"/>
                                         <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT"/>
