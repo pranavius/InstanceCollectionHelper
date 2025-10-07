@@ -139,7 +139,7 @@ AddOn.LemixItems = {
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
         AreaPoiID = 8275,
-        Notes = "Obtainable for free by reaching level 80 with a Mage Timerunner and earning the achievement "..(select(2, GetAchievementInfo(61089)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Mage")),
+        Notes = L["Obtainable for free by reaching level 80 with a Mage Timerunner and earning the achievement Timerunner: Mage"],
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -480,7 +480,7 @@ AddOn.LemixItems = {
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
         AreaPoiID = 8275,
-        Notes = "Obtainable for free by reaching level 80 with a Shaman Timerunner and earning the achievement "..(select(2, GetAchievementInfo(42686)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Shaman")),
+        Notes = L["Obtainable for free by reaching level 80 with a Shaman Timerunner and earning the achievement Timerunner: Shaman"],
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -538,7 +538,7 @@ AddOn.LemixItems = {
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
         AreaPoiID = 8275,
-        Notes = "Obtainable for free by reaching level 80 with a Monk Timerunner and earning the achievement "..(select(2, GetAchievementInfo(61085)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Monk")),
+        Notes = L["Obtainable for free by reaching level 80 with a Monk Timerunner and earning the achievement Timerunner: Monk"],
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -549,7 +549,7 @@ AddOn.LemixItems = {
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
         AreaPoiID = 8275,
-        Notes = "Obtainable for free by reaching level 80 with a Paladin Timerunner and earning the achievement "..(select(2, GetAchievementInfo(42504)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Paladin")),
+        Notes = L["Obtainable for free by reaching level 80 with a Paladin Timerunner and earning the achievement Timerunner: Paladin"],
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -560,7 +560,7 @@ AddOn.LemixItems = {
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
         AreaPoiID = 8275,
-        Notes = "Obtainable for free by reaching level 80 with a Warlock Timerunner and earning the achievement "..(select(2, GetAchievementInfo(61090)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Warlock")),
+        Notes = L["Obtainable for free by reaching level 80 with a Warlock Timerunner and earning the achievement Timerunner: Warlock"],
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -571,7 +571,7 @@ AddOn.LemixItems = {
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
         AreaPoiID = 8275,
-        Notes = "Obtainable for free by reaching level 80 with a Death Knight Timerunner and earning the achievement "..(select(2, GetAchievementInfo(42685)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Death Knight")),
+        Notes = L["Obtainable for free by reaching level 80 with a Death Knight Timerunner and earning the achievement Timerunner: Death Knight"],
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -582,7 +582,7 @@ AddOn.LemixItems = {
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
         AreaPoiID = 8275,
-        Notes = "Obtainable for free by reaching level 80 with a Warrior Timerunner and earning the achievement "..(select(2, GetAchievementInfo(42684)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Warrior")),
+        Notes = L["Obtainable for free by reaching level 80 with a Warrior Timerunner and earning the achievement Timerunner: Warrior"],
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -593,7 +593,7 @@ AddOn.LemixItems = {
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
         AreaPoiID = 8275,
-        Notes = "Obtainable for free by reaching level 80 with a Hunter Timerunner and earning the achievement "..(select(2, GetAchievementInfo(42687)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Hunter")),
+        Notes = L["Obtainable for free by reaching level 80 with a Hunter Timerunner and earning the achievement Timerunner: Hunter"],
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -758,7 +758,7 @@ AddOn.LemixItems = {
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
         AreaPoiID = 8275,
-        Notes = "Obtainable for free by reaching level 80 with a Priest Timerunner and earning the achievement "..(select(2, GetAchievementInfo(61088)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Priest")),
+        Notes = L["Obtainable for free by reaching level 80 with a Priest Timerunner and earning the achievement Timerunner: Priest"],
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -1040,7 +1040,7 @@ AddOn.LemixItems = {
         Cost = 20000,
         Phase = LemixPhases.Phase1,
         AreaPoiID = 8275,
-        Notes = "Marked as event exclusive due to it only having been obtaininable during the Legion Pre-Patch event",
+        Notes = L["Marked as event exclusive due to it only having been obtaininable during the Legion Pre-Patch event"],
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -1096,7 +1096,7 @@ AddOn.LemixItems = {
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
         AreaPoiID = 8275,
-        Notes = "Obtainable for free by reaching level 80 with a Druid Timerunner and earning the achievement "..(select(2, GetAchievementInfo(61086)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Druid")),
+        Notes = L["Obtainable for free by reaching level 80 with a Druid Timerunner and earning the achievement Timerunner: Druid"],
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -1113,16 +1113,14 @@ AddOn.LemixItems = {
     },
     {
         Name = "Scythe of the Unmaker",
-        -- ItemID = 253273,
-        ItemID = 153115,
+        ItemID = 253273,
         Type = "Cosmetic",
         Instance = "Antorus, the Burning Throne",
         InstanceID = 946,
         EncounterID = 2031,
         VendorName = "Pythagorus",
         Cost = 30000,
-        -- AdditionalResource = { ItemID = 253304, Amount = 20 },
-        AdditionalResource = { ItemID = 141605, Amount = 20 },
+        AdditionalResource = { ItemID = 253304, Amount = 20 },
         Phase = LemixPhases.Phase4,
         AreaPoiID = 8275,
         Notes = (select(2, C_Item.GetItemInfo(253304)) or WHITE_FONT_COLOR:WrapTextInColorCode("[Cosmic Soulsliver]")).." are obtained from defeating "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(1, EJ_GetEncounterInfo(2031)) or "Argus the Unmaker")..".".."\n\n".."The number dropped increases based on raid difficulty.",
@@ -1150,7 +1148,7 @@ AddOn.LemixItems = {
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
         AreaPoiID = 8275,
-        Notes = "Obtainable for free by reaching level 80 with a Rogue Timerunner and earning the achievement "..(select(2, GetAchievementInfo(61084)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Rogue")),
+        Notes = L["Obtainable for free by reaching level 80 with a Rogue Timerunner and earning the achievement Timerunner: Rogue"],
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -1194,7 +1192,7 @@ AddOn.LemixItems = {
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
         AreaPoiID = 8275,
-        Notes = "Obtainable for free by reaching level 80 with a Demon Hunter Timerunner and earning the achievement "..(select(2, GetAchievementInfo(61087)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Demon Hunter")),
+        Notes = L["Obtainable for free by reaching level 80 with a Demon Hunter Timerunner and earning the achievement Timerunner: Demon Hunter"],
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -1266,16 +1264,14 @@ AddOn.LemixItems = {
     },
     {
         Name = "Taeshalach",
-        -- ItemID = 255006,
-        ItemID = 152094,
+        ItemID = 255006,
         Type = "Cosmetic",
         Instance = "Antorus, the Burning Throne",
         InstanceID = 946,
         EncounterID = 1984,
         VendorName = "Pythagorus",
         Cost = 30000,
-        -- AdditionalResource = { ItemID = 253306, Amount = 20 },
-        AdditionalResource = { ItemID = 246281, Amount = 20 },
+        AdditionalResource = { ItemID = 253306, Amount = 20 },
         Phase = LemixPhases.Phase4,
         AreaPoiID = 8275,
         Notes = (select(2, C_Item.GetItemInfo(253306)) or WHITE_FONT_COLOR:WrapTextInColorCode("[Everflame of Hatred]")).." are obtained from defeating "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(1, EJ_GetEncounterInfo(1984)) or "Aggramar")..".".."\n\n".."The number dropped increases based on raid difficulty.",
@@ -1460,7 +1456,7 @@ AddOn.LemixItems = {
         Cost = 100000,
         Phase = LemixPhases.Phase1,
         AreaPoiID = 8275,
-        Notes = "This pet is a reward from a quest chain started by the item "..(select(2, C_Item.GetItemInfo(141349)) or WHITE_FONT_COLOR:WrapTextInColorCode("[Strange Humming Crystal]"))..", which is purchasable from the vendor.",
+        Notes = L["This pet is a reward from a quest chain started by the item Strange Humming Crystal, which is purchasable from the vendor."],
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },

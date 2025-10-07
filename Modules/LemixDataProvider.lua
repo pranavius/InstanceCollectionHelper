@@ -74,7 +74,7 @@ function AddOn:CreateLemixCache()
                 }
             elseif item.Type == "Cosmetic" then
                 local sourceID = select(2, C_TransmogCollection.GetItemInfo(item.ItemID))
-                print(item.Name, sourceID, C_TransmogCollection.PlayerKnowsSource(sourceID))
+                self:PrintDebugMessage("Player knows transmog for", item.Name, C_TransmogCollection.PlayerKnowsSource(sourceID))
                 self.LemixCache[item.ItemID] = {
                     itemName = C_Item.GetItemNameByID(item.ItemID) or "",
                     itemID = item.ItemID,
@@ -91,7 +91,7 @@ function AddOn:CreateLemixCache()
             Item:CreateFromItemID(item.AdditionalResource.ItemID):ContinueOnItemLoad(function()
                 local itemName, _, _, _, _, _, _, _, _, iconID = C_Item.GetItemInfo(item.AdditionalResource.ItemID)
                 self.LemixResourceCache[item.AdditionalResource.ItemID] = {
-                    itemName = itemName or "Unknown Item",
+                    itemName = itemName or L["Unknown"],
                     itemID = item.AdditionalResource.ItemID,
                     iconID = iconID or 134400,
                 }
@@ -124,7 +124,6 @@ function AddOn.LemixDataProviderInit(frame, item)
     local index = AddOn.ICHDataProvider:FindIndex(item)
     if item.Type == "Cosmetic" then
         local sourceID = select(2, C_TransmogCollection.GetItemInfo(item.ItemID))
-        print("Is owned cosmetic", item.Name, C_TransmogCollection.PlayerKnowsSource(sourceID))
         -- Sometimes the function to check if a cosmetic is known is dumb on initialization. So check here again to be safe
         AddOn.LemixCache[item.ItemID].owned = C_TransmogCollection.PlayerKnowsSource(sourceID)
     end
