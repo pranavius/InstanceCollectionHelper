@@ -37,7 +37,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 100000,
         Phase = LemixPhases.Phase3,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -48,7 +48,18 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 40000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Ageless Bronze Drake",
+        ItemID = 151828,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 80000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -59,9 +70,20 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
+    },
+    {
+        Name = "All-Seer's Eye",
+        ItemID = 153204,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 10000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Antoran Charhound",
@@ -73,7 +95,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 100000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -84,7 +106,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -95,7 +117,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 100000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -106,7 +128,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase2,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -116,7 +138,7 @@ AddOn.LemixItems = {
         Type = "Mount",
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         Notes = "Obtainable for free by reaching level 80 with a Mage Timerunner and earning the achievement "..(select(2, GetAchievementInfo(61089)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Mage")),
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
@@ -128,7 +150,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -139,7 +161,51 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 20000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Baarut the Brisk",
+        ItemID = 153193,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 10000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Barnacle-Encrusted Gem",
+        ItemID = 129165,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 10000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Barrier Generator",
+        ItemID = 153183,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 80000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Big Red Raygun",
+        ItemID = 142265,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 35000,
+        Phase = LemixPhases.Phase2,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -150,7 +216,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 40000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -161,18 +227,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
-        SearchTags = AddOn.ExpansionTags.Legion,
-        IsLemixExclusive = true
-    },
-    {
-        Name = "Bloodtooth Mana Ray",
-        ItemID = 250746,
-        Type = "Mount",
-        VendorName = "Hemet Nesingwary XVII",
-        Cost = 10000,
-        Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -183,7 +238,29 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 20000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Bloodtooth Mana Ray",
+        ItemID = 250746,
+        Type = "Mount",
+        VendorName = "Hemet Nesingwary XVII",
+        Cost = 10000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Blue Conservatory Scroll",
+        ItemID = 153179,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 25000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -194,7 +271,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase2,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -205,7 +282,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase2,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -216,7 +293,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase2,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -227,7 +304,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase2,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -238,9 +315,20 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
+    },
+    {
+        Name = "Bronze Proto-Whelp",
+        ItemID = 151829,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 80000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Chestnut Courser",
@@ -249,7 +337,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -260,7 +348,62 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 20000,
         Phase = LemixPhases.Phase3,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Corgnelius",
+        ItemID = 140320,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 10000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Crate of Bobbers: Tugboat",
+        ItemID = 142530,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 10000,
+        Phase = LemixPhases.Phase2,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Crate of Bobbers: Can of Worms",
+        ItemID = 142528,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 10000,
+        Phase = LemixPhases.Phase2,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Crate of Bobbers: Cat Head",
+        ItemID = 142529,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 10000,
+        Phase = LemixPhases.Phase2,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Crate of Bobbers: Wooden Pepe",
+        ItemID = 143662,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 10000,
+        Phase = LemixPhases.Phase2,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -271,7 +414,29 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 40000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Cross Gazer",
+        ItemID = 153026,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 10000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Crystalline Eye of Undravius",
+        ItemID = 131724,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 10000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -282,7 +447,29 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 40000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Docile Skyfin",
+        ItemID = 153054,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 20000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Eye of Inquisition",
+        ItemID = 136901,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 100000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -292,7 +479,7 @@ AddOn.LemixItems = {
         Type = "Mount",
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         Notes = "Obtainable for free by reaching level 80 with a Shaman Timerunner and earning the achievement "..(select(2, GetAchievementInfo(42686)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Shaman")),
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
@@ -304,7 +491,18 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 20000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Fel-Afflicted Skyfin",
+        ItemID = 153055,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 20000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -318,7 +516,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 100000,
         Phase = LemixPhases.Phase2,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -329,7 +527,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 40000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -339,7 +537,7 @@ AddOn.LemixItems = {
         Type = "Mount",
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         Notes = "Obtainable for free by reaching level 80 with a Monk Timerunner and earning the achievement "..(select(2, GetAchievementInfo(61085)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Monk")),
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
@@ -350,7 +548,7 @@ AddOn.LemixItems = {
         Type = "Mount",
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         Notes = "Obtainable for free by reaching level 80 with a Paladin Timerunner and earning the achievement "..(select(2, GetAchievementInfo(42504)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Paladin")),
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
@@ -361,7 +559,7 @@ AddOn.LemixItems = {
         Type = "Mount",
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         Notes = "Obtainable for free by reaching level 80 with a Warlock Timerunner and earning the achievement "..(select(2, GetAchievementInfo(61090)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Warlock")),
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
@@ -372,7 +570,7 @@ AddOn.LemixItems = {
         Type = "Mount",
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         Notes = "Obtainable for free by reaching level 80 with a Death Knight Timerunner and earning the achievement "..(select(2, GetAchievementInfo(42685)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Death Knight")),
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
@@ -383,7 +581,7 @@ AddOn.LemixItems = {
         Type = "Mount",
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         Notes = "Obtainable for free by reaching level 80 with a Warrior Timerunner and earning the achievement "..(select(2, GetAchievementInfo(42684)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Warrior")),
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
@@ -394,7 +592,7 @@ AddOn.LemixItems = {
         Type = "Mount",
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         Notes = "Obtainable for free by reaching level 80 with a Hunter Timerunner and earning the achievement "..(select(2, GetAchievementInfo(42687)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Hunter")),
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
@@ -406,7 +604,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -417,9 +615,20 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
+    },
+    {
+        Name = "Firebat Pup",
+        ItemID = 140316,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 10000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Garnet Ruinstrider",
@@ -428,7 +637,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -439,7 +648,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -450,7 +659,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -461,7 +670,21 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 20000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Golden Hearthstone Card: Lord Jaraxxus",
+        ItemID = 119211,
+        Type = "Toy",
+        Instance = "The Nighthold",
+        InstanceID = 786,
+        EncounterID = 1737,
+        VendorName = "Horos",
+        Cost = 100000,
+        Phase = LemixPhases.Phase2,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -472,9 +695,20 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
+    },
+    {
+        Name = "Grasping Manifestation",
+        ItemID = 153056,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 20000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Hammer of Vigilance",
@@ -487,8 +721,19 @@ AddOn.LemixItems = {
         Cost = 30000,
         AdditionalResource = { ItemID = 253305, Amount = 20 },
         Phase = LemixPhases.Phase3,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         Notes = (select(2, C_Item.GetItemInfo(253305)) or WHITE_FONT_COLOR:WrapTextInColorCode("[Felwarped Slab]")).." are obtained from defeating "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(1, EJ_GetEncounterInfo(1897)) or "Maiden of Vigilance")..".".."\n\n".."The number dropped increases based on raid difficulty.",
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Hateful Eye",
+        ItemID = 136900,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 35000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -502,7 +747,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 100000,
         Phase = LemixPhases.Phase2,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -512,7 +757,7 @@ AddOn.LemixItems = {
         Type = "Mount",
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         Notes = "Obtainable for free by reaching level 80 with a Priest Timerunner and earning the achievement "..(select(2, GetAchievementInfo(61088)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Priest")),
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
@@ -524,7 +769,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -535,7 +780,29 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 20000,
         Phase = LemixPhases.Phase3,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Holy Lightsphere",
+        ItemID = 153182,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 25000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Hungering Claw",
+        ItemID = 140261,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 10000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -546,7 +813,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -557,7 +824,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -568,7 +835,18 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 40000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Legion Communication Orb",
+        ItemID = 153194,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 25000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -579,7 +857,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -590,7 +868,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 20000,
         Phase = LemixPhases.Phase3,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -601,7 +879,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -612,7 +890,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -623,7 +901,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -634,7 +912,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -645,7 +923,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 20000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -656,7 +934,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -667,7 +945,18 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 40000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Micro-Artillery Controller",
+        ItemID = 153126,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 25000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -681,7 +970,110 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 100000,
         Phase = LemixPhases.Phase2,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Morsel",
+        ItemID = 239705,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 5000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Mote of Light",
+        ItemID = 141862,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 25000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Nightmare Whelpling",
+        ItemID = 136903,
+        Type = "Pet",
+        Instance = "The Emerald Nightmare",
+        InstanceID = 768,
+        EncounterID = 1704,
+        VendorName = "Horos",
+        Cost = 80000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Orphaned Felbat",
+        ItemID = 147841,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 35000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Pilfered Sweeper",
+        ItemID = 147867,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 35000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Pocket Fel Spreader",
+        ItemID = 140363,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 20000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        Notes = "Marked as event exclusive due to it only having been obtaininable during the Legion Pre-Patch event",
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Rebellious Imp",
+        ItemID = 153252,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 35000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Red Conservatory Scroll",
+        ItemID = 153181,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 25000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "S.F.E. Interceptor",
+        ItemID = 153253,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 25000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -692,7 +1084,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 40000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -703,10 +1095,21 @@ AddOn.LemixItems = {
         Type = "Mount",
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         Notes = "Obtainable for free by reaching level 80 with a Druid Timerunner and earning the achievement "..(select(2, GetAchievementInfo(61086)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Druid")),
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
+    },
+    {
+        Name = "Scraps",
+        ItemID = 146953,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 80000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Scythe of the Unmaker",
@@ -721,7 +1124,7 @@ AddOn.LemixItems = {
         -- AdditionalResource = { ItemID = 253304, Amount = 20 },
         AdditionalResource = { ItemID = 141605, Amount = 20 },
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         Notes = (select(2, C_Item.GetItemInfo(253304)) or WHITE_FONT_COLOR:WrapTextInColorCode("[Cosmic Soulsliver]")).." are obtained from defeating "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(1, EJ_GetEncounterInfo(2031)) or "Argus the Unmaker")..".".."\n\n".."The number dropped increases based on raid difficulty.",
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
@@ -736,7 +1139,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 100000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -746,10 +1149,32 @@ AddOn.LemixItems = {
         Type = "Mount",
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         Notes = "Obtainable for free by reaching level 80 with a Rogue Timerunner and earning the achievement "..(select(2, GetAchievementInfo(61084)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Rogue")),
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
+    },
+    {
+        Name = "Sightless Eye",
+        ItemID = 153293,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 25000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Sira's Extra Cloak",
+        ItemID = 147843,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 35000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Slag Basilisk",
@@ -758,7 +1183,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -768,7 +1193,7 @@ AddOn.LemixItems = {
         Type = "Mount",
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         Notes = "Obtainable for free by reaching level 80 with a Demon Hunter Timerunner and earning the achievement "..(select(2, GetAchievementInfo(61087)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Demon Hunter")),
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
@@ -780,9 +1205,31 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
+    },
+    {
+        Name = "Son of Goredome",
+        ItemID = 129108,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 5000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Spire of Spite",
+        ItemID = 153124,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 35000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Spirit of Eche'ro",
@@ -791,7 +1238,29 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 40000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Starlight Beacon",
+        ItemID = 131717,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 10000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Stormforged Vykrul Horn",
+        ItemID = 140160,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 80000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -808,7 +1277,7 @@ AddOn.LemixItems = {
         -- AdditionalResource = { ItemID = 253306, Amount = 20 },
         AdditionalResource = { ItemID = 246281, Amount = 20 },
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         Notes = (select(2, C_Item.GetItemInfo(253306)) or WHITE_FONT_COLOR:WrapTextInColorCode("[Everflame of Hatred]")).." are obtained from defeating "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(1, EJ_GetEncounterInfo(1984)) or "Aggramar")..".".."\n\n".."The number dropped increases based on raid difficulty.",
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
@@ -824,8 +1293,41 @@ AddOn.LemixItems = {
         Cost = 30000,
         AdditionalResource = { ItemID = 242370, Amount = 20 },
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         Notes = (select(2, C_Item.GetItemInfo(242370)) or WHITE_FONT_COLOR:WrapTextInColorCode("[Horns of the First Satyr]")).." are obtained from defeating "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(1, EJ_GetEncounterInfo(1726)) or "Xavius")..".".."\n\n".."The number dropped increases based on raid difficulty.",
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Thistleleaf Adventurer",
+        ItemID = 130167,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 100000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Tidbit",
+        ItemID = 239699,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 5000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Tournament Favor",
+        ItemID = 130169,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 10000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -836,7 +1338,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -847,7 +1349,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -858,9 +1360,42 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
+    },
+    {
+        Name = "Tylarr Gronnden",
+        ItemID = 144394,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 35000,
+        Phase = LemixPhases.Phase2,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Unstable Portal Emitter",
+        ItemID = 153004,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 100000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Uuna's Doll",
+        ItemID = 153195,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 10000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Valajar Stormwing",
@@ -869,7 +1404,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 20000,
         Phase = LemixPhases.Phase3,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -880,7 +1415,7 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 40000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -891,7 +1426,18 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 40000,
         Phase = LemixPhases.Phase4,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Vixx's Chest of Tricks",
+        ItemID = 152982,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 80000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -902,7 +1448,19 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 20000,
         Phase = LemixPhases.Phase3,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Wondrous Wisdomball",
+        ItemID = 141348,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 100000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        Notes = "This pet is a reward from a quest chain started by the item "..(select(2, C_Item.GetItemInfo(141349)) or WHITE_FONT_COLOR:WrapTextInColorCode("[Strange Humming Crystal]"))..", which is purchasable from the vendor.",
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
@@ -913,8 +1471,30 @@ AddOn.LemixItems = {
         VendorName = "Hemet Nesingwary XVII",
         Cost = 10000,
         Phase = LemixPhases.Phase1,
-        AreaPoiID = nil,
+        AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
+    {
+        Name = "Wyrmy Tunkins",
+        ItemID = 136922,
+        Type = "Pet",
+        VendorName = "Horos",
+        Cost = 10000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Yellow Conservatory Scroll",
+        ItemID = 153180,
+        Type = "Toy",
+        VendorName = "Horos",
+        Cost = 25000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    }
 }
