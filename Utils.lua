@@ -74,8 +74,8 @@ function AddOn:SetInstanceDifficulty(difficultyID)
 end
 
 --- Determines if text length exceeds defined width and truncates with ellipsis when this happens
---- @param fs FontString FontString containing the text
---- @param text string The text to check for truncation
+---@param fs FontString FontString containing the text
+---@param text string The text to check for truncation
 function AddOn:SetTruncatedText(fs, text)
     local maxWidth = fs:GetWidth()
     fs:SetText(text)
@@ -155,10 +155,12 @@ function AddOn:IsEncounterCompletedOnSharedDifficulty(data)
 end
 
 ---Append a list of map search tags for a collectibleto the existing `SearchTags` list based on the ID of the instance where it is obtained
----@param data Mount|Toy|Pet
+---@param data Mount|Toy|Pet|TimewalkingItem|WowRemixItem
 ---@see Mount
 ---@see Toy
 ---@see Pet
+---@see TimewalkingItem
+---@see WowRemixItem
 function AddOn.AppendMapSearchTags(data)
     -- Create a fresh list of tags to avoid modifying the original list for each expansion
     local tags = {}

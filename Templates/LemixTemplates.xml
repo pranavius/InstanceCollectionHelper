@@ -172,6 +172,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 <Size x="100"/>
                 <KeyValues>
                     <KeyValue key="currencyID" value="-1" type="number"/>
+                    <KeyValue key="resourceItemID" value="-1" type="number"/>
                 </KeyValues>
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeKey="$parent.ExclusiveContainer" relativePoint="TOPRIGHT"/>
@@ -195,35 +196,10 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                                 <Anchor point="LEFT" relativeKey="$parent.CurrencyButton" relativePoint="RIGHT" x="5"/>
                                 <Anchor point="RIGHT" relativePoint="RIGHT"/>
                             </Anchors>
-                        </FontString>
-                    </Layer>
-                </Layers>
-            </Frame>
-            <Frame parentKey="AdditionalResourceContainer">
-                <KeyValues>
-                    <KeyValue key="resourceID" value="-1" type="number"/>
-                </KeyValues>
-                <Anchors>
-                    <Anchor point="TOPLEFT" relativeKey="$parent.CostContainer" relativePoint="BOTTOMLEFT"/>
-                    <Anchor point="TOPRIGHT" relativeKey="$parent.CostContainer" relativePoint="BOTTOMRIGHT"/>
-                </Anchors>
-                <Layers>
-                    <Layer level="OVERLAY">
-                        <Texture parentKey="Icon" file="interface/icons/inv_misc_questionmark">
-                            <Size x="20" y="20"/>
-                            <Anchors>
-                                <Anchor point="LEFT" relativePoint="LEFT" y="-1"/>
-                            </Anchors>
                             <Scripts>
                                 <OnEnter/>
                                 <OnLeave/>
                             </Scripts>
-                        </Texture>
-                        <FontString parentKey="Text" inherits="GameTooltipTextSmall" justifyH="LEFT" text="" wordwrap="false">
-                            <Anchors>
-                                <Anchor point="LEFT" relativeKey="$parent.Icon" relativePoint="RIGHT" x="5"/>
-                                <Anchor point="RIGHT" relativePoint="RIGHT"/>
-                            </Anchors>
                         </FontString>
                     </Layer>
                 </Layers>

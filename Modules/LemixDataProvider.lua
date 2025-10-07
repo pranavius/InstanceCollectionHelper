@@ -18,20 +18,6 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field itemID integer
 ---@field iconID integer
 
----@param type? "Mount"|"Pet"|"Toy"|"Cosmetic"
----@return WowRemixItem[]
-local function GetFilteredLemixItemList(type)
-    if not type then return AddOn.LemixItems end
-    local result = {}
-    for _, item in ipairs(AddOn.LemixItems) do
-        if item.Type == type then
-            tinsert(result, item)
-        end
-    end
-
-    return result
-end
-
 function AddOn:CreateLemixCache()
     ---@type table<integer, LemixCacheData> Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
     self.LemixCache = {}
@@ -109,8 +95,6 @@ function AddOn:CreateLemixCache()
                     itemID = item.AdditionalResource.ItemID,
                     iconID = iconID or 134400,
                 }
-                -- print("Additional resource found, dumping resource cache")
-                -- DevTools_Dump(self.LemixResourceCache)
             end)
         end
     end
@@ -186,10 +170,11 @@ function AddOn.LemixDataProviderInit(frame, item)
     local costText = "x"..FormatLargeNumber(item.Cost)
 
     if item.AdditionalResource then
-        local resourceIconID = AddOn.LemixResourceCache[item.AdditionalResource.ItemID].iconID
-        costText = costText.."\n|T"..resourceIconID..":12:12|t x"..item.AdditionalResource.Amount
+        frame.CostContainer.resourceItemID = item.AdditionalResource.ItemID
+        costText = costText.."\n|T"..(AddOn.LemixResourceCache[item.AdditionalResource.ItemID].iconID)..":12:12|t x"..item.AdditionalResource.Amount
         frame.CostContainer.Text:SetFontObject("GameTooltipTextSmall")
     elseif frame.CostContainer.Text:GetFontObject() == GameTooltipTextSmall then
+        frame.CostContainer.resourceItemID = -1
         frame.CostContainer.Text:SetFontObject("GameTooltipText")
     end
 
