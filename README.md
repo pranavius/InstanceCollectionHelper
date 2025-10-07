@@ -2,6 +2,8 @@
 
 _Track available collectibles from instances and easily set required instance difficulty_
 
+**ICH will have a tab showing available Legion: Remix Vendor collectibles for the duration of the event**
+
 **Important:** I am looking for translators to help bring this AddOn to those who may not understand English. If interested, please contact me via one of the means listed in the [Contact](#contact) section.
 
 ## Highlights
