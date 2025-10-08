@@ -232,8 +232,9 @@ function AddOn:UpdateListContents()
                     if item.ItemID == 253024 then
                         shouldInsert = true
                     else
-                        local hideOnChar = select(10, C_MountJournal.GetMountInfoByID(itemData.mountID))
-                        shouldInsert = not hideOnChar and (not itemData.owned or (itemData.owned and self.db.global.showOwned))
+                        -- Show all mounts, even class-specific ones
+                        -- local hideOnChar = select(10, C_MountJournal.GetMountInfoByID(itemData.mountID))
+                        shouldInsert = --[[ not hideOnChar and ]] (not itemData.owned or (itemData.owned and self.db.global.showOwned))
                     end
                 elseif item.Type == "Pet" then
                     local isOwned = itemData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and itemData.owned == itemData.limit or true)
