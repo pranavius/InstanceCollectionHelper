@@ -168,7 +168,7 @@ function AddOn.AppendMapSearchTags(data)
 
     local dungeonAreaMapID = select(7, EJ_GetInstanceInfo(data.InstanceID))
     -- This value will always be 0 for instances that existed before Siege of Orgimmar was released
-    if dungeonAreaMapID ~= 0 then
+    if dungeonAreaMapID and dungeonAreaMapID ~= 0 then
         local map = C_Map.GetMapInfo(dungeonAreaMapID)
         -- MapID 946 is "Cosmic"
         while map and map.parentMapID ~= 946 do

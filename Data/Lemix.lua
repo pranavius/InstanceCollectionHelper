@@ -712,7 +712,7 @@ AddOn.LemixItems = {
     },
     {
         Name = "Hammer of Vigilance",
-        ItemID = 242368,
+        ItemID = 151524,
         Type = "Cosmetic",
         Instance = "Tomb of Sargeras",
         InstanceID = 875,

@@ -228,8 +228,13 @@ function AddOn:UpdateListContents()
             if itemData then
                 local shouldInsert = false
                 if item.Type == "Mount" then
-                    local hideOnChar = select(10, C_MountJournal.GetMountInfoByID(itemData.mountID))
-                    shouldInsert = not hideOnChar and (not itemData.owned or (itemData.owned and self.db.global.showOwned))
+                    -- Needed for a specific fix for Scornwing Flight Form until I can find a better solution
+                    if item.ItemID == 253024 then
+                        shouldInsert = true
+                    else
+                        local hideOnChar = select(10, C_MountJournal.GetMountInfoByID(itemData.mountID))
+                        shouldInsert = not hideOnChar and (not itemData.owned or (itemData.owned and self.db.global.showOwned))
+                    end
                 elseif item.Type == "Pet" then
                     local isOwned = itemData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and itemData.owned == itemData.limit or true)
                     shouldInsert = not isOwned or (isOwned and self.db.global.showOwned)

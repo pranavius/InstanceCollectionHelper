@@ -53,7 +53,10 @@ function ICHLemixListItemMixin:OnLoad()
     nContainer.ViewButton:HookScript("OnEnter", function()
         if self.relevantID then
             GameTooltip:SetOwner(nContainer.ViewButton, "ANCHOR_TOP")
-            if self.isMount then
+            -- TODO: Implement better fix for Scornwing Flight Form
+            if self.isMount and self.relevantID == 999999 then
+                GameTooltip:SetHyperlink("item:253024")
+            elseif self.isMount then
                 local spellID = select(2, C_MountJournal.GetMountInfoByID(self.relevantID))
                 GameTooltip:SetHyperlink(C_MountJournal.GetMountLink(spellID))
             else
