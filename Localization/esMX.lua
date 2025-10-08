@@ -45,7 +45,7 @@ L["Dropped by Defias Pirates on the boat towards the end of the dungeon"] = "Se 
 L["Dropped by The Lanticore, which has a random chance to spawn after killing Orebender Gor'ashan"] = "Se obtiene de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("La Lanticora")..", que tiene una probabilidad aleatoria de aparecer tras matar a "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Controlador de mena Gor'ashan")
 L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"] = "El acceso a la entrada de la banda requiere completar la misión |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(select(1, UnitFactionGroup("player")) == "Horde" and 55799 or 56325) or select(1, UnitFactionGroup("player")) == "Horde" and "Cambia la marea" or "Un cambio en la marea")
 L["Dropped by Sand Elementals in Normal and Heroic, but can be looted from Council of Elders in LFR"] = "Se obtiene de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Elementales de arena").." en Normal y Heroico, pero puede saquearse del "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Consejo de Ancianos").." en LFR"
-L["Obtained by using an Amani Hex Stick on Forest Frogs"] = "Se obtiene al usar un "..(select(2, C_Item.GetItemInfo(33865)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("[Vara de brujería Amani]")).." en "..GREEN_FONT_COLOR:WrapTextInColorCode("Ranas camperas")
+L["Obtained by using an Amani Hex Stick on Forest Frogs"] = "Se obtiene al usar un "..(select(2, C_Item.GetItemInfo(33865)) or GREEN_FONT_COLOR:WrapTextInColorCode("[Vara de brujería Amani]")).." en "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Ranas camperas")
 L["Detailed guides for how to obtain this pet can be found online"] = "Se pueden encontrar guías detalladas en línea sobre cómo obtener esta mascota"
 L["This item is obtainable even though it does not appear on the loot table for Dragons of Nightmare"] = "Este objeto se puede obtener aunque no aparezca en la tabla de botín de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Dragones de Pesadilla")
 L["This pet takes 3 days to hatch after looting Viable Cobra Egg"] = "Esta mascota tarda 3 días en eclosionar después de saquear "..(select(2, C_Item.GetItemInfo(160832)) or RARE_BLUE_COLOR:WrapTextInColorCode("[Huevo de cobra viable]"))
@@ -111,12 +111,12 @@ L["When you are locked out on a particular difficulty, the button for that diffi
 L["A button will also be disabled for legacy raids completed on another difficulty since those lockouts"] = "Un botón también se desactivará para bandas clásicas completadas en otra dificultad ya que esos bloqueos"
 L["are shared across difficulties."] = "se comparten entre dificultades."
 L["Search Hints:"] = "Sugerencias de búsqueda:"
-L["\"raid\" will show all collectibles that can be collected from a raid"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"banda\"").." mostrará todas las coleccionables que se pueden coleccionar en una banda"
-L["\"10\" will show all collectibles that can be collected from a legacy 10 player raid (Normal or Heroic)"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"10\"").." mostrará todas las coleccionables que se pueden coleccionar en una banda de legado de 10 jugadores (Normal o Heroico)"
-L["\"fel\" will show all collectibles and instances that contain \"fel\" in the name"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"fel\"").." mostrará todas las coleccionables e instancias que contengan \"fel\" en el nombre"
-L["\"mythic\" will show all collectibles that can be obtained from a Mythic dungeon or raid"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"mítico\"").." mostrará todas las coleccionables que se pueden obtener en una mazmorra o banda Mítica"
-L["\"lfr\" will show all collectibles that can be obtained from Raid Finder (LFR) difficulty raids"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"lfr\"").." mostrará todas las coleccionables que se pueden obtener en bandas en dificultad Buscador de bandas (LFR)"
-L["\"wotlk\" or \"wrath\" will show all collectibles that can be obtained from Wrath of the Lich King instances"] = "\"wotlk\" o \"wrath\" mostrará todas las coleccionables que se pueden obtener en las instancias de Wrath of the Lich King"
+L["raid will show all collectibles that can be collected from a raid"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"banda\"").." mostrará todas las coleccionables que se pueden coleccionar en una banda"
+L["10 will show all collectibles that can be collected from a legacy 10 player raid (Normal or Heroic)"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"10\"").." mostrará todas las coleccionables que se pueden coleccionar en una banda de legado de 10 jugadores (Normal o Heroico)"
+L["fel will show all collectibles and instances that contain fel in the name"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"fel\"").." mostrará todas las coleccionables e instancias que contengan \"fel\" en el nombre"
+L["mythic will show all collectibles that can be obtained from a Mythic dungeon or raid"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"mítico\"").." mostrará todas las coleccionables que se pueden obtener en una mazmorra o banda Mítica"
+L["lfr will show all collectibles that can be obtained from Raid Finder (LFR) difficulty raids"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"lfr\"").." mostrará todas las coleccionables que se pueden obtener en bandas en dificultad Buscador de bandas (LFR)"
+L["wotlk or wrath will show all collectibles that can be obtained from Wrath of the Lich King instances"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"wotlk\"").." o "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("\"wrath\"").." mostrará todas las coleccionables que se pueden obtener en las instancias de Wrath of the Lich King"
 L["Name"] = "Nombre"
 L["Instance"] = "Instancia"
 L["Available Difficulty(s)"] = "Dificultad(es)"
@@ -153,3 +153,27 @@ L["Unable to open the currency transfer menu. Please open it manually or try aga
 L["Click to open currency transfer menu"] = "Haz clic para abrir el menú de transferencia de divisa"
 L["Cannot transfer to this character"] = "No se puede transferir a este personaje"
 L["Legion: Remix Vendor"] = "Vendedor de Legion: Remix"
+--- New in v12: To be categorized ---
+L["Obtainable for free by reaching level 80 with a Death Knight Timerunner and earning the achievement Timerunner: Death Knight"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Caballero de la Muerte y conseguir el logro "..(select(2, GetAchievementInfo(42685)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Death Knight"))
+L["Obtainable for free by reaching level 80 with a Demon Hunter Timerunner and earning the achievement Timerunner: Demon Hunter"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Cazador de demonios y conseguir el logro "..(select(2, GetAchievementInfo(61087)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Demon Hunter"))
+L["Obtainable for free by reaching level 80 with a Druid Timerunner and earning the achievement Timerunner: Druid"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Druida y conseguir el logro "..(select(2, GetAchievementInfo(61086)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Druid"))
+L["Obtainable for free by reaching level 80 with a Hunter Timerunner and earning the achievement Timerunner: Hunter"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Cazador y conseguir el logro "..(select(2, GetAchievementInfo(42687)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Hunter"))
+L["Obtainable for free by reaching level 80 with a Mage Timerunner and earning the achievement Timerunner: Mage"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Mago y conseguir el logro "..(select(2, GetAchievementInfo(61089)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Mage"))
+L["Obtainable for free by reaching level 80 with a Monk Timerunner and earning the achievement Timerunner: Monk"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Monje y conseguir el logro "..(select(2, GetAchievementInfo(61085)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Monk"))
+L["Obtainable for free by reaching level 80 with a Paladin Timerunner and earning the achievement Timerunner: Paladin"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Paladín y conseguir el logro "..(select(2, GetAchievementInfo(42504)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Paladin"))
+L["Obtainable for free by reaching level 80 with a Priest Timerunner and earning the achievement Timerunner: Priest"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Sacerdote y conseguir el logro "..(select(2, GetAchievementInfo(61088)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Priest"))
+L["Obtainable for free by reaching level 80 with a Rogue Timerunner and earning the achievement Timerunner: Rogue"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Pícaro y conseguir el logro "..(select(2, GetAchievementInfo(61084)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Rogue"))
+L["Obtainable for free by reaching level 80 with a Shaman Timerunner and earning the achievement Timerunner: Shaman"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Chamán y conseguir el logro "..(select(2, GetAchievementInfo(42686)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Shaman"))
+L["Obtainable for free by reaching level 80 with a Warlock Timerunner and earning the achievement Timerunner: Warlock"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Brujo y conseguir el logro "..(select(2, GetAchievementInfo(61090)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Warlock"))
+L["Obtainable for free by reaching level 80 with a Warrior Timerunner and earning the achievement Timerunner: Warrior"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Guerrero y conseguir el logro "..(select(2, GetAchievementInfo(42684)) or DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Timerunner: Warrior"))
+L["This pet is a reward from a quest chain started by the item Strange Humming Crystal, which is purchasable from the vendor."] = "Esta mascota es la recompensa de una cadena de misiones iniciada por el objeto "..(select(2, C_Item.GetItemInfo(141349)) or WHITE_FONT_COLOR:WrapTextInColorCode("[Strange Humming Crystal]"))..", que se puede comprar al vendedor."
+L["Marked as event exclusive due to it only having been obtaininable during the Legion Pre-Patch event"] = "Marcado como exclusivo de evento porque sólo estuvo disponible durante el evento de pre-parche de Legion."
+L["Available In"] = "Disponible en"
+L["Event Exclusive"] = "Exclusivo de evento"
+L["Phase 1: Skies of Fire"] = "Phase 1: Skies of Fire"
+L["Phase 2: Rise of the Nightfallen"] = "Phase 2: Rise of the Nightfallen"
+L["Phase 3: Legionfall"] = "Phase 3: Legionfall"
+L["Phase 4: Argus Eternal"] = "Phase 4: Argus Eternal"
+L["Phase 5: Infinite Echoes"] = "Phase 5: Infinite Echoes"
+L["Search by collectible name/type or expansion"] = "Buscar por nombre/tipo de coleccionable o por expansión"
+

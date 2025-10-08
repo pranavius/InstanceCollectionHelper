@@ -122,7 +122,7 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     frame.CostContainer.CurrencyButton:SetNormalAtlas("timewalkingvendor-32x32")
     frame.CostContainer.CurrencyButton:SetHighlightAtlas("timewalkingvendor-32x32")
 
-    frame.CostContainer.Text:SetText("x"..item.Cost)
+    frame.CostContainer.Text:SetText("x"..FormatLargeNumber(item.Cost))
 
     if item.Type == "Pet" then
         frame.OtherInfoContainer.ICHPetCount:SetText(ColorOwnedPetCountText(data))

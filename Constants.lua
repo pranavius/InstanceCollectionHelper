@@ -56,6 +56,15 @@ AddOn.ExpansionTags = {
     Midnight = { "midnight" },
 }
 
+---@enum LemixPhase
+AddOn.LemixPhases = {
+    Phase1 = L["Phase 1: Skies of Fire"],
+    Phase2 = L["Phase 2: Rise of the Nightfallen"],
+    Phase3 = L["Phase 3: Legionfall"],
+    Phase4 = L["Phase 4: Argus Eternal"],
+    Phase5 = L["Phase 5: Infinite Echoes"]
+}
+
 ---@class Waypoint Information for placing a Blizzard map pin at a location
 ---@field mapID number Identifier for the map on which to place the pin
 ---@field x number X coordinate of the location on the map

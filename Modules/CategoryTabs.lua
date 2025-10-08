@@ -11,9 +11,8 @@ function AddOn:CreateTabSystem()
     self:CreateTab("Pets")
     self:CreateTab("Timewalking Vendor")
     self.Tabs:GetTabButton(self.Tabs.TimewalkingVendorTab):SetWidth(140)
-    self:CreateTab("Legion: Remix Vendor", false)
+    self:CreateTab("Legion: Remix Vendor")
     self.Tabs:GetTabButton(self.Tabs.LegionRemixVendorTab):SetWidth(140)
-    self.Tabs:GetTabButton(self.Tabs.LegionRemixVendorTab):SetTooltipText(L["Coming soon"].."™")
     self.Tabs:SetTabSelectedCallback(function(tabID) self:HandleTabSelected(tabID) end)
     self.Tabs:SetPoint("TOPLEFT", self.Footer, "BOTTOMLEFT", 0, 0)
     self.Tabs:SetPoint("TOPRIGHT", self.Footer, "BOTTOMRIGHT", 0, 0)
@@ -36,6 +35,8 @@ function AddOn:HandleTabSelected(tabID)
     self:PrintDebugMessage("Selected tab:", self.Tabs:GetTabButton(tabID).tabText)
     if tabID == self.Tabs.TimewalkingVendorTab then
         self.Container.VendorListHeaders:SetAlpha(1)
+    elseif tabID == self.Tabs.LegionRemixVendorTab then
+        self.Container.LemixListHeaders:SetAlpha(1)
     else
         self.Container.ListHeaders:SetAlpha(1)
     end

@@ -27,12 +27,12 @@ function ICHSquareButtonMixin:OnEnter()
         GameTooltip:AddLine("- "..L["Waypoint tracking on the minimap may not always appear until you are in a specific zone."], 1, 1, 1)
         GameTooltip:AddLine(L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"], 1, 1, 1)
     elseif self.action == "SEARCH" then
-        GameTooltip:AddLine("- "..L["\"raid\" will show all collectibles that can be collected from a raid"], 1, 1, 1)
-        GameTooltip:AddLine("- "..L["\"10\" will show all collectibles that can be collected from a legacy 10 player raid (Normal or Heroic)"], 1, 1, 1)
-        GameTooltip:AddLine("- "..L["\"fel\" will show all collectibles and instances that contain \"fel\" in the name"], 1, 1, 1)
-        GameTooltip:AddLine("- "..L["\"mythic\" will show all collectibles that can be obtained from a Mythic dungeon or raid"], 1, 1, 1)
-        GameTooltip:AddLine("- "..L["\"lfr\" will show all collectibles that can be obtained from Raid Finder (LFR) difficulty raids"], 1, 1, 1)
-        GameTooltip:AddLine("- "..L["\"wotlk\" or \"wrath\" will show all collectibles that can be obtained from Wrath of the Lich King instances"], 1, 1, 1)
+        GameTooltip:AddLine("- "..L["raid will show all collectibles that can be collected from a raid"], 1, 1, 1)
+        GameTooltip:AddLine("- "..L["10 will show all collectibles that can be collected from a legacy 10 player raid (Normal or Heroic)"], 1, 1, 1)
+        GameTooltip:AddLine("- "..L["fel will show all collectibles and instances that contain fel in the name"], 1, 1, 1)
+        GameTooltip:AddLine("- "..L["mythic will show all collectibles that can be obtained from a Mythic dungeon or raid"], 1, 1, 1)
+        GameTooltip:AddLine("- "..L["lfr will show all collectibles that can be obtained from Raid Finder (LFR) difficulty raids"], 1, 1, 1)
+        GameTooltip:AddLine("- "..L["wotlk or wrath will show all collectibles that can be obtained from Wrath of the Lich King instances"], 1, 1, 1)
     end
     GameTooltip:Show()
 end

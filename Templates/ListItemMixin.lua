@@ -70,10 +70,11 @@ function ICHListItemMixin:OnLoad()
             if cContainer.currencyID ~= -1 then
                 GameTooltip:SetOwner(cContainer.CurrencyButton, "ANCHOR_RIGHT")
                 GameTooltip:SetHyperlink("currency:"..cContainer.currencyID)
-                GameTooltip:AddLine("\n")
-                if C_CurrencyInfo.CanTransferCurrency(cContainer.currencyID) then
+                if C_CurrencyInfo.IsAccountTransferableCurrency(cContainer.currencyID) and C_CurrencyInfo.CanTransferCurrency(cContainer.currencyID) then
+                    GameTooltip:AddLine("\n")
                     GameTooltip:AddLine("["..L["Click to open currency transfer menu"].."]", 0.098, 1.000, 0.098)
-                else
+                elseif C_CurrencyInfo.IsAccountTransferableCurrency(cContainer.currencyID) then
+                    GameTooltip:AddLine("\n")
                     GameTooltip:AddLine("["..L["Cannot transfer to this character"].."]", 1.000, 0.125, 0.125)
                 end
                 GameTooltip:Show()

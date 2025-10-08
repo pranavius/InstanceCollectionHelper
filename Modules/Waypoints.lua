@@ -3,7 +3,7 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----@param data Mount|Toy|Pet|TimewalkingItem
+---@param data Mount|Toy|Pet|TimewalkingItem|WowRemixItem
 ---@return boolean "`true` if conditions to use TomTom waypoints are satisfied, `false` otherwise"
 ---@see Mount
 ---@see Toy
@@ -16,12 +16,13 @@ local function ShouldUseTomTom(data)
 end
 
 --- Sets and tracks navigation to a map marker at the coordinates or Area POI associated with an instance entrance
----@param data Mount|Toy|Pet|TimewalkingItem
+---@param data Mount|Toy|Pet|TimewalkingItem|WowRemixItem
 ---@return boolean "`true` if a map pin was successfully placed, `false` otherwise"
 ---@see Mount
 ---@see Toy
 ---@see Pet
 ---@see TimewalkingItem
+---@see WowRemixItem
 local function SetBlizzardMapPin(data)
     -- Clear any previously supertracked pins and waypoints
     C_SuperTrack.ClearSuperTrackedMapPin()
@@ -60,19 +61,21 @@ local function SetBlizzardMapPin(data)
 end
 
 --- Sets a TomTom waypoint at the coordinates associated with an instance entrance
----@param data Mount|Toy|Pet|TimewalkingItem
+---@param data Mount|Toy|Pet|TimewalkingItem|WowRemixItem
+---@param destinationName string The localized name of the destination to set a waypoint for
 ---@return boolean "`true` if a TomTom waypoint was successfully created, `false` otherwise"
 ---@see Mount
 ---@see Toy
 ---@see Pet
 ---@see TimewalkingItem
-local function SetTomTomWaypoint(data, localizedInstanceName)
+---@see WowRemixItem
+local function SetTomTomWaypoint(data, destinationName)
     if AddOn.db.global.currentTomTomWaypoint then
         TomTom:RemoveWaypoint(AddOn.db.global.currentTomTomWaypoint)
         AddOn.db.global.currentTomTomWaypoint = nil
     end
     local ttOptions = {
-        title = localizedInstanceName,
+        title = destinationName,
         from = name,
         crazy = true,
         silent = true
@@ -86,7 +89,7 @@ local function SetTomTomWaypoint(data, localizedInstanceName)
     -- Commenting the below condition due to alternate Tazavesh entrace available in K'aresh. Unsure if this will be a permanent entrance or not as of now
     -- elseif data.InstanceID == 1194 then
     --     -- Change the name of the TomTom waypoint when set for Tazavesh
-    --     ttOptions.title = "Oribos -> "..localizedInstanceName
+    --     ttOptions.title = "Oribos -> "..destinationName
     end
     if data.Waypoint then
         AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(data.Waypoint.mapID, data.Waypoint.x, data.Waypoint.y, ttOptions)
@@ -97,32 +100,35 @@ local function SetTomTomWaypoint(data, localizedInstanceName)
 end
 
 ---Handles how waypoints should be set using either Blizzard's super tracking or TomTom
----@param data Mount|Toy|Pet|TimewalkingItem
----@param localizedInstanceName string The localized name of the instance to set a waypoint for
+---@param data Mount|Toy|Pet|TimewalkingItem|WowRemixItem
+---@param destinationName string The localized name of the destination to set a waypoint for
 ---@see Mount
 ---@see Toy
 ---@see Pet
 ---@see TimewalkingItem
-local function HandleWaypointClick(data, localizedInstanceName)
+---@see WowRemixItem
+local function HandleWaypointClick(data, destinationName)
     local isPinSet = false
     if ShouldUseTomTom(data) then
-        isPinSet = SetTomTomWaypoint(data, localizedInstanceName)
-        AddOn:PrintChatMessage(isPinSet and L["TomTom waypoint set for"] or L["Unable to set TomTom waypoint for"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(localizedInstanceName))
+        isPinSet = SetTomTomWaypoint(data, destinationName)
+        AddOn:PrintChatMessage(isPinSet and L["TomTom waypoint set for"] or L["Unable to set TomTom waypoint for"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(destinationName))
     elseif data.AreaPoiID or data.InstanceID == 1176 or data.Expansion then
         isPinSet = SetBlizzardMapPin(data)
-        AddOn:PrintChatMessage(isPinSet and L["Map pin set for"] or L["Unable to set map pin for"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(localizedInstanceName))
+        AddOn:PrintChatMessage(isPinSet and L["Map pin set for"] or L["Unable to set map pin for"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(destinationName))
     end
 end
 
 ---Sets up and displays the appropriate waypoint button based on user preferences and **TomTom** being enabled or not
 ---@param destinationName string The name of the destination to set a waypoint for, such as an NPC or an instance
----@param frame ICHListItem
----@param data Mount|Toy|Pet|TimewalkingItem
+---@param frame ICHListItem|ICHLemixListItem
+---@param data Mount|Toy|Pet|TimewalkingItem|WowRemixItem
 ---@see ICHListItem
+---@see ICHLemixListItem
 ---@see Mount
 ---@see Toy
 ---@see Pet
 ---@see TimewalkingItem
+---@see WowRemixItem
 function AddOn:ConfigureWaypointButton(destinationName, frame, data)
     -- Commenting the below condition due to alternate Tazavesh entrace available in K'aresh. Unsure if this will be a permanent entrance or not as of now
     -- if data.InstanceID == 1176 or data.InstanceID == 1194 or data.AreaPoiID or data.Waypoint then

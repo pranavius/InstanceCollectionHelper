@@ -1,9 +1,15 @@
 # InstanceCollectionHelper
-This document describes changes to each version of **InstanceCollectionHelper (ICH)** and will be updated with each new release.
+This document describes changes to each version of **Instance Collection Helper (ICH)** and will be updated with each new release.
 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v12**
+- **Major update**: Added a tab to find mounts, pets, toys, and cosmetics that are purchasable from **Legion: Remix Vendors**
+- Expanded search capabilties for **Timewalking** and **Legion: Remix Vendor** items
+- Updated tooltip text for searching by expansion name/abbreviation
+- Updated text displayed for `enUS`, `esMX`, `ptBR`, and `deDE` locales
+
 **v11.2**
 - Code cleanup and minor optimizations
 - Updated AddOn category to "Collections" for in-game AddOn menu
