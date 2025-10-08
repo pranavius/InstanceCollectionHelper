@@ -54,7 +54,6 @@ function AddOn:CreateLemixCache()
                     }
                 else
                     local mountID = C_MountJournal.GetMountFromItem(item.ItemID)
-                    if not mountID then DevTools_Dump(item) end
                     local name, spellID, _, _, _, _, _, _, _, _, isOwned = C_MountJournal.GetMountInfoByID(mountID)
                     local iconID = C_Spell.GetSpellInfo(spellID) and C_Spell.GetSpellInfo(spellID).originalIconID
     
