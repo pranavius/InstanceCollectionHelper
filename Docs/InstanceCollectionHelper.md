@@ -268,6 +268,18 @@ Button for setting Raid difficulty to Normal
 
 ---
 
+# ExclusiveContainer
+
+## Checkmark
+
+
+```lua
+Texture
+```
+
+
+---
+
 # ExpansionTags
 
 ## BattleForAzeroth
@@ -525,6 +537,198 @@ table
 
 ---
 
+# ICHLemixListHeaders
+
+## BorderBottom
+
+
+```lua
+Texture
+```
+
+A separator between the list headers and the list items in the AddOn interface
+
+## CostHeader
+
+
+```lua
+FontString
+```
+
+## ExclusiveHeader
+
+
+```lua
+FontString
+```
+
+## NameHeader
+
+
+```lua
+FontString
+```
+
+## OnLoad
+
+
+```lua
+(method) ICHLemixListHeadersMixin:OnLoad()
+```
+
+## PhaseHeader
+
+
+```lua
+FontString
+```
+
+## TypeHeader
+
+
+```lua
+FontString
+```
+
+
+---
+
+# ICHLemixListHeadersMixin
+
+
+```lua
+ICHLemixListHeaders
+```
+
+
+---
+
+# ICHLemixListHeadersMixin.OnLoad
+
+
+```lua
+(method) ICHLemixListHeadersMixin:OnLoad()
+```
+
+
+---
+
+# ICHLemixListItem
+
+## Bg
+
+
+```lua
+Texture
+```
+
+The background texture for unowned list items
+
+## CostContainer
+
+
+```lua
+LemixCostContainer
+```
+
+---- ANNOTATIONS -------
+------------------------
+
+## ExclusiveContainer
+
+
+```lua
+ExclusiveContainer
+```
+
+## NameContainer
+
+
+```lua
+NameContainer
+```
+
+---- ANNOTATIONS -------
+------------------------
+
+## OnLoad
+
+
+```lua
+(method) ICHLemixListItemMixin:OnLoad()
+```
+
+## OtherInfoContainer
+
+
+```lua
+OtherInfoContainer
+```
+
+## OwnedBg
+
+
+```lua
+Texture
+```
+
+The background texture for owned list items
+
+## PhaseContainer
+
+
+```lua
+PhaseContainer
+```
+
+## TypeContainer
+
+
+```lua
+TextContainer
+```
+
+## isMount
+
+
+```lua
+boolean
+```
+
+Whether or not the list item is for a mount
+
+## relevantID
+
+
+```lua
+number
+```
+
+The ID number for the collectible. For mounts, this value is `mountID` and for everything else it is `itemID`
+
+
+---
+
+# ICHLemixListItemMixin
+
+
+```lua
+ICHLemixListItem
+```
+
+
+---
+
+# ICHLemixListItemMixin.OnLoad
+
+
+```lua
+(method) ICHLemixListItemMixin:OnLoad()
+```
+
+
+---
+
 # ICHListHeaders
 
 ## BorderBottom
@@ -579,6 +783,13 @@ Exclusive to `ICHListItemTemplate`
 FontString
 ```
 
+## OnLoad
+
+
+```lua
+(method) ICHListHeadersMixin:OnLoad()
+```
+
 ## TypeHeader
 
 
@@ -587,6 +798,26 @@ FontString?
 ```
 
 Exclusive to `ICHVendorListItemTemplate`
+
+
+---
+
+# ICHListHeadersMixin
+
+
+```lua
+ICHListHeaders
+```
+
+
+---
+
+# ICHListHeadersMixin.OnLoad
+
+
+```lua
+(method) ICHListHeadersMixin:OnLoad()
+```
 
 
 ---
@@ -728,15 +959,19 @@ ICHListItem
 ICHSquareButton
 ```
 
+## LemixListHeaders
+
+
+```lua
+ICHLemixListHeaders
+```
+
 ## ListHeaders
 
 
 ```lua
 ICHListHeaders
 ```
-
----- ANNOTATIONS -------
-------------------------
 
 ## SearchBox
 
@@ -762,9 +997,6 @@ The name of the AddOn
 ```lua
 ICHListHeaders
 ```
-
----- ANNOTATIONS -------
-------------------------
 
 
 ---
@@ -946,16 +1178,6 @@ Name of the vendor from whom the collectible can be purcahsed (for vendor items 
 
 ---
 
-# ICH_AVAIL_DIFFS_COL_TITLE
-
-
-```lua
-unknown
-```
-
-
----
-
 # ICH_AddonCompartmentOnClick
 
 
@@ -986,70 +1208,13 @@ function ICH_AddonCompartmentOnLeave(_: any, btn: any)
 
 ---
 
-# ICH_COST_COL_TITLE
-
-
-```lua
-unknown
-```
-
-
----
-
-# ICH_EXPANSION_COL_TITLE
-
-
-```lua
-unknown
-```
-
-
----
-
-# ICH_INSTANCE_COL_TITLE
-
-
-```lua
-unknown
-```
-
-
----
-
-# ICH_NAME_COL_TITLE
-
-
-```lua
-unknown
-```
-
-
----
-
-# ICH_TYPE_COL_TITLE
-
-
-```lua
-unknown
-```
-
-
----
-
 # InstanceCollectionHelper
-
-## About
-
-
-```lua
-ICHAbout
-```
 
 ## AppendMapSearchTags
 
 
 ```lua
-function InstanceCollectionHelper.AppendMapSearchTags(data: Mount|Pet|Toy)
+function InstanceCollectionHelper.AppendMapSearchTags(data: Mount|Pet|TimewalkingItem|Toy|WowRemixItem)
 ```
 
 Append a list of map search tags for a collectibleto the existing `SearchTags` list based on the ID of the instance where it is obtained
@@ -1057,6 +1222,8 @@ See:
   * [Mount](AddOns/InstanceCollectionHelper/Data/Mounts.lua#9#10)
   * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
   * [Pet](AddOns/InstanceCollectionHelper/Data/Pets.lua#9#10)
+  * [TimewalkingItem](AddOns/InstanceCollectionHelper/Data/Timewalking.lua#6#10)
+  * [WowRemixItem](AddOns/InstanceCollectionHelper/Data/Lemix.lua#12#10)
 
 ## ConfigureOnInit
 
@@ -1069,7 +1236,7 @@ See:
 
 
 ```lua
-(method) InstanceCollectionHelper:ConfigureWaypointButton(destinationName: string, frame: ICHListItem, data: Mount|Pet|TimewalkingItem|Toy)
+(method) InstanceCollectionHelper:ConfigureWaypointButton(destinationName: string, frame: ICHLemixListItem|ICHListItem, data: Mount|Pet|TimewalkingItem|Toy|WowRemixItem)
 ```
 
 Sets up and displays the appropriate waypoint button based on user preferences and **TomTom** being enabled or not
@@ -1078,10 +1245,19 @@ Sets up and displays the appropriate waypoint button based on user preferences a
 
 See:
   * [ICHListItem](AddOns/InstanceCollectionHelper/Templates/ListItemMixin.lua#6#10)
+  * [ICHLemixListItem](AddOns/InstanceCollectionHelper/Templates/LemixMixins.lua#15#10)
   * [Mount](AddOns/InstanceCollectionHelper/Data/Mounts.lua#9#10)
   * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
   * [Pet](AddOns/InstanceCollectionHelper/Data/Pets.lua#9#10)
   * [TimewalkingItem](AddOns/InstanceCollectionHelper/Data/Timewalking.lua#6#10)
+  * [WowRemixItem](AddOns/InstanceCollectionHelper/Data/Lemix.lua#12#10)
+
+## CreateLemixCache
+
+
+```lua
+(method) InstanceCollectionHelper:CreateLemixCache()
+```
 
 ## CreatePetCache
 
@@ -1154,8 +1330,8 @@ Each table entry consists of a list of strings associated with that expansion to
 
 
 ```lua
-(method) InstanceCollectionHelper:FilterListContentsByQuery(listData: (Mount|Pet|TimewalkingItem|Toy)[])
-  -> (Mount|Pet|TimewalkingItem|Toy)[]
+(method) InstanceCollectionHelper:FilterListContentsByQuery(listData: (Mount|Pet|TimewalkingItem|Toy|WowRemixItem)[])
+  -> (Mount|Pet|TimewalkingItem|Toy|WowRemixItem)[]
 ```
 
 Filters a list of data based on search parameters
@@ -1164,13 +1340,7 @@ See:
   * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
   * [Pet](AddOns/InstanceCollectionHelper/Data/Pets.lua#9#10)
   * [TimewalkingItem](AddOns/InstanceCollectionHelper/Data/Timewalking.lua#6#10)
-
-## Footer
-
-
-```lua
-table
-```
+  * [WowRemixItem](AddOns/InstanceCollectionHelper/Data/Lemix.lua#12#10)
 
 ## GetDifficultyButtonText
 
@@ -1232,7 +1402,7 @@ function InstanceCollectionHelper.HideAllDifficultyButtons(container: Difficulty
 ```
 
 Unsets all difficulty button points and hides them before showing the correct ones based on provided data
-See: [DifficultyContainer](AddOns/InstanceCollectionHelper/Templates/ListItemMixin.lua#140#10)
+See: [DifficultyContainer](AddOns/InstanceCollectionHelper/Templates/ListItemMixin.lua#141#10)
 
 ## ICHDataProvider
 
@@ -1292,6 +1462,43 @@ See:
   * [Mount](AddOns/InstanceCollectionHelper/Data/Mounts.lua#9#10)
   * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
   * [Pet](AddOns/InstanceCollectionHelper/Data/Pets.lua#9#10)
+
+## LemixCache
+
+
+```lua
+{ [integer]: LemixCacheData }
+```
+
+Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
+
+## LemixDataProviderInit
+
+
+```lua
+function InstanceCollectionHelper.LemixDataProviderInit(frame: ICHLemixListItem, item: WowRemixItem)
+```
+
+## LemixItems
+
+
+```lua
+WowRemixItem[]
+```
+
+## LemixPhases
+
+
+```lua
+enum LemixPhase
+```
+
+## LemixResourceCache
+
+
+```lua
+{ [integer]: LemixResourceCacheData }
+```
 
 ## Mounts
 
@@ -1407,7 +1614,7 @@ Determines which difficulty button(s) to display based on the provided data
 @*param* `isOwned` — Whether or not the collectible is owned by the player. Omitting this argument is equivalent to providing `false`
 
 See:
-  * [DifficultyContainer](AddOns/InstanceCollectionHelper/Templates/ListItemMixin.lua#140#10)
+  * [DifficultyContainer](AddOns/InstanceCollectionHelper/Templates/ListItemMixin.lua#141#10)
   * [Mount](AddOns/InstanceCollectionHelper/Data/Mounts.lua#9#10)
   * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
   * [Pet](AddOns/InstanceCollectionHelper/Data/Pets.lua#9#10)
@@ -1477,15 +1684,6 @@ See:
   * [ICHListItem](AddOns/InstanceCollectionHelper/Templates/ListItemMixin.lua#6#10)
   * [Toy](AddOns/InstanceCollectionHelper/Data/Toys.lua#9#10)
 
-## Toys
-
-
-```lua
-Toy[]
-```
-
-List of toys available from instances
-
 ## UpdateListContents
 
 
@@ -1535,6 +1733,148 @@ number?
 ```
 
 ID number for the encounter that provides the collectible
+
+
+---
+
+# LemixCacheData
+
+## collectibleName
+
+
+```lua
+string
+```
+
+Localized collectible name
+
+## iconID
+
+
+```lua
+integer
+```
+
+ID for the icon associated with the collectible
+
+## itemID
+
+
+```lua
+integer
+```
+
+ID number for the item that adds the collectible to the collection
+
+## itemName
+
+
+```lua
+string
+```
+
+Localized name for the item that adds the collectible to the collection
+
+## limit
+
+
+```lua
+integer?
+```
+
+Maximum number of the pet that can be owned (applies to pets only)
+
+## mountID
+
+
+```lua
+integer?
+```
+
+ID number for the mount (applies to mounts only)
+
+## owned
+
+
+```lua
+boolean|integer
+```
+
+If the collectible is a pet, this is the number of the pet currently owned. For other collectibles, this is `true` if owned and `false` otherwise
+
+## speciesID
+
+
+```lua
+integer?
+```
+
+ID for the pet species (applies to pets only)
+
+
+---
+
+# LemixCostContainer
+
+## CurrencyButton
+
+
+```lua
+Button
+```
+
+If currency is Warband Transferable, this button should open the transfer menu
+
+## Text
+
+
+```lua
+FontString
+```
+
+Text to display alongside the currency icon (typically the cost of the collectible)
+
+## currencyID
+
+
+```lua
+integer
+```
+
+ID number of the currency required to purchase the collectible
+
+## resourceItemID
+
+
+```lua
+integer
+```
+
+
+---
+
+# LemixResourceCacheData
+
+## iconID
+
+
+```lua
+integer
+```
+
+## itemID
+
+
+```lua
+integer
+```
+
+## itemName
+
+
+```lua
+string
+```
 
 
 ---
@@ -1920,6 +2260,25 @@ integer
 ```
 
 ID for the pet species
+
+
+---
+
+# PhaseContainer
+
+## Text
+
+
+```lua
+FontString
+```
+
+## fullName
+
+
+```lua
+string
+```
 
 
 ---
