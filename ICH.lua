@@ -99,7 +99,7 @@ function AddOn:FilterListContentsByQuery(listData)
     local query = self.Container.SearchBox:GetText():lower()
     local selectedTab = self.db.global.selectedTab
 
-    local nameMatches, instanceMatches, encounterMatches, instanceTypeMatches, difficultyMatches, searchTagMatches, itemTypeMatches, isRemixExclusive = false, false, false, false, false, false, false, false
+    local nameMatches, instanceMatches, encounterMatches, instanceTypeMatches = false, false, false, false
     for _, data in ipairs(listData) do
         -- Using localized names for mounts, instances, encounters, etc for better search results
         local itemName
@@ -122,7 +122,8 @@ function AddOn:FilterListContentsByQuery(listData)
         instanceMatches = instanceName:lower():match(query) and true or false
         encounterMatches = encounterName:lower():match(query) and true or false
         instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(data) or (query == L["dungeon"] and not self:IsInstanceRaid(data))
-        difficultyMatches = false
+        
+        local difficultyMatches = false
         for _, diffID in ipairs(data.DifficultyIDs or {}) do
             if self:GetDifficultyButtonText(diffID):lower() == query or self:GetInstanceDifficultyText(diffID):lower() == query then
                 difficultyMatches = true
@@ -137,20 +138,28 @@ function AddOn:FilterListContentsByQuery(listData)
                 end
             end
         end
-        searchTagMatches = false
+        
+        local searchTagMatches = false
         for _, tag in ipairs(data.SearchTags) do
             if tag:lower() == query then
                 searchTagMatches = true
                 break
             end
         end
-        itemTypeMatches = false
-        if data.Type then itemTypeMatches = query == L[data.Type]:lower() end
+        
+        local itemTypeMatches = data.Type and query == L[data.Type]:lower() or false
 
-        isRemixExclusive = false
-        if data.IsLemixExclusive then isRemixExclusive = query:match("remix") or query:match("legion") end
+        -- Remix filters
+        local isRemixExclusive = data.IsLemixExclusive and query:match("remix") or false
+        local phaseMatches = false
+        if data.Phase then
+            local phase = string.split(":", data.Phase)
+            phase = strtrim(phase):lower()
+            local phaseNumOnly = select(2, string.split(" ", phase))
+            phaseMatches = query == phase or query == phaseNumOnly or query == "p"..phaseNumOnly
+        end
 
-        if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches or searchTagMatches or itemTypeMatches or isRemixExclusive then
+        if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches or searchTagMatches or itemTypeMatches or isRemixExclusive or phaseMatches then
             tinsert(filtered, data)
         end
     end

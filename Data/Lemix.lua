@@ -138,6 +138,7 @@ AddOn.LemixItems = {
         Type = "Mount",
         VendorName = "Grandmaster Jakkus",
         Cost = 20000,
+        Phase = LemixPhases.Phase1,
         AreaPoiID = 8275,
         Notes = L["Obtainable for free by reaching level 80 with a Mage Timerunner and earning the achievement Timerunner: Mage"],
         SearchTags = AddOn.ExpansionTags.Legion,
