@@ -6,6 +6,8 @@ Release versions suffixed with a lowercase letter are considered unofficial _alp
 ## Changes
 **v12.1**
 - Add ability to open currency transfer menu for Bronze
+- Fixed a bug where the Mage class mount from Remix was missing a phase
+- Added ability to filter Remix list by phase
 
 **v12**
 - **Major update**: Added a tab to find mounts, pets, toys, and cosmetics that are purchasable from **Legion: Remix Vendors**
