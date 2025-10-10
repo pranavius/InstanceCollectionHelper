@@ -4,6 +4,9 @@ This document describes changes to each version of **Instance Collection Helper 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v12.1**
+- Add ability to open currency transfer menu for Bronze
+
 **v12**
 - **Major update**: Added a tab to find mounts, pets, toys, and cosmetics that are purchasable from **Legion: Remix Vendors**
 - Expanded search capabilties for **Timewalking** and **Legion: Remix Vendor** items

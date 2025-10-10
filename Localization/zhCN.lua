@@ -162,3 +162,5 @@ L["Phase 3: Legionfall"] = "Phase 3: Legionfall"
 L["Phase 4: Argus Eternal"] = "Phase 4: Argus Eternal"
 L["Phase 5: Infinite Echoes"] = "Phase 5: Infinite Echoes"
 L["Search by collectible name/type or expansion"] = "按收藏物名称/类型或资料片搜索"
+--- New in v13: To be categorized ---
+L["Unable to transfer Bronze to this character right now."] = "目前无法将青铜转移到该角色。"

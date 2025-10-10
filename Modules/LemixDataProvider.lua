@@ -147,7 +147,7 @@ end
 ---@param frame ICHLemixListItem
 ---@param item WowRemixItem
 function AddOn.LemixDataProviderInit(frame, item)
-    frame.CostContainer.currencyID = 2778
+    frame.CostContainer.currencyID = 3252
     if not frame or not item then return end
     frame.isMount = item.Type == "Mount" or false
     
@@ -236,4 +236,24 @@ function AddOn.LemixDataProviderInit(frame, item)
     else
         frame.NameContainer.ViewButton:HookScript("OnClick", function() end)
     end
+
+    frame.CostContainer.CurrencyButton:HookScript("OnClick", function()
+        AddOn:PrintDebugMessage("Bronze transfer requested")
+        if not C_CurrencyInfo.CanTransferCurrency(frame.CostContainer.currencyID) then
+            AddOn:PrintChatMessage(L["Unable to transfer Bronze to this character right now."])
+            return
+        end
+
+        if CurrencyTransferMenu and (not CurrencyTransferMenu.currencyInfo or (CurrencyTransferMenu.currencyInfo and CurrencyTransferMenu.currencyInfo.currencyID ~= frame.CostContainer.currencyID) or not CurrencyTransferMenu:IsVisible()) then
+            AddOn:PrintDebugMessage("Currency ID is:", CurrencyTransferMenu.currencyInfo and CurrencyTransferMenu.currencyInfo.currencyID or 'n/a')
+            AddOn:PrintDebugMessage("Currency Transfer Frame visible:", CurrencyTransferMenu:IsVisible())
+            CurrencyTransferMenu:OnCurrencyTransferRequested(frame.CostContainer.currencyID)
+        elseif CurrencyTransferMenu and CurrencyTransferMenu.currencyInfo.currencyID == frame.CostContainer.currencyID then
+            AddOn:PrintDebugMessage("Bronze already selected and window is already open")
+            CurrencyTransferMenu:OnCurrencyTransferAmountUpdated(item.Cost)
+            CurrencyTransferMenu:FullRefresh()
+        else
+            AddOn:PrintChatMessage(L["Unable to open the currency transfer menu. Please open it manually or try again."])
+        end
+    end)
 end

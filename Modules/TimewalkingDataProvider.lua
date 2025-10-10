@@ -160,16 +160,16 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
 
     frame.CostContainer.CurrencyButton:HookScript("OnClick", function()
         AddOn:PrintDebugMessage("Timewarped Badges transfer requested")
-        if not C_CurrencyInfo.CanTransferCurrency(1166) then
+        if not C_CurrencyInfo.CanTransferCurrency(frame.CostContainer.currencyID) then
             AddOn:PrintChatMessage(L["Unable to transfer Timewarped Badges to this character right now."])
             return
         end
 
-        if CurrencyTransferMenu and (not CurrencyTransferMenu.currencyInfo or (CurrencyTransferMenu.currencyInfo and CurrencyTransferMenu.currencyInfo.currencyID ~= 1166) or not CurrencyTransferMenu:IsVisible()) then
+        if CurrencyTransferMenu and (not CurrencyTransferMenu.currencyInfo or (CurrencyTransferMenu.currencyInfo and CurrencyTransferMenu.currencyInfo.currencyID ~= frame.CostContainer.currencyID) or not CurrencyTransferMenu:IsVisible()) then
             AddOn:PrintDebugMessage("Currency ID is:", CurrencyTransferMenu.currencyInfo and CurrencyTransferMenu.currencyInfo.currencyID or 'n/a')
             AddOn:PrintDebugMessage("Currency Transfer Frame visible:", CurrencyTransferMenu:IsVisible())
-            CurrencyTransferMenu:OnCurrencyTransferRequested(1166)
-        elseif CurrencyTransferMenu and CurrencyTransferMenu.currencyInfo.currencyID == 1166 then
+            CurrencyTransferMenu:OnCurrencyTransferRequested(frame.CostContainer.currencyID)
+        elseif CurrencyTransferMenu and CurrencyTransferMenu.currencyInfo.currencyID == frame.CostContainer.currencyID then
             AddOn:PrintDebugMessage("Timewarped Badges already selected and window is already open")
             CurrencyTransferMenu:OnCurrencyTransferAmountUpdated(item.Cost)
             CurrencyTransferMenu:FullRefresh()
