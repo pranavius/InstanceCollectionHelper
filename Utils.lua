@@ -180,3 +180,25 @@ function AddOn.AppendMapSearchTags(data)
 
     data.SearchTags = tags
 end
+
+---@param item TimewalkingItem|WowRemixItem
+function AddOn:IsCosmeticOwned(item)
+    if not item.Type or not item.Type == "Cosmetic" then return false end
+    local isOwned = false
+    local tooltip = C_TooltipInfo.GetItemByID(item.ItemID)
+    if tooltip and tooltip.lines then
+        for _, data in ipairs(tooltip.lines) do
+            if data.type == 26 then
+                isOwned = true
+                break
+            elseif data.leftText:lower() == ERR_COSMETIC_KNOWN:lower() then
+                isOwned = true
+                break
+            end
+        end
+    else
+        self:PrintDebugMessage("No tooltip data found for", item.Name)
+    end
+
+    return isOwned
+end
