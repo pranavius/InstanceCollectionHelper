@@ -4,6 +4,11 @@ This document describes changes to each version of **Instance Collection Helper 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v12.2**
+- Fixed bug causing class mounts to appear with incorrect phases sometimes
+- Improved highlighting of class mount achievement names in notes 
+- Added Llothien Prowler to list of available mounts from Remix vendor
+
 **v12.1**
 - Add ability to open currency transfer menu for Bronze
 - Fixed a bug where the Mage class mount from Remix was missing a phase

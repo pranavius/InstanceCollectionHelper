@@ -15,7 +15,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field Close Button Closes the About information
 ICHAboutMixin = {}
 
-local CURRENT_VERSION = 11
+local CURRENT_VERSION = 12.2
 
 ---@class Translator An individual who has contributed to the localization of ICH in another language/locale besides English (_enUS_)
 ---@field name string The name of the translator
