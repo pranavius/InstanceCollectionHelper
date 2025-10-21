@@ -585,6 +585,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Armor of the Skyfather's Chosen",
+        ItemID = 241422,
+        Type = "Cosmetic",
+        VendorName = "Arturos",
+        Cost = 15000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
         Name = "Ensemble: Barkbinds of the Archdruid's Nightmare",
         ItemID = 190772,
         Type = "Cosmetic",
@@ -607,6 +618,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Bindings of Hungering Flesh",
+        ItemID = 241425,
+        Type = "Cosmetic",
+        VendorName = "Arturos",
+        Cost = 15000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
         Name = "Ensemble: Blazing Dreamscribed Robes",
         ItemID = 241416,
         Type = "Cosmetic",
@@ -618,10 +640,32 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Ensemble: Bloodforged Battleplate",
+        ItemID = 241418,
+        Type = "Cosmetic",
+        VendorName = "Arturos",
+        Cost = 15000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
         Name = "Ensemble: Chains of Helheim",
         ItemID = 241433,
         Type = "Cosmetic",
         VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Chains of Nightmare's Embrace",
+        ItemID = 241434,
+        Type = "Cosmetic",
+        VendorName = "Arturos",
         Cost = 15000,
         Phase = LemixPhases.Phase1,
         AreaPoiID = 8275,
@@ -860,6 +904,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Ensemble: Guise of the Nightstalker",
+        ItemID = 241423,
+        Type = "Cosmetic",
+        VendorName = "Arturos",
+        Cost = 15000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
         Name = "Ensemble: Hausvelt Leathers",
         ItemID = 241379,
         Type = "Cosmetic",
@@ -946,6 +1001,17 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Honorforged Valorplate",
+        ItemID = 241419,
+        Type = "Cosmetic",
+        VendorName = "Arturos",
+        Cost = 15000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Ensemble: Jandvik Diver's Metal",
@@ -1091,6 +1157,28 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Nightforged Felplate",
+        ItemID = 241417,
+        Type = "Cosmetic",
+        VendorName = "Arturos",
+        Cost = 15000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Nighthide Coat",
+        ItemID = 241436,
+        Type = "Cosmetic",
+        VendorName = "Arturos",
+        Cost = 15000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
         Name = "Ensemble: Nightrune Robes",
         ItemID = 241413,
         Type = "Cosmetic",
@@ -1119,6 +1207,28 @@ AddOn.LemixItems = {
         VendorName = "Larah Treebender",
         Cost = 15000,
         Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Raiment of Night Eternal",
+        ItemID = 241426,
+        Type = "Cosmetic",
+        VendorName = "Arturos",
+        Cost = 15000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Ravensteel Mail",
+        ItemID = 241421,
+        Type = "Cosmetic",
+        VendorName = "Arturos",
+        Cost = 15000,
+        Phase = LemixPhases.Phase1,
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
@@ -1168,6 +1278,28 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Sanguine Oath Vestments",
+        ItemID = 241427,
+        Type = "Cosmetic",
+        VendorName = "Arturos",
+        Cost = 15000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Scalemail of Devouring Night",
+        ItemID = 241420,
+        Type = "Cosmetic",
+        VendorName = "Arturos",
+        Cost = 15000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
         Name = "Ensemble: Scales of Remembered Eternity",
         ItemID = 241375,
         Type = "Cosmetic",
@@ -1188,6 +1320,17 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Seawitch's Terrorcloth",
+        ItemID = 241439,
+        Type = "Cosmetic",
+        VendorName = "Arturos",
+        Cost = 15000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Ensemble: Shrinebreaker's Battlegear",
@@ -1278,6 +1421,28 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Suramar Silver Plating",
+        ItemID = 241431,
+        Type = "Cosmetic",
+        VendorName = "Arturos",
+        Cost = 15000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Thirsting Hides",
+        ItemID = 241424,
+        Type = "Cosmetic",
+        VendorName = "Arturos",
+        Cost = 15000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
         Name = "Ensemble: Thunderpeak Boneguards",
         ItemID = 241372,
         Type = "Cosmetic",
@@ -1348,6 +1513,17 @@ AddOn.LemixItems = {
         ItemID = 241440,
         Type = "Cosmetic",
         VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Vesture of Borrowed Souls",
+        ItemID = 241428,
+        Type = "Cosmetic",
+        VendorName = "Arturos",
         Cost = 15000,
         Phase = LemixPhases.Phase1,
         AreaPoiID = 8275,
