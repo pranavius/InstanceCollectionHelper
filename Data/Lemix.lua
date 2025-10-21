@@ -574,6 +574,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Ensemble: Arinor Keeper's Leather Armor",
+        ItemID = 241367,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
         Name = "Ensemble: Barkbinds of the Archdruid's Nightmare",
         ItemID = 190772,
         Type = "Cosmetic",
@@ -635,6 +646,17 @@ AddOn.LemixItems = {
         VendorName = "Larah Treebender",
         Cost = 15000,
         Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Doomsinger's Cloth Armor",
+        ItemID = 241368,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase4,
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
@@ -704,6 +726,28 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Ered'ruin Scalemail",
+        ItemID = 241442,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Eredath Lightseeker's Regalia",
+        ItemID = 254754,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Ensemble: Fel-Bloodied Battlegear",
@@ -781,6 +825,28 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Forgotten Conservatory Clothes",
+        ItemID = 254753,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Garothi Battleplate",
+        ItemID = 241359,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Ensemble: Gladeradier's Battlegarb",
@@ -959,6 +1025,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Lunarblight Leathers",
+        ItemID = 241363,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
         Name = "Ensemble: Mantles of the Nightwell",
         ItemID = 253385,
         Type = "Cosmetic",
@@ -981,12 +1058,34 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Moonshatter Warplate",
+        ItemID = 241361,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
         Name = "Ensemble: Nar'thalas Graduate's Trim",
         ItemID = 241371,
         Type = "Cosmetic",
         VendorName = "Larah Treebender",
         Cost = 15000,
         Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Netherfiend Battlegear",
+        ItemID = 241443,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase3,
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
@@ -1003,12 +1102,45 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Ensemble: Oronaar Disciple's Mail Armor",
+        ItemID = 241366,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Praetorium Guard's Plate Armor",
+        ItemID = 241365,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
         Name = "Ensemble: Regalia of the Hrydshal Runespeaker",
         ItemID = 241384,
         Type = "Cosmetic",
         VendorName = "Larah Treebender",
         Cost = 15000,
         Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Riven Priesthood Regalia",
+        ItemID = 241364,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase3,
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
@@ -1056,6 +1188,17 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Shrinebreaker's Battlegear",
+        ItemID = 241362,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Ensemble: Skyrune Robes",
@@ -1124,6 +1267,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Ensemble: Stygian Hides",
+        ItemID = 241391,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
         Name = "Ensemble: Thunderpeak Boneguards",
         ItemID = 241372,
         Type = "Cosmetic",
@@ -1157,6 +1311,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Ensemble: Triumvirate High Guard's Battlegear",
+        ItemID = 254752,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
         Name = "Ensemble: Verdant Dreamscribed Robes",
         ItemID = 241355,
         Type = "Cosmetic",
@@ -1185,6 +1350,17 @@ AddOn.LemixItems = {
         VendorName = "Larah Treebender",
         Cost = 15000,
         Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Vileweave Vestments",
+        ItemID = 241444,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase3,
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
@@ -1221,6 +1397,39 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: World-Defiler's Battle Armor",
+        ItemID = 253588,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Xorothian Plate Armor",
+        ItemID = 241441,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Zealous Felslingers Battle Armor",
+        ItemID = 253954,
+        Type = "Cosmetic",
+        VendorName = "Larah Treebender",
+        Cost = 15000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
     },
     {
         Name = "Eye of Inquisition",
