@@ -157,7 +157,7 @@ AddOn.LemixItems = {
     },
     {
         Name = "Arsenal: Bone Scythes",
-        ItemID = 253569,
+        ItemID = 253556,
         Type = "Cosmetic",
         VendorName = "Unicus",
         Cost = 2500,
@@ -168,7 +168,7 @@ AddOn.LemixItems = {
     },
     {
         Name = "Arsenal: Gems of the Lightforged Draenei",
-        ItemID = 253551,
+        ItemID = 253569,
         Type = "Cosmetic",
         VendorName = "Unicus",
         Cost = 2500,
@@ -1058,6 +1058,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Legacy of Azj'aqir",
+        ItemID = 241578,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Leyline Defender's Sunplate Armor",
         ItemID = 241429,
         Type = "Cosmetic",
@@ -1232,6 +1243,17 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Regalia of Everburning Knowledge",
+        ItemID = 241586,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Ensemble: Regalia of the Hrydshal Runespeaker",
@@ -1498,6 +1520,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Ensemble: Vestment of Second Sight",
+        ItemID = 241574,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Vestments of Eredathian Sacrifice",
         ItemID = 241390,
         Type = "Cosmetic",
@@ -1518,6 +1551,17 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Vestments of the Purifier",
+        ItemID = 241582,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Ensemble: Vesture of Borrowed Souls",
@@ -2262,7 +2306,7 @@ AddOn.LemixItems = {
         Cost = 20000,
         Phase = LemixPhases.Phase1,
         AreaPoiID = 8275,
-        Notes = L["Obtainable for free by reaching level 80 with a Druid Timerunner and earning the achievement Timerunner: Druid"],
+        Notes = L["Obtainable for free by reaching level 80 with a Druid Timerunner and earning the achievement Timerunner: Druid"].."\n\n".."This item may not appear as collected even after obtaining",
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -2528,17 +2572,17 @@ AddOn.LemixItems = {
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
-    {
-        Name = "Tylarr Gronnden",
-        ItemID = 144394,
-        Type = "Pet",
-        VendorName = "Horos",
-        Cost = 35000,
-        Phase = LemixPhases.Phase2,
-        AreaPoiID = 8275,
-        SearchTags = AddOn.ExpansionTags.Legion,
-        IsLemixExclusive = false
-    },
+    -- {
+    --     Name = "Tylarr Gronnden",
+    --     ItemID = 144394,
+    --     Type = "Pet",
+    --     VendorName = "Horos",
+    --     Cost = 35000,
+    --     Phase = LemixPhases.Phase2,
+    --     AreaPoiID = 8275,
+    --     SearchTags = AddOn.ExpansionTags.Legion,
+    --     IsLemixExclusive = false
+    -- },
     {
         Name = "Unstable Portal Emitter",
         ItemID = 153004,
