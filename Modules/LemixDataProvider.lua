@@ -18,17 +18,6 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field itemID integer
 ---@field iconID integer
 
-local function GetItemIDForTransmogSource(item)
-    if item.ItemID == 255006 then
-        return 255009
-    elseif item.ItemID == 242368 then
-        return 141006
-    elseif item.ItemID == 253273 then
-        return 253283
-    end
-    return item.ItemID
-end
-
 function AddOn:CreateLemixCache()
     ---@type table<integer, LemixCacheData> Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
     self.LemixCache = {}
@@ -97,21 +86,15 @@ function AddOn:CreateLemixCache()
                     limit = limit
                 }
             elseif item.Type == "Cosmetic" then
-                local itemForCosmeticSource = Item:CreateFromItemID(GetItemIDForTransmogSource(item))
-                if itemForCosmeticSource:GetItemID() then
-                    itemForCosmeticSource:ContinueOnItemLoad(function()
-                        self:PrintDebugMessage("Player knows transmog for", item.Name, C_TransmogCollection.PlayerHasTransmog(item.ItemID))
-                        self.LemixCache[item.ItemID] = {
-                            itemName = C_Item.GetItemNameByID(item.ItemID) or "",
-                            itemID = item.ItemID,
-                            collectibleName = item.Name,
-                            iconID = itemForCosmeticSource:GetItemIcon() or 134400,
-                            owned = C_TransmogCollection.PlayerHasTransmog(item.ItemID)
-                        }
-                    end)
-                else
-                    self:PrintDebugMessage("Couldnt get item for cosmetic source:", item.Name)
-                end
+                local iconID = C_Item.GetItemIconByID(item.ItemID)
+                local isOwned = self:IsCosmeticOwned(item)
+                self.LemixCache[item.ItemID] = {
+                    itemName = C_Item.GetItemNameByID(item.ItemID) or "",
+                    itemID = item.ItemID,
+                    collectibleName = item.Name,
+                    iconID = iconID or 134400,
+                    owned = isOwned
+                }
             end
             if toLoad == 0 then self:PrintDebugMessage("Legion: Remix data loaded") end
         end)
@@ -152,11 +135,6 @@ function AddOn.LemixDataProviderInit(frame, item)
     frame.isMount = item.Type == "Mount" or false
     
     local index = AddOn.ICHDataProvider:FindIndex(item)
-    if item.Type == "Cosmetic" then
-        local sourceID = select(2, C_TransmogCollection.GetItemInfo(item.ItemID))
-        -- Sometimes the function to check if a cosmetic is known is dumb on initialization. So check here again to be safe
-        AddOn.LemixCache[item.ItemID].owned = C_TransmogCollection.PlayerHasTransmog(item.ItemID)
-    end
     local data = AddOn.LemixCache[item.ItemID]
     frame.relevantID = item.Type == "Mount" and data.mountID or data.itemID
 

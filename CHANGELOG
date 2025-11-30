@@ -4,6 +4,13 @@ This document describes changes to each version of **Instance Collection Helper 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v13**
+- Housing tab added **NEW** (to be populated soon)
+- Added remaining purchasable cosmetics to *Legion: Remix* tab
+**v12.3**
+- Begin adding all remaining cosmetics and ensembles to Legion: Remix vendor list
+  - Currently available cosmetics: All extra rares, Remix exclusive sets, and open world/questing sets (Phase I only)
+
 **v12.2**
 - Fixed bug causing class mounts to appear with incorrect phases sometimes
 - Improved highlighting of class mount achievement names in notes 
