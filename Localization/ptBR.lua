@@ -143,6 +143,7 @@ L["Cost"] = "Custo"
 L["Random chance to obtain when opening a  Bag of Fishing Treasures"] = "Chance aleatória de obter ao abrir um "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Bag of Fishing Treasures")
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways. Can now be purchased from any Timewalking vendor."] = "Originalmente recompensado por completar o feito "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(19079)) or "Master of the Turbulent Timeways")..". Agora pode ser comprado com qualquer vendedor de Caminhada Temporal"
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways II. Can now be purchased from any Timewalking vendor."] = "Originalmente recompensado por completar o feito "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(41056)) or "Master of the Turbulent Timeways II")..". Agora pode ser comprado com qualquer vendedor de Caminhada Temporal"
+L["Originally rewarded for completing the achievement Master of the Turbulent Timeways III. Can now be purchased from any Timewalking vendor."] = "Originalmente recompensado por completar o feito "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(41779)) or "Master of the Turbulent Timeways III")..". Agora pode ser comprado com qualquer vendedor de Caminhada Temporal"
 L["Special Thanks"] = "Agradecimentos especiais"
 L["Mount"] = "Montaria"
 L["Pet"] = "Mascote"

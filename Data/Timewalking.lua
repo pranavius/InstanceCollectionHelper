@@ -86,6 +86,16 @@ AddOn.TimewalkingItems = {
         SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
     },
     {
+        Name = "Bonecleaver's Skullboar",
+        ItemID = 182083,
+        Type = "Mount",
+        VendorName = "Collector Ta'steld",
+        Expansion = "Shadowlands",
+        Cost = 5000,
+        -- AreaPoiID = ?,
+        SearchTags = AddOn.ExpansionTags.Shadowlands
+    },
+    {
         Name = "Broodling of Sinestra",
         ItemID = 234730,
         Type = "Mount",
@@ -94,6 +104,22 @@ AddOn.TimewalkingItems = {
         Cost = 5000,
         -- AreaPoiID = 6984 (Alliance) or 6983 (Horde),
         SearchTags = AddOn.ExpansionTags.Cataclysm
+    },
+    {
+        Name = "Chrono Corsair",
+        ItemID = 238739,
+        Type = "Mount",
+        Expansion = "-",
+        Cost = 5000,
+        Notes = L["Originally rewarded for completing the achievement Master of the Turbulent Timeways III. Can now be purchased from any Timewalking vendor."],
+        SearchTags = combineLists(AddOn.ExpansionTags.Classic,
+            AddOn.ExpansionTags.TheBurningCrusade,
+            AddOn.ExpansionTags.WrathOfTheLichKing,
+            AddOn.ExpansionTags.MistsOfPandaria,
+            AddOn.ExpansionTags.WarlordsOfDraenor,
+            AddOn.ExpansionTags.Legion,
+            AddOn.ExpansionTags.BattleForAzeroth,
+            AddOn.ExpansionTags.Shadowlands)
     },
     {
         Name = "Chuck",
@@ -125,6 +151,16 @@ AddOn.TimewalkingItems = {
         Cost = 2200,
         -- AreaPoiID = 8190 (Alliance) or 8191 (Horde),
         SearchTags = AddOn.ExpansionTags.Classic
+    },
+    {
+        Name = "Crimson Lupine",
+        ItemID = 258515,
+        Type = "Mount",
+        VendorName = "Collector Ta'steld",
+        Expansion = "Shadowlands",
+        Cost = 5000,
+        -- AreaPoiID = ?,
+        SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
         Name = "Eclipse Dragonhawk",
@@ -352,6 +388,16 @@ AddOn.TimewalkingItems = {
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
+        Name = "P.O.S.T. Assistant",
+        ItemID = 254876,
+        Type = "Pet",
+        VendorName = "Collector Ta'steld",
+        Expansion = "Shadowlands",
+        Cost = 2200,
+        -- AreaPoiID = ?,
+        SearchTags = AddOn.ExpansionTags.Shadowlands
+    },
+    {
         Name = "Practice Ravager",
         ItemID = 224192,
         Type = "Toy",
@@ -374,7 +420,8 @@ AddOn.TimewalkingItems = {
             AddOn.ExpansionTags.MistsOfPandaria,
             AddOn.ExpansionTags.WarlordsOfDraenor,
             AddOn.ExpansionTags.Legion,
-            AddOn.ExpansionTags.BattleForAzeroth)
+            AddOn.ExpansionTags.BattleForAzeroth,
+            AddOn.ExpansionTags.Shadowlands)
     },
     {
         Name = "Sea-Blessed Shrine",
@@ -397,6 +444,26 @@ AddOn.TimewalkingItems = {
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
+        Name = "Snowpaw Glimmerfur Prowler",
+        ItemID = 259463,
+        Type = "Mount",
+        VendorName = "Collector Ta'steld",
+        Expansion = "Shadowlands",
+        Cost = 5000,
+        -- AreaPoiID = ?,
+        SearchTags = AddOn.ExpansionTags.Shadowlands
+    },
+    {
+        Name = "Steward's Bauble",
+        ItemID = 256881,
+        Type = "Toy",
+        VendorName = "Collector Ta'steld",
+        Expansion = "Shadowlands",
+        Cost = 750,
+        -- AreaPoiID = ?,
+        SearchTags = AddOn.ExpansionTags.Shadowlands
+    },
+    {
         Name = "Timely Buzbee",
         ItemID = 232624,
         Type = "Mount",
@@ -409,7 +476,8 @@ AddOn.TimewalkingItems = {
             AddOn.ExpansionTags.MistsOfPandaria,
             AddOn.ExpansionTags.WarlordsOfDraenor,
             AddOn.ExpansionTags.Legion,
-            AddOn.ExpansionTags.BattleForAzeroth)
+            AddOn.ExpansionTags.BattleForAzeroth,
+            AddOn.ExpansionTags.Shadowlands)
     },
     {
         Name = "Toothy",
@@ -503,6 +571,16 @@ AddOn.TimewalkingItems = {
         Cost = 1500,
         AreaPoiID = 6982,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
+    },
+    {
+        Name = "Wretched Dredger's Band",
+        ItemID = 256893,
+        Type = "Toy",
+        VendorName = "Collector Ta'steld",
+        Expansion = "Shadowlands",
+        Cost = 1000,
+        -- AreaPoiID = ?,
+        SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
         Name = "Yu'lei, Daughter of Jade",
