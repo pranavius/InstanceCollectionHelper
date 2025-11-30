@@ -618,6 +618,28 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Battleplate of the Highlord",
+        ItemID = 241545,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Bearmantle Battlegear",
+        ItemID = 241473,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Bindings of Hungering Flesh",
         ItemID = 241425,
         Type = "Cosmetic",
@@ -673,6 +695,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Chi-Ji's Battlegear",
+        ItemID = 241469,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Crescent Vale Raiment",
         ItemID = 241383,
         Type = "Cosmetic",
@@ -695,6 +728,39 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Demonbane Armor",
+        ItemID = 241525,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Diabolic Raiment",
+        ItemID = 241529,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Doomblade Battlegear",
+        ItemID = 241562,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Doomsinger's Cloth Armor",
         ItemID = 241368,
         Type = "Cosmetic",
@@ -715,6 +781,28 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Dreadwake Armor",
+        ItemID = 241453,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Dreadwyrm Battleplate",
+        ItemID = 241549,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Ensemble: Dreamseeker Vestments",
@@ -761,6 +849,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Ensemble: Eagletalon Battlegear",
+        ItemID = 241558,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Earthrune Robes",
         ItemID = 241412,
         Type = "Cosmetic",
@@ -792,6 +891,17 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Fanged Slayer's Armor",
+        ItemID = 241513,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Ensemble: Fel-Bloodied Battlegear",
@@ -849,6 +959,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Felreaper Vestments",
+        ItemID = 241477,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Felshroud Leather Armor",
         ItemID = 139169,
         Type = "Cosmetic",
@@ -882,6 +1003,28 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Garb of the Astral Warden",
+        ItemID = 241570,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Garb of Venerated Spirits",
+        ItemID = 241459,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Garothi Battleplate",
         ItemID = 241359,
         Type = "Cosmetic",
@@ -893,12 +1036,45 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Gilded Seraph's Raiment",
+        ItemID = 241485,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Gladeradier's Battlegarb",
         ItemID = 241406,
         Type = "Cosmetic",
         VendorName = "Unicus",
         Cost = 7500,
         Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Gravewarden's Armaments",
+        ItemID = 241501,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Grim Inquisitor's Regalia",
+        ItemID = 241481,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
@@ -1047,6 +1223,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Ensemble: Juggernaut Battlegear",
+        ItemID = 241445,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Kal'delar Battleplate",
         ItemID = 241370,
         Type = "Cosmetic",
@@ -1089,6 +1276,17 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Light's Vanguard Battleplate",
+        ItemID = 241449,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Ensemble: Llothien Prowler's Kit",
@@ -1223,6 +1421,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Radiant Lightbringer Armor",
+        ItemID = 241497,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Raiment of Night Eternal",
         ItemID = 241426,
         Type = "Cosmetic",
@@ -1256,6 +1465,39 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Ensemble: Regalia of Shackled Elements",
+        ItemID = 241553,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Regalia of the Arcane Tempest",
+        ItemID = 241537,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Regalia of the Dashing Scoundrel",
+        ItemID = 241465,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Regalia of the Hrydshal Runespeaker",
         ItemID = 241384,
         Type = "Cosmetic",
@@ -1265,6 +1507,17 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Regalia of the Skybreaker",
+        ItemID = 241505,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Ensemble: Riven Priesthood Regalia",
@@ -1284,6 +1537,17 @@ AddOn.LemixItems = {
         VendorName = "Unicus",
         Cost = 7500,
         Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Runebound Regalia",
+        ItemID = 241489,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
@@ -1355,6 +1619,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Serpentstalker Guise",
+        ItemID = 241461,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Shrinebreaker's Battlegear",
         ItemID = 241362,
         Type = "Cosmetic",
@@ -1419,6 +1694,17 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Stormheart Raiment",
+        ItemID = 241521,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Ensemble: Stygian Silks",
@@ -1498,6 +1784,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Ensemble: Titanic Onslaught Armor",
+        ItemID = 241493,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Triumvirate High Guard's Battlegear",
         ItemID = 254752,
         Type = "Cosmetic",
@@ -1522,6 +1819,28 @@ AddOn.LemixItems = {
     {
         Name = "Ensemble: Vestment of Second Sight",
         ItemID = 241574,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Vestments of Blind Absolution",
+        ItemID = 241533,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Vestments of Enveloped Dissonance",
+        ItemID = 241566,
         Type = "Cosmetic",
         VendorName = "Pythagorus",
         Cost = 30000,
@@ -1597,6 +1916,28 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Warplate of the Obsidian Aspect",
+        ItemID = 241541,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Wildstalker Armor",
+        ItemID = 241509,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Wine-dark Royal Robes",
         ItemID = 241382,
         Type = "Cosmetic",
@@ -1639,6 +1980,17 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Xuen's Battlegear",
+        ItemID = 241517,
+        Type = "Cosmetic",
+        VendorName = "Pythagorus",
+        Cost = 30000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Ensemble: Zealous Felslingers Battle Armor",
