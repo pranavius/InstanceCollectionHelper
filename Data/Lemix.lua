@@ -860,11 +860,33 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Ensemble: Earthbreaker Dragonscale",
+        ItemID = 241398,
+        Type = "Cosmetic",
+        VendorName = "Agos the Silent",
+        Cost = 15000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Earthrune Robes",
         ItemID = 241412,
         Type = "Cosmetic",
         VendorName = "Unicus",
         Cost = 7500,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Emerald Drake Hunter's Kit",
+        ItemID = 241354,
+        Type = "Cosmetic",
+        VendorName = "Agos the Silent",
+        Cost = 15000,
         Phase = LemixPhases.Phase1,
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
@@ -1597,6 +1619,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Seaborne Brigandine",
+        ItemID = 241404,
+        Type = "Cosmetic",
+        VendorName = "Agos the Silent",
+        Cost = 15000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Searaider's Battlegarb",
         ItemID = 241407,
         Type = "Cosmetic",
@@ -1639,6 +1672,17 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Skyborne Brigandine",
+        ItemID = 241405,
+        Type = "Cosmetic",
+        VendorName = "Agos the Silent",
+        Cost = 15000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Ensemble: Skyrune Robes",
@@ -1729,6 +1773,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Sunborne Runemail",
+        ItemID = 241401,
+        Type = "Cosmetic",
+        VendorName = "Agos the Silent",
+        Cost = 15000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Suramar Silver Plating",
         ItemID = 241431,
         Type = "Cosmetic",
@@ -1804,6 +1859,17 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Val'kyr's Warharness",
+        ItemID = 241394,
+        Type = "Cosmetic",
+        VendorName = "Agos the Silent",
+        Cost = 15000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Ensemble: Verdant Dreamscribed Robes",
@@ -1938,6 +2004,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Ensemble: Windrunner Quivers",
+        ItemID = 253379,
+        Type = "Cosmetic",
+        VendorName = "Unicus",
+        Cost = 7500,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Wine-dark Royal Robes",
         ItemID = 241382,
         Type = "Cosmetic",
@@ -1949,11 +2026,11 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
-        Name = "Ensemble: Windrunner Quivers",
-        ItemID = 253379,
+        Name = "Ensemble: Winged Plate of the Valhalas Champion",
+        ItemID = 241393,
         Type = "Cosmetic",
-        VendorName = "Unicus",
-        Cost = 7500,
+        VendorName = "Agos the Silent",
+        Cost = 15000,
         Phase = LemixPhases.Phase1,
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
