@@ -182,6 +182,7 @@ function AddOn.LemixDataProviderInit(frame, item)
         frame.NameContainer.ViewButton:SetScript("OnClick", nil)
     end
 
+    frame.CostContainer.CurrencyButton:SetScript("OnClick", nil)
     frame.CostContainer.CurrencyButton:HookScript("OnClick", function()
         AddOn:PrintDebugMessage("Bronze transfer requested")
         if not C_CurrencyInfo.CanTransferCurrency(frame.CostContainer.currencyID) then
