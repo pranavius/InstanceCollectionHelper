@@ -120,6 +120,18 @@ AddOn.Mounts = {
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
+        Name = "Ashes of Belo'ren",
+        ID = 2607,
+        Instance = "March on Quel'Danas",
+        InstanceID = 1308,
+        MapID = 2913,
+        AreaPoiID = 8271,
+        EncounterID = 2740,
+        DifficultyIDs = { RaidDifficulty.Mythic },
+        Waypoint = { mapID = 2424, x = 0.526, y = 0.853 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
         Name = "Astral Cloud Serpent",
         ID = 478,
         Instance = "Mogu'shan Vaults",
@@ -484,6 +496,18 @@ AddOn.Mounts = {
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
+        Name = "Lucent Hawkstrider",
+        ID = 2817,
+        Instance = "Magister's Terrace",
+        InstanceID = 1300,
+        MapID = 2811,
+        AreaPoiID = 8510,
+        EncounterID = 2662,
+        DifficultyIDs = { DungeonDifficulty.Mythic },
+        Waypoint = { mapID = 2424, x = 0.635, y = 0.154 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
         Name = "Marrowfang",
         ID = 1406,
         Instance = "The Necrotic Wake",
@@ -681,6 +705,19 @@ AddOn.Mounts = {
         Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
+    -- Not yet in Beta
+    -- {
+    --     Name = "Spectral Hawkstrider",
+    --     ID = 2805,
+    --     Instance = "Windrunner Spire",
+    --     InstanceID = 1299,
+    --     MapID = 2805,
+    --     AreaPoiID = 8386,
+    --     EncounterID = 2658,
+    --     DifficultyIDs = { DungeonDifficulty.Mythic },
+    --     Waypoint = { mapID = 2395, x = 0.355, y = 0.788 },
+    --     SearchTags = AddOn.ExpansionTags.Midnight
+    -- },
     {
         Name = "Stonevalut Mechsuit",
         ID = 2119,

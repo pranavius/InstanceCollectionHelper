@@ -53,7 +53,7 @@ AddOn.ExpansionTags = {
     Shadowlands = { "shadowlands", "shadow lands", "sl" },
     Dragonflight = { "dragonflight", "dragon flight", "df" },
     TheWarWithin = { "the war within", "war within", "tww" },
-    Midnight = { "midnight" },
+    Midnight = { "midnight", "mn" },
 }
 
 ---@enum LemixPhase
