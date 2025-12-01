@@ -8,7 +8,6 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field itemID integer ID for the item that adds the toy to the collection
 ---@field toyName string Localized toy name
 ---@field iconID integer ID for the icon associated with the toy
----@field isOwned boolean `true` if the toy is owned, `false` otherwise
 
 function AddOn:CreateToyCache()
     ---@type table<number, ToyCacheData> Stores necessary toy data in a local cache - attempting to reduce the amount of stutter/freezing when viewing toys
@@ -25,7 +24,6 @@ function AddOn:CreateToyCache()
                 itemID = toy.ItemID,
                 toyName = toyName or toy.Name,
                 iconID = iconID or 134400,
-                isOwned = PlayerHasToy(toy.ItemID)
             }
     
             if toLoad == 0 then self:PrintDebugMessage("Toy data loaded") end
@@ -48,8 +46,9 @@ function AddOn.ToyDataProviderInit(frame, toy)
     local index = AddOn.ICHDataProvider:FindIndex(toy)
 
     local toyData = AddOn.ToyCache[toy.ItemID]
+    local isOwned = PlayerHasToy(toy.ItemID)
     local localizedInstanceName = EJ_GetInstanceInfo(toy.InstanceID)
-    if toyData.isOwned then
+    if isOwned then
         frame.Bg:Hide()
         frame.OwnedBg:Show()
     else
@@ -69,7 +68,7 @@ function AddOn.ToyDataProviderInit(frame, toy)
     frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(toy) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
 
     AddOn.HideAllDifficultyButtons(frame.DifficultyContainer)
-    AddOn:ShowDifficultyButtons(frame.DifficultyContainer, toy, toyData.isOwned)
+    AddOn:ShowDifficultyButtons(frame.DifficultyContainer, toy, isOwned)
     if toy.Notes then
         frame.OtherInfoContainer.ICHNote.notes = toy.Notes
         frame.OtherInfoContainer.ICHNote:Show()
@@ -79,9 +78,8 @@ function AddOn.ToyDataProviderInit(frame, toy)
 
     AddOn:ConfigureWaypointButton(localizedInstanceName, frame, toy)
 
-    frame.NameContainer.ViewButton:HookScript("OnClick", function()
-        -- Try to find a way to show in the toy journal
-    end)
+    -- Try to find a way to show in the toy journal
+    frame.NameContainer.ViewButton:SetScript("OnClick", nil)
 
     frame.InstanceContainer.ViewButton:HookScript("OnClick", function()
         -- Open the Encounter Journal to the specified instance, difficulty, and encounter

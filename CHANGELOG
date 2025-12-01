@@ -6,9 +6,18 @@ Release versions suffixed with a lowercase letter are considered unofficial _alp
 ## Changes
 **v13**
 - Housing tab added **NEW** (to be populated soon)
-- Added remaining purchasable cosmetics to *Legion: Remix* tab
+- Added remaining purchasable cosmetics to **Legion: Remix Vendor** tab
+  - Remaining open world/questing sets
+  - Dungeon sets
+  - Raid sets
+  - Lost and Found
+- Added Shadowlands items to **Timewalking Vendor** tab
+- Update AddOn to check for updates to item ownership in real-time more consistently
+- Fixed a bug that caused the mount journal to occasionally open when the icon for a toy, pet, or cosmetic was clicked
+- Fixed a bug that caused multiple chat messages to be sent when transferring a Warbound currency was not possible
+
 **v12.3**
-- Begin adding all remaining cosmetics and ensembles to Legion: Remix vendor list
+- Begin adding all remaining cosmetics and ensembles to **Legion: Remix Vendor** tab
   - Currently available cosmetics: All extra rares, Remix exclusive sets, and open world/questing sets (Phase I only)
 
 **v12.2**

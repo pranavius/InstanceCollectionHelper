@@ -9,8 +9,6 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field petName string Localized pet name
 ---@field iconID integer ID for the icon associated with the pet
 ---@field speciesID integer ID for the pet species
----@field owned integer Number of the pet currently owned
----@field limit integer Maximum number of the pet that can be owned
 
 function AddOn:CreatePetCache()
     ---@type table<number, PetCacheData> Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
@@ -21,14 +19,6 @@ function AddOn:CreatePetCache()
         Item:CreateFromItemID(pet.PetItemID):ContinueOnItemLoad(function()
             toLoad = toLoad - 1
             local petName, iconID, _, _, _, _, _, _, _, _, _, _, speciesID = C_PetJournal.GetPetInfoByItemID(pet.PetItemID)
-            local owned, limit
-            if speciesID then
-                local o, l = C_PetJournal.GetNumCollectedInfo(speciesID)
-                owned = o or 0
-                limit = l or 0
-            else
-                owned, limit = 0, 0
-            end
     
             self.PetCache[pet.PetItemID] = {
                 itemName = C_Item.GetItemNameByID(pet.PetItemID) or "",
@@ -36,25 +26,12 @@ function AddOn:CreatePetCache()
                 petName = petName or pet.Name,
                 iconID = iconID or 134400,
                 speciesID = speciesID,
-                owned = owned,
-                limit = limit
+                -- owned = owned,
+                -- limit = limit
             }
     
             if toLoad == 0 then self:PrintDebugMessage("Pet data loaded") end
         end)
-    end
-end
-
----Formats and returns text indicating the number of a pet owned against the maximum number that can be owned
----@param petData PetCacheData
----@return string
-local function ColorOwnedCountText(petData)
-    local text = petData.owned.."/"..petData.limit
-    local percOwned = petData.owned / petData.limit
-    if percOwned == 0 then return ""
-    elseif percOwned <= 0.5 then return RED_FONT_COLOR:WrapTextInColorCode(text)
-    elseif percOwned > 0.5 and percOwned < 1 then return DARKYELLOW_FONT_COLOR:WrapTextInColorCode(text)
-    else return text
     end
 end
 
@@ -71,7 +48,8 @@ function AddOn.PetDataProviderInit(frame, pet)
     local index = AddOn.ICHDataProvider:FindIndex(pet)
 
     local petData = AddOn.PetCache[pet.PetItemID]
-    local isOwned = petData.owned > 0 and (AddOn.db.global.countPetOwnedOnlyIfMaxOwned and petData.owned == petData.limit or true)
+    local owned, limit = AddOn.GetPetOwnedAndLimitCount(petData.speciesID)
+    local isOwned = (owned > 0 and (AddOn.db.global.countPetOwnedOnlyIfMaxOwned and owned == limit or true)) or false
     local localizedInstanceName = EJ_GetInstanceInfo(pet.InstanceID)
     if isOwned then
         frame.Bg:Hide()
@@ -95,7 +73,7 @@ function AddOn.PetDataProviderInit(frame, pet)
     AddOn.HideAllDifficultyButtons(frame.DifficultyContainer)
     AddOn:ShowDifficultyButtons(frame.DifficultyContainer, pet, isOwned)
 
-    frame.OtherInfoContainer.ICHPetCount:SetText(ColorOwnedCountText(petData))
+    frame.OtherInfoContainer.ICHPetCount:SetText(AddOn.ColorOwnedPetCountText(owned, limit))
     frame.OtherInfoContainer.ICHPetCount:Show()
 
     if pet.Notes then
@@ -107,9 +85,8 @@ function AddOn.PetDataProviderInit(frame, pet)
 
     AddOn:ConfigureWaypointButton(localizedInstanceName, frame, pet)
 
-    frame.NameContainer.ViewButton:HookScript("OnClick", function()
-        -- Try to find a way to show in the pet journal
-    end)
+    -- Try to find a way to show in the pet journal
+    frame.NameContainer.ViewButton:SetScript("OnClick", nil)
 
     frame.InstanceContainer.ViewButton:HookScript("OnClick", function()
         -- Open the Encounter Journal to the specified instance, difficulty, and encounter

@@ -10,8 +10,6 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field iconID integer ID for the icon associated with the collectible
 ---@field mountID? integer ID number for the mount (applies to mounts only)
 ---@field speciesID? integer ID for the pet species (applies to pets only)
----@field owned integer|boolean If the collectible is a pet, this is the number of the pet currently owned. For other collectibles, this is `true` if owned and `false` otherwise
----@field limit? integer Maximum number of the pet that can be owned (applies to pets only)
 
 function AddOn:CreateTimewalkingCache()
     ---@type table<number, TimewalkingCacheData> Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
@@ -23,7 +21,7 @@ function AddOn:CreateTimewalkingCache()
             toLoad = toLoad - 1
             if item.Type == "Mount" then
                 local mountID = C_MountJournal.GetMountFromItem(item.ItemID)
-                local name, spellID, _, _, _, _, _, _, _, _, isOwned = C_MountJournal.GetMountInfoByID(mountID)
+                local name, spellID = C_MountJournal.GetMountInfoByID(mountID)
                 local iconID = C_Spell.GetSpellInfo(spellID) and C_Spell.GetSpellInfo(spellID).originalIconID
 
                 self.TimewalkingCache[item.ItemID] = {
@@ -32,7 +30,6 @@ function AddOn:CreateTimewalkingCache()
                     collectibleName = name or item.Name,
                     iconID = iconID or 134400,
                     mountID = mountID,
-                    owned = isOwned
                 }
             elseif item.Type == "Toy" then
                 local _, toyName, iconID = C_ToyBox.GetToyInfo(item.ItemID)
@@ -42,18 +39,9 @@ function AddOn:CreateTimewalkingCache()
                     itemID = item.ItemID,
                     collectibleName = toyName or item.Name,
                     iconID = iconID or 134400,
-                    owned = PlayerHasToy(item.ItemID)
                 }
             elseif item.Type == "Pet" then
                 local petName, iconID, _, _, _, _, _, _, _, _, _, _, speciesID = C_PetJournal.GetPetInfoByItemID(item.ItemID)
-                local owned, limit
-                if speciesID then
-                    local o, l = C_PetJournal.GetNumCollectedInfo(speciesID)
-                    owned = o or 0
-                    limit = l or 0
-                else
-                    owned, limit = 0, 0
-                end
         
                 self.TimewalkingCache[item.ItemID] = {
                     itemName = C_Item.GetItemNameByID(item.ItemID) or "",
@@ -61,27 +49,11 @@ function AddOn:CreateTimewalkingCache()
                     collectibleName = petName or item.Name,
                     iconID = iconID or 134400,
                     speciesID = speciesID,
-                    owned = owned,
-                    limit = limit
                 }
             end
 
             if toLoad == 0 then self:PrintDebugMessage("Timewalking data loaded") end
         end)
-    end
-end
-
----Formats and returns text indicating the number of a pet owned against the maximum number that can be owned<br/>
----This is a variation on the function `ColorOwnedCountText` that is local to `PetDataProvider.lua` adapted for `TimewalkingCacheData` objects
----@param data TimewalkingCacheData
----@return string
-local function ColorOwnedPetCountText(data)
-    local text = data.owned.."/"..data.limit
-    local percOwned = data.owned / data.limit
-    if percOwned == 0 then return ""
-    elseif percOwned <= 0.5 then return RED_FONT_COLOR:WrapTextInColorCode(text)
-    elseif percOwned > 0.5 and percOwned < 1 then return DARKYELLOW_FONT_COLOR:WrapTextInColorCode(text)
-    else return text
     end
 end
 
@@ -96,10 +68,8 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     local data = AddOn.TimewalkingCache[item.ItemID]
     frame.relevantID = item.Type == "Mount" and data.mountID or data.itemID
 
-    local isOwned = data.owned
-    if item.Type == "Pet" then
-         isOwned = data.owned > 0 and (AddOn.db.global.countPetOwnedOnlyIfMaxOwned and data.owned == data.limit or true)
-    end
+    local isOwned = AddOn.GetIsVendorItemOwned(data, item.Type)
+
     if isOwned then
         frame.Bg:Hide()
         frame.OwnedBg:Show()
@@ -125,7 +95,7 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     frame.CostContainer.Text:SetText("x"..FormatLargeNumber(item.Cost))
 
     if item.Type == "Pet" then
-        frame.OtherInfoContainer.ICHPetCount:SetText(ColorOwnedPetCountText(data))
+        frame.OtherInfoContainer.ICHPetCount:SetText(AddOn.ColorOwnedPetCountText(AddOn.GetPetOwnedAndLimitCount(data.speciesID)))
         frame.OtherInfoContainer.ICHPetCount:Show()
     elseif frame.OtherInfoContainer.ICHPetCount:IsShown() then
         frame.OtherInfoContainer.ICHPetCount:Hide()
@@ -155,9 +125,10 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
             end
         end)
     else
-        frame.NameContainer.ViewButton:HookScript("OnClick", function() end)
+        frame.NameContainer.ViewButton:SetScript("OnClick", nil)
     end
 
+    frame.CostContainer.CurrencyButton:SetScript("OnClick", nil)
     frame.CostContainer.CurrencyButton:HookScript("OnClick", function()
         AddOn:PrintDebugMessage("Timewarped Badges transfer requested")
         if not C_CurrencyInfo.CanTransferCurrency(frame.CostContainer.currencyID) then

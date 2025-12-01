@@ -13,6 +13,7 @@ AddOn.DatabaseDefaults = {
         selectedTab = nil,
         countPetOwnedOnlyIfMaxOwned = false,
         debugMessages = false,
+        ownedCosmeticsCache = {}
     }
 }
 

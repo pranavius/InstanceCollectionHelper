@@ -10,8 +10,6 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field iconID integer ID for the icon associated with the collectible
 ---@field mountID? integer ID number for the mount (applies to mounts only)
 ---@field speciesID? integer ID for the pet species (applies to pets only)
----@field owned integer|boolean If the collectible is a pet, this is the number of the pet currently owned. For other collectibles, this is `true` if owned and `false` otherwise
----@field limit? integer Maximum number of the pet that can be owned (applies to pets only)
 
 ---@class LemixResourceCacheData
 ---@field itemName string
@@ -32,18 +30,16 @@ function AddOn:CreateLemixCache()
                 -- TODO: Replace with better fix for Scornwing Flight Form later
                 if item.ItemID == 253024 then
                     local name, _, _, _, _, _, _, _, _, iconID = C_Item.GetItemInfo(item.ItemID)
-                    local isOwned = C_SpellBook.IsSpellInSpellBook(1255451)
                     self.LemixCache[item.ItemID] = {
                         itemName = C_Item.GetItemNameByID(item.ItemID) or "",
                         itemID = item.ItemID,
                         collectibleName = name or item.Name,
                         iconID = iconID or 134400,
                         mountID = 999999,
-                        owned = isOwned
                     }
                 else
                     local mountID = C_MountJournal.GetMountFromItem(item.ItemID)
-                    local name, spellID, _, _, _, _, _, _, _, _, isOwned = C_MountJournal.GetMountInfoByID(mountID)
+                    local name, spellID = C_MountJournal.GetMountInfoByID(mountID)
                     local iconID = C_Spell.GetSpellInfo(spellID) and C_Spell.GetSpellInfo(spellID).originalIconID
     
                     self.LemixCache[item.ItemID] = {
@@ -51,8 +47,7 @@ function AddOn:CreateLemixCache()
                         itemID = item.ItemID,
                         collectibleName = name or item.Name,
                         iconID = iconID or 134400,
-                        mountID = mountID,
-                        owned = isOwned
+                        mountID = mountID
                     }
                 end
             elseif item.Type == "Toy" then
@@ -62,38 +57,27 @@ function AddOn:CreateLemixCache()
                     itemName = C_Item.GetItemNameByID(item.ItemID) or "",
                     itemID = item.ItemID,
                     collectibleName = toyName or item.Name,
-                    iconID = iconID or 134400,
-                    owned = PlayerHasToy(item.ItemID)
+                    iconID = iconID or 134400
                 }
             elseif item.Type == "Pet" then
                 local petName, iconID, _, _, _, _, _, _, _, _, _, _, speciesID = C_PetJournal.GetPetInfoByItemID(item.ItemID)
-                local owned, limit
-                if speciesID then
-                    local o, l = C_PetJournal.GetNumCollectedInfo(speciesID)
-                    owned = o or 0
-                    limit = l or 0
-                else
-                    owned, limit = 0, 0
-                end
         
                 self.LemixCache[item.ItemID] = {
                     itemName = C_Item.GetItemNameByID(item.ItemID) or "",
                     itemID = item.ItemID,
                     collectibleName = petName or item.Name,
                     iconID = iconID or 134400,
-                    speciesID = speciesID,
-                    owned = owned,
-                    limit = limit
+                    speciesID = speciesID
                 }
             elseif item.Type == "Cosmetic" then
+                self:UpdateOwnedCosmeticsCacheByItemID(item.ItemID)
                 local iconID = C_Item.GetItemIconByID(item.ItemID)
-                local isOwned = self:IsCosmeticOwned(item)
+
                 self.LemixCache[item.ItemID] = {
                     itemName = C_Item.GetItemNameByID(item.ItemID) or "",
                     itemID = item.ItemID,
                     collectibleName = item.Name,
-                    iconID = iconID or 134400,
-                    owned = isOwned
+                    iconID = iconID or 134400
                 }
             end
             if toLoad == 0 then self:PrintDebugMessage("Legion: Remix data loaded") end
@@ -113,20 +97,6 @@ function AddOn:CreateLemixCache()
     end
 end
 
----Formats and returns text indicating the number of a pet owned against the maximum number that can be owned<br/>
----This is a variation on the function `ColorOwnedCountText` that is local to `PetDataProvider.lua` adapted for `LemixCacheData` objects
----@param data LemixCacheData
----@return string
-local function ColorOwnedPetCountText(data)
-    local text = data.owned.."/"..data.limit
-    local percOwned = data.owned / data.limit
-    if percOwned == 0 then return ""
-    elseif percOwned <= 0.5 then return RED_FONT_COLOR:WrapTextInColorCode(text)
-    elseif percOwned > 0.5 and percOwned < 1 then return DARKYELLOW_FONT_COLOR:WrapTextInColorCode(text)
-    else return text
-    end
-end
-
 ---@param frame ICHLemixListItem
 ---@param item WowRemixItem
 function AddOn.LemixDataProviderInit(frame, item)
@@ -138,10 +108,7 @@ function AddOn.LemixDataProviderInit(frame, item)
     local data = AddOn.LemixCache[item.ItemID]
     frame.relevantID = item.Type == "Mount" and data.mountID or data.itemID
 
-    local isOwned = data.owned
-    if item.Type == "Pet" then
-         isOwned = data.owned > 0 and (AddOn.db.global.countPetOwnedOnlyIfMaxOwned and data.owned == data.limit or true)
-    end
+    local isOwned = AddOn.GetIsVendorItemOwned(data, item.Type)
     if isOwned then
         frame.Bg:Hide()
         frame.OwnedBg:Show()
@@ -188,7 +155,7 @@ function AddOn.LemixDataProviderInit(frame, item)
     frame.CostContainer.Text:SetText(costText)
 
     if item.Type == "Pet" then
-        frame.OtherInfoContainer.ICHPetCount:SetText(ColorOwnedPetCountText(data))
+        frame.OtherInfoContainer.ICHPetCount:SetText(AddOn.ColorOwnedPetCountText(AddOn.GetPetOwnedAndLimitCount(data.speciesID)))
         frame.OtherInfoContainer.ICHPetCount:Show()
     elseif frame.OtherInfoContainer.ICHPetCount:IsShown() then
         frame.OtherInfoContainer.ICHPetCount:Hide()
@@ -212,9 +179,10 @@ function AddOn.LemixDataProviderInit(frame, item)
             end
         end)
     else
-        frame.NameContainer.ViewButton:HookScript("OnClick", function() end)
+        frame.NameContainer.ViewButton:SetScript("OnClick", nil)
     end
 
+    frame.CostContainer.CurrencyButton:SetScript("OnClick", nil)
     frame.CostContainer.CurrencyButton:HookScript("OnClick", function()
         AddOn:PrintDebugMessage("Bronze transfer requested")
         if not C_CurrencyInfo.CanTransferCurrency(frame.CostContainer.currencyID) then
