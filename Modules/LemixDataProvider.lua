@@ -179,7 +179,7 @@ function AddOn.LemixDataProviderInit(frame, item)
             end
         end)
     else
-        frame.NameContainer.ViewButton:HookScript("OnClick", function() end)
+        frame.NameContainer.ViewButton:SetScript("OnClick", nil)
     end
 
     frame.CostContainer.CurrencyButton:HookScript("OnClick", function()
