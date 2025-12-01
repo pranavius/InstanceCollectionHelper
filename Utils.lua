@@ -181,24 +181,77 @@ function AddOn.AppendMapSearchTags(data)
     data.SearchTags = tags
 end
 
----@param item TimewalkingItem|WowRemixItem
-function AddOn:IsCosmeticOwned(item)
-    if not item.Type or not item.Type == "Cosmetic" then return false end
-    local isOwned = false
-    local tooltip = C_TooltipInfo.GetItemByID(item.ItemID)
-    if tooltip and tooltip.lines then
-        for _, data in ipairs(tooltip.lines) do
-            if data.type == 26 then
-                isOwned = true
-                break
-            elseif data.leftText:lower() == ERR_COSMETIC_KNOWN:lower() then
-                isOwned = true
-                break
+---Updates the AddOn database list of owned cosmetics, fetching item data when needed but not available
+---@param itemID integer
+function AddOn:UpdateOwnedCosmeticsCacheByItemID(itemID)
+    local function getTooltipAndUpdateOwnedCosmeticsCache()
+        local tooltip = C_TooltipInfo.GetItemByID(itemID)
+        if tooltip and tooltip.lines then
+            for _, data in ipairs(tooltip.lines) do
+                if data.type == 26 then
+                    self.db.global.ownedCosmeticsCache[itemID] = true
+                    break
+                elseif data.leftText:lower() == ERR_COSMETIC_KNOWN:lower() then
+                    self.db.global.ownedCosmeticsCache[itemID] = true
+                    break
+                end
             end
+        else
+            self:PrintDebugMessage("No tooltip data found for item ID", itemID)
         end
-    else
-        self:PrintDebugMessage("No tooltip data found for", item.Name)
+    end
+    if self.db.global.ownedCosmeticsCache[itemID] ~= true and not C_Item.IsItemDataCachedByID(itemID) then
+        Item:CreateFromItemID(itemID):ContinueOnItemLoad(getTooltipAndUpdateOwnedCosmeticsCache)
+    elseif self.db.global.ownedCosmeticsCache[itemID] ~= true then
+        getTooltipAndUpdateOwnedCosmeticsCache()
+    elseif self.db.global.ownedCosmeticsCache[itemID] == nil then
+        self.db.global.ownedCosmeticsCache[itemID] = false
+    end
+end
+
+---Formats and returns text indicating the number of a pet owned against the maximum number that can be owned
+---@param owned integer Number of the pet that is owned
+---@param limit integer Maximum number that can be owned
+---@return string
+function AddOn.ColorOwnedPetCountText(owned, limit)
+    local text = owned.."/"..limit
+    local percOwned = owned / limit
+    if percOwned == 0 then return ""
+    elseif percOwned <= 0.5 then return RED_FONT_COLOR:WrapTextInColorCode(text)
+    elseif percOwned > 0.5 and percOwned < 1 then return DARKYELLOW_FONT_COLOR:WrapTextInColorCode(text)
+    else return text
+    end
+end
+
+---@param data TimewalkingCacheData|LemixCacheData
+---@param type "Mount"|"Toy"|"Pet"|"Cosmetic"
+---@return boolean isOwned
+function AddOn.GetIsVendorItemOwned(data, type)
+    local isOwned = false
+    if type == "Mount" then
+        isOwned = select(11, C_MountJournal.GetMountInfoByID(data.mountID))
+    elseif type == "Pet" then
+        local owned, limit = AddOn.GetPetOwnedAndLimitCount(data.speciesID)
+        isOwned = (owned > 0 and (AddOn.db.global.countPetOwnedOnlyIfMaxOwned and owned == limit or true)) or false
+    elseif type == "Cosmetic" then
+        isOwned = AddOn.db.global.ownedCosmeticsCache[data.itemID] or false
+    elseif type == "Toy" then
+        isOwned = PlayerHasToy(data.itemID)
     end
 
     return isOwned
+end
+
+---@param speciesID integer ID for the pet species
+---@return number owned Number of the pet that is owned
+---@return number limit Maximum number that can be owned
+function AddOn.GetPetOwnedAndLimitCount(speciesID)
+    local owned, limit
+    if speciesID then
+        owned, limit = C_PetJournal.GetNumCollectedInfo(speciesID)
+    else
+        owned, limit = 0, 0
+    end
+
+    return owned or 0, limit or 0
 end

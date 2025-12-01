@@ -186,8 +186,8 @@ function AddOn:UpdateListContents()
         self.Container.SearchBox.Instructions:SetText(L["Search by mount/instance name, instance type, difficulty, or expansion"])
     elseif selectedTab == self.Tabs.ToysTab then
         for _, toy in ipairs(self.Toys) do
-            local toyData = self.ToyCache[toy.ItemID]
-            if toyData and not toyData.isOwned or (toyData.isOwned and self.db.global.showOwned) then
+            local isOwned = PlayerHasToy(toy.ItemID)
+            if not isOwned or (isOwned and self.db.global.showOwned) then
                 tinsert(newData, toy)
             else
                 self:PrintDebugMessage("Failed to curate table data for toy:", toy.Name)
@@ -197,7 +197,8 @@ function AddOn:UpdateListContents()
     elseif selectedTab == self.Tabs.PetsTab then
         for _, pet in ipairs(self.Pets) do
             local petData = self.PetCache[pet.PetItemID]
-            local isOwned = (petData and petData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and petData.owned == petData.limit or true)) or false
+            local owned, limit = self.GetPetOwnedAndLimitCount(petData.speciesID)
+            local isOwned = (owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and owned == limit or true)) or false
             if not isOwned or (isOwned and self.db.global.showOwned) then
                 tinsert(newData, pet)
             else
@@ -210,15 +211,13 @@ function AddOn:UpdateListContents()
             local itemData = self.TimewalkingCache[item.ItemID]
 
             if itemData then
+                local isOwned = self.GetIsVendorItemOwned(itemData, item.Type)
                 local shouldInsert = false
                 if item.Type == "Mount" then
                     local hideOnChar = select(10, C_MountJournal.GetMountInfoByID(itemData.mountID))
-                    shouldInsert = not hideOnChar and (not itemData.owned or (itemData.owned and self.db.global.showOwned))
-                elseif item.Type == "Pet" then
-                    local isOwned = itemData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and itemData.owned == itemData.limit or true)
-                    shouldInsert = not isOwned or (isOwned and self.db.global.showOwned)
+                    shouldInsert = not hideOnChar and (not isOwned or (isOwned and self.db.global.showOwned))
                 else
-                    shouldInsert = not itemData.owned or (itemData.owned and self.db.global.showOwned)
+                    shouldInsert = not isOwned or (isOwned and self.db.global.showOwned)
                 end
 
                 if shouldInsert then
@@ -235,22 +234,15 @@ function AddOn:UpdateListContents()
             local itemData = self.LemixCache[item.ItemID]
 
             if itemData then
+                local isOwned = self.GetIsVendorItemOwned(itemData, item.Type)
                 local shouldInsert = false
-                if item.Type == "Mount" then
-                    -- Needed for a specific fix for Scornwing Flight Form until I can find a better solution
-                    if item.ItemID == 253024 then
-                        shouldInsert = true
-                    else
-                        -- Show all mounts, even class-specific ones
-                        -- local hideOnChar = select(10, C_MountJournal.GetMountInfoByID(itemData.mountID))
-                        shouldInsert = --[[ not hideOnChar and ]] (not itemData.owned or (itemData.owned and self.db.global.showOwned))
-                    end
-                elseif item.Type == "Pet" then
-                    local isOwned = itemData.owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and itemData.owned == itemData.limit or true)
-                    shouldInsert = not isOwned or (isOwned and self.db.global.showOwned)
+                -- Needed for a specific fix for Scornwing Flight Form until I can find a better solution
+                if item.Type == "Mount" and item.ItemID == 253024 then
+                    shouldInsert = true
                 else
-                    shouldInsert = not itemData.owned or (itemData.owned and self.db.global.showOwned)
+                    shouldInsert = not isOwned or (isOwned and self.db.global.showOwned)
                 end
+
                 if shouldInsert then
                     tinsert(newData, item)
                 else

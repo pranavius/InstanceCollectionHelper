@@ -3,20 +3,22 @@
 _Track available collectibles from instances and easily set required instance difficulty_
 
 **ICH will have a tab showing available Legion: Remix Vendor collectibles for the duration of the event**
+**ICH will be continue to be supported in the Midnight expansion and beyond (for the foreseeable future)**
 
 **Important:** I am looking for translators to help bring this AddOn to those who may not understand English. If interested, please contact me via one of the means listed in the [Contact](#contact) section.
 
 ## Highlights
 - Tabs for mounts, toys, and pets that are available from instances
 - Search for a collectible by its name, an instance name or type, a difficulty setting, or by expansion
-- Easily keep track of all available mounts, pets, and toys offered by Timewalking vendors along with their costs (**NEW**)
+- Easily keep track of all available mounts, pets, and toys offered by Timewalking vendors along with their costs
+- Track which Housing items can be found from instances **COMING SOON**
 - Multi-column scrollable UI with Name, Instance, and Available Difficulty columns
 - Links to in-game mount journal as well as instance and encounter journal for each item in the list
 - Ability to drop a map pin at the instance entrance to make navigating easier
-  - If the **TomTom** addon is enabled, an option to use **TomTom** waypoints instead of Blizzard map pins is available
-- Simple buttons to set your desired instance difficulty with a single click
+  - If the **TomTom** AddOn is enabled, an option to use **TomTom** waypoints instead of Blizzard map pins is available
+- Buttons to easily set your desired instance difficulty with a single click
 - DataBroker integration for quick access to options via minimap button or other DataBroker AddOns
-- AddOn Compartment integration to easily open the AddOn when the minimap button is hidden (**NEW**)
+- AddOn Compartment integration to easily open the AddOn when the minimap button is hidden
 
 ## Summary
 **Instance Collection Helper** is designed to help collectors easily identify and set an appropriate instance difficulty when pursuing a collectible from a dungeon or raid. Available items can be further filtered by name, instance name, instance type (dungeon or raid), as well as instance difficulty. When a collectible cannot be obtained on a given difficulty, the button for that difficulty will be disabled. This effectively provides a simple and clean "to-do" list in the AddOn UI so you can decide to attempt to get the item on another difficulty or pivot to hunting for a new one.

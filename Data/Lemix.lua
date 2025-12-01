@@ -2071,7 +2071,7 @@ AddOn.LemixItems = {
     },
     {
         Name = "Ensemble: Zealous Felslingers Battle Armor",
-        ItemID = 253954,
+        ItemID = 253594,
         Type = "Cosmetic",
         VendorName = "Larah Treebender",
         Cost = 15000,
