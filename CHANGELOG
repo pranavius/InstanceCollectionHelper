@@ -13,6 +13,8 @@ Release versions suffixed with a lowercase letter are considered unofficial _alp
   - Lost and Found
 - Added Shadowlands items to **Timewalking Vendor** tab
 - Update AddOn to check for updates to item ownership in real-time more consistently
+- Fixed a bug that caused the mount journal to occasionally open when the icon for a toy, pet, or cosmetic was clicked
+- Fixed a bug that caused multiple chat messages to be sent when transferring a Warbound currency was not possible
 
 **v12.3**
 - Begin adding all remaining cosmetics and ensembles to **Legion: Remix Vendor** tab
