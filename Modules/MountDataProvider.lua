@@ -27,8 +27,8 @@ function AddOn.MountDataProviderInit(frame, data)
         frame.OwnedBg:Hide()
         if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
     end
-    AddOn:SetTruncatedText(frame.NameContainer.Text, localizedMountName) -- Localized mount name truncated if text width exceeds allocated space
-    AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName)  -- Localized instance name truncated if text width exceeds allocated space
+    AddOn:SetTruncatedText(frame.NameContainer.Text, localizedMountName or data.Name) -- Localized mount name truncated if text width exceeds allocated space
+    AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName or data.Instance)  -- Localized instance name truncated if text width exceeds allocated space
 
     local iconID = C_Spell.GetSpellInfo(mountSpellID) and C_Spell.GetSpellInfo(mountSpellID).originalIconID
     frame.NameContainer.ViewButton:ClearNormalTexture()
@@ -37,8 +37,14 @@ function AddOn.MountDataProviderInit(frame, data)
     frame.NameContainer.ViewButton:SetHighlightTexture(iconID or 134400)
 
     frame.InstanceContainer.encounterID = data.EncounterID or -1
+    --@retail@
     frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
     frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
+    --@end-retail@
+    --@version-mists@
+    frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "Raid" or "Dungeon")
+    frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "Raid" or "Dungeon")
+    --@end-version-mists@
 
     AddOn.HideAllDifficultyButtons(frame.DifficultyContainer)
     AddOn:ShowDifficultyButtons(frame.DifficultyContainer, data, isOwned)

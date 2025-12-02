@@ -181,6 +181,7 @@ AddOn.Mounts = {
         MapID = 967,
         AreaPoiID = 6512,
         EncounterID = 333,
+        --@retail@
         DifficultyIDs = { RaidDifficulty.Legacy10H },
         SharedDifficulties = {
             [RaidDifficulty.Legacy10] = RaidDifficulty.Legacy10H,
@@ -188,6 +189,13 @@ AddOn.Mounts = {
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H
         },
         Notes = L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"],
+        --@end-retail@
+        --@version-mists@
+        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        SharedDifficulties = {
+            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10
+        },
+        --@end-version-mists@
         Waypoint = { mapID = 71, x = 0.647, y = 0.513 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -281,7 +289,9 @@ AddOn.Mounts = {
         AreaPoiID = 6685,
         EncounterID = 115,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic },
+        --@retail@
         Notes = L["Also obtainable in Timewalking"],
+        --@end-retail@
         Waypoint = { mapID = 1527, x = 0.767, y = 0.844 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -366,6 +376,12 @@ AddOn.Mounts = {
         EncounterID = 194,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
         Notes = L["Also obtainable in Timewalking"],
+        -- TODO: Fix for mists
+        -- DifficultyIDs = { RaidDifficulty.Legacy10, RaidDifficulty.Legacy10H, RaidDifficulty.Legacy25, RaidDifficulty.Legacy25H },
+        -- SharedDifficulties = {
+        --     [RaidDifficulty.Legacy10] = RaidDifficulty.Legacy25,
+        --     [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy25H
+        -- },
         Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -551,7 +567,12 @@ AddOn.Mounts = {
         AreaPoiID = 6523,
         EncounterID = 1649,
         DifficultyIDs = { RaidDifficulty.Normal },
+        --@retail@
         Notes = L["Upon entering the instance, raid difficulty will automatically be set to Normal"].."\n\n"..L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"],
+        --@end-retail@
+        --@version-mists@
+        Notes = L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"],
+        --@end-version-mists@
         Waypoint = { mapID = 120, x = 0.416, y = 0.178 },
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
@@ -602,6 +623,12 @@ AddOn.Mounts = {
         EncounterID = 198,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
         Notes = L["Also obtainable in Timewalking"],
+        -- TODO: Fix for mists
+        -- DifficultyIDs = { RaidDifficulty.Legacy10, RaidDifficulty.Legacy10H, RaidDifficulty.Legacy25, RaidDifficulty.Legacy25H },
+        -- SharedDifficulties = {
+        --     [RaidDifficulty.Legacy10] = RaidDifficulty.Legacy25,
+        --     [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy25H
+        -- },
         Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -637,7 +664,9 @@ AddOn.Mounts = {
         MapID = 329,
         EncounterID = 456,
         DifficultyIDs = { DungeonDifficulty.Normal },
+        --@retail@
         Notes = L["Also obtainable in Timewalking"],
+        --@end-retail@
         Waypoint = { mapID = 23, x = 0.436, y = 0.191 },
         SearchTags = AddOn.ExpansionTags.Classic
     },
@@ -752,7 +781,9 @@ AddOn.Mounts = {
         AreaPoiID = 6718,
         EncounterID = 533,
         DifficultyIDs = { DungeonDifficulty.Heroic },
+        --@retail@
         Notes = L["Also obtainable in Timewalking"],
+        --@end-retail@
         Waypoint = { mapID = 122, x = 0.61, y = 0.307 },
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },

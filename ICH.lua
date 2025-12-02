@@ -37,10 +37,12 @@ function AddOn:OnInitialize()
     -- Load database
 	self.db = LibStub("AceDB-3.0"):New("ICH_DB", AddOn.DatabaseDefaults, true)
     -- Create local caches for Toys, Pets, and Timewalking Items
+    --@retail@
     self:CreateToyCache()
     self:CreatePetCache()
     self:CreateTimewalkingCache()
     self:CreateLemixCache()
+    --@end-retail@
 
     -- Data broker registration for minimap icon
     local broker = LDB:NewDataObject(name, {
@@ -80,8 +82,15 @@ function AddOn:ConfigureOnInit()
     ICHFooter.ScaleContainer.WindowScale:Init(AddOn.db.global.windowScale, 0.8, 1.2, 80)
     ICHFooter.OwnedContainer.Checkbox:SetChecked(self.db.global.showOwned)
     ICHFooter.TomTomContainer.Checkbox:SetChecked(self.db.global.useTomTomPoints)
+    --@retail@
     self:CreateTabSystem()
     self.Tabs:SetTab(self.Tabs.MountsTab)
+    --@end-retail@
+    --@version-mists@
+    self.Tabs = { MountsTab = 1, ToysTab = 2, PetsTab = 3 }
+    self.db.global.selectedTab = self.Tabs.MountsTab
+    self:UpdateListContents()
+    --@end-version-mists@
     -- Set window scale
     self.Container:SetScale(self.db.global.windowScale)
 end
@@ -103,19 +112,19 @@ function AddOn:FilterListContentsByQuery(listData)
     for _, data in ipairs(listData) do
         -- Using localized names for mounts, instances, encounters, etc for better search results
         local itemName
-        local instanceName = EJ_GetInstanceInfo(data.InstanceID) or ""
+        local instanceName = EJ_GetInstanceInfo(data.InstanceID) or data.Instance
         local encounterName = data.EncounterID and EJ_GetEncounterInfo(data.EncounterID) or ""
         if selectedTab == self.Tabs.MountsTab then
-            itemName = C_MountJournal.GetMountInfoByID(data.ID) or ""
+            itemName = C_MountJournal.GetMountInfoByID(data.ID) or data.Name
         elseif selectedTab == self.Tabs.ToysTab then
-            itemName = select(2, C_ToyBox.GetToyInfo(data.ItemID)) or ""
+            itemName = select(2, C_ToyBox.GetToyInfo(data.ItemID)) or data.Name
             if not itemName then itemName = "" end
         elseif selectedTab == self.Tabs.PetsTab then
-            itemName = C_PetJournal.GetPetInfoByItemID(data.PetItemID) or ""
+            itemName = C_PetJournal.GetPetInfoByItemID(data.PetItemID) or data.Name
         elseif selectedTab == self.Tabs.TimewalkingVendorTab then
-            itemName = self.TimewalkingCache[data.ItemID].itemName or ""
+            itemName = self.TimewalkingCache[data.ItemID].itemName or data.Name
         elseif selectedTab == self.Tabs.LegionRemixVendorTab then
-            itemName = self.LemixCache[data.ItemID].itemName or ""
+            itemName = self.LemixCache[data.ItemID].itemName or data.Name
         end
         local cleanName = itemName:lower():gsub("|.+|.*", "")
         nameMatches = cleanName:match(query) and true or false
@@ -177,7 +186,8 @@ function AddOn:UpdateListContents()
         for _, mount in ipairs(self.Mounts) do
             -- Checking hideOnChar for mounts like Grand Black War Mammoth, which has a faction specific version
             local _, _, _, _, _, _, _, _, _, hideOnChar, isOwned = C_MountJournal.GetMountInfoByID(mount.ID)
-            if not hideOnChar and (not isOwned or (isOwned and self.db.global.showOwned)) then
+            local mountExists = hideOnChar ~= nil and isOwned ~= nil
+            if mountExists and not hideOnChar and (not isOwned or (isOwned and self.db.global.showOwned)) then
                 tinsert(newData, mount)
             else
                 self:PrintDebugMessage("Failed to curate table data for mount:", mount.Name)
@@ -206,6 +216,7 @@ function AddOn:UpdateListContents()
             end
         end
         self.Container.SearchBox.Instructions:SetText(L["Search by pet/instance name, instance type, difficulty, or expansion"])
+    --@retail@
     elseif selectedTab == self.Tabs.TimewalkingVendorTab then
         for _, item in ipairs(self.TimewalkingItems) do
             local itemData = self.TimewalkingCache[item.ItemID]
@@ -253,6 +264,7 @@ function AddOn:UpdateListContents()
             end
         end
         -- Update search box instructions somehow
+    --@end-retail@
     end
 
     -- Filter list results based on search criteria when present

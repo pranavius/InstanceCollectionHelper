@@ -30,7 +30,6 @@ function ICHListItemMixin:OnLoad()
     local iContainer = self.InstanceContainer
     local cContainer = self.CostContainer
     local note = self.OtherInfoContainer.ICHNote
-    local waypointButton = self.OtherInfoContainer.ICHWaypointButton
 
     nContainer.ViewButton:HookScript("OnEnter", function()
         if self.relevantID then
@@ -95,6 +94,8 @@ function ICHListItemMixin:OnLoad()
         GameTooltip:Hide()
     end)
 
+    --@retail@
+    local waypointButton = self.OtherInfoContainer.ICHWaypointButton
     waypointButton:HookScript("OnEnter", function()
         GameTooltip:SetOwner(waypointButton, "ANCHOR_TOP")
         if waypointButton.instanceID then
@@ -113,6 +114,7 @@ function ICHListItemMixin:OnLoad()
     waypointButton:HookScript("OnLeave", function()
         GameTooltip:Hide()
     end)
+    --@end-retail@
 end
 
 ------- ANNOTATIONS -------
