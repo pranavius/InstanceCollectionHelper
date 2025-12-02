@@ -281,7 +281,9 @@ AddOn.Mounts = {
         AreaPoiID = 6685,
         EncounterID = 115,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic },
+        --@retail@
         Notes = L["Also obtainable in Timewalking"],
+        --@end-retail@
         Waypoint = { mapID = 1527, x = 0.767, y = 0.844 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -365,7 +367,9 @@ AddOn.Mounts = {
         AreaPoiID = 6514,
         EncounterID = 194,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
+        --@retail@
         Notes = L["Also obtainable in Timewalking"],
+        --@end-retail@
         Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -551,7 +555,12 @@ AddOn.Mounts = {
         AreaPoiID = 6523,
         EncounterID = 1649,
         DifficultyIDs = { RaidDifficulty.Normal },
+        --@retail@
         Notes = L["Upon entering the instance, raid difficulty will automatically be set to Normal"].."\n\n"..L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"],
+        --@end-retail@
+        --@version-mists@
+        Notes = L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"],
+        --@end-version-mists@
         Waypoint = { mapID = 120, x = 0.416, y = 0.178 },
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
@@ -601,7 +610,9 @@ AddOn.Mounts = {
         AreaPoiID = 6514,
         EncounterID = 198,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
+        --@retail@
         Notes = L["Also obtainable in Timewalking"],
+        --@end-retail@
         Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -637,7 +648,9 @@ AddOn.Mounts = {
         MapID = 329,
         EncounterID = 456,
         DifficultyIDs = { DungeonDifficulty.Normal },
+        --@retail@
         Notes = L["Also obtainable in Timewalking"],
+        --@end-retail@
         Waypoint = { mapID = 23, x = 0.436, y = 0.191 },
         SearchTags = AddOn.ExpansionTags.Classic
     },
@@ -752,7 +765,9 @@ AddOn.Mounts = {
         AreaPoiID = 6718,
         EncounterID = 533,
         DifficultyIDs = { DungeonDifficulty.Heroic },
+        --@retail@
         Notes = L["Also obtainable in Timewalking"],
+        --@end-retail@
         Waypoint = { mapID = 122, x = 0.61, y = 0.307 },
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
