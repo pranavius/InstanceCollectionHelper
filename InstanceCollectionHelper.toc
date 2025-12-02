@@ -2,8 +2,8 @@
 ## Title: Instance Collection Helper
 ## Notes: Helps find and set the instance difficulty needed to obtain collectible items
 ## IconTexture: Interface\AddOns\InstanceCollectionHelper\Media\Logo.png
-## Author: pranavius
-## Version: 13
+## Author: @project-author@
+## Version: @project-version@
 ## SavedVariables: ICH_DB
 ## Category: Collections
 ## AddonCompartmentFunc: ICH_AddonCompartmentOnClick
@@ -13,6 +13,7 @@
 ## X-Additional-Categories: Achievements, Battle Pets, Boss Encounters, Miscellaneous
 ## X-Curse-Project-ID: 1302094
 ## X-Wago-ID: kGr0j76y
+## X-Last-Update: @project-date-iso@
 
 embeds.xml
 
