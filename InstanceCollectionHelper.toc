@@ -1,4 +1,5 @@
-## Interface: 120000
+## Interface: 120000, 110207
+## Interface-Mists: 50502
 ## Title: Instance Collection Helper
 ## Notes: Helps find and set the instance difficulty needed to obtain collectible items
 ## IconTexture: Interface\AddOns\InstanceCollectionHelper\Media\Logo.png
