@@ -10,6 +10,11 @@ local ICH_GetClassColor = C_ClassColor.GetClassColor
 local ICH_GetQuestName = C_QuestLog.GetQuestInfo
 local ICH_GetClassColor = GetClassColorObj
 --@end-version-mists@
+local function ICH_GetClassName(classID, fallbackValue)
+    local className = select(1, GetClassInfo(classID))
+    if not className then return fallbackValue end
+    return className
+end
 
 --- Mount Notes ---
 -- L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"] = "此團隊副本只有10人的難度，因此在進入副本之前可以設置任何團隊難度"
@@ -30,13 +35,13 @@ L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after k
 L["Dropped by the Rare Elite Vixx the Collector"] = "掉落自稀有精英 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("收藏家』維克斯")
 L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "此物品可獲得，儘管它未出現在 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("古爾丹").." 的掉落表中"
 L["Can drop from every boss in the dungeon"] = "可從該副本的每個首領掉落"
-L["Can only be looted and used by a Druid"] = "僅限 "..WrapTextInColor(select(1, GetClassInfo(11)), ICH_GetClassColor("DRUID")).." 掠取並使用"
+L["Can only be looted and used by a Druid"] = "僅限 "..WrapTextInColor(ICH_GetClassName(11, "Druid"), ICH_GetClassColor("DRUID")).." 掠取並使用"
 L["Can also be looting by fishing within the instance"] = "也可在副本內透過釣魚獲得"
 L["Requires completion of the achievement Relics of a Fallen Empire"] = "需要完成成就 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(17366)) or "Relics of a Fallen Empire")
 L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "此物僅可在通靈學院（經典版）中取得。如尚未解鎖此副本，請先線上尋找教學。"
 L["Dropped by the hidden boss Endgineer Omegaplugg"] = "掉落自隱藏首領 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("終極工程師歐米茄布")
 L["It is highly recommended to attempt this encounter with a full party"] = "強烈建議使用完整小隊來嘗試此首領戰"
-L["Can only be looted and used by a Demon Hunter"] = "僅限 "..WrapTextInColor(select(1, GetClassInfo(12)), ICH_GetClassColor("DEMONHUNTER")).." 掠取並使用"
+L["Can only be looted and used by a Demon Hunter"] = "僅限 "..WrapTextInColor(ICH_GetClassName(11, "Demon Hunter"), ICH_GetClassColor("DEMONHUNTER")).." 掠取並使用"
 L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "掉落自 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("卡洛斯大爺").."，他巡邏塔倫米爾以南路徑的一部分"
 L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "有報告指出在擊殺某些首領後 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("卡洛斯大爺").." 會消失；請小心行事"
 L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "掉落自位於 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("梅賈拉").." 與 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("稷坤").." 之間的巨蝸怪物"

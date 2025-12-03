@@ -181,6 +181,7 @@ AddOn.Mounts = {
         MapID = 967,
         AreaPoiID = 6512,
         EncounterID = 333,
+        --@retail@
         DifficultyIDs = { RaidDifficulty.Legacy10H },
         SharedDifficulties = {
             [RaidDifficulty.Legacy10] = RaidDifficulty.Legacy10H,
@@ -188,6 +189,13 @@ AddOn.Mounts = {
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H
         },
         Notes = L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"],
+        --@end-retail@
+        --@version-mists@
+        DifficultyIDs = { RaidDifficulty.Legacy10 },
+        SharedDifficulties = {
+            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10
+        },
+        --@end-version-mists@
         Waypoint = { mapID = 71, x = 0.647, y = 0.513 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -369,7 +377,12 @@ AddOn.Mounts = {
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
         --@retail@
         Notes = L["Also obtainable in Timewalking"],
-        --@end-retail@
+        -- TODO: Fix for mists
+        -- DifficultyIDs = { RaidDifficulty.Legacy10, RaidDifficulty.Legacy10H, RaidDifficulty.Legacy25, RaidDifficulty.Legacy25H },
+        -- SharedDifficulties = {
+        --     [RaidDifficulty.Legacy10] = RaidDifficulty.Legacy25,
+        --     [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy25H
+        -- },
         Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -612,7 +625,12 @@ AddOn.Mounts = {
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
         --@retail@
         Notes = L["Also obtainable in Timewalking"],
-        --@end-retail@
+        -- TODO: Fix for mists
+        -- DifficultyIDs = { RaidDifficulty.Legacy10, RaidDifficulty.Legacy10H, RaidDifficulty.Legacy25, RaidDifficulty.Legacy25H },
+        -- SharedDifficulties = {
+        --     [RaidDifficulty.Legacy10] = RaidDifficulty.Legacy25,
+        --     [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy25H
+        -- },
         Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },

@@ -39,7 +39,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
         </Scripts>
     </Frame>
 
-    <Frame name="ICHVendorListHeadersTemplate" virtual="true" enableMouse="true" mixin="ICHListHeadersMixin">
+    <Frame name="ICHVendorListHeadersTemplate" virtual="true" enableMouse="true" mixin="ICHListHeadersMixin" hidden="true">
         <Size y="25"/>
         <Layers>
             <Layer level="BACKGROUND">

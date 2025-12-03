@@ -10,6 +10,16 @@ local ICH_GetClassColor = C_ClassColor.GetClassColor
 local ICH_GetQuestName = C_QuestLog.GetQuestInfo
 local ICH_GetClassColor = GetClassColorObj
 --@end-version-mists@
+local function ICH_GetClassName(classID, fallbackValue)
+    local className = select(1, GetClassInfo(classID))
+    if not className then return fallbackValue end
+    return className
+end
+local function ICH_GetCurrencyName(currencyID, fallbackValue)
+    local currency = C_CurrencyInfo.GetCurrencyInfo(currencyID)
+    if not currency or not currency.name then return fallbackValue end
+    return currency.name
+end
 
 --- Mount Notes ---
 L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"] = "Disponible en la dificultad de banda de legado Normal, pero debe configurarse en Heroico si "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Fámula de la Protectora").." aún no se ha obtenido"
@@ -31,13 +41,13 @@ L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after k
 L["Dropped by the Rare Elite Vixx the Collector"] = "Se obtiene del élite raro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vixx, el coleccionista")
 L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "Este objeto se puede obtener aunque no aparezca en la tabla de botín de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Gul'dan")
 L["Can drop from every boss in the dungeon"] = "Puede caer de todos los jefes dla mazmorra"
-L["Can only be looted and used by a Druid"] = "Solo puede ser saqueado y usado por un "..WrapTextInColor(select(1, GetClassInfo(11)), ICH_GetClassColor("DRUID"))
+L["Can only be looted and used by a Druid"] = "Solo puede ser saqueado y usado por un "..WrapTextInColor(ICH_GetClassName(11, "Druid"), ICH_GetClassColor("DRUID"))
 L["Can also be looting by fishing within the instance"] = "También se puede obtener pescando dentro dla mazmorra"
 L["Requires completion of the achievement Relics of a Fallen Empire"] = "Requiere completar el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(17366)) or "Reliquias de un imperio caído")
 L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "Solo se puede coleccionar en la versión clásica de Scholomance. Si no tienes esta instancia desbloqueada, busca una guía en línea antes de intentarlo."
 L["Dropped by the hidden boss Endgineer Omegaplugg"] = "Se obtiene del jefe oculto "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Endgineer Omegaplugg")
 L["It is highly recommended to attempt this encounter with a full party"] = "Se recomienda encarecidamente intentar este encuentro con un grupo completo"
-L["Can only be looted and used by a Demon Hunter"] = "Solo puede ser saqueado y usado por un "..WrapTextInColor(select(1, GetClassInfo(12)), ICH_GetClassColor("DEMONHUNTER"))
+L["Can only be looted and used by a Demon Hunter"] = "Solo puede ser saqueado y usado por un "..WrapTextInColor(ICH_GetClassName(11, "Demon Hunter"), ICH_GetClassColor("DEMONHUNTER"))
 L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "Se obtiene de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Don Carlos").." que patrulla parte del camino al sur de Molino Tarren"
 L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "Hay informes de que "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Don Carlos").." desaparece tras matar a algunos jefes; proceda con precaución"
 L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "Se obtiene de los Gasterópodo que se encuentran entre "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Megaera").." y "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Ji Kun")
@@ -157,7 +167,7 @@ L["Mount"] = "Montura"
 L["Pet"] = "Mascota"
 L["Toy"] = "Juguete"
 L["Timewalking Vendor"] = "Cronoviajes"
-L["Unable to transfer Timewarped Badges to this character right now."] = "No se pueden transferir las "..(C_CurrencyInfo.GetCurrencyInfo(1166).name or "Timewarped Badges").." a este personaje en este momento."
+L["Unable to transfer Timewarped Badges to this character right now."] = "No se pueden transferir las "..ICH_GetCurrencyName(1166, "Timewarped Badges").." a este personaje en este momento."
 L["Unable to open the currency transfer menu. Please open it manually or try again."] = "No se pudo abrir el menú de transferencia de divisa. Ábrelo manualmente o inténtalo de nuevo."
 L["Click to open currency transfer menu"] = "Haz clic para abrir el menú de transferencia de divisa"
 L["Cannot transfer to this character"] = "No se puede transferir a este personaje"
@@ -186,7 +196,7 @@ L["Phase 4: Argus Eternal"] = "Phase 4: Argus Eternal"
 L["Phase 5: Infinite Echoes"] = "Phase 5: Infinite Echoes"
 L["Search by collectible name/type or expansion"] = "Buscar por nombre/tipo de coleccionable o por expansión"
 --- New in v12.1: To be categorized ---
-L["Unable to transfer Bronze to this character right now."] = "No se pueden transferir las "..(C_CurrencyInfo.GetCurrencyInfo(3252).name or "Bronze").." a este personaje en este momento."
+L["Unable to transfer Bronze to this character right now."] = "No se pueden transferir las "..ICH_GetCurrencyName(3252, "Bronze").." a este personaje en este momento."
 --- New in v12.2: To be categorized ---
 L["Obtained through the quest chain started by Torn Invitation, which is purchasable from the vendor."] = "Se obtiene a través de la cadena de misiones iniciada por "..(select(2, C_Item.GetItemInfo(140495)) or RARE_BLUE_COLOR:WrapTextInColorCode("[Torn Invitation]"))..", la cual puede comprarse al vendedor."
 L["This is considerably easier to obtain in Legion: Remix as items needed for the quest chain are given to you upon purchasing this item."] = "Esto es considerablemente más fácil de obtener en Legion: Remix, ya que los objetos necesarios para la cadena de misiones se te entregan al comprar este objeto."

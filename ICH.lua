@@ -37,10 +37,12 @@ function AddOn:OnInitialize()
     -- Load database
 	self.db = LibStub("AceDB-3.0"):New("ICH_DB", AddOn.DatabaseDefaults, true)
     -- Create local caches for Toys, Pets, and Timewalking Items
+    --@retail@
     self:CreateToyCache()
     self:CreatePetCache()
     self:CreateTimewalkingCache()
     self:CreateLemixCache()
+    --@end-retail@
 
     -- Data broker registration for minimap icon
     local broker = LDB:NewDataObject(name, {
@@ -184,7 +186,8 @@ function AddOn:UpdateListContents()
         for _, mount in ipairs(self.Mounts) do
             -- Checking hideOnChar for mounts like Grand Black War Mammoth, which has a faction specific version
             local _, _, _, _, _, _, _, _, _, hideOnChar, isOwned = C_MountJournal.GetMountInfoByID(mount.ID)
-            if not hideOnChar and (not isOwned or (isOwned and self.db.global.showOwned)) then
+            local mountExists = hideOnChar ~= nil and isOwned ~= nil
+            if mountExists and not hideOnChar and (not isOwned or (isOwned and self.db.global.showOwned)) then
                 tinsert(newData, mount)
             else
                 self:PrintDebugMessage("Failed to curate table data for mount:", mount.Name)

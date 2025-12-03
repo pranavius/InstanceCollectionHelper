@@ -8,7 +8,15 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@field sharedDifficulties table<RaidDifficulty, RaidDifficulty> Difficulties that share a lockout with the associated `difficultyID`
 ---@field ButtonTint Texture A texture applied over the button to recolor it based on instance type
 ---@field TintMask MaskTexture A texture mask applied over `ButtonTint` to prevent the color from bleeding past the boundaries of the button art
-DifficultyButtonMixin = CreateFromMixins(UIPanelButtonMixin) or {}
+--@retail@
+DifficultyButtonMixin = CreateFromMixins(UIPanelButtonMixin, {})
+--@end-retail@
+--@version-mists@
+DifficultyButtonMixin = {}
+for k,v in pairs(UIButtonFitToTextBehaviorMixin) do
+    DifficultyButtonMixin[k] = v
+end
+--@end-version-mists@
 
 function DifficultyButtonMixin:OnEnter()
     if self.difficultyID ~= -1 then

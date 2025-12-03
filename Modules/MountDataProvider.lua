@@ -36,7 +36,7 @@ function AddOn.MountDataProviderInit(frame, data)
     frame.NameContainer.ViewButton:SetNormalTexture(iconID or 134400)
     frame.NameContainer.ViewButton:SetHighlightTexture(iconID or 134400)
 
-    frame.InstanceContainer.encounterID = (localizedInstanceName and data.EncounterID) and data.EncounterID or -1
+    frame.InstanceContainer.encounterID = data.EncounterID or -1
     --@retail@
     frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
     frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")

@@ -63,6 +63,9 @@ function AddOn:SetInstanceDifficulty(difficultyID)
             self:PrintChatMessage(L["Legacy Raid Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
         else
             SetLegacyRaidDifficultyID(difficultyID)
+            --@version-mists@
+            self:PrintChatMessage(L["Legacy Raid Difficulty set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
+            --@end-version-mists@
         end
     else
         if GetRaidDifficultyID() == difficultyID then
