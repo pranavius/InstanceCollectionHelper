@@ -93,6 +93,7 @@ AddOn.TimewalkingItems = {
         Expansion = "Shadowlands",
         Cost = 5000,
         -- AreaPoiID = ?,
+        Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -160,6 +161,7 @@ AddOn.TimewalkingItems = {
         Expansion = "Shadowlands",
         Cost = 5000,
         -- AreaPoiID = ?,
+        Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -395,6 +397,7 @@ AddOn.TimewalkingItems = {
         Expansion = "Shadowlands",
         Cost = 2200,
         -- AreaPoiID = ?,
+        Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -451,6 +454,7 @@ AddOn.TimewalkingItems = {
         Expansion = "Shadowlands",
         Cost = 5000,
         -- AreaPoiID = ?,
+        Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -461,6 +465,7 @@ AddOn.TimewalkingItems = {
         Expansion = "Shadowlands",
         Cost = 750,
         -- AreaPoiID = ?,
+        Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -580,6 +585,7 @@ AddOn.TimewalkingItems = {
         Expansion = "Shadowlands",
         Cost = 1000,
         -- AreaPoiID = ?,
+        Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
