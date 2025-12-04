@@ -37,6 +37,9 @@ function AddOn.MountDataProviderInit(frame, data)
     frame.NameContainer.ViewButton:SetHighlightTexture(iconID or 134400)
 
     frame.InstanceContainer.encounterID = data.EncounterID or -1
+    --@version-mists@
+    frame.InstanceContainer.hasDungeonJournalEntry = localizedInstanceName ~= nil
+    --@end-version-mists@
     --@retail@
     frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
     frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
@@ -66,7 +69,9 @@ function AddOn.MountDataProviderInit(frame, data)
     end)
 
     frame.InstanceContainer.ViewButton:HookScript("OnClick", function()
-        if localizedInstanceName then
+        --@version-mists@
+        if frame.InstanceContainer.hasDungeonJournalEntry then
+        --@end-version-mists@
             -- Open the Encounter Journal to the specified instance, difficulty, and encounter
             EncounterJournal_OpenJournal(data.DifficultyIDs and data.DifficultyIDs[1] or nil, data.InstanceID, data.EncounterID)
             -- If the loot tab is not already opened, open it by clicking on it programmatically
@@ -78,7 +83,9 @@ function AddOn.MountDataProviderInit(frame, data)
             EJ_SetLootFilter(0, 0)
             C_EncounterJournal.SetSlotFilter(Enum.ItemSlotFilterType.Other)
             --@end-retail@
+        --@version-mists@
         end
+        --@end-version-mists@
     end)
 
 end

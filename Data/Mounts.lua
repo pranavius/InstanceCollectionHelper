@@ -263,6 +263,7 @@ AddOn.Mounts = {
         Waypoint = { mapID = 2371, x = 0.636, y = 0.702 },
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
+    --[===[@non-version-mists@
     {
         Name = "Clutch of Ji-Kun",
         ID = 543,
@@ -280,6 +281,7 @@ AddOn.Mounts = {
         Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
+    --@end-non-version-mists@]===]
     {
         Name = "Drake of the North Wind",
         ID = 395,
@@ -377,6 +379,7 @@ AddOn.Mounts = {
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
         --@retail@
         Notes = L["Also obtainable in Timewalking"],
+        --@end-retail@
         -- TODO: Fix for mists
         -- DifficultyIDs = { RaidDifficulty.Legacy10, RaidDifficulty.Legacy10H, RaidDifficulty.Legacy25, RaidDifficulty.Legacy25H },
         -- SharedDifficulties = {
@@ -487,6 +490,7 @@ AddOn.Mounts = {
         Waypoint = { mapID = 543, x = 0.516, y = 0.272 },
         SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
     },
+    --[===[@non-version-mists@
     {
         Name = "Kor'kron Juggernaut",
         ID = 559,
@@ -499,6 +503,7 @@ AddOn.Mounts = {
         Waypoint = { mapID = 1530, x = 0.741, y = 0.401 },
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
+    --@end-non-version-mists@]===]
     {
         Name = "Life-Binder's Handmaiden",
         ID = 444,
@@ -625,6 +630,7 @@ AddOn.Mounts = {
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
         --@retail@
         Notes = L["Also obtainable in Timewalking"],
+        --@end-retail@
         -- TODO: Fix for mists
         -- DifficultyIDs = { RaidDifficulty.Legacy10, RaidDifficulty.Legacy10H, RaidDifficulty.Legacy25, RaidDifficulty.Legacy25H },
         -- SharedDifficulties = {
@@ -662,7 +668,12 @@ AddOn.Mounts = {
         Name = "Rivendare's Deathcharger",
         ID = 69, -- Nice
         Instance = "Stratholme - Service Entrance",
+        --@retail@
         InstanceID = 1292,
+        --@end-retail@
+        --@version-mists@
+        InstanceID = 236,
+        --@end-version-mists@
         MapID = 329,
         EncounterID = 456,
         DifficultyIDs = { DungeonDifficulty.Normal },
@@ -719,6 +730,7 @@ AddOn.Mounts = {
         Notes = L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"],
         SearchTags = AddOn.ExpansionTags.Legion
     },
+    --[===[@non-version-mists@
     {
         Name = "Spawn of Horridon",
         ID = 531,
@@ -736,19 +748,21 @@ AddOn.Mounts = {
         Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
-    -- Not yet in Beta
-    -- {
-    --     Name = "Spectral Hawkstrider",
-    --     ID = 2805,
-    --     Instance = "Windrunner Spire",
-    --     InstanceID = 1299,
-    --     MapID = 2805,
-    --     AreaPoiID = 8386,
-    --     EncounterID = 2658,
-    --     DifficultyIDs = { DungeonDifficulty.Mythic },
-    --     Waypoint = { mapID = 2395, x = 0.355, y = 0.788 },
-    --     SearchTags = AddOn.ExpansionTags.Midnight
-    -- },
+    --@end-non-version-mists@]===]
+    --@debug@
+    {
+        Name = "Spectral Hawkstrider",
+        ID = 2805,
+        Instance = "Windrunner Spire",
+        InstanceID = 1299,
+        MapID = 2805,
+        AreaPoiID = 8386,
+        EncounterID = 2658,
+        DifficultyIDs = { DungeonDifficulty.Mythic },
+        Waypoint = { mapID = 2395, x = 0.355, y = 0.788 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    --@end-debug@
     {
         Name = "Stonevalut Mechsuit",
         ID = 2119,

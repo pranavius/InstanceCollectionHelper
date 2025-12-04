@@ -177,8 +177,6 @@ end
 
 ---Update the contents of the list shown in the UI
 function AddOn:UpdateListContents()
-    if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then UIParentLoadAddOn("Blizzard_Collections") end
-    if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then UIParentLoadAddOn("Blizzard_EncounterJournal") end
     ---@type (Mount|Toy|Pet|TimewalkingItem|WowRemixItem)[]
     local newData = {}
     local selectedTab = self.db.global.selectedTab

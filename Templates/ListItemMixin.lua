@@ -54,9 +54,15 @@ function ICHListItemMixin:OnLoad()
             if iContainer.encounterID ~= -1 then
                 local encounterName = EJ_GetEncounterInfo(iContainer.encounterID)
                 GameTooltip:AddLine(encounterName)
-                GameTooltip:AddLine("\n")
             end
-            GameTooltip:AddLine(L["View in encounter journal"], 1, 1, 1, true)
+            --@version-mists@
+            if iContainer.hasDungeonJournalEntry then
+            --@end-version-mists@
+                GameTooltip:AddLine("\n")
+                GameTooltip:AddLine(L["View in encounter journal"], 1, 1, 1, true)
+            --@version-mists@
+            end
+            --@end-version-mists@
             GameTooltip:Show()
         end)
         iContainer.ViewButton:HookScript("OnLeave", function()
@@ -127,6 +133,7 @@ end
 ---@class InstanceContainer: Frame Displays elements relevant to the instance where a collectible can be obtained<br>
 ---For frame definition and more layout information, see `Templates/ListItemTemplate.xml`
 ---@field encounterID? number ID number for the encounter that provides the collectible
+---@field hasDungeonJournalEntry boolean Whether a dungeon journal entry exists for this instance or not (Classic only)
 ---@field Text FontString Name of an instance
 ---@field ViewButton Button Button to view the instance in the encounter journal in-game
 

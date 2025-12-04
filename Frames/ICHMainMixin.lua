@@ -61,5 +61,7 @@ function ICHMainMixin:OnDragStop()
 end
 
 function ICHMainMixin:OnShow()
+    if not C_AddOns.IsAddOnLoaded("Blizzard_Collections") then UIParentLoadAddOn("Blizzard_Collections") end
+    if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then UIParentLoadAddOn("Blizzard_EncounterJournal") end
     AddOn:UpdateListContents()
 end
