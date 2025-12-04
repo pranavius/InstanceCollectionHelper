@@ -61,6 +61,10 @@ function AddOn.MountDataProviderInit(frame, data)
 
     AddOn:ConfigureWaypointButton(localizedInstanceName, frame, data)
 
+    -- Clear existing OnClick scripts since frames are reused/repurposed
+    frame.NameContainer.ViewButton:SetScript("OnClick", nil)
+    frame.InstanceContainer.ViewButton:SetScript("OnClick", nil)
+
     frame.NameContainer.ViewButton:HookScript("OnClick", function()
         if data.ID then
             SetCollectionsJournalShown(true, 1)
