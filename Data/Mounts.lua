@@ -749,7 +749,6 @@ AddOn.Mounts = {
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     --@end-non-version-mists@]===]
-    --@debug@
     {
         Name = "Spectral Hawkstrider",
         ID = 2805,
@@ -762,7 +761,6 @@ AddOn.Mounts = {
         Waypoint = { mapID = 2395, x = 0.355, y = 0.788 },
         SearchTags = AddOn.ExpansionTags.Midnight
     },
-    --@end-debug@
     {
         Name = "Stonevalut Mechsuit",
         ID = 2119,
