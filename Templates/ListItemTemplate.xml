@@ -60,6 +60,9 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 <Size x="250"/>
                 <KeyValues>
                     <KeyValue key="encounterID" value="-1" type="number"/>
+                    <!--@version-mists@-->
+                        <KeyValue key="hasDungeonJournalEntry" value="false" type="boolean"/>
+                    <!--@end-version-mists@-->
                 </KeyValues>
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeKey="$parent.NameContainer" relativePoint="TOPRIGHT"/>

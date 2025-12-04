@@ -27,8 +27,8 @@ function AddOn.MountDataProviderInit(frame, data)
         frame.OwnedBg:Hide()
         if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
     end
-    AddOn:SetTruncatedText(frame.NameContainer.Text, localizedMountName) -- Localized mount name truncated if text width exceeds allocated space
-    AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName)  -- Localized instance name truncated if text width exceeds allocated space
+    AddOn:SetTruncatedText(frame.NameContainer.Text, localizedMountName or data.Name) -- Localized mount name truncated if text width exceeds allocated space
+    AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName or data.Instance)  -- Localized instance name truncated if text width exceeds allocated space
 
     local iconID = C_Spell.GetSpellInfo(mountSpellID) and C_Spell.GetSpellInfo(mountSpellID).originalIconID
     frame.NameContainer.ViewButton:ClearNormalTexture()
@@ -37,8 +37,17 @@ function AddOn.MountDataProviderInit(frame, data)
     frame.NameContainer.ViewButton:SetHighlightTexture(iconID or 134400)
 
     frame.InstanceContainer.encounterID = data.EncounterID or -1
+    --@version-mists@
+    frame.InstanceContainer.hasDungeonJournalEntry = localizedInstanceName ~= nil
+    --@end-version-mists@
+    --@retail@
     frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
     frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
+    --@end-retail@
+    --@version-mists@
+    frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "Raid" or "Dungeon")
+    frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "Raid" or "Dungeon")
+    --@end-version-mists@
 
     AddOn.HideAllDifficultyButtons(frame.DifficultyContainer)
     AddOn:ShowDifficultyButtons(frame.DifficultyContainer, data, isOwned)
@@ -52,6 +61,10 @@ function AddOn.MountDataProviderInit(frame, data)
 
     AddOn:ConfigureWaypointButton(localizedInstanceName, frame, data)
 
+    -- Clear existing OnClick scripts since frames are reused/repurposed
+    frame.NameContainer.ViewButton:SetScript("OnClick", nil)
+    frame.InstanceContainer.ViewButton:SetScript("OnClick", nil)
+
     frame.NameContainer.ViewButton:HookScript("OnClick", function()
         if data.ID then
             SetCollectionsJournalShown(true, 1)
@@ -60,15 +73,23 @@ function AddOn.MountDataProviderInit(frame, data)
     end)
 
     frame.InstanceContainer.ViewButton:HookScript("OnClick", function()
-        -- Open the Encounter Journal to the specified instance, difficulty, and encounter
-        EncounterJournal_OpenJournal(data.DifficultyIDs and data.DifficultyIDs[1] or nil, data.InstanceID, data.EncounterID)
-        -- If the loot tab is not already opened, open it by clicking on it programmatically
-        if EncounterJournalEncounterFrameInfo.tab ~= 2 then
-            EncounterJournalEncounterFrameInfoLootTab:Click()
+        --@version-mists@
+        if frame.InstanceContainer.hasDungeonJournalEntry then
+        --@end-version-mists@
+            -- Open the Encounter Journal to the specified instance, difficulty, and encounter
+            EncounterJournal_OpenJournal(data.DifficultyIDs and data.DifficultyIDs[1] or nil, data.InstanceID, data.EncounterID)
+            -- If the loot tab is not already opened, open it by clicking on it programmatically
+            if EncounterJournalEncounterFrameInfo.tab ~= 2 then
+                EncounterJournalEncounterFrameInfoLootTab:Click()
+            end
+            --@retail@
+            -- Show only non-equipment loot for all classes and specs
+            EJ_SetLootFilter(0, 0)
+            C_EncounterJournal.SetSlotFilter(Enum.ItemSlotFilterType.Other)
+            --@end-retail@
+        --@version-mists@
         end
-        -- Show only non-equipment loot for all classes and specs
-        EJ_SetLootFilter(0, 0)
-        C_EncounterJournal.SetSlotFilter(Enum.ItemSlotFilterType.Other)
+        --@end-version-mists@
     end)
 
 end

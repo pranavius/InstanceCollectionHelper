@@ -116,6 +116,10 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
 
     AddOn:ConfigureWaypointButton(item.VendorName or "", frame, item)
 
+    -- Clear existing OnClick scripts since frames are reused/repurposed
+    frame.NameContainer.ViewButton:SetScript("OnClick", nil)
+    frame.CostContainer.CurrencyButton:SetScript("OnClick", nil)
+
     if item.Type == "Mount" then
         frame.NameContainer.ViewButton:HookScript("OnClick", function()
             local spellID = select(2, C_MountJournal.GetMountInfoByID(data.mountID))
@@ -124,11 +128,8 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
                 MountJournal_SetSelected(data.mountID, spellID)
             end
         end)
-    else
-        frame.NameContainer.ViewButton:SetScript("OnClick", nil)
     end
 
-    frame.CostContainer.CurrencyButton:SetScript("OnClick", nil)
     frame.CostContainer.CurrencyButton:HookScript("OnClick", function()
         AddOn:PrintDebugMessage("Timewarped Badges transfer requested")
         if not C_CurrencyInfo.CanTransferCurrency(frame.CostContainer.currencyID) then

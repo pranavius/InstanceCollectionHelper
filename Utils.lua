@@ -60,9 +60,17 @@ function AddOn:SetInstanceDifficulty(difficultyID)
     -- Raid difficulty ID less than 10 indicates legacy raid
     if difficultyID < 10 then
         if GetLegacyRaidDifficultyID() == difficultyID then
+            --@retail@
             self:PrintChatMessage(L["Legacy Raid Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
+            --@end-retail@
+            --@version-mists@
+            self:PrintChatMessage(L["Raid Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
+            --@end-version-mists@
         else
             SetLegacyRaidDifficultyID(difficultyID)
+            --@version-mists@
+            self:PrintChatMessage(L["Raid Difficulty set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
+            --@end-version-mists@
         end
     else
         if GetRaidDifficultyID() == difficultyID then

@@ -78,8 +78,9 @@ function AddOn.ToyDataProviderInit(frame, toy)
 
     AddOn:ConfigureWaypointButton(localizedInstanceName, frame, toy)
 
-    -- Try to find a way to show in the toy journal
-    frame.NameContainer.ViewButton:SetScript("OnClick", nil)
+    -- Clear existing OnClick scripts since frames are reused/repurposed
+    frame.NameContainer.ViewButton:SetScript("OnClick", nil)  -- Try to find a way to show in the toy journal
+    frame.InstanceContainer.ViewButton:SetScript("OnClick", nil)
 
     frame.InstanceContainer.ViewButton:HookScript("OnClick", function()
         -- Open the Encounter Journal to the specified instance, difficulty, and encounter

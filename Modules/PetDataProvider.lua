@@ -85,8 +85,9 @@ function AddOn.PetDataProviderInit(frame, pet)
 
     AddOn:ConfigureWaypointButton(localizedInstanceName, frame, pet)
 
-    -- Try to find a way to show in the pet journal
-    frame.NameContainer.ViewButton:SetScript("OnClick", nil)
+    -- Clear existing OnClick scripts since frames are reused/repurposed
+    frame.NameContainer.ViewButton:SetScript("OnClick", nil) -- Try to find a way to show in the pet journal
+    frame.InstanceContainer.ViewButton:SetScript("OnClick", nil)
 
     frame.InstanceContainer.ViewButton:HookScript("OnClick", function()
         -- Open the Encounter Journal to the specified instance, difficulty, and encounter

@@ -3,7 +3,15 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 
 ---@class ICHScrollBox : Frame
+--@retail@
 ICHScrollBoxMixin = CreateFromMixins(ScrollBoxListMixin, {})
+--@end-retail@
+--@version-mists@
+ICHScrollBoxMixin = {}
+for k, v in pairs(ScrollBoxListMixin) do
+    ICHScrollBoxMixin[k] = v
+end
+--@end-version-mists@
 
 function ICHScrollBoxMixin:InitializeScrollView()
     AddOn.ScrollBox = self

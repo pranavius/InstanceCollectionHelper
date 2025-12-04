@@ -2,6 +2,24 @@ local name = ...
 local L = LibStub("AceLocale-3.0"):NewLocale(name, "esMX")
 
 if not L then return end
+--@retail@
+local ICH_GetQuestName = C_QuestLog.GetTitleForQuestID
+local ICH_GetClassColor = C_ClassColor.GetClassColor
+--@end-retail@
+--@version-mists@
+local ICH_GetQuestName = C_QuestLog.GetQuestInfo
+local ICH_GetClassColor = GetClassColorObj
+--@end-version-mists@
+local function ICH_GetClassName(classID, fallbackValue)
+    local className = select(1, GetClassInfo(classID))
+    if not className then return fallbackValue end
+    return className
+end
+local function ICH_GetCurrencyName(currencyID, fallbackValue)
+    local currency = C_CurrencyInfo.GetCurrencyInfo(currencyID)
+    if not currency or not currency.name then return fallbackValue end
+    return currency.name
+end
 
 --- Mount Notes ---
 L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"] = "Disponible en la dificultad de banda de legado Normal, pero debe configurarse en Heroico si "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Fámula de la Protectora").." aún no se ha obtenido"
@@ -14,7 +32,7 @@ L["Upon entering the instance, raid difficulty will automatically be set to Norm
 L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"] = "No hables con ninguno de los Guardianes Titanes, de lo contrario esta montura no aparecerá como botín"
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "Requiere completar ciertos objetivos dentro de un tiempo determinado, por lo que se recomienda buscar una guía en línea para obtener esta montura antes de intentarlo"
 L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "La entrada puede estar en "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Uldum").." o en "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Valle de la Flor Eterna")
-L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Requiere completar la historia de Tazavesh para desbloquear la ruta de vuelo, comenzando con |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(63976) or "El gato cajellero de Oribos") -- Currently unused
+L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Requiere completar la historia de Tazavesh para desbloquear la ruta de vuelo, comenzando con |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(63976) or "El gato cajellero de Oribos") -- Currently unused
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "Requiere completar una breve cadena de misiones después de saquear "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Mecatraje averiado]"))
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "Requiere completar el calabozo después de activar el modo difícil. Se pueden encontrar guías en línea sobre cómo hacerlo."
 
@@ -23,13 +41,13 @@ L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after k
 L["Dropped by the Rare Elite Vixx the Collector"] = "Se obtiene del élite raro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vixx, el coleccionista")
 L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "Este objeto se puede obtener aunque no aparezca en la tabla de botín de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Gul'dan")
 L["Can drop from every boss in the dungeon"] = "Puede caer de todos los jefes dla mazmorra"
-L["Can only be looted and used by a Druid"] = "Solo puede ser saqueado y usado por un "..WrapTextInColor(select(1, GetClassInfo(11)), C_ClassColor.GetClassColor("DRUID"))
+L["Can only be looted and used by a Druid"] = "Solo puede ser saqueado y usado por un "..WrapTextInColor(ICH_GetClassName(11, "Druid"), ICH_GetClassColor("DRUID"))
 L["Can also be looting by fishing within the instance"] = "También se puede obtener pescando dentro dla mazmorra"
 L["Requires completion of the achievement Relics of a Fallen Empire"] = "Requiere completar el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(17366)) or "Reliquias de un imperio caído")
 L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "Solo se puede coleccionar en la versión clásica de Scholomance. Si no tienes esta instancia desbloqueada, busca una guía en línea antes de intentarlo."
 L["Dropped by the hidden boss Endgineer Omegaplugg"] = "Se obtiene del jefe oculto "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Endgineer Omegaplugg")
 L["It is highly recommended to attempt this encounter with a full party"] = "Se recomienda encarecidamente intentar este encuentro con un grupo completo"
-L["Can only be looted and used by a Demon Hunter"] = "Solo puede ser saqueado y usado por un "..WrapTextInColor(select(1, GetClassInfo(12)), C_ClassColor.GetClassColor("DEMONHUNTER"))
+L["Can only be looted and used by a Demon Hunter"] = "Solo puede ser saqueado y usado por un "..WrapTextInColor(ICH_GetClassName(11, "Demon Hunter"), ICH_GetClassColor("DEMONHUNTER"))
 L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "Se obtiene de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Don Carlos").." que patrulla parte del camino al sur de Molino Tarren"
 L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "Hay informes de que "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Don Carlos").." desaparece tras matar a algunos jefes; proceda con precaución"
 L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "Se obtiene de los Gasterópodo que se encuentran entre "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Megaera").." y "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Ji Kun")
@@ -43,7 +61,7 @@ L["Dropped by the Rare Elite Gol'than the Malodorous"] = "Se obtiene del élite 
 L["Guides for how to spawn this mob can be found online"] = "Se pueden encontrar guías en línea sobre cómo hacer aparecer a este enemigo"
 L["Dropped by Defias Pirates on the boat towards the end of the dungeon"] = "Se obtiene de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Pirata Defias").." en el barco hacia el final dla mazmorra"
 L["Dropped by The Lanticore, which has a random chance to spawn after killing Orebender Gor'ashan"] = "Se obtiene de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("La Lanticora")..", que tiene una probabilidad aleatoria de aparecer tras matar a "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Controlador de mena Gor'ashan")
-L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"] = "El acceso a la entrada de la banda requiere completar la misión |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(select(1, UnitFactionGroup("player")) == "Horde" and 55799 or 56325) or select(1, UnitFactionGroup("player")) == "Horde" and "Cambia la marea" or "Un cambio en la marea")
+L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"] = "El acceso a la entrada de la banda requiere completar la misión |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(select(1, UnitFactionGroup("player")) == "Horde" and 55799 or 56325) or select(1, UnitFactionGroup("player")) == "Horde" and "Cambia la marea" or "Un cambio en la marea")
 L["Dropped by Sand Elementals in Normal and Heroic, but can be looted from Council of Elders in LFR"] = "Se obtiene de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Elementales de arena").." en Normal y Heroico, pero puede saquearse del "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Consejo de Ancianos").." en LFR"
 L["Obtained by using an Amani Hex Stick on Forest Frogs"] = "Se obtiene al usar un "..(select(2, C_Item.GetItemInfo(33865)) or GREEN_FONT_COLOR:WrapTextInColorCode("[Vara de brujería Amani]")).." en "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Ranas camperas")
 L["Detailed guides for how to obtain this pet can be found online"] = "Se pueden encontrar guías detalladas en línea sobre cómo obtener esta mascota"
@@ -149,7 +167,7 @@ L["Mount"] = "Montura"
 L["Pet"] = "Mascota"
 L["Toy"] = "Juguete"
 L["Timewalking Vendor"] = "Cronoviajes"
-L["Unable to transfer Timewarped Badges to this character right now."] = "No se pueden transferir las "..(C_CurrencyInfo.GetCurrencyInfo(1166).name or "Timewarped Badges").." a este personaje en este momento."
+L["Unable to transfer Timewarped Badges to this character right now."] = "No se pueden transferir las "..ICH_GetCurrencyName(1166, "Timewarped Badges").." a este personaje en este momento."
 L["Unable to open the currency transfer menu. Please open it manually or try again."] = "No se pudo abrir el menú de transferencia de divisa. Ábrelo manualmente o inténtalo de nuevo."
 L["Click to open currency transfer menu"] = "Haz clic para abrir el menú de transferencia de divisa"
 L["Cannot transfer to this character"] = "No se puede transferir a este personaje"
@@ -178,7 +196,7 @@ L["Phase 4: Argus Eternal"] = "Phase 4: Argus Eternal"
 L["Phase 5: Infinite Echoes"] = "Phase 5: Infinite Echoes"
 L["Search by collectible name/type or expansion"] = "Buscar por nombre/tipo de coleccionable o por expansión"
 --- New in v12.1: To be categorized ---
-L["Unable to transfer Bronze to this character right now."] = "No se pueden transferir las "..(C_CurrencyInfo.GetCurrencyInfo(3252).name or "Bronze").." a este personaje en este momento."
+L["Unable to transfer Bronze to this character right now."] = "No se pueden transferir las "..ICH_GetCurrencyName(3252, "Bronze").." a este personaje en este momento."
 --- New in v12.2: To be categorized ---
 L["Obtained through the quest chain started by Torn Invitation, which is purchasable from the vendor."] = "Se obtiene a través de la cadena de misiones iniciada por "..(select(2, C_Item.GetItemInfo(140495)) or RARE_BLUE_COLOR:WrapTextInColorCode("[Torn Invitation]"))..", la cual puede comprarse al vendedor."
 L["This is considerably easier to obtain in Legion: Remix as items needed for the quest chain are given to you upon purchasing this item."] = "Esto es considerablemente más fácil de obtener en Legion: Remix, ya que los objetos necesarios para la cadena de misiones se te entregan al comprar este objeto."
