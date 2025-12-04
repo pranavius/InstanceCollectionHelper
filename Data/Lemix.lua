@@ -5,26 +5,6 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 local LemixPhases = AddOn.LemixPhases
 
----@class WowRemixResource
----@field ItemID integer
----@field Amount integer
-
----@class WowRemixItem
----@field Name string
----@field ItemID integer
----@field Type "Mount"|"Pet"|"Toy"|"Cosmetic"
----@field Instance? string
----@field InstanceID? integer
----@field EncounterID? integer
----@field VendorName string
----@field Cost integer
----@field Phase? LemixPhase
----@field AdditionalResource? WowRemixResource
----@field AreaPoiID? integer
----@field Notes? string
----@field SearchTags string[]
----@field IsLemixExclusive boolean
-
 ---@type WowRemixItem[]
 AddOn.LemixItems = {
     {

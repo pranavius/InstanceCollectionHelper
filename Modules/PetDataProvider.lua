@@ -3,13 +3,6 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----@class PetCacheData
----@field itemName string Localized name for the item that adds the pet to the collection
----@field itemID integer ID for the item that adds the pet to the collection
----@field petName string Localized pet name
----@field iconID integer ID for the icon associated with the pet
----@field speciesID integer ID for the pet species
-
 function AddOn:CreatePetCache()
     ---@type table<number, PetCacheData> Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
     self.PetCache = {}

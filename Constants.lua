@@ -26,21 +26,7 @@ AddOn.RaidDifficulty = {
     Mythic = 16
 }
 
----A table containing entries for each WoW expansion.<br>
----Each table entry consists of a list of strings associated with that expansion to use when searching for a collectible by expansion
 ---@class ExpansionTags
----@field Classic string[]
----@field TheBurningCrusade string[]
----@field WrathOfTheLichKing string[]
----@field Cataclysm string[]
----@field MistsOfPandaria string[]
----@field WarlordsOfDraenor string[]
----@field Legion string[]
----@field BattleForAzeroth string[]
----@field Shadowlands string[]
----@field Dragonflight string[]
----@field TheWarWithin string[]
----@field Midnight string[]
 AddOn.ExpansionTags = {
     Classic = { "classic", "vanilla" },
     TheBurningCrusade = { "the burning crusade", "burning crusade", "tbc", "bc" },
@@ -64,8 +50,3 @@ AddOn.LemixPhases = {
     Phase4 = L["Phase 4: Argus Eternal"],
     Phase5 = L["Phase 5: Infinite Echoes"]
 }
-
----@class Waypoint Information for placing a Blizzard map pin at a location
----@field mapID number Identifier for the map on which to place the pin
----@field x number X coordinate of the location on the map
----@field y number Y coordinate of the location on the map

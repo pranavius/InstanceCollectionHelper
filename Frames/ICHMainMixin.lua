@@ -2,15 +2,7 @@ local name, AddOn = ...
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 
----@class ICHMain : Frame AddOn interface
----@field Title FontString The name of the AddOn
----@field SearchBox EditBox An input field that allows users to search for a collectible in the currently viewed list
----@field InfoButton ICHSquareButton
----@field ListHeaders ICHListHeaders
----@field VendorListHeaders ICHListHeaders
----@field LemixListHeaders ICHLemixListHeaders
----@see ICHSquareButton
----@see ICHListHeaders
+---@class ICHMain
 ICHMainMixin = {}
 
 function ICHMainMixin:OnLoad()

@@ -3,15 +3,6 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----@class ICHListHeaders : Frame Column headers for the currently viewed list of collectibles
----@field BorderBottom Texture A separator between the list headers and the list items in the AddOn interface
----@field NameHeader FontString
----@field InstanceHeader? FontString Exclusive to `ICHListItemTemplate`
----@field DiffHeader? FontString Exclusive to `ICHListItemTemplate`
----@field TypeHeader? FontString Exclusive to `ICHVendorListItemTemplate`
----@field ExpansionHeader? FontString Exclusive to `ICHVendorListItemTemplate`
----@field CostHeader? FontString Exclusive to `ICHVendorListItemTemplate`
-
 ---@class ICHListHeaders
 ICHListHeadersMixin = {}
 
