@@ -72,64 +72,78 @@
 ---@field SearchTags string[] A list of string identifiers to quickly search for a collectible. This can include expansion abbreviations, expansion names, zones, continents, etc<br>This field is extended upon AddOn initialization to include zones and only includes expansions by default
 
 ---@class WowRemixResource
----@field ItemID integer
----@field Amount integer
+---@field ItemID number
+---@field Amount number
 
 ---@class WowRemixItem
 ---@field Name string
----@field ItemID integer
+---@field ItemID number
 ---@field Type "Mount"|"Pet"|"Toy"|"Cosmetic"
 ---@field Instance? string
----@field InstanceID? integer
----@field EncounterID? integer
+---@field InstanceID? number
+---@field EncounterID? number
 ---@field VendorName string
----@field Cost integer
+---@field Cost number
 ---@field Phase? LemixPhase
 ---@field AdditionalResource? WowRemixResource
----@field AreaPoiID? integer
+---@field AreaPoiID? number
 ---@field Notes? string
 ---@field SearchTags string[]
 ---@field IsLemixExclusive boolean
 
+---@class HousingItem
+---@field Name string
+---@field ItemID number
+---@field Instance string
+---@field InstanceID number
+---@field MapID number
+---@field AreaPoiID? number
+---@field EncounterID? number
+---@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[]
+---@field SharedDifficulties? table<RaidDifficulty, RaidDifficulty>
+---@field Notes? string
+---@field Waypoint? Waypoint
+---@field SearchTags string[]
+
 ---@class ToyCacheData
 ---@field itemName string Localized name for the item that adds the toy to the collection
----@field itemID integer ID for the item that adds the toy to the collection
+---@field itemID number ID for the item that adds the toy to the collection
 ---@field toyName string Localized toy name
----@field iconID integer ID for the icon associated with the toy
+---@field iconID number ID for the icon associated with the toy
 
 ---@class PetCacheData
 ---@field itemName string Localized name for the item that adds the pet to the collection
----@field itemID integer ID for the item that adds the pet to the collection
+---@field itemID number ID for the item that adds the pet to the collection
 ---@field petName string Localized pet name
----@field iconID integer ID for the icon associated with the pet
----@field speciesID integer ID for the pet species
+---@field iconID number ID for the icon associated with the pet
+---@field speciesID number ID for the pet species
 
 ---@class TimewalkingCacheData
 ---@field itemName string Localized name for the item that adds the collectible to the collection
----@field itemID integer ID number for the item that adds the collectible to the collection
+---@field itemID number ID number for the item that adds the collectible to the collection
 ---@field collectibleName string Localized collectible name
----@field iconID integer ID for the icon associated with the collectible
----@field mountID? integer ID number for the mount (applies to mounts only)
----@field speciesID? integer ID for the pet species (applies to pets only)
+---@field iconID number ID for the icon associated with the collectible
+---@field mountID? number ID number for the mount (applies to mounts only)
+---@field speciesID? number ID for the pet species (applies to pets only)
 
 ---@class LemixCacheData
 ---@field itemName string Localized name for the item that adds the collectible to the collection
----@field itemID integer ID number for the item that adds the collectible to the collection
+---@field itemID number ID number for the item that adds the collectible to the collection
 ---@field collectibleName string Localized collectible name
----@field iconID integer ID for the icon associated with the collectible
----@field mountID? integer ID number for the mount (applies to mounts only)
----@field speciesID? integer ID for the pet species (applies to pets only)
+---@field iconID number ID for the icon associated with the collectible
+---@field mountID? number ID number for the mount (applies to mounts only)
+---@field speciesID? number ID for the pet species (applies to pets only)
 
 ---@class LemixResourceCacheData
 ---@field itemName string
----@field itemID integer
----@field iconID integer
+---@field itemID number
+---@field iconID number
 
 ---@class ICHSquareButton : Button
 ---@field action string Describes the funcitonality associated with the button
 
 ---@class DifficultyButton: Button
----@field difficultyID integer ID number for instance, scenario, and raid difficulty (see https://wago.tools/db2/Difficulty)
+---@field difficultyID number ID number for instance, scenario, and raid difficulty (see https://wago.tools/db2/Difficulty)
 ---@field sharedDifficulties table<RaidDifficulty, RaidDifficulty> Difficulties that share a lockout with the associated `difficultyID`
 ---@field ButtonTint Texture A texture applied over the button to recolor it based on instance type
 ---@field TintMask MaskTexture A texture mask applied over `ButtonTint` to prevent the color from bleeding past the boundaries of the button art
@@ -157,7 +171,7 @@
 ---@field Text FontString The text to be displayed
 
 ---@class CostContainer: Frame
----@field currencyID integer ID number of the currency required to purchase the collectible
+---@field currencyID number ID number of the currency required to purchase the collectible
 ---@field Text FontString Text to display alongside the currency icon (typically the cost of the collectible)
 ---@field CurrencyButton Button If currency is Warband Transferable, this button should open the transfer menu
 
@@ -208,7 +222,7 @@
 ---@see OtherInfoContainer
 
 ---@class LemixCostContainer : CostContainer
----@field resourceItemID integer
+---@field resourceItemID number
 
 ---@class PhaseContainer : Frame
 ---@field fullName string

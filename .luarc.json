@@ -1,3 +1,8 @@
 {
-    "Lua.workspace.ignoreDir": ["Libs/*"]
+    "Lua.workspace.ignoreDir": [
+        ".release/*",
+        ".vscode/*",
+        "Libs/*",
+        "Localization/*"
+    ]
 }
