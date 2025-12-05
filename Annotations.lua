@@ -93,7 +93,7 @@
 
 ---@class HousingItem
 ---@field Name string
----@field ItemID number
+---@field DecorItemID number
 ---@field Instance string
 ---@field InstanceID number
 ---@field MapID number
