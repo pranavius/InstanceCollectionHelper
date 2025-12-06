@@ -204,7 +204,7 @@
 
 ---@class ICHListItem: Frame
 ---@field isMount boolean Whether or not the list item is for a mount
----@field relevantID number The ID number for the collectible. For mounts, this value is `mountID` and for toys it is `itemID`
+---@field relevantID number The ID number for the collectible. For mounts, this value is `mountID` and for all other collectibles it is `itemID`
 ---@field Bg Texture The background texture for unowned list items
 ---@field OwnedBg Texture The background texture for owned list items
 ---@field NameContainer NameContainer

@@ -30,7 +30,10 @@ function ICHScrollBoxMixin:InitializeScrollView()
             elseif elementData.PetItemID then
                 factory("ICHListItemTemplate", AddOn.PetDataProviderInit)
             elseif elementData.ItemID then
+                
                 factory("ICHListItemTemplate", AddOn.ToyDataProviderInit)
+            elseif elementData.DecorItemID then
+                factory("ICHListItemTemplate", AddOn.HousingDataProviderInit)
             elseif elementData.ID then
                 factory("ICHListItemTemplate", AddOn.MountDataProviderInit)
             end

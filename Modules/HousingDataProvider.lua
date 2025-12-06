@@ -11,9 +11,18 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 function AddOn.HousingDataProviderInit(frame, item)
     if not frame or not item then return end
     local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(item.DecorItemID, true)
+    -- Adding search tags based on housing data tags
+    local searchTags = item.SearchTags
+    for _, tag in pairs(decor.dataTagsByID) do
+        tinsert(searchTags, tag)
+    end
+    -- Add tags for indoors and outdoors
+    if decor.isAllowedIndoors then tinsert(searchTags, "indoors") end
+    if decor.isAllowedOutdoors then tinsert(searchTags, "outdoors") end
+    item.SearchTags = searchTags
     -- Resetting these values to avoid conflicts or incorrect tooltip displays
     frame.isMount = false
-    frame.relevantID = decor.entryID.recordID
+    frame.relevantID = item.DecorItemID
     -- Hide the pet count frame for non-pets
     frame.OtherInfoContainer.ICHPetCount:Hide()
 
