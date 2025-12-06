@@ -706,14 +706,26 @@ AddOn.Mounts = {
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
+        Name = "Slime Serpent",
+        ID = 1445,
+        Instance = "Plaguefall",
+        InstanceID = 1183,
+        MapID = 2289,
+        AreaPoiID = 6585,
+        DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
+        Notes = L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."],
+        Waypoint = { mapID = 1536, x = 0.594, y = 0.65 },
+        SearchTags = AddOn.ExpansionTags.Shadowlands
+    },
+    {
         Name = "Smoldering Ember Wyrm",
         ID = 883,
         Instance = "Return to Karazhan",
         InstanceID = 860,
         MapID = 1651,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
         Notes = L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"],
+        Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
         SearchTags = AddOn.ExpansionTags.Legion
     },
     --[===[@non-version-mists@

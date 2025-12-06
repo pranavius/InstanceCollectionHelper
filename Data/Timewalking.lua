@@ -3,12 +3,12 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
-local function combineLists(...)
-    local argTable = { ... }
+local function combineExpansionTags(...)
+    local xpacTagLists = { ... }
     local result = {}
-    for _, tbl in ipairs(argTable) do
-        for _, v in ipairs(tbl) do
-            tinsert(result, v)
+    for _, tagList in ipairs(xpacTagLists) do
+        for _, tag in ipairs(tagList) do
+            if not TableContains(result, tag) then tinsert(result, tag) end
         end
     end
 
@@ -101,7 +101,7 @@ AddOn.TimewalkingItems = {
         Expansion = "-",
         Cost = 5000,
         Notes = L["Originally rewarded for completing the achievement Master of the Turbulent Timeways III. Can now be purchased from any Timewalking vendor."],
-        SearchTags = combineLists(AddOn.ExpansionTags.Classic,
+        SearchTags = combineExpansionTags(AddOn.ExpansionTags.Classic,
             AddOn.ExpansionTags.TheBurningCrusade,
             AddOn.ExpansionTags.WrathOfTheLichKing,
             AddOn.ExpansionTags.MistsOfPandaria,
@@ -405,7 +405,7 @@ AddOn.TimewalkingItems = {
         Expansion = "-",
         Cost = 5000,
         Notes = L["Originally rewarded for completing the achievement Master of the Turbulent Timeways. Can now be purchased from any Timewalking vendor."],
-        SearchTags = combineLists(AddOn.ExpansionTags.Classic,
+        SearchTags = combineExpansionTags(AddOn.ExpansionTags.Classic,
             AddOn.ExpansionTags.TheBurningCrusade,
             AddOn.ExpansionTags.WrathOfTheLichKing,
             AddOn.ExpansionTags.MistsOfPandaria,
@@ -463,7 +463,7 @@ AddOn.TimewalkingItems = {
         Expansion = "-",
         Cost = 5000,
         Notes = L["Originally rewarded for completing the achievement Master of the Turbulent Timeways II. Can now be purchased from any Timewalking vendor."],
-        SearchTags = combineLists(AddOn.ExpansionTags.Classic,
+        SearchTags = combineExpansionTags(AddOn.ExpansionTags.Classic,
             AddOn.ExpansionTags.TheBurningCrusade,
             AddOn.ExpansionTags.WrathOfTheLichKing,
             AddOn.ExpansionTags.MistsOfPandaria,

@@ -14,7 +14,7 @@ function AddOn.HousingDataProviderInit(frame, item)
     -- Adding search tags based on housing data tags
     local searchTags = item.SearchTags
     for _, tag in pairs(decor.dataTagsByID) do
-        tinsert(searchTags, tag)
+        if not TableContains(searchTags, tag) then tinsert(searchTags, tag) end
     end
     -- Add tags for indoors and outdoors
     if decor.isAllowedIndoors then tinsert(searchTags, "indoors") end

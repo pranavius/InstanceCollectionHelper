@@ -3,6 +3,35 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
+local function isList(tbl)
+    local pairsKeysCount = 0
+    for _, _ in pairs(tbl) do
+        pairsKeysCount = pairsKeysCount + 1
+    end
+
+    local ipairsKeysCount = 0
+    for _, _ in ipairs(tbl) do
+        ipairsKeysCount = ipairsKeysCount + 1
+    end
+
+    return pairsKeysCount == ipairsKeysCount
+end
+
+function TableContains(tbl, value)
+    if isList(tbl) then
+        for _, v in ipairs(tbl) do
+            if v == value then return true end
+        end
+        return false
+    end
+
+    for _, v in pairs(tbl) do
+        if v == value then return true end
+    end
+
+    return false
+end
+
 ---Prints a message to the chat window prefixed by the AddOn name
 ---@param ... any Arguments to be printed to the chat window
 ---@see print
@@ -174,18 +203,19 @@ end
 ---@see WowRemixItem
 ---@see HousingItem
 function AddOn.AppendMapSearchTags(data)
-    -- Create a fresh list of tags to avoid modifying the original list for each expansion
+    -- Create a fresh list of tags to avoid removing entries contained in the original list
     local tags = {}
-    for _, xpacTag in ipairs(data.SearchTags) do tinsert(tags, xpacTag) end
+    for _, tag in ipairs(data.SearchTags) do tinsert(tags, tag) end
 
-    local dungeonAreaMapID = select(7, EJ_GetInstanceInfo(data.InstanceID))
-    -- This value will always be 0 for instances that existed before Siege of Orgimmar was released
+    -- Check the mapping constant first since raids before Siege of Orgimmar and all dungeons have a value of 0 from EJ_GetInstanceInfo
+    local dungeonAreaMapID = AddOn.InstanceToDamIDMap[data.InstanceID] or select(7, EJ_GetInstanceInfo(data.InstanceID))
+    -- This value will always be 0 for 
     if dungeonAreaMapID and dungeonAreaMapID ~= 0 then
         local map = C_Map.GetMapInfo(dungeonAreaMapID)
         -- MapID 946 is "Cosmic"
         while map and map.parentMapID ~= 946 do
             -- expected: instance name, then zone names up to but excluding "Azeroth"
-            tinsert(tags, map.name:lower())
+            if not TableContains(tags, map.name:lower()) then tinsert(tags, map.name:lower()) end
             map = C_Map.GetMapInfo(map.parentMapID)
         end
     end
