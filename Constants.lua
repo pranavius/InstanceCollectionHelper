@@ -26,7 +26,7 @@ AddOn.RaidDifficulty = {
     Mythic = 16
 }
 
----@type ExpansionTags
+---@class ExpansionTags
 AddOn.ExpansionTags = {
     Classic = { "classic", "vanilla" },
     TheBurningCrusade = { "the burning crusade", "burning crusade", "tbc", "bc" },
