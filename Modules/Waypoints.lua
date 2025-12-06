@@ -121,7 +121,7 @@ end
 ---Sets up and displays the appropriate waypoint button based on user preferences and **TomTom** being enabled or not
 ---@param destinationName string The name of the destination to set a waypoint for, such as an NPC or an instance
 ---@param frame ICHListItem|ICHLemixListItem
----@param data Mount|Toy|Pet|TimewalkingItem|WowRemixItem|HousingItem
+---@param data Mount|Toy|Pet|TimewalkingItem|WowRemixItem|DecorItem
 ---@see ICHListItem
 ---@see ICHLemixListItem
 ---@see Mount
@@ -129,7 +129,7 @@ end
 ---@see Pet
 ---@see TimewalkingItem
 ---@see WowRemixItem
----@see HousingItem
+---@see DecorItem
 function AddOn:ConfigureWaypointButton(destinationName, frame, data)
     -- Commenting the below condition due to alternate Tazavesh entrace available in K'aresh. Unsure if this will be a permanent entrance or not as of now
     -- if data.InstanceID == 1176 or data.InstanceID == 1194 or data.AreaPoiID or data.Waypoint then

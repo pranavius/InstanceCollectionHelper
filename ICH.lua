@@ -33,7 +33,7 @@ function AddOn:OnInitialize()
     for _, pet in ipairs(self.Pets) do self.AppendMapSearchTags(pet) end
     for _, item in ipairs(self.TimewalkingItems) do self.AppendMapSearchTags(item) end
     for _, item in ipairs(self.LemixItems) do self.AppendMapSearchTags(item) end
-    for _, item in ipairs(self.HousingItems) do self.AppendMapSearchTags(item) end
+    for _, item in ipairs(self.DecorItems) do self.AppendMapSearchTags(item) end
 
     -- Load database
 	self.db = LibStub("AceDB-3.0"):New("ICH_DB", AddOn.DatabaseDefaults, true)
@@ -98,14 +98,14 @@ function AddOn:ConfigureOnInit()
 end
 
 ---Filters a list of data based on search parameters
----@param listData (Mount|Toy|Pet|TimewalkingItem|WowRemixItem|HousingItem)[]
----@return (Mount|Toy|Pet|TimewalkingItem|WowRemixItem|HousingItem)[]
+---@param listData (Mount|Toy|Pet|TimewalkingItem|WowRemixItem|DecorItem)[]
+---@return (Mount|Toy|Pet|TimewalkingItem|WowRemixItem|DecorItem)[]
 ---@see Mount
 ---@see Toy
 ---@see Pet
 ---@see TimewalkingItem
 ---@see WowRemixItem
----@see HousingItem
+---@see DecorItem
 function AddOn:FilterListContentsByQuery(listData)
     local filtered = {}
     local query = self.Container.SearchBox:GetText():lower()
@@ -128,7 +128,7 @@ function AddOn:FilterListContentsByQuery(listData)
             itemName = self.TimewalkingCache[data.ItemID].itemName or data.Name
         elseif selectedTab == self.Tabs.LegionRemixVendorTab then
             itemName = self.LemixCache[data.ItemID].itemName or data.Name
-        elseif selectedTab == self.Tabs.HousingTab then
+        elseif selectedTab == self.Tabs.DecorTab then
             local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.DecorItemID, true)
             itemName = decor.name
         end
@@ -183,7 +183,7 @@ end
 
 ---Update the contents of the list shown in the UI
 function AddOn:UpdateListContents()
-    ---@type (Mount|Toy|Pet|TimewalkingItem|WowRemixItem|HousingItem)[]
+    ---@type (Mount|Toy|Pet|TimewalkingItem|WowRemixItem|DecorItem)[]
     local newData = {}
     local selectedTab = self.db.global.selectedTab
     if selectedTab == self.Tabs.MountsTab then
@@ -268,8 +268,8 @@ function AddOn:UpdateListContents()
             end
         end
         -- Update search box instructions somehow
-    elseif selectedTab == self.Tabs.HousingTab then
-        for _, item in ipairs(self.HousingItems) do
+    elseif selectedTab == self.Tabs.DecorTab then
+        for _, item in ipairs(self.DecorItems) do
             local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(item.DecorItemID, true)
             local isOwned = decor.quantity > 0
             local shouldInsert = false

@@ -136,12 +136,12 @@ function AddOn:SetTruncatedText(fs, text)
     fs:SetText(text:sub(1, lastVisibleChar - 1) .. ellipsis)
 end
 
----@param data Mount|Toy|Pet|HousingItem
+---@param data Mount|Toy|Pet|DecorItem
 ---@return boolean "`true` if the instance is a raid, `false` otherwise"
 ---@see Mount
 ---@see Toy
 ---@see Pet
----@see HousingItem
+---@see DecorItem
 function AddOn:IsInstanceRaid(data)
     -- Continue treating empty DifficultyIDs lists as raids even though this functionality is deprecated
     if #data.DifficultyIDs == 0 then return true end
@@ -151,12 +151,12 @@ function AddOn:IsInstanceRaid(data)
     return true
 end
 
----@param data Mount|Toy|Pet|HousingItem
+---@param data Mount|Toy|Pet|DecorItem
 ---@return boolean "`true` if an instance encounter has been completed for the current reset period on a given difficulty, `false` otherwise"
 ---@see Mount
 ---@see Toy
 ---@see Pet
----@see HousingItem
+---@see DecorItem
 function AddOn.IsEncounterCompleted(data, difficultyID)
     local encounterName
     if data.EncounterID then encounterName = select(1, EJ_GetEncounterInfo(data.EncounterID)) end
@@ -179,12 +179,12 @@ function AddOn.IsEncounterCompleted(data, difficultyID)
 end
 
 
----@param data Mount|Toy|Pet|HousingItem
+---@param data Mount|Toy|Pet|DecorItem
 ---@return boolean "`true` if an encounter has been completed for the current reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise"
 ---@see Mount
 ---@see Toy
 ---@see Pet
----@see HousingItem
+---@see DecorItem
 function AddOn:IsEncounterCompletedOnSharedDifficulty(data)
     local isCompleted = false
     for shared, _ in pairs(data.SharedDifficulties) do
@@ -195,13 +195,13 @@ function AddOn:IsEncounterCompletedOnSharedDifficulty(data)
 end
 
 ---Append a list of map search tags for a collectibleto the existing `SearchTags` list based on the ID of the instance where it is obtained
----@param data Mount|Toy|Pet|TimewalkingItem|WowRemixItem|HousingItem
+---@param data Mount|Toy|Pet|TimewalkingItem|WowRemixItem|DecorItem
 ---@see Mount
 ---@see Toy
 ---@see Pet
 ---@see TimewalkingItem
 ---@see WowRemixItem
----@see HousingItem
+---@see DecorItem
 function AddOn.AppendMapSearchTags(data)
     -- Create a fresh list of tags to avoid removing entries contained in the original list
     local tags = {}

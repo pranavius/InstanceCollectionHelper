@@ -6,8 +6,8 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 local DungeonDifficulty = AddOn.DungeonDifficulty
 local RaidDifficulty = AddOn.RaidDifficulty
 
----@type HousingItem[]
-AddOn.HousingItems = {
+---@type DecorItem[]
+AddOn.DecorItems = {
     {
         Name = "Dark Iron Chandelier",
         DecorItemID = 246429,

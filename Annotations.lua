@@ -91,7 +91,7 @@
 ---@field SearchTags string[]
 ---@field IsLemixExclusive boolean
 
----@class HousingItem
+---@class DecorItem
 ---@field Name string
 ---@field DecorItemID number
 ---@field Instance string

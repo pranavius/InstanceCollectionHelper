@@ -3,15 +3,15 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----Initializes how housing data in the scrollable list should be displayed
+---Initializes how decor data in the scrollable list should be displayed
 ---@param frame ICHListItem
----@param item HousingItem
+---@param item DecorItem
 ---@see ICHListItem
----@see HousingItem
-function AddOn.HousingDataProviderInit(frame, item)
+---@see DecorItem
+function AddOn.DecorDataProviderInit(frame, item)
     if not frame or not item then return end
     local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(item.DecorItemID, true)
-    -- Adding search tags based on housing data tags
+    -- Adding search tags based on decor data tags
     local searchTags = item.SearchTags
     for _, tag in pairs(decor.dataTagsByID) do
         if not TableContains(searchTags, tag) then tinsert(searchTags, tag) end
