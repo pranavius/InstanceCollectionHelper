@@ -134,7 +134,7 @@ function AddOn:FilterListContentsByQuery(listData)
         nameMatches = cleanName:match(query) and true or false
         instanceMatches = instanceName:lower():match(query) and true or false
         encounterMatches = encounterName:lower():match(query) and true or false
-        instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(data) or (query == L["dungeon"] and not self:IsInstanceRaid(data))
+        instanceTypeMatches = data.DifficultyIDs and (query == L["raid"] and self:IsInstanceRaid(data) or (query == L["dungeon"] and not self:IsInstanceRaid(data)))
         
         local difficultyMatches = false
         for _, diffID in ipairs(data.DifficultyIDs or {}) do

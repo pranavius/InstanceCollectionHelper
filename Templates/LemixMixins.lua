@@ -99,21 +99,30 @@ function ICHLemixListItemMixin:OnLoad()
     end)
 
     waypointButton:HookScript("OnEnter", function()
-    GameTooltip:SetOwner(waypointButton, "ANCHOR_TOP")
-    if waypointButton.instanceID then
-        local instanceName = EJ_GetInstanceInfo(waypointButton.instanceID)
-        GameTooltip:SetText(instanceName)
-    elseif waypointButton.vendorName then
-        GameTooltip:SetText(waypointButton.vendorName)
-    end
-    if waypointButton:GetNormalTexture():GetTextureFileID() > 0 then
-        GameTooltip:AddLine(L["Set map pin"], 1, 1, 1)
-    else
-        GameTooltip:AddLine(L["Set TomTom waypoint"], 1, 1, 1)
-    end
-    GameTooltip:Show()
-end)
-waypointButton:HookScript("OnLeave", function()
-    GameTooltip:Hide()
-end)
+        GameTooltip:SetOwner(waypointButton, "ANCHOR_TOP")
+        local function addToTooltip(text)
+            if waypointButton.vendorName then
+                GameTooltip:AddLine(text)
+                GameTooltip:AddLine("\n")
+            else
+                GameTooltip:SetText(text)
+            end
+        end
+        if waypointButton.vendorName then
+            GameTooltip:SetText(waypointButton.vendorName)
+        end
+        if waypointButton.instanceID then
+            local instanceName = EJ_GetInstanceInfo(waypointButton.instanceID)
+            addToTooltip(instanceName)
+        end
+        if waypointButton:GetNormalTexture():GetTextureFileID() > 0 then
+            GameTooltip:AddLine(L["Set map pin"], 1, 1, 1)
+        else
+            GameTooltip:AddLine(L["Set TomTom waypoint"], 1, 1, 1)
+        end
+        GameTooltip:Show()
+    end)
+    waypointButton:HookScript("OnLeave", function()
+        GameTooltip:Hide()
+    end)
 end

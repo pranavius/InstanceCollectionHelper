@@ -2365,7 +2365,7 @@ AddOn.LemixItems = {
     },
     {
         Name = "Felblaze Infernal",
-        ItemID = 142236,
+        ItemID = 137574,
         Type = "Mount",
         Instance = "The Nighthold",
         InstanceID = 786,
@@ -2625,7 +2625,7 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
-        Name = "Helfire Infernal",
+        Name = "Hellfire Infernal",
         ItemID = 137575,
         Type = "Mount",
         Instance = "The Nighthold",
@@ -3148,6 +3148,20 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Skull of Corruption",
+        ItemID = 143544,
+        Type = "Toy",
+        Instance = "The Nighthold",
+        InstanceID = 786,
+        EncounterID = 1737,
+        VendorName = "Horos",
+        Cost = 100000,
+        Phase = LemixPhases.Phase2,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = false
+    },
+    {
         Name = "Slag Basilisk",
         ItemID = 250423,
         Type = "Mount",
@@ -3370,21 +3384,12 @@ AddOn.LemixItems = {
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
-    -- {
-    --     Name = "Tylarr Gronnden",
-    --     ItemID = 144394,
-    --     Type = "Pet",
-    --     VendorName = "Horos",
-    --     Cost = 35000,
-    --     Phase = LemixPhases.Phase2,
-    --     AreaPoiID = 8275,
-    --     SearchTags = AddOn.ExpansionTags.Legion,
-    --     IsLemixExclusive = false
-    -- },
     {
         Name = "Unstable Portal Emitter",
         ItemID = 153004,
         Type = "Toy",
+        Instance = "Seat of the Triumvirate",
+        InstanceID = 945,
         VendorName = "Horos",
         Cost = 100000,
         Phase = LemixPhases.Phase4,
@@ -3452,6 +3457,8 @@ AddOn.LemixItems = {
         Name = "Vixx's Chest of Tricks",
         ItemID = 152982,
         Type = "Toy",
+        Instance = "Seat of the Triumvirate",
+        InstanceID = 945,
         VendorName = "Horos",
         Cost = 80000,
         Phase = LemixPhases.Phase4,
