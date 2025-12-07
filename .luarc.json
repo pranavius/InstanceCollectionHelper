@@ -1,8 +1,19 @@
 {
-    "Lua.workspace.ignoreDir": [
-        ".release/*",
-        ".vscode/*",
-        "Libs/*",
-        "Localization/*"
-    ]
+    "diagnostics": {
+        "disabled": ["assign-type-mismatch"]
+    },
+    "type": {
+        "weakUnionCheck": true
+    },
+    "workspace": {
+        "library": [
+            "~/.vscode/extensions/ketho.wow-api-0.21.0/Annotations/Core"
+        ],
+        "ignoreDir": [
+            ".release",
+            ".vscode",
+            "Libs",
+            "Localization"
+        ]
+    }
 }

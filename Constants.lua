@@ -51,6 +51,8 @@ AddOn.LemixPhases = {
     Phase5 = L["Phase 5: Infinite Echoes"]
 }
 
+---Maps instance ID to the corresponding dungeon area map ID for dungeons and raids before Siege of Orgimmar
+---@type table<number, number>
 AddOn.InstanceToDamIDMap = {
     [744] = 320, -- AQ40
     [1292] = 318, -- Strat Undead

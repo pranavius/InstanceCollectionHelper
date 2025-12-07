@@ -66,6 +66,18 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Alter of the Corrupted Flames",
+        ItemID = 250693,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement Broken Isles World Quests V"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Antoran Charhound",
         ItemID = 152816,
         Type = "Mount",
@@ -422,6 +434,18 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Corruption Pit",
+        ItemID = 250406,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement Legion Remix Raids"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Crate of Bobbers: Tugboat",
         ItemID = 142530,
         Type = "Toy",
@@ -510,6 +534,18 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Demonic Storage Chest",
+        ItemID = 252753,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 5000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement The Armies of Legionfall"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Docile Skyfin",
         ItemID = 153054,
         Type = "Pet",
@@ -548,6 +584,17 @@ AddOn.LemixItems = {
         Type = "Cosmetic",
         VendorName = "Unicus",
         Cost = 7500,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Argussian Demonsbane Cloaks",
+        ItemID = 242237,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 6000,
         Phase = LemixPhases.Phase4,
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
@@ -686,6 +733,83 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Ensemble: Cloaks of Silken Knowledge",
+        ItemID = 242233,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 6000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Cloaks of the Antoran Guard",
+        ItemID = 242238,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 8000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Cloaks of the Fel Battler",
+        ItemID = 242231,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 2000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Cloaks of the Green Mountains",
+        ItemID = 242240,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 4000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Cloaks of the Ironskin Gladiator",
+        ItemID = 242232,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 8000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Cloaks of the Lost Combatant",
+        ItemID = 241592,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 8000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Cloaks of the Lost Gladiator",
+        ItemID = 241593,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 4000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Crescent Vale Raiment",
         ItemID = 241383,
         Type = "Cosmetic",
@@ -695,6 +819,17 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Dalaran's Finest Silken Cloaks",
+        ItemID = 242234,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 6000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Ensemble: Darkwatcher Bindings",
@@ -750,6 +885,28 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Drapes of Devouring Night",
+        ItemID = 242235,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 6000,
+        Phase = LemixPhases.Phase3,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Drapes of Eredar Finery",
+        ItemID = 242236,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 6000,
+        Phase = LemixPhases.Phase4argussian,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Ensemble: Dreadthorn Battlegear",
@@ -829,6 +986,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Ensemble: Druidic Fur Drapes",
+        ItemID = 242229,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 2000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Eagletalon Battlegear",
         ItemID = 241558,
         Type = "Cosmetic",
@@ -882,6 +1050,17 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Eredar Battle Capes",
+        ItemID = 242239,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 6000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Ensemble: Eredath Lightseeker's Regalia",
@@ -1258,6 +1437,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Ensemble: Legion Hunter's Capes",
+        ItemID = 241591,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 6000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Leyline Defender's Sunplate Armor",
         ItemID = 241429,
         Type = "Cosmetic",
@@ -1555,6 +1745,17 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Ensemble: Runespeaker Wraps",
+        ItemID = 235630,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 4000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Sablehide Vestments",
         ItemID = 241378,
         Type = "Cosmetic",
@@ -1654,6 +1855,28 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Ensemble: Shrouds of Azj'Aqir",
+        ItemID = 242228,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 8000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Ensemble: Shrouds of the Lost Deathwyrms",
+        ItemID = 242230,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 8000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Ensemble: Skyborne Brigandine",
         ItemID = 241405,
         Type = "Cosmetic",
@@ -1718,6 +1941,17 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Ensemble: Stormborne Wraps",
+        ItemID = 241590,
+        Type = "Cosmetic",
+        VendorName = "Freddie Threads",
+        Cost = 4000,
+        Phase = LemixPhases.Phase1,
+        AreaPoiID = 8275,
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Ensemble: Stormheart Raiment",
@@ -2061,6 +2295,18 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Eredar Lord's Fel Torch",
+        ItemID = 250690,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 5000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement Argussian Reach"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Eye of Inquisition",
         ItemID = 136901,
         Type = "Pet",
@@ -2104,6 +2350,18 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Fel Fountain",
+        ItemID = 251779,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement Timeworn Keystone Master"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Felblaze Infernal",
@@ -2332,6 +2590,30 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Hanging Felsteel Cage",
+        ItemID = 258299,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 20000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement Highmountain Tribe"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Hanging Felsteel Chain",
+        ItemID = 250404,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 5000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement Defending the Broken Isles III"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Hateful Eye",
         ItemID = 136900,
         Type = "Pet",
@@ -2446,6 +2728,18 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Large Legion Candle",
+        ItemID = 256677,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 2500,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement The Nightfallen"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Legion Communication Orb",
         ItemID = 153194,
         Type = "Toy",
@@ -2455,6 +2749,54 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Legion Torture Rack",
+        ItemID = 250689,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 10000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement Heroic Broken Isles World Quests III"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Legion's Fel Brazier",
+        ItemID = 250407,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 5000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement Dreamweavers"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Legion's Fel Torch",
+        ItemID = 250405,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 5000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement Power of the Obelisks II"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Legion's Holo-Communicator",
+        ItemID = 250403,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement Broken Isles Dungeoneer"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Leystone Basilisk",
@@ -2706,7 +3048,6 @@ AddOn.LemixItems = {
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
     },
-    -- This was breaking on PTR, so try it on Live once
     {
         Name = "Scornwing Flight Form",
         ItemID = 253024,
@@ -2745,6 +3086,18 @@ AddOn.LemixItems = {
         Notes = (select(2, C_Item.GetItemInfo(253304)) or WHITE_FONT_COLOR:WrapTextInColorCode("[Cosmic Soulsliver]")).." are obtained from defeating "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(1, EJ_GetEncounterInfo(2031)) or "Argus the Unmaker")..".".."\n\n".."The number dropped increases based on raid difficulty.",
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Sentinel's Moonwing Gaze",
+        ItemID = 251778,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement The Wardens"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Shackled Ur'zul",
@@ -2814,6 +3167,30 @@ AddOn.LemixItems = {
         Phase = LemixPhases.Phase1,
         AreaPoiID = 8275,
         Notes = L["Obtainable for free by reaching level 80 with a Demon Hunter Timerunner and earning the achievement Timerunner: Demon Hunter"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Legion's Holo-Communicator",
+        ItemID = 250403,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 30000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement Broken Isles Dungeoneer"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
+        Name = "Small Legion Candle",
+        ItemID = 256678,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 2500,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement The Nightfallen"],
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = true
     },
@@ -2938,6 +3315,18 @@ AddOn.LemixItems = {
         IsLemixExclusive = true
     },
     {
+        Name = "Tome of the Corrupt",
+        ItemID = 250307,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 10000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement Court of Farondis"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Tournament Favor",
         ItemID = 130169,
         Type = "Toy",
@@ -3026,6 +3415,18 @@ AddOn.LemixItems = {
         IsLemixExclusive = false
     },
     {
+        Name = "Vertical Felsteel Chain",
+        ItemID = 250622,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 5000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement Defending the Broken Isles III"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
+    },
+    {
         Name = "Vibrant Mana Ray",
         ItemID = 152842,
         Type = "Mount",
@@ -3057,6 +3458,18 @@ AddOn.LemixItems = {
         AreaPoiID = 8275,
         SearchTags = AddOn.ExpansionTags.Legion,
         IsLemixExclusive = false
+    },
+    {
+        Name = "Vrykul Lord's Throne",
+        ItemID = 250402,
+        Type = "Decor",
+        VendorName = "Domelius",
+        Cost = 20000,
+        Phase = LemixPhases.Phase4,
+        AreaPoiID = 8275,
+        Notes = L["Obtainable for free by earning the achievement Valarjar"],
+        SearchTags = AddOn.ExpansionTags.Legion,
+        IsLemixExclusive = true
     },
     {
         Name = "Wild Dreamrunner",

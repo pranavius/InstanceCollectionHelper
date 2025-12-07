@@ -31,8 +31,6 @@ function AddOn:OnInitialize()
     for _, mount in ipairs(self.Mounts) do self.AppendMapSearchTags(mount) end
     for _, toy in ipairs(self.Toys) do self.AppendMapSearchTags(toy) end
     for _, pet in ipairs(self.Pets) do self.AppendMapSearchTags(pet) end
-    for _, item in ipairs(self.TimewalkingItems) do self.AppendMapSearchTags(item) end
-    for _, item in ipairs(self.LemixItems) do self.AppendMapSearchTags(item) end
     for _, item in ipairs(self.DecorItems) do self.AppendMapSearchTags(item) end
 
     -- Load database
@@ -271,7 +269,7 @@ function AddOn:UpdateListContents()
     elseif selectedTab == self.Tabs.DecorTab then
         for _, item in ipairs(self.DecorItems) do
             local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(item.DecorItemID, true)
-            local isOwned = decor.quantity > 0
+            local isOwned = decor.numStored + decor.numPlaced > 0
             local shouldInsert = false
             if not isOwned or (isOwned and self.db.global.showOwned) then
                 tinsert(newData, item)

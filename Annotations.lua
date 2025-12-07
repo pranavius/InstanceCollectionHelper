@@ -78,7 +78,7 @@
 ---@class WowRemixItem
 ---@field Name string
 ---@field ItemID number
----@field Type "Mount"|"Pet"|"Toy"|"Cosmetic"
+---@field Type "Mount"|"Pet"|"Toy"|"Cosmetic"|"Decor"
 ---@field Instance? string
 ---@field InstanceID? number
 ---@field EncounterID? number

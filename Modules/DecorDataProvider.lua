@@ -28,7 +28,7 @@ function AddOn.DecorDataProviderInit(frame, item)
 
     local index = AddOn.ICHDataProvider:FindIndex(item)
     
-    local isOwned = decor.quantity > 0
+    local isOwned = decor.numStored + decor.numPlaced > 0
     local localizedInstanceName = EJ_GetInstanceInfo(item.InstanceID)
     if isOwned then
         frame.Bg:Hide()

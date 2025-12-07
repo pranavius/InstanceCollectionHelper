@@ -224,7 +224,7 @@ function AddOn.AppendMapSearchTags(data)
 end
 
 ---Updates the AddOn database list of owned cosmetics, fetching item data when needed but not available
----@param itemID integer
+---@param itemID number
 function AddOn:UpdateOwnedCosmeticsCacheByItemID(itemID)
     local function getTooltipAndUpdateOwnedCosmeticsCache()
         local tooltip = C_TooltipInfo.GetItemByID(itemID)
@@ -252,8 +252,8 @@ function AddOn:UpdateOwnedCosmeticsCacheByItemID(itemID)
 end
 
 ---Formats and returns text indicating the number of a pet owned against the maximum number that can be owned
----@param owned integer Number of the pet that is owned
----@param limit integer Maximum number that can be owned
+---@param owned number Number of the pet that is owned
+---@param limit number Maximum number that can be owned
 ---@return string
 function AddOn.ColorOwnedPetCountText(owned, limit)
     local text = owned.."/"..limit
@@ -266,7 +266,7 @@ function AddOn.ColorOwnedPetCountText(owned, limit)
 end
 
 ---@param data TimewalkingCacheData|LemixCacheData
----@param type "Mount"|"Toy"|"Pet"|"Cosmetic"
+---@param type "Mount"|"Toy"|"Pet"|"Cosmetic"|"Decor"
 ---@return boolean isOwned
 function AddOn.GetIsVendorItemOwned(data, type)
     local isOwned = false
@@ -279,12 +279,15 @@ function AddOn.GetIsVendorItemOwned(data, type)
         isOwned = AddOn.db.global.ownedCosmeticsCache[data.itemID] or false
     elseif type == "Toy" then
         isOwned = PlayerHasToy(data.itemID)
+    elseif type == "Decor" then
+        local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.itemID, true)
+        isOwned = decor.numStored + decor.numPlaced > 0
     end
 
     return isOwned
 end
 
----@param speciesID integer ID for the pet species
+---@param speciesID number ID for the pet species
 ---@return number owned Number of the pet that is owned
 ---@return number limit Maximum number that can be owned
 function AddOn.GetPetOwnedAndLimitCount(speciesID)
