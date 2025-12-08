@@ -18,3 +18,4 @@ ignore:
     - README.md
     - CHANGELOG
     - Docs
+    - Annotations.lua

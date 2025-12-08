@@ -6,19 +6,6 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 local DungeonDifficulty = AddOn.DungeonDifficulty
 local RaidDifficulty = AddOn.RaidDifficulty
 
----@class Pet Pet data to process and display as a list item in the AddOn
----@field Name string Name of the pet (for information only, displayed name is in user's locale)
----@field PetItemID number ID number for item that adds the pet to the collection
----@field Instance string Instance from which the pet can be obtained (for information only, displayed name is in user's locale)
----@field InstanceID number ID number for the instance where the pet can be obtained
----@field MapID number ID number for the map of the instance
----@field AreaPoiID? number ID number for the Point of Interest (POI) marker showing the instance entrance on the map. Used to place Blizzard map pins for navigation guidance
----@field EncounterID? number ID number for the encounter from which the pet is available
----@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[] List of IDs for instance difficulty(s) the pet can be obtained in
----@field Notes? string Additional notes about the pet or instance
----@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance). Also used for TomTom waypoint integration.
----@field SearchTags string[] A list of string identifiers to quickly search for a pet. This can include expansion abbreviations, expansion names, zones, continents, etc<br>This field is extended upon AddOn initialization to include zones and only includes expansions by default
-
 ---@type Pet[] List of pets available from instances
 AddOn.Pets = {
     {

@@ -3,6 +3,35 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
+local function isList(tbl)
+    local pairsKeysCount = 0
+    for _, _ in pairs(tbl) do
+        pairsKeysCount = pairsKeysCount + 1
+    end
+
+    local ipairsKeysCount = 0
+    for _, _ in ipairs(tbl) do
+        ipairsKeysCount = ipairsKeysCount + 1
+    end
+
+    return pairsKeysCount == ipairsKeysCount
+end
+
+function TableContains(tbl, value)
+    if isList(tbl) then
+        for _, v in ipairs(tbl) do
+            if v == value then return true end
+        end
+        return false
+    end
+
+    for _, v in pairs(tbl) do
+        if v == value then return true end
+    end
+
+    return false
+end
+
 ---Prints a message to the chat window prefixed by the AddOn name
 ---@param ... any Arguments to be printed to the chat window
 ---@see print
@@ -107,11 +136,12 @@ function AddOn:SetTruncatedText(fs, text)
     fs:SetText(text:sub(1, lastVisibleChar - 1) .. ellipsis)
 end
 
----@param data Mount|Toy|Pet
+---@param data Mount|Toy|Pet|DecorItem
 ---@return boolean "`true` if the instance is a raid, `false` otherwise"
 ---@see Mount
 ---@see Toy
 ---@see Pet
+---@see DecorItem
 function AddOn:IsInstanceRaid(data)
     -- Continue treating empty DifficultyIDs lists as raids even though this functionality is deprecated
     if #data.DifficultyIDs == 0 then return true end
@@ -121,11 +151,12 @@ function AddOn:IsInstanceRaid(data)
     return true
 end
 
----@param data Mount|Toy|Pet
+---@param data Mount|Toy|Pet|DecorItem
 ---@return boolean "`true` if an instance encounter has been completed for the current reset period on a given difficulty, `false` otherwise"
 ---@see Mount
 ---@see Toy
 ---@see Pet
+---@see DecorItem
 function AddOn.IsEncounterCompleted(data, difficultyID)
     local encounterName
     if data.EncounterID then encounterName = select(1, EJ_GetEncounterInfo(data.EncounterID)) end
@@ -148,11 +179,12 @@ function AddOn.IsEncounterCompleted(data, difficultyID)
 end
 
 
----@param data Mount|Toy|Pet
+---@param data Mount|Toy|Pet|DecorItem
 ---@return boolean "`true` if an encounter has been completed for the current reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise"
 ---@see Mount
 ---@see Toy
 ---@see Pet
+---@see DecorItem
 function AddOn:IsEncounterCompletedOnSharedDifficulty(data)
     local isCompleted = false
     for shared, _ in pairs(data.SharedDifficulties) do
@@ -163,25 +195,27 @@ function AddOn:IsEncounterCompletedOnSharedDifficulty(data)
 end
 
 ---Append a list of map search tags for a collectibleto the existing `SearchTags` list based on the ID of the instance where it is obtained
----@param data Mount|Toy|Pet|TimewalkingItem|WowRemixItem
+---@param data Mount|Toy|Pet|TimewalkingItem|WowRemixItem|DecorItem
 ---@see Mount
 ---@see Toy
 ---@see Pet
 ---@see TimewalkingItem
 ---@see WowRemixItem
+---@see DecorItem
 function AddOn.AppendMapSearchTags(data)
-    -- Create a fresh list of tags to avoid modifying the original list for each expansion
+    -- Create a fresh list of tags to avoid removing entries contained in the original list
     local tags = {}
-    for _, xpacTag in ipairs(data.SearchTags) do tinsert(tags, xpacTag) end
+    for _, tag in ipairs(data.SearchTags) do tinsert(tags, tag) end
 
-    local dungeonAreaMapID = select(7, EJ_GetInstanceInfo(data.InstanceID))
-    -- This value will always be 0 for instances that existed before Siege of Orgimmar was released
+    -- Check the mapping constant first since raids before Siege of Orgimmar and all dungeons have a value of 0 from EJ_GetInstanceInfo
+    local dungeonAreaMapID = AddOn.InstanceToDamIDMap[data.InstanceID] or select(7, EJ_GetInstanceInfo(data.InstanceID))
+    -- This value will always be 0 for 
     if dungeonAreaMapID and dungeonAreaMapID ~= 0 then
         local map = C_Map.GetMapInfo(dungeonAreaMapID)
         -- MapID 946 is "Cosmic"
         while map and map.parentMapID ~= 946 do
             -- expected: instance name, then zone names up to but excluding "Azeroth"
-            tinsert(tags, map.name:lower())
+            if not TableContains(tags, map.name:lower()) then tinsert(tags, map.name:lower()) end
             map = C_Map.GetMapInfo(map.parentMapID)
         end
     end
@@ -190,7 +224,7 @@ function AddOn.AppendMapSearchTags(data)
 end
 
 ---Updates the AddOn database list of owned cosmetics, fetching item data when needed but not available
----@param itemID integer
+---@param itemID number
 function AddOn:UpdateOwnedCosmeticsCacheByItemID(itemID)
     local function getTooltipAndUpdateOwnedCosmeticsCache()
         local tooltip = C_TooltipInfo.GetItemByID(itemID)
@@ -218,8 +252,8 @@ function AddOn:UpdateOwnedCosmeticsCacheByItemID(itemID)
 end
 
 ---Formats and returns text indicating the number of a pet owned against the maximum number that can be owned
----@param owned integer Number of the pet that is owned
----@param limit integer Maximum number that can be owned
+---@param owned number Number of the pet that is owned
+---@param limit number Maximum number that can be owned
 ---@return string
 function AddOn.ColorOwnedPetCountText(owned, limit)
     local text = owned.."/"..limit
@@ -232,7 +266,7 @@ function AddOn.ColorOwnedPetCountText(owned, limit)
 end
 
 ---@param data TimewalkingCacheData|LemixCacheData
----@param type "Mount"|"Toy"|"Pet"|"Cosmetic"
+---@param type "Mount"|"Toy"|"Pet"|"Cosmetic"|"Decor"
 ---@return boolean isOwned
 function AddOn.GetIsVendorItemOwned(data, type)
     local isOwned = false
@@ -245,12 +279,15 @@ function AddOn.GetIsVendorItemOwned(data, type)
         isOwned = AddOn.db.global.ownedCosmeticsCache[data.itemID] or false
     elseif type == "Toy" then
         isOwned = PlayerHasToy(data.itemID)
+    elseif type == "Decor" then
+        local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.itemID, true)
+        isOwned = decor.numStored + decor.numPlaced > 0
     end
 
     return isOwned
 end
 
----@param speciesID integer ID for the pet species
+---@param speciesID number ID for the pet species
 ---@return number owned Number of the pet that is owned
 ---@return number limit Maximum number that can be owned
 function AddOn.GetPetOwnedAndLimitCount(speciesID)

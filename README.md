@@ -11,7 +11,7 @@ _Track available collectibles from instances and easily set required instance di
 - Tabs for mounts, toys, and pets that are available from instances
 - Search for a collectible by its name, an instance name or type, a difficulty setting, or by expansion
 - Easily keep track of all available mounts, pets, and toys offered by Timewalking vendors along with their costs
-- Track which Housing items can be found from instances **COMING SOON**
+- Track which decor items can be found from instances **COMING SOON**
 - Multi-column scrollable UI with Name, Instance, and Available Difficulty columns
 - Links to in-game mount journal as well as instance and encounter journal for each item in the list
 - Ability to drop a map pin at the instance entrance to make navigating easier

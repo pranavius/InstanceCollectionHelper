@@ -3,24 +3,12 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----@class TimewalkingItem
----@field Name string Name of the collectible (for information only, displayed name is in user's locale)
----@field ItemID number ID number for item that adds the collectible to the collection
----@field Type "Mount"|"Pet"|"Toy" The type of collectible that the item provides (one of "Mount", "Pet", "Toy")
----@field VendorName? string Name of the vendor that sells this collectible (for information only, displayed name is in user's locale)
----@field Expansion string Expansion for which the timewalking vendor that the collectible can be purchased from will be available
----@field Cost number Number of Timewarped badges required to purchase the item
----@field AreaPoiID? number ID number for the Point of Interest (POI) marker showing the vendor location on the map. Used to place Blizzard map pins for navigation guidance
----@field Notes? string Additional notes about the collectible
----@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available. Also used for TomTom waypoint integration.
----@field SearchTags string[] A list of string identifiers to quickly search for a collectible. This can include expansion abbreviations, expansion names, zones, continents, etc<br>This field is extended upon AddOn initialization to include zones and only includes expansions by default
-
-local function combineLists(...)
-    local argTable = { ... }
+local function combineExpansionTags(...)
+    local xpacTagLists = { ... }
     local result = {}
-    for _, tbl in ipairs(argTable) do
-        for _, v in ipairs(tbl) do
-            tinsert(result, v)
+    for _, tagList in ipairs(xpacTagLists) do
+        for _, tag in ipairs(tagList) do
+            if not TableContains(result, tag) then tinsert(result, tag) end
         end
     end
 
@@ -113,7 +101,7 @@ AddOn.TimewalkingItems = {
         Expansion = "-",
         Cost = 5000,
         Notes = L["Originally rewarded for completing the achievement Master of the Turbulent Timeways III. Can now be purchased from any Timewalking vendor."],
-        SearchTags = combineLists(AddOn.ExpansionTags.Classic,
+        SearchTags = combineExpansionTags(AddOn.ExpansionTags.Classic,
             AddOn.ExpansionTags.TheBurningCrusade,
             AddOn.ExpansionTags.WrathOfTheLichKing,
             AddOn.ExpansionTags.MistsOfPandaria,
@@ -417,7 +405,7 @@ AddOn.TimewalkingItems = {
         Expansion = "-",
         Cost = 5000,
         Notes = L["Originally rewarded for completing the achievement Master of the Turbulent Timeways. Can now be purchased from any Timewalking vendor."],
-        SearchTags = combineLists(AddOn.ExpansionTags.Classic,
+        SearchTags = combineExpansionTags(AddOn.ExpansionTags.Classic,
             AddOn.ExpansionTags.TheBurningCrusade,
             AddOn.ExpansionTags.WrathOfTheLichKing,
             AddOn.ExpansionTags.MistsOfPandaria,
@@ -475,7 +463,7 @@ AddOn.TimewalkingItems = {
         Expansion = "-",
         Cost = 5000,
         Notes = L["Originally rewarded for completing the achievement Master of the Turbulent Timeways II. Can now be purchased from any Timewalking vendor."],
-        SearchTags = combineLists(AddOn.ExpansionTags.Classic,
+        SearchTags = combineExpansionTags(AddOn.ExpansionTags.Classic,
             AddOn.ExpansionTags.TheBurningCrusade,
             AddOn.ExpansionTags.WrathOfTheLichKing,
             AddOn.ExpansionTags.MistsOfPandaria,

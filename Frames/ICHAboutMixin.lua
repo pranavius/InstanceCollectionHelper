@@ -3,23 +3,10 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----@class ICHAbout: Frame
----@field Bg Texture The background texture for the frame
----@field Name FontString AddOn name
----@field Author FontString AddOn author
----@field Twitter FontString AddOn author's Twitter/X handle
----@field GitHub FontString AddOn author's GitHub username
----@field SpecialThanksHeader FontString Heading for list of people to give a special thanks to for their contributions to the AddOn
----@field Translators FontString Heading for list of people to thank for providing translations into other languages for the AddOn
----@field OpenICH Button Closes the About information and re-opens the AddOn
----@field Close Button Closes the About information
+---@class ICHAbout
 ICHAboutMixin = {}
 
 local CURRENT_VERSION = 13
-
----@class Translator An individual who has contributed to the localization of ICH in another language/locale besides English (_enUS_)
----@field name string The name of the translator
----@field locale "enUS"|"enGB"|"enAU"|"esES"|"esMX"|"ptBR"|"ptPT"|"frFR"|"deDE"|"itIT"|"ruRU"|"koKR"|"zhTW"|"zhCN" The locale for which they provided translations
 
 ---@type Translator[]
 local translators = {

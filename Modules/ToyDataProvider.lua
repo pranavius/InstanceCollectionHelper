@@ -3,12 +3,6 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----@class ToyCacheData
----@field itemName string Localized name for the item that adds the toy to the collection
----@field itemID integer ID for the item that adds the toy to the collection
----@field toyName string Localized toy name
----@field iconID integer ID for the icon associated with the toy
-
 function AddOn:CreateToyCache()
     ---@type table<number, ToyCacheData> Stores necessary toy data in a local cache - attempting to reduce the amount of stutter/freezing when viewing toys
     self.ToyCache = {}

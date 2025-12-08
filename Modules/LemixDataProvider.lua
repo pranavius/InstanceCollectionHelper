@@ -3,23 +3,10 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----@class LemixCacheData
----@field itemName string Localized name for the item that adds the collectible to the collection
----@field itemID integer ID number for the item that adds the collectible to the collection
----@field collectibleName string Localized collectible name
----@field iconID integer ID for the icon associated with the collectible
----@field mountID? integer ID number for the mount (applies to mounts only)
----@field speciesID? integer ID for the pet species (applies to pets only)
-
----@class LemixResourceCacheData
----@field itemName string
----@field itemID integer
----@field iconID integer
-
 function AddOn:CreateLemixCache()
-    ---@type table<integer, LemixCacheData> Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
+    ---@type table<number, LemixCacheData> Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
     self.LemixCache = {}
-    ---@type table<integer, LemixResourceCacheData>
+    ---@type table<number, LemixResourceCacheData>
     self.LemixResourceCache = {}
     local toLoad = #self.LemixItems
 
@@ -77,6 +64,16 @@ function AddOn:CreateLemixCache()
                     itemName = C_Item.GetItemNameByID(item.ItemID) or "",
                     itemID = item.ItemID,
                     collectibleName = item.Name,
+                    iconID = iconID or 134400
+                }
+            elseif item.Type == "Decor" then
+                local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(item.ItemID, true)
+                local iconID = select(5, C_Item.GetItemInfoInstant(item.ItemID))
+
+                self.LemixCache[item.ItemID] = {
+                    itemName = C_Item.GetItemNameByID(item.ItemID) or "",
+                    itemID = item.ItemID,
+                    collectibleName = decor.name,
                     iconID = iconID or 134400
                 }
             end

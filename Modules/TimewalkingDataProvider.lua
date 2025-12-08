@@ -3,14 +3,6 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
----@class TimewalkingCacheData
----@field itemName string Localized name for the item that adds the collectible to the collection
----@field itemID integer ID number for the item that adds the collectible to the collection
----@field collectibleName string Localized collectible name
----@field iconID integer ID for the icon associated with the collectible
----@field mountID? integer ID number for the mount (applies to mounts only)
----@field speciesID? integer ID for the pet species (applies to pets only)
-
 function AddOn:CreateTimewalkingCache()
     ---@type table<number, TimewalkingCacheData> Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
     self.TimewalkingCache = {}

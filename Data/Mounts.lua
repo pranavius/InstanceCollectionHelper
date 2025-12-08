@@ -6,20 +6,6 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 local DungeonDifficulty = AddOn.DungeonDifficulty
 local RaidDifficulty = AddOn.RaidDifficulty
 
----@class Mount Mount data to process and display as a list item in the AddOn
----@field Name string Name of the mount (for information only, displayed name is in user's locale)
----@field ID number ID number for the mount
----@field Instance string Instance from which the mount can be obtained (for information only, displayed name is in user's locale)
----@field InstanceID number ID number for the instance where the mount can be obtained
----@field MapID number ID number for the map of the instance
----@field AreaPoiID? number ID number for the Point of Interest (POI) marker showing the instance entrance on the map. Used to place Blizzard map pins for navigation guidance.
----@field EncounterID? number ID number for the encounter from which the mount is obtainable
----@field DifficultyIDs (DungeonDifficulty|RaidDifficulty)[] List of IDs for instance difficulty(s) the mount can be obtained in
----@field SharedDifficulties? table<RaidDifficulty, RaidDifficulty> Provides associations for difficulties that share a lockout with the listed `DifficultyID`
----@field Notes? string Additional notes about the mount or instance
----@field Waypoint? Waypoint Supplemental information to place a map pin on the entrance to the instance when a POI is not available (ex. Stratholme - Service Entrance). Also used for TomTom waypoint integration.
----@field SearchTags string[] A list of string identifiers to quickly search for a mount. This can include expansion abbreviations, expansion names, zones, continents, etc<br>This field is extended upon AddOn initialization to include zones and only includes expansions by default
-
 ---@type Mount[] List of mounts available from instances
 AddOn.Mounts = {
     {
@@ -720,14 +706,26 @@ AddOn.Mounts = {
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
+        Name = "Slime Serpent",
+        ID = 1445,
+        Instance = "Plaguefall",
+        InstanceID = 1183,
+        MapID = 2289,
+        AreaPoiID = 6585,
+        DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
+        Notes = L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."],
+        Waypoint = { mapID = 1536, x = 0.594, y = 0.65 },
+        SearchTags = AddOn.ExpansionTags.Shadowlands
+    },
+    {
         Name = "Smoldering Ember Wyrm",
         ID = 883,
         Instance = "Return to Karazhan",
         InstanceID = 860,
         MapID = 1651,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
         Notes = L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"],
+        Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
         SearchTags = AddOn.ExpansionTags.Legion
     },
     --[===[@non-version-mists@

@@ -31,8 +31,7 @@ function AddOn:OnInitialize()
     for _, mount in ipairs(self.Mounts) do self.AppendMapSearchTags(mount) end
     for _, toy in ipairs(self.Toys) do self.AppendMapSearchTags(toy) end
     for _, pet in ipairs(self.Pets) do self.AppendMapSearchTags(pet) end
-    for _, item in ipairs(self.TimewalkingItems) do self.AppendMapSearchTags(item) end
-    for _, item in ipairs(self.LemixItems) do self.AppendMapSearchTags(item) end
+    for _, item in ipairs(self.DecorItems) do self.AppendMapSearchTags(item) end
 
     -- Load database
 	self.db = LibStub("AceDB-3.0"):New("ICH_DB", AddOn.DatabaseDefaults, true)
@@ -52,6 +51,7 @@ function AddOn:OnInitialize()
         OnClick = function() if self.Container then self.Container:Show() end end,
         OnTooltipShow = function(tooltip)
             tooltip:SetText(AddOn.Title)
+            -- Update to include "decor"
             tooltip:AddLine(L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"], 1, 1, 1, true)
             tooltip:AddLine(L["Type \"/ich help\" in the chat window for available slash commands"])
         end
@@ -96,13 +96,14 @@ function AddOn:ConfigureOnInit()
 end
 
 ---Filters a list of data based on search parameters
----@param listData (Mount|Toy|Pet|TimewalkingItem|WowRemixItem)[]
----@return (Mount|Toy|Pet|TimewalkingItem|WowRemixItem)[]
+---@param listData (Mount|Toy|Pet|TimewalkingItem|WowRemixItem|DecorItem)[]
+---@return (Mount|Toy|Pet|TimewalkingItem|WowRemixItem|DecorItem)[]
 ---@see Mount
 ---@see Toy
 ---@see Pet
 ---@see TimewalkingItem
 ---@see WowRemixItem
+---@see DecorItem
 function AddOn:FilterListContentsByQuery(listData)
     local filtered = {}
     local query = self.Container.SearchBox:GetText():lower()
@@ -125,12 +126,15 @@ function AddOn:FilterListContentsByQuery(listData)
             itemName = self.TimewalkingCache[data.ItemID].itemName or data.Name
         elseif selectedTab == self.Tabs.LegionRemixVendorTab then
             itemName = self.LemixCache[data.ItemID].itemName or data.Name
+        elseif selectedTab == self.Tabs.DecorTab then
+            local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.DecorItemID, true)
+            itemName = decor.name
         end
         local cleanName = itemName:lower():gsub("|.+|.*", "")
         nameMatches = cleanName:match(query) and true or false
         instanceMatches = instanceName:lower():match(query) and true or false
         encounterMatches = encounterName:lower():match(query) and true or false
-        instanceTypeMatches = query == L["raid"] and self:IsInstanceRaid(data) or (query == L["dungeon"] and not self:IsInstanceRaid(data))
+        instanceTypeMatches = data.DifficultyIDs and (query == L["raid"] and self:IsInstanceRaid(data) or (query == L["dungeon"] and not self:IsInstanceRaid(data)))
         
         local difficultyMatches = false
         for _, diffID in ipairs(data.DifficultyIDs or {}) do
@@ -177,7 +181,7 @@ end
 
 ---Update the contents of the list shown in the UI
 function AddOn:UpdateListContents()
-    ---@type (Mount|Toy|Pet|TimewalkingItem|WowRemixItem)[]
+    ---@type (Mount|Toy|Pet|TimewalkingItem|WowRemixItem|DecorItem)[]
     local newData = {}
     local selectedTab = self.db.global.selectedTab
     if selectedTab == self.Tabs.MountsTab then
@@ -259,6 +263,18 @@ function AddOn:UpdateListContents()
                 end
             else
                 self:PrintDebugMessage("Item data not found in Legion: Remix cache for:", item.Name)
+            end
+        end
+        -- Update search box instructions somehow
+    elseif selectedTab == self.Tabs.DecorTab then
+        for _, item in ipairs(self.DecorItems) do
+            local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(item.DecorItemID, true)
+            local isOwned = decor.numStored + decor.numPlaced > 0
+            local shouldInsert = false
+            if not isOwned or (isOwned and self.db.global.showOwned) then
+                tinsert(newData, item)
+            else
+                self:PrintDebugMessage("Failed to curate table data for pet:", item.Name)
             end
         end
         -- Update search box instructions somehow
