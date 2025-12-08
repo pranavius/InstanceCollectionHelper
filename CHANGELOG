@@ -4,6 +4,9 @@ This document describes changes to each version of **Instance Collection Helper 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v15.1**
+- Fixed an issue causing tabs to not open if there was data missing for decor items
+
 **v15**
 - **Major update:** Enabled **Decor** tab (previously called **Housing**) and add all decor items currently available as drops from instances
   - Items in this tab can also be searched by using housing category keywords such as "alliance", "elven", "indoors", "outdoors", etc.
