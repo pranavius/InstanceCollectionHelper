@@ -4,8 +4,23 @@ This document describes changes to each version of **Instance Collection Helper 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v15**
+- **Major update:** Enabled **Decor** tab (previously called **Housing**) and add all decor items currently available as drops from instances
+  - Items in this tab can also be searched by using housing category keywords such as "alliance", "elven", "indoors", "outdoors", etc.
+- **Major update:** Added missing cosmetic and decor items to **Legion: Remix Vendor** tab
+- Added *Slime Serpent* to **Mounts** tab
+- Fixed an issue causing searching for a collectible by zone/map name to not consistently show appropriate results
+- Fixed a few bugs with items shown in the **Legion: Remix Vendor** tab
+- Added the toy *Skull of Corruption* to the **Legion: Remix Vendor** tab
+- Updated waypoint tooltips for **Legion: Remix** collectibles to also indicate which instance they can be found in (if applicable)
+- Fixed a bug that caused a Lua error to occur when searching with keywords "dungeon" or "raid" in the **Timewalking Vendor** and **Legion: Remix Vendor** tabs
+- Minor code refactoring
+
+**v14**
+*Code refactors only, no changes to addon features or capabilties*
+
 **v13**
-- Decor tab added **NEW** (to be populated soon)
+- Decor tab added (to be populated soon)
 - Added remaining purchasable cosmetics to **Legion: Remix Vendor** tab
   - Remaining open world/questing sets
   - Dungeon sets

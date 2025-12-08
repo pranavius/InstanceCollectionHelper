@@ -6,8 +6,6 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@class ICHAbout
 ICHAboutMixin = {}
 
-local CURRENT_VERSION = 13
-
 ---@type Translator[]
 local translators = {
     { name = "Fargoran", locale = "deDE" },
@@ -19,7 +17,8 @@ function ICHAboutMixin:OnLoad()
     -- Allows closing via ESC key
     tinsert(UISpecialFrames, self:GetName())
 
-    self.Name:SetText("Instance Collection Helper v"..CURRENT_VERSION)
+    ---@diagnostic disable-next-line: exp-in-action, undefined-global, unknown-symbol, miss-exp, miss-symbol
+    self.Name:SetText("Instance Collection Helper v"..@project-version@)
     self.Author:SetText(L["Created by Pranavius"])
     self.Twitter:SetText("|TInterface\\AddOns\\InstanceCollectionHelper\\Media\\X-logo:20:20|t   ".."@PranaviusWoW")
     self.GitHub:SetText("|TInterface\\AddOns\\InstanceCollectionHelper\\Media\\Github-logo:20:20|t   ".."Pranavius")
