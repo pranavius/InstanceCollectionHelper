@@ -201,6 +201,7 @@ L["Unable to transfer Bronze to this character right now."] = "Unable to transfe
 L["Obtained through the quest chain started by Torn Invitation, which is purchasable from the vendor."] = "Obtained through the quest chain started by "..(select(2, C_Item.GetItemInfo(140495)) or RARE_BLUE_COLOR:WrapTextInColorCode("[Torn Invitation]"))..", which is purchasable from the vendor."
 L["This is considerably easier to obtain in Legion: Remix as items needed for the quest chain are given to you upon purchasing this item."] = "This is considerably easier to obtain in Legion: Remix as items needed for the quest chain are given to you upon purchasing this item."
 --- New in v15: To be categorized ---
+L["Decor"] = "Decor"
 L["Obtainable for free by earning the achievement Broken Isles World Quests V"] = "Obtainable for free by earning the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42674)) or "Broken Isles World Quests V")
 L["Obtainable for free by earning the achievement Legion Remix Raids"] = "Obtainable for free by earning the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42321)) or "Legion Remix Raids")
 L["Obtainable for free by earning the achievement The Armies of Legionfall"] = "Obtainable for free by earning the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42655)) or "The Armies of Legionfall")
@@ -216,3 +217,6 @@ L["Obtainable for free by earning the achievement Heroic Broken Isles World Ques
 L["Obtainable for free by earning the achievement The Wardens"] = "Obtainable for free by earning the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61218)) or "The Wardens")
 L["Obtainable for free by earning the achievement Court of Farondis"] = "Obtainable for free by earning the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42318)) or "Court of Farondis")
 L["Obtainable for free by earning the achievement Valarjar"] = "Obtainable for free by earning the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42658)) or "Valarjar")
+L["Upon entering the instance, dungeon difficulty will automatically be set to Normal"] = "Upon entering the instance, dungeon difficulty will automatically be set to Normal"
+L["Dropped by Vanessa VanCleef on Heroic difficulty"] = "Dropped by "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vanessa VanCleef").." on Heroic difficulty"
+L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Clear the dungeon solo, then return to the area where "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Domina Venomblade").." was and interact with the "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Curious Slime Serpent").."."
