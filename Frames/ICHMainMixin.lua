@@ -23,25 +23,16 @@ function ICHMainMixin:OnLoad()
 
     -- "Show" all header frames so they become visible/invisible correctly when modifying alpha
     self.VendorListHeaders:Show()
-    self.LemixListHeaders:Show()
 
     -- Automatically hide one set of headers when the other is made visible
     hooksecurefunc(self.ListHeaders, "SetAlpha", function(_, value)
         if value > 0 then
             self.VendorListHeaders:SetAlpha(0)
-            self.LemixListHeaders:SetAlpha(0)
         end
     end)
     hooksecurefunc(self.VendorListHeaders, "SetAlpha", function(_, value)
         if value > 0 then
             self.ListHeaders:SetAlpha(0)
-            self.LemixListHeaders:SetAlpha(0)
-        end
-    end)
-    hooksecurefunc(self.LemixListHeaders, "SetAlpha", function(_, value)
-        if value > 0 then
-            self.ListHeaders:SetAlpha(0)
-            self.VendorListHeaders:SetAlpha(0)
         end
     end)
     

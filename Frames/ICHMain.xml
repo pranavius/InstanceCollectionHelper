@@ -94,12 +94,6 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     <Anchor point="TOPRIGHT" relativeKey="$parent.Title" relativePoint="BOTTOMRIGHT" x="-10" y="-45"/>
                 </Anchors>
             </Frame>
-            <Frame parentKey="LemixListHeaders" inherits="ICHLemixListHeadersTemplate">
-                <Anchors>
-                    <Anchor point="TOPLEFT" relativeKey="$parent.Title" relativePoint="BOTTOMLEFT" x="10" y="-45"/>
-                    <Anchor point="TOPRIGHT" relativeKey="$parent.Title" relativePoint="BOTTOMRIGHT" x="-10" y="-45"/>
-                </Anchors>
-            </Frame>
         </Frames>
         <Scripts>
             <OnDragStart method="OnDragStart"/>

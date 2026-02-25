@@ -9,6 +9,68 @@ local RaidDifficulty = AddOn.RaidDifficulty
 ---@type DecorItem[]
 AddOn.DecorItems = {
     {
+        Name = "Amani Ritual Altar",
+        DecorItemID = 264332,
+        Instance = "Den of Nalorakk",
+        InstanceID = 1311,
+        MapID = 2825,
+        AreaPoiID = 8472,
+        EncounterID = 2778,
+        DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
+        Notes = L["Also obtainable in a Follower dungeon"],
+        Waypoint = { mapID = 2437, x = 0.298, y = 0.845 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Amani Warding Hex",
+        DecorItemID = 264717,
+        Instance = "Maisara Caverns",
+        InstanceID = 1315,
+        MapID = 2874,
+        AreaPoiID = 8480,
+        EncounterID = 2812,
+        DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
+        Notes = L["Also obtainable in a Follower dungeon"],
+        Waypoint = { mapID = 2437, x = 0.438, y = 0.395 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Blessed Phoenix Egg",
+        DecorItemID = 264187,
+        Instance = "March on Quel'Danas",
+        InstanceID = 1308,
+        MapID = 2913,
+        AreaPoiID = 8271,
+        EncounterID = 2739,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = { mapID = 2424, x = 0.526, y = 0.853 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Branded Domanaar Storage Crate",
+        DecorItemID = 264494,
+        Instance = "The Voidspire",
+        InstanceID = 1307,
+        MapID = 2912,
+        AreaPoiID = 8270,
+        EncounterID = 2736,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = { mapID = 2405, x = 0.452, y = 0.648 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Chaotic Void Maw",
+        DecorItemID = 264492,
+        Instance = "March on Quel'Danas",
+        InstanceID = 1308,
+        MapID = 2913,
+        AreaPoiID = 8271,
+        EncounterID = 2740,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = { mapID = 2424, x = 0.526, y = 0.853 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
         Name = "Dark Iron Chandelier",
         DecorItemID = 246429,
         Instance = "Blackrock Depths",
@@ -22,6 +84,31 @@ AddOn.DecorItems = {
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
+        Name = "Devouring Ritual Spire",
+        DecorItemID = 269269,
+        Instance = "The Voidspire",
+        InstanceID = 1307,
+        MapID = 2912,
+        AreaPoiID = 8270,
+        EncounterID = 2738,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = { mapID = 2405, x = 0.452, y = 0.648 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Domanaar Control Console",
+        DecorItemID = 264338,
+        Instance = "Nexus-Point Xenas",
+        InstanceID = 1316,
+        MapID = 2915,
+        AreaPoiID = 2644,
+        EncounterID = 2815,
+        DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
+        Notes = L["Also obtainable in a Follower dungeon"],
+        Waypoint = { mapID = 2405, x = 0.65, y = 0.618 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
         Name = "Draenic Ottoman",
         DecorItemID = 251331,
         Instance = "Auchindoun",
@@ -33,6 +120,18 @@ AddOn.DecorItems = {
         Notes = L["Also obtainable in Timewalking"],
         Waypoint = { mapID = 535, x = 0.463, y = 0.739 },
         SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
+    },
+    {
+        Name = "Eerie Iridescent Riftshroom",
+        DecorItemID = 264246,
+        Instance = "The Dreamrift",
+        InstanceID = 1314,
+        MapID = 2939,
+        AreaPoiID = 8482,
+        EncounterID = 2795,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = { mapID = 2413, x = 0.614, y = 0.629 },
+        SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
         Name = "Gilnean Circular Rug",
@@ -81,6 +180,44 @@ AddOn.DecorItems = {
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Waypoint = { mapID = 1530, x = 0.741, y = 0.401 },
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
+    },
+    {
+        Name = "Illicit Long Table",
+        DecorItemID = 263238,
+        Instance = "Murder Row",
+        InstanceID = 1304,
+        MapID = 2813,
+        AreaPoiID = 8217,
+        EncounterID = 2682,
+        DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
+        Notes = L["Also obtainable in a Follower dungeon"],
+        Waypoint = { mapID = 2393, x = 0.572, y = 0.61 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Imperator's Torment Crystal",
+        DecorItemID = 264497,
+        Instance = "The Voidspire",
+        InstanceID = 1307,
+        MapID = 2912,
+        AreaPoiID = 8270,
+        EncounterID = 2733,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = { mapID = 2405, x = 0.452, y = 0.648 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Magister's Bookshelf",
+        DecorItemID = 263230,
+        Instance = "Magister's Terrace",
+        InstanceID = 1300,
+        MapID = 2811,
+        AreaPoiID = 8510,
+        EncounterID = 2662,
+        DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
+        Notes = L["Also obtainable in a Follower dungeon"],
+        Waypoint = { mapID = 2424, x = 0.635, y = 0.154 },
+        SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
         Name = "Magistrix's Garden Fountain",
@@ -171,6 +308,19 @@ AddOn.DecorItems = {
         SearchTags = AddOn.ExpansionTags.Dragonflight
     },
     {
+        Name = "Silvermoon Training Dummy",
+        DecorItemID = 256683,
+        Instance = "Windrunner Spire",
+        InstanceID = 1299,
+        MapID = 2805,
+        AreaPoiID = 8386,
+        EncounterID = 2658,
+        DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
+        Notes = L["Also obtainable in a Follower dungeon"],
+        Waypoint = { mapID = 2395, x = 0.355, y = 0.788 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
         Name = "Stolen Ironforge Seat",
         DecorItemID = 246421,
         Instance = "Freehold",
@@ -195,6 +345,18 @@ AddOn.DecorItems = {
         Notes = L["Dropped by Vanessa VanCleef on Heroic difficulty"],
         Waypoint = { mapID = 52, x = 0.426, y = 0.716 },
         SearchTags = AddOn.ExpansionTags.Classic
+    },
+    {
+        Name = "Tattered Vanguard Barrier",
+        DecorItemID = 262957,
+        Instance = "The Voidspire",
+        InstanceID = 1307,
+        MapID = 2912,
+        AreaPoiID = 8270,
+        EncounterID = 2737,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = { mapID = 2405, x = 0.452, y = 0.648 },
+        SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
         Name = "Thunder Totem Brazier",
@@ -258,5 +420,67 @@ AddOn.DecorItems = {
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Waypoint = { mapID = 2022, x = 0.601, y = 0.757 },
         SearchTags = AddOn.ExpansionTags.Dragonflight
+    },
+    {
+        Name = "Veilroot Fountain",
+        DecorItemID = 253451,
+        Instance = "The Blinding Vale",
+        InstanceID = 1309,
+        MapID = 2859,
+        AreaPoiID = 8481,
+        EncounterID = 2772,
+        DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
+        Notes = L["Also obtainable in a Follower dungeon"],
+        Waypoint = { mapID = 2413, x = 0.265, y = 0.78 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Voidbound Holding Cell",
+        DecorItemID = 264491,
+        Instance = "The Voidspire",
+        InstanceID = 1307,
+        MapID = 2912,
+        AreaPoiID = 8270,
+        EncounterID = 2735,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = { mapID = 2405, x = 0.452, y = 0.648 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Voidlight Brazier",
+        DecorItemID = 264336,
+        Instance = "Voidscar Arena",
+        InstanceID = 1309,
+        MapID = 2859,
+        AreaPoiID = 8647,
+        EncounterID = 2793,
+        DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
+        Notes = L["Also obtainable in a Follower dungeon"],
+        Waypoint = { mapID = 2413, x = 0.265, y = 0.78 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Voltaic Trigore Egg",
+        DecorItemID = 264498,
+        Instance = "The Voidspire",
+        InstanceID = 1307,
+        MapID = 2912,
+        AreaPoiID = 8270,
+        EncounterID = 2734,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = { mapID = 2405, x = 0.452, y = 0.648 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Waxmaster's Candle Rack",
+        DecorItemID = 258268,
+        Instance = "Darkflame Cleft",
+        InstanceID = 1210,
+        MapID = 2651,
+        AreaPoiID = 7821,
+        EncounterID = 2561,
+        DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
+        Waypoint = { mapID = 2214, x = 0.555, y = 0.216 },
+        SearchTags = AddOn.ExpansionTags.TheWarWithin
     }
 }
