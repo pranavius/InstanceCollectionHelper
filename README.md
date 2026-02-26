@@ -3,12 +3,11 @@
 _Track available collectibles from instances and easily set required instance difficulty_
 
 ## Important Notices
-- ICH will have a tab showing available **Legion: Remix Vendor** collectibles for the duration of the event
 - ICH will be continue to be supported in the **Midnight** expansion and beyond (for the foreseeable future)
 - I am looking for translators to help bring this AddOn to those who may not understand English. If interested, please contact me via one of the means listed in the [Contact](#contact) section.
 
 ## Highlights
-- Tabs for mounts, toys, pets, and decor (**NEW**) that are available from instances
+- Tabs for mounts, toys, pets, and decor that are available from instances
 - Search for a collectible by its name, an instance name or type, a difficulty setting, by expansion, or by the zone or parent zone it can be found in
 - Easily keep track of all available collectibles offered by Timewalking vendors along with their costs
 - Multi-column scrollable UI with Name, Instance, and Available Difficulty columns
