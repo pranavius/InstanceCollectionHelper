@@ -1,4 +1,4 @@
-## Interface: 120000, 110207
+## Interface: 120001, 120000
 ## Interface-Mists: 50502
 ## Title: Instance Collection Helper
 ## Notes: Helps find and set the instance difficulty needed to obtain collectible items
@@ -32,7 +32,6 @@ Data\Mounts.lua
 Data\Toys.lua
 Data\Pets.lua
 Data\Timewalking.lua
-Data\Lemix.lua
 Data\Decor.lua
 Modules\CategoryTabs.lua
 Modules\Waypoints.lua
@@ -41,7 +40,6 @@ Modules\MountDataProvider.lua
 Modules\ToyDataProvider.lua
 Modules\PetDataProvider.lua
 Modules\TimewalkingDataProvider.lua
-Modules\LemixDataProvider.lua
 Modules\DecorDataProvider.lua
 
 Templates\ICHSquareButtonMixin.lua
@@ -52,8 +50,6 @@ Templates\ListHeadersMixin.lua
 Templates\ListHeadersTemplate.xml
 Templates\ListItemMixin.lua
 Templates\ListItemTemplate.xml
-Templates\LemixMixins.lua
-Templates\LemixTemplates.xml
 
 Frames\ICHMainMixin.lua
 Frames\ICHMain.xml

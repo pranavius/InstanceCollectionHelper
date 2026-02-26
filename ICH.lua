@@ -40,7 +40,6 @@ function AddOn:OnInitialize()
     self:CreateToyCache()
     self:CreatePetCache()
     self:CreateTimewalkingCache()
-    self:CreateLemixCache()
     --@end-retail@
 
     -- Data broker registration for minimap icon
@@ -124,8 +123,6 @@ function AddOn:FilterListContentsByQuery(listData)
             itemName = C_PetJournal.GetPetInfoByItemID(data.PetItemID) or data.Name
         elseif selectedTab == self.Tabs.TimewalkingVendorTab then
             itemName = self.TimewalkingCache[data.ItemID].itemName or data.Name
-        elseif selectedTab == self.Tabs.LegionRemixVendorTab then
-            itemName = self.LemixCache[data.ItemID].itemName or data.Name
         elseif selectedTab == self.Tabs.DecorTab then
             local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.DecorItemID, true)
             itemName = decor.name
@@ -162,17 +159,7 @@ function AddOn:FilterListContentsByQuery(listData)
         
         local itemTypeMatches = data.Type and query == L[data.Type]:lower() or false
 
-        -- Remix filters
-        local isRemixExclusive = data.IsLemixExclusive and query:match("remix") or false
-        local phaseMatches = false
-        if data.Phase then
-            local phase = string.split(":", data.Phase)
-            phase = strtrim(phase):lower()
-            local phaseNumOnly = select(2, string.split(" ", phase))
-            phaseMatches = query == phase or query == phaseNumOnly or query == "p"..phaseNumOnly
-        end
-
-        if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches or searchTagMatches or itemTypeMatches or isRemixExclusive or phaseMatches then
+        if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches or searchTagMatches or itemTypeMatches then
             tinsert(filtered, data)
         end
     end
@@ -242,30 +229,6 @@ function AddOn:UpdateListContents()
                 self:PrintDebugMessage("Item data not found in Timewalking cache for:", item.Name)
             end
         end
-    elseif selectedTab == self.Tabs.LegionRemixVendorTab then
-        for _, item in ipairs(self.LemixItems) do
-            local itemData = self.LemixCache[item.ItemID]
-
-            if itemData then
-                local isOwned = self.GetIsVendorItemOwned(itemData, item.Type)
-                local shouldInsert = false
-                -- Needed for a specific fix for Scornwing Flight Form until I can find a better solution
-                if item.Type == "Mount" and item.ItemID == 253024 then
-                    shouldInsert = true
-                else
-                    shouldInsert = not isOwned or (isOwned and self.db.global.showOwned)
-                end
-
-                if shouldInsert then
-                    tinsert(newData, item)
-                else
-                    self:PrintDebugMessage("Failed to curate table data for Legion: Remix item:", item.Name)
-                end
-            else
-                self:PrintDebugMessage("Item data not found in Legion: Remix cache for:", item.Name)
-            end
-        end
-        -- Update search box instructions somehow
     elseif selectedTab == self.Tabs.DecorTab then
         for _, item in ipairs(self.DecorItems) do
             local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(item.DecorItemID, true)

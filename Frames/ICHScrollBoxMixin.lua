@@ -23,9 +23,7 @@ function ICHScrollBoxMixin:InitializeScrollView()
 
         ScrollUtil.InitScrollBoxListWithScrollBar(AddOn.ScrollBox, AddOn.ScrollBar, AddOn.ScrollView)
         AddOn.ScrollView:SetElementFactory(function(factory, elementData)
-            if elementData.IsLemixExclusive ~= nil then
-                factory("ICHLemixListItemTemplate", AddOn.LemixDataProviderInit)
-            elseif elementData.Cost and elementData.Expansion then
+            if elementData.Cost and elementData.Expansion then
                 factory("ICHVendorListItemTemplate", AddOn.TimewalkingDataProviderInit)
             elseif elementData.PetItemID then
                 factory("ICHListItemTemplate", AddOn.PetDataProviderInit)

@@ -249,7 +249,6 @@ AddOn.Mounts = {
         Waypoint = { mapID = 2371, x = 0.636, y = 0.702 },
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
-    --[===[@non-version-mists@
     {
         Name = "Clutch of Ji-Kun",
         ID = 543,
@@ -267,7 +266,6 @@ AddOn.Mounts = {
         Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
-    --@end-non-version-mists@]===]
     {
         Name = "Drake of the North Wind",
         ID = 395,
@@ -476,7 +474,6 @@ AddOn.Mounts = {
         Waypoint = { mapID = 543, x = 0.516, y = 0.272 },
         SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
     },
-    --[===[@non-version-mists@
     {
         Name = "Kor'kron Juggernaut",
         ID = 559,
@@ -489,7 +486,6 @@ AddOn.Mounts = {
         Waypoint = { mapID = 1530, x = 0.741, y = 0.401 },
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
-    --@end-non-version-mists@]===]
     {
         Name = "Life-Binder's Handmaiden",
         ID = 444,
@@ -728,7 +724,6 @@ AddOn.Mounts = {
         Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
         SearchTags = AddOn.ExpansionTags.Legion
     },
-    --[===[@non-version-mists@
     {
         Name = "Spawn of Horridon",
         ID = 531,
@@ -746,7 +741,6 @@ AddOn.Mounts = {
         Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
-    --@end-non-version-mists@]===]
     {
         Name = "Spectral Hawkstrider",
         ID = 2805,

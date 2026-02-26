@@ -33,6 +33,18 @@ AddOn.Toys = {
         SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
+        Name = "Cosmic Ritual Stone",
+        ItemID = 264672,
+        Instance = "The Voidspire",
+        InstanceID = 1307,
+        MapID = 2912,
+        AreaPoiID = 8270,
+        EncounterID = 2736,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = { mapID = 2405, x = 0.452, y = 0.648 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
         Name = "Don Carlos' Famous Hat",
         ItemID = 134019,
         Instance = "Old Hillsbrad Foothills",
@@ -161,6 +173,18 @@ AddOn.Toys = {
         Notes = L["Also obtainable in Timewalking"],
         Waypoint = { mapID = 122, x = 0.61, y = 0.307 },
         SearchTags = AddOn.ExpansionTags.Classic
+    },
+    {
+        Name = "Saptor Salve",
+        ItemID = 268728,
+        Instance = "The Blinding Vale",
+        InstanceID = 1309,
+        MapID = 2859,
+        AreaPoiID = 8481,
+        EncounterID = 2772,
+        DifficultyIDs = { DungeonDifficulty.Mythic },
+        Waypoint = { mapID = 2413, x = 0.265, y = 0.78 },
+        SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
         Name = "Skull of Corruption",

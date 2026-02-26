@@ -4,6 +4,11 @@ This document describes changes to each version of **Instance Collection Helper 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v16**
+- Remove **Legion: Remix** tab from view
+- Add missing toys and decor items from Midnight instances
+- Update AddOn for 12.0.1 compatibility
+
 **v15.1**
 - Fixed an issue causing tabs to not open if there was data missing for decor items
 
