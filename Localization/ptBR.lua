@@ -171,6 +171,7 @@ L["Unable to transfer Timewarped Badges to this character right now."] = "Não �
 L["Unable to open the currency transfer menu. Please open it manually or try again."] = "Não foi possível abrir o menu de transferência de moeda. Abra-o manualmente ou tente novamente."
 L["Click to open currency transfer menu"] = "Clique para abrir o menu de transferência de moeda"
 L["Cannot transfer to this character"] = "Não é possível transferir para este personagem"
+
 --- Legion Remix ---
 L["Legion: Remix Vendor"] = "Vendedor de Legion: Remix"
 L["Obtainable for free by reaching level 80 with a Death Knight Timerunner and earning the achievement Timerunner: Death Knight"] = "Obtido gratuitamente ao alcançar o nível 80 com um Timerunner Cavaleiro da Morte e ao obter o feito "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42685)) or "Timerunner: Death Knight")
@@ -198,6 +199,7 @@ L["Search by collectible name/type or expansion"] = "Pesquisar por nome/tipo do 
 L["Unable to transfer Bronze to this character right now."] = "Não é possível transferir "..ICH_GetCurrencyName(3252, "Bronze").." para este personagem no momento."
 L["Obtained through the quest chain started by Torn Invitation, which is purchasable from the vendor."] = "Obtido através da cadeia de missões iniciada por "..(select(2, C_Item.GetItemInfo(140495)) or RARE_BLUE_COLOR:WrapTextInColorCode("[Torn Invitation]"))..", a qual pode ser comprada com o vendedor."
 L["This is considerably easier to obtain in Legion: Remix as items needed for the quest chain are given to you upon purchasing this item."] = "Isto é consideravelmente mais fácil de obter em Legion: Remix, pois os itens necessários para a cadeia de missões são entregues a você ao comprar este item."
+
 --- Decor ---
 L["Decor"] = "Decoração"
 L["Obtainable for free by earning the achievement Broken Isles World Quests V"] = "Obtido gratuitamente ao obter o feito "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42674)) or "Broken Isles World Quests V")

@@ -21,6 +21,8 @@ local function ICH_GetCurrencyName(currencyID, fallbackValue)
     return currency.name
 end
 
+L["Instance Collection Helper"] = "Instance Collection Helper"
+
 --- Mount Notes ---
 L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"] = "Available in Normal Legacy Raid difficulty, but Heroic should be set if "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Life-Binder's Handmaiden").." is not obtained yet"
 L["Drop from trash mobs around Temple of Ahn'Qiraj"] = "Drop from trash mobs around "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Temple of Ahn'Qiraj")
