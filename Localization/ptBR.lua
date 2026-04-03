@@ -35,6 +35,7 @@ L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "A entrada po
 L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Exige completar a linha de história de Tazavesh para desbloquear o caminho de voo, começando com |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(63976) or "O gato de Oribos")
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "Requer completar uma curta linha de missões após saquear "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Traje de Meca Defeituoso]"))
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "Requer completar a masmorra após ativar o Modo Difícil. Guias sobre como fazê-lo podem ser encontrados online."
+L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Complete a masmorra sozinho, depois retorne à área onde"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Dômina Lâmina Venenosa").." estava e interaja com a "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Serpente de Visgo Curiosa").."."
 
 --- Toy Notes ---
 L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "Obtido de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Doutor Theolen Krastinov")..", que tem uma chance aleatória de aparecer após matar "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Ossorrange")
@@ -47,7 +48,7 @@ L["Requires completion of the achievement Relics of a Fallen Empire"] = "Requer 
 L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "Isto só é colecionável na versão Clássica de Scolomântia. Se não tiver essa instância desbloqueada, procure um guia online primeiro."
 L["Dropped by the hidden boss Endgineer Omegaplugg"] = "Obtido do chefe oculto "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Engenheiro Omegaplugue")
 L["It is highly recommended to attempt this encounter with a full party"] = "Recomenda-se fortemente tentar este encontro com um grupo completo"
-L["Can only be looted and used by a Demon Hunter"] = "Só pode ser saqueado e usado por um "..WrapTextInColor(ICH_GetClassName(11, "Demon Hunter"), ICH_GetClassColor("DEMONHUNTER"))
+L["Can only be looted and used by a Demon Hunter"] = "Só pode ser saqueado e usado por um "..WrapTextInColor(ICH_GetClassName(12, "Demon Hunter"), ICH_GetClassColor("DEMONHUNTER"))
 L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "Cai de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Dom Ramón").." que patrulha parte do caminho ao sul de Serraria Tarren"
 L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "Há relatos de que "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Dom Ramón").." desaparece após matar alguns chefes; proceda com cautela"
 L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "Cai dos Gastrópode encontrados entre "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Megaira").." e "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Ji-Kun")
@@ -60,7 +61,7 @@ L["Dropped by Deviate Guardians and Deviate Ravagers throughout the dungeon"] = 
 L["Dropped by the Rare Elite Gol'than the Malodorous"] = "Obtido do elite raro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Gol'than, o Rançoso")
 L["Guides for how to spawn this mob can be found online"] = "Guias sobre como fazer este mob aparecer podem ser encontrados online"
 L["Dropped by Defias Pirates on the boat towards the end of the dungeon"] = "Obtido de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Piratas Défias").." no barco em direção ao final da masmorra"
-L["Dropped by The Lanticore, which has a random chance to spawn after killing Orebender Gor'ashan"] = "Obtido de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("A Lantícora")..", que tem uma chance aleatória de aparecer após matar "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Orebender Gor'ashan")
+L["Dropped by The Lanticore, which has a random chance to spawn after killing Orebender Gor'ashan"] = "Obtido de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("A Lantícora")..", que tem uma chance aleatória de aparecer após matar "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Dobrarrocha Gor'ashan")
 L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"] = "O acesso à entrada do raide requer completar a missão |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(select(1, UnitFactionGroup("player")) == "Horde" and 55799 or 56325) or select(1, UnitFactionGroup("player")) == "Horde" and "Guinada da maré" or "A maré vira")
 L["Dropped by Sand Elementals in Normal and Heroic, but can be looted from Council of Elders in LFR"] = "Obtido de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Elemental de Areia").." em Normal e Heróico, mas pode ser saqueado do "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Conselho dos Anciãos").." no LFR"
 L["Obtained by using an Amani Hex Stick on Forest Frogs"] = "Obtido ao usar um "..(select(2, C_Item.GetItemInfo(33865)) or GREEN_FONT_COLOR:WrapTextInColorCode("[Vareta de Bruxaria Amani]")).." em "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Sapos de Floresta")
@@ -105,7 +106,6 @@ L["Display all current instance difficulties"] = "Exibir todas as dificuldades a
 L["Set dungeon difficulty."] = "Definir dificuldade de masmorra."
 L["Set legacy raid difficulty."] = "Definir dificuldade de Raide de Legado."
 L["Set raid difficulty."] = "Definir dificuldade de raide."
-L["Show/hide the minimap icon"] = "Mostrar/ocultar o ícone do minimapa"
 
 --- Icon Tooltip ---
 L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"] = "Rastrear montarias, brinquedos, e mascotes disponíveis de instâncias e definir facilmente a dificuldade requerida da instância"
@@ -154,11 +154,11 @@ L["Translations:"] = "Traduções:"
 L["Open ICH"] = "Abrir ICH"
 L["Close"] = "Fechar"
 
---- New in v11: To be categorized ---
+--- Timewalking Vendor ---
 L["Type"] = "Tipo"
 L["Expansion"] = "Expansão"
 L["Cost"] = "Custo"
-L["Random chance to obtain when opening a  Bag of Fishing Treasures"] = "Chance aleatória de obter ao abrir um "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Bag of Fishing Treasures")
+L["Random chance to obtain when opening a Bag of Fishing Treasures"] = "Chance aleatória de obter ao abrir um "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Bag of Fishing Treasures")
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways. Can now be purchased from any Timewalking vendor."] = "Originalmente recompensado por completar o feito "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(19079)) or "Master of the Turbulent Timeways")..". Agora pode ser comprado com qualquer vendedor de Caminhada Temporal"
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways II. Can now be purchased from any Timewalking vendor."] = "Originalmente recompensado por completar o feito "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(41056)) or "Master of the Turbulent Timeways II")..". Agora pode ser comprado com qualquer vendedor de Caminhada Temporal"
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways III. Can now be purchased from any Timewalking vendor."] = "Originalmente recompensado por completar o feito "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(41779)) or "Master of the Turbulent Timeways III")..". Agora pode ser comprado com qualquer vendedor de Caminhada Temporal"
@@ -171,8 +171,8 @@ L["Unable to transfer Timewarped Badges to this character right now."] = "Não �
 L["Unable to open the currency transfer menu. Please open it manually or try again."] = "Não foi possível abrir o menu de transferência de moeda. Abra-o manualmente ou tente novamente."
 L["Click to open currency transfer menu"] = "Clique para abrir o menu de transferência de moeda"
 L["Cannot transfer to this character"] = "Não é possível transferir para este personagem"
+--- Legion Remix ---
 L["Legion: Remix Vendor"] = "Vendedor de Legion: Remix"
---- New in v12: To be categorized ---
 L["Obtainable for free by reaching level 80 with a Death Knight Timerunner and earning the achievement Timerunner: Death Knight"] = "Obtido gratuitamente ao alcançar o nível 80 com um Timerunner Cavaleiro da Morte e ao obter o feito "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42685)) or "Timerunner: Death Knight")
 L["Obtainable for free by reaching level 80 with a Demon Hunter Timerunner and earning the achievement Timerunner: Demon Hunter"] = "Obtido gratuitamente ao alcançar o nível 80 com um Timerunner Caçador de Demônios e ao obter o feito "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61087)) or "Timerunner: Demon Hunter")
 L["Obtainable for free by reaching level 80 with a Druid Timerunner and earning the achievement Timerunner: Druid"] = "Obtido gratuitamente ao alcançar o nível 80 com um Timerunner Druida e ao obter o feito "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61086)) or "Timerunner: Druid")
@@ -195,12 +195,10 @@ L["Phase 3: Legionfall"] = "Phase 3: Legionfall"
 L["Phase 4: Argus Eternal"] = "Phase 4: Argus Eternal"
 L["Phase 5: Infinite Echoes"] = "Phase 5: Infinite Echoes"
 L["Search by collectible name/type or expansion"] = "Pesquisar por nome/tipo do colecionável ou por expansão"
---- New in v12.1: To be categorized ---
 L["Unable to transfer Bronze to this character right now."] = "Não é possível transferir "..ICH_GetCurrencyName(3252, "Bronze").." para este personagem no momento."
---- New in v12.2: To be categorized ---
 L["Obtained through the quest chain started by Torn Invitation, which is purchasable from the vendor."] = "Obtido através da cadeia de missões iniciada por "..(select(2, C_Item.GetItemInfo(140495)) or RARE_BLUE_COLOR:WrapTextInColorCode("[Torn Invitation]"))..", a qual pode ser comprada com o vendedor."
 L["This is considerably easier to obtain in Legion: Remix as items needed for the quest chain are given to you upon purchasing this item."] = "Isto é consideravelmente mais fácil de obter em Legion: Remix, pois os itens necessários para a cadeia de missões são entregues a você ao comprar este item."
---- New in v15: To be categorized ---
+--- Decor ---
 L["Decor"] = "Decoração"
 L["Obtainable for free by earning the achievement Broken Isles World Quests V"] = "Obtido gratuitamente ao obter o feito "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42674)) or "Broken Isles World Quests V")
 L["Obtainable for free by earning the achievement Legion Remix Raids"] = "Obtido gratuitamente ao obter o feito "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42321)) or "Legion Remix Raids")
@@ -218,5 +216,4 @@ L["Obtainable for free by earning the achievement The Wardens"] = "Obtido gratui
 L["Obtainable for free by earning the achievement Court of Farondis"] = "Obtido gratuitamente ao obter o feito "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42318)) or "Court of Farondis")
 L["Obtainable for free by earning the achievement Valarjar"] = "Obtido gratuitamente ao obter o feito "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42658)) or "Valarjar")
 L["Upon entering the instance, dungeon difficulty will automatically be set to Normal"] = "Ao entrar na instância, a dificuldade da masmorra será automaticamente definida como Normal"
-L["Dropped by Vanessa VanCleef on Heroic difficulty"] = "Obtido de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vanessa VanCleef").." na dificuldade Normal"
-L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Complete a masmorra sozinho, depois retorne à área onde"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Dômina Lâmina Venenosa").." estava e interaja com a "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Serpente de Visgo Curiosa").."."
+L["Dropped by Vanessa VanCleef on Heroic difficulty"] = "Obtido de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vanessa VanCleef").." na dificuldade Heróico"

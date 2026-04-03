@@ -35,6 +35,7 @@ L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "La entrada p
 L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Requiere completar la historia de Tazavesh para desbloquear la ruta de vuelo, comenzando con |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(63976) or "El gato cajellero de Oribos") -- Currently unused
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "Requiere completar una breve cadena de misiones después de saquear "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Mecatraje averiado]"))
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "Requiere completar el calabozo después de activar el modo difícil. Se pueden encontrar guías en línea sobre cómo hacerlo."
+L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Completa la mazmorra en solitario, luego regresa al área donde estaba"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Dómina Hojaveneno").." e interactúa con la "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Serpiente de baba extraña").."."
 
 --- Toy Notes ---
 L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "Se obtiene de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Doctor Theolen Krastinov")..", quien tiene una probabilidad aleatoria de aparecer tras matar a "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Traquesangre")
@@ -47,7 +48,7 @@ L["Requires completion of the achievement Relics of a Fallen Empire"] = "Requier
 L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "Solo se puede coleccionar en la versión clásica de Scholomance. Si no tienes esta instancia desbloqueada, busca una guía en línea antes de intentarlo."
 L["Dropped by the hidden boss Endgineer Omegaplugg"] = "Se obtiene del jefe oculto "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Endgineer Omegaplugg")
 L["It is highly recommended to attempt this encounter with a full party"] = "Se recomienda encarecidamente intentar este encuentro con un grupo completo"
-L["Can only be looted and used by a Demon Hunter"] = "Solo puede ser saqueado y usado por un "..WrapTextInColor(ICH_GetClassName(11, "Demon Hunter"), ICH_GetClassColor("DEMONHUNTER"))
+L["Can only be looted and used by a Demon Hunter"] = "Solo puede ser saqueado y usado por un "..WrapTextInColor(ICH_GetClassName(12, "Demon Hunter"), ICH_GetClassColor("DEMONHUNTER"))
 L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "Se obtiene de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Don Carlos").." que patrulla parte del camino al sur de Molino Tarren"
 L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "Hay informes de que "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Don Carlos").." desaparece tras matar a algunos jefes; proceda con precaución"
 L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "Se obtiene de los Gasterópodo que se encuentran entre "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Megaera").." y "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Ji Kun")
@@ -105,7 +106,6 @@ L["Display all current instance difficulties"] = "Mostrar todas las dificultades
 L["Set dungeon difficulty."] = "Configurar dificultad de mazmorra."
 L["Set legacy raid difficulty."] = "Configurar dificultad de banda de legado."
 L["Set raid difficulty."] = "Configurar dificultad de banda."
-L["Show/hide the minimap icon"] = "Mostrar/ocultar el icono del minimapa"
 
 --- Icon Tooltip ---
 L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"] = "Rastrear monturas, juguetes, y mascotas disponibles de instancias y configurar fácilmente la dificultad requerida de la instancia"
@@ -142,7 +142,7 @@ L["Shares lockout with:"] = "Comparte bloqueo con:"
 L["View in encounter journal"] = "Ver en el diario de encuentros"
 L["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."] = "Este botón solo sirve para rastrear el bloqueo de Buscador de bandas (LFR). La dificultad de banda no ha cambiado."
 L["Waypoint tracking on the minimap may not always appear until you are in a specific zone."] = "El seguimiento de marcador en el minimapa puede no aparecer hasta que estés en una zona específica."
-L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "Por ejemplo, una flecha apuntando hacia "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Trono del Trueno").." solo aparecerá cuando estés en la "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Isla del Trueno")
+L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "Por ejemplo, una flecha apuntando hacia "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Solio del Trueno").." solo aparecerá cuando estés en la "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Isla del Trueno")
 L["Set map pin"] = "Colocar marcador en el mapa"
 L["Set TomTom waypoint"] = "Colocar un waypoint de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("TomTom")
 L["Coming soon"] = "Próximamente"
@@ -154,7 +154,7 @@ L["Translations:"] = "Traducciones:"
 L["Open ICH"] = "Abrir ICH"
 L["Close"] = "Cerrar"
 
---- New in v11: To be categorized ---
+--- Timewalking Vendor ---
 L["Type"] = "Tipo"
 L["Expansion"] = "Expansión"
 L["Cost"] = "Costo"
@@ -171,8 +171,8 @@ L["Unable to transfer Timewarped Badges to this character right now."] = "No se 
 L["Unable to open the currency transfer menu. Please open it manually or try again."] = "No se pudo abrir el menú de transferencia de divisa. Ábrelo manualmente o inténtalo de nuevo."
 L["Click to open currency transfer menu"] = "Haz clic para abrir el menú de transferencia de divisa"
 L["Cannot transfer to this character"] = "No se puede transferir a este personaje"
+--- Legion Remix ---
 L["Legion: Remix Vendor"] = "Vendedor de Legion: Remix"
---- New in v12: To be categorized ---
 L["Obtainable for free by reaching level 80 with a Death Knight Timerunner and earning the achievement Timerunner: Death Knight"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Caballero de la Muerte y conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42685)) or "Timerunner: Death Knight")
 L["Obtainable for free by reaching level 80 with a Demon Hunter Timerunner and earning the achievement Timerunner: Demon Hunter"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Cazador de demonios y conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61087)) or "Timerunner: Demon Hunter")
 L["Obtainable for free by reaching level 80 with a Druid Timerunner and earning the achievement Timerunner: Druid"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Druida y conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61086)) or "Timerunner: Druid")
@@ -195,28 +195,25 @@ L["Phase 3: Legionfall"] = "Phase 3: Legionfall"
 L["Phase 4: Argus Eternal"] = "Phase 4: Argus Eternal"
 L["Phase 5: Infinite Echoes"] = "Phase 5: Infinite Echoes"
 L["Search by collectible name/type or expansion"] = "Buscar por nombre/tipo de coleccionable o por expansión"
---- New in v12.1: To be categorized ---
 L["Unable to transfer Bronze to this character right now."] = "No se pueden transferir las "..ICH_GetCurrencyName(3252, "Bronze").." a este personaje en este momento."
---- New in v12.2: To be categorized ---
 L["Obtained through the quest chain started by Torn Invitation, which is purchasable from the vendor."] = "Se obtiene a través de la cadena de misiones iniciada por "..(select(2, C_Item.GetItemInfo(140495)) or RARE_BLUE_COLOR:WrapTextInColorCode("[Torn Invitation]"))..", la cual puede comprarse al vendedor."
 L["This is considerably easier to obtain in Legion: Remix as items needed for the quest chain are given to you upon purchasing this item."] = "Esto es considerablemente más fácil de obtener en Legion: Remix, ya que los objetos necesarios para la cadena de misiones se te entregan al comprar este objeto."
---- New in v15: To be categorized ---
+--- Decor ---
 L["Decor"] = "Adorno"
-L["Obtainable for free by earning the achievement Broken Isles World Quests V"] = "Obtenible gratis al conseguir el logro"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42674)) or "Broken Isles World Quests V")
-L["Obtainable for free by earning the achievement Legion Remix Raids"] = "Obtenible gratis al conseguir el logro"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42321)) or "Legion Remix Raids")
-L["Obtainable for free by earning the achievement The Armies of Legionfall"] = "Obtenible gratis al conseguir el logro"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42655)) or "The Armies of Legionfall")
-L["Obtainable for free by earning the achievement Argussian Reach"] = "Obtenible gratis al conseguir el logro"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42627)) or "Argussian Reach")
-L["Obtainable for free by earning the achievement Timeworn Keystone Master"] = "Obtenible gratis al conseguir el logro"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42689)) or "Timeworn Keystone Master")
-L["Obtainable for free by earning the achievement Highmountain Tribe"] = "Obtenible gratis al conseguir el logro"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42547)) or "Highmountain Tribe")
-L["Obtainable for free by earning the achievement Defending the Broken Isles III"] = "Obtenible gratis al conseguir el logro"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42675)) or "Defending the Broken Isles III")
-L["Obtainable for free by earning the achievement The Nightfallen"] = "Obtenible gratis al conseguir el logro"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42628)) or "The Nightfallen")
-L["Obtainable for free by earning the achievement Dreamweavers"] = "Obtenible gratis al conseguir el logro"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42619)) or "Dreamweavers")
-L["Obtainable for free by earning the achievement Power of the Obelisks II"] = "Obtenible gratis al conseguir el logro"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61060)) or "Power of the Obelisks II")
-L["Obtainable for free by earning the achievement Broken Isles Dungeoneer"] = "Obtenible gratis al conseguir el logro"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42692)) or "Broken Isles Dungeoneer")
-L["Obtainable for free by earning the achievement Heroic Broken Isles World Quests III"] = "Obtenible gratis al conseguir el logro"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61054)) or "Heroic Broken Isles World Quests III")
-L["Obtainable for free by earning the achievement The Wardens"] = "Obtenible gratis al conseguir el logro"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61218)) or "The Wardens")
-L["Obtainable for free by earning the achievement Court of Farondis"] = "Obtenible gratis al conseguir el logro"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42318)) or "Court of Farondis")
-L["Obtainable for free by earning the achievement Valarjar"] = "Obtenible gratis al conseguir el logro"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42658)) or "Valarjar")
+L["Obtainable for free by earning the achievement Broken Isles World Quests V"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42674)) or "Broken Isles World Quests V")
+L["Obtainable for free by earning the achievement Legion Remix Raids"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42321)) or "Legion Remix Raids")
+L["Obtainable for free by earning the achievement The Armies of Legionfall"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42655)) or "The Armies of Legionfall")
+L["Obtainable for free by earning the achievement Argussian Reach"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42627)) or "Argussian Reach")
+L["Obtainable for free by earning the achievement Timeworn Keystone Master"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42689)) or "Timeworn Keystone Master")
+L["Obtainable for free by earning the achievement Highmountain Tribe"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42547)) or "Highmountain Tribe")
+L["Obtainable for free by earning the achievement Defending the Broken Isles III"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42675)) or "Defending the Broken Isles III")
+L["Obtainable for free by earning the achievement The Nightfallen"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42628)) or "The Nightfallen")
+L["Obtainable for free by earning the achievement Dreamweavers"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42619)) or "Dreamweavers")
+L["Obtainable for free by earning the achievement Power of the Obelisks II"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61060)) or "Power of the Obelisks II")
+L["Obtainable for free by earning the achievement Broken Isles Dungeoneer"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42692)) or "Broken Isles Dungeoneer")
+L["Obtainable for free by earning the achievement Heroic Broken Isles World Quests III"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61054)) or "Heroic Broken Isles World Quests III")
+L["Obtainable for free by earning the achievement The Wardens"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61218)) or "The Wardens")
+L["Obtainable for free by earning the achievement Court of Farondis"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42318)) or "Court of Farondis")
+L["Obtainable for free by earning the achievement Valarjar"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42658)) or "Valarjar")
 L["Upon entering the instance, dungeon difficulty will automatically be set to Normal"] = "Al entrar en la instancia, la dificultad de mazmorra se configurará automáticamente en Normal"
 L["Dropped by Vanessa VanCleef on Heroic difficulty"] = "Se obtiene de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vanessa VanCleef").." en dificultad Heroico"
-L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Completa la mazmorra en solitario, luego regresa al área donde estaba"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Dómina Hojaveneno").." e interactúa con la "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Serpiente de baba extraña").."."
