@@ -35,6 +35,7 @@ L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "Entrance can
 L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Requires completing the Tazavesh storyline to unlock flight path, beginning with |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(63976) or "The Al'ley Cat of Oribos") -- Currently unused
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "Requires completing a short questline after looting "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Malfunctioning Mechsuit]"))
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."
+L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Clear the dungeon solo, then return to the area where "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Domina Venomblade").." was and interact with the "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Curious Slime Serpent").."."
 
 --- Toy Notes ---
 L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "Dropped by "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Doctor Theolen Krastinov")..", who has a random chance to spawn after killing "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Rattlegore")
@@ -153,7 +154,7 @@ L["Translations:"] = "Translations:"
 L["Open ICH"] = "Open ICH"
 L["Close"] = "Close"
 
---- New in v11: To be categorized ---
+--- Timewalking Vendor ---
 L["Type"] = "Type"
 L["Expansion"] = "Expansion"
 L["Cost"] = "Cost"
@@ -170,8 +171,9 @@ L["Unable to transfer Timewarped Badges to this character right now."] = "Unable
 L["Unable to open the currency transfer menu. Please open it manually or try again."] = "Unable to open the currency transfer menu. Please open it manually or try again."
 L["Click to open currency transfer menu"] = "Click to open currency transfer menu"
 L["Cannot transfer to this character"] = "Cannot transfer to this character"
+
+--- Legion Remix ---
 L["Legion: Remix Vendor"] = "Legion: Remix Vendor"
---- New in v12: To be categorized ---
 L["Obtainable for free by reaching level 80 with a Death Knight Timerunner and earning the achievement Timerunner: Death Knight"] = "Obtainable for free by reaching level 80 with a Death Knight Timerunner and earning the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42685)) or "Timerunner: Death Knight")
 L["Obtainable for free by reaching level 80 with a Demon Hunter Timerunner and earning the achievement Timerunner: Demon Hunter"] = "Obtainable for free by reaching level 80 with a Demon Hunter Timerunner and earning the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61087)) or "Timerunner: Demon Hunter")
 L["Obtainable for free by reaching level 80 with a Druid Timerunner and earning the achievement Timerunner: Druid"] = "Obtainable for free by reaching level 80 with a Druid Timerunner and earning the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61086)) or "Timerunner: Druid")
@@ -194,12 +196,11 @@ L["Phase 3: Legionfall"] = "Phase 3: Legionfall"
 L["Phase 4: Argus Eternal"] = "Phase 4: Argus Eternal"
 L["Phase 5: Infinite Echoes"] = "Phase 5: Infinite Echoes"
 L["Search by collectible name/type or expansion"] = "Search by collectible name/type or expansion"
---- New in v12.1: To be categorized ---
 L["Unable to transfer Bronze to this character right now."] = "Unable to transfer "..ICH_GetCurrencyName(3252, "Bronze").." to this character right now."
---- New in v12.2: To be categorized ---
 L["Obtained through the quest chain started by Torn Invitation, which is purchasable from the vendor."] = "Obtained through the quest chain started by "..(select(2, C_Item.GetItemInfo(140495)) or RARE_BLUE_COLOR:WrapTextInColorCode("[Torn Invitation]"))..", which is purchasable from the vendor."
 L["This is considerably easier to obtain in Legion: Remix as items needed for the quest chain are given to you upon purchasing this item."] = "This is considerably easier to obtain in Legion: Remix as items needed for the quest chain are given to you upon purchasing this item."
---- New in v15: To be categorized ---
+
+--- Decor ---
 L["Decor"] = "Decor"
 L["Obtainable for free by earning the achievement Broken Isles World Quests V"] = "Obtainable for free by earning the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42674)) or "Broken Isles World Quests V")
 L["Obtainable for free by earning the achievement Legion Remix Raids"] = "Obtainable for free by earning the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42321)) or "Legion Remix Raids")
@@ -218,4 +219,3 @@ L["Obtainable for free by earning the achievement Court of Farondis"] = "Obtaina
 L["Obtainable for free by earning the achievement Valarjar"] = "Obtainable for free by earning the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42658)) or "Valarjar")
 L["Upon entering the instance, dungeon difficulty will automatically be set to Normal"] = "Upon entering the instance, dungeon difficulty will automatically be set to Normal"
 L["Dropped by Vanessa VanCleef on Heroic difficulty"] = "Dropped by "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vanessa VanCleef").." on Heroic difficulty"
-L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Clear the dungeon solo, then return to the area where "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Domina Venomblade").." was and interact with the "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Curious Slime Serpent").."."

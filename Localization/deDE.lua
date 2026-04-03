@@ -35,6 +35,7 @@ L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "Der Eingang 
 L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Erfordert den Abschluss der Tazavesh-Handlung, um den Flugpunkt von Oribos freizuschalten, beginnend mit |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(63976) or "Al'ter Gauner von Oribos")
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "Erfordert das Abschließen einer kurzen Questreihe nach dem Plündern von "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Defekter Mechanzug]"))
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "Erfordert das Abschließen des Dungeons, nachdem der Hardmode aktiviert wurde. Anleitungen dazu findet man online."
+L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Schließe den Dungeon im Alleingang ab, kehre dann zu dem Gebiet zurück, in dem sich "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Domina Giftklinge").." befand, und interagiere mit der "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Sonderbare Schleimschlange").."."
 
 --- Toy Notes ---
 L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "Beute von "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Doktor Theolen Krastinov")..", der nach dem Töten von "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Blutrippe").." mit zufälliger Chance spawnen kann"
@@ -153,7 +154,7 @@ L["Translations:"] = "Übersetzungen:"
 L["Open ICH"] = "ICH öffnen"
 L["Close"] = "Schließen"
 
---- New in v11: To be categorized ---
+--- Timewalking Vendor ---
 L["Type"] = "Typ"
 L["Expansion"] = "Erweiterung"
 L["Cost"] = "Kosten"
@@ -170,8 +171,9 @@ L["Unable to transfer Timewarped Badges to this character right now."] = "Das Ü
 L["Unable to open the currency transfer menu. Please open it manually or try again."] = "Das Menü zum Übertragen von Währung konnte nicht geöffnet werden. Bitte öffne es manuell oder versuche es erneut."
 L["Click to open currency transfer menu"] = "Klicken, um das Menü zum Übertragen von Währung zu öffnen"
 L["Cannot transfer to this character"] = "Kann nicht auf diesen Charakter übertragen werden"
+
+--- Legion Remix ---
 L["Legion: Remix Vendor"] = "Legion: Remix-Händler"
---- New in v12: To be categorized ---
 L["Obtainable for free by reaching level 80 with a Death Knight Timerunner and earning the achievement Timerunner: Death Knight"] = "Kostenlos erhältlich, wenn du mit einem Todesritter-Timerunner Level 80 erreichst und die Errungenschaft "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42685)) or "Timerunner: Death Knight")
 L["Obtainable for free by reaching level 80 with a Demon Hunter Timerunner and earning the achievement Timerunner: Demon Hunter"] = "Kostenlos erhältlich, wenn du mit einem Dämonenjäger-Timerunner Level 80 erreichst und die Errungenschaft "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61087)) or "Timerunner: Demon Hunter")
 L["Obtainable for free by reaching level 80 with a Druid Timerunner and earning the achievement Timerunner: Druid"] = "Kostenlos erhältlich, wenn du mit einem Druiden-Timerunner Level 80 erreichst und die Errungenschaft "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61086)) or "Timerunner: Druid")
@@ -194,12 +196,11 @@ L["Phase 3: Legionfall"] = "Phase 3: Legionfall"
 L["Phase 4: Argus Eternal"] = "Phase 4: Argus Eternal"
 L["Phase 5: Infinite Echoes"] = "Phase 5: Infinite Echoes"
 L["Search by collectible name/type or expansion"] = "Suche nach Name/Typ des Sammelobjekts oder nach Erweiterung"
---- New in v12.1: To be categorized ---
 L["Unable to transfer Bronze to this character right now."] = "Das Übertragen von "..ICH_GetCurrencyName(3252,"Bronze").." auf diesen Charakter ist derzeit nicht möglich."
---- New in v12.2: To be categorized ---
 L["Obtained through the quest chain started by Torn Invitation, which is purchasable from the vendor."] = "Erhältlich durch die Questreihe, die durch "..(select(2, C_Item.GetItemInfo(140495)) or RARE_BLUE_COLOR:WrapTextInColorCode("[Torn Invitation]")).." gestartet wird, welche beim Händler kaufbar ist."
 L["This is considerably easier to obtain in Legion: Remix as items needed for the quest chain are given to you upon purchasing this item."] = "In Legion: Remix ist dies deutlich einfacher zu erhalten, da die für die Questreihe benötigten Gegenstände beim Kauf dieses Gegenstands mitgeliefert werden."
---- New in v15: To be categorized ---
+
+--- Decor ---
 L["Decor"] = "Dekor"
 L["Obtainable for free by earning the achievement Broken Isles World Quests V"] = "Kostenlos erhältlich durch Erreichen der Errungenschaft "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42674)) or "Broken Isles World Quests V")
 L["Obtainable for free by earning the achievement Legion Remix Raids"] = "Kostenlos erhältlich durch Erreichen der Errungenschaft "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42321)) or "Legion Remix Raids")
@@ -218,4 +219,3 @@ L["Obtainable for free by earning the achievement Court of Farondis"] = "Kostenl
 L["Obtainable for free by earning the achievement Valarjar"] = "Kostenlos erhältlich durch Erreichen der Errungenschaft "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42658)) or "Valarjar")
 L["Upon entering the instance, dungeon difficulty will automatically be set to Normal"] = "Beim Betreten der Instanz wird die Dungeon-Schwierigkeit automatisch auf Normal gesetzt."
 L["Dropped by Vanessa VanCleef on Heroic difficulty"] = "Beute von "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vanessa van Cleef").." auf heroischer Schwierigkeitsgrad"
-L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Schließe den Dungeon im Alleingang ab, kehre dann zu dem Gebiet zurück, in dem sich "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Domina Giftklinge").." befand, und interagiere mit der "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Sonderbare Schleimschlange").."."

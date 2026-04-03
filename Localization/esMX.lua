@@ -35,6 +35,7 @@ L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "La entrada p
 L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Requiere completar la historia de Tazavesh para desbloquear la ruta de vuelo, comenzando con |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(63976) or "El gato cajellero de Oribos") -- Currently unused
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "Requiere completar una breve cadena de misiones después de saquear "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Mecatraje averiado]"))
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "Requiere completar el calabozo después de activar el modo difícil. Se pueden encontrar guías en línea sobre cómo hacerlo."
+L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Completa la mazmorra en solitario, luego regresa al área donde estaba"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Dómina Hojaveneno").." e interactúa con la "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Serpiente de baba extraña").."."
 
 --- Toy Notes ---
 L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "Se obtiene de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Doctor Theolen Krastinov")..", quien tiene una probabilidad aleatoria de aparecer tras matar a "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Traquesangre")
@@ -153,7 +154,7 @@ L["Translations:"] = "Traducciones:"
 L["Open ICH"] = "Abrir ICH"
 L["Close"] = "Cerrar"
 
---- New in v11: To be categorized ---
+--- Timewalking Vendor ---
 L["Type"] = "Tipo"
 L["Expansion"] = "Expansión"
 L["Cost"] = "Costo"
@@ -170,8 +171,8 @@ L["Unable to transfer Timewarped Badges to this character right now."] = "No se 
 L["Unable to open the currency transfer menu. Please open it manually or try again."] = "No se pudo abrir el menú de transferencia de divisa. Ábrelo manualmente o inténtalo de nuevo."
 L["Click to open currency transfer menu"] = "Haz clic para abrir el menú de transferencia de divisa"
 L["Cannot transfer to this character"] = "No se puede transferir a este personaje"
+--- Legion Remix ---
 L["Legion: Remix Vendor"] = "Vendedor de Legion: Remix"
---- New in v12: To be categorized ---
 L["Obtainable for free by reaching level 80 with a Death Knight Timerunner and earning the achievement Timerunner: Death Knight"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Caballero de la Muerte y conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42685)) or "Timerunner: Death Knight")
 L["Obtainable for free by reaching level 80 with a Demon Hunter Timerunner and earning the achievement Timerunner: Demon Hunter"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Cazador de demonios y conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61087)) or "Timerunner: Demon Hunter")
 L["Obtainable for free by reaching level 80 with a Druid Timerunner and earning the achievement Timerunner: Druid"] = "Obtenible gratis al alcanzar nivel 80 con un Timerunner Druida y conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61086)) or "Timerunner: Druid")
@@ -194,12 +195,10 @@ L["Phase 3: Legionfall"] = "Phase 3: Legionfall"
 L["Phase 4: Argus Eternal"] = "Phase 4: Argus Eternal"
 L["Phase 5: Infinite Echoes"] = "Phase 5: Infinite Echoes"
 L["Search by collectible name/type or expansion"] = "Buscar por nombre/tipo de coleccionable o por expansión"
---- New in v12.1: To be categorized ---
 L["Unable to transfer Bronze to this character right now."] = "No se pueden transferir las "..ICH_GetCurrencyName(3252, "Bronze").." a este personaje en este momento."
---- New in v12.2: To be categorized ---
 L["Obtained through the quest chain started by Torn Invitation, which is purchasable from the vendor."] = "Se obtiene a través de la cadena de misiones iniciada por "..(select(2, C_Item.GetItemInfo(140495)) or RARE_BLUE_COLOR:WrapTextInColorCode("[Torn Invitation]"))..", la cual puede comprarse al vendedor."
 L["This is considerably easier to obtain in Legion: Remix as items needed for the quest chain are given to you upon purchasing this item."] = "Esto es considerablemente más fácil de obtener en Legion: Remix, ya que los objetos necesarios para la cadena de misiones se te entregan al comprar este objeto."
---- New in v15: To be categorized ---
+--- Decor ---
 L["Decor"] = "Adorno"
 L["Obtainable for free by earning the achievement Broken Isles World Quests V"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42674)) or "Broken Isles World Quests V")
 L["Obtainable for free by earning the achievement Legion Remix Raids"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42321)) or "Legion Remix Raids")
@@ -218,4 +217,3 @@ L["Obtainable for free by earning the achievement Court of Farondis"] = "Obtenib
 L["Obtainable for free by earning the achievement Valarjar"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42658)) or "Valarjar")
 L["Upon entering the instance, dungeon difficulty will automatically be set to Normal"] = "Al entrar en la instancia, la dificultad de mazmorra se configurará automáticamente en Normal"
 L["Dropped by Vanessa VanCleef on Heroic difficulty"] = "Se obtiene de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vanessa VanCleef").." en dificultad Heroico"
-L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Completa la mazmorra en solitario, luego regresa al área donde estaba"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Dómina Hojaveneno").." e interactúa con la "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Serpiente de baba extraña").."."
