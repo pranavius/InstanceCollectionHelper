@@ -19,7 +19,7 @@ end
 --- Mount Notes ---
 -- L["This raid only has a 10 player difficulty, so any raid difficulty can be set before entering the instance"] = "此团队副本只有10人的难度，因此在进入副本之前可以设置任何团队难度"
 -- L["This raid only has a 25 player difficulty, so any raid difficulty can be set before entering the instance"] = "此团队副本只有25人的难度，因此在进入副本之前可以设置任何团队难度"
-L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"] = "只有普通旧团队副本难度可用，but Heroic should be set if "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("生命缚誓者的侍女").." is not obtained yet" -- 注意: "生命守縛者的女僕" -> "生命缚誓者的侍女" (简体官方译名)
+L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"] = "只有普通旧团队副本难度可用，but Heroic should be set if "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("生命缚誓者的仆从").." is not obtained yet" -- 注意: "生命守縛者的女僕" -> "生命缚誓者的侍女" (简体官方译名)
 L["Drop from trash mobs around Temple of Ahn'Qiraj"] = "掉落于小怪围绕于"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("安其拉神殿") -- 注意: "安其拉神廟" -> "安其拉神殿" (简体通用译法)
 -- L["This raid only has a 40 player difficulty, so any raid difficulty can be set before entering the instance"] = "此团队副本只有40人的难度，因此在进入副本之前可以设置任何团队难度"
 L["Also obtainable in Timewalking"] = "也可以在时光漫游中获得"

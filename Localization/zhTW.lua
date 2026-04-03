@@ -31,8 +31,8 @@ L["Requires completing the Tazavesh story line to unlock flight path, beginning 
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "在啟動困難模式後需要完成此副本。可在線上找到如何進行的指南。"
 
 --- Toy Notes ---
-L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "掉落自 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("瑟爾林‧卡斯迪諾夫教授").."，在擊殺 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("血骨傀儡").." 後有機率出現"
-L["Dropped by the Rare Elite Vixx the Collector"] = "掉落自稀有精英 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("收藏家』維克斯")
+L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "掉落自 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("瑟爾林‧卡斯迪諾夫醫生").."，在擊殺 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("血骨傀儡").." 後有機率出現"
+L["Dropped by the Rare Elite Vixx the Collector"] = "掉落自稀有精英 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("『收藏家』維克斯")
 L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "此物品可獲得，儘管它未出現在 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("古爾丹").." 的掉落表中"
 L["Can drop from every boss in the dungeon"] = "可從該副本的每個首領掉落"
 L["Can only be looted and used by a Druid"] = "僅限 "..WrapTextInColor(ICH_GetClassName(11, "Druid"), ICH_GetClassColor("DRUID")).." 掠取並使用"
