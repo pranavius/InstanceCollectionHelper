@@ -105,7 +105,6 @@ L["Display all current instance difficulties"] = "Mostrar todas las dificultades
 L["Set dungeon difficulty."] = "Configurar dificultad de mazmorra."
 L["Set legacy raid difficulty."] = "Configurar dificultad de banda de legado."
 L["Set raid difficulty."] = "Configurar dificultad de banda."
-L["Show/hide the minimap icon"] = "Mostrar/ocultar el icono del minimapa"
 
 --- Icon Tooltip ---
 L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"] = "Rastrear monturas, juguetes, y mascotas disponibles de instancias y configurar fácilmente la dificultad requerida de la instancia"

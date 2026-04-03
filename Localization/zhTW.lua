@@ -27,7 +27,7 @@ L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"]
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "只對"..WrapTextInColor("聯盟", PLAYER_FACTION_COLOR_ALLIANCE).."角色掉落，但取得後也會獲得"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."版本"
 L["Drops for Horde characters, but obtaining this also gives you the Alliance version"] = "只對"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."角色掉落，但取得後也會獲得"..WrapTextInColor("聯盟", PLAYER_FACTION_COLOR_ALLIANCE).."版本"
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "進入副本後，團隊難度將自動設定為普通"
-L["Requires completing the Tazavesh story line to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("塔札維許").."的故事線才能解鎖飛行路徑，先從 |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(63976) or "The Al'ley Cat of Oribos").." 開始"
+L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("塔札維許").."的故事線才能解鎖飛行路徑，先從 |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(63976) or "The Al'ley Cat of Oribos").." 開始"
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "在啟動困難模式後需要完成此副本。可在線上找到如何進行的指南。"
 
 --- Toy Notes ---
@@ -82,7 +82,6 @@ L["Display all current instance difficulties"] = "顯示所有當前副本難度
 L["Set dungeon difficulty."] = "設定地下城難度。"
 L["Set legacy raid difficulty."] = "設定舊團隊副本難度。"
 L["Set raid difficulty."] = "設定團隊副本難度。"
-L["Show/hide the minimap icon"] = "顯示/隱藏小地圖圖示"
 
 --- Icon Tooltip ---
 L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"] = "跟踪副本可用的坐騎、玩具和寵物，並易於設定所需的副本難度"

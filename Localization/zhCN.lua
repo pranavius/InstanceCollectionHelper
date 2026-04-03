@@ -82,7 +82,6 @@ L["Display all current instance difficulties"] = "显示所有当前副本难度
 L["Set dungeon difficulty."] = "设定地下城难度。"
 L["Set legacy raid difficulty."] = "设定旧团队副本难度。"
 L["Set raid difficulty."] = "设定团队副本难度。"
-L["Show/hide the minimap icon"] = "显示/隐藏小地图图标" -- 重复项，已翻译
 
 --- Icon Tooltip ---
 L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"] = "跟踪副本可用的坐骑、玩具和宠物，并易于设定所需的副本难度"

@@ -105,7 +105,6 @@ L["Display all current instance difficulties"] = "Zeige alle aktuellen Instanz-S
 L["Set dungeon difficulty."] = "Dungeon-Schwierigkeit festlegen."
 L["Set legacy raid difficulty."] = "Klassiche Schlachtzugsschwierigkeit festlegen."
 L["Set raid difficulty."] = "Schlachtzugsschwierigkeit festlegen."
-L["Show/hide the minimap icon"] = "Minimap-Symbol zeigen/verbergen."
 
 --- Icon Tooltip --- 
 L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"] = "Verfolge verfügbare Reittiere, Spielzeuge und Haustiere in Instanzen und lege einfach die erforderliche Instanzschwierigkeit fest."

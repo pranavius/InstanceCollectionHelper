@@ -105,7 +105,6 @@ L["Display all current instance difficulties"] = "Display all current instance d
 L["Set dungeon difficulty."] = "Set dungeon difficulty."
 L["Set legacy raid difficulty."] = "Set legacy raid difficulty."
 L["Set raid difficulty."] = "Set raid difficulty."
-L["Show/hide the minimap icon"] = "Show/hide the minimap icon"
 
 --- Icon Tooltip ---
 L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"] = "Track available mounts, toys, and pets from instances and easily set required instance difficulty"
