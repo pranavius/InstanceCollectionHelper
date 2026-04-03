@@ -3,8 +3,6 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
-AddOn.Title = "Instance Collection Helper"
-
 ---@enum DungeonDifficulty
 AddOn.DungeonDifficulty = {
     Normal = 1,

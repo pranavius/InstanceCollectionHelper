@@ -3,6 +3,8 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):NewAddon(name, "AceConsole-3.0", "AceEvent-3.0")
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
+AddOn.Title = L["Instance Collection Helper"]
+
 AddOn.DatabaseDefaults = {
     global = {
         minimap = { hide = false },

@@ -19,9 +19,14 @@
 embeds.xml
 
 Localization\enUS.lua
-Localization\esMX.lua
-Localization\ptBR.lua
 Localization\deDE.lua
+Localization\esES.lua
+Localization\esMX.lua
+Localization\frFR.lua
+Localization\itIT.lua
+Localization\korKR.lua
+Localization\ptBR.lua
+Localization\ruRU.lua
 Localization\zhTW.lua
 Localization\zhCN.lua
 
