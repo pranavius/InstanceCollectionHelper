@@ -2,9 +2,11 @@
 
 _Track available collectibles from instances and easily set required instance difficulty_
 
+**Instance Collection Helper** was released in July 2025 to help players with tracking mounts and setting the correct instance difficulty for the [Collector's Bounty](https://www.wowhead.com/event=1674/collectors-bounty) event. Since then, it has evolved further into a list and tracking system for other collectibles such as toys, pets, and decor
+
 ## Important Notices
 - ICH will be continue to be supported in the **Midnight** expansion and beyond (for the foreseeable future)
-- I am looking for translators to help bring this AddOn to those who may not understand English. If interested, please contact me via one of the means listed in the [Contact](#contact) section.
+- I am looking for translators to help verify AddOn translations in non-English languages. If interested, please contact me via one of the means listed in the [Contact](#contact) section.
 
 ## Highlights
 - Tabs for mounts, toys, pets, and decor that are available from instances
@@ -26,8 +28,12 @@ Currently, this AddOn supports mount, toy, pet, and decor collections with plans
 ### Supported Languages
 All collectible and instance names will appear in the language that the game is being played in, but other text may appear in English. Currently, the following languages are either supported or in the process of being localized:
 - English (`enUS`)
-- Spanish (`esMX`)
+- European Spanish (`esES`) 
+- Mexican Spanish (`esMX`)
+- French (`frFR`)
+- Italian (`itIT`)
 - Portuguese (`ptBR`)
+- Russian (`ruRU`)
 - German (`deDE`) _\*credit: Fargoran\*_
 - Traditional Chinese (`zhTW`) _\*credit: BNS333\*_
 - Simplified Chinese (`zhCN`) _\*credit: 柳心怡\*_
@@ -49,8 +55,6 @@ Aside from the AddOn UI itself, **Instance Collection Helper** provides a few ot
 - For `/ich lraid`, `<difficulty>` can be one of `10` (10 player), `25` (25 player), `10h` (10 player (Heroic)), `25h` (25 player (Heroic)), or `40` (40 player)
 
 ## Planned Updates
-**Instance Collection Helper** was released in July 2025 to help players with tracking mounts and setting the correct instance difficulty for the [Collector's Bounty](https://www.wowhead.com/event=1674/collectors-bounty) event. After the event ends and the AddOn continues to exist, there are a number of features and improvements in line to be added:
-
 - Track Achievements available in instances
 - Ability to view lockouts/available attempts of alts
 - Allow AddOn properties such as text font to be configurable

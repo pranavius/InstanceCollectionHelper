@@ -4,6 +4,14 @@ This document describes changes to each version of **Instance Collection Helper 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v16.2**
+- Add localization for remaining supported languages (`esES`, `frFR`, `itIT`, `koKR`, `ruRU`)
+- Add `enUS` localization string for AddOn title (future-proofing)
+
+**v16.1**
+- Add missing localization strings
+- Fix duplicate/incorrect localization string keys
+
 **v16**
 - Remove **Legion: Remix** tab from view
 - Add missing toys and decor items from Midnight instances
