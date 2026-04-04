@@ -295,6 +295,9 @@
 ---@see OwnedContainer
 ---@see TomTomContainer
 
+---@class ICHInstanceHelper: Frame
+---@field InstanceName FontString The name of the instance the user is currently inside of
+
 ---@class ICHAbout: Frame
 ---@field Bg Texture The background texture for the frame
 ---@field Name FontString AddOn name

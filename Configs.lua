@@ -15,7 +15,8 @@ AddOn.DatabaseDefaults = {
         selectedTab = nil,
         countPetOwnedOnlyIfMaxOwned = false,
         debugMessages = false,
-        ownedCosmeticsCache = {}
+        ownedCosmeticsCache = {},
+        showInstanceHelperWindow = false
     }
 }
 
@@ -109,6 +110,15 @@ AddOn.SlashOptions = {
                 else
                     AddOn:PrintChatMessage(ERROR_COLOR:WrapTextInColorCode(L["Invalid raid difficulty provided."].."\n"..L["Accepted values:"]), WHITE_FONT_COLOR:WrapTextInColorCode("norm, hero, myth"))
                 end
+            end
+        },
+        helper = {
+            type = "toggle",
+            name = "helper",
+            desc = L["Show a window of available collectibles while inside an instance"],
+            order = counter(),
+            set = function()
+                AddOn.db.global.showInstanceHelperWindow = not AddOn.db.global.showInstanceHelperWindow
             end
         },
         minimap = {

@@ -62,6 +62,8 @@ Frames\ICHScrollBoxMixin.lua
 Frames\ICHScrollBox.xml
 Frames\ICHFooterMixin.lua
 Frames\ICHFooter.xml
+Frames\ICHInstanceHelperMixin.lua
+Frames\ICHInstanceHelper.xml
 Frames\ICHAboutMixin.lua
 Frames\ICHAbout.xml
 
