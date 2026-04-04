@@ -18,9 +18,7 @@ function AddOn:CreatePetCache()
                 itemID = pet.PetItemID,
                 petName = petName or pet.Name,
                 iconID = iconID or 134400,
-                speciesID = speciesID,
-                -- owned = owned,
-                -- limit = limit
+                speciesID = speciesID
             }
     
             if toLoad == 0 then self:PrintDebugMessage("Pet data loaded") end

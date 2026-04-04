@@ -1,7 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Blizzard_SharedXML/UI.xsd">
-    <Frame name="ICHInstanceHelper" parent="UIParent" mixin="ICHInstanceHelperMixin" movable="true" frameStrata="HIGH" registerForDrag="LeftButton" hidden="false">
-        <Size x="300" y="1"/>
+    <Frame name="ICHInstanceHelper" inherits="VerticalLayoutFrame" parent="UIParent" mixin="ICHInstanceHelperMixin" movable="true" frameStrata="HIGH" registerForDrag="LeftButton" hidden="false">
         <Anchors>
             <Anchor point="TOP" y="-50"/>
         </Anchors>
@@ -13,6 +12,12 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             </Layer>
             <Layer level="OVERLAY">
                 <FontString parentKey="InstanceName" inherits="GameFontHighlightMedium" text="">
+                    <KeyValues>
+                        <KeyValue key="layoutIndex" value="1"/>
+                    </KeyValues>
+                    <Size>
+                        <AbsDimension x="300" y="25"/>
+                    </Size>
                     <Anchors>
                         <Anchor point="TOPLEFT" x="0" y="-10"/>
                         <Anchor point="TOPRIGHT" x="0" y="-10"/>
@@ -20,11 +25,22 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </FontString>
             </Layer>
         </Layers>
+        <Frames>
+            <Frame name="ICHInstanceHelperItemContainer" parentKey="ItemContainer" inherits="HorizontalLayoutFrame">
+                <KeyValues>
+                    <KeyValue key="layoutIndex" value="2"/>
+                </KeyValues>
+                <Size>
+                    <AbsDimension x="300" y="200"/>
+                </Size>
+            </Frame>
+        </Frames>
         <Scripts>
             <OnDragStart method="OnDragStart"/>
             <OnDragStop method="OnDragStop"/>
             <OnLoad method="OnLoad"/>
-            <!-- <OnShow method="OnShow"/> -->
+            <OnEvent method="OnEvent"/>
+            <OnHide method="OnHide"/>
         </Scripts>
     </Frame>
 </Ui>
