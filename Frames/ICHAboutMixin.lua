@@ -18,7 +18,7 @@ function ICHAboutMixin:OnLoad()
     tinsert(UISpecialFrames, self:GetName())
 
     ---@diagnostic disable-next-line: exp-in-action, undefined-global, unknown-symbol, miss-exp, miss-symbol
-    self.Name:SetText(L["Instance Collection Helper"].." v"..@project-version@)
+    self.Name:SetText(L["Instance Collection Helper"].." v@project-version@")
     self.Author:SetText(L["Created by Pranavius"])
     self.Twitter:SetText("|TInterface\\AddOns\\InstanceCollectionHelper\\Media\\X-logo:20:20|t   ".."@PranaviusWoW")
     self.GitHub:SetText("|TInterface\\AddOns\\InstanceCollectionHelper\\Media\\Github-logo:20:20|t   ".."Pranavius")

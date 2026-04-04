@@ -281,7 +281,7 @@ function AddOn.GetIsVendorItemOwned(data, type)
         isOwned = PlayerHasToy(data.itemID)
     elseif type == "Decor" then
         local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.itemID, true)
-        local isOwned = decor.numStored and decor.numPlaced and (decor.numStored + decor.numPlaced > 0) or false
+        local isOwned = decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false
     end
 
     return isOwned

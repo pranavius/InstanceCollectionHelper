@@ -4,6 +4,10 @@ This document describes changes to each version of **Instance Collection Helper 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v16.3**
+- Fixed `koKR` localization loading
+- Fixed a bug causing owned decor items to not be marked as owned in the list
+
 **v16.2**
 - Add localization for remaining supported languages (`esES`, `frFR`, `itIT`, `koKR`, `ruRU`)
 - Add `enUS` localization string for AddOn title (future-proofing)

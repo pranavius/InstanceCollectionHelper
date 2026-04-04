@@ -232,7 +232,7 @@ function AddOn:UpdateListContents()
     elseif selectedTab == self.Tabs.DecorTab then
         for _, item in ipairs(self.DecorItems) do
             local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(item.DecorItemID, true)
-            local isOwned = decor.numStored and decor.numPlaced and (decor.numStored + decor.numPlaced > 0) or false
+            local isOwned = decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false
             local shouldInsert = false
             if not isOwned or (isOwned and self.db.global.showOwned) then
                 tinsert(newData, item)
