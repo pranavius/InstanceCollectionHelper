@@ -21,18 +21,22 @@ local function isInstanceInfoValid(instanceName, difficultyID, difficultyName, i
         and instanceMapID ~= 0
 end
 
+-- All added info is wiped after coming back from Narcissus AFK screen (need to fix)
 function ICHInstanceHelperMixin:UpdateHelperWindow()
     local isInInstance, instanceType = IsInInstance()
     -- Require both caches to be loaded before showing the window to avoid showing incomplete data
     local areNecessaryCachesLoaded = AddOn.ToyCacheReady and AddOn.PetCacheReady
-    if not self:IsShown() and areNecessaryCachesLoaded and isInInstance and (instanceType == "party" or instanceType == "raid") then
+    if AddOn.db.global.showInstanceHelperWindow and not self:IsShown() and areNecessaryCachesLoaded and isInInstance and (instanceType == "party" or instanceType == "raid") then
         AddOn:PrintDebugMessage("Showing Instance Helper window")
         local instanceName, difficultyID, difficultyName, instanceMapID
+        -- Iterate until we receive valid instance info
+        -- Values sometimes need multiple triggers of UPDATE_INSTANCE_INFO to populate
         while not isInstanceInfoValid(instanceName, difficultyID, difficultyName, instanceMapID) do
             instanceName, _, difficultyID, difficultyName, _, _, _, instanceMapID = GetInstanceInfo()
         end
         local helperItems = self.GetInstanceCollectibles(instanceMapID, difficultyID)
         self.InstanceName:SetText(instanceName.." ("..AddOn:GetInstanceDifficultyText(difficultyID)..")")
+
         for _, item in ipairs(helperItems) do
             local col = CreateFrame("Button", nil, self.ItemContainer, "InsecureActionButtonTemplate")
             col:SetSize(40, 40)
@@ -48,11 +52,20 @@ function ICHInstanceHelperMixin:UpdateHelperWindow()
             end)
             col.layoutIndex = self.ItemContainer:GetNumChildren()
         end
+
         self:Layout()
         self:Show()
-    elseif self:IsShown() and not isInInstance then
+    elseif not AddOn.db.global.showInstanceHelperWindow or (self:IsShown() and not isInInstance) then
         AddOn:PrintDebugMessage("Hiding Instance Helper window")
         self:Hide()
+    end
+end
+
+function ICHInstanceHelperMixin:ClearHelperWindow()
+    self.InstanceName:SetText("")
+    for _, child in ipairs({ self.ItemContainer:GetChildren() }) do
+        child:Hide()
+        child:SetParent(nil)
     end
 end
 
@@ -70,11 +83,7 @@ function ICHInstanceHelperMixin:OnDragStop()
 end
 
 function ICHInstanceHelperMixin:OnHide()
-    self.InstanceName:SetText("")
-    for _, child in ipairs({ self.ItemContainer:GetChildren() }) do
-        child:Hide()
-        child:SetParent(nil)
-    end
+    self:ClearHelperWindow()
 end
 
 function ICHInstanceHelperMixin.GetInstanceCollectibles(instanceMapID, difficultyID)

@@ -41,7 +41,6 @@ function AddOn:OnInitialize()
     self:CreatePetCache()
     self:CreateTimewalkingCache()
     --@end-retail@
-    ICHInstanceHelper:UpdateHelperWindow()
 
     -- Data broker registration for minimap icon
     local broker = LDB:NewDataObject(name, {
@@ -66,7 +65,11 @@ function AddOn:OnInitialize()
     
     self:PrintDebugMessage("TomTom is", C_AddOns.IsAddOnLoaded("TomTom") and "enabled" or "disabled")
     self:ConfigureOnInit()
-    self:RegisterEvent("ZONE_CHANGED", "UpdateListContents")
+    self:RegisterEvent("ZONE_CHANGED", function()
+        self:UpdateListContents()
+        ICHInstanceHelper:ClearHelperWindow()
+        ICHInstanceHelper:UpdateHelperWindow()
+    end)
     self:RegisterEvent("PLAYER_LOGOUT", function()
         if C_AddOns.IsAddOnLoaded("TomTom") and self.db.global.currentTomTomWaypoint then
             TomTom:RemoveWaypoint(self.db.global.currentTomTomWaypoint)

@@ -119,6 +119,7 @@ AddOn.SlashOptions = {
             order = counter(),
             set = function()
                 AddOn.db.global.showInstanceHelperWindow = not AddOn.db.global.showInstanceHelperWindow
+                if ICHInstanceHelper then ICHInstanceHelper:UpdateHelperWindow() end
             end
         },
         minimap = {
