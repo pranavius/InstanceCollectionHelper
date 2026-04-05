@@ -21,7 +21,11 @@ function AddOn:CreatePetCache()
                 speciesID = speciesID
             }
     
-            if toLoad == 0 then self:PrintDebugMessage("Pet data loaded") end
+            if toLoad == 0 then
+                self:PrintDebugMessage("Pet data loaded")
+                self.PetCacheReady = true
+                ICHInstanceHelper:UpdateHelperWindow()
+            end
         end)
     end
 end

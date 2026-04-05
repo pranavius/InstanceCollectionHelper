@@ -41,6 +41,7 @@ function AddOn:OnInitialize()
     self:CreatePetCache()
     self:CreateTimewalkingCache()
     --@end-retail@
+    ICHInstanceHelper:UpdateHelperWindow()
 
     -- Data broker registration for minimap icon
     local broker = LDB:NewDataObject(name, {

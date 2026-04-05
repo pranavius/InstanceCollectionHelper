@@ -180,7 +180,7 @@ end
 
 
 ---@param data Mount|Toy|Pet|DecorItem
----@return boolean "`true` if an encounter has been completed for the current reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise"
+---@return boolean `true` if an encounter has been completed for the current reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise"
 ---@see Mount
 ---@see Toy
 ---@see Pet

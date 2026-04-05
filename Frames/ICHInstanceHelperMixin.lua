@@ -7,17 +7,32 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ICHInstanceHelperMixin = {}
 
 function ICHInstanceHelperMixin:OnLoad()
-    print("Instance Helper Loaded")
-    self:RegisterEvent("PLAYER_ENTERING_WORLD")
+    self:RegisterEvent("UPDATE_INSTANCE_INFO")
 end
 
-function ICHInstanceHelperMixin:OnEvent()
+local function isInstanceInfoValid(instanceName, difficultyID, difficultyName, instanceMapID)
+    return instanceName ~= nil
+        and instanceName ~= ""
+        and difficultyID ~= nil
+        and difficultyID ~= 0
+        and difficultyName ~= nil
+        and difficultyName ~= ""
+        and instanceMapID ~= nil
+        and instanceMapID ~= 0
+end
+
+function ICHInstanceHelperMixin:UpdateHelperWindow()
     local isInInstance, instanceType = IsInInstance()
-    if isInInstance and (instanceType == "party" or instanceType == "raid") then
-        print("IsInInstance:", IsInInstance())
-        local instanceName, _, _, _, _, _, _, instanceMapID = GetInstanceInfo()
-        local helperItems = self.GetInstanceCollectibles(instanceMapID)
-        self.InstanceName:SetText(instanceName.." ("..AddOn:GetInstanceDifficultyText(GetDungeonDifficultyID())..")")
+    -- Require both caches to be loaded before showing the window to avoid showing incomplete data
+    local areNecessaryCachesLoaded = AddOn.ToyCacheReady and AddOn.PetCacheReady
+    if not self:IsShown() and areNecessaryCachesLoaded and isInInstance and (instanceType == "party" or instanceType == "raid") then
+        AddOn:PrintDebugMessage("Showing Instance Helper window")
+        local instanceName, difficultyID, difficultyName, instanceMapID
+        while not isInstanceInfoValid(instanceName, difficultyID, difficultyName, instanceMapID) do
+            instanceName, _, difficultyID, difficultyName, _, _, _, instanceMapID = GetInstanceInfo()
+        end
+        local helperItems = self.GetInstanceCollectibles(instanceMapID, difficultyID)
+        self.InstanceName:SetText(instanceName.." ("..AddOn:GetInstanceDifficultyText(difficultyID)..")")
         for _, item in ipairs(helperItems) do
             local col = CreateFrame("Button", nil, self.ItemContainer, "InsecureActionButtonTemplate")
             col:SetSize(40, 40)
@@ -35,9 +50,15 @@ function ICHInstanceHelperMixin:OnEvent()
         end
         self:Layout()
         self:Show()
-    elseif self:IsShown() then
+    elseif self:IsShown() and not isInInstance then
+        AddOn:PrintDebugMessage("Hiding Instance Helper window")
         self:Hide()
     end
+end
+
+-- Expected events: UPDATE_INSTANCE_INFO
+function ICHInstanceHelperMixin:OnEvent()
+    self:UpdateHelperWindow()
 end
 
 function ICHInstanceHelperMixin:OnDragStart()
@@ -56,31 +77,47 @@ function ICHInstanceHelperMixin:OnHide()
     end
 end
 
-function ICHInstanceHelperMixin.GetInstanceCollectibles(instanceMapID)
+function ICHInstanceHelperMixin.GetInstanceCollectibles(instanceMapID, difficultyID)
     ---@type ICHHelperItem[]
     local helperItems = {}
     for _, mount in ipairs(AddOn.Mounts) do
         if mount.MapID == instanceMapID then
-            local _, spellID, iconID = C_MountJournal.GetMountInfoByID(mount.ID)
-            table.insert(helperItems, { IsMount = true, IconID = iconID or 134400, Hyperlink = C_MountJournal.GetMountLink(spellID) })
+            local _, spellID, iconID, _, _, _, _, _, _, _, isOwned = C_MountJournal.GetMountInfoByID(mount.ID)
+            local isCollectable = not (isOwned or AddOn.IsEncounterCompleted(mount, difficultyID) or (mount.SharedDifficulties and AddOn:IsEncounterCompletedOnSharedDifficulty(mount)))
+            if isCollectable then
+                table.insert(helperItems, { IsMount = true, IconID = iconID or 134400, Hyperlink = C_MountJournal.GetMountLink(spellID) })
+            end
         end
     end
     for _, toy in ipairs(AddOn.Toys) do
         if toy.MapID == instanceMapID then
-            table.insert(helperItems, { IsMount = false, IconID = AddOn.ToyCache[toy.ItemID].iconID, Hyperlink = "item:"..toy.ItemID })
+            local isOwned = PlayerHasToy(toy.ItemID)
+            local isCollectable = not (isOwned or AddOn.IsEncounterCompleted(toy, difficultyID) or (toy.SharedDifficulties and AddOn:IsEncounterCompletedOnSharedDifficulty(toy)))
+            if isCollectable then
+                table.insert(helperItems, { IsMount = false, IconID = AddOn.ToyCache[toy.ItemID].iconID, Hyperlink = "item:"..toy.ItemID })
+            end
         end
     end
     for _, pet in ipairs(AddOn.Pets) do
         if pet.MapID == instanceMapID then
-            table.insert(helperItems, { IsMount = false, IconID = AddOn.PetCache[pet.PetItemID].iconID, Hyperlink = "item:"..pet.PetItemID })
+            local isOwned = AddOn.GetPetOwnedAndLimitCount(AddOn.PetCache[pet.PetItemID].speciesID) > 0
+            local isCollectable = not (isOwned or AddOn.IsEncounterCompleted(pet, difficultyID) or (pet.SharedDifficulties and AddOn:IsEncounterCompletedOnSharedDifficulty(pet)))
+            if isCollectable then
+                table.insert(helperItems, { IsMount = false, IconID = AddOn.PetCache[pet.PetItemID].iconID, Hyperlink = "item:"..pet.PetItemID })
+            end
         end
     end
-    for _, decor in ipairs(AddOn.DecorItems) do
-        if decor.MapID == instanceMapID then
-            local iconID = select(5, C_Item.GetItemInfoInstant(decor.DecorItemID))
-            table.insert(helperItems, { IsMount = false, IconID = iconID or 134400, Hyperlink = "item:"..decor.DecorItemID })
+    for _, decorItem in ipairs(AddOn.DecorItems) do
+        if decorItem.MapID == instanceMapID then
+            local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(decorItem.DecorItemID, true)
+            local isOwned = decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false
+            local isCollectable = not (isOwned or AddOn.IsEncounterCompleted(decorItem, difficultyID) or (decorItem.SharedDifficulties and AddOn:IsEncounterCompletedOnSharedDifficulty(decorItem)))
+            if isCollectable then
+                local iconID = select(5, C_Item.GetItemInfoInstant(decorItem.DecorItemID))
+                table.insert(helperItems, { IsMount = false, IconID = iconID or 134400, Hyperlink = "item:"..decorItem.DecorItemID })
+            end
         end
     end
-    DevTools_Dump(helperItems)
+    AddOn:PrintDebugMessage("Found "..#helperItems.." collectibles for current instance")
     return helperItems
 end
