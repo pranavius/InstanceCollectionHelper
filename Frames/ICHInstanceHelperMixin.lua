@@ -21,6 +21,8 @@ local function isInstanceInfoValid(instanceName, difficultyID, difficultyName, i
         and instanceMapID ~= 0
 end
 
+local instanceName, difficultyID, difficultyName, instanceMapID
+
 -- All added info is wiped after coming back from Narcissus AFK screen (need to fix)
 function ICHInstanceHelperMixin:UpdateHelperWindow()
     local isInInstance, instanceType = IsInInstance()
@@ -28,33 +30,31 @@ function ICHInstanceHelperMixin:UpdateHelperWindow()
     local areNecessaryCachesLoaded = AddOn.ToyCacheReady and AddOn.PetCacheReady
     if AddOn.db.global.showInstanceHelperWindow and not self:IsShown() and areNecessaryCachesLoaded and isInInstance and (instanceType == "party" or instanceType == "raid") then
         AddOn:PrintDebugMessage("Showing Instance Helper window")
-        local instanceName, difficultyID, difficultyName, instanceMapID
-        -- Iterate until we receive valid instance info
-        -- Values sometimes need multiple triggers of UPDATE_INSTANCE_INFO to populate
-        while not isInstanceInfoValid(instanceName, difficultyID, difficultyName, instanceMapID) do
+        if not isInstanceInfoValid(instanceName, difficultyID, difficultyName, instanceMapID) then
             instanceName, _, difficultyID, difficultyName, _, _, _, instanceMapID = GetInstanceInfo()
+        else
+            local helperItems = self.GetInstanceCollectibles(instanceMapID, difficultyID)
+            self.InstanceName:SetText(instanceName.." ("..difficultyName..")")
+    
+            for _, item in ipairs(helperItems) do
+                local col = CreateFrame("Button", nil, self.ItemContainer, "InsecureActionButtonTemplate")
+                col:SetSize(40, 40)
+                col:SetNormalTexture(item.IconID)
+                col:SetHighlightTexture(item.IconID)
+                col:SetScript("OnEnter", function()
+                    GameTooltip:SetOwner(col, "ANCHOR_BOTTOMLEFT")
+                    GameTooltip:SetHyperlink(item.Hyperlink)
+                    GameTooltip:Show()
+                end)
+                col:SetScript("OnLeave", function()
+                    GameTooltip:Hide()
+                end)
+                col.layoutIndex = self.ItemContainer:GetNumChildren()
+            end
+    
+            self:Layout()
+            self:Show()
         end
-        local helperItems = self.GetInstanceCollectibles(instanceMapID, difficultyID)
-        self.InstanceName:SetText(instanceName.." ("..difficultyName..")")
-
-        for _, item in ipairs(helperItems) do
-            local col = CreateFrame("Button", nil, self.ItemContainer, "InsecureActionButtonTemplate")
-            col:SetSize(40, 40)
-            col:SetNormalTexture(item.IconID)
-            col:SetHighlightTexture(item.IconID)
-            col:SetScript("OnEnter", function()
-                GameTooltip:SetOwner(col, "ANCHOR_BOTTOMLEFT")
-                GameTooltip:SetHyperlink(item.Hyperlink)
-                GameTooltip:Show()
-            end)
-            col:SetScript("OnLeave", function()
-                GameTooltip:Hide()
-            end)
-            col.layoutIndex = self.ItemContainer:GetNumChildren()
-        end
-
-        self:Layout()
-        self:Show()
     elseif not AddOn.db.global.showInstanceHelperWindow or (self:IsShown() and not isInInstance) then
         AddOn:PrintDebugMessage("Hiding Instance Helper window")
         self:Hide()
@@ -62,7 +62,10 @@ function ICHInstanceHelperMixin:UpdateHelperWindow()
 end
 
 function ICHInstanceHelperMixin:ClearHelperWindow()
+    -- Reset instance name and local instance info variable values
     self.InstanceName:SetText("")
+    instanceName, difficultyID, difficultyName, instanceMapID = nil, nil, nil, nil
+    -- Hide all child frames and orphan them for removal in the next garbage collection cycle
     for _, child in ipairs({ self.ItemContainer:GetChildren() }) do
         child:Hide()
         child:SetParent(nil)
