@@ -126,5 +126,6 @@ AddOn.InstanceToDamIDMap = {
     [1210] = 2303, -- DFC
     [1272] = 2335, -- Cinderbrew Meadery
     [1298] = 2387, -- Floodgate
-    [1267] = 2308, -- PSF
+    [1267] = 2308, -- PSF,
+    -- TODO: Add Midnight dungeons
 }

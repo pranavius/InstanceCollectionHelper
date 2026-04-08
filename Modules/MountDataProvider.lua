@@ -10,6 +10,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 ---@see Mount
 function AddOn.MountDataProviderInit(frame, data)
     if not frame or not data then return end
+    
     -- Resetting these values to avoid conflicts or incorrect tooltip displays
     frame.isMount = true
     frame.relevantID = data.ID
@@ -17,37 +18,21 @@ function AddOn.MountDataProviderInit(frame, data)
     frame.OtherInfoContainer.ICHPetCount:Hide()
 
     local index = AddOn.ICHDataProvider:FindIndex(data)
-
     local localizedMountName, mountSpellID, _, _, _, _, _, _, _, _, isOwned = C_MountJournal.GetMountInfoByID(data.ID)
+    AddOn.ConfigureListItemBackground(frame, index, isOwned)
+
     local localizedInstanceName = EJ_GetInstanceInfo(data.InstanceID)
-    if isOwned then
-        frame.Bg:Hide()
-        frame.OwnedBg:Show()
-    else
-        frame.OwnedBg:Hide()
-        if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
-    end
     AddOn:SetTruncatedText(frame.NameContainer.Text, localizedMountName or data.Name) -- Localized mount name truncated if text width exceeds allocated space
     AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName or data.Instance)  -- Localized instance name truncated if text width exceeds allocated space
 
     local iconID = C_Spell.GetSpellInfo(mountSpellID) and C_Spell.GetSpellInfo(mountSpellID).originalIconID
-    frame.NameContainer.ViewButton:ClearNormalTexture()
-    frame.NameContainer.ViewButton:ClearHighlightTexture()
-    frame.NameContainer.ViewButton:SetNormalTexture(iconID or 134400)
-    frame.NameContainer.ViewButton:SetHighlightTexture(iconID or 134400)
+    AddOn.SetItemIcon(frame.NameContainer.ViewButton, iconID)
 
     frame.InstanceContainer.encounterID = data.EncounterID or -1
     --@version-mists@
     frame.InstanceContainer.hasDungeonJournalEntry = localizedInstanceName ~= nil
     --@end-version-mists@
-    --@retail@
-    frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
-    frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
-    --@end-retail@
-    --@version-mists@
-    frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "Raid" or "Dungeon")
-    frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "Raid" or "Dungeon")
-    --@end-version-mists@
+    AddOn:SetInstanceTypeIcon(frame, data)
 
     AddOn.HideAllDifficultyButtons(frame.DifficultyContainer)
     AddOn:ShowDifficultyButtons(frame.DifficultyContainer, data, isOwned)

@@ -4,7 +4,7 @@ AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---@param data Mount|Toy|Pet|TimewalkingItem|WowRemixItem
----@return boolean "`true` if conditions to use TomTom waypoints are satisfied, `false` otherwise"
+---@return boolean `true` if conditions to use TomTom waypoints are satisfied, `false` otherwise
 ---@see Mount
 ---@see Toy
 ---@see Pet
@@ -15,9 +15,9 @@ local function ShouldUseTomTom(data)
         and (data.Waypoint or data.InstanceID == 1176)
 end
 
---- Sets and tracks navigation to a map marker at the coordinates or Area POI associated with an instance entrance
+---Sets and tracks navigation to a map marker at the coordinates or Area POI associated with an instance entrance
 ---@param data Mount|Toy|Pet|TimewalkingItem|WowRemixItem
----@return boolean "`true` if a map pin was successfully placed, `false` otherwise"
+---@return boolean `true` if a map pin was successfully placed, `false` otherwise
 ---@see Mount
 ---@see Toy
 ---@see Pet
@@ -34,12 +34,11 @@ local function SetBlizzardMapPin(data)
     if data.InstanceID == 1176 then
         C_SuperTrack.SetSuperTrackedMapPin(0, faction == "Horde" and 6012 or 6013)
         return true
-    -- Commenting the below condition due to alternate Tazavesh entrace available in K'aresh. Unsure if this will be a permanent entrance or not as of now
     -- elseif data.InstanceID == 1194 then
     --     -- Special case for Tazavesh (AreaPoiID is a flight path from Oribos)
     --     C_SuperTrack.SetSuperTrackedMapPin(2, data.AreaPoiID)
     --     return true
-    -- Sepecial cases for Timewalking vendors for Classic, Cata, and WoD (different vendors based on faction)
+    -- Special cases for Timewalking vendors for Classic, Cata, and WoD (different vendors based on faction)
     elseif data.Expansion == "Classic" then
         C_SuperTrack.SetSuperTrackedMapPin(0, faction == "Horde" and 8191 or 8190)
         return true
@@ -60,10 +59,10 @@ local function SetBlizzardMapPin(data)
     return false
 end
 
---- Sets a TomTom waypoint at the coordinates associated with an instance entrance
+---Sets a TomTom waypoint at the coordinates associated with an instance entrance
 ---@param data Mount|Toy|Pet|TimewalkingItem|WowRemixItem
 ---@param destinationName string The localized name of the destination to set a waypoint for
----@return boolean "`true` if a TomTom waypoint was successfully created, `false` otherwise"
+---@return boolean `true` if a TomTom waypoint was successfully created, `false` otherwise
 ---@see Mount
 ---@see Toy
 ---@see Pet
@@ -86,7 +85,6 @@ local function SetTomTomWaypoint(data, destinationName)
         if faction == "Horde" then AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(862, 0.543, 0.299, ttOptions)
         else AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(1161, 0.704, .356, ttOptions) end
         return true
-    -- Commenting the below condition due to alternate Tazavesh entrace available in K'aresh. Unsure if this will be a permanent entrance or not as of now
     -- elseif data.InstanceID == 1194 then
     --     -- Change the name of the TomTom waypoint when set for Tazavesh
     --     ttOptions.title = "Oribos -> "..destinationName
@@ -131,11 +129,9 @@ end
 ---@see WowRemixItem
 ---@see DecorItem
 function AddOn:ConfigureWaypointButton(destinationName, frame, data)
-    -- Commenting the below condition due to alternate Tazavesh entrace available in K'aresh. Unsure if this will be a permanent entrance or not as of now
     -- if data.InstanceID == 1176 or data.InstanceID == 1194 or data.AreaPoiID or data.Waypoint then
     if data.InstanceID == 1176 or data.Expansion or data.AreaPoiID or data.Waypoint then
         local isPinSettable = false
-        -- Might need to include instance ID 1194 (Tazavesh) in the last and condition after Patch 11.2 if the K'aresh entrance is removed
         if ShouldUseTomTom(data) then
             frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/AddOns/TomTom/Images/GoldGreenDotNew")
             frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/AddOns/TomTom/Images/GoldPurpleDotNew")

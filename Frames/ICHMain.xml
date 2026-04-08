@@ -51,7 +51,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
 
             <Button parentKey="SearchHintsButton" inherits="ICHSquareButtonTemplate">
                 <KeyValues>
-                    <KeyValue key="action" type="string" value="SEARCH"></KeyValue>
+                    <KeyValue key="action" type="string" value="SEARCH"/>
                 </KeyValues>
                 <Anchors>
                     <Anchor point="RIGHT" relativeKey="$parent.CloseButton" relativePoint="LEFT" x="-10"/>
@@ -62,7 +62,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             
             <Button parentKey="HelpButton" inherits="ICHSquareButtonTemplate">
                 <KeyValues>
-                    <KeyValue key="action" type="string" value="HELP"></KeyValue>
+                    <KeyValue key="action" type="string" value="HELP"/>
                 </KeyValues>
                 <Anchors>
                     <Anchor point="RIGHT" relativeKey="$parent.SearchHintsButton" relativePoint="LEFT" x="-10"/>
@@ -73,7 +73,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             
             <Button parentKey="InfoButton" inherits="ICHSquareButtonTemplate">
                 <KeyValues>
-                    <KeyValue key="action" type="string" value="INFO"></KeyValue>
+                    <KeyValue key="action" type="string" value="INFO"/>
                 </KeyValues>
                 <Anchors>
                     <Anchor point="RIGHT" relativeKey="$parent.HelpButton" relativePoint="LEFT" x="-10"/>

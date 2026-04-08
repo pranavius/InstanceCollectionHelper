@@ -52,37 +52,26 @@ end
 ---@param frame ICHListItem
 ---@param item TimewalkingItem
 function AddOn.TimewalkingDataProviderInit(frame, item)
-    frame.CostContainer.currencyID = 1166
     if not frame or not item then return end
+
+    frame.CostContainer.currencyID = 1166
     frame.isMount = item.Type == "Mount" or false
     
-    local index = AddOn.ICHDataProvider:FindIndex(item)
     local data = AddOn.TimewalkingCache[item.ItemID]
     frame.relevantID = item.Type == "Mount" and data.mountID or data.itemID
-
+    
     local isOwned = AddOn.GetIsVendorItemOwned(data, item.Type)
+    local index = AddOn.ICHDataProvider:FindIndex(item)
 
-    if isOwned then
-        frame.Bg:Hide()
-        frame.OwnedBg:Show()
-    else
-        frame.OwnedBg:Hide()
-        if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
-    end
+    AddOn.ConfigureListItemBackground(frame, index, isOwned)
 
     AddOn:SetTruncatedText(frame.NameContainer.Text, data.collectibleName)
-    frame.NameContainer.ViewButton:ClearNormalTexture()
-    frame.NameContainer.ViewButton:ClearHighlightTexture()
-    frame.NameContainer.ViewButton:SetNormalTexture(data.iconID or 134400)
-    frame.NameContainer.ViewButton:SetHighlightTexture(data.iconID or 134400)
+    AddOn.SetItemIcon(frame.NameContainer.ViewButton, data.iconID)
 
     AddOn:SetTruncatedText(frame.TypeContainer.Text, DARKYELLOW_FONT_COLOR:WrapTextInColorCode(L[item.Type]))
     AddOn:SetTruncatedText(frame.ExpansionContainer.Text, item.Expansion)
 
-    frame.CostContainer.CurrencyButton:ClearNormalTexture()
-    frame.CostContainer.CurrencyButton:ClearHighlightTexture()
-    frame.CostContainer.CurrencyButton:SetNormalAtlas("timewalkingvendor-32x32")
-    frame.CostContainer.CurrencyButton:SetHighlightAtlas("timewalkingvendor-32x32")
+    AddOn.SetItemIcon(frame.CostContainer.CurrencyButton, "timewalkingvendor-32x32")
 
     frame.CostContainer.Text:SetText("x"..FormatLargeNumber(item.Cost))
 

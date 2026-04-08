@@ -37,6 +37,7 @@ end
 ---@see Pet
 function AddOn.PetDataProviderInit(frame, pet)
     if not frame or not pet then return end
+    
     frame.isMount = false
     frame.relevantID = pet.PetItemID
 
@@ -44,26 +45,17 @@ function AddOn.PetDataProviderInit(frame, pet)
 
     local petData = AddOn.PetCache[pet.PetItemID]
     local owned, limit = AddOn.GetPetOwnedAndLimitCount(petData.speciesID)
-    local isOwned = (owned > 0 and (AddOn.db.global.countPetOwnedOnlyIfMaxOwned and owned == limit or true)) or false
+    local isOwned = AddOn.GetIsOwned(petData.speciesID, "Pet")
+    AddOn.ConfigureListItemBackground(frame, index, isOwned)
+    
     local localizedInstanceName = EJ_GetInstanceInfo(pet.InstanceID)
-    if isOwned then
-        frame.Bg:Hide()
-        frame.OwnedBg:Show()
-    else
-        frame.OwnedBg:Hide()
-        if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
-    end
-
     AddOn:SetTruncatedText(frame.NameContainer.Text, petData.petName)
     AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName)
 
-    frame.NameContainer.ViewButton:ClearNormalTexture()
-    frame.NameContainer.ViewButton:ClearHighlightTexture()
-    frame.NameContainer.ViewButton:SetNormalTexture(petData.iconID)
+    AddOn.SetItemIcon(frame.NameContainer.ViewButton, petData.iconID)
 
     frame.InstanceContainer.encounterID = pet.EncounterID or -1
-    frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(pet) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
-    frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(pet) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
+    AddOn:SetInstanceTypeIcon(frame, pet)
 
     AddOn.HideAllDifficultyButtons(frame.DifficultyContainer)
     AddOn:ShowDifficultyButtons(frame.DifficultyContainer, pet, isOwned)
@@ -81,7 +73,8 @@ function AddOn.PetDataProviderInit(frame, pet)
     AddOn:ConfigureWaypointButton(localizedInstanceName, frame, pet)
 
     -- Clear existing OnClick scripts since frames are reused/repurposed
-    frame.NameContainer.ViewButton:SetScript("OnClick", nil) -- Try to find a way to show in the pet journal
+    -- TODO: Try to find a way to show in the pet journal
+    frame.NameContainer.ViewButton:SetScript("OnClick", nil)
     frame.InstanceContainer.ViewButton:SetScript("OnClick", nil)
 
     frame.InstanceContainer.ViewButton:HookScript("OnClick", function()

@@ -97,8 +97,9 @@ end
 ---@param frame ICHLemixListItem
 ---@param item WowRemixItem
 function AddOn.LemixDataProviderInit(frame, item)
-    frame.CostContainer.currencyID = 3252
     if not frame or not item then return end
+    
+    frame.CostContainer.currencyID = 3252
     frame.isMount = item.Type == "Mount" or false
     
     local index = AddOn.ICHDataProvider:FindIndex(item)
@@ -106,19 +107,10 @@ function AddOn.LemixDataProviderInit(frame, item)
     frame.relevantID = item.Type == "Mount" and data.mountID or data.itemID
 
     local isOwned = AddOn.GetIsVendorItemOwned(data, item.Type)
-    if isOwned then
-        frame.Bg:Hide()
-        frame.OwnedBg:Show()
-    else
-        frame.OwnedBg:Hide()
-        if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
-    end
+    AddOn.ConfigureListItemBackground(frame, index, isOwned)
 
     AddOn:SetTruncatedText(frame.NameContainer.Text, data.collectibleName)
-    frame.NameContainer.ViewButton:ClearNormalTexture()
-    frame.NameContainer.ViewButton:ClearHighlightTexture()
-    frame.NameContainer.ViewButton:SetNormalTexture(data.iconID or 134400)
-    frame.NameContainer.ViewButton:SetHighlightTexture(data.iconID or 134400)
+    AddOn.SetItemIcon(frame.NameContainer.ViewButton, data.iconID)
 
     AddOn:SetTruncatedText(frame.TypeContainer.Text, DARKYELLOW_FONT_COLOR:WrapTextInColorCode(L[item.Type]))
     if item.Phase then
@@ -133,10 +125,7 @@ function AddOn.LemixDataProviderInit(frame, item)
         frame.ExclusiveContainer.Checkmark:Hide()
     end
 
-    frame.CostContainer.CurrencyButton:ClearNormalTexture()
-    frame.CostContainer.CurrencyButton:ClearHighlightTexture()
-    frame.CostContainer.CurrencyButton:SetNormalTexture("interface/icons/inv_10_fishing_dragonislescoins_bronze")
-    frame.CostContainer.CurrencyButton:SetHighlightTexture("interface/icons/inv_10_fishing_dragonislescoins_bronze")
+    AddOn.SetItemIcon(frame.CostContainer.CurrencyButton, "interface/icons/inv_10_fishing_dragonislescoins_bronze")
 
     local costText = "x"..FormatLargeNumber(item.Cost)
 

@@ -20,6 +20,7 @@ function AddOn.DecorDataProviderInit(frame, item)
     if decor.isAllowedIndoors then tinsert(searchTags, "indoors") end
     if decor.isAllowedOutdoors then tinsert(searchTags, "outdoors") end
     item.SearchTags = searchTags
+
     -- Resetting these values to avoid conflicts or incorrect tooltip displays
     frame.isMount = false
     frame.relevantID = item.DecorItemID
@@ -27,24 +28,15 @@ function AddOn.DecorDataProviderInit(frame, item)
     frame.OtherInfoContainer.ICHPetCount:Hide()
 
     local index = AddOn.ICHDataProvider:FindIndex(item)
+    local isOwned = AddOn.GetIsOwned(item.DecorItemID, "Decor")
+    AddOn.ConfigureListItemBackground(frame, index, isOwned)
     
-    local isOwned = decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false
     local localizedInstanceName = EJ_GetInstanceInfo(item.InstanceID)
-    if isOwned then
-        frame.Bg:Hide()
-        frame.OwnedBg:Show()
-    else
-        frame.OwnedBg:Hide()
-        if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
-    end
-
     AddOn:SetTruncatedText(frame.NameContainer.Text, decor.name)
     AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName)
 
     local iconID = select(5, C_Item.GetItemInfoInstant(item.DecorItemID))
-    frame.NameContainer.ViewButton:ClearNormalTexture()
-    frame.NameContainer.ViewButton:ClearHighlightTexture()
-    frame.NameContainer.ViewButton:SetNormalTexture(iconID)
+    AddOn.SetItemIcon(frame.NameContainer.ViewButton, iconID)
 
     frame.InstanceContainer.encounterID = item.EncounterID or -1
     frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(item) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")

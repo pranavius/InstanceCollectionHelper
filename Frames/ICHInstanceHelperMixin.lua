@@ -35,7 +35,7 @@ function ICHInstanceHelperMixin:UpdateHelperWindow()
             instanceName, _, difficultyID, difficultyName, _, _, _, instanceMapID = GetInstanceInfo()
         end
         local helperItems = self.GetInstanceCollectibles(instanceMapID, difficultyID)
-        self.InstanceName:SetText(instanceName.." ("..AddOn:GetInstanceDifficultyText(difficultyID)..")")
+        self.InstanceName:SetText(instanceName.." ("..difficultyName..")")
 
         for _, item in ipairs(helperItems) do
             local col = CreateFrame("Button", nil, self.ItemContainer, "InsecureActionButtonTemplate")
@@ -100,7 +100,7 @@ function ICHInstanceHelperMixin.GetInstanceCollectibles(instanceMapID, difficult
     end
     for _, toy in ipairs(AddOn.Toys) do
         if toy.MapID == instanceMapID then
-            local isOwned = PlayerHasToy(toy.ItemID)
+            local isOwned = AddOn.GetIsOwned(toy.ItemID, "Toy")
             local isCollectable = not (isOwned or AddOn.IsEncounterCompleted(toy, difficultyID) or (toy.SharedDifficulties and AddOn:IsEncounterCompletedOnSharedDifficulty(toy)))
             if isCollectable then
                 table.insert(helperItems, { IsMount = false, IconID = AddOn.ToyCache[toy.ItemID].iconID, Hyperlink = "item:"..toy.ItemID })
@@ -109,7 +109,7 @@ function ICHInstanceHelperMixin.GetInstanceCollectibles(instanceMapID, difficult
     end
     for _, pet in ipairs(AddOn.Pets) do
         if pet.MapID == instanceMapID then
-            local isOwned = AddOn.GetPetOwnedAndLimitCount(AddOn.PetCache[pet.PetItemID].speciesID) > 0
+            local isOwned = AddOn.GetIsOwned(AddOn.PetCache[pet.PetItemID].speciesID, "Pet")
             local isCollectable = not (isOwned or AddOn.IsEncounterCompleted(pet, difficultyID) or (pet.SharedDifficulties and AddOn:IsEncounterCompletedOnSharedDifficulty(pet)))
             if isCollectable then
                 table.insert(helperItems, { IsMount = false, IconID = AddOn.PetCache[pet.PetItemID].iconID, Hyperlink = "item:"..pet.PetItemID })
@@ -118,8 +118,7 @@ function ICHInstanceHelperMixin.GetInstanceCollectibles(instanceMapID, difficult
     end
     for _, decorItem in ipairs(AddOn.DecorItems) do
         if decorItem.MapID == instanceMapID then
-            local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(decorItem.DecorItemID, true)
-            local isOwned = decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false
+            local isOwned = AddOn.GetIsOwned(decorItem.DecorItemID, "Decor")
             local isCollectable = not (isOwned or AddOn.IsEncounterCompleted(decorItem, difficultyID) or (decorItem.SharedDifficulties and AddOn:IsEncounterCompletedOnSharedDifficulty(decorItem)))
             if isCollectable then
                 local iconID = select(5, C_Item.GetItemInfoInstant(decorItem.DecorItemID))

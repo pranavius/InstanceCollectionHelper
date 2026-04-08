@@ -96,8 +96,8 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             <Frame parentKey="DifficultyContainer">
                 <Size x="200"/>
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeKey="$parent.InstanceContainer" relativePoint="TOPRIGHT"></Anchor>
-                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.InstanceContainer" relativePoint="BOTTOMRIGHT"></Anchor>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.InstanceContainer" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.InstanceContainer" relativePoint="BOTTOMRIGHT"/>
                 </Anchors>
                 <Frames>
                     <Button parentKey="RaidDiffLFRButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
@@ -170,8 +170,8 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
 
             <Frame parentKey="OtherInfoContainer">
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="TOPRIGHT"></Anchor>
-                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="BOTTOMRIGHT"></Anchor>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="BOTTOMRIGHT"/>
                     <Anchor point="RIGHT" relativePoint="RIGHT"/>
                 </Anchors>
                 <Layers>
@@ -329,13 +329,15 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     <KeyValue key="currencyID" value="-1" type="number"/>
                 </KeyValues>
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeKey="$parent.ExpansionContainer" relativePoint="TOPRIGHT"></Anchor>
-                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.ExpansionContainer" relativePoint="BOTTOMRIGHT"></Anchor>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.ExpansionContainer" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.ExpansionContainer" relativePoint="BOTTOMRIGHT"/>
                 </Anchors>
                 <Frames>
                     <Button parentKey="CurrencyButton" inherits="InsecureActionButtonTemplate">
                         <Size x="20" y="20"/>
-                        <Anchors><Anchor point="LEFT" relativePoint="LEFT" x="0" y="-1" /></Anchors>
+                        <Anchors>
+                            <Anchor point="LEFT" relativePoint="LEFT" x="0" y="-1" />
+                        </Anchors>
                         <Scripts>
                             <OnEnter/>
                             <OnLeave/>
@@ -357,14 +359,16 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
 
             <Frame parentKey="OtherInfoContainer">
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeKey="$parent.CostContainer" relativePoint="TOPRIGHT"></Anchor>
-                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.CostContainer" relativePoint="BOTTOMRIGHT"></Anchor>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.CostContainer" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.CostContainer" relativePoint="BOTTOMRIGHT"/>
                     <Anchor point="RIGHT" relativePoint="RIGHT"/>
                 </Anchors>
                 <Layers>
                     <Layer level="OVERLAY">
                         <FontString parentKey="ICHPetCount" inherits="GameTooltipText" justifyH="RIGHT" text="" wordwrap="false">
-                            <Anchors><Anchor point="RIGHT" x="-50"/></Anchors>
+                            <Anchors>
+                                <Anchor point="RIGHT" x="-50"/>
+                            </Anchors>
                         </FontString>
                     </Layer>
                 </Layers>

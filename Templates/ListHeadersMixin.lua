@@ -8,7 +8,7 @@ ICHListHeadersMixin = {}
 
 function ICHListHeadersMixin:OnLoad()
     self.NameHeader:SetText(L["Name"])
-    -- Both InstanceHeader and DiffHeader and exclusive to the regular list headers
+    -- Both InstanceHeader and DiffHeader are exclusive to the regular list headers
     if self.InstanceHeader then
         self.InstanceHeader:SetText(L["Instance"])
         self.DiffHeader:SetText(L["Available Difficulty(s)"])

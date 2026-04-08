@@ -189,7 +189,7 @@ function AddOn:UpdateListContents()
         self.Container.SearchBox.Instructions:SetText(L["Search by mount/instance name, instance type, difficulty, or expansion"])
     elseif selectedTab == self.Tabs.ToysTab then
         for _, toy in ipairs(self.Toys) do
-            local isOwned = PlayerHasToy(toy.ItemID)
+            local isOwned = self.GetIsOwned(toy.ItemID, "Toy")
             if not isOwned or (isOwned and self.db.global.showOwned) then
                 tinsert(newData, toy)
             else
@@ -200,8 +200,7 @@ function AddOn:UpdateListContents()
     elseif selectedTab == self.Tabs.PetsTab then
         for _, pet in ipairs(self.Pets) do
             local petData = self.PetCache[pet.PetItemID]
-            local owned, limit = self.GetPetOwnedAndLimitCount(petData.speciesID)
-            local isOwned = (owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and owned == limit or true)) or false
+            local isOwned = self.GetIsOwned(petData.speciesID, "Pet")
             if not isOwned or (isOwned and self.db.global.showOwned) then
                 tinsert(newData, pet)
             else
@@ -235,13 +234,11 @@ function AddOn:UpdateListContents()
         end
     elseif selectedTab == self.Tabs.DecorTab then
         for _, item in ipairs(self.DecorItems) do
-            local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(item.DecorItemID, true)
-            local isOwned = decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false
-            local shouldInsert = false
+            local isOwned = self.GetIsOwned(item.DecorItemID, "Decor")
             if not isOwned or (isOwned and self.db.global.showOwned) then
                 tinsert(newData, item)
             else
-                self:PrintDebugMessage("Failed to curate table data for pet:", item.Name)
+                self:PrintDebugMessage("Failed to curate table data for decor:", item.Name)
             end
         end
         -- Update search box instructions somehow

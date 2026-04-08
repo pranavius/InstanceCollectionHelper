@@ -36,34 +36,26 @@ end
 ---@see Toy
 function AddOn.ToyDataProviderInit(frame, toy)
     if not frame or not toy then return end
+
     frame.isMount = false
     frame.relevantID = toy.ItemID
     -- Hide the pet count frame for non-pets
     frame.OtherInfoContainer.ICHPetCount:Hide()
 
-    local index = AddOn.ICHDataProvider:FindIndex(toy)
-
     local toyData = AddOn.ToyCache[toy.ItemID]
-    local isOwned = PlayerHasToy(toy.ItemID)
+    
+    local index = AddOn.ICHDataProvider:FindIndex(toy)
+    local isOwned = AddOn.GetIsOwned(toy.ItemID, "Toy")
+    AddOn.ConfigureListItemBackground(frame, index, isOwned)
+    
     local localizedInstanceName = EJ_GetInstanceInfo(toy.InstanceID)
-    if isOwned then
-        frame.Bg:Hide()
-        frame.OwnedBg:Show()
-    else
-        frame.OwnedBg:Hide()
-        if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
-    end
-
     AddOn:SetTruncatedText(frame.NameContainer.Text, toyData.toyName)
     AddOn:SetTruncatedText(frame.InstanceContainer.Text, localizedInstanceName)
 
-    frame.NameContainer.ViewButton:ClearNormalTexture()
-    frame.NameContainer.ViewButton:ClearHighlightTexture()
-    frame.NameContainer.ViewButton:SetNormalTexture(toyData.iconID)
+    AddOn.SetItemIcon(frame.NameContainer.ViewButton, toyData.iconID)
 
     frame.InstanceContainer.encounterID = toy.EncounterID or -1
-    frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(toy) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
-    frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(toy) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
+    AddOn:SetInstanceTypeIcon(frame, toy)
 
     AddOn.HideAllDifficultyButtons(frame.DifficultyContainer)
     AddOn:ShowDifficultyButtons(frame.DifficultyContainer, toy, isOwned)
@@ -77,7 +69,8 @@ function AddOn.ToyDataProviderInit(frame, toy)
     AddOn:ConfigureWaypointButton(localizedInstanceName, frame, toy)
 
     -- Clear existing OnClick scripts since frames are reused/repurposed
-    frame.NameContainer.ViewButton:SetScript("OnClick", nil)  -- Try to find a way to show in the toy journal
+    -- TODO: Try to find a way to show in the toy journal
+    frame.NameContainer.ViewButton:SetScript("OnClick", nil)
     frame.InstanceContainer.ViewButton:SetScript("OnClick", nil)
 
     frame.InstanceContainer.ViewButton:HookScript("OnClick", function()
