@@ -2,11 +2,12 @@
 
 _Track available collectibles from instances and easily set required instance difficulty_
 
-**Instance Collection Helper** was released in July 2025 to help players with tracking mounts and setting the correct instance difficulty for the [Collector's Bounty](https://www.wowhead.com/event=1674/collectors-bounty) event. Since then, it has evolved further into a list and tracking system for other collectibles such as toys, pets, and decor
+[![Discord](https://img.shields.io/badge/join-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/rqXW2cenWg)
+[![Patreon](https://img.shields.io/badge/support-F96854?style=for-the-badge&logo=patreon)](https://patreon.com/cw/Pranavius)
 
-## Important Notices
-- ICH will be continue to be supported in the **Midnight** expansion and beyond (for the foreseeable future)
-- I am looking for translators to help verify AddOn translations in non-English languages. If interested, please contact me via one of the means listed in the [Contact](#contact) section.
+**Instance Collection Helper** was released in July 2025 to help players with tracking mounts and setting the correct instance difficulty for the [Collector's Bounty](https://www.wowhead.com/event=1674/collectors-bounty) event. Since then, it has evolved further into a list and tracking system for other collectibles such as toys, pets, and decor.
+
+ICH will be continue to be supported in the **Midnight** expansion and beyond for the foreseeable future. I am looking for translators to help verify AddOn translations in non-English languages. If interested, please contact me via one of the means listed in the [Connect](#connect) section.
 
 ## Highlights
 - Tabs for mounts, toys, pets, and decor that are available from instances
@@ -31,8 +32,9 @@ All collectible and instance names will appear in the language that the game is 
 - European Spanish (`esES`) 
 - Mexican Spanish (`esMX`)
 - French (`frFR`)
+- Koran (`koKR`)
 - Italian (`itIT`)
-- Portuguese (`ptBR`)
+- Brazilian Portuguese (`ptBR`)
 - Russian (`ruRU`)
 - German (`deDE`) _\*credit: Fargoran\*_
 - Traditional Chinese (`zhTW`) _\*credit: BNS333\*_
@@ -59,11 +61,9 @@ Aside from the AddOn UI itself, **Instance Collection Helper** provides a few ot
 - Ability to view lockouts/available attempts of alts
 - Allow AddOn properties such as text font to be configurable
 
-## Contact
-**Twitter/X**: [PranaviusWoW](https://x.com/pranaviuswow)
+## Connect
+Feedback on this AddOn or any others that I develop/maintain is always welcome. Bug reports or request additional features If you enjoy using any of my AddOns and would like to support future development, it is greatly appreciated.
 
-**GitHub**: [Pranavius](https://github.com/pranavius)
-
-**Email**: [pranavius1@gmail.com](mailto:pranavius1@gmail.com)
-
-**Discord**: [Pranlabs](https://discord.gg/Vj3D5GeQZh)
+[![GitHub](https://img.shields.io/badge/github-000000?style=for-the-badge&logo=github)](https://github.com/pranavius)
+[![X](https://img.shields.io/badge/@PranaviusWoW-000000?style=for-the-badge&logo=x)](https://x.com/PranaviusWoW)
+[![Email](https://img.shields.io/badge/email-ffffff?style=for-the-badge&logo=gmail)](mailto:pranavius1@gmail.com)
