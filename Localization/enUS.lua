@@ -7,8 +7,8 @@ local ICH_GetQuestName = C_QuestLog.GetTitleForQuestID
 local ICH_GetClassColor = C_ClassColor.GetClassColor
 --@end-retail@
 --@version-mists@
-local ICH_GetQuestName = C_QuestLog.GetQuestInfo
-local ICH_GetClassColor = GetClassColorObj
+-- local ICH_GetQuestName = C_QuestLog.GetQuestInfo
+-- local ICH_GetClassColor = GetClassColorObj
 --@end-version-mists@
 local function ICH_GetClassName(classID, fallbackValue)
     local className = select(1, GetClassInfo(classID))

@@ -18,15 +18,6 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <Anchor point="TOPRIGHT" x="0" y="-10"/>
                     </Anchors>
                 </FontString>
-                <!--@version-mists@-->
-                    <FontString parentKey="ClassicDisclaimer" inherits="GameFontHighlightSmall" text="BETA - Please Report Issues" justifyH="LEFT">
-                        <Color color="DARKYELLOW_FONT_COLOR" />
-                        <Size x="200" y="25"/>
-                        <Anchors>
-                            <Anchor point="TOPLEFT" relativeKey="$parent.Title" relativePoint="BOTTOMLEFT" x="25" y="-10"/>
-                        </Anchors>
-                    </FontString>
-                <!--@end-version-mists@-->
             </Layer>
         </Layers>
         <Frames>
@@ -38,15 +29,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             </EditBox>
 
             <Button parentKey="CloseButton" inherits="UIPanelCloseButtonDefaultAnchors">
-                <!--@retail@-->
                     <Size x="20" y="20"/>
-                <!--@end-retail@-->
-                <!--@version-mists@-->
-                    <Size x="24" y="24"/>
-                    <Anchors>
-                        <Anchor point="TOPRIGHT" x="0" y="0"/>
-                    </Anchors>
-                <!--@end-version-mists@-->
             </Button>
 
             <Button parentKey="SearchHintsButton" inherits="ICHSquareButtonTemplate">

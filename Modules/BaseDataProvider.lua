@@ -51,18 +51,9 @@ function AddOn.InstanceListItemInit(frame, data, config)
     if config.isMount then frame.NameContainer.ViewButton:SetHighlightTexture(icon or 134400) end
 
     frame.InstanceContainer.encounterID = data.EncounterID or -1
-    --@version-mists@
-    frame.InstanceContainer.hasDungeonJournalEntry = localizedInstanceName ~= nil
-    --@end-version-mists@
     local isRaid = AddOn:IsInstanceRaid(data)
-    --@retail@
     frame.InstanceContainer.ViewButton:SetNormalAtlas(isRaid and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
     frame.InstanceContainer.ViewButton:SetHighlightAtlas(isRaid and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
-    --@end-retail@
-    --@version-mists@
-    frame.InstanceContainer.ViewButton:SetNormalAtlas(isRaid and "Raid" or "Dungeon")
-    frame.InstanceContainer.ViewButton:SetHighlightAtlas(isRaid and "Raid" or "Dungeon")
-    --@end-version-mists@
 
     AddOn.HideAllDifficultyButtons(frame.DifficultyContainer)
     AddOn:ShowDifficultyButtons(frame.DifficultyContainer, data, isOwned)
@@ -84,20 +75,12 @@ function AddOn.InstanceListItemInit(frame, data, config)
     end
 
     frame.InstanceContainer.ViewButton:SetScript("OnClick", function()
-        --@version-mists@
-        if frame.InstanceContainer.hasDungeonJournalEntry then
-        --@end-version-mists@
-            EncounterJournal_OpenJournal(data.DifficultyIDs and data.DifficultyIDs[1] or nil, data.InstanceID, data.EncounterID)
-            if EncounterJournalEncounterFrameInfo.tab ~= 2 then
-                EncounterJournalEncounterFrameInfoLootTab:Click()
-            end
-            --@retail@
-            EJ_SetLootFilter(0, 0)
-            C_EncounterJournal.SetSlotFilter(Enum.ItemSlotFilterType.Other)
-            --@end-retail@
-        --@version-mists@
+        EncounterJournal_OpenJournal(data.DifficultyIDs and data.DifficultyIDs[1] or nil, data.InstanceID, data.EncounterID)
+        if EncounterJournalEncounterFrameInfo.tab ~= 2 then
+            EncounterJournalEncounterFrameInfoLootTab:Click()
         end
-        --@end-version-mists@
+        EJ_SetLootFilter(0, 0)
+        C_EncounterJournal.SetSlotFilter(Enum.ItemSlotFilterType.Other)
     end)
 
     if config.afterRender then config.afterRender(frame, data, cached, isOwned) end
