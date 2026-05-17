@@ -73,7 +73,7 @@ function AddOn:CreateLemixCache()
                 self.LemixCache[item.ItemID] = {
                     itemName = C_Item.GetItemNameByID(item.ItemID) or "",
                     itemID = item.ItemID,
-                    collectibleName = decor.name,
+                    collectibleName = decor and decor.name or item.Name,
                     iconID = iconID or 134400
                 }
             end
@@ -103,6 +103,7 @@ function AddOn.LemixDataProviderInit(frame, item)
     
     local index = AddOn.ICHDataProvider:FindIndex(item)
     local data = AddOn.LemixCache[item.ItemID]
+    if not data then return end
     frame.relevantID = item.Type == "Mount" and data.mountID or data.itemID
 
     local isOwned = AddOn.GetIsVendorItemOwned(data, item.Type)
@@ -167,21 +168,20 @@ function AddOn.LemixDataProviderInit(frame, item)
 
     AddOn:ConfigureWaypointButton(item.VendorName or "", frame, item)
 
-    -- Clear existing OnClick scripts since frames are reused/repurposed
-    frame.NameContainer.ViewButton:SetScript("OnClick", nil)
-    frame.CostContainer.CurrencyButton:SetScript("OnClick", nil)
-
+    -- SetScript replaces, so per-row handlers do not accumulate as the scroll view recycles frames
     if item.Type == "Mount" then
-        frame.NameContainer.ViewButton:HookScript("OnClick", function()
+        frame.NameContainer.ViewButton:SetScript("OnClick", function()
             local spellID = select(2, C_MountJournal.GetMountInfoByID(data.mountID))
             if data.mountID then
                 SetCollectionsJournalShown(true, 1)
                 MountJournal_SetSelected(data.mountID, spellID)
             end
         end)
+    else
+        frame.NameContainer.ViewButton:SetScript("OnClick", nil)
     end
 
-    frame.CostContainer.CurrencyButton:HookScript("OnClick", function()
+    frame.CostContainer.CurrencyButton:SetScript("OnClick", function()
         AddOn:PrintDebugMessage("Bronze transfer requested")
         if not C_CurrencyInfo.CanTransferCurrency(frame.CostContainer.currencyID) then
             AddOn:PrintChatMessage(L["Unable to transfer Bronze to this character right now."])

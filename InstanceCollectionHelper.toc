@@ -41,6 +41,7 @@ Data\Decor.lua
 Modules\CategoryTabs.lua
 Modules\Waypoints.lua
 Modules\DifficultyButtons.lua
+Modules\BaseDataProvider.lua
 Modules\MountDataProvider.lua
 Modules\ToyDataProvider.lua
 Modules\PetDataProvider.lua

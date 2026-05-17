@@ -273,15 +273,16 @@ function AddOn.GetIsVendorItemOwned(data, type)
     if type == "Mount" then
         isOwned = select(11, C_MountJournal.GetMountInfoByID(data.mountID))
     elseif type == "Pet" then
-        local owned, limit = AddOn.GetPetOwnedAndLimitCount(data.speciesID)
-        isOwned = (owned > 0 and (AddOn.db.global.countPetOwnedOnlyIfMaxOwned and owned == limit or true)) or false
+        isOwned = AddOn.GetIsPetOwned(data.speciesID)
     elseif type == "Cosmetic" then
         isOwned = AddOn.db.global.ownedCosmeticsCache[data.itemID] or false
     elseif type == "Toy" then
         isOwned = PlayerHasToy(data.itemID)
     elseif type == "Decor" then
         local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.itemID, true)
-        local isOwned = decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false
+        if decor then
+            isOwned = decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false
+        end
     end
 
     return isOwned
@@ -299,4 +300,16 @@ function AddOn.GetPetOwnedAndLimitCount(speciesID)
     end
 
     return owned or 0, limit or 0
+end
+
+---Determines whether a pet species should be considered owned, honoring the `countPetOwnedOnlyIfMaxOwned` config flag
+---@param speciesID number? ID for the pet species
+---@return boolean isOwned
+function AddOn.GetIsPetOwned(speciesID)
+    local owned, limit = AddOn.GetPetOwnedAndLimitCount(speciesID)
+    local isOwned = owned > 0
+    if AddOn.db.global.countPetOwnedOnlyIfMaxOwned then
+        isOwned = isOwned and owned == limit
+    end
+    return isOwned
 end

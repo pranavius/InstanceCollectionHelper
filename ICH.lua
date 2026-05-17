@@ -118,20 +118,20 @@ function AddOn:FilterListContentsByQuery(listData)
             itemName = C_MountJournal.GetMountInfoByID(data.ID) or data.Name
         elseif selectedTab == self.Tabs.ToysTab then
             itemName = select(2, C_ToyBox.GetToyInfo(data.ItemID)) or data.Name
-            if not itemName then itemName = "" end
         elseif selectedTab == self.Tabs.PetsTab then
             itemName = C_PetJournal.GetPetInfoByItemID(data.PetItemID) or data.Name
         elseif selectedTab == self.Tabs.TimewalkingVendorTab then
-            itemName = self.TimewalkingCache[data.ItemID].itemName or data.Name
+            local twData = self.TimewalkingCache[data.ItemID]
+            itemName = twData and twData.itemName or data.Name
         elseif selectedTab == self.Tabs.DecorTab then
             local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.DecorItemID, true)
-            itemName = decor.name
+            itemName = decor and decor.name or data.Name
         end
         local cleanName = itemName:lower():gsub("|.+|.*", "")
         nameMatches = cleanName:match(query) and true or false
         instanceMatches = instanceName:lower():match(query) and true or false
         encounterMatches = encounterName:lower():match(query) and true or false
-        instanceTypeMatches = data.DifficultyIDs and (query == L["raid"] and self:IsInstanceRaid(data) or (query == L["dungeon"] and not self:IsInstanceRaid(data)))
+        instanceTypeMatches = data.DifficultyIDs and ((query == L["raid"] and self:IsInstanceRaid(data)) or (query == L["dungeon"] and not self:IsInstanceRaid(data)))
         
         local difficultyMatches = false
         for _, diffID in ipairs(data.DifficultyIDs or {}) do
@@ -150,14 +150,14 @@ function AddOn:FilterListContentsByQuery(listData)
         end
         
         local searchTagMatches = false
-        for _, tag in ipairs(data.SearchTags) do
+        for _, tag in ipairs(data.SearchTags or {}) do
             if tag:lower() == query then
                 searchTagMatches = true
                 break
             end
         end
         
-        local itemTypeMatches = data.Type and query == L[data.Type]:lower() or false
+        local itemTypeMatches = data.Type and L[data.Type] and query == L[data.Type]:lower() or false
 
         if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches or searchTagMatches or itemTypeMatches then
             tinsert(filtered, data)
@@ -196,8 +196,7 @@ function AddOn:UpdateListContents()
     elseif selectedTab == self.Tabs.PetsTab then
         for _, pet in ipairs(self.Pets) do
             local petData = self.PetCache[pet.PetItemID]
-            local owned, limit = self.GetPetOwnedAndLimitCount(petData.speciesID)
-            local isOwned = (owned > 0 and (self.db.global.countPetOwnedOnlyIfMaxOwned and owned == limit or true)) or false
+            local isOwned = petData and self.GetIsPetOwned(petData.speciesID) or false
             if not isOwned or (isOwned and self.db.global.showOwned) then
                 tinsert(newData, pet)
             else
@@ -232,15 +231,14 @@ function AddOn:UpdateListContents()
     elseif selectedTab == self.Tabs.DecorTab then
         for _, item in ipairs(self.DecorItems) do
             local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(item.DecorItemID, true)
-            local isOwned = decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false
-            local shouldInsert = false
+            local isOwned = decor and decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false
             if not isOwned or (isOwned and self.db.global.showOwned) then
                 tinsert(newData, item)
             else
-                self:PrintDebugMessage("Failed to curate table data for pet:", item.Name)
+                self:PrintDebugMessage("Failed to curate table data for decor:", item.Name)
             end
         end
-        -- Update search box instructions somehow
+        self.Container.SearchBox.Instructions:SetText(L["Search by decor/instance name, instance type, difficulty, or expansion"])
     --@end-retail@
     end
 
