@@ -17,10 +17,9 @@ manual-changelog: CHANGELOG
 ignore:
     - README.md
     - CHANGELOG
-    - Docs
     - Annotations.lua
     - Data/Lemix.lua
     - Modules/LemixDataProvider.lua
     - Templates/LemixMixins.lua
-    - Templates/LemixTemplates.lua
+    - Templates/LemixTemplates.xml
 

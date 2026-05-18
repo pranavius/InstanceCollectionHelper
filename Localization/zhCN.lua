@@ -157,6 +157,7 @@ L["Random chance to obtain when opening a Bag of Fishing Treasures"] = "有几�
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways. Can now be purchased from any Timewalking vendor."] = "最初作为完成成就 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(19079)) or "Master of the Turbulent Timeways").." 的奖励。现在可以从任何时光漫游供应商处购买"
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways II. Can now be purchased from any Timewalking vendor."] = "最初作为完成成就 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(41056)) or "Master of the Turbulent Timeways II").." 的奖励。现在可以从任何时光漫游供应商处购买"
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways III. Can now be purchased from any Timewalking vendor."] = "最初作为完成成就 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(41779)) or "Master of the Turbulent Timeways III").." 的奖励。现在可以从任何时光漫游供应商处购买"
+L["Originally rewarded for completing the achievement Master of the Turbulent Timeways IV. Can now be purchased from any Timewalking vendor."] = "最初作为完成成就 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61394)) or "Master of the Turbulent Timeways IV").." 的奖励。现在可以从任何时光漫游供应商处购买"
 L["Special Thanks"] = "特别感谢"
 L["Mount"] = "坐骑"
 L["Pet"] = "宠物"

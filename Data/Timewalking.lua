@@ -85,6 +85,74 @@ AddOn.TimewalkingItems = {
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
+        Name = "Bronze Aquilon",
+        ItemID = 257513,
+        Type = "Mount",
+        Expansion = "-",
+        Cost = 5000,
+        Notes = L["Originally rewarded for completing the achievement Master of the Turbulent Timeways IV. Can now be purchased from any Timewalking vendor."],
+        SearchTags = combineExpansionTags(AddOn.ExpansionTags.Classic,
+            AddOn.ExpansionTags.TheBurningCrusade,
+            AddOn.ExpansionTags.WrathOfTheLichKing,
+            AddOn.ExpansionTags.MistsOfPandaria,
+            AddOn.ExpansionTags.WarlordsOfDraenor,
+            AddOn.ExpansionTags.Legion,
+            AddOn.ExpansionTags.BattleForAzeroth,
+            AddOn.ExpansionTags.Shadowlands,
+            AddOn.ExpansionTags.Dragonflight)
+    },
+    {
+        Name = "Bronze Corpsefly",
+        ItemID = 257514,
+        Type = "Mount",
+        Expansion = "-",
+        Cost = 5000,
+        Notes = L["Originally rewarded for completing the achievement Master of the Turbulent Timeways IV. Can now be purchased from any Timewalking vendor."],
+        SearchTags = combineExpansionTags(AddOn.ExpansionTags.Classic,
+            AddOn.ExpansionTags.TheBurningCrusade,
+            AddOn.ExpansionTags.WrathOfTheLichKing,
+            AddOn.ExpansionTags.MistsOfPandaria,
+            AddOn.ExpansionTags.WarlordsOfDraenor,
+            AddOn.ExpansionTags.Legion,
+            AddOn.ExpansionTags.BattleForAzeroth,
+            AddOn.ExpansionTags.Shadowlands,
+            AddOn.ExpansionTags.Dragonflight)
+    },
+    {
+        Name = "Bronze Gravewing",
+        ItemID = 257516,
+        Type = "Mount",
+        Expansion = "-",
+        Cost = 5000,
+        Notes = L["Originally rewarded for completing the achievement Master of the Turbulent Timeways IV. Can now be purchased from any Timewalking vendor."],
+        SearchTags = combineExpansionTags(AddOn.ExpansionTags.Classic,
+            AddOn.ExpansionTags.TheBurningCrusade,
+            AddOn.ExpansionTags.WrathOfTheLichKing,
+            AddOn.ExpansionTags.MistsOfPandaria,
+            AddOn.ExpansionTags.WarlordsOfDraenor,
+            AddOn.ExpansionTags.Legion,
+            AddOn.ExpansionTags.BattleForAzeroth,
+            AddOn.ExpansionTags.Shadowlands,
+            AddOn.ExpansionTags.Dragonflight)
+    },
+    {
+        Name = "Bronze Wilderling",
+        ItemID = 257511,
+        Type = "Mount",
+        Expansion = "-",
+        Cost = 5000,
+        Notes = L["Originally rewarded for completing the achievement Master of the Turbulent Timeways IV. Can now be purchased from any Timewalking vendor."],
+        SearchTags = combineExpansionTags(AddOn.ExpansionTags.Classic,
+            AddOn.ExpansionTags.TheBurningCrusade,
+            AddOn.ExpansionTags.WrathOfTheLichKing,
+            AddOn.ExpansionTags.MistsOfPandaria,
+            AddOn.ExpansionTags.WarlordsOfDraenor,
+            AddOn.ExpansionTags.Legion,
+            AddOn.ExpansionTags.BattleForAzeroth,
+            AddOn.ExpansionTags.Shadowlands,
+            AddOn.ExpansionTags.Dragonflight)
+    },
+    {
         Name = "Broodling of Sinestra",
         ItemID = 234730,
         Type = "Mount",
@@ -108,7 +176,8 @@ AddOn.TimewalkingItems = {
             AddOn.ExpansionTags.WarlordsOfDraenor,
             AddOn.ExpansionTags.Legion,
             AddOn.ExpansionTags.BattleForAzeroth,
-            AddOn.ExpansionTags.Shadowlands)
+            AddOn.ExpansionTags.Shadowlands,
+            AddOn.ExpansionTags.Dragonflight)
     },
     {
         Name = "Chuck",
@@ -412,7 +481,8 @@ AddOn.TimewalkingItems = {
             AddOn.ExpansionTags.WarlordsOfDraenor,
             AddOn.ExpansionTags.Legion,
             AddOn.ExpansionTags.BattleForAzeroth,
-            AddOn.ExpansionTags.Shadowlands)
+            AddOn.ExpansionTags.Shadowlands,
+            AddOn.ExpansionTags.Dragonflight)
     },
     {
         Name = "Sea-Blessed Shrine",
@@ -470,7 +540,8 @@ AddOn.TimewalkingItems = {
             AddOn.ExpansionTags.WarlordsOfDraenor,
             AddOn.ExpansionTags.Legion,
             AddOn.ExpansionTags.BattleForAzeroth,
-            AddOn.ExpansionTags.Shadowlands)
+            AddOn.ExpansionTags.Shadowlands,
+            AddOn.ExpansionTags.Dragonflight)
     },
     {
         Name = "Toothy",

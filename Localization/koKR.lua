@@ -162,6 +162,7 @@ L["Random chance to obtain when opening a Bag of Fishing Treasures"] = DARKYELLO
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways. Can now be purchased from any Timewalking vendor."] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(19079)) or "Master of the Turbulent Timeways").." 업적을 달성하면 원래 보상으로 받을 수 있었습니다. 현재는 모든 시간여행 판매자에게서 구매할 수 있습니다."
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways II. Can now be purchased from any Timewalking vendor."] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(41056)) or "Master of the Turbulent Timeways II").." 업적을 달성하면 원래 보상으로 받을 수 있었습니다. 현재는 모든 시간여행 판매자에게서 구매할 수 있습니다."
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways III. Can now be purchased from any Timewalking vendor."] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(41779)) or "Master of the Turbulent Timeways III").." 업적을 달성하면 원래 보상으로 받을 수 있었습니다. 현재는 모든 시간여행 판매자에게서 구매할 수 있습니다."
+L["Originally rewarded for completing the achievement Master of the Turbulent Timeways IV. Can now be purchased from any Timewalking vendor."] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61394)) or "Master of the Turbulent Timeways IV").." 업적을 달성하면 원래 보상으로 받을 수 있었습니다. 현재는 모든 시간여행 판매자에게서 구매할 수 있습니다."
 L["Special Thanks"] = "특별 감사"
 L["Mount"] = "탈것"
 L["Pet"] = "동반자"

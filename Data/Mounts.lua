@@ -167,7 +167,6 @@ AddOn.Mounts = {
         MapID = 967,
         AreaPoiID = 6512,
         EncounterID = 333,
-        --@retail@
         DifficultyIDs = { RaidDifficulty.Legacy10H },
         SharedDifficulties = {
             [RaidDifficulty.Legacy10] = RaidDifficulty.Legacy10H,
@@ -175,13 +174,6 @@ AddOn.Mounts = {
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H
         },
         Notes = L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"],
-        --@end-retail@
-        --@version-mists@
-        DifficultyIDs = { RaidDifficulty.Legacy10 },
-        SharedDifficulties = {
-            [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10
-        },
-        --@end-version-mists@
         Waypoint = { mapID = 71, x = 0.647, y = 0.513 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -555,12 +547,7 @@ AddOn.Mounts = {
         AreaPoiID = 6523,
         EncounterID = 1649,
         DifficultyIDs = { RaidDifficulty.Normal },
-        --@retail@
         Notes = L["Upon entering the instance, raid difficulty will automatically be set to Normal"].."\n\n"..L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"],
-        --@end-retail@
-        --@version-mists@
-        Notes = L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"],
-        --@end-version-mists@
         Waypoint = { mapID = 120, x = 0.416, y = 0.178 },
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
@@ -650,18 +637,11 @@ AddOn.Mounts = {
         Name = "Rivendare's Deathcharger",
         ID = 69, -- Nice
         Instance = "Stratholme - Service Entrance",
-        --@retail@
         InstanceID = 1292,
-        --@end-retail@
-        --@version-mists@
-        InstanceID = 236,
-        --@end-version-mists@
         MapID = 329,
         EncounterID = 456,
         DifficultyIDs = { DungeonDifficulty.Normal },
-        --@retail@
         Notes = L["Also obtainable in Timewalking"],
-        --@end-retail@
         Waypoint = { mapID = 23, x = 0.436, y = 0.191 },
         SearchTags = AddOn.ExpansionTags.Classic
     },
