@@ -122,7 +122,7 @@ function AddOn:FilterListContentsByQuery(listData)
         end
         local cleanName = itemName:lower():gsub("|.+|.*", "")
         nameMatches = cleanName:match(query) and true or false
-        instanceMatches = instanceName:lower():match(query) and true or false
+        instanceMatches = instanceName and instanceName:lower():match(query) and true or false
         encounterMatches = encounterName:lower():match(query) and true or false
         instanceTypeMatches = data.DifficultyIDs and ((query == L["raid"] and self:IsInstanceRaid(data)) or (query == L["dungeon"] and not self:IsInstanceRaid(data)))
         
