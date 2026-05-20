@@ -142,6 +142,7 @@
 ---@field RaidDiffNormalButton DifficultyButton
 ---@field RaidDiffHeroicButton DifficultyButton
 ---@field RaidDiffMythicButton DifficultyButton
+---@field RaidDiffMythicFlexButton DifficultyButton
 ---@field DungDiffNormalButton DifficultyButton
 ---@field DungDiffHeroicButton DifficultyButton
 ---@field DungDiffMythicButton DifficultyButton

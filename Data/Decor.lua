@@ -207,6 +207,18 @@ AddOn.DecorItems = {
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
+        Name = "Luminous Rotshroom",
+        DecorItemID = 247235,
+        Instance = "Sporefall",
+        InstanceID = 1305,
+        MapID = 1592,
+        AreaPoiID = 8510,
+        EncounterID = 2711,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic, RaidDifficulty.MythicFlex },
+        Waypoint = { mapID = 2413, x = 0.736, y = 0.664 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
         Name = "Magister's Bookshelf",
         DecorItemID = 263230,
         Instance = "Magister's Terrace",

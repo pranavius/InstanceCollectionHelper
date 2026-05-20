@@ -22,7 +22,8 @@ AddOn.RaidDifficulty = {
     LFR = 17,
     Normal = 14,
     Heroic = 15,
-    Mythic = 16
+    Mythic = 16,
+    MythicFlex = 233
 }
 
 ---@class ExpansionTags

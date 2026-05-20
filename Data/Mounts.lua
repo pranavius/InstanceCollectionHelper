@@ -487,10 +487,22 @@ AddOn.Mounts = {
         Instance = "Magister's Terrace",
         InstanceID = 1300,
         MapID = 2811,
-        AreaPoiID = 8510,
+        AreaPoiID = 8256,
         EncounterID = 2662,
         DifficultyIDs = { DungeonDifficulty.Mythic },
         Waypoint = { mapID = 2424, x = 0.635, y = 0.154 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Luminous Sporeglider",
+        ID = 2950,
+        Instance = "Sporefall",
+        InstanceID = 1305,
+        MapID = 1592,
+        AreaPoiID = 8510,
+        EncounterID = 2711,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic, RaidDifficulty.MythicFlex },
+        Waypoint = { mapID = 2413, x = 0.736, y = 0.664 },
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {

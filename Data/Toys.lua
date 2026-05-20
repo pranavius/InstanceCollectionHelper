@@ -150,6 +150,30 @@ AddOn.Toys = {
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
+        Name = "Madcap Recap",
+        ItemID = 264313,
+        Instance = "Sporefall",
+        InstanceID = 1305,
+        MapID = 1592,
+        AreaPoiID = 8510,
+        EncounterID = 2711,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic, RaidDifficulty.MythicFlex },
+        Waypoint = { mapID = 2413, x = 0.736, y = 0.664 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Mycomancer's Hearthspore",
+        ItemID = 264367,
+        Instance = "Sporefall",
+        InstanceID = 1305,
+        MapID = 1592,
+        AreaPoiID = 8510,
+        EncounterID = 2711,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic, RaidDifficulty.MythicFlex },
+        Waypoint = { mapID = 2413, x = 0.736, y = 0.664 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
         Name = "Orb of the Sin'dorei",
         ItemID = 35275,
         Instance = "Magister's Terrace",

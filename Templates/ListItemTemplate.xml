@@ -117,6 +117,11 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                             <KeyValue key="difficultyID" value="16" type="number"/>
                         </KeyValues>
                     </Button>
+                    <Button parentKey="RaidDiffMythicFlexButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
+                        <KeyValues>
+                            <KeyValue key="difficultyID" value="233" type="number"/>
+                        </KeyValues>
+                    </Button>
                     <Button parentKey="RaidDiffLegacyLFRButton" inherits="ICHDifficultyButtonTemplate" hidden="true">
                         <KeyValues>
                             <KeyValue key="difficultyID" value="7" type="number"/>

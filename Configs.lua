@@ -39,6 +39,7 @@ function AddOn:GetDifficultyButtonText(difficultyID)
     elseif dKey == "Normal" then return "N"
     elseif dKey == "Heroic" then return "H"
     elseif dKey == "Mythic" then return "M"
+    elseif dKey == "MythicFlex" then return "MF"
     elseif dKey == "Legacy40" then return "40"
     elseif dKey == "Legacy10" then return "10"
     elseif dKey == "Legacy25" then return "25"

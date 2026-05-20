@@ -13,16 +13,18 @@ function AddOn:CreateTimewalkingCache()
             toLoad = toLoad - 1
             if item.Type == "Mount" then
                 local mountID = C_MountJournal.GetMountFromItem(item.ItemID)
-                local name, spellID = C_MountJournal.GetMountInfoByID(mountID)
-                local iconID = C_Spell.GetSpellInfo(spellID) and C_Spell.GetSpellInfo(spellID).originalIconID
-
-                self.TimewalkingCache[item.ItemID] = {
-                    itemName = C_Item.GetItemNameByID(item.ItemID) or "",
-                    itemID = item.ItemID,
-                    collectibleName = name or item.Name,
-                    iconID = iconID or 134400,
-                    mountID = mountID,
-                }
+                if mountID then
+                    local mountName, spellID = C_MountJournal.GetMountInfoByID(mountID)
+                    local iconID = C_Spell.GetSpellInfo(spellID) and C_Spell.GetSpellInfo(spellID).originalIconID
+    
+                    self.TimewalkingCache[item.ItemID] = {
+                        itemName = C_Item.GetItemNameByID(item.ItemID) or "",
+                        itemID = item.ItemID,
+                        collectibleName = mountName or item.Name,
+                        iconID = iconID or 134400,
+                        mountID = mountID,
+                    }
+                end
             elseif item.Type == "Toy" then
                 local _, toyName, iconID = C_ToyBox.GetToyInfo(item.ItemID)
     

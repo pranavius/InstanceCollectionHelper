@@ -43,8 +43,16 @@ AddOn.TimewalkingItems = {
         Type = "Toy",
         Expansion = "Warlords of Draenor",
         Cost = 500,
-        -- AreaPoiID = 6986 (Alliance) or 6985 (Horde),
         SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
+    },
+    {
+        Name = "Ashen Horn of the Fallen Keeper",
+        ItemID = 259899,
+        Type = "Toy",
+        VendorName = "Xydan",
+        Expansion = "Dragonflight",
+        Cost = 750,
+        SearchTags = AddOn.ExpansionTags.Dragonflight
     },
     {
         Name = "Banner of the Burning Blade",
@@ -52,7 +60,6 @@ AddOn.TimewalkingItems = {
         Type = "Toy",
         Expansion = "Warlords of Draenor",
         Cost = 750,
-        -- AreaPoiID = 6986 (Alliance) or 6985 (Horde),
         SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
     },
     {
@@ -61,7 +68,6 @@ AddOn.TimewalkingItems = {
         Type = "Mount",
         Expansion = "Warlords of Draenor",
         Cost = 5000,
-        -- AreaPoiID = 6986 (Alliance) or 6985 (Horde),
         SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
     },
     {
@@ -70,8 +76,16 @@ AddOn.TimewalkingItems = {
         Type = "Mount",
         Expansion = "Warlords of Draenor",
         Cost = 5000,
-        -- AreaPoiID = 6986 (Alliance) or 6985 (Horde),
         SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
+    },
+    {
+        Name = "Black-Furred Bakar",
+        ItemID = 210140,
+        Type = "Mount",
+        VendorName = "Xydan",
+        Expansion = "Dragonflight",
+        Cost = 5000,
+        SearchTags = AddOn.ExpansionTags.Dragonflight
     },
     {
         Name = "Bonecleaver's Skullboar",
@@ -80,7 +94,6 @@ AddOn.TimewalkingItems = {
         VendorName = "Collector Ta'steld",
         Expansion = "Shadowlands",
         Cost = 5000,
-        -- AreaPoiID = ?,
         Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
@@ -159,7 +172,6 @@ AddOn.TimewalkingItems = {
         VendorName = "Kiatke",
         Expansion = "Cataclysm",
         Cost = 5000,
-        -- AreaPoiID = 6984 (Alliance) or 6983 (Horde),
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -207,7 +219,6 @@ AddOn.TimewalkingItems = {
         VendorName = "Bobadormu",
         Expansion = "Classic",
         Cost = 2200,
-        -- AreaPoiID = 8190 (Alliance) or 8191 (Horde),
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -217,7 +228,6 @@ AddOn.TimewalkingItems = {
         VendorName = "Collector Ta'steld",
         Expansion = "Shadowlands",
         Cost = 5000,
-        -- AreaPoiID = ?,
         Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
@@ -277,7 +287,6 @@ AddOn.TimewalkingItems = {
         VendorName = "Bobadormu",
         Expansion = "Classic",
         Cost = 5000,
-        -- AreaPoiID = 8190 (Alliance) or 8191 (Horde),
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -297,7 +306,6 @@ AddOn.TimewalkingItems = {
         VendorName = "Kiatke",
         Expansion = "Cataclysm",
         Cost = 1500,
-        -- AreaPoiID = 6984 (Alliance) or 6983 (Horde),
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -368,6 +376,15 @@ AddOn.TimewalkingItems = {
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
+        Name = "Liquid Hot Magma Slug",
+        ItemID = 192778,
+        Type = "Mount",
+        VendorName = "Xydan",
+        Expansion = "Dragonflight",
+        Cost = 5000,
+        SearchTags = AddOn.ExpansionTags.Dragonflight
+    },
+    {
         Name = "Mark of the Ashtongue",
         ItemID = 129926,
         Type = "Toy",
@@ -384,7 +401,6 @@ AddOn.TimewalkingItems = {
         VendorName = "Bobadormu",
         Expansion = "Classic",
         Cost = 2200,
-        -- AreaPoiID = 8190 (Alliance) or 8191 (Horde),
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -423,8 +439,16 @@ AddOn.TimewalkingItems = {
         Type = "Mount",
         Expansion = "Warlords of Draenor",
         Cost = 5000,
-        -- AreaPoiID = 6986 (Alliance) or 6985 (Horde),
         SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
+    },
+    {
+        Name = "Oathstone Fragment",
+        ItemID = 260170,
+        Type = "Toy",
+        VendorName = "Xydan",
+        Expansion = "Dragonflight",
+        Cost = 500,
+        SearchTags = AddOn.ExpansionTags.Dragonflight
     },
     {
         Name = "Paradox Spirit",
@@ -435,6 +459,15 @@ AddOn.TimewalkingItems = {
         Cost = 2200,
         AreaPoiID = 6980,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
+    },
+    {
+        Name = "Photo Finisher",
+        ItemID = 259335,
+        Type = "Toy",
+        VendorName = "Xydan",
+        Expansion = "Dragonflight",
+        Cost = 1000,
+        SearchTags = AddOn.ExpansionTags.Dragonflight
     },
     {
         Name = "Portable Yak Wash",
@@ -453,7 +486,6 @@ AddOn.TimewalkingItems = {
         VendorName = "Collector Ta'steld",
         Expansion = "Shadowlands",
         Cost = 2200,
-        -- AreaPoiID = ?,
         Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
@@ -464,7 +496,6 @@ AddOn.TimewalkingItems = {
         VendorName = "Bobadormu",
         Expansion = "Classic",
         Cost = 200,
-        -- AreaPoiID = 8190 (Alliance) or 8191 (Horde),
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -494,6 +525,15 @@ AddOn.TimewalkingItems = {
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
+        Name = "Shadowflame Remnant",
+        ItemID = 260885,
+        Type = "Pet",
+        VendorName = "Xydan",
+        Expansion = "Dragonflight",
+        Cost = 2200,
+        SearchTags = AddOn.ExpansionTags.Dragonflight
+    },
+    {
         Name = "Snarly",
         ItemID = 35349,
         Type = "Pet",
@@ -511,7 +551,6 @@ AddOn.TimewalkingItems = {
         VendorName = "Collector Ta'steld",
         Expansion = "Shadowlands",
         Cost = 5000,
-        -- AreaPoiID = ?,
         Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
@@ -522,7 +561,6 @@ AddOn.TimewalkingItems = {
         VendorName = "Collector Ta'steld",
         Expansion = "Shadowlands",
         Cost = 750,
-        -- AreaPoiID = ?,
         Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
@@ -561,7 +599,6 @@ AddOn.TimewalkingItems = {
         VendorName = "Kiatke",
         Expansion = "Cataclysm",
         Cost = 3000,
-        -- AreaPoiID = 6984 (Alliance) or 6983 (Horde),
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -643,7 +680,6 @@ AddOn.TimewalkingItems = {
         VendorName = "Collector Ta'steld",
         Expansion = "Shadowlands",
         Cost = 1000,
-        -- AreaPoiID = ?,
         Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
