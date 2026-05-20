@@ -4,7 +4,7 @@ AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 function AddOn:CreateLemixCache()
-    ---@type table<number, LemixCacheData> Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
+    ---@type table<number, LemixCacheData>
     self.LemixCache = {}
     ---@type table<number, LemixResourceCacheData>
     self.LemixResourceCache = {}
@@ -67,7 +67,7 @@ function AddOn:CreateLemixCache()
                     iconID = iconID or 134400
                 }
             elseif item.Type == "Decor" then
-                local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(item.ItemID, true)
+                local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(item.ItemID)
                 local iconID = select(5, C_Item.GetItemInfoInstant(item.ItemID))
 
                 self.LemixCache[item.ItemID] = {

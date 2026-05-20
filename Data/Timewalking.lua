@@ -8,7 +8,7 @@ local function combineExpansionTags(...)
     local result = {}
     for _, tagList in ipairs(xpacTagLists) do
         for _, tag in ipairs(tagList) do
-            if not TableContains(result, tag) then tinsert(result, tag) end
+            if not tContains(result, tag) then tinsert(result, tag) end
         end
     end
 

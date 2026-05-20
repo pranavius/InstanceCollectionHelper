@@ -6,7 +6,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 local DungeonDifficulty = AddOn.DungeonDifficulty
 local RaidDifficulty = AddOn.RaidDifficulty
 
----@type Mount[] List of mounts available from instances
+---@type Mount[]
 AddOn.Mounts = {
     {
         Name = "Abyss Worm",
@@ -267,9 +267,7 @@ AddOn.Mounts = {
         AreaPoiID = 6685,
         EncounterID = 115,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic },
-        --@retail@
         Notes = L["Also obtainable in Timewalking"],
-        --@end-retail@
         Waypoint = { mapID = 1527, x = 0.767, y = 0.844 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -353,15 +351,7 @@ AddOn.Mounts = {
         AreaPoiID = 6514,
         EncounterID = 194,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
-        --@retail@
         Notes = L["Also obtainable in Timewalking"],
-        --@end-retail@
-        -- TODO: Fix for mists
-        -- DifficultyIDs = { RaidDifficulty.Legacy10, RaidDifficulty.Legacy10H, RaidDifficulty.Legacy25, RaidDifficulty.Legacy25H },
-        -- SharedDifficulties = {
-        --     [RaidDifficulty.Legacy10] = RaidDifficulty.Legacy25,
-        --     [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy25H
-        -- },
         Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -597,15 +587,7 @@ AddOn.Mounts = {
         AreaPoiID = 6514,
         EncounterID = 198,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
-        --@retail@
         Notes = L["Also obtainable in Timewalking"],
-        --@end-retail@
-        -- TODO: Fix for mists
-        -- DifficultyIDs = { RaidDifficulty.Legacy10, RaidDifficulty.Legacy10H, RaidDifficulty.Legacy25, RaidDifficulty.Legacy25H },
-        -- SharedDifficulties = {
-        --     [RaidDifficulty.Legacy10] = RaidDifficulty.Legacy25,
-        --     [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy25H
-        -- },
         Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -767,9 +749,7 @@ AddOn.Mounts = {
         AreaPoiID = 6718,
         EncounterID = 533,
         DifficultyIDs = { DungeonDifficulty.Heroic },
-        --@retail@
         Notes = L["Also obtainable in Timewalking"],
-        --@end-retail@
         Waypoint = { mapID = 122, x = 0.61, y = 0.307 },
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },

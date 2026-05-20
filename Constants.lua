@@ -1,4 +1,5 @@
 local name, AddOn = ...
+
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
@@ -40,7 +41,6 @@ AddOn.ExpansionTags = {
     Midnight = { "midnight", "mn" },
 }
 
----@enum LemixPhase
 AddOn.LemixPhases = {
     Phase1 = L["Phase 1: Skies of Fire"],
     Phase2 = L["Phase 2: Rise of the Nightfallen"],

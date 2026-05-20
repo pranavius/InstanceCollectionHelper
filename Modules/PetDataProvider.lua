@@ -3,7 +3,7 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 
 function AddOn:CreatePetCache()
-    ---@type table<number, PetCacheData> Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
+    ---@type table<number, PetCacheData>
     self.PetCache = {}
     local toLoad = #self.Pets
 
@@ -28,8 +28,6 @@ end
 ---Initializes how pet data in the scrollable list should be displayed
 ---@param frame ICHListItem
 ---@param pet Pet
----@see ICHListItem
----@see Pet
 function AddOn.PetDataProviderInit(frame, pet)
     AddOn.InstanceListItemInit(frame, pet, {
         isMount = false,

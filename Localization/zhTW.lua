@@ -2,14 +2,6 @@ local name = ...
 local L = LibStub("AceLocale-3.0"):NewLocale(name, "zhTW")
 
 if not L then return end
---@retail@
-local ICH_GetQuestName = C_QuestLog.GetTitleForQuestID
-local ICH_GetClassColor = C_ClassColor.GetClassColor
---@end-retail@
---@version-mists@
-local ICH_GetQuestName = C_QuestLog.GetQuestInfo
-local ICH_GetClassColor = GetClassColorObj
---@end-version-mists@
 local function ICH_GetClassName(classID, fallbackValue)
     local className = select(1, GetClassInfo(classID))
     if not className then return fallbackValue end
@@ -24,7 +16,7 @@ L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"]
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "只對"..WrapTextInColor("聯盟", PLAYER_FACTION_COLOR_ALLIANCE).."角色掉落，但取得後也會獲得"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."版本"
 L["Drops for Horde characters, but obtaining this also gives you the Alliance version"] = "只對"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."角色掉落，但取得後也會獲得"..WrapTextInColor("聯盟", PLAYER_FACTION_COLOR_ALLIANCE).."版本"
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "進入副本後，團隊難度將自動設定為普通"
-L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("塔札維許").."的故事線才能解鎖飛行路徑，先從 |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(63976) or "The Al'ley Cat of Oribos").." 開始"
+L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("塔札維許").."的故事線才能解鎖飛行路徑，先從 |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos").." 開始"
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "拾取 "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Malfunctioning Mechsuit]")).." 後需要完成一段短任務鏈"
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "在啟動困難模式後需要完成此副本。可在線上找到如何進行的指南。"
 L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "獨自通關地牢後，返回 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("多米娜‧毒刃").." 所在的區域，與 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("稀奇的軟泥腹蛇").."互動。"
@@ -34,13 +26,13 @@ L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after k
 L["Dropped by the Rare Elite Vixx the Collector"] = "掉落自稀有精英 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("『收藏家』維克斯")
 L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "此物品可獲得，儘管它未出現在 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("古爾丹").." 的掉落表中"
 L["Can drop from every boss in the dungeon"] = "可從該副本的每個首領掉落"
-L["Can only be looted and used by a Druid"] = "僅限 "..WrapTextInColor(ICH_GetClassName(11, "Druid"), ICH_GetClassColor("DRUID")).." 掠取並使用"
+L["Can only be looted and used by a Druid"] = "僅限 "..WrapTextInColor(ICH_GetClassName(11, "Druid"), C_ClassColor.GetClassColor("DRUID")).." 掠取並使用"
 L["Can also be looting by fishing within the instance"] = "也可在副本內透過釣魚獲得"
 L["Requires completion of the achievement Relics of a Fallen Empire"] = "需要完成成就 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(17366)) or "Relics of a Fallen Empire")
 L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "此物僅可在通靈學院（經典版）中取得。如尚未解鎖此副本，請先線上尋找教學。"
 L["Dropped by the hidden boss Endgineer Omegaplugg"] = "掉落自隱藏首領 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("終極工程師歐米茄布")
 L["It is highly recommended to attempt this encounter with a full party"] = "強烈建議使用完整小隊來嘗試此首領戰"
-L["Can only be looted and used by a Demon Hunter"] = "僅限 "..WrapTextInColor(ICH_GetClassName(12, "Demon Hunter"), ICH_GetClassColor("DEMONHUNTER")).." 掠取並使用"
+L["Can only be looted and used by a Demon Hunter"] = "僅限 "..WrapTextInColor(ICH_GetClassName(12, "Demon Hunter"), C_ClassColor.GetClassColor("DEMONHUNTER")).." 掠取並使用"
 L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "掉落自 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("卡洛斯大爺").."，他巡邏塔倫米爾以南路徑的一部分"
 L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "有報告指出在擊殺某些首領後 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("卡洛斯大爺").." 會消失；請小心行事"
 L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "掉落自位於 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("梅賈拉").." 與 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("稷坤").." 之間的巨蝸怪物"
@@ -54,7 +46,7 @@ L["Dropped by the Rare Elite Gol'than the Malodorous"] = "掉落自稀有精英 
 L["Guides for how to spawn this mob can be found online"] = "可在線上找到如何重新生成此怪物的指南"
 L["Dropped by Defias Pirates on the boat towards the end of the dungeon"] = "掉落自副本末端船上的 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("迪菲亞海賊")
 L["Dropped by The Lanticore, which has a random chance to spawn after killing Orebender Gor'ashan"] = "掉落自 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("畸爪龍").."，在擊殺 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("控礦者古拉杉").." 後有機率出現"
-L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"] = "進入團隊副本入口需要完成任務 |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(select(1, UnitFactionGroup("player")) == "Horde" and 55799 or 56325) or select(1, UnitFactionGroup("player")) == "Horde" and "The Tide Turns" or "Changing Tides")
+L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"] = "進入團隊副本入口需要完成任務 |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(select(1, UnitFactionGroup("player")) == "Horde" and 55799 or 56325) or select(1, UnitFactionGroup("player")) == "Horde" and "The Tide Turns" or "Changing Tides")
 L["Dropped by Sand Elementals in Normal and Heroic, but can be looted from Council of Elders in LFR"] = "在普通及英雄難度由 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("沙元素").." 掉落，但可在團隊搜尋器(LFR)從 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("長老議會").." 處拾取"
 L["Obtained by using an Amani Hex Stick on Forest Frogs"] = "透過對 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("森林蛙").." 使用 "..(select(2, C_Item.GetItemInfo(33865)) or GREEN_FONT_COLOR:WrapTextInColorCode("[Amani Hex Stick]")).." 獲得"
 L["Detailed guides for how to obtain this pet can be found online"] = "可在線上找到如何取得此寵物的詳細指南"

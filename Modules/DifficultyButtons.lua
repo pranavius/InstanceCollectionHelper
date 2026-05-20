@@ -5,7 +5,6 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---Unsets all difficulty button points and hides them before showing the correct ones based on provided data
 ---@param container DifficultyContainer
----@see DifficultyContainer
 function AddOn.HideAllDifficultyButtons(container)
     for _, button in ipairs({ container:GetChildren() }) do
         button:Hide()
@@ -14,7 +13,7 @@ end
 
 ---Determines if a difficulty should share any lockouts with other difficulties
 ---@param difficultyID number ID associated with an instance difficulty (currently only used by raids)
----@return boolean "`true` if the instance difficulty shares a lockout with other difficulties, `false` otherwise"
+---@return boolean
 local function IsDifficultyIDShareable(difficultyID)
     return difficultyID == AddOn.RaidDifficulty.Legacy10
         or difficultyID == AddOn.RaidDifficulty.Legacy10H
@@ -26,12 +25,7 @@ end
 ---Determines which difficulty button(s) to display based on the provided data
 ---@param container DifficultyContainer
 ---@param data Mount|Toy|Pet|DecorItem
----@param isOwned boolean? Whether or not the collectible is owned by the player. Omitting this argument is equivalent to providing `false`
----@see DifficultyContainer
----@see Mount
----@see Toy
----@see Pet
----@see DecorItem
+---@param isOwned? boolean Whether or not the collectible is owned by the player. Omitting this argument is equivalent to providing `false`
 function AddOn:ShowDifficultyButtons(container, data, isOwned)
     if not data.DifficultyIDs then return end
     

@@ -4,7 +4,7 @@ AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 function AddOn:CreateTimewalkingCache()
-    ---@type table<number, TimewalkingCacheData> Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
+    ---@type table<number, TimewalkingCacheData>
     self.TimewalkingCache = {}
     local toLoad = #self.TimewalkingItems
 

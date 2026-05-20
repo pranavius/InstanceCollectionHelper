@@ -1,4 +1,5 @@
 local name, AddOn = ...
+
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
@@ -36,11 +37,9 @@ function AddOn:OnInitialize()
     -- Load database
 	self.db = LibStub("AceDB-3.0"):New("ICH_DB", AddOn.DatabaseDefaults, true)
     -- Create local caches for Toys, Pets, and Timewalking Items
-    --@retail@
     self:CreateToyCache()
     self:CreatePetCache()
     self:CreateTimewalkingCache()
-    --@end-retail@
 
     -- Data broker registration for minimap icon
     local broker = LDB:NewDataObject(name, {
@@ -90,12 +89,6 @@ end
 ---Filters a list of data based on search parameters
 ---@param listData (Mount|Toy|Pet|TimewalkingItem|WowRemixItem|DecorItem)[]
 ---@return (Mount|Toy|Pet|TimewalkingItem|WowRemixItem|DecorItem)[]
----@see Mount
----@see Toy
----@see Pet
----@see TimewalkingItem
----@see WowRemixItem
----@see DecorItem
 function AddOn:FilterListContentsByQuery(listData)
     local filtered = {}
     local query = self.Container.SearchBox:GetText():lower()
@@ -117,7 +110,7 @@ function AddOn:FilterListContentsByQuery(listData)
             local twData = self.TimewalkingCache[data.ItemID]
             itemName = twData and twData.itemName or data.Name
         elseif selectedTab == self.Tabs.DecorTab then
-            local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.DecorItemID, true)
+            local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.DecorItemID)
             itemName = decor and decor.name or data.Name
         end
         local cleanName = itemName:lower():gsub("|.+|.*", "")
@@ -197,7 +190,6 @@ function AddOn:UpdateListContents()
             end
         end
         self.Container.SearchBox.Instructions:SetText(L["Search by pet/instance name, instance type, difficulty, or expansion"])
-    --@retail@
     elseif selectedTab == self.Tabs.TimewalkingVendorTab then
         for _, item in ipairs(self.TimewalkingItems) do
             local itemData = self.TimewalkingCache[item.ItemID]
@@ -223,8 +215,8 @@ function AddOn:UpdateListContents()
         end
     elseif selectedTab == self.Tabs.DecorTab then
         for _, item in ipairs(self.DecorItems) do
-            local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(item.DecorItemID, true)
-            local isOwned = decor and decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false
+            local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(item.DecorItemID)
+            local isOwned = decor and decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false ---@diagnostic disable-line: undefined-field
             if not isOwned or (isOwned and self.db.global.showOwned) then
                 tinsert(newData, item)
             else
@@ -232,7 +224,6 @@ function AddOn:UpdateListContents()
             end
         end
         self.Container.SearchBox.Instructions:SetText(L["Search by decor/instance name, instance type, difficulty, or expansion"])
-    --@end-retail@
     end
 
     -- Filter list results based on search criteria when present

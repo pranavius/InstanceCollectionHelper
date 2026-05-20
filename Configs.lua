@@ -1,5 +1,6 @@
+---@type string
 local name, AddOn = ...
----@class InstanceCollectionHelper: AceAddon, AceConsole-3.0, AceEvent-3.0
+---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):NewAddon(name, "AceConsole-3.0", "AceEvent-3.0")
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
@@ -22,7 +23,7 @@ AddOn.DatabaseDefaults = {
 AddOn.Icon = LibStub("LibDBIcon-1.0")
 
 ---@param difficultyID number ID associated with an instance difficulty
----@return string "The text to be shown on the button that sets the desired instance difficulty"
+---@return string buttonText
 function AddOn:GetDifficultyButtonText(difficultyID)
     local dKey
     for key, dd in pairs(AddOn.DungeonDifficulty) do

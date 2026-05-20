@@ -3,7 +3,7 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 
 function AddOn:CreateToyCache()
-    ---@type table<number, ToyCacheData> Stores necessary toy data in a local cache - attempting to reduce the amount of stutter/freezing when viewing toys
+    ---@type table<number, ToyCacheData>
     self.ToyCache = {}
     local toLoad = #self.Toys
 
@@ -27,8 +27,6 @@ end
 ---Initializes how toy data in the scrollable list should be displayed
 ---@param frame ICHListItem
 ---@param toy Toy
----@see ICHListItem
----@see Toy
 function AddOn.ToyDataProviderInit(frame, toy)
     AddOn.InstanceListItemInit(frame, toy, {
         isMount = false,

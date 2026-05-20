@@ -6,7 +6,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 local DungeonDifficulty = AddOn.DungeonDifficulty
 local RaidDifficulty = AddOn.RaidDifficulty
 
----@type Toy[] List of toys available from instances
+---@type Toy[]
 AddOn.Toys = {
     {
         Name = "Brazier of Madness",

@@ -5,8 +5,6 @@ AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 ---Initializes how mount data in the scrollable list should be displayed
 ---@param frame ICHListItem
 ---@param data Mount
----@see ICHListItem
----@see Mount
 function AddOn.MountDataProviderInit(frame, data)
     AddOn.InstanceListItemInit(frame, data, {
         isMount = true,
