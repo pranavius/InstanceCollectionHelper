@@ -106,12 +106,12 @@
 
 ---@class ICHListHeaders: Frame
 ---@field BorderBottom Texture
----@field NameHeader FontString
----@field InstanceHeader? FontString
+---@field NameHeader Button
+---@field InstanceHeader? Button
 ---@field DiffHeader? FontString
----@field TypeHeader? FontString
----@field ExpansionHeader? FontString
----@field CostHeader? FontString
+---@field TypeHeader? Button
+---@field ExpansionHeader? Button
+---@field CostHeader? Button
 
 ---@class NameContainer: Frame
 ---@field ViewButton Button
@@ -159,6 +159,9 @@
 ---@field ICHNote ICHNote
 ---@field ICHWaypointButton ICHWaypointButton
 
+---@class FavoriteContainer: Frame
+---@field FavoriteButton Button
+
 ---@class ICHListItem: Frame
 ---@field isMount boolean
 ---@field relevantID number
@@ -171,6 +174,7 @@
 ---@field ExpansionContainer? TextContainer
 ---@field CostContainer? CostContainer
 ---@field OtherInfoContainer OtherInfoContainer
+---@field FavoriteContainer FavoriteContainer
 
 ---@class LemixCostContainer: CostContainer
 ---@field resourceItemID number
@@ -210,6 +214,7 @@
 ---@field ExclusiveContainer ExclusiveContainer
 ---@field CostContainer LemixCostContainer
 ---@field OtherInfoContainer OtherInfoContainer
+---@field FavoriteContainer FavoriteContainer
 
 ---@class ICHEditBox: EditBox
 ---@field Instructions FontString
@@ -264,8 +269,13 @@
 ---@field name string
 ---@field locale "enUS"|"enGB"|"enAU"|"esES"|"esMX"|"ptBR"|"ptPT"|"frFR"|"deDE"|"itIT"|"ruRU"|"koKR"|"zhTW"|"zhCN"
 
+---@class SortState
+---@field column "Name"|"Instance"|"Type"|"Expansion"|"Cost"
+---@field direction "asc"|"desc"
+
 ---@class InstanceCollectionHelper: AceAddon, AceConsole-3.0, AceEvent-3.0
 ---@field db AceDBObject-3.0
+---@field sortState? SortState
 ---@field Container ICHMain
 ---@field Title string
 ---@field ICHDataProvider DataProviderMixin
@@ -273,3 +283,19 @@
 ---@field Tabs ICHTabSystem
 ---@field About ICHAbout
 ---@field Footer ICHFooter
+
+-------- WoW class annotation enhancements to stop LSP from flagging a bunch of things
+---@class GameFontHighlightMedium
+---@field SetText fun(text: string)
+
+---@class GameFontHighlightSmall
+---@field SetText fun(text: string)
+
+---@class GameFontHighlightHuge
+---@field SetText fun(text: string)
+
+---@class EncounterJournalEncounterFrameInfo
+---@field tab number
+
+---@class Button
+---@field Text FontString

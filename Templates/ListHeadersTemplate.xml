@@ -14,26 +14,59 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </Texture>
             </Layer>
             <Layer level="OVERLAY">
-                <FontString parentKey="NameHeader" inherits="GameTooltipText" justifyH="LEFT" text="Name">
-                    <Size x="180"/>
-                    <Anchors>
-                        <Anchor point="LEFT" relativePoint="LEFT" x="29"/>
-                    </Anchors>
-                </FontString>
-                <FontString parentKey="InstanceHeader" inherits="GameTooltipText" justifyH="LEFT" text="Instance">
-                    <Size x="225"/>
-                    <Anchors>
-                        <Anchor point="LEFT" relativeKey="$parent.NameHeader" relativePoint="RIGHT" x="25"/>
-                    </Anchors>
-                </FontString>
                 <FontString parentKey="DiffHeader" inherits="GameTooltipText" justifyH="LEFT" text="Available Difficulty(s)">
-                    <Size x="200"/>
-                    <Anchors>
-                        <Anchor point="LEFT" relativeKey="$parent.InstanceHeader" relativePoint="RIGHT"/>
-                    </Anchors>
+                    <Size x="250"/>
+                    <!-- Anchored to $parent.InstanceHeader in mixin's OnLoad method -->
                 </FontString>
             </Layer>
         </Layers>
+        <Frames>
+            <Button parentKey="NameHeader">
+                <Size x="180"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="29"/>
+                    <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT" x="29"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT">
+                            <Anchors>
+                                <Anchor point="LEFT"/>
+                            </Anchors>
+                        </FontString>
+                        <Texture parentKey="SortIndicator" atlas="auctionhouse-ui-sortarrow" hidden="true">
+                            <Size x="15" y="15"/>
+                            <!-- Anchored to $parent.Text in mixin's OnLoad method -->
+                        </Texture>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnClick/>
+                </Scripts>
+            </Button>
+            <Button parentKey="InstanceHeader">
+                <Size x="225"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.NameHeader" relativePoint="TOPRIGHT" x="25"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.NameHeader" relativePoint="BOTTOMRIGHT" x="25"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT">
+                            <Anchors>
+                                <Anchor point="LEFT"/>
+                            </Anchors>
+                        </FontString>
+                        <Texture parentKey="SortIndicator" atlas="auctionhouse-ui-sortarrow" hidden="true">
+                            <Size x="15" y="15"/>
+                        </Texture>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnClick/>
+                </Scripts>
+            </Button>
+        </Frames>
         <Scripts>
             <OnLoad method="OnLoad"/>
         </Scripts>
@@ -52,33 +85,97 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     </Anchors>
                 </Texture>
             </Layer>
-            <Layer level="OVERLAY">
-                <FontString parentKey="NameHeader" inherits="GameTooltipText" justifyH="LEFT" text="Name">
-                    <Size x="180"/>
-                    <Anchors>
-                        <Anchor point="LEFT" relativePoint="LEFT" x="29"/>
-                    </Anchors>
-                </FontString>
-                <FontString parentKey="TypeHeader" inherits="GameTooltipText" justifyH="LEFT" text="Type">
-                    <Size x="100"/>
-                    <Anchors>
-                        <Anchor point="LEFT" relativeKey="$parent.NameHeader" relativePoint="RIGHT" x="25"/>
-                    </Anchors>
-                </FontString>
-                <FontString parentKey="ExpansionHeader" inherits="GameTooltipText" justifyH="LEFT" text="Expansion">
-                    <Size x="225"/>
-                    <Anchors>
-                        <Anchor point="LEFT" relativeKey="$parent.TypeHeader" relativePoint="RIGHT"/>
-                    </Anchors>
-                </FontString>
-                <FontString parentKey="CostHeader" inherits="GameTooltipText" justifyH="LEFT" text="Cost">
-                    <Size x="100"/>
-                    <Anchors>
-                        <Anchor point="LEFT" relativeKey="$parent.ExpansionHeader" relativePoint="RIGHT"/>
-                    </Anchors>
-                </FontString>
-            </Layer>
         </Layers>
+        <Frames>
+            <Button parentKey="NameHeader">
+                <Size x="180"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="29"/>
+                    <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT" x="29"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT">
+                            <Anchors>
+                                <Anchor point="LEFT"/>
+                            </Anchors>
+                        </FontString>
+                        <Texture parentKey="SortIndicator" atlas="auctionhouse-ui-sortarrow" hidden="true">
+                            <Size x="15" y="15"/>
+                        </Texture>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnClick/>
+                </Scripts>
+            </Button>
+            <Button parentKey="TypeHeader">
+                <Size x="100"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.NameHeader" relativePoint="TOPRIGHT" x="25"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.NameHeader" relativePoint="BOTTOMRIGHT" x="25"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT">
+                            <Anchors>
+                                <Anchor point="LEFT"/>
+                            </Anchors>
+                        </FontString>
+                        <Texture parentKey="SortIndicator" atlas="auctionhouse-ui-sortarrow" hidden="true">
+                            <Size x="15" y="15"/>
+                        </Texture>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnClick/>
+                </Scripts>
+            </Button>
+            <Button parentKey="ExpansionHeader">
+                <Size x="225"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.TypeHeader" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.TypeHeader" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT">
+                            <Anchors>
+                                <Anchor point="LEFT"/>
+                            </Anchors>
+                        </FontString>
+                        <Texture parentKey="SortIndicator" atlas="auctionhouse-ui-sortarrow" hidden="true">
+                            <Size x="15" y="15"/>
+                        </Texture>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnClick/>
+                </Scripts>
+            </Button>
+            <Button parentKey="CostHeader">
+                <Size x="100"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.ExpansionHeader" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.ExpansionHeader" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT">
+                            <Anchors>
+                                <Anchor point="LEFT"/>
+                            </Anchors>
+                        </FontString>
+                        <Texture parentKey="SortIndicator" atlas="auctionhouse-ui-sortarrow" hidden="true">
+                            <Size x="15" y="15"/>
+                        </Texture>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnClick/>
+                </Scripts>
+            </Button>
+        </Frames>
         <Scripts>
             <OnLoad method="OnLoad"/>
         </Scripts>

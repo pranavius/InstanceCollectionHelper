@@ -49,7 +49,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="" wordwrap="false">
                             <Anchors>
                                 <Anchor point="LEFT" relativeKey="$parent.ViewButton" relativePoint="RIGHT" x="5"/>
-                                <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                                <Anchor point="RIGHT"/>
                             </Anchors>
                         </FontString>
                     </Layer>
@@ -69,7 +69,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     <Button parentKey="ViewButton" inherits="InsecureActionButtonTemplate">
                         <Size x="20" y="20"/>
                         <Anchors>
-                            <Anchor point="LEFT" relativePoint="LEFT"/>
+                            <Anchor point="LEFT"/>
                         </Anchors>
                         <Scripts>
                             <OnEnter/>
@@ -83,7 +83,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="" wordwrap="false">
                             <Anchors>
                                 <Anchor point="LEFT" relativeKey="$parent.ViewButton" relativePoint="RIGHT" x="5"/>
-                                <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                                <Anchor point="RIGHT"/>
                             </Anchors>
                         </FontString>
                     </Layer>
@@ -91,7 +91,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             </Frame>
 
             <Frame parentKey="DifficultyContainer">
-                <Size x="200"/>
+                <Size x="250"/>
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeKey="$parent.InstanceContainer" relativePoint="TOPRIGHT"></Anchor>
                     <Anchor point="BOTTOMLEFT" relativeKey="$parent.InstanceContainer" relativePoint="BOTTOMRIGHT"></Anchor>
@@ -170,11 +170,37 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </Frames>
             </Frame>
 
+            <Frame parentKey="FavoriteContainer">
+                <Size x="25"/>
+                <Anchors>
+                    <Anchor point="TOPRIGHT"/>
+                    <Anchor point="BOTTOMRIGHT"/>
+                </Anchors>
+                <Frames>
+                    <Button parentKey="FavoriteButton">
+                        <Size x="15" y="15"/>
+                        <Anchors><Anchor point="CENTER"/></Anchors>
+                        <NormalTexture atlas="auctionhouse-icon-favorite-off"/>
+                        <PushedTexture atlas="auctionhouse-icon-favorite-off">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" x="2" y="-2"/>
+                                <Anchor point="BOTTOMRIGHT" x="2" y="-2"/>
+                            </Anchors>
+                        </PushedTexture>
+                        <Scripts>
+                            <OnEnter/>
+                            <OnLeave/>
+                            <OnClick/>
+                        </Scripts>
+                    </Button>
+                </Frames>
+            </Frame>
+
             <Frame parentKey="OtherInfoContainer">
                 <Anchors>
-                    <Anchor point="TOPLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="TOPRIGHT"></Anchor>
-                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="BOTTOMRIGHT"></Anchor>
-                    <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="TOPRIGHT"/>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent.DifficultyContainer" relativePoint="BOTTOMRIGHT"/>
+                    <Anchor point="RIGHT" relativeKey="$parent.FavoriteContainer" relativePoint="LEFT" x="-25"/>
                 </Anchors>
                 <Layers>
                     <Layer level="OVERLAY">
@@ -282,7 +308,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="" wordwrap="false">
                             <Anchors>
                                 <Anchor point="LEFT" relativeKey="$parent.ViewButton" relativePoint="RIGHT" x="5"/>
-                                <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                                <Anchor point="RIGHT"/>
                             </Anchors>
                         </FontString>
                     </Layer>
@@ -300,7 +326,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="" wordwrap="false">
                             <Anchors>
                                 <Anchor point="LEFT" relativePoint="LEFT" x="25"/>
-                                <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                                <Anchor point="RIGHT"/>
                             </Anchors>
                         </FontString>
                     </Layer>
@@ -317,8 +343,8 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     <Layer level="OVERLAY">
                         <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="" wordwrap="false">
                             <Anchors>
-                                <Anchor point="LEFT" relativePoint="LEFT"/>
-                                <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                                <Anchor point="LEFT"/>
+                                <Anchor point="RIGHT"/>
                             </Anchors>
                         </FontString>
                     </Layer>
@@ -350,18 +376,44 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                         <FontString parentKey="Text" inherits="GameTooltipText" justifyH="LEFT" text="" wordwrap="false">
                             <Anchors>
                                 <Anchor point="LEFT" relativeKey="$parent.CurrencyButton" relativePoint="RIGHT" x="5"/>
-                                <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                                <Anchor point="RIGHT"/>
                             </Anchors>
                         </FontString>
                     </Layer>
                 </Layers>
             </Frame>
 
+            <Frame parentKey="FavoriteContainer">
+                <Size x="25"/>
+                <Anchors>
+                    <Anchor point="TOPRIGHT"/>
+                    <Anchor point="BOTTOMRIGHT"/>
+                </Anchors>
+                <Frames>
+                    <Button parentKey="FavoriteButton">
+                        <Size x="15" y="15"/>
+                        <Anchors><Anchor point="CENTER"/></Anchors>
+                        <NormalTexture atlas="auctionhouse-icon-favorite-off"/>
+                        <PushedTexture atlas="auctionhouse-icon-favorite-off">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" x="2" y="-2"/>
+                                <Anchor point="BOTTOMRIGHT" x="2" y="-2"/>
+                            </Anchors>
+                        </PushedTexture>
+                        <Scripts>
+                            <OnEnter/>
+                            <OnLeave/>
+                            <OnClick/>
+                        </Scripts>
+                    </Button>
+                </Frames>
+            </Frame>
+
             <Frame parentKey="OtherInfoContainer">
                 <Anchors>
                     <Anchor point="TOPLEFT" relativeKey="$parent.CostContainer" relativePoint="TOPRIGHT"></Anchor>
                     <Anchor point="BOTTOMLEFT" relativeKey="$parent.CostContainer" relativePoint="BOTTOMRIGHT"></Anchor>
-                    <Anchor point="RIGHT" relativePoint="RIGHT"/>
+                    <Anchor point="RIGHT" relativeKey="$parent.FavoriteContainer" relativePoint="LEFT" x="-25"/>
                 </Anchors>
                 <Layers>
                     <Layer level="OVERLAY">

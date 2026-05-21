@@ -5,6 +5,7 @@
 ## Author: @project-author@
 ## Version: @project-version@
 ## SavedVariables: ICH_DB
+## OptionalDeps: TomTom
 ## Category: Collections
 ## AddonCompartmentFunc: ICH_AddonCompartmentOnClick
 ## AddonCompartmentFuncOnEnter: ICH_AddonCompartmentOnEnter
@@ -40,12 +41,13 @@ Data\Decor.lua
 Modules\CategoryTabs.lua
 Modules\Waypoints.lua
 Modules\DifficultyButtons.lua
-Modules\BaseDataProvider.lua
-Modules\MountDataProvider.lua
-Modules\ToyDataProvider.lua
-Modules\PetDataProvider.lua
-Modules\TimewalkingDataProvider.lua
-Modules\DecorDataProvider.lua
+Modules\SortAndFavorites.lua
+Modules\DataProviders\BaseDataProvider.lua
+Modules\DataProviders\MountDataProvider.lua
+Modules\DataProviders\ToyDataProvider.lua
+Modules\DataProviders\PetDataProvider.lua
+Modules\DataProviders\TimewalkingDataProvider.lua
+Modules\DataProviders\DecorDataProvider.lua
 
 Templates\ICHSquareButtonMixin.lua
 Templates\ICHSquareButtonTemplate.xml

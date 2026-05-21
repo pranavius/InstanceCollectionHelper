@@ -4,6 +4,9 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
+---@type SortState
+AddOn.defaultSortState = { column = "Name", direction = "asc" }
+
 ---@enum DungeonDifficulty
 AddOn.DungeonDifficulty = {
     Normal = 1,
@@ -26,7 +29,7 @@ AddOn.RaidDifficulty = {
     MythicFlex = 233
 }
 
----@class ExpansionTags
+---@type ExpansionTags
 AddOn.ExpansionTags = {
     Classic = { "classic", "vanilla" },
     TheBurningCrusade = { "the burning crusade", "burning crusade", "tbc", "bc" },
@@ -128,4 +131,20 @@ AddOn.InstanceToDamIDMap = {
     [1272] = 2335, -- Cinderbrew Meadery
     [1298] = 2387, -- Floodgate
     [1267] = 2308, -- PSF
+}
+
+---@enum ExpansionOrder
+AddOn.ExpansionOrder = {
+    ["Classic"]                = LE_EXPANSION_CLASSIC,
+    ["The Burning Crusade"]    = LE_EXPANSION_BURNING_CRUSADE,
+    ["Wrath of the Lich King"] = LE_EXPANSION_WRATH_OF_THE_LICH_KING,
+    ["Cataclysm"]              = LE_EXPANSION_CATACLYSM,
+    ["Mists of Pandaria"]      = LE_EXPANSION_MISTS_OF_PANDARIA,
+    ["Warlords of Draenor"]    = LE_EXPANSION_WARLORDS_OF_DRAENOR,
+    ["Legion"]                 = LE_EXPANSION_LEGION,
+    ["Battle for Azeroth"]     = LE_EXPANSION_BATTLE_FOR_AZEROTH,
+    ["Shadowlands"]            = LE_EXPANSION_SHADOWLANDS,
+    ["Dragonflight"]           = LE_EXPANSION_DRAGONFLIGHT,
+    ["The War Within"]         = LE_EXPANSION_WAR_WITHIN,
+    ["Midnight"]               = LE_EXPANSION_MIDNIGHT,
 }

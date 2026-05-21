@@ -124,6 +124,20 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
         frame.NameContainer.ViewButton:SetScript("OnClick", nil)
     end
 
+    local faveBtn = frame.FavoriteContainer and frame.FavoriteContainer.FavoriteButton
+    if faveBtn then
+        local isFavorite = AddOn:IsFavorite(item)
+        faveBtn:SetNormalAtlas("auctionhouse-icon-favorite"..(isFavorite and ""  or "-off"))
+        faveBtn:SetPushedAtlas("auctionhouse-icon-favorite"..(isFavorite and ""  or "-off"))
+        faveBtn:SetScript("OnClick", function(btn) AddOn:ToggleFavorite(item, btn) end)
+        faveBtn:SetScript("OnEnter", function()
+            GameTooltip:SetOwner(faveBtn, "ANCHOR_RIGHT")
+            GameTooltip:SetText(isFavorite and L["Click to unfavorite"] or L["Click to favorite. Favorites always appear at the top of the list."], 1, 1, 1, 1, true)
+            GameTooltip:Show()
+        end)
+        faveBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
+    end
+
     frame.CostContainer.CurrencyButton:SetScript("OnClick", function()
         AddOn:PrintDebugMessage("Timewarped Badges transfer requested")
         if not C_CurrencyInfo.CanTransferCurrency(frame.CostContainer.currencyID) then

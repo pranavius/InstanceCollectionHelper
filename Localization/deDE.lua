@@ -212,3 +212,11 @@ L["Obtainable for free by earning the achievement Court of Farondis"] = "Kostenl
 L["Obtainable for free by earning the achievement Valarjar"] = "Kostenlos erhältlich durch Erreichen der Errungenschaft "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42658)) or "Valarjar")
 L["Upon entering the instance, dungeon difficulty will automatically be set to Normal"] = "Beim Betreten der Instanz wird die Dungeon-Schwierigkeit automatisch auf Normal gesetzt."
 L["Dropped by Vanessa VanCleef on Heroic difficulty"] = "Beute von "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vanessa van Cleef").." auf heroischer Schwierigkeitsgrad"
+
+--- Sorting & Favorites ---
+L["Favorites"] = "Favoriten"
+L["Click to favorite. Favorites always appear at the top of the list."] = "Klicken, um als Favorit zu markieren. Favoriten werden immer ganz oben in der Liste angezeigt."
+L["Click to unfavorite"] = "Klicken, um Favorit zu entfernen"
+L["Sort ascending"] = "Aufsteigend sortieren"
+L["Sort descending"] = "Absteigend sortieren"
+L["Clear sort"] = "Sortierung aufheben"

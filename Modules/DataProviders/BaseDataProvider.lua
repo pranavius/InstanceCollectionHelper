@@ -1,11 +1,11 @@
 local name, AddOn = ...
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
+local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---Shared init for the four instance-based list tabs (Mounts, Toys, Pets, Decor).
----Centralizes the common row layout work and uses SetScript for per-row click handlers so they do not accumulate across row recycles.
 ---@param frame ICHListItem
----@param data Mount|Toy|Pet|DecorItem|TimewalkingItem|WowRemixItem
+---@param data Mount|Toy|Pet|DecorItem
 ---@param config InstanceListItemConfig
 function AddOn.InstanceListItemInit(frame, data, config)
     if not frame or not data then return end
@@ -73,6 +73,20 @@ function AddOn.InstanceListItemInit(frame, data, config)
         EJ_SetLootFilter(0, 0)
         C_EncounterJournal.SetSlotFilter(Enum.ItemSlotFilterType.Other)
     end)
+
+    local faveBtn = frame.FavoriteContainer and frame.FavoriteContainer.FavoriteButton
+    if faveBtn then
+        local isFavorite = AddOn:IsFavorite(data)
+        faveBtn:SetNormalAtlas("auctionhouse-icon-favorite"..(isFavorite and ""  or "-off"))
+        faveBtn:SetPushedAtlas("auctionhouse-icon-favorite"..(isFavorite and ""  or "-off"))
+        faveBtn:SetScript("OnClick", function(btn) AddOn:ToggleFavorite(data, btn) end)
+        faveBtn:SetScript("OnEnter", function()
+            GameTooltip:SetOwner(faveBtn, "ANCHOR_RIGHT")
+            GameTooltip:SetText(isFavorite and L["Click to unfavorite"] or L["Click to favorite. Favorites always appear at the top of the list."], 1, 1, 1, 1, true)
+            GameTooltip:Show()
+        end)
+        faveBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
+    end
 
     if config.afterRender then config.afterRender(frame, data, cached, isOwned) end
 end

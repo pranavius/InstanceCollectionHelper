@@ -39,7 +39,7 @@ function ICHFooterMixin:OnLoad()
     ownedCb:HookScript("OnClick", function(cb)
         local value = cb:GetChecked()
         AddOn.db.global.showOwned = value
-        AddOn:UpdateListContents()
+        EventRegistry:TriggerEvent("ICHEvent.UpdateListContents")
     end)
 
     local tomtomCb = self.TomTomContainer.Checkbox
@@ -52,7 +52,7 @@ function ICHFooterMixin:OnLoad()
     tomtomCb:HookScript("OnClick", function(cb)
         local value = cb:GetChecked()
         AddOn.db.global.useTomTomPoints = value
-        AddOn:UpdateListContents()
+        EventRegistry:TriggerEvent("ICHEvent.UpdateListContents")
     end)
 
     if C_AddOns.IsAddOnLoaded("TomTom") then

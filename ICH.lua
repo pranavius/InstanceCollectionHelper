@@ -71,6 +71,7 @@ function AddOn:OnInitialize()
             self.db.global.currentTomTomWaypoint = nil
         end
     end)
+    EventRegistry:RegisterCallback("ICHEvent.UpdateListContents", function() self:UpdateListContents() end)
 end
 
 function AddOn:ConfigureOnInit()
@@ -171,8 +172,9 @@ function AddOn:UpdateListContents()
         self.Container.SearchBox.Instructions:SetText(L["Search by mount/instance name, instance type, difficulty, or expansion"])
     elseif selectedTab == self.Tabs.ToysTab then
         for _, toy in ipairs(self.Toys) do
+            local toyExists = C_Item.GetItemInfoInstant(toy.ItemID) ~= nil
             local isOwned = PlayerHasToy(toy.ItemID)
-            if not isOwned or (isOwned and self.db.global.showOwned) then
+            if toyExists and (not isOwned or (isOwned and self.db.global.showOwned)) then
                 tinsert(newData, toy)
             else
                 self:PrintDebugMessage("Failed to curate table data for toy:", toy.Name)
@@ -181,9 +183,10 @@ function AddOn:UpdateListContents()
         self.Container.SearchBox.Instructions:SetText(L["Search by toy/instance name, instance type, difficulty, or expansion"])
     elseif selectedTab == self.Tabs.PetsTab then
         for _, pet in ipairs(self.Pets) do
+            local petExists = C_Item.GetItemInfoInstant(pet.PetItemID) ~= nil
             local petData = self.PetCache[pet.PetItemID]
             local isOwned = petData and self.GetIsPetOwned(petData.speciesID) or false
-            if not isOwned or (isOwned and self.db.global.showOwned) then
+            if petExists and (not isOwned or (isOwned and self.db.global.showOwned)) then
                 tinsert(newData, pet)
             else
                 self:PrintDebugMessage("Failed to curate table data for pet:", pet.Name)
@@ -216,8 +219,9 @@ function AddOn:UpdateListContents()
     elseif selectedTab == self.Tabs.DecorTab then
         for _, item in ipairs(self.DecorItems) do
             local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(item.DecorItemID)
+            local decorExists = C_Item.GetItemInfoInstant(item.DecorItemID) ~= nil
             local isOwned = decor and decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false ---@diagnostic disable-line: undefined-field
-            if not isOwned or (isOwned and self.db.global.showOwned) then
+            if decorExists and (not isOwned or (isOwned and self.db.global.showOwned)) then
                 tinsert(newData, item)
             else
                 self:PrintDebugMessage("Failed to curate table data for decor:", item.Name)
@@ -231,6 +235,8 @@ function AddOn:UpdateListContents()
         newData = self:FilterListContentsByQuery(newData)
     end
 
+    newData = self:ApplySortAndFavorites(newData)
+    self:RefreshSortIndicators()
     self.ICHDataProvider = CreateDataProvider(newData)
     self.ScrollView:SetDataProvider(self.ICHDataProvider)
 end

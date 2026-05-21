@@ -16,7 +16,16 @@ AddOn.DatabaseDefaults = {
         selectedTab = nil,
         countPetOwnedOnlyIfMaxOwned = false,
         debugMessages = false,
-        ownedCosmeticsCache = {}
+        ownedCosmeticsCache = {},
+        favorites = {
+            Mount = {},
+            Toy = {},
+            Pet = {},
+            Decor = {},
+            TimewalkingMount = {},
+            TimewalkingPet = {},
+            TimewalkingToy = {},
+        },
     }
 }
 

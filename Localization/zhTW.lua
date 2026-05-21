@@ -207,3 +207,11 @@ L["Obtainable for free by earning the achievement Court of Farondis"] = "可透�
 L["Obtainable for free by earning the achievement Valarjar"] = "可透過獲得成就 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42658)) or "Valarjar").."免費獲得"
 L["Upon entering the instance, dungeon difficulty will automatically be set to Normal"] = "進入副本後，副本難度將自動設定為普通。"
 L["Dropped by Vanessa VanCleef on Heroic difficulty"] = "由 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("凡妮莎‧范克里夫").." 在英雄難度下掉落"
+
+--- Sorting & Favorites ---
+L["Favorites"] = "我的最愛"
+L["Click to favorite. Favorites always appear at the top of the list."] = "點擊以加入最愛。最愛項目始終顯示在清單頂端。"
+L["Click to unfavorite"] = "點擊以移除最愛"
+L["Sort ascending"] = "升序排列"
+L["Sort descending"] = "降序排列"
+L["Clear sort"] = "清除排序"

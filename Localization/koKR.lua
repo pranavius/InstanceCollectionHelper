@@ -212,3 +212,11 @@ L["Obtainable for free by earning the achievement Court of Farondis"] = "다음 
 L["Obtainable for free by earning the achievement Valarjar"] = "다음 업적을 달성하면 무료로 획득 가능: "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42658)) or "Valarjar")
 L["Upon entering the instance, dungeon difficulty will automatically be set to Normal"] = "인스턴스에 입장하면 던전 난이도가 자동으로 일반으로 설정됩니다."
 L["Dropped by Vanessa VanCleef on Heroic difficulty"] = "영웅 난이도의 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("바네사 밴클리프").."에게서 획득"
+
+--- Sorting & Favorites ---
+L["Favorites"] = "즐겨찾기"
+L["Click to favorite. Favorites always appear at the top of the list."] = "즐겨찾기에 추가하려면 클릭하세요. 즐겨찾기 항목은 항상 목록 맨 위에 표시됩니다."
+L["Click to unfavorite"] = "즐겨찾기에서 제거하려면 클릭하세요"
+L["Sort ascending"] = "오름차순 정렬"
+L["Sort descending"] = "내림차순 정렬"
+L["Clear sort"] = "정렬 초기화"
