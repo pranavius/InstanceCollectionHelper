@@ -4,6 +4,18 @@ This document describes changes to each version of **Instance Collection Helper 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v17**
+- **Major update:** Added the ability to mark any item as a "favorite".
+  - Favorited items will always appear at the top of their respective lists and are stored on an account-wide basis.
+- **Major update:** Added the ability to sort by a column's values
+  - Mounts, toys, pets, and decor: Sortable by collectible name or instance name
+  - Timewalking vendor items: Sortable by name, type, expansion, or cost
+  - Sort direction cycles ascending → descending → none and resets when switching tabs
+  - Name column only cycles between ascending and descending
+- Updated list data and AddOn compatibility for patch 12.0.7
+- Minor code refactoring and cleanup
+- *Bug Fix:* Corrected an issue where items from a previously viewed tab could appear in the list when scrolling through a different tab's content
+
 **v16.3**
 - Fixed `koKR` localization loading
 - Fixed a bug causing owned decor items to not be marked as owned in the list

@@ -168,7 +168,6 @@ function AddOn.AppendMapSearchTags(data)
 
     -- Check the mapping constant first since raids before Siege of Orgimmar and all dungeons have a value of 0 from EJ_GetInstanceInfo
     local dungeonAreaMapID = AddOn.InstanceToDamIDMap[data.InstanceID] or select(7, EJ_GetInstanceInfo(data.InstanceID))
-    -- This value will always be 0 for 
     if dungeonAreaMapID and dungeonAreaMapID ~= 0 then
         local map = C_Map.GetMapInfo(dungeonAreaMapID)
         -- MapID 946 is "Cosmic"

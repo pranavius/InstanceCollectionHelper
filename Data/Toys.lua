@@ -72,7 +72,7 @@ AddOn.Toys = {
     {
         Name = "Familiar Journal",
         ItemID = 208096,
-        Instance = "Scholomance (Classic)",
+        Instance = "Legacy of Scholomance",
         InstanceID = 246,
         MapID = 1007,
         AreaPoiID = 6726,
