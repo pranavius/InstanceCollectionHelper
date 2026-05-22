@@ -255,12 +255,12 @@
 ---@field TomTomContainer TomTomContainer
 
 ---@class ICHHelperItem
----@field IsMount? boolean `true` if the collectible is a mount, `false` otherwise
----@field IconID number The ID number for the icon associated with the collectible
----@field Hyperlink string Hyperlink for the collectible (used to display the appropriate tooltip)
+---@field IsMount? boolean
+---@field IconID number
+---@field Hyperlink string
 
 ---@class ICHInstanceHelper: Frame
----@field InstanceName FontString The name of the instance the user is currently inside of
+---@field InstanceName FontString
 ---@field ItemContainer Frame
 
 ---@class ICHAbout: Frame

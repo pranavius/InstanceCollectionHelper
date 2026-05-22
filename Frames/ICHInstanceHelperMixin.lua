@@ -1,4 +1,5 @@
 local name, AddOn = ...
+
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
@@ -26,9 +27,7 @@ local instanceName, difficultyID, difficultyName, instanceMapID
 -- All added info is wiped after coming back from Narcissus AFK screen (need to fix)
 function ICHInstanceHelperMixin:UpdateHelperWindow()
     local isInInstance, instanceType = IsInInstance()
-    -- Require both caches to be loaded before showing the window to avoid showing incomplete data
-    local areNecessaryCachesLoaded = AddOn.ToyCacheReady and AddOn.PetCacheReady
-    if AddOn.db.global.showInstanceHelperWindow and not self:IsShown() and areNecessaryCachesLoaded and isInInstance and (instanceType == "party" or instanceType == "raid") then
+    if AddOn.db.global.showInstanceHelperWindow and not self:IsShown() and isInInstance and (instanceType == "party" or instanceType == "raid") then
         AddOn:PrintDebugMessage("Showing Instance Helper window")
         if not isInstanceInfoValid(instanceName, difficultyID, difficultyName, instanceMapID) then
             instanceName, _, difficultyID, difficultyName, _, _, _, instanceMapID = GetInstanceInfo()
@@ -97,13 +96,13 @@ function ICHInstanceHelperMixin.GetInstanceCollectibles(instanceMapID, difficult
             local _, spellID, iconID, _, _, _, _, _, _, _, isOwned = C_MountJournal.GetMountInfoByID(mount.ID)
             local isCollectable = not (isOwned or AddOn.IsEncounterCompleted(mount, difficultyID) or (mount.SharedDifficulties and AddOn:IsEncounterCompletedOnSharedDifficulty(mount)))
             if isCollectable then
-                table.insert(helperItems, { IsMount = true, IconID = iconID or 134400, Hyperlink = C_MountJournal.GetMountLink(spellID) })
+                table.insert(helperItems, { IsMount = true, IconID = iconID or 134400, Hyperlink = C_MountJournal.GetMountLink(spellID) or "" })
             end
         end
     end
     for _, toy in ipairs(AddOn.Toys) do
         if toy.MapID == instanceMapID then
-            local isOwned = AddOn.GetIsOwned(toy.ItemID, "Toy")
+            local isOwned = AddOn.IsCollectibleOwned(toy.ItemID, "Toy")
             local isCollectable = not (isOwned or AddOn.IsEncounterCompleted(toy, difficultyID) or (toy.SharedDifficulties and AddOn:IsEncounterCompletedOnSharedDifficulty(toy)))
             if isCollectable then
                 table.insert(helperItems, { IsMount = false, IconID = AddOn.ToyCache[toy.ItemID].iconID, Hyperlink = "item:"..toy.ItemID })
@@ -112,7 +111,7 @@ function ICHInstanceHelperMixin.GetInstanceCollectibles(instanceMapID, difficult
     end
     for _, pet in ipairs(AddOn.Pets) do
         if pet.MapID == instanceMapID then
-            local isOwned = AddOn.GetIsOwned(AddOn.PetCache[pet.PetItemID].speciesID, "Pet")
+            local isOwned = AddOn.IsCollectibleOwned(AddOn.PetCache[pet.PetItemID].speciesID, "Pet")
             local isCollectable = not (isOwned or AddOn.IsEncounterCompleted(pet, difficultyID) or (pet.SharedDifficulties and AddOn:IsEncounterCompletedOnSharedDifficulty(pet)))
             if isCollectable then
                 table.insert(helperItems, { IsMount = false, IconID = AddOn.PetCache[pet.PetItemID].iconID, Hyperlink = "item:"..pet.PetItemID })
@@ -121,7 +120,7 @@ function ICHInstanceHelperMixin.GetInstanceCollectibles(instanceMapID, difficult
     end
     for _, decorItem in ipairs(AddOn.DecorItems) do
         if decorItem.MapID == instanceMapID then
-            local isOwned = AddOn.GetIsOwned(decorItem.DecorItemID, "Decor")
+            local isOwned = AddOn.IsCollectibleOwned(decorItem.DecorItemID, "Decor")
             local isCollectable = not (isOwned or AddOn.IsEncounterCompleted(decorItem, difficultyID) or (decorItem.SharedDifficulties and AddOn:IsEncounterCompletedOnSharedDifficulty(decorItem)))
             if isCollectable then
                 local iconID = select(5, C_Item.GetItemInfoInstant(decorItem.DecorItemID))

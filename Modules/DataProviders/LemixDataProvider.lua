@@ -107,11 +107,20 @@ function AddOn.LemixDataProviderInit(frame, item)
     if not data then return end
     frame.relevantID = item.Type == "Mount" and data.mountID or data.itemID
 
-    local isOwned = AddOn.GetIsVendorItemOwned(data, item.Type)
-    AddOn.ConfigureListItemBackground(frame, index, isOwned)
+    local isOwned = AddOn.IsVendorItemOwned(data, item.Type)
+    if isOwned then
+        frame.Bg:Hide()
+        frame.OwnedBg:Show()
+    else
+        frame.OwnedBg:Hide()
+        if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
+    end
 
     AddOn:SetTruncatedText(frame.NameContainer.Text, data.collectibleName)
-    AddOn.SetItemIcon(frame.NameContainer.ViewButton, data.iconID)
+    frame.NameContainer.ViewButton:ClearNormalTexture()
+    frame.NameContainer.ViewButton:ClearHighlightTexture()
+    frame.NameContainer.ViewButton:SetNormalTexture(data.iconID or 134400)
+    frame.NameContainer.ViewButton:SetHighlightTexture(data.iconID or 134400)
 
     AddOn:SetTruncatedText(frame.TypeContainer.Text, DARKYELLOW_FONT_COLOR:WrapTextInColorCode(L[item.Type]))
     if item.Phase then
@@ -126,7 +135,10 @@ function AddOn.LemixDataProviderInit(frame, item)
         frame.ExclusiveContainer.Checkmark:Hide()
     end
 
-    AddOn.SetItemIcon(frame.CostContainer.CurrencyButton, "interface/icons/inv_10_fishing_dragonislescoins_bronze")
+    frame.CostContainer.CurrencyButton:ClearNormalTexture()
+    frame.CostContainer.CurrencyButton:ClearHighlightTexture()
+    frame.CostContainer.CurrencyButton:SetNormalTexture("interface/icons/inv_10_fishing_dragonislescoins_bronze")
+    frame.CostContainer.CurrencyButton:SetHighlightTexture("interface/icons/inv_10_fishing_dragonislescoins_bronze")
 
     local costText = "x"..FormatLargeNumber(item.Cost)
 

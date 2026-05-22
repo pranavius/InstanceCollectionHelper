@@ -202,7 +202,7 @@ function AddOn:UpdateListContents()
             local itemData = self.TimewalkingCache[item.ItemID]
 
             if itemData then
-                local isOwned = self.GetIsVendorItemOwned(itemData, item.Type)
+                local isOwned = self.IsVendorItemOwned(itemData, item.Type)
                 local shouldInsert = false
                 if item.Type == "Mount" then
                     local hideOnChar = select(10, C_MountJournal.GetMountInfoByID(itemData.mountID))

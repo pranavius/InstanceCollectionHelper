@@ -228,8 +228,8 @@ end
 ---Determines whether a collectible purchasable from a vendor is owned or not
 ---@param data TimewalkingCacheData|LemixCacheData Vendor item data from ICH cache
 ---@param type "Mount"|"Toy"|"Pet"|"Cosmetic"|"Decor" Type of the collectible, used to determine the method for checking ownership status
----@return boolean `true` if the collectible is owned, `false` otherwise
-function AddOn.GetIsVendorItemOwned(data, type)
+---@return boolean
+function AddOn.IsVendorItemOwned(data, type)
     local isOwned = false
     if type == "Mount" then
         isOwned = select(11, C_MountJournal.GetMountInfoByID(data.mountID))
@@ -241,6 +241,29 @@ function AddOn.GetIsVendorItemOwned(data, type)
         isOwned = PlayerHasToy(data.itemID)
     elseif type == "Decor" then
         local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.itemID)
+        if decor then
+            isOwned = decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false ---@diagnostic disable-line: undefined-field
+        end
+    end
+
+    return isOwned
+end
+
+---Determines whether a collectible is owned or not. *For determining ownership of an item from a vendor, see `IsVendorItemOwned()`*
+---@param id number ID number associated with the collectible. For mounts, this is the mount ID; For pets, this is the species ID; For other collectibles, this is the item ID.
+---@param type "Mount"|"Toy"|"Pet"|"Decor" Type of the collectible, used to determine the method for checking ownership status
+---@return boolean
+function AddOn.IsCollectibleOwned(id, type)
+    local isOwned = false
+    if type == "Mount" then
+        isOwned = select(11, C_MountJournal.GetMountInfoByID(id))
+    elseif type == "Pet" then
+        local owned, limit = AddOn.GetPetOwnedAndLimitCount(id)
+        isOwned = owned > 0 or (AddOn.db.global.countPetOwnedOnlyIfMaxOwned and owned == limit)
+    elseif type == "Toy" then
+        isOwned = PlayerHasToy(id)
+    elseif type == "Decor" then
+        local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(id)
         if decor then
             isOwned = decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false ---@diagnostic disable-line: undefined-field
         end
