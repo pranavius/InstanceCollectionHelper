@@ -1,7 +1,11 @@
 local name, AddOn = ...
+
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
+
+---@type SortState
+AddOn.defaultSortState = { column = "Name", direction = "asc" }
 
 ---@enum DungeonDifficulty
 AddOn.DungeonDifficulty = {
@@ -21,10 +25,11 @@ AddOn.RaidDifficulty = {
     LFR = 17,
     Normal = 14,
     Heroic = 15,
-    Mythic = 16
+    Mythic = 16,
+    MythicFlex = 233
 }
 
----@class ExpansionTags
+---@type ExpansionTags
 AddOn.ExpansionTags = {
     Classic = { "classic", "vanilla" },
     TheBurningCrusade = { "the burning crusade", "burning crusade", "tbc", "bc" },
@@ -40,7 +45,6 @@ AddOn.ExpansionTags = {
     Midnight = { "midnight", "mn" },
 }
 
----@enum LemixPhase
 AddOn.LemixPhases = {
     Phase1 = L["Phase 1: Skies of Fire"],
     Phase2 = L["Phase 2: Rise of the Nightfallen"],
@@ -54,7 +58,7 @@ AddOn.LemixPhases = {
 AddOn.InstanceToDamIDMap = {
     [744] = 320, -- AQ40
     [1292] = 318, -- Strat Undead
-    -- missing entry for old Scholomance
+    [289] = 306, -- Legacy of Scholomance (Classic version)
     [236] = 317, -- Strat Living
     [231] = 226, -- Gnomeregan
     [240] = 279, -- Wailing Caverns
@@ -67,7 +71,7 @@ AddOn.InstanceToDamIDMap = {
     [749] = 334, -- Tempest Keep
     [745] = 350, -- Kara
     [252] = 258, -- Sethekk Halls
-    [249] = 349, -- Magister's Terrace (TBC)
+    [249] = 349, -- Magisters' Terrace (TBC)
     [251] = 274, -- Old Hillsbrad Foothills
     [751] = 340, -- Black Temple
     [752] = 335, -- Sunwell Plateau
@@ -88,12 +92,12 @@ AddOn.InstanceToDamIDMap = {
     [187] = 409, -- Dragon Soul
     [68] = 325, -- VP
     [74] = 328, -- TotFW
-    -- [78] = 367, -- Firelands
+    [78] = 367, -- Firelands
     [67] = 324, -- Stonecore
     [72] = 294, -- Bastion of Twilight
     [73] = 285, -- BWD
     [317] = 471, -- MSV
-    [362] = 508, --TOT
+    [362] = 508, -- TOT
     [246] = 476, -- Scholomance
     [330] = 474, -- Heart of Fear
     [320] = 456, -- Terrace of Endless Spring
@@ -104,28 +108,51 @@ AddOn.InstanceToDamIDMap = {
     [558] = 595, -- Iron Docks
     [860] = 812, -- Return to Kara
     [945] = 903, -- Seat of the Triumvirate
-    [762] = 733, -- DHT
-    [800] = 761, -- CoS
-    [767] = 731, -- NL
+    [762] = 733, -- Darkheart Thicket
+    [800] = 761, -- Court of Stars
+    [767] = 731, -- Nelth's Lair
     [1178] = 1490, -- Mechagon
     [1001] = 936, -- Freehold
     [1041] = 1004, -- Kings Rest
     [1022] = 1041, -- Underrot
     [1002] = 974, -- Tol Dagor
     [1030] = 1038, -- Temple of Sethraliss
-    [1036] = 1039, -- Shrine of the Storm,
+    [1036] = 1039, -- Shrine of the Storm
     [1194] = 1989, -- Tazavesh
     [1182] = 1666, -- Necrotic Wake
     [1189] = 1675, -- Sanguine Depths
     [1183] = 1674, -- Plaguefall
-    [1184] = 1669, --MoTS
+    [1184] = 1669, -- Mists
     [1199] = 2080, -- Neltharus
     [1201] = 2097, -- Algeth'ar Academy
-    [1202] = 2095, -- RLP
+    [1202] = 2095, -- Ruby Life Pools
     [1269] = 2341, -- Stonevault
-    [1210] = 2303, -- DFC
+    [1210] = 2303, -- Darkflame Cleft
     [1272] = 2335, -- Cinderbrew Meadery
     [1298] = 2387, -- Floodgate
-    [1267] = 2308, -- PSF,
-    -- TODO: Add Midnight dungeons
+    [1267] = 2308, -- Priory
+    [1311] = 2514, -- Den of Nalorakk
+    [1300] = 2511, -- Magisters' Terrace (Midnight)
+    [1315] = 2501, -- Maisara Caverns
+    [1304] = 2433, -- Murder Row
+    [1316] = 2556, -- NPX
+    [1309] = 2500, -- Blinding Vale
+    [1313] = 2572, -- Voidscar Arena
+    [1299] = 2494, -- Winderunner Spire
+}
+
+---@enum ExpansionOrder
+AddOn.ExpansionOrder = {
+    ["Classic"]                = LE_EXPANSION_CLASSIC,
+    ["The Burning Crusade"]    = LE_EXPANSION_BURNING_CRUSADE,
+    ["Wrath of the Lich King"] = LE_EXPANSION_WRATH_OF_THE_LICH_KING,
+    ["Cataclysm"]              = LE_EXPANSION_CATACLYSM,
+    ["Mists of Pandaria"]      = LE_EXPANSION_MISTS_OF_PANDARIA,
+    ["Warlords of Draenor"]    = LE_EXPANSION_WARLORDS_OF_DRAENOR,
+    ["Legion"]                 = LE_EXPANSION_LEGION,
+    ["Battle for Azeroth"]     = LE_EXPANSION_BATTLE_FOR_AZEROTH,
+    ["Shadowlands"]            = LE_EXPANSION_SHADOWLANDS,
+    ["Dragonflight"]           = LE_EXPANSION_DRAGONFLIGHT,
+    ["The War Within"]         = LE_EXPANSION_WAR_WITHIN,
+    ["Midnight"]               = LE_EXPANSION_MIDNIGHT,
 }

@@ -1,4 +1,3 @@
----@diagnostic disable: param-type-mismatch
 local name, AddOn = ...
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
@@ -10,8 +9,8 @@ ICHLemixListHeadersMixin = {}
 function ICHLemixListHeadersMixin:OnLoad()
     self.NameHeader:SetText(L["Name"])
     self.TypeHeader:SetText(L["Type"])
-    self.PhaseHeader:SetText("Available In")
-    self.ExclusiveHeader:SetText("Event Exclusive")
+    self.PhaseHeader:SetText(L["Available In"])
+    self.ExclusiveHeader:SetText(L["Event Exclusive"])
     self.CostHeader:SetText(L["Cost"])
 end
 

@@ -17,7 +17,6 @@ function ICHAboutMixin:OnLoad()
     -- Allows closing via ESC key
     tinsert(UISpecialFrames, self:GetName())
 
-    ---@diagnostic disable-next-line: exp-in-action, undefined-global, unknown-symbol, miss-exp, miss-symbol
     self.Name:SetText(L["Instance Collection Helper"].." v@project-version@")
     self.Author:SetText(L["Created by Pranavius"])
     self.Twitter:SetText("|TInterface\\AddOns\\InstanceCollectionHelper\\Media\\X-logo:20:20|t   ".."@PranaviusWoW")

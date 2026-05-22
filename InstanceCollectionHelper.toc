@@ -1,11 +1,11 @@
-## Interface: 120001
-## Interface-Mists: 50502
+## Interface: 120007, 120005
 ## Title: Instance Collection Helper
 ## Notes: Helps find and set the instance difficulty needed to obtain collectible items
 ## IconTexture: Interface\AddOns\InstanceCollectionHelper\Media\Logo.png
 ## Author: @project-author@
 ## Version: @project-version@
 ## SavedVariables: ICH_DB
+## OptionalDeps: TomTom
 ## Category: Collections
 ## AddonCompartmentFunc: ICH_AddonCompartmentOnClick
 ## AddonCompartmentFuncOnEnter: ICH_AddonCompartmentOnEnter
@@ -41,11 +41,13 @@ Data\Decor.lua
 Modules\CategoryTabs.lua
 Modules\Waypoints.lua
 Modules\DifficultyButtons.lua
-Modules\MountDataProvider.lua
-Modules\ToyDataProvider.lua
-Modules\PetDataProvider.lua
-Modules\TimewalkingDataProvider.lua
-Modules\DecorDataProvider.lua
+Modules\SortAndFavorites.lua
+Modules\DataProviders\BaseDataProvider.lua
+Modules\DataProviders\MountDataProvider.lua
+Modules\DataProviders\ToyDataProvider.lua
+Modules\DataProviders\PetDataProvider.lua
+Modules\DataProviders\TimewalkingDataProvider.lua
+Modules\DataProviders\DecorDataProvider.lua
 
 Templates\ICHSquareButtonMixin.lua
 Templates\ICHSquareButtonTemplate.xml

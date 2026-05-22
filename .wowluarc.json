@@ -1,0 +1,8 @@
+{
+    "ignore": [".release/", "Localization/", "Libs/"],
+    "flavors": ["retail"],
+    "globals": {
+        "read": ["InstanceCollectionHelper*", "ICH*", "*Mixin", "TomTom", "LE_EXPANSION_*"],
+        "write": ["InstanceCollectionHelper*", "ICH*", "*Mixin"]
+    }
+}

@@ -36,14 +36,8 @@ function ICHListItemMixin:OnLoad()
                 local encounterName = EJ_GetEncounterInfo(iContainer.encounterID)
                 GameTooltip:AddLine(encounterName)
             end
-            --@version-mists@
-            if iContainer.hasDungeonJournalEntry then
-            --@end-version-mists@
                 GameTooltip:AddLine("\n")
                 GameTooltip:AddLine(L["View in encounter journal"], 1, 1, 1, true)
-            --@version-mists@
-            end
-            --@end-version-mists@
             GameTooltip:Show()
         end)
         iContainer.ViewButton:HookScript("OnLeave", function()

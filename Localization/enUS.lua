@@ -2,14 +2,6 @@ local name = ...
 local L = LibStub("AceLocale-3.0"):NewLocale(name, "enUS", true, true)
 
 if not L then return end
---@retail@
-local ICH_GetQuestName = C_QuestLog.GetTitleForQuestID
-local ICH_GetClassColor = C_ClassColor.GetClassColor
---@end-retail@
---@version-mists@
-local ICH_GetQuestName = C_QuestLog.GetQuestInfo
-local ICH_GetClassColor = GetClassColorObj
---@end-version-mists@
 local function ICH_GetClassName(classID, fallbackValue)
     local className = select(1, GetClassInfo(classID))
     if not className then return fallbackValue end
@@ -34,7 +26,6 @@ L["Upon entering the instance, raid difficulty will automatically be set to Norm
 L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"] = "Do not talk to any of the Titan Keepers, otherwise this mount will not drop"
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"
 L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "Entrance can be in either "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Uldum").." or "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vale of Eternal Blossoms")
-L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Requires completing the Tazavesh storyline to unlock flight path, beginning with |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(63976) or "The Al'ley Cat of Oribos") -- Currently unused
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "Requires completing a short questline after looting "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Malfunctioning Mechsuit]"))
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."
 L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Clear the dungeon solo, then return to the area where "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Domina Venomblade").." was and interact with the "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Curious Slime Serpent").."."
@@ -44,13 +35,13 @@ L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after k
 L["Dropped by the Rare Elite Vixx the Collector"] = "Dropped by the Rare Elite "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vixx the Collector")
 L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "This item is obtainable even though it does not appear on the loot table for "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Gul'dan")
 L["Can drop from every boss in the dungeon"] = "Can drop from every boss in the dungeon"
-L["Can only be looted and used by a Druid"] = "Can only be looted and used by a "..WrapTextInColor(ICH_GetClassName(11, "Druid"), ICH_GetClassColor("DRUID"))
+L["Can only be looted and used by a Druid"] = "Can only be looted and used by a "..WrapTextInColor(ICH_GetClassName(11, "Druid"), C_ClassColor.GetClassColor("DRUID"))
 L["Can also be looting by fishing within the instance"] = "Can also be looting by fishing within the instance"
 L["Requires completion of the achievement Relics of a Fallen Empire"] = "Requires completion of the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(17366)) or "Relics of a Fallen Empire")
 L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."
 L["Dropped by the hidden boss Endgineer Omegaplugg"] = "Dropped by the hidden boss "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Endgineer Omegaplugg")
 L["It is highly recommended to attempt this encounter with a full party"] = "It is highly recommended to attempt this encounter with a full party"
-L["Can only be looted and used by a Demon Hunter"] = "Can only be looted and used by a "..WrapTextInColor(ICH_GetClassName(12, "Demon Hunter"), ICH_GetClassColor("DEMONHUNTER"))
+L["Can only be looted and used by a Demon Hunter"] = "Can only be looted and used by a "..WrapTextInColor(ICH_GetClassName(12, "Demon Hunter"), C_ClassColor.GetClassColor("DEMONHUNTER"))
 L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "Drops from "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Don Carlos").." who patrols part of the path south of Tarren Mill"
 L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "There are some reports of "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Don Carlos").." despawning after any bosses are killed, so proceed with caution"
 L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "Drops from Gastropod mobs found between "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Megaera").." and "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Ji-Kun")
@@ -64,7 +55,7 @@ L["Dropped by the Rare Elite Gol'than the Malodorous"] = "Dropped by the Rare El
 L["Guides for how to spawn this mob can be found online"] = "Guides for how to spawn this mob can be found online"
 L["Dropped by Defias Pirates on the boat towards the end of the dungeon"] = "Dropped by "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Defias Pirates").." on the boat towards the end of the dungeon"
 L["Dropped by The Lanticore, which has a random chance to spawn after killing Orebender Gor'ashan"] = "Dropped by "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("The Lanticore")..", which has a random chance to spawn after killing "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Orebender Gor'ashan")
-L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"] = "Access to the raid entrance requires completing the quest |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(select(1, UnitFactionGroup("player")) == "Horde" and 55799 or 56325) or select(1, UnitFactionGroup("player")) == "Horde" and "The Tide Turns" or "Changing Tides")
+L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"] = "Access to the raid entrance requires completing the quest |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(select(1, UnitFactionGroup("player")) == "Horde" and 55799 or 56325) or select(1, UnitFactionGroup("player")) == "Horde" and "The Tide Turns" or "Changing Tides")
 L["Dropped by Sand Elementals in Normal and Heroic, but can be looted from Council of Elders in LFR"] = "Dropped by "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Sand Elementals").." in Normal and Heroic, but can be looted from "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Council of Elders").." in LFR"
 L["Obtained by using an Amani Hex Stick on Forest Frogs"] = "Obtained by using an "..(select(2, C_Item.GetItemInfo(33865)) or GREEN_FONT_COLOR:WrapTextInColorCode("[Amani Hex Stick]")).." on "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Forest Frogs")
 L["Detailed guides for how to obtain this pet can be found online"] = "Detailed guides for how to obtain this pet can be found online"
@@ -77,6 +68,7 @@ L["LFR"] = "LFR"
 L["Normal"] = "Normal"
 L["Heroic"] = "Heroic"
 L["Mythic"] = "Mythic"
+L["Mythic (Flex)"] = "Mythic (Flex)"
 L["10 player"] = "10 player"
 L["10 Player (Heroic)"] = "10 Player (Heroic)"
 L["25 player"] = "25 player"
@@ -97,7 +89,6 @@ L["Invalid legacy raid difficulty provided."] = "Invalid legacy raid difficulty 
 L["Invalid raid difficulty provided."] = "Invalid raid difficulty provided."
 L["Accepted values:"] = "Accepted values:"
 L["Show/hide the minimap icon"] = "Show/hide the minimap icon"
-L["Updated available mount list"] = "Updated available mount list" -- Currently unused
 L["Map pin set for"] = "Map pin set for"
 L["Unable to set map pin for"] = "Unable to set map pin for"
 L["TomTom waypoint set for"] = "TomTom waypoint set for"
@@ -121,6 +112,7 @@ L["raid"] = "raid"
 L["Search by mount/instance name, instance type, difficulty, or expansion"] = "Search by mount/instance name, instance type, difficulty, or expansion"
 L["Search by toy/instance name, instance type, difficulty, or expansion"] = "Search by toy/instance name, instance type, difficulty, or expansion"
 L["Search by pet/instance name, instance type, difficulty, or expansion"] = "Search by pet/instance name, instance type, difficulty, or expansion"
+L["Search by decor/instance name, instance type, difficulty, or expansion"] = "Search by decor/instance name, instance type, difficulty, or expansion"
 L["Scale"] = "Scale"
 L["Use TomTom waypoints"] = "Use TomTom waypoints"
 L["Show Owned"] = "Show Owned"
@@ -164,6 +156,7 @@ L["Random chance to obtain when opening a Bag of Fishing Treasures"] = "Random c
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways. Can now be purchased from any Timewalking vendor."] = "Originally rewarded for completing the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(19079)) or "Master of the Turbulent Timeways")..". Can now be purchased from any Timewalking vendor."
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways II. Can now be purchased from any Timewalking vendor."] = "Originally rewarded for completing the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(41056)) or "Master of the Turbulent Timeways II")..". Can now be purchased from any Timewalking vendor."
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways III. Can now be purchased from any Timewalking vendor."] = "Originally rewarded for completing the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(41779)) or "Master of the Turbulent Timeways III")..". Can now be purchased from any Timewalking vendor."
+L["Originally rewarded for completing the achievement Master of the Turbulent Timeways IV. Can now be purchased from any Timewalking vendor."] = "Originally rewarded for completing the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61394)) or "Master of the Turbulent Timeways IV")..". Can now be purchased from any Timewalking vendor."
 L["Special Thanks"] = "Special Thanks"
 L["Mount"] = "Mount"
 L["Pet"] = "Pet"
@@ -221,3 +214,11 @@ L["Obtainable for free by earning the achievement Court of Farondis"] = "Obtaina
 L["Obtainable for free by earning the achievement Valarjar"] = "Obtainable for free by earning the achievement "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42658)) or "Valarjar")
 L["Upon entering the instance, dungeon difficulty will automatically be set to Normal"] = "Upon entering the instance, dungeon difficulty will automatically be set to Normal"
 L["Dropped by Vanessa VanCleef on Heroic difficulty"] = "Dropped by "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vanessa VanCleef").." on Heroic difficulty"
+
+--- Sorting & Favorites ---
+L["Favorites"] = "Favorites"
+L["Click to favorite. Favorites always appear at the top of the list."] = "Click to favorite. Favorites always appear at the top of the list."
+L["Click to unfavorite"] = "Click to unfavorite"
+L["Sort ascending"] = "Sort ascending"
+L["Sort descending"] = "Sort descending"
+L["Clear sort"] = "Clear sort"

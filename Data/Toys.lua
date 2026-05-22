@@ -6,7 +6,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 local DungeonDifficulty = AddOn.DungeonDifficulty
 local RaidDifficulty = AddOn.RaidDifficulty
 
----@type Toy[] List of toys available from instances
+---@type Toy[]
 AddOn.Toys = {
     {
         Name = "Brazier of Madness",
@@ -72,7 +72,7 @@ AddOn.Toys = {
     {
         Name = "Familiar Journal",
         ItemID = 208096,
-        Instance = "Scholomance (Classic)",
+        Instance = "Legacy of Scholomance",
         InstanceID = 246,
         MapID = 1007,
         AreaPoiID = 6726,
@@ -148,6 +148,30 @@ AddOn.Toys = {
         Notes = L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"],
         Waypoint = { mapID = 22, x = 0.698, y = 0.736 },
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
+    },
+    {
+        Name = "Madcap Recap",
+        ItemID = 264313,
+        Instance = "Sporefall",
+        InstanceID = 1305,
+        MapID = 1592,
+        AreaPoiID = 8510,
+        EncounterID = 2711,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic, RaidDifficulty.MythicFlex },
+        Waypoint = { mapID = 2413, x = 0.736, y = 0.664 },
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Mycomancer's Hearthspore",
+        ItemID = 264367,
+        Instance = "Sporefall",
+        InstanceID = 1305,
+        MapID = 1592,
+        AreaPoiID = 8510,
+        EncounterID = 2711,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic, RaidDifficulty.MythicFlex },
+        Waypoint = { mapID = 2413, x = 0.736, y = 0.664 },
+        SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
         Name = "Orb of the Sin'dorei",

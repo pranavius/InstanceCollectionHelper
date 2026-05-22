@@ -20,28 +20,8 @@ local function isList(tbl)
     return pairsKeysCount == ipairsKeysCount
 end
 
----Determines whether a table contains a value
----@param tbl table The table to be checked
----@param value any The value to be searched for
----@return boolean `true` if the value is found within the table, `false` otherwise
-function TableContains(tbl, value)
-    if isList(tbl) then
-        for _, v in ipairs(tbl) do
-            if v == value then return true end
-        end
-        return false
-    end
-
-    for _, v in pairs(tbl) do
-        if v == value then return true end
-    end
-
-    return false
-end
-
 ---Prints a message to the chat window prefixed by the AddOn name
 ---@param ... any Arguments to be printed to the chat window
----@see print
 function AddOn:PrintChatMessage(...)
     print(HEIRLOOM_BLUE_COLOR:WrapTextInColorCode("Instance Collection Helper:"), ...)
 end
@@ -53,8 +33,8 @@ function AddOn:PrintDebugMessage(...)
 end
 
 ---Returns the difficulty text that corresponds to the given `difficultyID`
----@param difficultyID number? ID associated with an instance difficulty. Marked optional due to `GetLegacyRaidDifficultyID()` return a `number?` value, but required for this function.
----@return string "The text to be shown when referencing the desired instance difficulty"
+---@param difficultyID? number ID associated with an instance difficulty. Marked optional due to `GetLegacyRaidDifficultyID()` returning a `number?` value, but required for this function.
+---@return string
 function AddOn:GetInstanceDifficultyText(difficultyID)
     local dKey
     for key, dd in pairs(AddOn.DungeonDifficulty) do
@@ -67,6 +47,7 @@ function AddOn:GetInstanceDifficultyText(difficultyID)
     end
 
     if not dKey then return L["Unknown"]
+    elseif dKey == "MythicFlex" then return L["Mythic (Flex)"]
     elseif dKey == "LegacyLFR" then return L["LFR"]
     elseif dKey == "Legacy40" then return L["40 player"]
     elseif dKey == "Legacy10" then return L["10 Player"]
@@ -96,17 +77,9 @@ function AddOn:SetInstanceDifficulty(difficultyID)
     -- Raid difficulty ID less than 10 indicates legacy raid
     if difficultyID < 10 then
         if GetLegacyRaidDifficultyID() == difficultyID then
-            --@retail@
             self:PrintChatMessage(L["Legacy Raid Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
-            --@end-retail@
-            --@version-mists@
-            self:PrintChatMessage(L["Raid Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
-            --@end-version-mists@
         else
             SetLegacyRaidDifficultyID(difficultyID)
-            --@version-mists@
-            self:PrintChatMessage(L["Raid Difficulty set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
-            --@end-version-mists@
         end
     else
         if GetRaidDifficultyID() == difficultyID then
@@ -143,12 +116,8 @@ function AddOn:SetTruncatedText(fs, text)
     fs:SetText(text:sub(1, lastVisibleChar - 1) .. ellipsis)
 end
 
----@param data Mount|Toy|Pet|DecorItem
----@return boolean `true` if the instance is a raid, `false` otherwise
----@see Mount
----@see Toy
----@see Pet
----@see DecorItem
+---@param data Mount|Toy|Pet|DecorItem|TimewalkingItem|WowRemixItem
+---@return boolean
 function AddOn:IsInstanceRaid(data)
     -- Continue treating empty DifficultyIDs lists as raids even though this functionality is deprecated
     if #data.DifficultyIDs == 0 then return true end
@@ -159,11 +128,7 @@ function AddOn:IsInstanceRaid(data)
 end
 
 ---@param data Mount|Toy|Pet|DecorItem
----@return boolean `true` if an instance encounter has been completed for the current reset period on a given difficulty, `false` otherwise
----@see Mount
----@see Toy
----@see Pet
----@see DecorItem
+---@return boolean
 function AddOn.IsEncounterCompleted(data, difficultyID)
     local encounterName
     if data.EncounterID then encounterName = select(1, EJ_GetEncounterInfo(data.EncounterID)) end
@@ -186,11 +151,7 @@ function AddOn.IsEncounterCompleted(data, difficultyID)
 end
 
 ---@param data Mount|Toy|Pet|DecorItem
----@return boolean `true` if an encounter has been completed for the current reset period on a difficulty that shares a lockout with a mount's displayed difficulty, `false` otherwise"
----@see Mount
----@see Toy
----@see Pet
----@see DecorItem
+---@return boolean
 function AddOn:IsEncounterCompletedOnSharedDifficulty(data)
     local isCompleted = false
     for shared, _ in pairs(data.SharedDifficulties) do
@@ -202,12 +163,6 @@ end
 
 ---Append a list of map search tags for a collectibleto the existing `SearchTags` list based on the ID of the instance where it is obtained
 ---@param data Mount|Toy|Pet|TimewalkingItem|WowRemixItem|DecorItem
----@see Mount
----@see Toy
----@see Pet
----@see TimewalkingItem
----@see WowRemixItem
----@see DecorItem
 function AddOn.AppendMapSearchTags(data)
     -- Create a fresh list of tags to avoid removing entries contained in the original list
     local tags = {}
@@ -220,7 +175,7 @@ function AddOn.AppendMapSearchTags(data)
         -- MapID 946 is "Cosmic"
         while map and map.parentMapID ~= 946 do
             -- expected: instance name, then zone names up to but excluding "Azeroth"
-            if not TableContains(tags, map.name:lower()) then tinsert(tags, map.name:lower()) end
+            if not tContains(tags, map.name:lower()) then tinsert(tags, map.name:lower()) end
             map = C_Map.GetMapInfo(map.parentMapID)
         end
     end
@@ -279,44 +234,24 @@ function AddOn.GetIsVendorItemOwned(data, type)
     if type == "Mount" then
         isOwned = select(11, C_MountJournal.GetMountInfoByID(data.mountID))
     elseif type == "Pet" then
-        local owned, limit = AddOn.GetPetOwnedAndLimitCount(data.speciesID)
-        isOwned = (owned > 0 and (AddOn.db.global.countPetOwnedOnlyIfMaxOwned and owned == limit or true)) or false
+        isOwned = AddOn.GetIsPetOwned(data.speciesID)
     elseif type == "Cosmetic" then
         isOwned = AddOn.db.global.ownedCosmeticsCache[data.itemID] or false
     elseif type == "Toy" then
         isOwned = PlayerHasToy(data.itemID)
     elseif type == "Decor" then
-        local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.itemID, true)
-        isOwned = decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false
-    end
-
-    return isOwned
-end
-
----Determines whether a collectible is owned or not. *For determining ownership of an item from a vendor, see `GetIsVendorItemOwned()`*
----@param id number ID number associated with the collectible. For mounts, this is the mount ID; For pets, this is the species ID; For other collectibles, this is the item ID.
----@param type "Mount"|"Toy"|"Pet"|"Decor" Type of the collectible, used to determine the method for checking ownership status
----@return boolean `true` if the collectible is owned, `false` otherwise
-function AddOn.GetIsOwned(id, type)
-    local isOwned = false
-    if type == "Mount" then
-        isOwned = select(11, C_MountJournal.GetMountInfoByID(id))
-    elseif type == "Pet" then
-        local owned, limit = AddOn.GetPetOwnedAndLimitCount(id)
-        isOwned = owned > 0 or (AddOn.db.global.countPetOwnedOnlyIfMaxOwned and owned == limit)
-    elseif type == "Toy" then
-        isOwned = PlayerHasToy(id)
-    elseif type == "Decor" then
-        local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(id, true)
-        isOwned = decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false
+        local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.itemID)
+        if decor then
+            isOwned = decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false ---@diagnostic disable-line: undefined-field
+        end
     end
 
     return isOwned
 end
 
 ---@param speciesID number ID for the pet species
----@return number owned Number of the pet that is owned
----@return number limit Maximum number that can be owned
+---@return number owned
+---@return number limit
 function AddOn.GetPetOwnedAndLimitCount(speciesID)
     local owned, limit
     if speciesID then
@@ -328,42 +263,14 @@ function AddOn.GetPetOwnedAndLimitCount(speciesID)
     return owned or 0, limit or 0
 end
 
---- Data Provider Helpers ---
-
----Sets a list item's background color based on collectible ownership
----@param frame ICHListItem|ICHLemixListItem
----@param index number The index of the item within the scrollable list
----@param isOwned boolean Whether the list item is owned or not
-function AddOn.ConfigureListItemBackground(frame, index, isOwned)
-    if isOwned then
-        frame.Bg:Hide()
-        frame.OwnedBg:Show()
-    else
-        frame.OwnedBg:Hide()
-        if index % 2 == 0 then frame.Bg:Show() else frame.Bg:Hide() end
+---Determines whether a pet species should be considered owned, honoring the `countPetOwnedOnlyIfMaxOwned` config flag
+---@param speciesID? number ID for the pet species
+---@return boolean isOwned
+function AddOn.GetIsPetOwned(speciesID)
+    local owned, limit = AddOn.GetPetOwnedAndLimitCount(speciesID)
+    local isOwned = owned > 0
+    if AddOn.db.global.countPetOwnedOnlyIfMaxOwned then
+        isOwned = isOwned and owned == limit
     end
-end
-
----Sets the item icon texture (normal and highlight) for a list item. If `iconID` is `nil` or invalid, the icon shown will default to a question mark
----@param button Button The button control for which to set the icon
----@param iconID number|string? The ID or file path of the icon to display
-function AddOn.SetItemIcon(button, iconID)
-    button:ClearNormalTexture()
-    button:ClearHighlightTexture()
-    button:SetNormalTexture(iconID or 134400)
-    button:SetHighlightTexture(iconID or 134400)
-end
-
----Sets an icon based on the type of instance a collectible is obtained from
----@param frame ICHListItem
----@param data Mount|Toy|Pet|DecorItem List data element containing collectible information
-function AddOn:SetInstanceTypeIcon(frame, data)
-    --@retail@
-    frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
-    frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "questlog-questtypeicon-raid" or "questlog-questtypeicon-dungeon")
-    --@end-retail@
-    --@version-mists@
-    frame.InstanceContainer.ViewButton:SetNormalAtlas(AddOn:IsInstanceRaid(data) and "Raid" or "Dungeon")
-    frame.InstanceContainer.ViewButton:SetHighlightAtlas(AddOn:IsInstanceRaid(data) and "Raid" or "Dungeon")
-    --@end-version-mists@
+    return isOwned
 end

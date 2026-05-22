@@ -2,14 +2,6 @@ local name = ...
 local L = LibStub("AceLocale-3.0"):NewLocale(name, "esMX")
 
 if not L then return end
---@retail@
-local ICH_GetQuestName = C_QuestLog.GetTitleForQuestID
-local ICH_GetClassColor = C_ClassColor.GetClassColor
---@end-retail@
---@version-mists@
-local ICH_GetQuestName = C_QuestLog.GetQuestInfo
-local ICH_GetClassColor = GetClassColorObj
---@end-version-mists@
 local function ICH_GetClassName(classID, fallbackValue)
     local className = select(1, GetClassInfo(classID))
     if not className then return fallbackValue end
@@ -32,7 +24,7 @@ L["Upon entering the instance, raid difficulty will automatically be set to Norm
 L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"] = "No hables con ninguno de los Guardianes Titanes, de lo contrario esta montura no aparecerá como botín"
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "Requiere completar ciertos objetivos dentro de un tiempo determinado, por lo que se recomienda buscar una guía en línea para obtener esta montura antes de intentarlo"
 L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "La entrada puede estar en "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Uldum").." o en "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Valle de la Flor Eterna")
-L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Requiere completar la historia de Tazavesh para desbloquear la ruta de vuelo, comenzando con |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(63976) or "El gato cajellero de Oribos") -- Currently unused
+L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Requiere completar la historia de Tazavesh para desbloquear la ruta de vuelo, comenzando con |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(63976) or "El gato cajellero de Oribos") -- Currently unused
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "Requiere completar una breve cadena de misiones después de saquear "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Mecatraje averiado]"))
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "Requiere completar el calabozo después de activar el modo difícil. Se pueden encontrar guías en línea sobre cómo hacerlo."
 L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Completa la mazmorra en solitario, luego regresa al área donde estaba"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Dómina Hojaveneno").." e interactúa con la "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Serpiente de baba extraña").."."
@@ -42,13 +34,13 @@ L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after k
 L["Dropped by the Rare Elite Vixx the Collector"] = "Se obtiene del élite raro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vixx, el coleccionista")
 L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "Este objeto se puede obtener aunque no aparezca en la tabla de botín de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Gul'dan")
 L["Can drop from every boss in the dungeon"] = "Puede caer de todos los jefes dla mazmorra"
-L["Can only be looted and used by a Druid"] = "Solo puede ser saqueado y usado por un "..WrapTextInColor(ICH_GetClassName(11, "Druid"), ICH_GetClassColor("DRUID"))
+L["Can only be looted and used by a Druid"] = "Solo puede ser saqueado y usado por un "..WrapTextInColor(ICH_GetClassName(11, "Druid"), C_ClassColor.GetClassColor("DRUID"))
 L["Can also be looting by fishing within the instance"] = "También se puede obtener pescando dentro dla mazmorra"
 L["Requires completion of the achievement Relics of a Fallen Empire"] = "Requiere completar el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(17366)) or "Reliquias de un imperio caído")
 L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "Solo se puede coleccionar en la versión clásica de Scholomance. Si no tienes esta instancia desbloqueada, busca una guía en línea antes de intentarlo."
 L["Dropped by the hidden boss Endgineer Omegaplugg"] = "Se obtiene del jefe oculto "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Endgineer Omegaplugg")
 L["It is highly recommended to attempt this encounter with a full party"] = "Se recomienda encarecidamente intentar este encuentro con un grupo completo"
-L["Can only be looted and used by a Demon Hunter"] = "Solo puede ser saqueado y usado por un "..WrapTextInColor(ICH_GetClassName(12, "Demon Hunter"), ICH_GetClassColor("DEMONHUNTER"))
+L["Can only be looted and used by a Demon Hunter"] = "Solo puede ser saqueado y usado por un "..WrapTextInColor(ICH_GetClassName(12, "Demon Hunter"), C_ClassColor.GetClassColor("DEMONHUNTER"))
 L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "Se obtiene de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Don Carlos").." que patrulla parte del camino al sur de Molino Tarren"
 L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "Hay informes de que "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Don Carlos").." desaparece tras matar a algunos jefes; proceda con precaución"
 L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "Se obtiene de los Gasterópodo que se encuentran entre "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Megaera").." y "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Ji Kun")
@@ -62,7 +54,7 @@ L["Dropped by the Rare Elite Gol'than the Malodorous"] = "Se obtiene del élite 
 L["Guides for how to spawn this mob can be found online"] = "Se pueden encontrar guías en línea sobre cómo hacer aparecer a este enemigo"
 L["Dropped by Defias Pirates on the boat towards the end of the dungeon"] = "Se obtiene de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Pirata Defias").." en el barco hacia el final dla mazmorra"
 L["Dropped by The Lanticore, which has a random chance to spawn after killing Orebender Gor'ashan"] = "Se obtiene de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("La Lanticora")..", que tiene una probabilidad aleatoria de aparecer tras matar a "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Controlador de mena Gor'ashan")
-L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"] = "El acceso a la entrada de la banda requiere completar la misión |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(select(1, UnitFactionGroup("player")) == "Horde" and 55799 or 56325) or select(1, UnitFactionGroup("player")) == "Horde" and "Cambia la marea" or "Un cambio en la marea")
+L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"] = "El acceso a la entrada de la banda requiere completar la misión |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(select(1, UnitFactionGroup("player")) == "Horde" and 55799 or 56325) or select(1, UnitFactionGroup("player")) == "Horde" and "Cambia la marea" or "Un cambio en la marea")
 L["Dropped by Sand Elementals in Normal and Heroic, but can be looted from Council of Elders in LFR"] = "Se obtiene de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Elementales de arena").." en Normal y Heroico, pero puede saquearse del "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Consejo de Ancianos").." en LFR"
 L["Obtained by using an Amani Hex Stick on Forest Frogs"] = "Se obtiene al usar un "..(select(2, C_Item.GetItemInfo(33865)) or GREEN_FONT_COLOR:WrapTextInColorCode("[Vara de brujería Amani]")).." en "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Ranas camperas")
 L["Detailed guides for how to obtain this pet can be found online"] = "Se pueden encontrar guías detalladas en línea sobre cómo obtener esta mascota"
@@ -162,6 +154,7 @@ L["Random chance to obtain when opening a Bag of Fishing Treasures"] = "Probabil
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways. Can now be purchased from any Timewalking vendor."] = "Originalmente recompensado por completar el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(19079)) or "Master of the Turbulent Timeways")..". Ahora puede comprarse a cualquier vendedora de Cronaviajes"
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways II. Can now be purchased from any Timewalking vendor."] = "Originalmente recompensado por completar el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(41056)) or "Master of the Turbulent Timeways II")..". Ahora puede comprarse a cualquier vendedora de Cronaviajes"
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways III. Can now be purchased from any Timewalking vendor."] = "Originalmente recompensado por completar el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(41779)) or "Master of the Turbulent Timeways III")..". Ahora puede comprarse a cualquier vendedora de Cronaviajes"
+L["Originally rewarded for completing the achievement Master of the Turbulent Timeways IV. Can now be purchased from any Timewalking vendor."] = "Originalmente recompensado por completar el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61394)) or "Master of the Turbulent Timeways IV")..". Ahora puede comprarse a cualquier vendedora de Cronaviajes"
 L["Special Thanks"] = "Agradecimientos especiales"
 L["Mount"] = "Montura"
 L["Pet"] = "Mascota"
@@ -219,3 +212,11 @@ L["Obtainable for free by earning the achievement Court of Farondis"] = "Obtenib
 L["Obtainable for free by earning the achievement Valarjar"] = "Obtenible gratis al conseguir el logro "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42658)) or "Valarjar")
 L["Upon entering the instance, dungeon difficulty will automatically be set to Normal"] = "Al entrar en la instancia, la dificultad de mazmorra se configurará automáticamente en Normal"
 L["Dropped by Vanessa VanCleef on Heroic difficulty"] = "Se obtiene de "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vanessa VanCleef").." en dificultad Heroico"
+
+--- Sorting & Favorites ---
+L["Favorites"] = "Favoritos"
+L["Click to favorite. Favorites always appear at the top of the list."] = "Haz clic para marcar como favorito. Los favoritos siempre aparecen en la parte superior de la lista."
+L["Click to unfavorite"] = "Haz clic para quitar de favoritos"
+L["Sort ascending"] = "Ordenar de forma ascendente"
+L["Sort descending"] = "Ordenar de forma descendente"
+L["Clear sort"] = "Restablecer orden"

@@ -4,15 +4,7 @@ AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---@class DifficultyButton
---@retail@
 DifficultyButtonMixin = CreateFromMixins(UIPanelButtonMixin, {})
---@end-retail@
---@version-mists@
-DifficultyButtonMixin = {}
-for k,v in pairs(UIButtonFitToTextBehaviorMixin) do
-    DifficultyButtonMixin[k] = v
-end
---@end-version-mists@
 
 function DifficultyButtonMixin:OnEnter()
     if self.difficultyID ~= -1 then

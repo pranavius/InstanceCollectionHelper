@@ -2,14 +2,6 @@ local name = ...
 local L = LibStub("AceLocale-3.0"):NewLocale(name, "zhCN")
 
 if not L then return end
---@retail@
-local ICH_GetQuestName = C_QuestLog.GetTitleForQuestID
-local ICH_GetClassColor = C_ClassColor.GetClassColor
---@end-retail@
---@version-mists@
-local ICH_GetQuestName = C_QuestLog.GetQuestInfo
-local ICH_GetClassColor = GetClassColorObj
---@end-version-mists@
 local function ICH_GetClassName(classID, fallbackValue)
     local className = select(1, GetClassInfo(classID))
     if not className then return fallbackValue end
@@ -24,7 +16,7 @@ L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"]
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "只对"..WrapTextInColor("联盟", PLAYER_FACTION_COLOR_ALLIANCE).."角色掉落，但取得后也会获得"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."版本"
 L["Drops for Horde characters, but obtaining this also gives you the Alliance version"] = "只对"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."角色掉落，但取得后也会获得"..WrapTextInColor("联盟", PLAYER_FACTION_COLOR_ALLIANCE).."版本"
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "进入副本后，团队难度将自动设定为普通"
-L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("塔扎维什").."的故事线才能解锁飞行路径，先从 |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(63976) or "The Al'ley Cat of Oribos").." 开始" -- 注意: "塔札維許" -> "塔扎维什" (简体官方译名)
+L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("塔扎维什").."的故事线才能解锁飞行路径，先从 |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos").." 开始" -- 注意: "塔札維許" -> "塔扎维什" (简体官方译名)
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "拾取 "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Malfunctioning Mechsuit]")).." 后需要完成一段短任务链"
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "在激活困难模式后需要完成该地下城。有关如何进行的指南可在网上找到。"
 L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "独自通关地牢后，返回 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("多米娜·毒刃").." 所在的区域，与 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("奇特的软泥之蛇").."互动。"
@@ -34,13 +26,13 @@ L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after k
 L["Dropped by the Rare Elite Vixx the Collector"] = "掉落自稀有精英"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("收集者维克斯")
 L["This item is obtainable even though it does not appear on the loot table for Gul'dan"] = "该物品可获得，尽管它未显示在"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("古尔丹").."的掉落表中"
 L["Can drop from every boss in the dungeon"] = "可以从副本中的每个首领处掉落"
-L["Can only be looted and used by a Druid"] = "仅限"..WrapTextInColor(ICH_GetClassName(11, "Druid"), ICH_GetClassColor("DRUID")).."拾取并使用"
+L["Can only be looted and used by a Druid"] = "仅限"..WrapTextInColor(ICH_GetClassName(11, "Druid"), C_ClassColor.GetClassColor("DRUID")).."拾取并使用"
 L["Can also be looting by fishing within the instance"] = "也可以通过在副本内钓鱼获得"
 L["Requires completion of the achievement Relics of a Fallen Empire"] = "需要完成成就 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(17366)) or "Relics of a Fallen Empire")
 L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."] = "此物品仅在通灵学院经典版本中可收集。如果尚未解锁此副本，请先在线查找指南。"
 L["Dropped by the hidden boss Endgineer Omegaplugg"] = "掉落自隐藏首领"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("工程师欧米加普格")
 L["It is highly recommended to attempt this encounter with a full party"] = "强烈建议以完整小队尝试此首领战"
-L["Can only be looted and used by a Demon Hunter"] = "仅限"..WrapTextInColor(ICH_GetClassName(12, "Demon Hunter"), ICH_GetClassColor("DEMONHUNTER")).."拾取并使用"
+L["Can only be looted and used by a Demon Hunter"] = "仅限"..WrapTextInColor(ICH_GetClassName(12, "Demon Hunter"), C_ClassColor.GetClassColor("DEMONHUNTER")).."拾取并使用"
 L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"] = "掉落自"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("卡洛斯").."，他在塔倫米爾(塔伦米尔)以南的道路部分巡逻"
 L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"] = "有报告称在击杀一些首领后"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("卡洛斯").."会消失；请谨慎行事"
 L["Drops from Gastropod mobs found between Megaera and Ji-Kun"] = "掉落自位于"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("墨格瑞拉").."与"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("季鹍").."之间的巨型蜗牛怪物"
@@ -54,7 +46,7 @@ L["Dropped by the Rare Elite Gol'than the Malodorous"] = "掉落自稀有精英 
 L["Guides for how to spawn this mob can be found online"] = "可在网上找到如何刷出此怪物的指南"
 L["Dropped by Defias Pirates on the boat towards the end of the dungeon"] = "掉落自副本末尾船上的 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("迪菲亚海盗")
 L["Dropped by The Lanticore, which has a random chance to spawn after killing Orebender Gor'ashan"] = "掉落自 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("兰提克").."，在击杀 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("折铁者高尔山").." 后有几率刷出"
-L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"] = "进入团队副本入口需要完成任务 |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(ICH_GetQuestName(select(1, UnitFactionGroup("player")) == "Horde" and 55799 or 56325) or select(1, UnitFactionGroup("player")) == "Horde" and "The Tide Turns" or "Changing Tides")
+L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"] = "进入团队副本入口需要完成任务 |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(select(1, UnitFactionGroup("player")) == "Horde" and 55799 or 56325) or select(1, UnitFactionGroup("player")) == "Horde" and "The Tide Turns" or "Changing Tides")
 L["Dropped by Sand Elementals in Normal and Heroic, but can be looted from Council of Elders in LFR"] = "在普通和英雄难度由 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("沙砾元素").." 掉落，但在团队查找器(LFR)可从 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("长者议会").." 处拾取"
 L["Obtained by using an Amani Hex Stick on Forest Frogs"] = "通过对 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("森林蛙").." 使用 "..(select(2, C_Item.GetItemInfo(33865)) or GREEN_FONT_COLOR:WrapTextInColorCode("[Amani Hex Stick]")).." 获得"
 L["Detailed guides for how to obtain this pet can be found online"] = "可在网上找到如何获取此宠物的详细指南"
@@ -157,6 +149,7 @@ L["Random chance to obtain when opening a Bag of Fishing Treasures"] = "有几�
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways. Can now be purchased from any Timewalking vendor."] = "最初作为完成成就 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(19079)) or "Master of the Turbulent Timeways").." 的奖励。现在可以从任何时光漫游供应商处购买"
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways II. Can now be purchased from any Timewalking vendor."] = "最初作为完成成就 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(41056)) or "Master of the Turbulent Timeways II").." 的奖励。现在可以从任何时光漫游供应商处购买"
 L["Originally rewarded for completing the achievement Master of the Turbulent Timeways III. Can now be purchased from any Timewalking vendor."] = "最初作为完成成就 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(41779)) or "Master of the Turbulent Timeways III").." 的奖励。现在可以从任何时光漫游供应商处购买"
+L["Originally rewarded for completing the achievement Master of the Turbulent Timeways IV. Can now be purchased from any Timewalking vendor."] = "最初作为完成成就 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(61394)) or "Master of the Turbulent Timeways IV").." 的奖励。现在可以从任何时光漫游供应商处购买"
 L["Special Thanks"] = "特别感谢"
 L["Mount"] = "坐骑"
 L["Pet"] = "宠物"
@@ -214,3 +207,11 @@ L["Obtainable for free by earning the achievement Court of Farondis"] = "可通�
 L["Obtainable for free by earning the achievement Valarjar"] = "可通过获得成就 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(select(2, GetAchievementInfo(42658)) or "Valarjar").."免费获得"
 L["Upon entering the instance, dungeon difficulty will automatically be set to Normal"] = "进入副本后，副本难度将自动设置为普通。"
 L["Dropped by Vanessa VanCleef on Heroic difficulty"] = "由 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("梵妮莎·范克里夫").." 在英雄难度下掉落"
+
+--- Sorting & Favorites ---
+L["Favorites"] = "收藏"
+L["Click to favorite. Favorites always appear at the top of the list."] = "点击以收藏。收藏的物品始终显示在列表顶部。"
+L["Click to unfavorite"] = "点击以取消收藏"
+L["Sort ascending"] = "升序排列"
+L["Sort descending"] = "降序排列"
+L["Clear sort"] = "清除排序"

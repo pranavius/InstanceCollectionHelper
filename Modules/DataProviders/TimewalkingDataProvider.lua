@@ -4,7 +4,7 @@ AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 function AddOn:CreateTimewalkingCache()
-    ---@type table<number, TimewalkingCacheData> Stores necessary pet data in a local cache - attempting to reduce the amount of stutter/freezing when viewing pets
+    ---@type table<number, TimewalkingCacheData>
     self.TimewalkingCache = {}
     local toLoad = #self.TimewalkingItems
 
@@ -13,16 +13,18 @@ function AddOn:CreateTimewalkingCache()
             toLoad = toLoad - 1
             if item.Type == "Mount" then
                 local mountID = C_MountJournal.GetMountFromItem(item.ItemID)
-                local name, spellID = C_MountJournal.GetMountInfoByID(mountID)
-                local iconID = C_Spell.GetSpellInfo(spellID) and C_Spell.GetSpellInfo(spellID).originalIconID
-
-                self.TimewalkingCache[item.ItemID] = {
-                    itemName = C_Item.GetItemNameByID(item.ItemID) or "",
-                    itemID = item.ItemID,
-                    collectibleName = name or item.Name,
-                    iconID = iconID or 134400,
-                    mountID = mountID,
-                }
+                if mountID then
+                    local mountName, spellID = C_MountJournal.GetMountInfoByID(mountID)
+                    local iconID = C_Spell.GetSpellInfo(spellID) and C_Spell.GetSpellInfo(spellID).originalIconID
+    
+                    self.TimewalkingCache[item.ItemID] = {
+                        itemName = C_Item.GetItemNameByID(item.ItemID) or "",
+                        itemID = item.ItemID,
+                        collectibleName = mountName or item.Name,
+                        iconID = iconID or 134400,
+                        mountID = mountID,
+                    }
+                end
             elseif item.Type == "Toy" then
                 local _, toyName, iconID = C_ToyBox.GetToyInfo(item.ItemID)
     
@@ -58,6 +60,7 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     frame.isMount = item.Type == "Mount" or false
     
     local data = AddOn.TimewalkingCache[item.ItemID]
+    if not data then return end
     frame.relevantID = item.Type == "Mount" and data.mountID or data.itemID
     
     local isOwned = AddOn.GetIsVendorItemOwned(data, item.Type)
@@ -97,21 +100,34 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
 
     AddOn:ConfigureWaypointButton(item.VendorName or "", frame, item)
 
-    -- Clear existing OnClick scripts since frames are reused/repurposed
-    frame.NameContainer.ViewButton:SetScript("OnClick", nil)
-    frame.CostContainer.CurrencyButton:SetScript("OnClick", nil)
-
+    -- SetScript replaces, so per-row handlers do not accumulate as the scroll view recycles frames
     if item.Type == "Mount" then
-        frame.NameContainer.ViewButton:HookScript("OnClick", function()
+        frame.NameContainer.ViewButton:SetScript("OnClick", function()
             local spellID = select(2, C_MountJournal.GetMountInfoByID(data.mountID))
             if data.mountID then
                 SetCollectionsJournalShown(true, 1)
                 MountJournal_SetSelected(data.mountID, spellID)
             end
         end)
+    else
+        frame.NameContainer.ViewButton:SetScript("OnClick", nil)
     end
 
-    frame.CostContainer.CurrencyButton:HookScript("OnClick", function()
+    local faveBtn = frame.FavoriteContainer and frame.FavoriteContainer.FavoriteButton
+    if faveBtn then
+        local isFavorite = AddOn:IsFavorite(item)
+        faveBtn:SetNormalAtlas("auctionhouse-icon-favorite"..(isFavorite and ""  or "-off"))
+        faveBtn:SetPushedAtlas("auctionhouse-icon-favorite"..(isFavorite and ""  or "-off"))
+        faveBtn:SetScript("OnClick", function(btn) AddOn:ToggleFavorite(item, btn) end)
+        faveBtn:SetScript("OnEnter", function()
+            GameTooltip:SetOwner(faveBtn, "ANCHOR_RIGHT")
+            GameTooltip:SetText(isFavorite and L["Click to unfavorite"] or L["Click to favorite. Favorites always appear at the top of the list."], 1, 1, 1, 1, true)
+            GameTooltip:Show()
+        end)
+        faveBtn:SetScript("OnLeave", function() GameTooltip:Hide() end)
+    end
+
+    frame.CostContainer.CurrencyButton:SetScript("OnClick", function()
         AddOn:PrintDebugMessage("Timewarped Badges transfer requested")
         if not C_CurrencyInfo.CanTransferCurrency(frame.CostContainer.currencyID) then
             AddOn:PrintChatMessage(L["Unable to transfer Timewarped Badges to this character right now."])

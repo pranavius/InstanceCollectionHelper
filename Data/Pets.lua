@@ -6,7 +6,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 local DungeonDifficulty = AddOn.DungeonDifficulty
 local RaidDifficulty = AddOn.RaidDifficulty
 
----@type Pet[] List of pets available from instances
+---@type Pet[]
 AddOn.Pets = {
     {
         Name = "Abyssius",

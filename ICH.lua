@@ -1,4 +1,5 @@
 local name, AddOn = ...
+
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
@@ -36,11 +37,9 @@ function AddOn:OnInitialize()
     -- Load database
 	self.db = LibStub("AceDB-3.0"):New("ICH_DB", AddOn.DatabaseDefaults, true)
     -- Create local caches for Toys, Pets, and Timewalking Items
-    --@retail@
     self:CreateToyCache()
     self:CreatePetCache()
     self:CreateTimewalkingCache()
-    --@end-retail@
 
     -- Data broker registration for minimap icon
     local broker = LDB:NewDataObject(name, {
@@ -76,6 +75,7 @@ function AddOn:OnInitialize()
             self.db.global.currentTomTomWaypoint = nil
         end
     end)
+    EventRegistry:RegisterCallback("ICHEvent.UpdateListContents", function() self:UpdateListContents() end)
 end
 
 function AddOn:ConfigureOnInit()
@@ -85,15 +85,8 @@ function AddOn:ConfigureOnInit()
     ICHFooter.ScaleContainer.WindowScale:Init(AddOn.db.global.windowScale, 0.8, 1.2, 80)
     ICHFooter.OwnedContainer.Checkbox:SetChecked(self.db.global.showOwned)
     ICHFooter.TomTomContainer.Checkbox:SetChecked(self.db.global.useTomTomPoints)
-    --@retail@
     self:CreateTabSystem()
     self.Tabs:SetTab(self.Tabs.MountsTab)
-    --@end-retail@
-    --@version-mists@
-    self.Tabs = { MountsTab = 1, ToysTab = 2, PetsTab = 3 }
-    self.db.global.selectedTab = self.Tabs.MountsTab
-    self:UpdateListContents()
-    --@end-version-mists@
     -- Set window scale
     self.Container:SetScale(self.db.global.windowScale)
 end
@@ -101,12 +94,6 @@ end
 ---Filters a list of data based on search parameters
 ---@param listData (Mount|Toy|Pet|TimewalkingItem|WowRemixItem|DecorItem)[]
 ---@return (Mount|Toy|Pet|TimewalkingItem|WowRemixItem|DecorItem)[]
----@see Mount
----@see Toy
----@see Pet
----@see TimewalkingItem
----@see WowRemixItem
----@see DecorItem
 function AddOn:FilterListContentsByQuery(listData)
     local filtered = {}
     local query = self.Container.SearchBox:GetText():lower()
@@ -122,20 +109,20 @@ function AddOn:FilterListContentsByQuery(listData)
             itemName = C_MountJournal.GetMountInfoByID(data.ID) or data.Name
         elseif selectedTab == self.Tabs.ToysTab then
             itemName = select(2, C_ToyBox.GetToyInfo(data.ItemID)) or data.Name
-            if not itemName then itemName = "" end
         elseif selectedTab == self.Tabs.PetsTab then
             itemName = C_PetJournal.GetPetInfoByItemID(data.PetItemID) or data.Name
         elseif selectedTab == self.Tabs.TimewalkingVendorTab then
-            itemName = self.TimewalkingCache[data.ItemID].itemName or data.Name
+            local twData = self.TimewalkingCache[data.ItemID]
+            itemName = twData and twData.itemName or data.Name
         elseif selectedTab == self.Tabs.DecorTab then
-            local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.DecorItemID, true)
-            itemName = decor.name
+            local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.DecorItemID)
+            itemName = decor and decor.name or data.Name
         end
         local cleanName = itemName:lower():gsub("|.+|.*", "")
         nameMatches = cleanName:match(query) and true or false
-        instanceMatches = instanceName:lower():match(query) and true or false
+        instanceMatches = instanceName and instanceName:lower():match(query) and true or false
         encounterMatches = encounterName:lower():match(query) and true or false
-        instanceTypeMatches = data.DifficultyIDs and (query == L["raid"] and self:IsInstanceRaid(data) or (query == L["dungeon"] and not self:IsInstanceRaid(data)))
+        instanceTypeMatches = data.DifficultyIDs and ((query == L["raid"] and self:IsInstanceRaid(data)) or (query == L["dungeon"] and not self:IsInstanceRaid(data)))
         
         local difficultyMatches = false
         for _, diffID in ipairs(data.DifficultyIDs or {}) do
@@ -154,14 +141,14 @@ function AddOn:FilterListContentsByQuery(listData)
         end
         
         local searchTagMatches = false
-        for _, tag in ipairs(data.SearchTags) do
+        for _, tag in ipairs(data.SearchTags or {}) do
             if tag:lower() == query then
                 searchTagMatches = true
                 break
             end
         end
         
-        local itemTypeMatches = data.Type and query == L[data.Type]:lower() or false
+        local itemTypeMatches = data.Type and L[data.Type] and query == L[data.Type]:lower() or false
 
         if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches or searchTagMatches or itemTypeMatches then
             tinsert(filtered, data)
@@ -189,8 +176,9 @@ function AddOn:UpdateListContents()
         self.Container.SearchBox.Instructions:SetText(L["Search by mount/instance name, instance type, difficulty, or expansion"])
     elseif selectedTab == self.Tabs.ToysTab then
         for _, toy in ipairs(self.Toys) do
-            local isOwned = self.GetIsOwned(toy.ItemID, "Toy")
-            if not isOwned or (isOwned and self.db.global.showOwned) then
+            local toyExists = C_Item.GetItemInfoInstant(toy.ItemID) ~= nil
+            local isOwned = PlayerHasToy(toy.ItemID)
+            if toyExists and (not isOwned or (isOwned and self.db.global.showOwned)) then
                 tinsert(newData, toy)
             else
                 self:PrintDebugMessage("Failed to curate table data for toy:", toy.Name)
@@ -199,16 +187,16 @@ function AddOn:UpdateListContents()
         self.Container.SearchBox.Instructions:SetText(L["Search by toy/instance name, instance type, difficulty, or expansion"])
     elseif selectedTab == self.Tabs.PetsTab then
         for _, pet in ipairs(self.Pets) do
+            local petExists = C_Item.GetItemInfoInstant(pet.PetItemID) ~= nil
             local petData = self.PetCache[pet.PetItemID]
-            local isOwned = self.GetIsOwned(petData.speciesID, "Pet")
-            if not isOwned or (isOwned and self.db.global.showOwned) then
+            local isOwned = petData and self.GetIsPetOwned(petData.speciesID) or false
+            if petExists and (not isOwned or (isOwned and self.db.global.showOwned)) then
                 tinsert(newData, pet)
             else
                 self:PrintDebugMessage("Failed to curate table data for pet:", pet.Name)
             end
         end
         self.Container.SearchBox.Instructions:SetText(L["Search by pet/instance name, instance type, difficulty, or expansion"])
-    --@retail@
     elseif selectedTab == self.Tabs.TimewalkingVendorTab then
         for _, item in ipairs(self.TimewalkingItems) do
             local itemData = self.TimewalkingCache[item.ItemID]
@@ -234,15 +222,16 @@ function AddOn:UpdateListContents()
         end
     elseif selectedTab == self.Tabs.DecorTab then
         for _, item in ipairs(self.DecorItems) do
-            local isOwned = self.GetIsOwned(item.DecorItemID, "Decor")
-            if not isOwned or (isOwned and self.db.global.showOwned) then
+            local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(item.DecorItemID)
+            local decorExists = C_Item.GetItemInfoInstant(item.DecorItemID) ~= nil
+            local isOwned = decor and decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false ---@diagnostic disable-line: undefined-field
+            if decorExists and (not isOwned or (isOwned and self.db.global.showOwned)) then
                 tinsert(newData, item)
             else
                 self:PrintDebugMessage("Failed to curate table data for decor:", item.Name)
             end
         end
-        -- Update search box instructions somehow
-    --@end-retail@
+        self.Container.SearchBox.Instructions:SetText(L["Search by decor/instance name, instance type, difficulty, or expansion"])
     end
 
     -- Filter list results based on search criteria when present
@@ -250,6 +239,8 @@ function AddOn:UpdateListContents()
         newData = self:FilterListContentsByQuery(newData)
     end
 
+    newData = self:ApplySortAndFavorites(newData)
+    self:RefreshSortIndicators()
     self.ICHDataProvider = CreateDataProvider(newData)
     self.ScrollView:SetDataProvider(self.ICHDataProvider)
 end

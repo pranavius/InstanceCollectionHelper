@@ -1,5 +1,6 @@
+---@type string
 local name, AddOn = ...
----@class InstanceCollectionHelper: AceAddon, AceConsole-3.0, AceEvent-3.0
+---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):NewAddon(name, "AceConsole-3.0", "AceEvent-3.0")
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
@@ -16,14 +17,23 @@ AddOn.DatabaseDefaults = {
         countPetOwnedOnlyIfMaxOwned = false,
         debugMessages = false,
         ownedCosmeticsCache = {},
-        showInstanceHelperWindow = false
+        showInstanceHelperWindow = false,
+        favorites = {
+            Mount = {},
+            Toy = {},
+            Pet = {},
+            Decor = {},
+            TimewalkingMount = {},
+            TimewalkingPet = {},
+            TimewalkingToy = {},
+        },
     }
 }
 
 AddOn.Icon = LibStub("LibDBIcon-1.0")
 
 ---@param difficultyID number ID associated with an instance difficulty
----@return string "The text to be shown on the button that sets the desired instance difficulty"
+---@return string buttonText
 function AddOn:GetDifficultyButtonText(difficultyID)
     local dKey
     for key, dd in pairs(AddOn.DungeonDifficulty) do
@@ -39,6 +49,7 @@ function AddOn:GetDifficultyButtonText(difficultyID)
     elseif dKey == "Normal" then return "N"
     elseif dKey == "Heroic" then return "H"
     elseif dKey == "Mythic" then return "M"
+    elseif dKey == "MythicFlex" then return "MF"
     elseif dKey == "Legacy40" then return "40"
     elseif dKey == "Legacy10" then return "10"
     elseif dKey == "Legacy25" then return "25"
