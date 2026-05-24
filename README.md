@@ -14,6 +14,7 @@ ICH will be continue to be supported in the **Midnight** expansion and beyond fo
 - Search for a collectible by its name, an instance name or type, a difficulty setting, by expansion, or by the zone or parent zone it can be found in
 - Easily keep track of all available collectibles offered by Timewalking vendors along with their costs
 - Multi-column scrollable UI with the ability to "favorite" items and sort by a specific column
+- "Mini-window" that can appear when inside an instance that has collectible you are missing
 - Links to in-game mount journal (mounts only) as well as instance and encounter journal for each item in the list
 - Ability to drop a map pin at the instance entrance to make navigating easier
   - If the **TomTom** AddOn is enabled, an option to use **TomTom** waypoints instead of Blizzard map pins is available
@@ -25,6 +26,8 @@ ICH will be continue to be supported in the **Midnight** expansion and beyond fo
 **Instance Collection Helper** is a list and tracking system for collectibles (Mounts, Toys, Pets, and Decor) available from instances as well as the Timewalking vendor. Each tab shows items relevant to that category along with where (and sometimes how) to get them. Items can be sorted by column header and marked as favorites, with favorites always pinned to the top of the list.
 
 A search bar is available to filter lists by a number of options. When a collectible cannot be obtained on a given difficulty, that difficulty button for the item is disabled, making it easy to see at a glance what you still need and on which difficulty. The Timewalking Vendor tab shows each item alongside its cost.
+
+If desired, you can enable the option to show a mini-window when inside an instance. This window will allow you to see all of the available collectibles from that instance on your current difficulty at a glance. When an item is no longer available due to being locked out, it will appear desaturated (greyed out).
 
 If you see any items missing from a list, please let me know and I'll be happy to add them ASAP.
 
@@ -52,6 +55,7 @@ Aside from the AddOn UI itself, **Instance Collection Helper** provides a few ot
 - `/ich raid <difficulty>`: Set Raid difficulty to the specified value
 - `/ich lraid <difficulty>`: Set Legacy Raid difficulty to the specified value
 - `/ich minimap`: Show or hide the minimap icon for the AddOn
+- `/ich miniwin`: Show a mini-window of available collectibles while inside an instance
 - `/ich about`: Opens a window showing information about the addon, authors and contributors, etc.
 
 ### List Sorting
