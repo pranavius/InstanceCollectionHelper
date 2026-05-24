@@ -21,7 +21,7 @@ function AddOn.HandleSlashCommand(cmd, input)
         end
     elseif input == "debug" then
         AddOn.db.global.debugMessages = not AddOn.db.global.debugMessages
-        AddOn.PrintChatMessage("Debug messages", AddOn.db.global.debugMessages and "enabled" or "disabled")
+        AddOn.PrintChatMessage(L["Debug messages"], AddOn.db.global.debugMessages and L["enabled"] or L["disabled"])
     elseif input == "help" then AceConfigCmd:HandleCommand(cmd, name, "")
     else AceConfigCmd:HandleCommand(cmd, name, input)
     end

@@ -131,7 +131,7 @@ AddOn.SlashOptions = {
             set = function()
                 AddOn.db.global.showInstanceHelperWindow = not AddOn.db.global.showInstanceHelperWindow
                 if ICHInstanceHelper then ICHInstanceHelper:UpdateHelperWindow() end
-                AddOn.PrintChatMessage("Mini-window inside instances has been", AddOn.db.global.showInstanceHelperWindow and "enabled" or "disabled")
+                AddOn.PrintChatMessage(L["Mini-window inside instances has been"], AddOn.db.global.showInstanceHelperWindow and L["enabled"] or L["disabled"])
             end
         },
         minimap = {

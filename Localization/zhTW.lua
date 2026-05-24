@@ -2,6 +2,8 @@ local name = ...
 local L = LibStub("AceLocale-3.0"):NewLocale(name, "zhTW")
 
 if not L then return end
+L["Instance Collection Helper"] = "Instance Collection Helper"
+
 local function ICH_GetClassName(classID, fallbackValue)
     local className = select(1, GetClassInfo(classID))
     if not className then return fallbackValue end
@@ -16,7 +18,6 @@ L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"]
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "只對"..WrapTextInColor("聯盟", PLAYER_FACTION_COLOR_ALLIANCE).."角色掉落，但取得後也會獲得"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."版本"
 L["Drops for Horde characters, but obtaining this also gives you the Alliance version"] = "只對"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."角色掉落，但取得後也會獲得"..WrapTextInColor("聯盟", PLAYER_FACTION_COLOR_ALLIANCE).."版本"
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "進入副本後，團隊難度將自動設定為普通"
-L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("塔札維許").."的故事線才能解鎖飛行路徑，先從 |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos").." 開始"
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "拾取 "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Malfunctioning Mechsuit]")).." 後需要完成一段短任務鏈"
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "在啟動困難模式後需要完成此副本。可在線上找到如何進行的指南。"
 L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "獨自通關地牢後，返回 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("多米娜‧毒刃").." 所在的區域，與 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("稀奇的軟泥腹蛇").."互動。"
@@ -59,6 +60,7 @@ L["LFR"] = "LFR"
 L["Normal"] = "普通"
 L["Heroic"] = "英雄"
 L["Mythic"] = "史詩"
+L["Mythic (Flex)"] = "史詩 (Flex)"
 L["10 player"] = "10人"
 L["10 Player (Heroic)"] = "10人(英雄)"
 L["25 player"] = "25人"
@@ -79,11 +81,14 @@ L["Invalid legacy raid difficulty provided."] = "提供了無效的舊團隊副�
 L["Invalid raid difficulty provided."] = "提供了無效的團隊副本難度。"
 L["Accepted values:"] = "接受的值:"
 L["Show/hide the minimap icon"] = "顯示/隱藏小地圖圖示"
-L["Updated available mount list"] = "更新可用坐騎列表"
 L["Map pin set for"] = "設定地圖標記點在"
 L["Unable to set map pin for"] = "無法設定地圖標記點在"
 L["TomTom waypoint set for"] = "TomTom路徑點設定在"
 L["Unable to set TomTom waypoint for"] = "TomTom路徑點無法設定在"
+L["Debug messages"] = "除錯訊息"
+L["enabled"] = "已啟用"
+L["disabled"] = "已停用"
+L["Mini-window inside instances has been"] = "副本內的小視窗"
 
 --- Slash Commands ---
 L["Display all current instance difficulties"] = "顯示所有當前副本難度"
@@ -103,6 +108,7 @@ L["raid"] = "團隊"
 L["Search by mount/instance name, instance type, difficulty, or expansion"] = "搜尋根據坐騎/副本名稱，副本類型、難度或資料片"
 L["Search by toy/instance name, instance type, difficulty, or expansion"] = "搜尋根據玩具/副本名稱、副本類型、難度或資料片"
 L["Search by pet/instance name, instance type, difficulty, or expansion"] = "依寵物/副本名稱、副本類型、難度或資料片搜尋"
+L["Search by decor/instance name, instance type, difficulty, or expansion"] = "依裝飾/副本名稱、副本類型、難度或資料片搜尋"
 L["Scale"] = "縮放"
 L["Use TomTom waypoints"] = "使用TomTom路徑點"
 L["Show Owned"] = "顯示收集的物品"
@@ -154,6 +160,9 @@ L["Special Thanks"] = "特別鳴謝"
 L["Mount"] = "坐騎"
 L["Pet"] = "寵物"
 L["Toy"] = "玩具"
+L["Mounts"] = "坐騎"
+L["Pets"] = "寵物"
+L["Toys"] = "玩具"
 L["Timewalking Vendor"] = "時空漫遊商人"
 L["Unable to transfer Timewarped Badges to this character right now."] = "目前無法將時光扭曲徽章移到此角色。"
 L["Unable to open the currency transfer menu. Please open it manually or try again."] = "無法打開貨幣轉移選單。請手動打開或再試一次。"

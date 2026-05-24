@@ -2,6 +2,8 @@ local name = ...
 local L = LibStub("AceLocale-3.0"):NewLocale(name, "koKR")
 
 if not L then return end
+L["Instance Collection Helper"] = "Instance Collection Helper"
+
 local function ICH_GetClassName(classID, fallbackValue)
     local className = select(1, GetClassInfo(classID))
     if not className then return fallbackValue end
@@ -24,7 +26,6 @@ L["Upon entering the instance, raid difficulty will automatically be set to Norm
 L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"] = "티탄 수호자에게 말을 걸지 마세요. 그렇지 않으면 이 탈것이 드랍되지 않습니다"
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "정해진 시간 내에 특정 목표를 완료해야 하므로, 시도하기 전에 온라인에서 이 탈것 획득 가이드를 찾아보는 것을 권장합니다"
 L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "입구는 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("울둠").." 또는 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("영원꽃 골짜기").."에 있을 수 있습니다"
-L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "비행 경로를 잠금 해제하려면 타자베시 스토리라인을 완료해야 하며, |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(63976) or "오리보스의 골목 고양이").."부터 시작합니다" -- Currently unused
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = (select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Malfunctioning Mechsuit]")).."을(를) 획득한 후 짧은 퀘스트 체인을 완료해야 합니다"
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "하드 모드를 활성화한 후 던전을 완료해야 합니다. 방법에 대한 가이드는 온라인에서 찾을 수 있습니다."
 L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "혼자서 던전을 클리어한 후 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("도미나 베놈블레이드").."가 있던 지역으로 돌아가 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("호기심 많은 점액 뱀").."과 상호작용하세요."
@@ -67,6 +68,7 @@ L["LFR"] = "공격대 찾기"
 L["Normal"] = "일반"
 L["Heroic"] = "영웅"
 L["Mythic"] = "신화"
+L["Mythic (Flex)"] = "신화 (Flex)"
 L["10 player"] = "10인"
 L["10 Player (Heroic)"] = "10인 (영웅)"
 L["25 player"] = "25인"
@@ -87,11 +89,14 @@ L["Invalid legacy raid difficulty provided."] = "잘못된 고대 공격대 난�
 L["Invalid raid difficulty provided."] = "잘못된 공격대 난이도입니다."
 L["Accepted values:"] = "허용 값:"
 L["Show/hide the minimap icon"] = "미니맵 아이콘 표시/숨기기"
-L["Updated available mount list"] = "사용 가능한 탈것 목록 업데이트됨" -- Currently unused
 L["Map pin set for"] = "지도 핀 설정:"
 L["Unable to set map pin for"] = "지도 핀을 설정할 수 없습니다:"
 L["TomTom waypoint set for"] = "TomTom 경유지 설정:"
 L["Unable to set TomTom waypoint for"] = "TomTom 경유지를 설정할 수 없습니다:"
+L["Debug messages"] = "디버그 메시지"
+L["enabled"] = "활성화됨"
+L["disabled"] = "비활성화됨"
+L["Mini-window inside instances has been"] = "인스턴스 내 미니 창이"
 
 --- Slash Commands ---
 L["Display all current instance difficulties"] = "현재 모든 인스턴스 난이도 표시"
@@ -111,6 +116,7 @@ L["raid"] = "공격대"
 L["Search by mount/instance name, instance type, difficulty, or expansion"] = "탈것/인스턴스 이름, 인스턴스 유형, 난이도 또는 확장팩으로 검색"
 L["Search by toy/instance name, instance type, difficulty, or expansion"] = "장난감/인스턴스 이름, 인스턴스 유형, 난이도 또는 확장팩으로 검색"
 L["Search by pet/instance name, instance type, difficulty, or expansion"] = "동반자/인스턴스 이름, 인스턴스 유형, 난이도 또는 확장팩으로 검색"
+L["Search by decor/instance name, instance type, difficulty, or expansion"] = "장식/인스턴스 이름, 인스턴스 유형, 난이도 또는 확장팩으로 검색"
 L["Scale"] = "크기"
 L["Use TomTom waypoints"] = "TomTom 경유지 사용"
 L["Show Owned"] = "보유 항목 표시"
@@ -159,6 +165,9 @@ L["Special Thanks"] = "특별 감사"
 L["Mount"] = "탈것"
 L["Pet"] = "동반자"
 L["Toy"] = "장난감"
+L["Mounts"] = "탈것"
+L["Pets"] = "동반자"
+L["Toys"] = "장난감"
 L["Timewalking Vendor"] = "시간여행 판매자"
 L["Unable to transfer Timewarped Badges to this character right now."] = "현재 이 캐릭터에게 "..ICH_GetCurrencyName(1166, "Timewarped Badges").."을(를) 전송할 수 없습니다."
 L["Unable to open the currency transfer menu. Please open it manually or try again."] = "화폐 전송 메뉴를 열 수 없습니다. 직접 열거나 다시 시도하세요."

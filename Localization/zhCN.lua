@@ -2,6 +2,8 @@ local name = ...
 local L = LibStub("AceLocale-3.0"):NewLocale(name, "zhCN")
 
 if not L then return end
+L["Instance Collection Helper"] = "Instance Collection Helper"
+
 local function ICH_GetClassName(classID, fallbackValue)
     local className = select(1, GetClassInfo(classID))
     if not className then return fallbackValue end
@@ -16,7 +18,6 @@ L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"]
 L["Drops for Alliance characters, but obtaining this also gives you the Horde version"] = "只对"..WrapTextInColor("联盟", PLAYER_FACTION_COLOR_ALLIANCE).."角色掉落，但取得后也会获得"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."版本"
 L["Drops for Horde characters, but obtaining this also gives you the Alliance version"] = "只对"..WrapTextInColor("部落", PLAYER_FACTION_COLOR_HORDE).."角色掉落，但取得后也会获得"..WrapTextInColor("联盟", PLAYER_FACTION_COLOR_ALLIANCE).."版本"
 L["Upon entering the instance, raid difficulty will automatically be set to Normal"] = "进入副本后，团队难度将自动设定为普通"
-L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "需要完成"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("塔扎维什").."的故事线才能解锁飞行路径，先从 |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(63976) or "The Al'ley Cat of Oribos").." 开始" -- 注意: "塔札維許" -> "塔扎维什" (简体官方译名)
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "拾取 "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Malfunctioning Mechsuit]")).." 后需要完成一段短任务链"
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "在激活困难模式后需要完成该地下城。有关如何进行的指南可在网上找到。"
 L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "独自通关地牢后，返回 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("多米娜·毒刃").." 所在的区域，与 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("奇特的软泥之蛇").."互动。"
@@ -59,6 +60,7 @@ L["LFR"] = "LFR" -- 通常保留缩写
 L["Normal"] = "普通"
 L["Heroic"] = "英雄"
 L["Mythic"] = "史诗"
+L["Mythic (Flex)"] = "史诗 (Flex)"
 L["10 player"] = "10人"
 L["10 Player (Heroic)"] = "10人(英雄)"
 L["25 player"] = "25人"
@@ -79,11 +81,14 @@ L["Invalid legacy raid difficulty provided."] = "提供了无效的旧团队副�
 L["Invalid raid difficulty provided."] = "提供了无效的团队副本难度。"
 L["Accepted values:"] = "接受的值:"
 L["Show/hide the minimap icon"] = "显示/隐藏小地图图标"
-L["Updated available mount list"] = "更新可用坐骑列表"
 L["Map pin set for"] = "设定地图标记点在"
 L["Unable to set map pin for"] = "无法设定地图标记点在"
 L["TomTom waypoint set for"] = "TomTom路径点设定在"
 L["Unable to set TomTom waypoint for"] = "TomTom路径点无法设定在"
+L["Debug messages"] = "调试消息"
+L["enabled"] = "已启用"
+L["disabled"] = "已禁用"
+L["Mini-window inside instances has been"] = "副本内的小窗口"
 
 --- Slash Commands ---
 L["Display all current instance difficulties"] = "显示所有当前副本难度"
@@ -103,6 +108,7 @@ L["raid"] = "团队"
 L["Search by mount/instance name, instance type, difficulty, or expansion"] = "搜索根据坐骑/副本名称，副本类型、难度或资料片"
 L["Search by toy/instance name, instance type, difficulty, or expansion"] = "按玩具/副本名称、副本类型、难度或资料片搜索"
 L["Search by pet/instance name, instance type, difficulty, or expansion"] = "按宠物/副本名称、副本类型、难度或资料片搜索"
+L["Search by decor/instance name, instance type, difficulty, or expansion"] = "按装饰/副本名称、副本类型、难度或资料片搜索"
 L["Scale"] = "缩放"
 L["Use TomTom waypoints"] = "使用TomTom路径点"
 L["Show Owned"] = "显示收集的物品"
@@ -154,6 +160,9 @@ L["Special Thanks"] = "特别感谢"
 L["Mount"] = "坐骑"
 L["Pet"] = "宠物"
 L["Toy"] = "玩具"
+L["Mounts"] = "坐骑"
+L["Pets"] = "宠物"
+L["Toys"] = "玩具"
 L["Timewalking Vendor"] = "时空漫游商人"
 L["Unable to transfer Timewarped Badges to this character right now."] = "当前无法将时空扭曲徽章章转移到此角色。"
 L["Unable to open the currency transfer menu. Please open it manually or try again."] = "无法打开货币转移菜单。请手动打开或重试。"
