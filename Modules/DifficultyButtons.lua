@@ -64,7 +64,7 @@ function AddOn:ShowDifficultyButtons(container, data, isOwned)
             button:GetFontString():SetDrawLayer("OVERLAY")
             button:Enable()
             button.ButtonTint:Show()
-            if isOwned or self.IsEncounterCompleted(data, diffID) or (data.SharedDifficulties and self:IsEncounterCompletedOnSharedDifficulty(data)) then
+            if isOwned or self.IsEncounterCompleted(data, diffID) or self:IsEncounterCompletedOnSharedDifficulty(data) then
                 -- If an encounter has already been completed in the current reset period, disable the button and don't show a tinted overlay
                 -- For legacy raids that share a single lockout for all difficulties, check if the encounter has been completed on any shared difficulties as well
                 button:Disable()

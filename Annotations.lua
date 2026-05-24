@@ -258,6 +258,7 @@
 ---@field IsMount? boolean
 ---@field IconID number
 ---@field Hyperlink string
+---@field CanBeLooted boolean
 
 ---@class ICHInstanceHelper: Frame
 ---@field InstanceName FontString

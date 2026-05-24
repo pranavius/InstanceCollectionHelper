@@ -141,7 +141,7 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     frame.CostContainer.CurrencyButton:SetScript("OnClick", function()
         AddOn:PrintDebugMessage("Timewarped Badges transfer requested")
         if not C_CurrencyInfo.CanTransferCurrency(frame.CostContainer.currencyID) then
-            AddOn:PrintChatMessage(L["Unable to transfer Timewarped Badges to this character right now."])
+            AddOn.PrintChatMessage(L["Unable to transfer Timewarped Badges to this character right now."])
             return
         end
 
@@ -154,7 +154,7 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
             CurrencyTransferMenu:OnCurrencyTransferAmountUpdated(item.Cost)
             CurrencyTransferMenu:FullRefresh()
         else
-            AddOn:PrintChatMessage(L["Unable to open the currency transfer menu. Please open it manually or try again."])
+            AddOn.PrintChatMessage(L["Unable to open the currency transfer menu. Please open it manually or try again."])
         end
     end)
 end

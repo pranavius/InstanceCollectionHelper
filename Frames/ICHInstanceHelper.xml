@@ -11,12 +11,12 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </Texture>
             </Layer>
             <Layer level="OVERLAY">
-                <FontString parentKey="InstanceName" inherits="GameFontHighlightMedium" text="">
+                <FontString parentKey="InstanceName" inherits="GameFontHighlightSmall" text="">
                     <KeyValues>
                         <KeyValue key="layoutIndex" value="1"/>
                     </KeyValues>
                     <Size>
-                        <AbsDimension x="300" y="25"/>
+                        <AbsDimension x="240" y="20"/>
                     </Size>
                 </FontString>
             </Layer>
@@ -25,18 +25,17 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             <Frame name="ICHInstanceHelperItemContainer" parentKey="ItemContainer" inherits="HorizontalLayoutFrame">
                 <KeyValues>
                     <KeyValue key="layoutIndex" value="2"/>
+                    <KeyValue key="align" value="center"/>
                 </KeyValues>
-                <Size>
-                    <AbsDimension x="300" y="200"/>
-                </Size>
             </Frame>
         </Frames>
         <Scripts>
-            <OnDragStart method="OnDragStart"/>
-            <OnDragStop method="OnDragStop"/>
             <OnLoad method="OnLoad"/>
             <OnEvent method="OnEvent"/>
+            <OnShow method="OnShow"/>
             <OnHide method="OnHide"/>
+            <OnDragStart method="OnDragStart"/>
+            <OnDragStop method="OnDragStop"/>
         </Scripts>
     </Frame>
 </Ui>

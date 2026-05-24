@@ -21,7 +21,7 @@ function AddOn.HandleSlashCommand(cmd, input)
         end
     elseif input == "debug" then
         AddOn.db.global.debugMessages = not AddOn.db.global.debugMessages
-        AddOn:PrintChatMessage("Debug messages", AddOn.db.global.debugMessages and "enabled" or "disabled")
+        AddOn.PrintChatMessage("Debug messages", AddOn.db.global.debugMessages and "enabled" or "disabled")
     elseif input == "help" then AceConfigCmd:HandleCommand(cmd, name, "")
     else AceConfigCmd:HandleCommand(cmd, name, input)
     end
@@ -46,7 +46,7 @@ function AddOn:OnInitialize()
         type = "launcher",
         text = name,
         icon = "Interface/AddOns/InstanceCollectionHelper/Media/Logo.png",
-        OnClick = function() if self.Container then self.Container:Show() end end,
+        OnClick = function() self:ToggleWindow() end,
         OnTooltipShow = function(tooltip)
             tooltip:SetText(AddOn.Title)
             -- Update to include "decor"
@@ -64,11 +64,7 @@ function AddOn:OnInitialize()
     
     self:PrintDebugMessage("TomTom is", C_AddOns.IsAddOnLoaded("TomTom") and "enabled" or "disabled")
     self:ConfigureOnInit()
-    self:RegisterEvent("ZONE_CHANGED", function()
-        self:UpdateListContents()
-        ICHInstanceHelper:ClearHelperWindow()
-        ICHInstanceHelper:UpdateHelperWindow()
-    end)
+    self:RegisterEvent("ZONE_CHANGED", function() self:UpdateListContents() end)
     self:RegisterEvent("PLAYER_LOGOUT", function()
         if C_AddOns.IsAddOnLoaded("TomTom") and self.db.global.currentTomTomWaypoint then
             TomTom:RemoveWaypoint(self.db.global.currentTomTomWaypoint)
@@ -169,7 +165,7 @@ function AddOn:UpdateListContents()
             local mountExists = hideOnChar ~= nil and isOwned ~= nil
             if mountExists and not hideOnChar and (not isOwned or (isOwned and self.db.global.showOwned)) then
                 tinsert(newData, mount)
-            else
+            elseif mountExists and not hideOnChar and not isOwned then
                 self:PrintDebugMessage("Failed to curate table data for mount:", mount.Name)
             end
         end
@@ -180,7 +176,7 @@ function AddOn:UpdateListContents()
             local isOwned = PlayerHasToy(toy.ItemID)
             if toyExists and (not isOwned or (isOwned and self.db.global.showOwned)) then
                 tinsert(newData, toy)
-            else
+            elseif toyExists and not isOwned then
                 self:PrintDebugMessage("Failed to curate table data for toy:", toy.Name)
             end
         end
@@ -192,7 +188,7 @@ function AddOn:UpdateListContents()
             local isOwned = petData and self.GetIsPetOwned(petData.speciesID) or false
             if petExists and (not isOwned or (isOwned and self.db.global.showOwned)) then
                 tinsert(newData, pet)
-            else
+            elseif petExists and not isOwned then
                 self:PrintDebugMessage("Failed to curate table data for pet:", pet.Name)
             end
         end
@@ -213,7 +209,7 @@ function AddOn:UpdateListContents()
 
                 if shouldInsert then
                     tinsert(newData, item)
-                else
+                elseif not isOwned then
                     self:PrintDebugMessage("Failed to curate table data for Timewalking item:", item.Name)
                 end
             else
@@ -243,6 +239,12 @@ function AddOn:UpdateListContents()
     self:RefreshSortIndicators()
     self.ICHDataProvider = CreateDataProvider(newData)
     self.ScrollView:SetDataProvider(self.ICHDataProvider)
+end
+
+function AddOn:ToggleWindow()
+    if self.Container and self.Container:IsShown() then self.Container:Hide()
+    elseif self.Container then self.Container:Show()
+    end
 end
 
 -- AddOn Compartment Functions

@@ -22,14 +22,14 @@ end
 
 ---Prints a message to the chat window prefixed by the AddOn name
 ---@param ... any Arguments to be printed to the chat window
-function AddOn:PrintChatMessage(...)
+function AddOn.PrintChatMessage(...)
     print(HEIRLOOM_BLUE_COLOR:WrapTextInColorCode("Instance Collection Helper:"), ...)
 end
 
 ---Prints a debugging message to the chat window prefixed by the AddOn name
 ---@param ... any Arguments to be printed as part of the debug message
 function AddOn:PrintDebugMessage(...)
-    if self.db and self.db.global.debugMessages then self:PrintChatMessage(LEGENDARY_ORANGE_COLOR:WrapTextInColorCode("[Debug]"), ...) end
+    if self.db and self.db.global.debugMessages then self.PrintChatMessage(LEGENDARY_ORANGE_COLOR:WrapTextInColorCode("[Debug]"), ...) end
 end
 
 ---Returns the difficulty text that corresponds to the given `difficultyID`
@@ -66,7 +66,7 @@ function AddOn:SetInstanceDifficulty(difficultyID)
     for _, id in pairs(self.DungeonDifficulty) do
         if difficultyID == id then
             if GetDungeonDifficultyID() == difficultyID then
-                self:PrintChatMessage(L["Dungeon Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
+                self.PrintChatMessage(L["Dungeon Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
             else
                 SetDungeonDifficultyID(difficultyID)
             end
@@ -77,13 +77,13 @@ function AddOn:SetInstanceDifficulty(difficultyID)
     -- Raid difficulty ID less than 10 indicates legacy raid
     if difficultyID < 10 then
         if GetLegacyRaidDifficultyID() == difficultyID then
-            self:PrintChatMessage(L["Legacy Raid Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
+            self.PrintChatMessage(L["Legacy Raid Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
         else
             SetLegacyRaidDifficultyID(difficultyID)
         end
     else
         if GetRaidDifficultyID() == difficultyID then
-            self:PrintChatMessage(L["Raid Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
+            self.PrintChatMessage(L["Raid Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
         else
             SetRaidDifficultyID(difficultyID)
         end
@@ -136,7 +136,12 @@ function AddOn.IsEncounterCompleted(data, difficultyID)
         local _, _, _, diff, isLocked, _, _, _, _, _, numEncounters, _, _, mapID = GetSavedInstanceInfo(i)
         if isLocked and diff == difficultyID then
             if mapID == data.MapID then
-                if not encounterName then return isLocked
+                if not encounterName then
+                    for idx = 1, numEncounters do
+                        local _, _, isKilled = GetSavedInstanceEncounterInfo(i, idx)
+                        if not isKilled then return false end
+                    end
+                    return true
                 else
                     for idx = 1, numEncounters do
                         local bossName, _, isKilled = GetSavedInstanceEncounterInfo(i, idx)
@@ -153,6 +158,8 @@ end
 ---@param data Mount|Toy|Pet|DecorItem
 ---@return boolean
 function AddOn:IsEncounterCompletedOnSharedDifficulty(data)
+    if not data.SharedDifficulties then return false end
+    
     local isCompleted = false
     for shared, _ in pairs(data.SharedDifficulties) do
         if self.IsEncounterCompleted(data, shared) then isCompleted = true break end
