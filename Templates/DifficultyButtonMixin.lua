@@ -31,7 +31,7 @@ function DifficultyButtonMixin:OnClick()
             AddOn:SetInstanceDifficulty(self.difficultyID)
         else
             local lfrMessage = DARKYELLOW_FONT_COLOR:WrapTextInColorCode(L["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."])
-            AddOn:PrintChatMessage(lfrMessage)
+            AddOn.PrintChatMessage(lfrMessage)
         end
     end
 end

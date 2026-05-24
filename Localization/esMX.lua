@@ -2,6 +2,8 @@ local name = ...
 local L = LibStub("AceLocale-3.0"):NewLocale(name, "esMX")
 
 if not L then return end
+L["Instance Collection Helper"] = "Instance Collection Helper"
+
 local function ICH_GetClassName(classID, fallbackValue)
     local className = select(1, GetClassInfo(classID))
     if not className then return fallbackValue end
@@ -24,7 +26,6 @@ L["Upon entering the instance, raid difficulty will automatically be set to Norm
 L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"] = "No hables con ninguno de los Guardianes Titanes, de lo contrario esta montura no aparecerá como botín"
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "Requiere completar ciertos objetivos dentro de un tiempo determinado, por lo que se recomienda buscar una guía en línea para obtener esta montura antes de intentarlo"
 L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "La entrada puede estar en "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Uldum").." o en "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Valle de la Flor Eterna")
-L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"] = "Requiere completar la historia de Tazavesh para desbloquear la ruta de vuelo, comenzando con |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(63976) or "El gato cajellero de Oribos") -- Currently unused
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "Requiere completar una breve cadena de misiones después de saquear "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Mecatraje averiado]"))
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "Requiere completar el calabozo después de activar el modo difícil. Se pueden encontrar guías en línea sobre cómo hacerlo."
 L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Completa la mazmorra en solitario, luego regresa al área donde estaba"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Dómina Hojaveneno").." e interactúa con la "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Serpiente de baba extraña").."."
@@ -67,6 +68,7 @@ L["LFR"] = "LFR"
 L["Normal"] = "Normal"
 L["Heroic"] = "Heroico"
 L["Mythic"] = "Mítico"
+L["Mythic (Flex)"] = "Mítico (Flex)"
 L["10 player"] = "10 jugadores"
 L["10 Player (Heroic)"] = "10 jugadores (Heroico)"
 L["25 player"] = "25 jugadores"
@@ -87,11 +89,14 @@ L["Invalid legacy raid difficulty provided."] = "Se proporcionó una dificultad 
 L["Invalid raid difficulty provided."] = "Se proporcionó una dificultad de banda inválida."
 L["Accepted values:"] = "Valores aceptados:"
 L["Show/hide the minimap icon"] = "Mostrar/ocultar el icono del minimapa"
-L["Updated available mount list"] = "Lista de monturas disponibles actualizada" -- Currently unused
 L["Map pin set for"] = "Un marcador de mapa establecida para"
 L["Unable to set map pin for"] = "No se puede establecer un marcador de mapa para"
 L["TomTom waypoint set for"] = "Waypoint de TomTom establecida para"
 L["Unable to set TomTom waypoint for"] = "No se puede establecer un waypoint de TomTom para"
+L["Debug messages"] = "Mensajes de depuración"
+L["enabled"] = "activado"
+L["disabled"] = "desactivado"
+L["Mini-window inside instances has been"] = "La mini-ventana dentro de las instancias ha sido"
 
 --- Slash Commands ---
 L["Display all current instance difficulties"] = "Mostrar todas las dificultades actuales de la instancia"
@@ -111,6 +116,7 @@ L["raid"] = "banda"
 L["Search by mount/instance name, instance type, difficulty, or expansion"] = "Buscar por nombre de montura/instancia, tipo de instancia, dificultad o expansión"
 L["Search by toy/instance name, instance type, difficulty, or expansion"] = "Buscar por nombre de juguete/instancia, tipo de instancia, dificultad o expansión"
 L["Search by pet/instance name, instance type, difficulty, or expansion"] = "Buscar por nombre de mascota/instancia, tipo de instancia, dificultad o expansión"
+L["Search by decor/instance name, instance type, difficulty, or expansion"] = "Buscar por nombre de adorno/instancia, tipo de instancia, dificultad o expansión"
 L["Scale"] = "Escala"
 L["Use TomTom waypoints"] = "Usar waypoints de TomTom"
 L["Show Owned"] = "Mostrar artículos propios"
@@ -159,6 +165,9 @@ L["Special Thanks"] = "Agradecimientos especiales"
 L["Mount"] = "Montura"
 L["Pet"] = "Mascota"
 L["Toy"] = "Juguete"
+L["Mounts"] = "Monturas"
+L["Pets"] = "Mascotas"
+L["Toys"] = "Juguetes"
 L["Timewalking Vendor"] = "Cronoviajes"
 L["Unable to transfer Timewarped Badges to this character right now."] = "No se pueden transferir las "..ICH_GetCurrencyName(1166, "Timewarped Badges").." a este personaje en este momento."
 L["Unable to open the currency transfer menu. Please open it manually or try again."] = "No se pudo abrir el menú de transferencia de divisa. Ábrelo manualmente o inténtalo de nuevo."

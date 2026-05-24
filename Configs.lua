@@ -17,6 +17,7 @@ AddOn.DatabaseDefaults = {
         countPetOwnedOnlyIfMaxOwned = false,
         debugMessages = false,
         ownedCosmeticsCache = {},
+        showInstanceHelperWindow = false,
         favorites = {
             Mount = {},
             Toy = {},
@@ -72,7 +73,7 @@ AddOn.SlashOptions = {
             desc = L["Display all current instance difficulties"],
             order = counter(),
             func = function()
-                AddOn:PrintChatMessage(L["Current Instance Difficulties"])
+                AddOn.PrintChatMessage(L["Current Instance Difficulties"])
                 print(L["Dungeon Difficulty:"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(AddOn:GetInstanceDifficultyText(GetDungeonDifficultyID())))
                 print(L["Legacy Raid Difficulty:"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(AddOn:GetInstanceDifficultyText(GetLegacyRaidDifficultyID())))
                 print(L["Raid Difficulty:"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(AddOn:GetInstanceDifficultyText(GetRaidDifficultyID())))
@@ -88,7 +89,7 @@ AddOn.SlashOptions = {
                 elseif tostring(difficulty):lower() == "hero" then AddOn:SetInstanceDifficulty(AddOn.DungeonDifficulty.Heroic)
                 elseif tostring(difficulty):lower() == "myth" then AddOn:SetInstanceDifficulty(AddOn.DungeonDifficulty.Mythic)
                 else
-                    AddOn:PrintChatMessage(ERROR_COLOR:WrapTextInColorCode(L["Invalid dungeon difficulty provided."].."\n"..L["Accepted values:"]), WHITE_FONT_COLOR:WrapTextInColorCode("norm, hero, myth"))
+                    AddOn.PrintChatMessage(ERROR_COLOR:WrapTextInColorCode(L["Invalid dungeon difficulty provided."].."\n"..L["Accepted values:"]), WHITE_FONT_COLOR:WrapTextInColorCode("norm, hero, myth"))
                 end
             end
         },
@@ -104,7 +105,7 @@ AddOn.SlashOptions = {
                 elseif tostring(difficulty):lower() == "25h" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Legacy25H)
                 elseif tostring(difficulty):lower() == "40" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Legacy40)
                 else
-                    AddOn:PrintChatMessage(ERROR_COLOR:WrapTextInColorCode(L["Invalid legacy raid difficulty provided."].."\n"..L["Accepted values:"]), WHITE_FONT_COLOR:WrapTextInColorCode("10, 25, 10h, 25h, 40"))
+                    AddOn.PrintChatMessage(ERROR_COLOR:WrapTextInColorCode(L["Invalid legacy raid difficulty provided."].."\n"..L["Accepted values:"]), WHITE_FONT_COLOR:WrapTextInColorCode("10, 25, 10h, 25h, 40"))
                 end
             end
         },
@@ -118,8 +119,19 @@ AddOn.SlashOptions = {
                 elseif tostring(difficulty):lower() == "hero" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Heroic)
                 elseif tostring(difficulty):lower() == "myth" then AddOn:SetInstanceDifficulty(AddOn.RaidDifficulty.Mythic)
                 else
-                    AddOn:PrintChatMessage(ERROR_COLOR:WrapTextInColorCode(L["Invalid raid difficulty provided."].."\n"..L["Accepted values:"]), WHITE_FONT_COLOR:WrapTextInColorCode("norm, hero, myth"))
+                    AddOn.PrintChatMessage(ERROR_COLOR:WrapTextInColorCode(L["Invalid raid difficulty provided."].."\n"..L["Accepted values:"]), WHITE_FONT_COLOR:WrapTextInColorCode("norm, hero, myth"))
                 end
+            end
+        },
+        mini = {
+            type = "toggle",
+            name = "mini",
+            desc = L["Show a mini-window of available collectibles while inside an instance"],
+            order = counter(),
+            set = function()
+                AddOn.db.global.showInstanceHelperWindow = not AddOn.db.global.showInstanceHelperWindow
+                if ICHInstanceHelper then ICHInstanceHelper:UpdateHelperWindow() end
+                AddOn.PrintChatMessage(L["Mini-window inside instances has been"], AddOn.db.global.showInstanceHelperWindow and L["enabled"] or L["disabled"])
             end
         },
         minimap = {

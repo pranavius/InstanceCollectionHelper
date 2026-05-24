@@ -647,7 +647,6 @@ AddOn.Pets = {
         AreaPoiID = 2395,
         EncounterID = 2436,
         DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
-        -- Commenting the below note and waypoint due to alternate entrace available in K'aresh. Unsure if this will be a permanent entrance or not as of now
         -- Notes = L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"],
         -- Waypoint = { mapID = 1671, x = 0.602, y = 0.676 },
         Waypoint = { mapID = 2371, x = 0.636, y = 0.702 },

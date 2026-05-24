@@ -25,12 +25,11 @@ local function SetBlizzardMapPin(data)
     if data.InstanceID == 1176 then
         C_SuperTrack.SetSuperTrackedMapPin(0, faction == "Horde" and 6012 or 6013)
         return true
-    -- Commenting the below condition due to alternate Tazavesh entrace available in K'aresh. Unsure if this will be a permanent entrance or not as of now
     -- elseif data.InstanceID == 1194 then
     --     -- Special case for Tazavesh (AreaPoiID is a flight path from Oribos)
     --     C_SuperTrack.SetSuperTrackedMapPin(2, data.AreaPoiID)
     --     return true
-    -- Sepecial cases for Timewalking vendors for Classic, Cata, and WoD (different vendors based on faction)
+    -- Special cases for Timewalking vendors for Classic, Cata, and WoD (different vendors based on faction)
     elseif data.Expansion == "Classic" then
         C_SuperTrack.SetSuperTrackedMapPin(0, faction == "Horde" and 8191 or 8190)
         return true
@@ -72,7 +71,6 @@ local function SetTomTomWaypoint(data, destinationName)
         if faction == "Horde" then AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(862, 0.543, 0.299, ttOptions)
         else AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(1161, 0.704, .356, ttOptions) end
         return true
-    -- Commenting the below condition due to alternate Tazavesh entrace available in K'aresh. Unsure if this will be a permanent entrance or not as of now
     -- elseif data.InstanceID == 1194 then
     --     -- Change the name of the TomTom waypoint when set for Tazavesh
     --     ttOptions.title = "Oribos -> "..destinationName
@@ -92,10 +90,10 @@ local function HandleWaypointClick(data, destinationName)
     local isPinSet = false
     if ShouldUseTomTom(data) then
         isPinSet = SetTomTomWaypoint(data, destinationName)
-        AddOn:PrintChatMessage(isPinSet and L["TomTom waypoint set for"] or L["Unable to set TomTom waypoint for"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(destinationName))
+        AddOn.PrintChatMessage(isPinSet and L["TomTom waypoint set for"] or L["Unable to set TomTom waypoint for"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(destinationName))
     elseif data.AreaPoiID or data.InstanceID == 1176 or data.Expansion then
         isPinSet = SetBlizzardMapPin(data)
-        AddOn:PrintChatMessage(isPinSet and L["Map pin set for"] or L["Unable to set map pin for"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(destinationName))
+        AddOn.PrintChatMessage(isPinSet and L["Map pin set for"] or L["Unable to set map pin for"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(destinationName))
     end
 end
 
@@ -104,11 +102,9 @@ end
 ---@param frame ICHListItem|ICHLemixListItem
 ---@param data Mount|Toy|Pet|DecorItem|TimewalkingItem|WowRemixItem
 function AddOn:ConfigureWaypointButton(destinationName, frame, data)
-    -- Commenting the below condition due to alternate Tazavesh entrace available in K'aresh. Unsure if this will be a permanent entrance or not as of now
     -- if data.InstanceID == 1176 or data.InstanceID == 1194 or data.AreaPoiID or data.Waypoint then
     if data.InstanceID == 1176 or data.Expansion or data.AreaPoiID or data.Waypoint then
         local isPinSettable = false
-        -- Might need to include instance ID 1194 (Tazavesh) in the last and condition after Patch 11.2 if the K'aresh entrance is removed
         if ShouldUseTomTom(data) then
             frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/AddOns/TomTom/Images/GoldGreenDotNew")
             frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/AddOns/TomTom/Images/GoldPurpleDotNew")

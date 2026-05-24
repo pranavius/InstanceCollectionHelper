@@ -3,6 +3,9 @@ local name, AddOn = ...
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
+---Determines whether the provided Lua table is a list/array (1-based indexing)
+---@param tbl table The table to be checked
+---@return boolean `true` if the table is a list, `false` otherwise
 local function isList(tbl)
     local pairsKeysCount = 0
     for _, _ in pairs(tbl) do
@@ -19,14 +22,14 @@ end
 
 ---Prints a message to the chat window prefixed by the AddOn name
 ---@param ... any Arguments to be printed to the chat window
-function AddOn:PrintChatMessage(...)
+function AddOn.PrintChatMessage(...)
     print(HEIRLOOM_BLUE_COLOR:WrapTextInColorCode("Instance Collection Helper:"), ...)
 end
 
 ---Prints a debugging message to the chat window prefixed by the AddOn name
 ---@param ... any Arguments to be printed as part of the debug message
 function AddOn:PrintDebugMessage(...)
-    if self.db and self.db.global.debugMessages then self:PrintChatMessage(LEGENDARY_ORANGE_COLOR:WrapTextInColorCode("[Debug]"), ...) end
+    if self.db and self.db.global.debugMessages then self.PrintChatMessage(LEGENDARY_ORANGE_COLOR:WrapTextInColorCode("[Debug]"), ...) end
 end
 
 ---Returns the difficulty text that corresponds to the given `difficultyID`
@@ -63,7 +66,7 @@ function AddOn:SetInstanceDifficulty(difficultyID)
     for _, id in pairs(self.DungeonDifficulty) do
         if difficultyID == id then
             if GetDungeonDifficultyID() == difficultyID then
-                self:PrintChatMessage(L["Dungeon Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
+                self.PrintChatMessage(L["Dungeon Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
             else
                 SetDungeonDifficultyID(difficultyID)
             end
@@ -74,20 +77,20 @@ function AddOn:SetInstanceDifficulty(difficultyID)
     -- Raid difficulty ID less than 10 indicates legacy raid
     if difficultyID < 10 then
         if GetLegacyRaidDifficultyID() == difficultyID then
-            self:PrintChatMessage(L["Legacy Raid Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
+            self.PrintChatMessage(L["Legacy Raid Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
         else
             SetLegacyRaidDifficultyID(difficultyID)
         end
     else
         if GetRaidDifficultyID() == difficultyID then
-            self:PrintChatMessage(L["Raid Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
+            self.PrintChatMessage(L["Raid Difficulty is already set to"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(self:GetInstanceDifficultyText(difficultyID)))
         else
             SetRaidDifficultyID(difficultyID)
         end
     end
 end
 
---- Determines if text length exceeds defined width and truncates with ellipsis when this happens
+---Determines if text length exceeds defined width and truncates with ellipsis when this happens
 ---@param fs FontString FontString containing the text
 ---@param text string The text to check for truncation
 function AddOn:SetTruncatedText(fs, text)
@@ -133,7 +136,12 @@ function AddOn.IsEncounterCompleted(data, difficultyID)
         local _, _, _, diff, isLocked, _, _, _, _, _, numEncounters, _, _, mapID = GetSavedInstanceInfo(i)
         if isLocked and diff == difficultyID then
             if mapID == data.MapID then
-                if not encounterName then return isLocked
+                if not encounterName then
+                    for idx = 1, numEncounters do
+                        local _, _, isKilled = GetSavedInstanceEncounterInfo(i, idx)
+                        if not isKilled then return false end
+                    end
+                    return true
                 else
                     for idx = 1, numEncounters do
                         local bossName, _, isKilled = GetSavedInstanceEncounterInfo(i, idx)
@@ -147,10 +155,11 @@ function AddOn.IsEncounterCompleted(data, difficultyID)
     return false
 end
 
-
 ---@param data Mount|Toy|Pet|DecorItem
 ---@return boolean
 function AddOn:IsEncounterCompletedOnSharedDifficulty(data)
+    if not data.SharedDifficulties then return false end
+    
     local isCompleted = false
     for shared, _ in pairs(data.SharedDifficulties) do
         if self.IsEncounterCompleted(data, shared) then isCompleted = true break end
@@ -181,7 +190,7 @@ function AddOn.AppendMapSearchTags(data)
     data.SearchTags = tags
 end
 
----Updates the AddOn database list of owned cosmetics, fetching item data when needed but not available
+---Updates the AddOn database of owned cosmetics, fetching item data when needed but not available
 ---@param itemID number
 function AddOn:UpdateOwnedCosmeticsCacheByItemID(itemID)
     local function getTooltipAndUpdateOwnedCosmeticsCache()
@@ -223,10 +232,11 @@ function AddOn.ColorOwnedPetCountText(owned, limit)
     end
 end
 
----@param data TimewalkingCacheData|LemixCacheData
----@param type "Mount"|"Toy"|"Pet"|"Cosmetic"|"Decor"
----@return boolean isOwned
-function AddOn.GetIsVendorItemOwned(data, type)
+---Determines whether a collectible purchasable from a vendor is owned or not
+---@param data TimewalkingCacheData|LemixCacheData Vendor item data from ICH cache
+---@param type "Mount"|"Toy"|"Pet"|"Cosmetic"|"Decor" Type of the collectible, used to determine the method for checking ownership status
+---@return boolean
+function AddOn.IsVendorItemOwned(data, type)
     local isOwned = false
     if type == "Mount" then
         isOwned = select(11, C_MountJournal.GetMountInfoByID(data.mountID))
@@ -238,6 +248,29 @@ function AddOn.GetIsVendorItemOwned(data, type)
         isOwned = PlayerHasToy(data.itemID)
     elseif type == "Decor" then
         local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.itemID)
+        if decor then
+            isOwned = decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false ---@diagnostic disable-line: undefined-field
+        end
+    end
+
+    return isOwned
+end
+
+---Determines whether a collectible is owned or not. *For determining ownership of an item from a vendor, see `IsVendorItemOwned()`*
+---@param id number ID number associated with the collectible. For mounts, this is the mount ID; For pets, this is the species ID; For other collectibles, this is the item ID.
+---@param type "Mount"|"Toy"|"Pet"|"Decor" Type of the collectible, used to determine the method for checking ownership status
+---@return boolean
+function AddOn.IsCollectibleOwned(id, type)
+    local isOwned = false
+    if type == "Mount" then
+        isOwned = select(11, C_MountJournal.GetMountInfoByID(id))
+    elseif type == "Pet" then
+        local owned, limit = AddOn.GetPetOwnedAndLimitCount(id)
+        isOwned = owned > 0 or (AddOn.db.global.countPetOwnedOnlyIfMaxOwned and owned == limit)
+    elseif type == "Toy" then
+        isOwned = PlayerHasToy(id)
+    elseif type == "Decor" then
+        local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(id)
         if decor then
             isOwned = decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false ---@diagnostic disable-line: undefined-field
         end

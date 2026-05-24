@@ -254,6 +254,16 @@
 ---@field OwnedContainer OwnedContainer
 ---@field TomTomContainer TomTomContainer
 
+---@class ICHHelperItem
+---@field IsMount? boolean
+---@field IconID number
+---@field Hyperlink string
+---@field CanBeLooted boolean
+
+---@class ICHInstanceHelper: Frame
+---@field InstanceName FontString
+---@field ItemContainer Frame
+
 ---@class ICHAbout: Frame
 ---@field Bg Texture
 ---@field Name FontString
