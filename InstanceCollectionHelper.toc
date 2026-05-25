@@ -1,7 +1,7 @@
 ## Interface: 120007, 120005
 ## Title: Instance Collection Helper
 ## Notes: Helps find and set the instance difficulty needed to obtain collectible items
-## IconTexture: Interface\AddOns\InstanceCollectionHelper\Media\Logo.png
+## IconTexture: Interface\AddOns\InstanceCollectionHelper\Media\Logo
 ## Author: @project-author@
 ## Version: @project-version@
 ## SavedVariables: ICH_DB
@@ -66,6 +66,8 @@ Frames\ICHFooterMixin.lua
 Frames\ICHFooter.xml
 Frames\ICHInstanceHelperMixin.lua
 Frames\ICHInstanceHelper.xml
+Frames\ICHSettingsMixin.lua
+Frames\ICHSettings.xml
 Frames\ICHAboutMixin.lua
 Frames\ICHAbout.xml
 

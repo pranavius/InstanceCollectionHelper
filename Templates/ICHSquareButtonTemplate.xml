@@ -6,7 +6,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
         </KeyValues>
         <Size x="20" y="20"/>
         <NormalTexture />
-        <HighlightTexture />
+        <HighlightTexture atlas="ui-frame-cypherchoice-portrait-fx-back-white" alpha="0.5" alphaMode="ADD" setAllPoints="true"/>
         <Scripts>
             <OnEnter method="OnEnter"/>
             <OnLeave method="OnLeave"/>

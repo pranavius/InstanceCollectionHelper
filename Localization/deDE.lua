@@ -105,8 +105,10 @@ L["Set legacy raid difficulty."] = "Klassiche Schlachtzugsschwierigkeit festlege
 L["Set raid difficulty."] = "Schlachtzugsschwierigkeit festlegen."
 
 --- Icon Tooltip --- 
-L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"] = "Verfolge verfügbare Reittiere, Spielzeuge und Haustiere in Instanzen und lege einfach die erforderliche Instanzschwierigkeit fest."
-L["Type \"/ich help\" in the chat window for available slash commands"] = "Gib \"/ich help\" im Chatfenster ein, um verfügbare Befehle zu sehen."
+L["Track available collectibles from instances and easily set required instance difficulty"] = "Verfolge verfügbare Sammelgegenstände in Instanzen und lege einfach die erforderliche Instanzschwierigkeit fest."
+L["Click to open the AddOn window"] = GREEN_FONT_COLOR:WrapTextInColorCode("Klicken").." zum Öffnen des AddOn-Fensters"
+L["Right-click to open the settings window"] = GREEN_FONT_COLOR:WrapTextInColorCode("Rechtsklicken").." zum Öffnen des Einstellungsfensters"
+L["Type /ich help in the chat window for available slash commands"] = "Gib "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("/ich help").." im Chatfenster ein, um verfügbare Befehle zu sehen."
 
 -- Special Search Terms --
 L["dungeon"] = "dungeon"

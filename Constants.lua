@@ -11,6 +11,7 @@ AddOn.defaultSortState = { column = "Name", direction = "asc" }
 AddOn.DungeonDifficulty = {
     Normal = 1,
     Heroic = 2,
+    MythicPlus = 8,
     Mythic = 23
 }
 

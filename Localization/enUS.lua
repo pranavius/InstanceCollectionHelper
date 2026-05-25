@@ -105,8 +105,10 @@ L["Set legacy raid difficulty."] = "Set legacy raid difficulty."
 L["Set raid difficulty."] = "Set raid difficulty."
 
 --- Icon Tooltip ---
-L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"] = "Track available mounts, toys, and pets from instances and easily set required instance difficulty"
-L["Type \"/ich help\" in the chat window for available slash commands"] = "Type \"/ich help\" in the chat window for available slash commands"
+L["Track available collectibles from instances and easily set required instance difficulty"] = "Track available collectibles from instances and easily set required instance difficulty"
+L["Click to open the AddOn window"] = GREEN_FONT_COLOR:WrapTextInColorCode("Click").." to open the AddOn window"
+L["Right-click to open the settings window"] = GREEN_FONT_COLOR:WrapTextInColorCode("Right-click").." to open the settings window"
+L["Type /ich help in the chat window for available slash commands"] = "Type "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("/ich help").." in the chat window for available slash commands"
 
 -- Special Search Terms --
 L["dungeon"] = "dungeon"
@@ -144,6 +146,15 @@ L["For example, an arrow pointing towards Throne of Thunder will only appear whe
 L["Set map pin"] = "Set map pin"
 L["Set TomTom waypoint"] = "Set "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("TomTom").." waypoint"
 L["Coming soon"] = "Coming soon"
+
+--- Settings ---
+L["Settings"] = "Settings"
+L["Toggle the settings panel"] = "Toggle the settings panel"
+L["Show minimap icon"] = "Show minimap icon"
+L["Show mini-window in instances"] = "Show mini-window in instances"
+L["Mark pets owned only when you own max amount available"] = "Mark pets owned only when you own max amount available"
+L["Clear"] = "Clear"
+L["Clear All Favorites"] = "Clear All Favorites"
 
 --- About ---
 L["About the AddOn"] = "About the AddOn"

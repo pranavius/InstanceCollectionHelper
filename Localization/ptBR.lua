@@ -105,8 +105,10 @@ L["Set legacy raid difficulty."] = "Definir dificuldade de Raide de Legado."
 L["Set raid difficulty."] = "Definir dificuldade de raide."
 
 --- Icon Tooltip ---
-L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"] = "Rastrear montarias, brinquedos, e mascotes disponíveis de instâncias e definir facilmente a dificuldade requerida da instância"
-L["Type \"/ich help\" in the chat window for available slash commands"] = "Digite \"/ich help\" na janela de chat para comandos disponíveis"
+L["Track available collectibles from instances and easily set required instance difficulty"] = "Rastrear colecionáveis disponíveis de instâncias e definir facilmente a dificuldade requerida da instância"
+L["Click to open the AddOn window"] = GREEN_FONT_COLOR:WrapTextInColorCode("Clique").." para abrir a janela do addon"
+L["Right-click to open the settings window"] = GREEN_FONT_COLOR:WrapTextInColorCode("Clique com o botão direito").." para abrir a janela de configurações"
+L["Type /ich help in the chat window for available slash commands"] = "Digite "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("/ich help").." na janela de chat para comandos disponíveis"
 
 -- Special Search Terms --
 L["dungeon"] = "masmorra"

@@ -5,11 +5,17 @@ Release versions suffixed with a lowercase letter are considered unofficial _alp
 
 ## Changes
 **v18**
-- **Major update:** Added the ability to enable **Mini-Window**, a small, movable floating frame that automatically appears when entering a dungeon or raid instance
+- **Major update:** Added a standalone **Settings** panel, accessible by right-clicking the minimap icon or the `/ich config` command
+  - Provides the ability to clear favorites by category or across all categories in bulk
+- **Major update:** Introducing the **Mini-Window**, a small, movable floating frame that automatically appears when entering a dungeon or raid instance
   - Displays icons for all uncollected mounts, toys, pets, and decor items available at the current difficulty
   - Hovering over any icon displays the full item tooltip
   - Automatically updates when the instance difficulty is changed
   - Automatically hides when no uncollected items remain for the current instance and difficulty
+  - Enable or disable this via settings or the `/ich mini` command (disabled by default)
+- Updated the minimap icon tooltip to more broadly describe the addon's capabilities
+- Updated addon media assets to use TGA images instead of PNGs
+  - **Breaking change** for AddOns that reference the PNG versions of this AddOn's images
 - Updated localization for all supported languages with previously missing entries
 - *Bug Fix:* Corrected lockout detection for collectibles that don't drop from a single boss in an instance
   - Collectibles are now only treated as unavailable once an instance has been fully cleared rather than whenever any saved lockout exists

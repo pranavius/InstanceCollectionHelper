@@ -17,7 +17,8 @@ AddOn.DatabaseDefaults = {
         countPetOwnedOnlyIfMaxOwned = false,
         debugMessages = false,
         ownedCosmeticsCache = {},
-        showInstanceHelperWindow = false,
+        showMiniWindow = false,
+        showMiniWindowInMythicPlus = false,
         favorites = {
             Mount = {},
             Toy = {},
@@ -129,9 +130,9 @@ AddOn.SlashOptions = {
             desc = L["Show a mini-window of available collectibles while inside an instance"],
             order = counter(),
             set = function()
-                AddOn.db.global.showInstanceHelperWindow = not AddOn.db.global.showInstanceHelperWindow
+                AddOn.db.global.showMiniWindow = not AddOn.db.global.showMiniWindow
                 if ICHInstanceHelper then ICHInstanceHelper:UpdateHelperWindow() end
-                AddOn.PrintChatMessage(L["Mini-window inside instances has been"], AddOn.db.global.showInstanceHelperWindow and L["enabled"] or L["disabled"])
+                AddOn.PrintChatMessage(L["Mini-window inside instances has been"], AddOn.db.global.showMiniWindow and L["enabled"] or L["disabled"])
             end
         },
         minimap = {
@@ -146,14 +147,21 @@ AddOn.SlashOptions = {
                 end
             end
         },
+        config = {
+            type = "execute",
+            name = "config",
+            desc = L["Toggle the settings panel"],
+            order = counter(),
+            func = function() AddOn.Settings:ToggleWindow() end
+        },
         about = {
             type = "execute",
             name = "about",
             desc = L["About the AddOn"],
             order = counter(),
             func = function()
-                if AddOn.Container:IsVisible() then AddOn.Container:Hide() end
-                if AddOn.About then AddOn.About:Show() end
+                if AddOn.Container:IsShown() then AddOn.Container:Hide() end
+                AddOn.About:Show()
             end
         }
     }

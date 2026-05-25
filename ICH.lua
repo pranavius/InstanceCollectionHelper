@@ -44,14 +44,19 @@ function AddOn:OnInitialize()
     -- Data broker registration for minimap icon
     local broker = LDB:NewDataObject(name, {
         type = "launcher",
-        text = name,
-        icon = "Interface/AddOns/InstanceCollectionHelper/Media/Logo.png",
-        OnClick = function() self:ToggleWindow() end,
+        label = name,
+        icon = "Interface/AddOns/InstanceCollectionHelper/Media/Logo",
+        OnClick = function(_, btn)
+        if btn == "RightButton" then self.Settings:ToggleWindow()
+        else self:ToggleWindow() end
+        end,
         OnTooltipShow = function(tooltip)
-            tooltip:SetText(AddOn.Title)
-            -- Update to include "decor"
-            tooltip:AddLine(L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"], 1, 1, 1, true)
-            tooltip:AddLine(L["Type \"/ich help\" in the chat window for available slash commands"])
+            tooltip:SetText(self.Title)
+            tooltip:AddLine(L["Track available collectibles from instances and easily set required instance difficulty"], 1, 1, 1, true)
+            tooltip:AddLine(" ")
+            tooltip:AddLine(L["Click to open the AddOn window"], 1, 1, 1, true)
+            tooltip:AddLine(L["Right-click to open the settings window"], 1, 1, 1, true)
+            tooltip:AddLine(L["Type /ich help in the chat window for available slash commands"], 0.67, 0.67, 0.67)
         end
     })
     self.Icon:Register(name, broker, self.db.global.minimap)
@@ -72,6 +77,7 @@ function AddOn:OnInitialize()
         end
     end)
     EventRegistry:RegisterCallback("ICHEvent.UpdateListContents", function() self:UpdateListContents() end)
+    EventRegistry:RegisterCallback("ICHEvent.UpdateSettingsPanel", function() self.Settings:RefreshFavoriteButtons() end)
 end
 
 function AddOn:ConfigureOnInit()
@@ -223,7 +229,7 @@ function AddOn:UpdateListContents()
             local isOwned = decor and decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false ---@diagnostic disable-line: undefined-field
             if decorExists and (not isOwned or (isOwned and self.db.global.showOwned)) then
                 tinsert(newData, item)
-            else
+            elseif decorExists and not isOwned then
                 self:PrintDebugMessage("Failed to curate table data for decor:", item.Name)
             end
         end
@@ -248,16 +254,19 @@ function AddOn:ToggleWindow()
 end
 
 -- AddOn Compartment Functions
-function ICH_AddonCompartmentOnClick()
-    -- Same as typing "/ich" in a chat window
-    AddOn.HandleSlashCommand("ich", "")
+function ICH_AddonCompartmentOnClick(_, btn)
+    if btn == "RightButton" then AddOn.Settings:ToggleWindow()
+    else AddOn:ToggleWindow() end
 end
 
 function ICH_AddonCompartmentOnEnter(_, btn)
     MenuUtil.ShowTooltip(btn, function(tooltip)
         tooltip:SetText(AddOn.Title)
-        tooltip:AddLine(L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"], 1, 1, 1, true)
-        tooltip:AddLine(L["Type \"/ich help\" in the chat window for available slash commands"])
+        tooltip:AddLine(L["Track available collectibles from instances and easily set required instance difficulty"], 1, 1, 1, true)
+        tooltip:AddLine(" ")
+        tooltip:AddLine(L["Click to open the AddOn window"], 1, 1, 1, true)
+        tooltip:AddLine(L["Right-click to open the settings window"], 1, 1, 1, true)
+        tooltip:AddLine(L["Type /ich help in the chat window for available slash commands"], 0.67, 0.67, 0.67)
     end)
 end
 

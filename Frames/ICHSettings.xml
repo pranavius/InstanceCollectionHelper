@@ -1,0 +1,71 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Blizzard_SharedXML/UI.xsd">
+    <Frame name="ICHSettings" parent="UIParent" mixin="ICHSettingsMixin" enableMouse="true" movable="true" frameStrata="DIALOG" registerForDrag="LeftButton" hidden="true">
+        <Size x="400" y="400"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Bg" setAllPoints="true">
+                    <Color color="BLACK_FONT_COLOR"/>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString parentKey="Title" inherits="GameFontHighlightMedium" text="">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" y="-10"/>
+                        <Anchor point="TOPRIGHT" y="-10"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="FavoritesLabel" inherits="GameFontNormal" text="">
+                    <!-- Anchored to last checkbox in mixin -->
+                    <Color color="DARKYELLOW_FONT_COLOR"/>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+            <Button parentKey="Close" inherits="UIPanelCloseButtonDefaultAnchors">
+                <Size x="20" y="20"/>
+                <NormalTexture atlas="common-icon-redx"/>
+                <PushedTexture atlas="common-icon-redx"/>
+            </Button>
+            <CheckButton parentKey="MinimapCheckbox" inherits="UICheckButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.Title" relativePoint="BOTTOMLEFT" x="10" y="-15"/>
+                </Anchors>
+            </CheckButton>
+            <CheckButton parentKey="MiniWindowCheckbox" inherits="UICheckButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.MinimapCheckbox" relativePoint="BOTTOMLEFT" y="-5"/>
+                </Anchors>
+            </CheckButton>
+            <CheckButton parentKey="MiniWindowInMythicPlusCheckbox" inherits="UICheckButtonTemplate">
+                <Size x="25" y="25"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.MiniWindowCheckbox" relativePoint="BOTTOMLEFT" x="20" y="-5"/>
+                </Anchors>
+                <Scripts>
+                    <OnEnable>
+                        local r, g, b = DARKYELLOW_FONT_COLOR:GetRGB()
+                        self.Text:SetTextColor(r, g, b, 1)
+                    </OnEnable>
+                    <OnDisable>
+                        self.Text:SetTextColor(0.67, 0.67, 0.67, 1)
+                    </OnDisable>
+                </Scripts>
+            </CheckButton>
+            <CheckButton parentKey="PetOwnedCheckbox" inherits="UICheckButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.MiniWindowCheckbox" relativePoint="BOTTOMLEFT" y="-35"/>
+                </Anchors>
+            </CheckButton>
+        </Frames>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+            <OnShow method="OnShow"/>
+            <OnDragStart method="OnDragStart"/>
+            <OnDragStop method="OnDragStop"/>
+        </Scripts>
+    </Frame>
+</Ui>

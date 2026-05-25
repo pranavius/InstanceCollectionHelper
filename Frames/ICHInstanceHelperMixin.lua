@@ -54,7 +54,7 @@ end
 
 function ICHInstanceHelperMixin:UpdateHelperWindow()
     local isInInstance, instanceType = IsInInstance()
-    if AddOn.db.global.showInstanceHelperWindow and isInInstance and (instanceType == "party" or instanceType == "raid") then
+    if AddOn.db.global.showMiniWindow and isInInstance and (instanceType == "party" or instanceType == "raid") then
         AddOn:PrintDebugMessage("Showing Instance Helper window")
         local instanceName, _, difficultyID, difficultyName, _, _, _, mapID = GetInstanceInfo()
         if not isInstanceInfoValid(instanceName, difficultyID, difficultyName, mapID) then
@@ -62,6 +62,12 @@ function ICHInstanceHelperMixin:UpdateHelperWindow()
         end
 
         self:ClearHelperWindow()
+
+        -- Check if option to show window in M+ is enabled or not.
+        if AddOn.db.global.showMiniWindowInMythicPlus and difficultyID == AddOn.DungeonDifficulty.MythicPlus then
+            difficultyID = AddOn.DungeonDifficulty.Mythic
+            AddOn:PrintDebugMessage("Showing mini-window in M+ is enabled. Overwriting difficultyID to", AddOn.DungeonDifficulty.Mythic)
+        end
 
         local collectibles = self.GetInstanceCollectibles(mapID, difficultyID)
         if #collectibles == 0 then
@@ -97,7 +103,7 @@ function ICHInstanceHelperMixin:UpdateHelperWindow()
         self.ItemContainer:SetSize(math.max(iconSize * 8, #collectibles * iconSize), iconSize)
         self:Layout()
         self:Show()
-    elseif not AddOn.db.global.showInstanceHelperWindow or not isInInstance then
+    elseif not AddOn.db.global.showMiniWindow or not isInInstance then
         AddOn:PrintDebugMessage("Hiding Instance Helper window")
         self:Hide()
     end
@@ -112,10 +118,24 @@ function ICHInstanceHelperMixin:ClearHelperWindow()
 end
 
 function ICHInstanceHelperMixin.GetInstanceCollectibles(instanceMapID, difficultyID)
+    ---@param item Mount|Toy|Pet|DecorItem
+    ---@return boolean canDrop
+    local function canItemDropFromInstanceDifficulty(item)
+        local isSameMap = item.MapID == instanceMapID
+        local isSameDifficulty = tContains(item.DifficultyIDs or {}, difficultyID)
+        local sharedDifficultyIDs = {}
+        for id, _ in pairs(item.SharedDifficulties or {}) do
+            tinsert(sharedDifficultyIDs, id)
+        end
+        local isSameSharedDifficulty = tContains(sharedDifficultyIDs, difficultyID)
+
+        return isSameMap and (isSameDifficulty or isSameSharedDifficulty)
+    end
+    
     ---@type ICHHelperItem[]
     local helperItems = {}
     for _, mount in ipairs(AddOn.Mounts) do
-        if mount.MapID == instanceMapID then
+        if canItemDropFromInstanceDifficulty(mount) then
             local _, spellID, iconID, _, _, _, _, _, _, _, isOwned = C_MountJournal.GetMountInfoByID(mount.ID)
             local isCollectable = not (isOwned or AddOn:IsEncounterCompletedOnSharedDifficulty(mount))
             if isCollectable then
@@ -129,7 +149,7 @@ function ICHInstanceHelperMixin.GetInstanceCollectibles(instanceMapID, difficult
         end
     end
     for _, toy in ipairs(AddOn.Toys) do
-        if toy.MapID == instanceMapID then
+        if canItemDropFromInstanceDifficulty(toy) then
             local isOwned = AddOn.IsCollectibleOwned(toy.ItemID, "Toy")
             local isCollectable = not (isOwned or AddOn:IsEncounterCompletedOnSharedDifficulty(toy))
             if isCollectable then
@@ -146,7 +166,7 @@ function ICHInstanceHelperMixin.GetInstanceCollectibles(instanceMapID, difficult
         end
     end
     for _, pet in ipairs(AddOn.Pets) do
-        if pet.MapID == instanceMapID then
+        if canItemDropFromInstanceDifficulty(pet) then
             local petCache = AddOn.PetCache[pet.PetItemID]
             if petCache then
                 local isOwned = AddOn.IsCollectibleOwned(petCache.speciesID, "Pet")
@@ -163,7 +183,7 @@ function ICHInstanceHelperMixin.GetInstanceCollectibles(instanceMapID, difficult
         end
     end
     for _, decorItem in ipairs(AddOn.DecorItems) do
-        if decorItem.MapID == instanceMapID then
+        if canItemDropFromInstanceDifficulty(decorItem) then
             local isOwned = AddOn.IsCollectibleOwned(decorItem.DecorItemID, "Decor")
             local isCollectable = not (isOwned or AddOn:IsEncounterCompletedOnSharedDifficulty(decorItem))
             if isCollectable then

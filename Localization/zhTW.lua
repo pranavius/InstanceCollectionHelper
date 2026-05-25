@@ -97,8 +97,10 @@ L["Set legacy raid difficulty."] = "設定舊團隊副本難度。"
 L["Set raid difficulty."] = "設定團隊副本難度。"
 
 --- Icon Tooltip ---
-L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"] = "跟踪副本可用的坐騎、玩具和寵物，並易於設定所需的副本難度"
-L["Type \"/ich help\" in the chat window for available slash commands"] = "在聊天中輸入 \"/ich help\" 來看可用的指令"
+L["Track available collectibles from instances and easily set required instance difficulty"] = "跟踪副本可用的收藏品，並易於設定所需的副本難度"
+L["Click to open the AddOn window"] = GREEN_FONT_COLOR:WrapTextInColorCode("點擊").."以開啟插件視窗"
+L["Right-click to open the settings window"] = GREEN_FONT_COLOR:WrapTextInColorCode("右鍵點擊").."以開啟設定視窗"
+L["Type /ich help in the chat window for available slash commands"] = "在聊天中輸入 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("/ich help").." 來看可用的指令"
 
 -- Special Search Terms --
 L["dungeon"] = "地下城"

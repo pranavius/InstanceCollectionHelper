@@ -43,6 +43,7 @@ function AddOn:ToggleFavorite(data, button)
     button:SetPushedAtlas("auctionhouse-icon-favorite"..(faveCategory[key] and "" or "-off"))
 
     EventRegistry:TriggerEvent("ICHEvent.UpdateListContents")
+    EventRegistry:TriggerEvent("ICHEvent.UpdateSettingsPanel")
 end
 
 ---Returns localized, lowercased name for Name-column sorting (mirrors per-tab name resolution in FilterListContentsByQuery())

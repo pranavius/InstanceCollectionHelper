@@ -105,8 +105,10 @@ L["Set legacy raid difficulty."] = "Установить сложность ус
 L["Set raid difficulty."] = "Установить сложность рейда."
 
 --- Icon Tooltip ---
-L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"] = "Отслеживайте доступные маунты, игрушки и питомцев из подземелий и легко устанавливайте нужную сложность"
-L["Type \"/ich help\" in the chat window for available slash commands"] = "Введите \"/ich help\" в окно чата для просмотра доступных команд"
+L["Track available collectibles from instances and easily set required instance difficulty"] = "Отслеживайте доступные коллекционные предметы из подземелий и легко устанавливайте нужную сложность"
+L["Click to open the AddOn window"] = GREEN_FONT_COLOR:WrapTextInColorCode("Нажмите")..", чтобы открыть окно аддона"
+L["Right-click to open the settings window"] = GREEN_FONT_COLOR:WrapTextInColorCode("Нажмите ПКМ")..", чтобы открыть окно настроек"
+L["Type /ich help in the chat window for available slash commands"] = "Введите "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("/ich help").." в окно чата для просмотра доступных команд"
 
 -- Special Search Terms --
 L["dungeon"] = "подземелье"

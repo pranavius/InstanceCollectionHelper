@@ -10,6 +10,9 @@ function ICHSquareButtonMixin:OnEnter()
     if self.action == "INFO" then
         GameTooltip:SetOwner(self, "ANCHOR_TOP")
         GameTooltip:SetText(L["About the AddOn"])
+    elseif self.action == "SETTINGS" then
+        GameTooltip:SetOwner(self, "ANCHOR_TOP")
+        GameTooltip:SetText(L["Settings"])
     else
         GameTooltip:SetOwner(self:GetParent(), "ANCHOR_NONE")
         GameTooltip:SetPoint("TOPLEFT", self:GetParent(), "TOPRIGHT")

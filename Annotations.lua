@@ -222,7 +222,8 @@
 ---@class ICHMain: Frame
 ---@field Title FontString
 ---@field SearchBox ICHEditBox
----@field InfoButton ICHSquareButton
+---@field AboutButton ICHSquareButton
+---@field SettingsButton ICHSquareButton
 ---@field ListHeaders ICHListHeaders
 ---@field VendorListHeaders ICHListHeaders
 ---@field LemixListHeaders ICHLemixListHeaders
@@ -275,6 +276,16 @@
 ---@field OpenICH Button
 ---@field Close Button
 
+---@class ICHSettings: Frame
+---@field Bg Texture
+---@field Title FontString
+---@field FavoritesLabel FontString
+---@field MinimapCheckbox CheckButton
+---@field MiniWindowCheckbox CheckButton
+---@field MiniWindowInMythicPlusCheckbox CheckButton
+---@field PetOwnedCheckbox CheckButton
+---@field Close Button
+
 ---@class Translator
 ---@field name string
 ---@field locale "enUS"|"enGB"|"enAU"|"esES"|"esMX"|"ptBR"|"ptPT"|"frFR"|"deDE"|"itIT"|"ruRU"|"koKR"|"zhTW"|"zhCN"
@@ -292,6 +303,7 @@
 ---@field ScrollView ScrollBoxListLinearViewMixin
 ---@field Tabs ICHTabSystem
 ---@field About ICHAbout
+---@field Settings ICHSettings
 ---@field Footer ICHFooter
 
 -------- WoW class annotation enhancements to stop LSP from flagging a bunch of things

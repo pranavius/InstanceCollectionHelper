@@ -105,8 +105,10 @@ L["Set legacy raid difficulty."] = "고대 공격대 난이도 설정."
 L["Set raid difficulty."] = "공격대 난이도 설정."
 
 --- Icon Tooltip ---
-L["Track available mounts, toys, and pets from instances and easily set required instance difficulty"] = "인스턴스에서 수집 가능한 탈것, 장난감, 동반자를 추적하고 필요한 인스턴스 난이도를 쉽게 설정하세요"
-L["Type \"/ich help\" in the chat window for available slash commands"] = "\"/ich help\"를 대화창에 입력하면 사용 가능한 슬래시 명령어를 확인할 수 있습니다"
+L["Track available collectibles from instances and easily set required instance difficulty"] = "인스턴스에서 사용 가능한 수집품을 추적하고 필요한 인스턴스 난이도를 쉽게 설정하세요"
+L["Click to open the AddOn window"] = "애드온 창을 열려면 "..GREEN_FONT_COLOR:WrapTextInColorCode("클릭").."하세요"
+L["Right-click to open the settings window"] = "설정 창을 열려면 "..GREEN_FONT_COLOR:WrapTextInColorCode("우클릭").."하세요"
+L["Type /ich help in the chat window for available slash commands"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("/ich help").."를 대화창에 입력하면 사용 가능한 슬래시 명령어를 확인할 수 있습니다"
 
 -- Special Search Terms --
 L["dungeon"] = "던전"

@@ -29,6 +29,8 @@ A search bar is available to filter lists by a number of options. When a collect
 
 If desired, you can enable the option to show a mini-window when inside an instance. This window will allow you to see all of the available collectibles from that instance on your current difficulty at a glance. When an item is no longer available due to being locked out, it will appear desaturated (greyed out).
 
+Some AddOn preferences can also be maanged using the settings panel, such as the ability to show/hide the mini-window or bulk-clear favorites.
+
 If you see any items missing from a list, please let me know and I'll be happy to add them ASAP.
 
 ### Supported Languages
@@ -46,6 +48,24 @@ All collectible and instance names will appear in the language that the game is 
 - Simplified Chinese (`zhCN`) _\*credit: 柳心怡\*_
 
 ## Usage
+
+### List Sorting
+The four instance-based lists (Mounts, Pets, Toys, and Decor) can be sorted by either collectible name or instance name. Timewalking Vendor items can be sorted in a few other ways, such as expansion, collectible type, and cost to purchase from the vendor.
+
+### Settings Panel
+Some AddOn settings can be viewed and modified from the settings panel. This window can be opened by a number of means
+- Right-click on the minimap/databroker/AddOn compartment icon
+- Click on the gear icon in the top-left of the AddOn window
+- Slash command (listed below)
+
+**Options currently modifiable from the settings panel include:**
+- Show minimap icon
+- Show mini-window in instances
+  - Show mini-window during Mythic+ dungeons *(disabled and has no effect if the mini-window is not shown)*
+- Mark pets owned only when you own max amount available
+- Clear all favorite items (per category or across the board)
+
+### Slash Commands
 Aside from the AddOn UI itself, **Instance Collection Helper** provides a few other utilities via slash commands. A comprehensive list of available commands is shown below:
 
 - `/ich`: Opens the AddOn window
@@ -55,11 +75,9 @@ Aside from the AddOn UI itself, **Instance Collection Helper** provides a few ot
 - `/ich raid <difficulty>`: Set Raid difficulty to the specified value
 - `/ich lraid <difficulty>`: Set Legacy Raid difficulty to the specified value
 - `/ich minimap`: Show or hide the minimap icon for the AddOn
-- `/ich miniwin`: Show a mini-window of available collectibles while inside an instance
+- `/ich mini`: Show a mini-window of available collectibles while inside an instance
+- `/ich config`: Toggle the settings panel
 - `/ich about`: Opens a window showing information about the addon, authors and contributors, etc.
-
-### List Sorting
-The four instance-based lists (Mounts, Pets, Toys, and Decor) can be sorted by either collectible name or instance name. Timewalking Vendor items can be sorted in a few other ways, such as expansion, collectible type, and cost to purchase from the vendor.
 
 ### Notes
 - For both `/ich dung` and `/ich raid`, `<difficulty>` can be one of `norm` (Normal), `hero` (Heroic), or `myth` (Mythic)

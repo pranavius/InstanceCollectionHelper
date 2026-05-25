@@ -14,10 +14,15 @@ function ICHMainMixin:OnLoad()
     self.SearchBox:HookScript("OnTextChanged", function()
         EventRegistry:TriggerEvent("ICHEvent.UpdateListContents")
     end)
-    self.InfoButton:HookScript("OnClick", function()
+    self.AboutButton:HookScript("OnClick", function()
         if AddOn.About then
             AddOn.About:Show()
             self:Hide()
+        end
+    end)
+    self.SettingsButton:HookScript("OnClick", function()
+        if AddOn.Settings and not AddOn.Settings:IsShown() then
+            AddOn.Settings:Show()
         end
     end)
 

@@ -29,9 +29,10 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             </EditBox>
 
             <Button parentKey="CloseButton" inherits="UIPanelCloseButtonDefaultAnchors">
-                    <Size x="20" y="20"/>
+                <Size x="20" y="20"/>
+                <NormalTexture atlas="common-icon-redx"/>
+                <PushedTexture atlas="common-icon-redx"/>
             </Button>
-
             <Button parentKey="SearchHintsButton" inherits="ICHSquareButtonTemplate">
                 <KeyValues>
                     <KeyValue key="action" type="string" value="SEARCH"/>
@@ -39,10 +40,8 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 <Anchors>
                     <Anchor point="RIGHT" relativeKey="$parent.CloseButton" relativePoint="LEFT" x="-10"/>
                 </Anchors>
-                <NormalTexture file="Interface\AddOns\InstanceCollectionHelper\Media\SearchHintsIcon.png"/>
-                <HighlightTexture file="Interface\AddOns\InstanceCollectionHelper\Media\SearchHintsIcon.png"/>
+                <NormalTexture file="Interface\AddOns\InstanceCollectionHelper\Media\SearchHintsIcon"/>
             </Button>
-            
             <Button parentKey="HelpButton" inherits="ICHSquareButtonTemplate">
                 <KeyValues>
                     <KeyValue key="action" type="string" value="HELP"/>
@@ -50,19 +49,26 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 <Anchors>
                     <Anchor point="RIGHT" relativeKey="$parent.SearchHintsButton" relativePoint="LEFT" x="-10"/>
                 </Anchors>
-                <NormalTexture file="Interface\AddOns\InstanceCollectionHelper\Media\HelpIcon.png"/>
-                <HighlightTexture file="Interface\AddOns\InstanceCollectionHelper\Media\HelpIcon.png"/>
+                <NormalTexture file="Interface\AddOns\InstanceCollectionHelper\Media\HelpIcon"/>
             </Button>
             
-            <Button parentKey="InfoButton" inherits="ICHSquareButtonTemplate">
+            <Button parentKey="AboutButton" inherits="ICHSquareButtonTemplate">
                 <KeyValues>
                     <KeyValue key="action" type="string" value="INFO"/>
                 </KeyValues>
                 <Anchors>
-                    <Anchor point="RIGHT" relativeKey="$parent.HelpButton" relativePoint="LEFT" x="-10"/>
+                    <Anchor point="TOPLEFT" x="1"/>
                 </Anchors>
-                <NormalTexture file="Interface\AddOns\InstanceCollectionHelper\Media\InfoIcon.png"/>
-                <HighlightTexture file="Interface\AddOns\InstanceCollectionHelper\Media\InfoIcon.png"/>
+                <NormalTexture file="Interface\AddOns\InstanceCollectionHelper\Media\InfoIcon"/>
+            </Button>
+            <Button parentKey="SettingsButton" inherits="ICHSquareButtonTemplate">
+                <KeyValues>
+                    <KeyValue key="action" type="string" value="SETTINGS"/>
+                </KeyValues>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.AboutButton" relativePoint="RIGHT" x="10"/>
+                </Anchors>
+                <NormalTexture file="Interface\AddOns\InstanceCollectionHelper\Media\SettingsIcon"/>
             </Button>
 
             <Frame parentKey="ListHeaders" inherits="ICHListHeadersTemplate">
