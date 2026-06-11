@@ -4,6 +4,9 @@ This document describes changes to each version of **Instance Collection Helper 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v18.1**
+- *Bug Fix:* Corrected code that resulted in bosses with special characters in their name to not be correctly flagged as killed
+
 **v18**
 - **Major update:** Added a standalone **Settings** panel, accessible by right-clicking the minimap icon or the `/ich config` command
   - Provides the ability to clear favorites by category or across all categories in bulk
