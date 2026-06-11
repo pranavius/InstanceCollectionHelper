@@ -145,7 +145,7 @@ function AddOn.IsEncounterCompleted(data, difficultyID)
                 else
                     for idx = 1, numEncounters do
                         local bossName, _, isKilled = GetSavedInstanceEncounterInfo(i, idx)
-                        if encounterName:match(bossName) then return isKilled end
+                        if encounterName == bossName then return isKilled end
                     end
                 end
             end
