@@ -9,16 +9,16 @@ function AddOn.MountDataProviderInit(frame, data)
     AddOn.InstanceListItemInit(frame, data, {
         isMount = true,
         getInfo = function(d)
+            ---@cast d Mount
             local mountName, spellID, _, _, _, _, _, _, _, _, isOwned = C_MountJournal.GetMountInfoByID(d.ID)
             local spellInfo = C_Spell.GetSpellInfo(spellID)
             local icon = spellInfo and spellInfo.originalIconID
             return mountName or d.Name, icon, isOwned, d.ID
         end,
         onNameClick = function(_, d)
+            ---@cast d Mount
             if not d.ID then return end
-            local spellID = select(2, C_MountJournal.GetMountInfoByID(d.ID))
-            SetCollectionsJournalShown(true, 1)
-            MountJournal_SetSelected(d.ID, spellID)
+            DressUpMount(d.ID)
         end
     })
 end

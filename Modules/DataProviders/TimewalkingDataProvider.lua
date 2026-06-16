@@ -112,13 +112,23 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     AddOn:ConfigureWaypointButton(item.VendorName or "", frame, item)
 
     -- SetScript replaces, so per-row handlers do not accumulate as the scroll view recycles frames
-    if item.Type == "Mount" then
+    if item.Type == "Mount" and data.mountID then
         frame.NameContainer.ViewButton:SetScript("OnClick", function()
-            local spellID = select(2, C_MountJournal.GetMountInfoByID(data.mountID))
-            if data.mountID then
-                SetCollectionsJournalShown(true, 1)
-                MountJournal_SetSelected(data.mountID, spellID)
-            end
+            DressUpMount(data.mountID)
+        end)
+    elseif item.Type == "Pet" and data.speciesID then
+        frame.NameContainer.ViewButton:SetScript("OnClick", function()
+            local _, _, _, creatureID, _, _, _, _, _, _, _, displayID = C_PetJournal.GetPetInfoBySpeciesID(data.speciesID)
+            DressUpBattlePet(creatureID, displayID, data.speciesID)
+        end)
+    elseif item.Type == "Decor" then
+        frame.NameContainer.ViewButton:SetScript("OnClick", function()
+            local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.itemID)
+            if decor then HousingModelPreviewFrame:ShowCatalogEntryInfo(decor) end
+        end)
+    elseif item.Type == "Cosmetic" then
+        frame.NameContainer.ViewButton:SetScript("OnClick", function()
+            DressUpItemLink("item:"..data.itemID)
         end)
     else
         frame.NameContainer.ViewButton:SetScript("OnClick", nil)

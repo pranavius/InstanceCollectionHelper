@@ -15,7 +15,8 @@ ICH will be continue to be supported in the **Midnight** expansion and beyond fo
 - Easily keep track of all available collectibles offered by Timewalking vendors along with their costs
 - Multi-column scrollable UI with the ability to "favorite" items and sort by a specific column
 - "Mini-window" that can appear when inside an instance that has collectible you are missing
-- Links to in-game mount journal (mounts only) as well as instance and encounter journal for each item in the list
+- Preview mounts, pets, decor, and cosmetics in a dressing room window by clicking on the collectible's icon
+- Open instance and/or encounter journal entries for each list item
 - Ability to drop a map pin at the instance entrance to make navigating easier
   - If the **TomTom** AddOn is enabled, an option to use **TomTom** waypoints instead of Blizzard map pins is available
 - Buttons to easily set your desired instance difficulty with a single click

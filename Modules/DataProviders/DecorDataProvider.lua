@@ -22,9 +22,11 @@ function AddOn.DecorDataProviderInit(frame, item)
     AddOn.InstanceListItemInit(frame, item, {
         isMount = false,
         getInfo = function(d)
+            ---@cast d DecorItem
             local isOwned = decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false ---@diagnostic disable-line: undefined-field
             local iconID = select(5, C_Item.GetItemInfoInstant(d.DecorItemID))
             return decor.name, iconID, isOwned, d.DecorItemID
-        end
+        end,
+        onNameClick = function() HousingModelPreviewFrame:ShowCatalogEntryInfo(decor) end
     })
 end

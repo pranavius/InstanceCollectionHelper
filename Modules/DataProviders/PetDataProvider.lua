@@ -32,10 +32,21 @@ function AddOn.PetDataProviderInit(frame, pet)
     AddOn.InstanceListItemInit(frame, pet, {
         isMount = false,
         cache = AddOn.PetCache,
-        cacheKey = function(d) return d.PetItemID end,
+        cacheKey = function(d)
+            ---@cast d Pet
+            return d.PetItemID
+        end,
         hasPetCount = true,
         getInfo = function(d, cached)
+            ---@cast d Pet
+            ---@cast cached PetCacheData
             return cached.petName, cached.iconID, AddOn.GetIsPetOwned(cached.speciesID), d.PetItemID
+        end,
+        onNameClick = function(_, d, cached)
+            ---@cast d Pet
+            ---@cast cached PetCacheData
+            local _, _, _, creatureID, _, _, _, _, _, _, _, displayID = C_PetJournal.GetPetInfoBySpeciesID(cached.speciesID)
+            DressUpBattlePet(creatureID, displayID, cached.speciesID)
         end,
         afterRender = function(f, _, cached)
             local owned, limit = AddOn.GetPetOwnedAndLimitCount(cached.speciesID)
