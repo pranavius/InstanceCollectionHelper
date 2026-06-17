@@ -502,6 +502,7 @@ AddOn.Mounts = {
         AreaPoiID = 8510,
         EncounterID = 2711,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic, RaidDifficulty.MythicFlex },
+        Notes = L["Requires four (4) Delicious Sporesnack that are earned after killing Rotmire on any difficulty."],
         Waypoint = { mapID = 2413, x = 0.736, y = 0.664 },
         SearchTags = AddOn.ExpansionTags.Midnight
     },

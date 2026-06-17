@@ -29,6 +29,7 @@ L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "입구는 ".
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = (select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Malfunctioning Mechsuit]")).."을(를) 획득한 후 짧은 퀘스트 체인을 완료해야 합니다"
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "하드 모드를 활성화한 후 던전을 완료해야 합니다. 방법에 대한 가이드는 온라인에서 찾을 수 있습니다."
 L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "혼자서 던전을 클리어한 후 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("도미나 베놈블레이드").."가 있던 지역으로 돌아가 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("호기심 많은 점액 뱀").."과 상호작용하세요."
+L["Requires four (4) Delicious Sporesnack that are earned after killing Rotmire on any difficulty."] = "어떤 난이도에서든 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("부식수렁").."을(를) 처치하여 얻을 수 있는 "..(select(2, C_Item.GetItemInfo(269245)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Delicious Sporesnack]")).." 4개가 필요합니다."
 
 --- Toy Notes ---
 L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = DARKYELLOW_FONT_COLOR:WrapTextInColorCode("의사 테올렌 크라스티노브").."에게서 획득. "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("들창엄니").." 처치 후 무작위 확률로 등장합니다"

@@ -29,6 +29,7 @@ L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "Entrance can
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "Requires completing a short questline after looting "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Malfunctioning Mechsuit]"))
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."
 L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Clear the dungeon solo, then return to the area where "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Domina Venomblade").." was and interact with the "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Curious Slime Serpent").."."
+L["Requires four (4) Delicious Sporesnack that are earned after killing Rotmire on any difficulty."] = "Requires four (4) "..(select(2, C_Item.GetItemInfo(269245)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Delicious Sporesnack]")).." that are earned after killing "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Rotmire").." on any difficulty."
 
 --- Toy Notes ---
 L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "Dropped by "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Doctor Theolen Krastinov")..", who has a random chance to spawn after killing "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Rattlegore")

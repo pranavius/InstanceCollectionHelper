@@ -21,6 +21,7 @@ L["Upon entering the instance, raid difficulty will automatically be set to Norm
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "拾取 "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Malfunctioning Mechsuit]")).." 后需要完成一段短任务链"
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "在激活困难模式后需要完成该地下城。有关如何进行的指南可在网上找到。"
 L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "独自通关地牢后，返回 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("多米娜·毒刃").." 所在的区域，与 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("奇特的软泥之蛇").."互动。"
+L["Requires four (4) Delicious Sporesnack that are earned after killing Rotmire on any difficulty."] = "需要四个（4）"..(select(2, C_Item.GetItemInfo(269245)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Delicious Sporesnack]")).."，在任意难度下击败"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("腐沼").."后可获得。"
 
 --- Toy Notes ---
 L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"] = "掉落自"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("瑟尔林·卡斯迪诺夫教授").."，在击杀"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("血骨傀儡").."后有几率出现"
