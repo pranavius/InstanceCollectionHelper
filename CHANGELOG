@@ -4,6 +4,10 @@ This document describes changes to each version of **Instance Collection Helper 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v18.3**
+- Updated Mini-Window collectible tooltips to display the boss that drops each item and any special collection notes where applicable
+- Added a collection note for Luminous Sporeglider indicating the Delicious Sporesnack requirement
+
 **v18.2**
 - Replace mount previews in the mount journal with a single dressing room window preview
 - Add dressing room window previews for pet and decor items

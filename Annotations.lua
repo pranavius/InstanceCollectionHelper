@@ -216,12 +216,9 @@
 ---@field OtherInfoContainer OtherInfoContainer
 ---@field FavoriteContainer FavoriteContainer
 
----@class ICHEditBox: EditBox
----@field Instructions FontString
-
 ---@class ICHMain: Frame
 ---@field Title FontString
----@field SearchBox ICHEditBox
+---@field SearchBox SearchBoxTemplate
 ---@field AboutButton ICHSquareButton
 ---@field SettingsButton ICHSquareButton
 ---@field ListHeaders ICHListHeaders
@@ -256,9 +253,12 @@
 ---@field TomTomContainer TomTomContainer
 
 ---@class ICHHelperItem
----@field IsMount? boolean
+---@field MountID? number
+---@field ItemID? number
 ---@field IconID number
 ---@field Hyperlink string
+---@field EncounterID? number
+---@field Notes? string
 ---@field CanBeLooted boolean
 
 ---@class ICHInstanceHelper: Frame

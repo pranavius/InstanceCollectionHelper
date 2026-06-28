@@ -12,6 +12,27 @@ function ICHInstanceHelperMixin:OnLoad()
     self:RegisterEvent("PLAYER_DIFFICULTY_CHANGED")
     self:RegisterEvent("PLAYER_ENTERING_WORLD")
     self:RegisterEvent("ZONE_CHANGED")
+
+    ---@param tooltip GameTooltip
+    local function appendHelperData(tooltip)
+        if tooltip.__miniWindowData and tooltip == GameTooltip then
+            AddOn:PrintDebugMessage("Adding ICH data to Mini-Window tooltip")
+            ---@cast tooltip.__miniWindowData ICHHelperItem
+            
+            if tooltip.__miniWindowData.EncounterID or tooltip.__miniWindowData.Notes then tooltip:AddLine(" ") end
+            if tooltip.__miniWindowData.EncounterID then
+                local encounterName = EJ_GetEncounterInfo(tooltip.__miniWindowData.EncounterID)
+                tooltip:AddLine(BOSS..": "..WHITE_FONT_COLOR:WrapTextInColorCode(encounterName))
+            end
+            if tooltip.__miniWindowData.Notes then
+                tooltip:AddLine(tooltip.__miniWindowData.Notes, 1, 1, 1, true)
+            end
+            tooltip:Show()
+        end
+    end
+
+    TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Spell, appendHelperData)
+    TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, appendHelperData)
 end
 
 function ICHInstanceHelperMixin:OnEvent(event)
@@ -90,11 +111,13 @@ function ICHInstanceHelperMixin:UpdateHelperWindow()
             col:GetHighlightTexture():SetDesaturated(not item.CanBeLooted)
 
             col:SetScript("OnEnter", function()
+                GameTooltip.__miniWindowData = item
                 GameTooltip:SetOwner(col, "ANCHOR_BOTTOMLEFT")
                 GameTooltip:SetHyperlink(item.Hyperlink)
-                GameTooltip:Show()
+                -- GameTooltip:Show()
             end)
             col:SetScript("OnLeave", function()
+                GameTooltip.__miniWindowData = nil
                 GameTooltip:Hide()
             end)
             col.layoutIndex = self.ItemContainer:GetNumChildren()
@@ -140,9 +163,11 @@ function ICHInstanceHelperMixin.GetInstanceCollectibles(instanceMapID, difficult
             local isCollectable = not (isOwned or AddOn:IsEncounterCompletedOnSharedDifficulty(mount))
             if isCollectable then
                 table.insert(helperItems, {
-                    IsMount = true,
+                    MountID = mount.ID,
                     IconID = iconID or 134400,
                     Hyperlink = C_MountJournal.GetMountLink(spellID) or "",
+                    EncounterID = mount.EncounterID,
+                    Notes = mount.Notes,
                     CanBeLooted = not AddOn.IsEncounterCompleted(mount, difficultyID)
                 })
             end
@@ -156,9 +181,11 @@ function ICHInstanceHelperMixin.GetInstanceCollectibles(instanceMapID, difficult
                 local toyCache = AddOn.ToyCache[toy.ItemID]
                 if toyCache then
                     table.insert(helperItems, {
-                        IsMount = false,
+                        ItemID = toy.ItemID,
                         IconID = toyCache.iconID,
                         Hyperlink = "item:"..toy.ItemID,
+                        EncounterID = toy.EncounterID,
+                        Notes = toy.Notes,
                         CanBeLooted = not AddOn.IsEncounterCompleted(toy, difficultyID)
                     })
                 end
@@ -173,9 +200,11 @@ function ICHInstanceHelperMixin.GetInstanceCollectibles(instanceMapID, difficult
                 local isCollectable = not (isOwned or AddOn:IsEncounterCompletedOnSharedDifficulty(pet))
                 if isCollectable then
                     table.insert(helperItems, {
-                        IsMount = false,
+                        ItemID = pet.PetItemID,
                         IconID = petCache.iconID,
                         Hyperlink = "item:"..pet.PetItemID,
+                        EncounterID = pet.EncounterID,
+                        Notes = pet.Notes,
                         CanBeLooted = not AddOn.IsEncounterCompleted(pet, difficultyID)
                     })
                 end
@@ -189,9 +218,11 @@ function ICHInstanceHelperMixin.GetInstanceCollectibles(instanceMapID, difficult
             if isCollectable then
                 local iconID = select(5, C_Item.GetItemInfoInstant(decorItem.DecorItemID))
                 table.insert(helperItems, {
-                    IsMount = false,
+                    ItemID = decorItem.DecorItemID,
                     IconID = iconID or 134400,
                     Hyperlink = "item:"..decorItem.DecorItemID,
+                    EncounterID = decorItem.EncounterID,
+                    Notes = decorItem.Notes,
                     CanBeLooted = not AddOn.IsEncounterCompleted(decorItem, difficultyID)
                 })
             end
