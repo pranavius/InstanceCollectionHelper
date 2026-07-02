@@ -36,11 +36,43 @@ function ICHFooterMixin:OnLoad()
     ownedCb.Text:SetJustifyH("RIGHT")
     ownedCb.Text:SetFontObject("GameTooltipText")
 
-    ownedCb:HookScript("OnClick", function(cb)
-        local value = cb:GetChecked()
-        AddOn.db.global.showOwned = value
+    local availableCb = self.AvailableContainer.Checkbox
+    availableCb.Text:SetText(L["Show Available Only"])
+    availableCb.Text:ClearAllPoints()
+    availableCb.Text:SetPoint("RIGHT", availableCb, "LEFT", -5, 2)
+    availableCb.Text:SetPoint("LEFT", self.AvailableContainer, "LEFT")
+    availableCb.Text:SetJustifyH("RIGHT")
+    availableCb.Text:SetFontObject("GameTooltipText")
+
+    availableCb:HookScript("OnClick", function(cb)
+        AddOn.db.global.showAvailableOnly = cb:GetChecked()
+        if cb:GetChecked() then
+            AddOn.db.global.showOwned = false
+            ownedCb:SetChecked(false)
+        end
         EventRegistry:TriggerEvent("ICHEvent.UpdateListContents")
     end)
+    availableCb:HookScript("OnEnter", function(cb)
+        GameTooltip:SetOwner(cb, "ANCHOR_RIGHT")
+        GameTooltip:SetText(L["Only show collectibles that can still be looted this week"], 1, 1, 1)
+        GameTooltip:Show()
+    end)
+    availableCb:HookScript("OnLeave", function() GameTooltip:Hide() end)
+
+    ownedCb:HookScript("OnClick", function(cb)
+        AddOn.db.global.showOwned = cb:GetChecked()
+        if cb:GetChecked() then
+            AddOn.db.global.showAvailableOnly = false
+            availableCb:SetChecked(false)
+        end
+        EventRegistry:TriggerEvent("ICHEvent.UpdateListContents")
+    end)
+    ownedCb:HookScript("OnEnter", function(cb)
+        GameTooltip:SetOwner(cb, "ANCHOR_RIGHT")
+        GameTooltip:SetText(L["Also show collectibles you already own"], 1, 1, 1)
+        GameTooltip:Show()
+    end)
+    ownedCb:HookScript("OnLeave", function() GameTooltip:Hide() end)
 
     local tomtomCb = self.TomTomContainer.Checkbox
     tomtomCb.Text:SetText(L["Use TomTom waypoints"])
@@ -54,6 +86,12 @@ function ICHFooterMixin:OnLoad()
         AddOn.db.global.useTomTomPoints = value
         EventRegistry:TriggerEvent("ICHEvent.UpdateListContents")
     end)
+    tomtomCb:HookScript("OnEnter", function(cb)
+        GameTooltip:SetOwner(cb, "ANCHOR_RIGHT")
+        GameTooltip:SetText(L["Use TomTom waypoints instead of Blizzard map pins"], 1, 1, 1)
+        GameTooltip:Show()
+    end)
+    tomtomCb:HookScript("OnLeave", function() GameTooltip:Hide() end)
 
     if C_AddOns.IsAddOnLoaded("TomTom") then
         self.TomTomContainer:Show()

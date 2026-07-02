@@ -85,12 +85,24 @@ function AddOn:ConfigureOnInit()
     local isInvalidScale = tonumber(self.db.global.windowScale) == nil or tonumber(self.db.global.windowScale) == 0
     if isInvalidScale then self.db.global.windowScale = 1 end
     ICHFooter.ScaleContainer.WindowScale:Init(AddOn.db.global.windowScale, 0.8, 1.2, 80)
+    ICHFooter.AvailableContainer.Checkbox:SetChecked(self.db.global.showAvailableOnly)
     ICHFooter.OwnedContainer.Checkbox:SetChecked(self.db.global.showOwned)
     ICHFooter.TomTomContainer.Checkbox:SetChecked(self.db.global.useTomTomPoints)
     self:CreateTabSystem()
     self.Tabs:SetTab(self.Tabs.MountsTab)
     -- Set window scale
     self.Container:SetScale(self.db.global.windowScale)
+end
+
+---Returns whether a collectible can still be obtained this reset on at least one difficulty
+---@param data Mount|Toy|Pet|DecorItem
+---@return boolean
+function AddOn:IsCollectibleAvailable(data)
+    if self:IsEncounterCompletedOnSharedDifficulty(data) then return false end
+    for _, diffID in ipairs(data.DifficultyIDs or {}) do
+        if not self.IsEncounterCompleted(data, diffID) then return true end
+    end
+    return false
 end
 
 ---Filters a list of data based on search parameters
@@ -169,7 +181,8 @@ function AddOn:UpdateListContents()
             -- Checking hideOnChar for mounts like Grand Black War Mammoth, which has a faction specific version
             local _, _, _, _, _, _, _, _, _, hideOnChar, isOwned = C_MountJournal.GetMountInfoByID(mount.ID)
             local mountExists = hideOnChar ~= nil and isOwned ~= nil
-            if mountExists and not hideOnChar and (not isOwned or (isOwned and self.db.global.showOwned)) then
+            local isAvailable = not self.db.global.showAvailableOnly or self:IsCollectibleAvailable(mount)
+            if mountExists and not hideOnChar and (not isOwned or (isOwned and self.db.global.showOwned)) and isAvailable then
                 tinsert(newData, mount)
             elseif mountExists and not hideOnChar and not isOwned then
                 self:PrintDebugMessage("Failed to curate table data for mount:", mount.Name)
@@ -180,7 +193,8 @@ function AddOn:UpdateListContents()
         for _, toy in ipairs(self.Toys) do
             local toyExists = C_Item.GetItemInfoInstant(toy.ItemID) ~= nil
             local isOwned = PlayerHasToy(toy.ItemID)
-            if toyExists and (not isOwned or (isOwned and self.db.global.showOwned)) then
+            local isAvailable = not self.db.global.showAvailableOnly or self:IsCollectibleAvailable(toy)
+            if toyExists and (not isOwned or (isOwned and self.db.global.showOwned)) and isAvailable then
                 tinsert(newData, toy)
             elseif toyExists and not isOwned then
                 self:PrintDebugMessage("Failed to curate table data for toy:", toy.Name)
@@ -192,7 +206,8 @@ function AddOn:UpdateListContents()
             local petExists = C_Item.GetItemInfoInstant(pet.PetItemID) ~= nil
             local petData = self.PetCache[pet.PetItemID]
             local isOwned = petData and self.GetIsPetOwned(petData.speciesID) or false
-            if petExists and (not isOwned or (isOwned and self.db.global.showOwned)) then
+            local isAvailable = not self.db.global.showAvailableOnly or self:IsCollectibleAvailable(pet)
+            if petExists and (not isOwned or (isOwned and self.db.global.showOwned)) and isAvailable then
                 tinsert(newData, pet)
             elseif petExists and not isOwned then
                 self:PrintDebugMessage("Failed to curate table data for pet:", pet.Name)
@@ -227,7 +242,8 @@ function AddOn:UpdateListContents()
             local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(item.DecorItemID)
             local decorExists = C_Item.GetItemInfoInstant(item.DecorItemID) ~= nil
             local isOwned = decor and decor.quantity and decor.numPlaced and (decor.quantity + decor.numPlaced > 0) or false ---@diagnostic disable-line: undefined-field
-            if decorExists and (not isOwned or (isOwned and self.db.global.showOwned)) then
+            local isAvailable = not self.db.global.showAvailableOnly or self:IsCollectibleAvailable(item)
+            if decorExists and (not isOwned or (isOwned and self.db.global.showOwned)) and isAvailable then
                 tinsert(newData, item)
             elseif decorExists and not isOwned then
                 self:PrintDebugMessage("Failed to curate table data for decor:", item.Name)

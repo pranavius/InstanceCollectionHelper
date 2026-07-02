@@ -17,6 +17,7 @@ AddOn.DatabaseDefaults = {
         countPetOwnedOnlyIfMaxOwned = false,
         debugMessages = false,
         ownedCosmeticsCache = {},
+        showAvailableOnly = false,
         showMiniWindow = false,
         showMiniWindowInMythicPlus = false,
         favorites = {

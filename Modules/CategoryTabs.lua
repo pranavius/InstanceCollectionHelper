@@ -8,6 +8,8 @@ function AddOn:CreateTabSystem()
     self.Tabs = CreateFrame("Frame", "ICHTabs", self.Footer, "TabSystemTemplate")
     self.Tabs.minTabWidth = 120
     self.Tabs.maxTabWidth = 200
+    -- Noticed some weird clipping when moving the window over CDM frames, so this is being added to try and resolve that
+    self.Tabs:SetFrameLevel(self.Footer:GetFrameLevel() - 1)
     self:CreateTab("Mounts")
     self:CreateTab("Toys")
     self:CreateTab("Pets")
@@ -25,6 +27,7 @@ function AddOn:CreateTab(tabName, enabled)
     local parentKey = tabName:gsub("%A", "") .. "Tab"
     self.Tabs[parentKey] = self.Tabs:AddTab(L[tabName])
     self.Tabs:GetTabButton(self.Tabs[parentKey]):UpdateTabWidth()
+    self.Tabs:GetTabButton(self.Tabs[parentKey]):SetFrameLevel(self.Tabs:GetFrameLevel())
     if enabled ~= nil then self.Tabs:SetTabEnabled(self.Tabs[parentKey], enabled) end
     self:PrintDebugMessage(parentKey, "Created")
 end

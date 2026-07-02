@@ -56,11 +56,27 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                 </Frames>
             </Frame>
             
-            <Frame parentKey="TomTomContainer" hidden="true">
-                <Size x="175"/>
+            <Frame parentKey="AvailableContainer">
+                <Size x="190"/>
                 <Anchors>
                     <Anchor point="TOPRIGHT" relativeKey="$parent.OwnedContainer" relativePoint="TOPLEFT" x="-10"/>
                     <Anchor point="BOTTOMRIGHT" relativeKey="$parent.OwnedContainer" relativePoint="BOTTOMRIGHT" x="-10"/>
+                </Anchors>
+                <Frames>
+                    <CheckButton parentKey="Checkbox" inherits="UICheckButtonTemplate" checked="false" text="">
+                        <Anchors>
+                            <Anchor point="TOPRIGHT"/>
+                            <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMRIGHT" x="-32"/>
+                        </Anchors>
+                    </CheckButton>
+                </Frames>
+            </Frame>
+
+            <Frame parentKey="TomTomContainer" hidden="true">
+                <Size x="175"/>
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeKey="$parent.AvailableContainer" relativePoint="TOPLEFT" x="-10"/>
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent.AvailableContainer" relativePoint="BOTTOMRIGHT" x="-10"/>
                 </Anchors>
                 <Frames>
                     <CheckButton parentKey="Checkbox" inherits="UICheckButtonTemplate" checked="false" text="">

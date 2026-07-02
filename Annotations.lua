@@ -243,12 +243,16 @@
 ---@class OwnedContainer: Frame
 ---@field Checkbox Checkbox
 
+---@class AvailableContainer: Frame
+---@field Checkbox Checkbox
+
 ---@class TomTomContainer: Frame
 ---@field Checkbox Checkbox
 
 ---@class ICHFooter
 ---@field Bg Texture
 ---@field ScaleContainer ScaleContainer
+---@field AvailableContainer AvailableContainer
 ---@field OwnedContainer OwnedContainer
 ---@field TomTomContainer TomTomContainer
 
