@@ -23,6 +23,8 @@ function ICHInstanceHelperMixin:OnLoad()
             if tooltip.__miniWindowData.EncounterID then
                 local encounterName = EJ_GetEncounterInfo(tooltip.__miniWindowData.EncounterID)
                 tooltip:AddLine(BOSS..": "..WHITE_FONT_COLOR:WrapTextInColorCode(encounterName))
+                local lootableColor = tooltip.__miniWindowData.CanBeLooted and GREEN_FONT_COLOR or RED_FONT_COLOR
+                tooltip:AddLine(lootableColor:WrapTextInColorCode(tooltip.__miniWindowData.CanBeLooted and L["Lootable on this character"] or L["Not lootable on this character"]))
             end
             if tooltip.__miniWindowData.Notes then
                 tooltip:AddLine(tooltip.__miniWindowData.Notes, 1, 1, 1, true)
