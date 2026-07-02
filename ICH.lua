@@ -215,11 +215,16 @@ function AddOn:UpdateListContents()
         end
         self.Container.SearchBox.Instructions:SetText(L["Search by pet/instance name, instance type, difficulty, or expansion"])
     elseif selectedTab == self.Tabs.TimewalkingVendorTab then
+        self.activeTimewalkingExpansion = self:GetActiveTimewalkingExpansion()
         for _, item in ipairs(self.TimewalkingItems) do
             local itemData = self.TimewalkingCache[item.ItemID]
 
             if itemData then
                 local isOwned = self.IsVendorItemOwned(itemData, item.Type)
+                -- When showing only available items, only show items from the current timewalking event vendors + any that can be purchased from all vendors
+                local isAvailable = not self.db.global.showAvailableOnly
+                    or item.Expansion == self.activeTimewalkingExpansion
+                    or (item.Expansion == "-" and self.activeTimewalkingExpansion ~= nil)
                 local shouldInsert = false
                 if item.Type == "Mount" then
                     local hideOnChar = select(10, C_MountJournal.GetMountInfoByID(itemData.mountID))
@@ -228,7 +233,7 @@ function AddOn:UpdateListContents()
                     shouldInsert = not isOwned or (isOwned and self.db.global.showOwned)
                 end
 
-                if shouldInsert then
+                if shouldInsert and isAvailable then
                     tinsert(newData, item)
                 elseif not isOwned then
                     self:PrintDebugMessage("Failed to curate table data for Timewalking item:", item.Name)

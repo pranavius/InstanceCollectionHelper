@@ -64,6 +64,7 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
     frame.relevantID = item.Type == "Mount" and data.mountID or data.itemID
 
     local isOwned = AddOn.IsVendorItemOwned(data, item.Type)
+    local isActiveExpansion = item.Expansion == AddOn.activeTimewalkingExpansion
 
     if isOwned then
         frame.Bg:Hide()
@@ -81,6 +82,10 @@ function AddOn.TimewalkingDataProviderInit(frame, item)
 
     AddOn:SetTruncatedText(frame.TypeContainer.Text, DARKYELLOW_FONT_COLOR:WrapTextInColorCode(L[item.Type]))
     AddOn:SetTruncatedText(frame.ExpansionContainer.Text, item.Expansion)
+
+    if isActiveExpansion then
+        frame.ExpansionContainer.Text:SetText(GREEN_FONT_COLOR:WrapTextInColorCode(frame.ExpansionContainer.Text:GetText()))
+    end
 
     frame.CostContainer.CurrencyButton:ClearNormalTexture()
     frame.CostContainer.CurrencyButton:ClearHighlightTexture()

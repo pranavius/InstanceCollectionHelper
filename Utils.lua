@@ -304,3 +304,29 @@ function AddOn.GetIsPetOwned(speciesID)
     end
     return isOwned
 end
+
+local TIMEWALKING_HOLIDAY_IDS = {
+    [559] = "The Burning Crusade",
+    [562] = "Wrath of the Lich King",
+    [587] = "Cataclysm",
+    [643] = "Mists of Pandaria",
+    [1056] = "Warlords of Draenor",
+    [1263] = "Legion",
+    [1508] = "Classic",
+    [1669] = "Battle for Azeroth",
+    [1703] = "Shadowlands",
+    [1722] = "Dragonflight",
+}
+
+---Returns the Timewalking expansion currently active on the in-game calendar, or nil if none is active
+---@return string? expansion Matches the `Expansion` field on `TimewalkingItem`, or nil
+function AddOn:GetActiveTimewalkingExpansion()
+    local date = C_DateAndTime.GetCurrentCalendarTime()
+    for i = 1, C_Calendar.GetNumDayEvents(0, date.monthDay) do
+        local event = C_Calendar.GetDayEvent(0, date.monthDay, i)
+        if event and TIMEWALKING_HOLIDAY_IDS[event.eventID] then
+            return TIMEWALKING_HOLIDAY_IDS[event.eventID]
+        end
+    end
+    return nil
+end
