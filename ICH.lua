@@ -105,68 +105,203 @@ function AddOn:IsCollectibleAvailable(data)
     return false
 end
 
----Filters a list of data based on search parameters
+---Splits a search query into a flat list of tokens: terms and single-character operators
+---\
+---*Valid operator tokens:* `&`  `|`  `!`  `(`  `)`
+---@param query string
+---@return string[] tokens
+local function tokenizeSearchQuery(query)
+    local tokens = {}
+    local i = 1
+    while i <= #query do
+        local char = query:sub(i, i)
+        if char:match("%s") then
+            AddOn:PrintDebugMessage("Whitespace matched, continue loop")
+            i = i + 1
+        elseif char == "(" or char == ")" or char == "&" or char == "|" or char == "!" then
+            AddOn:PrintDebugMessage("Logical operator matched:", char, "-- storing and continuing loop")
+            tinsert(tokens, char)
+            i = i + 1
+        else
+            local j = i + 1
+            -- Expand search across remainder of the search query to look for a single search term
+            -- Inner loop stops when a logical operator or whitespace is found
+            while j <= #query and not query:sub(j, j):match("[%s%(%)&|!]") do j = j + 1 end
+            AddOn:PrintDebugMessage("Standalone search term matched:", query:sub(i, j - 1), "-- storing and continue outer loop from index", j)
+            tinsert(tokens, query:sub(i, j - 1))
+            i = j
+        end
+    end
+    return tokens
+end
+
+---Returns `true` if a search term matches the given item by some means, `false` otherwise.\
+---* Collectible name, instance name, and boss/encounter name can be matched partially
+---* Collectible type, instance difficulty, and search tag must match exactly
+---@param data Mount|Toy|Pet|DecorItem|TimewalkingItem|WowRemixItem
+---@param term string
+---@param selectedTab number
+local function itemMatchesTerm(data, term, selectedTab)
+    local itemName
+    if selectedTab == AddOn.Tabs.MountsTab then
+        itemName = C_MountJournal.GetMountInfoByID(data.ID) or data.Name
+    elseif selectedTab == AddOn.Tabs.ToysTab then
+        itemName = select(2, C_ToyBox.GetToyInfo(data.ItemID)) or data.Name
+    elseif selectedTab == AddOn.Tabs.PetsTab then
+        itemName = C_PetJournal.GetPetInfoByItemID(data.PetItemID) or data.Name
+    elseif selectedTab == AddOn.Tabs.TimewalkingVendorTab then
+        local twData = AddOn.TimewalkingCache[data.ItemID]
+        itemName = twData and twData.itemName or data.Name
+    elseif selectedTab == AddOn.Tabs.DecorTab then
+        local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.DecorItemID)
+        itemName = decor and decor.name or data.Name
+    end
+    local cleanName = (itemName or data.Name):lower():gsub("|.+|.*", "")
+    local instanceName = (EJ_GetInstanceInfo(data.InstanceID) or data.Instance or ""):lower()
+    local encounterName = (data.EncounterID and EJ_GetEncounterInfo(data.EncounterID) or ""):lower()
+
+    -- Collectible name, instance name, and boss name
+    if cleanName:find(term, 1, true) then return true end
+    if instanceName:find(term, 1, true) then return true end
+    if encounterName:find(term, 1, true) then return true end
+
+    -- Instance difficulty 
+    if data.DifficultyIDs and ((term == L["raid"] and AddOn:IsInstanceRaid(data)) or (term == L["dungeon"] and not AddOn:IsInstanceRaid(data))) then
+        return true
+    end
+    for _, diffID in ipairs(data.DifficultyIDs or {}) do
+        if AddOn:GetDifficultyButtonText(diffID):lower() == term or AddOn:GetInstanceDifficultyText(diffID):lower() == term then
+            return true
+        end
+    end
+    if data.SharedDifficulties then
+        for shared in pairs(data.SharedDifficulties) do
+            if AddOn:GetDifficultyButtonText(shared):lower() == term or AddOn:GetInstanceDifficultyText(shared):lower() == term then
+                return true
+            end
+        end
+    end
+
+    -- Search tag
+    for _, tag in ipairs(data.SearchTags or {}) do
+        if tag:lower() == term then return true end
+    end
+
+    -- Include matching for collectible type if defined (Timewalking & Remix items)
+    return data.Type and L[data.Type] and term == L[data.Type]:lower() or false
+end
+
+-- Forward declaration so parseAtom() can reference it as an upvalue for sub-expressions where needed
+local parseExpr
+
+---Parse single search term or group of terms encapsulated by parenthesis
+-- Absence of returned search token indicates end of input or logical operator
+---@param tokens string[]
+---@param pos number
+---@return string? token
+---@return number newPos
+local function parseAtom(tokens, pos)
+    local token = tokens[pos]
+    if token == "(" then
+        -- Parsing group of search terms using recursive parser function
+        -- Returning newPos in the absence of a closing parenthesis prevents crashing when it's forgotten or not yet entered
+        local result, newPos = parseExpr(tokens, pos + 1)
+        return result, (tokens[newPos] == ")" and newPos + 1 or newPos)
+    elseif token and token ~= ")" and token ~= "&" and token ~= "|" and token ~= "!" then
+        -- Parsing single search term
+        return token, pos + 1
+    end
+    -- End of input or logical operator with existing position
+    -- Returning the same position indicates no token was consumed (used by parseAndExpr to break recursion)
+    return nil, pos
+end
+
+---Recursively parses search expressions that use the NOT logical operator (`!`)
+---@param tokens string[]
+---@param pos number
+---@return string|nil|SearchNotOperatorNode result
+---@return number newPos
+local function parseNotExpr(tokens, pos)
+    if tokens[pos] == "!" then
+        local operand, newPos = parseNotExpr(tokens, pos + 1)
+        AddOn:PrintDebugMessage("NOT operator: Output from recursive parseNotExpr:", operand)
+        return { op = "not", operand = operand }, newPos
+    end
+    return parseAtom(tokens, pos)
+end
+
+---Recursively parses search expressions that use the AND logical operator (`&`) or implicit AND operator between terms via adjacency
+---@param tokens string[]
+---@param pos number
+---@return SearchLogicalOperatorNode result
+---@return number newPos
+local function parseAndExpr(tokens, pos)
+    -- Handle any leading NOT operators or plain search terms seen before an AND operator
+    local left, newPos = parseNotExpr(tokens, pos)
+    pos = newPos
+    while tokens[pos] do
+        local tok = tokens[pos]
+        if tok == "&" then
+            -- Explicit AND: advance past "&" and parse the right side
+            local right, rPos = parseNotExpr(tokens, pos + 1)
+            AddOn:PrintDebugMessage("AND operator: building node with left:", left, "and right:", right)
+            left, pos = { op = "and", left = left, right = right }, rPos
+        elseif tok ~= "|" and tok ~= ")" then
+            -- Implicit AND: token starts new operand with no explicit operator
+            local right, rPos = parseNotExpr(tokens, pos)
+            if rPos == pos then break end
+            AddOn:PrintDebugMessage("AND operator (implicit): building node with left:", left, "and right:", right)
+            left, pos = { op = "and", left = left, right = right }, rPos
+        else
+            -- "|" or ")" belongs to an enclosing expression, stop here
+            break
+        end
+    end
+    return left, pos
+end
+
+---Recursively parses search expressions that use the OR logical operator (`|`).
+---**This is the top-level parse function**
+---@param tokens string[]
+---@param pos number
+---@return SearchLogicalOperatorNode result
+---@return number newPos
+parseExpr = function(tokens, pos)
+    local left, newPos = parseAndExpr(tokens, pos)
+    pos = newPos
+    while tokens[pos] == "|" do
+        -- OR operator: advance past | and parse the right-hand operand
+        local right, rPos = parseAndExpr(tokens, pos + 1)
+        AddOn:PrintDebugMessage("OR operator: building node with left:", left, "and right:", right)
+        left, pos = { op = "or", left = left, right = right }, rPos
+    end
+    return left, pos
+end
+
+---Recursively evaluates a parsed expression node against a given item. Called once per item per search.
+---@param data Mount|Toy|Pet|TimewalkingItem|WowRemixItem|DecorItem
+---@param expr string|nil|SearchNotOperatorNode|SearchLogicalOperatorNode
+---@param selectedTab number
+---@return boolean
+local function evalExpr(data, expr, selectedTab)
+    if expr == nil then return false end
+    if type(expr) == "string" then return itemMatchesTerm(data, expr, selectedTab) end
+    if expr.op == "and" then return evalExpr(data, expr.left, selectedTab) and evalExpr(data, expr.right, selectedTab) end
+    if expr.op == "or"  then return evalExpr(data, expr.left, selectedTab) or evalExpr(data, expr.right, selectedTab) end
+    if expr.op == "not" then return not evalExpr(data, expr.operand, selectedTab) end
+    return false
+end
+
+---Filters a list of data based on search parameters; supports &(AND), |(OR), !(NOT), and parentheses for grouping; adjacency is implicit AND
 ---@param listData (Mount|Toy|Pet|TimewalkingItem|WowRemixItem|DecorItem)[]
 ---@return (Mount|Toy|Pet|TimewalkingItem|WowRemixItem|DecorItem)[]
 function AddOn:FilterListContentsByQuery(listData)
     local filtered = {}
-    local query = self.Container.SearchBox:GetText():lower()
     local selectedTab = self.db.global.selectedTab
+    local expr = parseExpr(tokenizeSearchQuery(self.Container.SearchBox:GetText():lower()), 1)
 
-    local nameMatches, instanceMatches, encounterMatches, instanceTypeMatches = false, false, false, false
     for _, data in ipairs(listData) do
-        -- Using localized names for mounts, instances, encounters, etc for better search results
-        local itemName
-        local instanceName = EJ_GetInstanceInfo(data.InstanceID) or data.Instance
-        local encounterName = data.EncounterID and EJ_GetEncounterInfo(data.EncounterID) or ""
-        if selectedTab == self.Tabs.MountsTab then
-            itemName = C_MountJournal.GetMountInfoByID(data.ID) or data.Name
-        elseif selectedTab == self.Tabs.ToysTab then
-            itemName = select(2, C_ToyBox.GetToyInfo(data.ItemID)) or data.Name
-        elseif selectedTab == self.Tabs.PetsTab then
-            itemName = C_PetJournal.GetPetInfoByItemID(data.PetItemID) or data.Name
-        elseif selectedTab == self.Tabs.TimewalkingVendorTab then
-            local twData = self.TimewalkingCache[data.ItemID]
-            itemName = twData and twData.itemName or data.Name
-        elseif selectedTab == self.Tabs.DecorTab then
-            local decor = C_HousingCatalog.GetCatalogEntryInfoByItem(data.DecorItemID)
-            itemName = decor and decor.name or data.Name
-        end
-        local cleanName = itemName:lower():gsub("|.+|.*", "")
-        nameMatches = cleanName:match(query) and true or false
-        instanceMatches = instanceName and instanceName:lower():match(query) and true or false
-        encounterMatches = encounterName:lower():match(query) and true or false
-        instanceTypeMatches = data.DifficultyIDs and ((query == L["raid"] and self:IsInstanceRaid(data)) or (query == L["dungeon"] and not self:IsInstanceRaid(data)))
-        
-        local difficultyMatches = false
-        for _, diffID in ipairs(data.DifficultyIDs or {}) do
-            if self:GetDifficultyButtonText(diffID):lower() == query or self:GetInstanceDifficultyText(diffID):lower() == query then
-                difficultyMatches = true
-                break
-            end
-        end
-        if not difficultyMatches and data.SharedDifficulties then
-            for shared, _ in pairs(data.SharedDifficulties) do
-                if self:GetDifficultyButtonText(shared):lower() == query or self:GetInstanceDifficultyText(shared):lower() == query then
-                    difficultyMatches = true
-                    break
-                end
-            end
-        end
-        
-        local searchTagMatches = false
-        for _, tag in ipairs(data.SearchTags or {}) do
-            if tag:lower() == query then
-                searchTagMatches = true
-                break
-            end
-        end
-        
-        local itemTypeMatches = data.Type and L[data.Type] and query == L[data.Type]:lower() or false
-
-        if nameMatches or instanceMatches or encounterMatches or instanceTypeMatches or difficultyMatches or searchTagMatches or itemTypeMatches then
-            tinsert(filtered, data)
-        end
+        if evalExpr(data, expr, selectedTab) then tinsert(filtered, data) end
     end
     return filtered
 end

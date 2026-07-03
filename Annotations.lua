@@ -95,6 +95,15 @@
 ---@field itemID number
 ---@field iconID number
 
+---@class SearchNotOperatorNode
+---@field op "not"
+---@field operand string|SearchNotOperatorNode
+
+---@class SearchLogicalOperatorNode
+---@field op "and"|"or"
+---@field left string|nil|SearchNotOperatorNode|SearchLogicalOperatorNode
+---@field right string|nil|SearchNotOperatorNode
+
 ---@class ICHSquareButton: Button
 ---@field action string
 
