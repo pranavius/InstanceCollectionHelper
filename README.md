@@ -12,6 +12,7 @@ ICH will be continue to be supported in the **Midnight** expansion and beyond fo
 ## Highlights
 - Tabs for mounts, toys, pets, and decor that are available from instances
 - Search for a collectible by its name, an instance name or type, a difficulty setting, by expansion, or by the zone or parent zone it can be found in
+  - Supports `&` (AND), `|` (OR), and `!` (NOT) logical operators with grouping via parentheses
 - Easily keep track of all available collectibles offered by Timewalking vendors along with their costs
 - Multi-column scrollable UI with the ability to "favorite" items and sort by a specific column
 - "Mini-window" that can appear when inside an instance that has collectible you are missing
@@ -26,11 +27,11 @@ ICH will be continue to be supported in the **Midnight** expansion and beyond fo
 ## Summary
 **Instance Collection Helper** is a list and tracking system for collectibles (Mounts, Toys, Pets, and Decor) available from instances as well as the Timewalking vendor. Each tab shows items relevant to that category along with where (and sometimes how) to get them. Items can be sorted by column header and marked as favorites, with favorites always pinned to the top of the list.
 
-A search bar is available to filter lists by a number of options. When a collectible cannot be obtained on a given difficulty, that difficulty button for the item is disabled, making it easy to see at a glance what you still need and on which difficulty. The Timewalking Vendor tab shows each item alongside its cost.
+A search bar is available to filter lists by a number of options, including support for `AND`, `OR`, and `NOT` logical operators with parenthetical grouping for complex queries. A "Show Available Only" toggle hides collectibles that your character is currently locked out for until the next daily or weekly reset. For Timewalking Vendor items, this option restricts the list to items sold during the currently active Timewalking event. If no Timewalking event is active, no items are shown in this tab. When a collectible cannot be obtained on a given difficulty, that difficulty button for the item is disabled, making it easy to see at a glance what you still need and on which difficulty. The Timewalking Vendor tab shows each item alongside its cost.
 
 If desired, you can enable the option to show a mini-window when inside an instance. This window will allow you to see all of the available collectibles from that instance on your current difficulty at a glance. When an item is no longer available due to being locked out, it will appear desaturated (greyed out).
 
-Some AddOn preferences can also be maanged using the settings panel, such as the ability to show/hide the mini-window or bulk-clear favorites.
+Some AddOn preferences can also be managed using the settings panel, such as the ability to show/hide the mini-window or bulk-clear favorites.
 
 If you see any items missing from a list, please let me know and I'll be happy to add them ASAP.
 
@@ -85,7 +86,6 @@ Aside from the AddOn UI itself, **Instance Collection Helper** provides a few ot
 - For `/ich lraid`, `<difficulty>` can be one of `10` (10 player), `25` (25 player), `10h` (10 player (Heroic)), `25h` (25 player (Heroic)), or `40` (40 player)
 
 ## Planned Updates
-- Preview of decor and pets in addition to mounts
 - Track Achievements available in instances
 - Ability to view lockouts/available attempts of alts
 - Allow AddOn properties such as fonts, backgrounds, skins, etc. to be configurable

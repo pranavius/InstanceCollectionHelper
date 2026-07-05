@@ -194,8 +194,8 @@ end
 -- Forward declaration so parseAtom() can reference it as an upvalue for sub-expressions where needed
 local parseExpr
 
----Parse single search term or group of terms encapsulated by parenthesis
--- Absence of returned search token indicates end of input or logical operator
+---Parse single search term or group of terms encapsulated by parenthesis.
+---Absence of returned search token indicates end of input or logical operator
 ---@param tokens string[]
 ---@param pos number
 ---@return string? token

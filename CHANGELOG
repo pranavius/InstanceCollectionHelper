@@ -4,6 +4,15 @@ This document describes changes to each version of **Instance Collection Helper 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v19**
+- **Major update:** Added support for advanced searching using `&` (AND), `|` (OR), and `!` (NOT) logical operators, as well as grouping search expressions with parentheses
+- **Major update:** Added a "Show Available Only" filter to hide collectibles that are no longer obtainable due to a daily or weekly lockout being in place
+  - Restricts Timewalking vendor items to those available during the currently active Timewalking event, or none if no event is active
+- Updated the active Timewalking event's expansion name in the Timewalking tab to appear in green
+- Updated Mini-Window collectible tooltips to include a colored indicator for whether the item can be looted in the current lockout
+- Added tooltips to footer checkboxes to elaborate on what each option does
+- *Bug Fix:* Corrected an issue where special characters such as `(` or `+` in search queries could cause errors due to the AddOn's search processing logic
+
 **v18.3**
 - Updated Mini-Window collectible tooltips to display the boss that drops each item and any special collection notes where applicable
 - Added a collection note for Luminous Sporeglider indicating the Delicious Sporesnack requirement
