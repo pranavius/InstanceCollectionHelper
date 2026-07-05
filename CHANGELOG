@@ -11,6 +11,9 @@ Release versions suffixed with a lowercase letter are considered unofficial _alp
 - Updated the active Timewalking event's expansion name in the Timewalking tab to appear in green
 - Updated Mini-Window collectible tooltips to include a colored indicator for whether the item can be looted in the current lockout
 - Added tooltips to footer checkboxes to elaborate on what each option does
+- Expanded the "How To Use" tooltip with additional guidance covering favorites, column sorting, item previews, footer checkbox behavior, and the mini-window
+- Expanded the "Search Hints" tooltip with additional examples covering dungeon and raid type filters, boss and zone name searches, expansion abbreviation shortcuts, and boolean operator syntax
+- Updated frame strata for the main window and footer to reduce overlap with other AddOn frames
 - *Bug Fix:* Corrected an issue where special characters such as `(` or `+` in search queries could cause errors due to the AddOn's search processing logic
 
 **v18.3**
