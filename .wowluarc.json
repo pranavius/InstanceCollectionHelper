@@ -3,7 +3,8 @@
     "library": ["Libs/"],
     "flavors": ["retail"],
     "diagnostics": {
-        "disable": ["generic-constraint-mismatch"]
+        "disable": ["generic-constraint-mismatch"],
+        "severity": { "class-shadows-builtin": "info" }
     },
     "globals": {
         "read": ["InstanceCollectionHelper*", "ICH*", "*Mixin", "TomTom", "LE_EXPANSION_*"],

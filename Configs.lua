@@ -20,6 +20,15 @@ AddOn.DatabaseDefaults = {
         showAvailableOnly = false,
         showMiniWindow = false,
         showMiniWindowInMythicPlus = false,
+        worldTour = {
+            active = false,
+            currentStep = nil,
+            lastCharacterGUID = nil,
+            scope = {
+                mode = "types",
+                types = { Mount = true, Pet = true, Toy = true, Decor = true },
+            },
+        },
         favorites = {
             Mount = {},
             Toy = {},

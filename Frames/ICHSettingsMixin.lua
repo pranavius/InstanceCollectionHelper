@@ -67,7 +67,7 @@ function ICHSettingsMixin:OnLoad()
         local xOffset = idx == 1 and BASE_X_OFFSET or 0
         local yOffset = idx == 1 and 8 or BASE_Y_OFFSET
 
-        local clearBtn = CreateFrame("Button", nil, self, "InsecureActionButtonTemplate")
+        local clearBtn = CreateFrame("Button", nil, self)
         clearBtn:SetSize(ROW_HEIGHT, ROW_HEIGHT)
         clearBtn:SetPoint("TOPLEFT", currentAnchor, "BOTTOMLEFT", xOffset, -yOffset)
         clearBtn:SetScript("OnEnter", function()
@@ -95,7 +95,6 @@ function ICHSettingsMixin:OnLoad()
         currentAnchor = clearBtn
     end
 
-    local clearAllPadding = 20
     self.ClearAllFavoritesButton = CreateFrame("Button", nil, self, "UIPanelButtonTemplate")
     self.ClearAllFavoritesButton:SetText(L["Clear All Favorites"])
     self.ClearAllFavoritesButton:SetHeight(self.ClearAllFavoritesButton.Text:GetHeight() + 20)

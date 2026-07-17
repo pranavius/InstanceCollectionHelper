@@ -26,6 +26,7 @@ L["Upon entering the instance, raid difficulty will automatically be set to Norm
 L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"] = "Não fale com nenhum dos Guardiões Titânicos, caso contrário esta montaria não cairá"
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "Exige completar certos objetivos dentro de um tempo determinado, por isso é recomendado procurar um guia online para obter esta montaria antes de tentar"
 L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "A entrada pode estar em "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Uldum").." ou no "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vale das Flores Eternas")
+L["May require completion of the quest NZOTH_ASSAULTS_QUEST to access raid entrances"] = "O acesso às entradas do raide pode exigir completar a missão |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(select(1, UnitFactionGroup("player")) == "Horde" and 58582 or 58496) or select(1, UnitFactionGroup("player")) == "Horde" and "Return of the Black Prince" or "An Unwelcome Advisor")
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "Requer completar uma curta linha de missões após saquear "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Traje de Meca Defeituoso]"))
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "Requer completar a masmorra após ativar o Modo Difícil. Guias sobre como fazê-lo podem ser encontrados online."
 L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Complete a masmorra sozinho, depois retorne à área onde"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Dômina Lâmina Venenosa").." estava e interaja com a "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Serpente de Visgo Curiosa").."."
@@ -128,11 +129,9 @@ L["Also show collectibles you already own"] = "Também mostrar colecionáveis qu
 L["Use TomTom waypoints instead of Blizzard map pins"] = "Usar waypoints de TomTom em vez de marcadores de mapa da Blizzard"
 L["Show Owned"] = "Mostrar itens possuídos"
 L["How To Use:"] = "Como usar:"
-L["Find the collectible you want to collect in the list and click the button for the difficulty you want to run on"] = "Encontre a colecionável que deseja coletar na lista e clique no botão da dificuldade em que quer executar"
-L["to make sure it is updated."] = "para garantir que esteja atualizada."
+L["Find the collectible you want to collect in the list and click the button for the difficulty you want to run on to make sure it is updated."] = "Encontre a colecionável que deseja coletar na lista e clique no botão da dificuldade em que quer executar para garantir que esteja atualizada."
 L["When you are locked out on a particular difficulty, the button for that difficulty will be disabled."] = "Quando você estiver bloqueado em uma dificuldade específica, o botão dessa dificuldade será desativado."
-L["A button will also be disabled for legacy raids completed on another difficulty since those lockouts"] = "Um botão também será desativado para raides de legado concluídos em outra dificuldade, pois esses bloqueios"
-L["are shared across difficulties."] = "são compartilhados entre dificuldades."
+L["A button will also be disabled for legacy raids completed on another difficulty since those lockouts are shared across difficulties."] = "Um botão também será desativado para raides de legado concluídos em outra dificuldade, pois esses bloqueios são compartilhados entre dificuldades."
 L["Click the star icon on any item to mark or unmark it as a favorite. Favorited items are always pinned to the top of the list."] = "Clique no ícone de estrela de qualquer item para marcá-lo ou desmarcá-lo como favorito. Os favoritos são sempre fixados no topo da lista."
 L["Click a column header to sort the list by that column. Click again to reverse the order, or a third time to clear the sort."] = "Clique no cabeçalho de uma coluna para ordenar a lista por essa coluna. Clique novamente para inverter a ordem, ou uma terceira vez para remover a ordenação."
 L["Click on a collectible's icon to preview it in a dressing room window."] = "Clique no ícone de um colecionável para visualizá-lo na janela do provador."
@@ -158,8 +157,7 @@ L["Available Difficulty(s)"] = "Dificuldade(s)"
 L["Shares lockout with:"] = "Compartilha bloqueio com:"
 L["View in encounter journal"] = "Ver no diário de encontros"
 L["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."] = "Este botão serve apenas para rastrear o bloqueio do Localizador de Raides (LFR). A dificuldade de raide não foi alterada."
-L["Waypoint tracking on the minimap may not always appear until you are in a specific zone."] = "O rastreamento de marcador no minimapa pode não aparecer até você estar em uma zona específica."
-L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "Por exemplo, uma seta apontando para o "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Trono do Trovão").." só aparecerá quando você estiver na "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Ilha do Trovão")
+L["Waypoint tracking on the minimap may not always appear until you are in a specific zone. For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder."] = "O rastreamento de marcador no minimapa pode não aparecer até você estar em uma zona específica. Por exemplo, uma seta apontando para o "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Trono do Trovão").." só aparecerá quando você estiver na "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Ilha do Trovão").."."
 L["Set map pin"] = "Definir marcador no mapa"
 L["Set TomTom waypoint"] = "Colocar um waypoint "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("TomTom")
 L["Coming soon"] = "Em breve"
@@ -248,3 +246,14 @@ L["Click to unfavorite"] = "Clique para remover dos favoritos"
 L["Sort ascending"] = "Classificar em ordem crescente"
 L["Sort descending"] = "Classificar em ordem decrescente"
 L["Clear sort"] = "Limpar ordenação"
+
+--- World Tour ---
+L["World Tour"] = "Turnê Mundial"
+L["No world tour stop selected"] = "Nenhuma parada da turnê mundial selecionada"
+L["Start"] = "Iniciar"
+L["Stop"] = "Parar"
+L["Prev"] = "Anterior"
+L["Next"] = "Próximo"
+L["Reset"] = "Redefinir"
+L["Select at least one collectible type to continue the tour"] = "Selecione pelo menos um tipo de colecionável para continuar a turnê"
+L["Invalid world tour command."] = "Comando de turnê mundial inválido."

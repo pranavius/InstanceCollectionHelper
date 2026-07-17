@@ -26,6 +26,7 @@ L["Upon entering the instance, raid difficulty will automatically be set to Norm
 L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"] = "Non parlare con nessuno dei Custodi Titani, altrimenti questa cavalcatura non sarà disponibile come bottino"
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "Richiede il completamento di determinati obiettivi entro un certo tempo, quindi si consiglia di cercare una guida online per ottenere questa cavalcatura prima di tentare"
 L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "L'ingresso può trovarsi in "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Uldum").." o nella "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Vallata dell'Eterna Primavera")
+L["May require completion of the quest NZOTH_ASSAULTS_QUEST to access raid entrances"] = "L'accesso agli ingressi dell'incursione potrebbe richiedere il completamento della missione |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(select(1, UnitFactionGroup("player")) == "Horde" and 58582 or 58496) or select(1, UnitFactionGroup("player")) == "Horde" and "Return of the Black Prince" or "An Unwelcome Advisor")
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "Richiede il completamento di una breve catena di missioni dopo aver saccheggiato "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Mecatuta malfunzionante]"))
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "Richiede il completamento della spedizione dopo aver attivato la modalità difficile. Le guide su come farlo possono essere trovate online."
 L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Completa la spedizione in solitaria, poi torna nell'area dove si trovava "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Domina Lamatossica").." e interagisci con il "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Curioso serpente di melma").."."
@@ -128,11 +129,9 @@ L["Also show collectibles you already own"] = "Mostra anche i collezionabili gi�
 L["Use TomTom waypoints instead of Blizzard map pins"] = "Usa i waypoint TomTom invece dei segnaposto mappa di Blizzard"
 L["Show Owned"] = "Mostra posseduti"
 L["How To Use:"] = "Come usare:"
-L["Find the collectible you want to collect in the list and click the button for the difficulty you want to run on"] = "Trova il collezionabile desiderato nella lista e clicca sul pulsante per la difficoltà scelta"
-L["to make sure it is updated."] = "per assicurarti che sia aggiornata."
+L["Find the collectible you want to collect in the list and click the button for the difficulty you want to run on to make sure it is updated."] = "Trova il collezionabile desiderato nella lista e clicca sul pulsante per la difficoltà scelta per assicurarti che sia aggiornata."
 L["When you are locked out on a particular difficulty, the button for that difficulty will be disabled."] = "Quando sei bloccato su una difficoltà particolare, il pulsante per quella difficoltà sarà disabilitato."
-L["A button will also be disabled for legacy raids completed on another difficulty since those lockouts"] = "Un pulsante sarà disabilitato anche per le incursioni eredità completate in un'altra difficoltà poiché quei blocchi"
-L["are shared across difficulties."] = "sono condivisi tra le difficoltà."
+L["A button will also be disabled for legacy raids completed on another difficulty since those lockouts are shared across difficulties."] = "Un pulsante sarà disabilitato anche per le incursioni eredità completate in un'altra difficoltà poiché quei blocchi sono condivisi tra le difficoltà."
 L["Click the star icon on any item to mark or unmark it as a favorite. Favorited items are always pinned to the top of the list."] = "Clicca sull'icona a stella di qualsiasi oggetto per aggiungerlo o rimuoverlo dai preferiti. I preferiti sono sempre mostrati in cima alla lista."
 L["Click a column header to sort the list by that column. Click again to reverse the order, or a third time to clear the sort."] = "Clicca sull'intestazione di una colonna per ordinare la lista in base a quella colonna. Clicca di nuovo per invertire l'ordine, o una terza volta per rimuovere l'ordinamento."
 L["Click on a collectible's icon to preview it in a dressing room window."] = "Clicca sull'icona di un collezionabile per visualizzarne un'anteprima nella finestra del camerino."
@@ -158,8 +157,7 @@ L["Available Difficulty(s)"] = "Difficoltà disponibile/i"
 L["Shares lockout with:"] = "Condivide blocco con:"
 L["View in encounter journal"] = "Visualizza nel diario degli scontri"
 L["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."] = "Questo pulsante serve solo per tracciare un blocco del Cercaincursione (LFR). La difficoltà dell'incursione non è stata modificata."
-L["Waypoint tracking on the minimap may not always appear until you are in a specific zone."] = "Il tracciamento del waypoint sulla minimappa potrebbe non apparire finché non sei in una zona specifica."
-L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "Per esempio, una freccia che punta verso il "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Regno del Tuono").." apparirà solo quando sei sull'"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Isola del Tuono")
+L["Waypoint tracking on the minimap may not always appear until you are in a specific zone. For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder."] = "Il tracciamento del waypoint sulla minimappa potrebbe non apparire finché non sei in una zona specifica. Per esempio, una freccia che punta verso il "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Regno del Tuono").." apparirà solo quando sei sull'"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Isola del Tuono").."."
 L["Set map pin"] = "Imposta spillo mappa"
 L["Set TomTom waypoint"] = "Imposta waypoint di "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("TomTom")
 L["Coming soon"] = "Prossimamente"
@@ -248,3 +246,14 @@ L["Click to unfavorite"] = "Clicca per rimuovere dai preferiti"
 L["Sort ascending"] = "Ordina in modo crescente"
 L["Sort descending"] = "Ordina in modo decrescente"
 L["Clear sort"] = "Rimuovi ordinamento"
+
+--- World Tour ---
+L["World Tour"] = "Tour Mondiale"
+L["No world tour stop selected"] = "Nessuna tappa del tour mondiale selezionata"
+L["Start"] = "Avvia"
+L["Stop"] = "Interrompi"
+L["Prev"] = "Precedente"
+L["Next"] = "Successivo"
+L["Reset"] = "Reimposta"
+L["Select at least one collectible type to continue the tour"] = "Seleziona almeno un tipo di collezionabile per continuare il tour"
+L["Invalid world tour command."] = "Comando del tour mondiale non valido."

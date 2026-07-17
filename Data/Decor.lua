@@ -18,7 +18,7 @@ AddOn.DecorItems = {
         EncounterID = 2778,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in a Follower dungeon"],
-        Waypoint = { mapID = 2437, x = 0.298, y = 0.845 },
+        Waypoint = AddOn.Waypoints.DenOfNalorakk,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -31,7 +31,7 @@ AddOn.DecorItems = {
         EncounterID = 2812,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in a Follower dungeon"],
-        Waypoint = { mapID = 2437, x = 0.438, y = 0.395 },
+        Waypoint = AddOn.Waypoints.MaisaraCaverns,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -43,7 +43,7 @@ AddOn.DecorItems = {
         AreaPoiID = 8271,
         EncounterID = 2739,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2424, x = 0.526, y = 0.853 },
+        Waypoint = AddOn.Waypoints.MarchOnQuelDanas,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -55,7 +55,7 @@ AddOn.DecorItems = {
         AreaPoiID = 8270,
         EncounterID = 2736,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2405, x = 0.452, y = 0.648 },
+        Waypoint = AddOn.Waypoints.TheVoidspire,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -67,7 +67,7 @@ AddOn.DecorItems = {
         AreaPoiID = 8271,
         EncounterID = 2740,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2424, x = 0.526, y = 0.853 },
+        Waypoint = AddOn.Waypoints.MarchOnQuelDanas,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -80,7 +80,7 @@ AddOn.DecorItems = {
         EncounterID = 387,
         DifficultyIDs = { DungeonDifficulty.Normal },
         Notes = L["Upon entering the instance, dungeon difficulty will automatically be set to Normal"],
-        Waypoint = { mapID = 35, x = 0.538, y = 0.813 }, -- Molten Core Waypoint
+        Waypoint = AddOn.Waypoints.BlackrockDepths, -- Molten Core Waypoint
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -92,7 +92,7 @@ AddOn.DecorItems = {
         AreaPoiID = 8270,
         EncounterID = 2738,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2405, x = 0.452, y = 0.648 },
+        Waypoint = AddOn.Waypoints.TheVoidspire,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -105,7 +105,7 @@ AddOn.DecorItems = {
         EncounterID = 2815,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in a Follower dungeon"],
-        Waypoint = { mapID = 2405, x = 0.65, y = 0.618 },
+        Waypoint = AddOn.Waypoints.NexusPointXenas,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -118,7 +118,7 @@ AddOn.DecorItems = {
         EncounterID = 1225,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 535, x = 0.463, y = 0.739 },
+        Waypoint = AddOn.Waypoints.Auchindoun,
         SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
     },
     {
@@ -130,7 +130,7 @@ AddOn.DecorItems = {
         AreaPoiID = 8482,
         EncounterID = 2795,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2413, x = 0.614, y = 0.629 },
+        Waypoint = AddOn.Waypoints.TheDreamrift,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -142,7 +142,7 @@ AddOn.DecorItems = {
         AreaPoiID = 6725,
         EncounterID = 100,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic },
-        Waypoint = { mapID = 21, x = 0.459, y = 0.679 },
+        Waypoint = AddOn.Waypoints.ShadowfangKeep,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -154,8 +154,32 @@ AddOn.DecorItems = {
         AreaPoiID = 6129,
         EncounterID = 2331,
         DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 1462, x = 0.729, y = 0.365 },
+        Waypoint = AddOn.Waypoints.OperationMechagon,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
+    },
+    {
+        Name = "Hatchery of Hissing Eggs",
+        DecorItemID = 278982,
+        Instance = "Temple of Sethraliss",
+        InstanceID = 1030,
+        MapID = 1877,
+        AreaPoiID = 5840,
+        EncounterID = 2145,
+        DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
+        Notes = L["Also obtainable in Timewalking"],
+        SearchTags = AddOn.ExpansionTags.BattleForAzeroth
+    },
+    {
+        Name = "Hexed Tomb Brazier",
+        DecorItemID = 264716,
+        Instance = "The Venomous Abyss",
+        InstanceID = 1320,
+        MapID = 3004,
+        AreaPoiID = 8930,
+        EncounterID = 2874,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = AddOn.Waypoints.TheVenomousAbyss,
+        SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
         Name = "Horde Battle Emblem",
@@ -166,7 +190,7 @@ AddOn.DecorItems = {
         AreaPoiID = 6660,
         EncounterID = 1234,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 33, x = 0.790, y = 0.338 },
+        Waypoint = AddOn.Waypoints.UpperBlackrockSpire,
         SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
     },
     {
@@ -178,7 +202,7 @@ AddOn.DecorItems = {
         AreaPoiID = 6507,
         EncounterID = 869,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 1530, x = 0.741, y = 0.401 },
+        Waypoint = AddOn.Waypoints.SiegeOfOrgrimmar,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -191,7 +215,7 @@ AddOn.DecorItems = {
         EncounterID = 2682,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in a Follower dungeon"],
-        Waypoint = { mapID = 2393, x = 0.572, y = 0.61 },
+        Waypoint = AddOn.Waypoints.MurderRow,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -203,7 +227,19 @@ AddOn.DecorItems = {
         AreaPoiID = 8270,
         EncounterID = 2733,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2405, x = 0.452, y = 0.648 },
+        Waypoint = AddOn.Waypoints.TheVoidspire,
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Lost Explorers' Mailbox",
+        DecorItemID = 279118,
+        Instance = "The Venomous Abyss",
+        InstanceID = 1320,
+        MapID = 3004,
+        AreaPoiID = 8930,
+        EncounterID = 2894,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = AddOn.Waypoints.TheVenomousAbyss,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -214,8 +250,8 @@ AddOn.DecorItems = {
         MapID = 1592,
         AreaPoiID = 8510,
         EncounterID = 2711,
-        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic, RaidDifficulty.MythicFlex },
-        Waypoint = { mapID = 2413, x = 0.736, y = 0.664 },
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = AddOn.Waypoints.Sporefall,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -228,7 +264,7 @@ AddOn.DecorItems = {
         EncounterID = 2662,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in a Follower dungeon"],
-        Waypoint = { mapID = 2424, x = 0.635, y = 0.154 },
+        Waypoint = AddOn.Waypoints.MagistersTerraceMidnight,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -240,7 +276,7 @@ AddOn.DecorItems = {
         AreaPoiID = 5101,
         EncounterID = 1751,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 680, x = 0.437, y = 0.573 },
+        Waypoint = AddOn.Waypoints.TheNighthold,
         SearchTags = AddOn.ExpansionTags.Legion
     },
     {
@@ -253,7 +289,7 @@ AddOn.DecorItems = {
         EncounterID = 2589,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in a Follower dungeon"],
-        Waypoint = { mapID = 2248, x = 0.766, y = 0.438 },
+        Waypoint = AddOn.Waypoints.CinderbrewMeadery,
         SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
@@ -266,11 +302,11 @@ AddOn.DecorItems = {
         EncounterID = 1657,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 641, x = 0.591, y = 0.314 },
+        Waypoint = AddOn.Waypoints.DarkheartThicket,
         SearchTags = AddOn.ExpansionTags.Legion
     },
     {
-        Name = "Orgimmar Sconce",
+        Name = "Orgrimmar Sconce",
         DecorItemID = 245434,
         Instance = "Iron Docks",
         InstanceID = 558,
@@ -278,7 +314,7 @@ AddOn.DecorItems = {
         AreaPoiID = 6671,
         EncounterID = 1238,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 543, x = 0.454, y = 0.135 },
+        Waypoint = AddOn.Waypoints.IronDocks,
         SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
     },
     {
@@ -291,7 +327,7 @@ AddOn.DecorItems = {
         EncounterID = 1720,
         DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 680, x = 0.508, y = 0.655 },
+        Waypoint = AddOn.Waypoints.CourtOfStars,
         SearchTags = AddOn.ExpansionTags.Legion
     },
     {
@@ -304,8 +340,32 @@ AddOn.DecorItems = {
         EncounterID = 2573,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in a Follower dungeon"],
-        Waypoint = { mapID = 2215, x = 0.413, y = 0.493 },
+        Waypoint = AddOn.Waypoints.PrioryOfTheSacredFlame,
         SearchTags = AddOn.ExpansionTags.TheWarWithin
+    },
+    {
+        Name = "Pillar of the Coiled Isle",
+        DecorItemID = 279131,
+        Instance = "The Venomous Abyss",
+        InstanceID = 1320,
+        MapID = 3004,
+        AreaPoiID = 8930,
+        EncounterID = 2883,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = AddOn.Waypoints.TheVenomousAbyss,
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Pillar of the Fanged Altar",
+        DecorItemID = 279211,
+        Instance = "Altar of Fangs",
+        InstanceID = 1322,
+        MapID = 2993,
+        AreaPoiID = 8931,
+        EncounterID = 2880,
+        DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
+        Waypoint = AddOn.Waypoints.AltarOfFangs,
+        SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
         Name = "Qalashi Goulash",
@@ -316,8 +376,33 @@ AddOn.DecorItems = {
         AreaPoiID = 7211,
         EncounterID = 2501,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 2022, x = 0.257, y = 0.563 },
+        Waypoint = AddOn.Waypoints.Neltharus,
         SearchTags = AddOn.ExpansionTags.Dragonflight
+    },
+    {
+        Name = "\"Rage of the Shackled\" Mural",
+        DecorItemID = 279500,
+        Instance = "The Venomous Abyss",
+        InstanceID = 1320,
+        MapID = 3004,
+        AreaPoiID = 8930,
+        EncounterID = 2895,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = AddOn.Waypoints.TheVenomousAbyss,
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Royal Attendant's Coffin",
+        DecorItemID = 278245,
+        Instance = "Kings' Rest",
+        InstanceID = 1041,
+        MapID = 1762,
+        AreaPoiID = 5839,
+        EncounterID = 2172,
+        DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
+        Notes = L["Also obtainable in Timewalking"],
+        Waypoint = AddOn.Waypoints.KingsRest,
+        SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
         Name = "Silvermoon Training Dummy",
@@ -329,7 +414,19 @@ AddOn.DecorItems = {
         EncounterID = 2658,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in a Follower dungeon"],
-        Waypoint = { mapID = 2395, x = 0.355, y = 0.788 },
+        Waypoint = AddOn.Waypoints.WindrunnerSpire,
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Soulcoiler's Ritual Candle",
+        DecorItemID = 279115,
+        Instance = "The Venomous Abyss",
+        InstanceID = 1320,
+        MapID = 3004,
+        AreaPoiID = 8930,
+        EncounterID = 2888,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = AddOn.Waypoints.TheVenomousAbyss,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -342,7 +439,7 @@ AddOn.DecorItems = {
         EncounterID = 2095,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 895, x = 0.846, y = 0.788 },
+        Waypoint = AddOn.Waypoints.Freehold,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -355,7 +452,7 @@ AddOn.DecorItems = {
         EncounterID = 93,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic },
         Notes = L["Dropped by Vanessa VanCleef on Heroic difficulty"],
-        Waypoint = { mapID = 52, x = 0.426, y = 0.716 },
+        Waypoint = AddOn.Waypoints.TheDeadmines,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -367,7 +464,43 @@ AddOn.DecorItems = {
         AreaPoiID = 8270,
         EncounterID = 2737,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2405, x = 0.452, y = 0.648 },
+        Waypoint = AddOn.Waypoints.TheVoidspire,
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "The Venomous Abyss Argent Trophy",
+        DecorItemID = 279127,
+        Instance = "The Venomous Abyss",
+        InstanceID = 1320,
+        MapID = 3004,
+        AreaPoiID = 8930,
+        EncounterID = 2895,
+        DifficultyIDs = { RaidDifficulty.Mythic },
+        Waypoint = AddOn.Waypoints.TheVenomousAbyss,
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "The Venomous Abyss Aureate Trophy",
+        DecorItemID = 279125,
+        Instance = "The Venomous Abyss",
+        InstanceID = 1320,
+        MapID = 3004,
+        AreaPoiID = 8930,
+        EncounterID = 2895,
+        DifficultyIDs = { RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = AddOn.Waypoints.TheVenomousAbyss,
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "The Venomous Abyss Gleaming Trophy",
+        DecorItemID = 279129,
+        Instance = "The Venomous Abyss",
+        InstanceID = 1320,
+        MapID = 3004,
+        AreaPoiID = 8930,
+        EncounterID = 2895,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = AddOn.Waypoints.TheVenomousAbyss,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -380,7 +513,7 @@ AddOn.DecorItems = {
         EncounterID = 1687,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 650, x = 0.496, y = 0.685 },
+        Waypoint = AddOn.Waypoints.NeltharionsLair,
         SearchTags = AddOn.ExpansionTags.Legion
     },
     {
@@ -393,7 +526,7 @@ AddOn.DecorItems = {
         EncounterID = 2156,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 942, x = 0.786, y = 0.266 },
+        Waypoint = AddOn.Waypoints.ShrineOfTheStorm,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -406,7 +539,7 @@ AddOn.DecorItems = {
         EncounterID = 335,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 371, x = 0.562, y = 0.579 },
+        Waypoint = AddOn.Waypoints.TempleOfTheJadeSerpent,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -418,7 +551,7 @@ AddOn.DecorItems = {
         AreaPoiID = 7213,
         EncounterID = 2514,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 2025, x = 0.583, y = 0.424 },
+        Waypoint = AddOn.Waypoints.AlgetharAcademy,
         SearchTags = AddOn.ExpansionTags.Dragonflight
     },
     {
@@ -430,7 +563,7 @@ AddOn.DecorItems = {
         AreaPoiID = 7212,
         EncounterID = 2503,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 2022, x = 0.601, y = 0.757 },
+        Waypoint = AddOn.Waypoints.RubyLifePools,
         SearchTags = AddOn.ExpansionTags.Dragonflight
     },
     {
@@ -443,7 +576,31 @@ AddOn.DecorItems = {
         EncounterID = 2772,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in a Follower dungeon"],
-        Waypoint = { mapID = 2413, x = 0.265, y = 0.78 },
+        Waypoint = AddOn.Waypoints.TheBlindingVale,
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Venom Fanged Font",
+        DecorItemID = 279122,
+        Instance = "The Venomous Abyss",
+        InstanceID = 1320,
+        MapID = 3004,
+        AreaPoiID = 8930,
+        EncounterID = 2887,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = AddOn.Waypoints.TheVenomousAbyss,
+        SearchTags = AddOn.ExpansionTags.Midnight
+    },
+    {
+        Name = "Vessel of the Howling Ossuary",
+        DecorItemID = 244343,
+        Instance = "The Venomous Abyss",
+        InstanceID = 1320,
+        MapID = 3004,
+        AreaPoiID = 8930,
+        EncounterID = 2871,
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = AddOn.Waypoints.TheVenomousAbyss,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -455,20 +612,20 @@ AddOn.DecorItems = {
         AreaPoiID = 8270,
         EncounterID = 2735,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2405, x = 0.452, y = 0.648 },
+        Waypoint = AddOn.Waypoints.TheVoidspire,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
         Name = "Voidlight Brazier",
         DecorItemID = 264336,
         Instance = "Voidscar Arena",
-        InstanceID = 1309,
+        InstanceID = 1313,
         MapID = 2859,
         AreaPoiID = 8647,
         EncounterID = 2793,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in a Follower dungeon"],
-        Waypoint = { mapID = 2413, x = 0.265, y = 0.78 },
+        Waypoint = AddOn.Waypoints.VoidscarArena,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -480,7 +637,7 @@ AddOn.DecorItems = {
         AreaPoiID = 8270,
         EncounterID = 2734,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2405, x = 0.452, y = 0.648 },
+        Waypoint = AddOn.Waypoints.TheVoidspire,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -492,7 +649,7 @@ AddOn.DecorItems = {
         AreaPoiID = 7821,
         EncounterID = 2561,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 2214, x = 0.555, y = 0.216 },
+        Waypoint = AddOn.Waypoints.DarkflameCleft,
         SearchTags = AddOn.ExpansionTags.TheWarWithin
     }
 }

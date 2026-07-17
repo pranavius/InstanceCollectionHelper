@@ -1,4 +1,4 @@
-## Interface: 120007, 120005
+## Interface: 120100, 120007
 ## Title: Instance Collection Helper
 ## Notes: Helps find and set the instance difficulty needed to obtain collectible items
 ## IconTexture: Interface\AddOns\InstanceCollectionHelper\Media\Logo
@@ -7,6 +7,16 @@
 ## SavedVariables: ICH_DB
 ## OptionalDeps: TomTom
 ## Category: Collections
+## Category-deDE: Kriegsmeutesammlungen
+## Category-esES: Colecciones de banda guerrera
+## Category-esMX: Colecciones de tropa
+## Category-frFR: Collections du bataillon
+## Category-itIT: Collezioni della Brigata
+## Category-koKR: 수집
+## Category-ptBR: Coleções do Bando de Guerra
+## Category-ruRU: Коллекции отряда
+## Category-zhCN: 战团藏品
+## Category-zhTW: 戰隊收藏
 ## AddonCompartmentFunc: ICH_AddonCompartmentOnClick
 ## AddonCompartmentFuncOnEnter: ICH_AddonCompartmentOnEnter
 ## AddonCompartmentFuncOnLeave: ICH_AddonCompartmentOnLeave
@@ -33,15 +43,18 @@ Localization\zhCN.lua
 Configs.lua
 Constants.lua
 Utils.lua
+Data\WaypointList.lua
 Data\Mounts.lua
 Data\Toys.lua
 Data\Pets.lua
 Data\Timewalking.lua
 Data\Decor.lua
+Data\WorldTourSteps.lua
 Modules\CategoryTabs.lua
 Modules\Waypoints.lua
 Modules\DifficultyButtons.lua
 Modules\SortAndFavorites.lua
+Modules\WorldTour.lua
 Modules\DataProviders\BaseDataProvider.lua
 Modules\DataProviders\MountDataProvider.lua
 Modules\DataProviders\ToyDataProvider.lua
@@ -66,6 +79,8 @@ Frames\ICHFooterMixin.lua
 Frames\ICHFooter.xml
 Frames\ICHInstanceHelperMixin.lua
 Frames\ICHInstanceHelper.xml
+Frames\ICHWorldTourMixin.lua
+Frames\ICHWorldTour.xml
 Frames\ICHSettingsMixin.lua
 Frames\ICHSettings.xml
 Frames\ICHAboutMixin.lua

@@ -20,7 +20,11 @@ function AddOn:CreatePetCache()
                 speciesID = speciesID,
             }
 
-            if toLoad == 0 then self:PrintDebugMessage("Pet data loaded") end
+            if toLoad == 0 then
+                self:PrintDebugMessage("Pet data loaded")
+                self.WorldTour:BuildRoute(true)
+                self.WorldTour:RefreshWindowIfShown()
+            end
         end)
     end
 end

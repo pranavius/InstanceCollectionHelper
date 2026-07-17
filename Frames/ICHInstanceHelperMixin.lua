@@ -22,7 +22,9 @@ function ICHInstanceHelperMixin:OnLoad()
             if tooltip.__miniWindowData.EncounterID or tooltip.__miniWindowData.Notes then tooltip:AddLine(" ") end
             if tooltip.__miniWindowData.EncounterID then
                 local encounterName = EJ_GetEncounterInfo(tooltip.__miniWindowData.EncounterID)
-                tooltip:AddLine(BOSS..": "..WHITE_FONT_COLOR:WrapTextInColorCode(encounterName))
+                if encounterName then
+                    tooltip:AddLine(BOSS..": "..WHITE_FONT_COLOR:WrapTextInColorCode(encounterName))
+                end
                 local lootableColor = tooltip.__miniWindowData.CanBeLooted and GREEN_FONT_COLOR or RED_FONT_COLOR
                 tooltip:AddLine(lootableColor:WrapTextInColorCode(tooltip.__miniWindowData.CanBeLooted and L["Lootable on this character"] or L["Not lootable on this character"]))
             end
@@ -104,7 +106,7 @@ function ICHInstanceHelperMixin:UpdateHelperWindow()
 
         local iconSize = 30
         for _, item in ipairs(collectibles) do
-            local col = CreateFrame("Button", nil, self.ItemContainer, "InsecureActionButtonTemplate")
+            local col = CreateFrame("Button", nil, self.ItemContainer)
             col:SetSize(iconSize, iconSize)
             col:SetNormalTexture(item.IconID)
             col:SetHighlightTexture(item.IconID)

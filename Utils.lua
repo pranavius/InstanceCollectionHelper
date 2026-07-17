@@ -20,6 +20,12 @@ local function isList(tbl)
     return pairsKeysCount == ipairsKeysCount
 end
 
+---Determines where Ny'alotha's raid entrance is based on active major assault quest
+---@return boolean
+function AddOn.IsNyalothaEntranceInPandaria()
+    return C_TaskQuest.IsActive(57157)
+end
+
 ---Prints a message to the chat window prefixed by the AddOn name
 ---@param ... any Arguments to be printed to the chat window
 function AddOn.PrintChatMessage(...)
@@ -175,7 +181,7 @@ function AddOn.AppendMapSearchTags(data)
     local tags = {}
     for _, tag in ipairs(data.SearchTags) do tinsert(tags, tag) end
 
-    -- Check the mapping constant first since raids before Siege of Orgimmar and all dungeons have a value of 0 from EJ_GetInstanceInfo
+    -- Check the mapping constant first since raids before Siege of Orgrimmar and all dungeons have a value of 0 from EJ_GetInstanceInfo
     local dungeonAreaMapID = AddOn.InstanceToDamIDMap[data.InstanceID] or select(7, EJ_GetInstanceInfo(data.InstanceID))
     if dungeonAreaMapID and dungeonAreaMapID ~= 0 then
         local map = C_Map.GetMapInfo(dungeonAreaMapID)
@@ -329,4 +335,111 @@ function AddOn:GetActiveTimewalkingExpansion()
         end
     end
     return nil
+end
+
+---Almost a duplicate of ICHInstanceHelperMixin.GetInstanceCollectibles. Figure out how to consolidate (TODO)
+---@param instanceID number
+---@return ICHHelperItem[]
+function AddOn.GetCollectiblesForInstance(instanceID)
+    local entries = {}
+
+    for _, mount in ipairs(AddOn.Mounts) do
+        if mount.InstanceID == instanceID then
+            local _, spellID, iconID, _, _, _, _, _, _, hideOnChar, isOwned = C_MountJournal.GetMountInfoByID(mount.ID)
+            -- hideOnChar/isOwned are nil for mounts that don't exist for the player's faction/character (Grand Black War Mammoth), same guard as UpdateListContents
+            local mountExists = hideOnChar ~= nil and isOwned ~= nil
+            if mountExists and not hideOnChar then
+                local difficulties = ""
+                for idx, diffID in ipairs(mount.DifficultyIDs) do
+                    difficulties = difficulties..AddOn:GetInstanceDifficultyText(diffID)
+                    if idx < #mount.DifficultyIDs then difficulties = difficulties..", " end
+                end
+                tinsert(entries, {
+                    Type = "Mount",
+                    MountID = mount.ID,
+                    IconID = iconID or 134400,
+                    Hyperlink = C_MountJournal.GetMountLink(spellID) or "",
+                    EncounterID = mount.EncounterID,
+                    Difficulties = difficulties,
+                    Notes = mount.Notes,
+                    Owned = isOwned or false,
+                    CanBeLooted = AddOn:IsCollectibleAvailable(mount),
+                })
+            end
+        end
+    end
+
+    for _, toy in ipairs(AddOn.Toys) do
+        if toy.InstanceID == instanceID then
+            local toyCache = AddOn.ToyCache[toy.ItemID]
+            if toyCache then
+                local difficulties = ""
+                for idx, diffID in ipairs(toy.DifficultyIDs) do
+                    difficulties = difficulties..AddOn:GetInstanceDifficultyText(diffID)
+                    if idx < #toy.DifficultyIDs then difficulties = difficulties..", " end
+                end
+                tinsert(entries, {
+                    Type = "Toy",
+                    ItemID = toy.ItemID,
+                    IconID = toyCache.iconID,
+                    Hyperlink = "item:"..toy.ItemID,
+                    EncounterID = toy.EncounterID,
+                    Difficulties = difficulties,
+                    Notes = toy.Notes,
+                    Owned = AddOn.IsCollectibleOwned(toy.ItemID, "Toy"),
+                    CanBeLooted = AddOn:IsCollectibleAvailable(toy),
+                })
+            end
+        end
+    end
+
+    for _, pet in ipairs(AddOn.Pets) do
+        if pet.InstanceID == instanceID then
+            local petCache = AddOn.PetCache and AddOn.PetCache[pet.PetItemID]
+            if petCache then
+                local difficulties = ""
+                for idx, diffID in ipairs(pet.DifficultyIDs) do
+                    difficulties = difficulties..AddOn:GetInstanceDifficultyText(diffID)
+                    if idx < #pet.DifficultyIDs then difficulties = difficulties..", " end
+                end
+                tinsert(entries, {
+                    Type = "Pet",
+                    ItemID = pet.PetItemID,
+                    IconID = petCache.iconID,
+                    Hyperlink = "item:"..pet.PetItemID,
+                    EncounterID = pet.EncounterID,
+                    Difficulties = difficulties,
+                    Notes = pet.Notes,
+                    Owned = AddOn.IsCollectibleOwned(petCache.speciesID, "Pet"),
+                    CanBeLooted = AddOn:IsCollectibleAvailable(pet),
+                })
+            end
+        end
+    end
+
+    for _, decorItem in ipairs(AddOn.DecorItems) do
+        if decorItem.InstanceID == instanceID then
+            local decorCache = AddOn.DecorCache and AddOn.DecorCache[decorItem.DecorItemID]
+            if decorCache then
+                local difficulties = ""
+                for idx, diffID in ipairs(decorItem.DifficultyIDs) do
+                    difficulties = difficulties..AddOn:GetInstanceDifficultyText(diffID)
+                    if idx < #decorItem.DifficultyIDs then difficulties = difficulties..", " end
+                end
+                tinsert(entries, {
+                    Type = "Decor",
+                    ItemID = decorItem.DecorItemID,
+                    IconID = decorCache.iconID,
+                    Hyperlink = "item:"..decorItem.DecorItemID,
+                    EncounterID = decorItem.EncounterID,
+                    Difficulties = difficulties,
+                    Notes = decorItem.Notes,
+                    Owned = AddOn.IsCollectibleOwned(decorItem.DecorItemID, "Decor"),
+                    CanBeLooted = AddOn:IsCollectibleAvailable(decorItem),
+                })
+            end
+        end
+    end
+
+    return entries
 end

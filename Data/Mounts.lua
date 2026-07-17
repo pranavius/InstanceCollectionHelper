@@ -17,7 +17,7 @@ AddOn.Mounts = {
         AreaPoiID = 5250,
         EncounterID = 1861,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 646, x = 0.64, y = 0.214 },
+        Waypoint = AddOn.Waypoints.TombOfSargeras,
         SearchTags = AddOn.ExpansionTags.Legion
     },
     {
@@ -29,7 +29,7 @@ AddOn.Mounts = {
         AreaPoiID = 6129,
         EncounterID = 2331,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 1462, x = 0.729, y = 0.365 },
+        Waypoint = AddOn.Waypoints.OperationMechagon,
         Notes = L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."],
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
@@ -41,7 +41,7 @@ AddOn.Mounts = {
         MapID = 568,
         AreaPoiID = 6683,
         DifficultyIDs = { DungeonDifficulty.Heroic },
-        Waypoint = { mapID = 95, x = 0.82, y = 0.643 },
+        Waypoint = AddOn.Waypoints.ZulAman,
         Notes = L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"],
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
@@ -54,7 +54,7 @@ AddOn.Mounts = {
         AreaPoiID = 5440,
         EncounterID = 1987,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 885, x = 0.548, y = 0.625 },
+        Waypoint = AddOn.Waypoints.Antorus,
         SearchTags = AddOn.ExpansionTags.Legion
     },
     {
@@ -66,7 +66,7 @@ AddOn.Mounts = {
         AreaPoiID = 7631,
         EncounterID = 2519,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2200, x = 0.273, y = 0.31 },
+        Waypoint = AddOn.Waypoints.Amirdrassil,
         SearchTags = AddOn.ExpansionTags.Dragonflight
     },
     {
@@ -78,7 +78,7 @@ AddOn.Mounts = {
         AreaPoiID = 6682,
         EncounterID = 176,
         DifficultyIDs = { DungeonDifficulty.Heroic },
-        Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        Waypoint = AddOn.Waypoints.ZulGurub,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -90,7 +90,7 @@ AddOn.Mounts = {
         AreaPoiID = 7546,
         EncounterID = 2602,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2255, x = 0.436, y = 0.903 },
+        Waypoint = AddOn.Waypoints.NerubArPalace,
         SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
@@ -102,7 +102,7 @@ AddOn.Mounts = {
         AreaPoiID = 6534,
         EncounterID = 1576,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Waypoint = { mapID = 109, x = 0.736, y = 0.637 },
+        Waypoint = AddOn.Waypoints.TheEye,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -114,7 +114,7 @@ AddOn.Mounts = {
         AreaPoiID = 8271,
         EncounterID = 2740,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2424, x = 0.526, y = 0.853 },
+        Waypoint = AddOn.Waypoints.MarchOnQuelDanas,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -131,7 +131,7 @@ AddOn.Mounts = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 379, x = 0.596, y = 0.392 },
+        Waypoint = AddOn.Waypoints.MogushanVaults,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -144,7 +144,7 @@ AddOn.Mounts = {
         EncounterID = 1617,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 },
-        Waypoint = { mapID = 114, x = 0.275, y = 0.267 },
+        Waypoint = AddOn.Waypoints.EyeOfEternity,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -156,7 +156,7 @@ AddOn.Mounts = {
         AreaPoiID = 6520,
         EncounterID = 1616,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Waypoint = { mapID = 115, x = 0.6, y = 0.57 },
+        Waypoint = AddOn.Waypoints.TheObsidianSanctum,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -174,7 +174,7 @@ AddOn.Mounts = {
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H
         },
         Notes = L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"],
-        Waypoint = { mapID = 71, x = 0.647, y = 0.513 },
+        Waypoint = AddOn.Waypoints.DragonSoul,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -187,7 +187,7 @@ AddOn.Mounts = {
         EncounterID = 1617,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 },
-        Waypoint = { mapID = 114, x = 0.275, y = 0.267 },
+        Waypoint = AddOn.Waypoints.EyeOfEternity,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -199,7 +199,7 @@ AddOn.Mounts = {
         AreaPoiID = 6690,
         EncounterID = 643,
         DifficultyIDs = { DungeonDifficulty.Heroic },
-        Waypoint = { mapID = 117, x = 0.572, y = 0.465 },
+        Waypoint = AddOn.Waypoints.UtgardePinnacle,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -211,7 +211,7 @@ AddOn.Mounts = {
         AreaPoiID = 6537,
         DifficultyIDs = { RaidDifficulty.Legacy40 },
         Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"],
-        Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
+        Waypoint = AddOn.Waypoints.TempleOfAhnQiraj,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -222,7 +222,7 @@ AddOn.Mounts = {
         MapID = 595,
         AreaPoiID = 6663,
         DifficultyIDs = { DungeonDifficulty.Heroic },
-        Waypoint = { mapID = 71, x = 0.647, y = 0.513 },
+        Waypoint = AddOn.Waypoints.TheCullingOfStratholme,
         Notes = L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"],
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
@@ -235,10 +235,7 @@ AddOn.Mounts = {
         AreaPoiID = 2395,
         EncounterID = 2455,
         DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
-        -- K'aresh entrance appears to be a permanent addition, but the Shadowlands waypoint will be kept for potential future use
-        -- Notes = L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"],
-        -- Waypoint = { mapID = 1671, x = 0.602, y = 0.676 },
-        Waypoint = { mapID = 2371, x = 0.636, y = 0.702 },
+        Waypoint = AddOn.Waypoints.TazaveshKaresh,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -255,7 +252,7 @@ AddOn.Mounts = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
+        Waypoint = AddOn.Waypoints.ThroneOfThunder,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -268,7 +265,7 @@ AddOn.Mounts = {
         EncounterID = 115,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 1527, x = 0.767, y = 0.844 },
+        Waypoint = AddOn.Waypoints.TheVortexPinnacle,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -285,7 +282,7 @@ AddOn.Mounts = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 1527, x = 0.37, y = 0.814 },
+        Waypoint = AddOn.Waypoints.ThroneOfTheFourWinds,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -303,7 +300,7 @@ AddOn.Mounts = {
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H
         },
         Notes = L["Available in Normal Legacy Raid difficulty, but Heroic should be set if Life-Binder's Handmaiden is not obtained yet"],
-        Waypoint = { mapID = 71, x = 0.647, y = 0.513 },
+        Waypoint = AddOn.Waypoints.DragonSoul,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -315,7 +312,7 @@ AddOn.Mounts = {
         AreaPoiID = 5101,
         EncounterID = 1737,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 680, x = 0.437, y = 0.573 },
+        Waypoint = AddOn.Waypoints.TheNighthold,
         SearchTags = AddOn.ExpansionTags.Legion
     },
     {
@@ -327,7 +324,7 @@ AddOn.Mounts = {
         AreaPoiID = 6504,
         EncounterID = 1438,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 534, x = 0.47, y = 0.526 },
+        Waypoint = AddOn.Waypoints.HellfireCitadel,
         SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
     },
     {
@@ -339,7 +336,7 @@ AddOn.Mounts = {
         AreaPoiID = 6528,
         EncounterID = 1553,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
+        Waypoint = AddOn.Waypoints.Karazhan,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -352,7 +349,7 @@ AddOn.Mounts = {
         EncounterID = 194,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
+        Waypoint = AddOn.Waypoints.Firelands,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -365,8 +362,8 @@ AddOn.Mounts = {
         -- AreaPoiID = 6013 -- Alliance
         EncounterID = 2343,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        -- Waypoint = { mapID = 862, x = 0.543, y = 0.299 } -- Zuldazar
-        -- Waypoint = { mapID = 1161, x = 0.704, y = 0.356 } -- Boralus,
+        -- Waypoint = AddOn.Waypoints.BattleOfDazaralorHorde -- Zuldazar
+        -- Waypoint = AddOn.Waypoints.BattleOfDazaralorAlliance -- Boralus,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -380,8 +377,8 @@ AddOn.Mounts = {
         EncounterID = 2334,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["Obtainable in Raid Finder (LFR) difficulty by killing Lady Jaina Proudmoore"],
-        -- Waypoint = { mapID = 862, x = 0.543, y = 0.299 } -- Zuldazar
-        -- Waypoint = { mapID = 1161, x = 0.704, y = 0.356 } -- Boralus,
+        -- Waypoint = AddOn.Waypoints.BattleOfDazaralorHorde -- Zuldazar
+        -- Waypoint = AddOn.Waypoints.BattleOfDazaralorAlliance -- Boralus,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -393,7 +390,7 @@ AddOn.Mounts = {
         AreaPoiID = 6526,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         Notes = L["Drops for Alliance characters, but obtaining this also gives you the Horde version"],
-        Waypoint = { mapID = 123, x = 0.5, y = 0.117 },
+        Waypoint = AddOn.Waypoints.VaultOfArchavon,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -405,7 +402,7 @@ AddOn.Mounts = {
         AreaPoiID = 6526,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         Notes = L["Drops for Horde characters, but obtaining this also gives you the Alliance version"],
-        Waypoint = { mapID = 123, x = 0.5, y = 0.117 },
+        Waypoint = AddOn.Waypoints.VaultOfArchavon,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -417,7 +414,7 @@ AddOn.Mounts = {
         AreaPoiID = 6537,
         DifficultyIDs = { RaidDifficulty.Legacy40 },
         Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"],
-        Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
+        Waypoint = AddOn.Waypoints.TempleOfAhnQiraj,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -429,7 +426,7 @@ AddOn.Mounts = {
         AreaPoiID = 5101,
         EncounterID = 1737,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 680, x = 0.437, y = 0.573 },
+        Waypoint = AddOn.Waypoints.TheNighthold,
         SearchTags = AddOn.ExpansionTags.Legion
     },
     {
@@ -441,7 +438,7 @@ AddOn.Mounts = {
         AreaPoiID = 6521,
         EncounterID = 1636,
         DifficultyIDs = { RaidDifficulty.Legacy25H },
-        Waypoint = { mapID = 118, x = 0.538, y = 0.871 },
+        Waypoint = AddOn.Waypoints.IcecrownCitadel,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -453,19 +450,19 @@ AddOn.Mounts = {
         AreaPoiID = 6505,
         EncounterID = 959,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 543, x = 0.516, y = 0.272 },
+        Waypoint = AddOn.Waypoints.BlackrockFoundry,
         SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
     },
     {
         Name = "Kor'kron Juggernaut",
         ID = 559,
-        Instance = "Siege of Orgimmar",
+        Instance = "Siege of Orgrimmar",
         InstanceID = 369,
         MapID = 1136,
         AreaPoiID = 6507,
         EncounterID = 869,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 1530, x = 0.741, y = 0.401 },
+        Waypoint = AddOn.Waypoints.SiegeOfOrgrimmar,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -478,7 +475,7 @@ AddOn.Mounts = {
         EncounterID = 333,
         DifficultyIDs = { RaidDifficulty.Legacy10H },
         SharedDifficulties = { [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H },
-        Waypoint = { mapID = 71, x = 0.647, y = 0.513 },
+        Waypoint = AddOn.Waypoints.DragonSoul,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -487,10 +484,10 @@ AddOn.Mounts = {
         Instance = "Magister's Terrace",
         InstanceID = 1300,
         MapID = 2811,
-        AreaPoiID = 8256,
+        AreaPoiID = 8510,
         EncounterID = 2662,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 2424, x = 0.635, y = 0.154 },
+        Waypoint = AddOn.Waypoints.MagistersTerraceMidnight,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -501,9 +498,9 @@ AddOn.Mounts = {
         MapID = 1592,
         AreaPoiID = 8510,
         EncounterID = 2711,
-        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic, RaidDifficulty.MythicFlex },
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["Requires four (4) Delicious Sporesnack that are earned after killing Rotmire on any difficulty."],
-        Waypoint = { mapID = 2413, x = 0.736, y = 0.664 },
+        Waypoint = AddOn.Waypoints.Sporefall,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -515,7 +512,7 @@ AddOn.Mounts = {
         AreaPoiID = 6582,
         EncounterID = 2396,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 1533, x = 0.401, y = 0.552 },
+        Waypoint = AddOn.Waypoints.TheNecroticWake,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -527,7 +524,7 @@ AddOn.Mounts = {
         AreaPoiID = 6129,
         EncounterID = 2355,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 1462, x = 0.729, y = 0.365 },
+        Waypoint = AddOn.Waypoints.OperationMechagon,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -538,7 +535,7 @@ AddOn.Mounts = {
         MapID = 1651,
         EncounterID = 1835,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
+        Waypoint = AddOn.Waypoints.ReturnToKarazhan,
         SearchTags = AddOn.ExpansionTags.Legion
     },
     {
@@ -551,7 +548,7 @@ AddOn.Mounts = {
         EncounterID = 1649,
         DifficultyIDs = { RaidDifficulty.Normal },
         Notes = L["Upon entering the instance, raid difficulty will automatically be set to Normal"].."\n\n"..L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"],
-        Waypoint = { mapID = 120, x = 0.416, y = 0.178 },
+        Waypoint = AddOn.Waypoints.Ulduar,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -560,10 +557,9 @@ AddOn.Mounts = {
         Instance = "Ny'alotha, the Waking City",
         InstanceID = 1180,
         MapID = 2217,
-        -- AreaPoiID = 6539, -- Or 6540 (Uldum)
         EncounterID = 2375,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Notes = L["Entrance can be in either Uldum or Vale of Eternal Blossoms"],
+        Notes = L["Entrance can be in either Uldum or Vale of Eternal Blossoms"].."\n\n"..L["May require completion of the quest NZOTH_ASSAULTS_QUEST to access raid entrances"],
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -576,8 +572,20 @@ AddOn.Mounts = {
         EncounterID = 1651,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
         SharedDifficulties = { [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10 },
-        Waypoint = { mapID = 70, x = 0.522, y = 0.759 },
+        Waypoint = AddOn.Waypoints.OnyxiasLair,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
+    },
+    {
+        Name = "Primeval Skyfriend",
+        ID = 3030,
+        Instance = "The Venomous Abyss",
+        InstanceID = 1320,
+        MapID = 3004,
+        AreaPoiID = 8930,
+        EncounterID = 2895,
+        DifficultyIDs = { RaidDifficulty.Mythic },
+        Waypoint = AddOn.Waypoints.TheVenomousAbyss,
+        SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
         Name = "Prototype A.S.M.R",
@@ -588,7 +596,7 @@ AddOn.Mounts = {
         AreaPoiID = 8240,
         EncounterID = 2646,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2346, x = 0.416, y = 0.488 },
+        Waypoint = AddOn.Waypoints.LiberationOfUndermine,
         SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
@@ -601,7 +609,7 @@ AddOn.Mounts = {
         EncounterID = 198,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
+        Waypoint = AddOn.Waypoints.Firelands,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -613,7 +621,7 @@ AddOn.Mounts = {
         AreaPoiID = 6717,
         EncounterID = 542,
         DifficultyIDs = { DungeonDifficulty.Heroic },
-        Waypoint = { mapID = 108, x = 0.446, y = 0.656 },
+        Waypoint = AddOn.Waypoints.SethekkHalls,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -625,7 +633,7 @@ AddOn.Mounts = {
         AreaPoiID = 6537,
         DifficultyIDs = { RaidDifficulty.Legacy40 },
         Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"],
-        Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
+        Waypoint = AddOn.Waypoints.TempleOfAhnQiraj,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -637,7 +645,7 @@ AddOn.Mounts = {
         EncounterID = 456,
         DifficultyIDs = { DungeonDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 23, x = 0.436, y = 0.191 },
+        Waypoint = AddOn.Waypoints.StratholmeDead,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -649,7 +657,7 @@ AddOn.Mounts = {
         AreaPoiID = 6994,
         EncounterID = 2439,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 1543, x = 0.697, y = 0.32 },
+        Waypoint = AddOn.Waypoints.SanctumOfDomination,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -661,7 +669,7 @@ AddOn.Mounts = {
         AreaPoiID = 5440,
         EncounterID = 2031,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 885, x = 0.548, y = 0.625 },
+        Waypoint = AddOn.Waypoints.Antorus,
         SearchTags = AddOn.ExpansionTags.Legion
     },
     {
@@ -673,7 +681,7 @@ AddOn.Mounts = {
         AreaPoiID = 5834,
         EncounterID = 2095,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 895, x = 0.846, y = 0.788 },
+        Waypoint = AddOn.Waypoints.Freehold,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -685,7 +693,7 @@ AddOn.Mounts = {
         AreaPoiID = 6585,
         DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."],
-        Waypoint = { mapID = 1536, x = 0.594, y = 0.65 },
+        Waypoint = AddOn.Waypoints.Plaguefall,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -696,7 +704,7 @@ AddOn.Mounts = {
         MapID = 1651,
         DifficultyIDs = { DungeonDifficulty.Mythic },
         Notes = L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"],
-        Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
+        Waypoint = AddOn.Waypoints.ReturnToKarazhan,
         SearchTags = AddOn.ExpansionTags.Legion
     },
     {
@@ -713,7 +721,7 @@ AddOn.Mounts = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
+        Waypoint = AddOn.Waypoints.ThroneOfThunder,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -725,7 +733,7 @@ AddOn.Mounts = {
         AreaPoiID = 8386,
         EncounterID = 2658,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 2395, x = 0.355, y = 0.788 },
+        Waypoint = AddOn.Waypoints.WindrunnerSpire,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -737,7 +745,7 @@ AddOn.Mounts = {
         AreaPoiID = 7820,
         EncounterID = 2582,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 2214, x = 0.427, y = 0.086 },
+        Waypoint = AddOn.Waypoints.TheStonevault,
         Notes = L["Requires completing a short questline after looting Malfunctioning Mechsuit"],
         SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
@@ -750,7 +758,7 @@ AddOn.Mounts = {
         AreaPoiID = 7546,
         EncounterID = 2602,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2255, x = 0.436, y = 0.903 },
+        Waypoint = AddOn.Waypoints.NerubArPalace,
         SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
@@ -763,7 +771,7 @@ AddOn.Mounts = {
         EncounterID = 533,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 122, x = 0.61, y = 0.307 },
+        Waypoint = AddOn.Waypoints.MagistersTerrace,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -775,7 +783,7 @@ AddOn.Mounts = {
         AreaPoiID = 6682,
         EncounterID = 181,
         DifficultyIDs = { DungeonDifficulty.Heroic },
-        Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        Waypoint = AddOn.Waypoints.ZulGurub,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -787,8 +795,20 @@ AddOn.Mounts = {
         AreaPoiID = 8240,
         EncounterID = 2646,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2346, x = 0.416, y = 0.488 },
+        Waypoint = AddOn.Waypoints.LiberationOfUndermine,
         SearchTags = AddOn.ExpansionTags.TheWarWithin
+    },
+    {
+        Name = "The Writhing Brood",
+        ID = 3058,
+        Instance = "Altar of Fangs",
+        InstanceID = 1322,
+        MapID = 2993,
+        AreaPoiID = 8931,
+        EncounterID = 2880,
+        DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
+        Waypoint = AddOn.Waypoints.AltarOfFangs,
+        SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
         Name = "Tomb Stalker",
@@ -799,7 +819,7 @@ AddOn.Mounts = {
         AreaPoiID = 5839,
         EncounterID = 2172,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 862, x = 0.376, y = 0.395 },
+        Waypoint = AddOn.Waypoints.KingsRest,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -811,7 +831,7 @@ AddOn.Mounts = {
         AreaPoiID = 6520,
         EncounterID = 1616,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Waypoint = { mapID = 115, x = 0.6, y = 0.57 },
+        Waypoint = AddOn.Waypoints.TheObsidianSanctum,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -823,7 +843,7 @@ AddOn.Mounts = {
         AreaPoiID = 8363,
         EncounterID = 2691,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2371, x = 0.417, y = 0.215 },
+        Waypoint = AddOn.Waypoints.ManaforgeOmega,
         SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
@@ -835,7 +855,7 @@ AddOn.Mounts = {
         AreaPoiID = 5841,
         EncounterID = 2158,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 863, x = 0.513, y = 0.646 },
+        Waypoint = AddOn.Waypoints.TheUnderrot,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -847,7 +867,7 @@ AddOn.Mounts = {
         AreaPoiID = 6994,
         EncounterID = 2441,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 1543, x = 0.697, y = 0.32 },
+        Waypoint = AddOn.Waypoints.SanctumOfDomination,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -859,7 +879,7 @@ AddOn.Mounts = {
         AreaPoiID = 6687,
         EncounterID = 111,
         DifficultyIDs = { DungeonDifficulty.Normal },
-        Waypoint = { mapID = 207, x = 0.474, y = 0.521 },
+        Waypoint = AddOn.Waypoints.TheStonecore,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -871,7 +891,7 @@ AddOn.Mounts = {
         AreaPoiID = 7821,
         EncounterID = 2561,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 2214, x = 0.555, y = 0.216 },
+        Waypoint = AddOn.Waypoints.DarkflameCleft,
         SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
@@ -883,7 +903,7 @@ AddOn.Mounts = {
         AreaPoiID = 6537,
         DifficultyIDs = { RaidDifficulty.Legacy40 },
         Notes = L["Drop from trash mobs around Temple of Ahn'Qiraj"],
-        Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
+        Waypoint = AddOn.Waypoints.TempleOfAhnQiraj,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -895,7 +915,7 @@ AddOn.Mounts = {
         AreaPoiID = 7021,
         EncounterID = 2464,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 1970, x = 0.805, y = 0.534 },
+        Waypoint = AddOn.Waypoints.SepulcherOfTheFirstOnes,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     }
 }

@@ -2,12 +2,18 @@
 
 _Track available collectibles from instances and easily set required instance difficulty_
 
+Feedback on this AddOn or any others that I develop/maintain is always welcome. If you enjoy using any of my AddOns and would like to support future development, it is greatly appreciated.
+
 [![Discord](https://img.shields.io/badge/join-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/rqXW2cenWg)
+[![Linktree](https://img.shields.io/badge/connect-000000?style=for-the-badge&logo=linktree&logoColor=43E55E)](https://discord.gg/rqXW2cenWg)
 [![Patreon](https://img.shields.io/badge/support-F96854?style=for-the-badge&logo=patreon)](https://patreon.com/cw/Pranavius)
+[![Buy Me a Coffee](https://img.shields.io/badge/buy%20me%20a%20coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=000000)](http://buymeacoffee.com/pranavius)
+
+---
 
 **Instance Collection Helper** was released in July 2025 to help players with tracking mounts and setting the correct instance difficulty for the [Collector's Bounty](https://www.wowhead.com/event=1674/collectors-bounty) event. Since then, it has evolved further into a list and tracking system for other collectibles such as toys, pets, and decor with more versatile options for sorting and filtering lists.
 
-ICH will be continue to be supported in the **Midnight** expansion and beyond for the foreseeable future. I am looking for translators to help verify AddOn translations in non-English languages. If interested, please contact me via one of the means listed in the [Connect](#connect) section.
+ICH will be continue to be supported in the **Midnight** expansion and beyond for the foreseeable future. I am looking for translators to help verify AddOn translations in non-English languages. If interested, please contact me via Discord or any other method from my Linktree.
 
 ## Highlights
 - Tabs for mounts, toys, pets, and decor that are available from instances
@@ -16,6 +22,11 @@ ICH will be continue to be supported in the **Midnight** expansion and beyond fo
 - Easily keep track of all available collectibles offered by Timewalking vendors along with their costs
 - Multi-column scrollable UI with the ability to "favorite" items and sort by a specific column
 - "Mini-window" that can appear when inside an instance that has collectible you are missing
+- *BETA Feature:* Instance farming **World Tour** that guides you through different zones in the game for the chance to grab any collectibles you're still missing
+  - Farming route is based on the Mount Planner feature from [Simple Armory](https://simplearmory.com)
+  - Creates a map pin for each travel destination and instance entrance
+  - Choose which combinations of mounts, pets, toys, or decor to include in your route
+  - *Feature is still heavily under development, so usage and feedback on how it can be improved and what might be missing are welcome and encouraged*
 - Preview mounts, pets, decor, and cosmetics in a dressing room window by clicking on the collectible's icon
 - Open instance and/or encounter journal entries for each list item
 - Ability to drop a map pin at the instance entrance to make navigating easier
@@ -80,6 +91,7 @@ Aside from the AddOn UI itself, **Instance Collection Helper** provides a few ot
 - `/ich mini`: Show a mini-window of available collectibles while inside an instance
 - `/ich config`: Toggle the settings panel
 - `/ich about`: Opens a window showing information about the addon, authors and contributors, etc.
+- `/ich wt`: Opens the World Tour window for farming collectibles out of multiple dungeons based on what you are currently missing
 
 ### Notes
 - For both `/ich dung` and `/ich raid`, `<difficulty>` can be one of `norm` (Normal), `hero` (Heroic), or `myth` (Mythic)
@@ -89,10 +101,3 @@ Aside from the AddOn UI itself, **Instance Collection Helper** provides a few ot
 - Track Achievements available in instances
 - Ability to view lockouts/available attempts of alts
 - Allow AddOn properties such as fonts, backgrounds, skins, etc. to be configurable
-
-## Connect
-Feedback on this AddOn or any others that I develop/maintain is always welcome. If you enjoy using any of my AddOns and would like to support future development, it is greatly appreciated.
-
-[![GitHub](https://img.shields.io/badge/github-000000?style=for-the-badge&logo=github)](https://github.com/pranavius)
-[![X](https://img.shields.io/badge/@PranaviusWoW-000000?style=for-the-badge&logo=x)](https://x.com/PranaviusWoW)
-[![Email](https://img.shields.io/badge/email-ffffff?style=for-the-badge&logo=gmail)](mailto:pranavius1@gmail.com)

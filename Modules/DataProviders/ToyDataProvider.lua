@@ -19,7 +19,11 @@ function AddOn:CreateToyCache()
                 iconID = iconID or 134400,
             }
 
-            if toLoad == 0 then self:PrintDebugMessage("Toy data loaded") end
+            if toLoad == 0 then
+                self:PrintDebugMessage("Toy data loaded")
+                self.WorldTour:BuildRoute(true)
+                self.WorldTour:RefreshWindowIfShown()
+            end
         end)
     end
 end

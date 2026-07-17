@@ -4,6 +4,21 @@ This document describes changes to each version of **Instance Collection Helper 
 Release versions suffixed with a lowercase letter are considered unofficial _alpha_ or _early access_ versions.
 
 ## Changes
+**v20**
+- **Major update:** Added **World Tour**, a guided farming route that walks you through zones and instances to pick up any mounts, toys, pets, or decor you're still missing (*BETA feature*)
+  - Farming route is based on the Mount Planner feature from [Simple Armory](https://simplearmory.com)
+  - Choose which collectible types (mounts, toys, pets, decor) to include in the route
+  - Automatically drops a map pin (or TomTom waypoint, if enabled) for each stop along the route
+  - Hovering a collectible along the route shows the boss it drops from, its difficulty, and any special collection notes
+  - Route accounts for faction-specific travel paths for Alliance and Horde
+  - Starts fresh each time you log in or switch characters
+  - Accessible via the `/ich wt` command
+- Updated collectible data and instance drops for patch 12.1.0
+- Added waypoints for the Battle for Azeroth Timewalking vendor (Alliance and Horde), along with an accurate waypoint for the Eternal Palace raid entrance and a dynamic Ny'alotha entrance waypoint based on its weekly rotation
+  - Added a note indicating a quest may need to be completed before the Ny'alotha entrance appears on the map
+- Improved the appearance of guide tooltips (e.g. difficulty and helper buttons) using a custom tooltip window
+- *Bug Fix:* Removed 'Mythic Flex' as an available difficulty option for Sporefall since it's not a difficulty that can be set in-game
+
 **v19**
 - **Major update:** Added support for advanced searching using `&` (AND), `|` (OR), and `!` (NOT) logical operators, as well as grouping search expressions with parentheses
 - **Major update:** Added a "Show Available Only" filter to hide collectibles that are no longer obtainable due to a daily or weekly lockout being in place

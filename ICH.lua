@@ -22,6 +22,16 @@ function AddOn.HandleSlashCommand(cmd, input)
     elseif input == "debug" then
         AddOn.db.global.debugMessages = not AddOn.db.global.debugMessages
         AddOn.PrintChatMessage(L["Debug messages"], AddOn.db.global.debugMessages and L["enabled"] or L["disabled"])
+    elseif input == "wt" or input:match("^wt%s") then
+        local arg = input:match("^wt%s+(%S+)$")
+        if not arg then ICHWorldTour:Toggle()
+        elseif arg == "next" then AddOn.WorldTour:Next()
+        elseif arg == "prev" then AddOn.WorldTour:Prev()
+        elseif arg == "start" then AddOn.WorldTour:Start()
+        elseif arg == "stop" then AddOn.WorldTour:Stop()
+        else
+            AddOn.PrintChatMessage(ERROR_COLOR:WrapTextInColorCode(L["Invalid world tour command."]))
+        end
     elseif input == "help" then AceConfigCmd:HandleCommand(cmd, name, "")
     else AceConfigCmd:HandleCommand(cmd, name, input)
     end
@@ -36,10 +46,12 @@ function AddOn:OnInitialize()
 
     -- Load database
 	self.db = LibStub("AceDB-3.0"):New("ICH_DB", AddOn.DatabaseDefaults, true)
-    -- Create local caches for Toys, Pets, and Timewalking Items
+    -- Create local caches for Toys, Pets, Decor, and Timewalking Items
     self:CreateToyCache()
     self:CreatePetCache()
+    self:CreateDecorCache()
     self:CreateTimewalkingCache()
+    self.WorldTour:BuildRoute(false)
 
     -- Data broker registration for minimap icon
     local broker = LDB:NewDataObject(name, {
@@ -70,12 +82,31 @@ function AddOn:OnInitialize()
     self:PrintDebugMessage("TomTom is", C_AddOns.IsAddOnLoaded("TomTom") and "enabled" or "disabled")
     self:ConfigureOnInit()
     self:RegisterEvent("ZONE_CHANGED", function() self:UpdateListContents() end)
+    -- Auto-progression of World Tour step based on DestinationID (work in progress)
+    -- self:RegisterEvent("ZONE_CHANGED_NEW_AREA", function()
+    --     if not self.db.global.worldTour.active then return end
+    --     local step, index = self.WorldTour:GetCurrentStep()
+    --     if step and self.WorldTour:IsStepCompleted(step, index) then
+    --         self.WorldTour:Next()
+    --     end
+    -- end)
     self:RegisterEvent("PLAYER_LOGOUT", function()
         if C_AddOns.IsAddOnLoaded("TomTom") and self.db.global.currentTomTomWaypoint then
             TomTom:RemoveWaypoint(self.db.global.currentTomTomWaypoint)
             self.db.global.currentTomTomWaypoint = nil
         end
+        -- Stop any active World Tour on logout so that a fresh session can be started again when relogging
+        self.db.global.worldTour.active = false
     end)
+    self:RegisterEvent("PLAYER_ENTERING_WORLD", function()
+        self:UnregisterEvent("PLAYER_ENTERING_WORLD")
+        local currentGUID = UnitGUID("player")
+        if self.db.global.worldTour.lastCharacterGUID ~= currentGUID then
+            self.db.global.worldTour.lastCharacterGUID = currentGUID
+            self.WorldTour:Reset()
+        end
+    end)
+    
     EventRegistry:RegisterCallback("ICHEvent.UpdateListContents", function() self:UpdateListContents() end)
     EventRegistry:RegisterCallback("ICHEvent.UpdateSettingsPanel", function() self.Settings:RefreshFavoriteButtons() end)
 end
@@ -165,7 +196,7 @@ local function itemMatchesTerm(data, term, selectedTab)
     if instanceName:find(term, 1, true) then return true end
     if encounterName:find(term, 1, true) then return true end
 
-    -- Instance difficulty 
+    -- Instance difficulty
     if data.DifficultyIDs and ((term == L["raid"] and AddOn:IsInstanceRaid(data)) or (term == L["dungeon"] and not AddOn:IsInstanceRaid(data))) then
         return true
     end

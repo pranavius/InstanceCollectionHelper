@@ -66,6 +66,10 @@ function AddOn.InstanceListItemInit(frame, data, config)
     end
 
     frame.InstanceContainer.ViewButton:SetScript("OnClick", function()
+        if not C_AddOns.IsAddOnLoaded("Blizzard_EncounterJournal") then
+            AddOn:PrintDebugMessage("Loading Blizz Encounter Journal module")
+            C_AddOns.LoadAddOn("Blizzard_EncounterJournal")
+        end
         EncounterJournal_OpenJournal(data.DifficultyIDs and data.DifficultyIDs[1] or nil, data.InstanceID, data.EncounterID)
         if EncounterJournalEncounterFrameInfo.tab ~= 2 then
             EncounterJournalEncounterFrameInfoLootTab:Click()

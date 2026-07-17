@@ -26,6 +26,7 @@ L["Upon entering the instance, raid difficulty will automatically be set to Norm
 L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"] = "Не разговаривайте ни с одним из Хранителей Титанов, иначе этот маунт не выпадет"
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "Требует выполнения определённых задач за отведённое время, поэтому перед попыткой рекомендуется поискать руководство в интернете"
 L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "Вход может находиться в "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Ульдуме").." или в "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Вечноцветущем долу")
+L["May require completion of the quest NZOTH_ASSAULTS_QUEST to access raid entrances"] = "Доступ ко входам в рейд может потребовать выполнения задания |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(select(1, UnitFactionGroup("player")) == "Horde" and 58582 or 58496) or select(1, UnitFactionGroup("player")) == "Horde" and "Return of the Black Prince" or "An Unwelcome Advisor")
 L["Requires completing a short questline after looting Malfunctioning Mechsuit"] = "Требует завершения короткой цепочки заданий после получения "..(select(2, C_Item.GetItemInfo(226683)) or EPIC_PURPLE_COLOR:WrapTextInColorCode("[Неисправный механический костюм]"))
 L["Requires completing the dungeon after activating Hard Mode. Guides for how to do so can be found online."] = "Требует завершения подземелья после активации режима повышенной сложности. Руководства по его прохождению можно найти в интернете."
 L["Clear the dungeon solo, then return to the area where Domina Venomblade was and interact with the Curious Slime Serpent."] = "Пройдите подземелье в одиночку, затем вернитесь в место, где находилась "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Домина Отравленный Клинок")..", и взаимодействуйте с "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Любопытной слизистой змеёй").."."
@@ -128,11 +129,9 @@ L["Also show collectibles you already own"] = "Также показывать �
 L["Use TomTom waypoints instead of Blizzard map pins"] = "Использовать метки TomTom вместо значков карты Blizzard"
 L["Show Owned"] = "Показать имеющиеся"
 L["How To Use:"] = "Как использовать:"
-L["Find the collectible you want to collect in the list and click the button for the difficulty you want to run on"] = "Найдите нужный предмет коллекции в списке и нажмите кнопку желаемой сложности"
-L["to make sure it is updated."] = "чтобы убедиться, что она обновлена."
+L["Find the collectible you want to collect in the list and click the button for the difficulty you want to run on to make sure it is updated."] = "Найдите нужный предмет коллекции в списке и нажмите кнопку желаемой сложности, чтобы убедиться, что она обновлена."
 L["When you are locked out on a particular difficulty, the button for that difficulty will be disabled."] = "Если вы заблокированы на определённой сложности, кнопка для этой сложности будет недоступна."
-L["A button will also be disabled for legacy raids completed on another difficulty since those lockouts"] = "Кнопка также будет недоступна для устаревших рейдов, завершённых на другой сложности, поскольку эти блокировки"
-L["are shared across difficulties."] = "распределяются по всем сложностям."
+L["A button will also be disabled for legacy raids completed on another difficulty since those lockouts are shared across difficulties."] = "Кнопка также будет недоступна для устаревших рейдов, завершённых на другой сложности, поскольку эти блокировки распределяются по всем сложностям."
 L["Click the star icon on any item to mark or unmark it as a favorite. Favorited items are always pinned to the top of the list."] = "Нажмите на иконку звезды рядом с любым предметом, чтобы добавить или убрать его из избранного. Избранные предметы всегда закреплены вверху списка."
 L["Click a column header to sort the list by that column. Click again to reverse the order, or a third time to clear the sort."] = "Нажмите на заголовок столбца, чтобы отсортировать список по этому столбцу. Нажмите ещё раз, чтобы изменить порядок, или в третий раз, чтобы сбросить сортировку."
 L["Click on a collectible's icon to preview it in a dressing room window."] = "Нажмите на иконку коллекционного предмета, чтобы предварительно просмотреть его в примерочной."
@@ -158,8 +157,7 @@ L["Available Difficulty(s)"] = "Доступные сложности"
 L["Shares lockout with:"] = "Общая блокировка с:"
 L["View in encounter journal"] = "Просмотр в журнале подземелий"
 L["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid difficulty has not been changed."] = "Эта кнопка предназначена только для отслеживания блокировки Поиска рейда (LFR). Сложность рейда не изменена."
-L["Waypoint tracking on the minimap may not always appear until you are in a specific zone."] = "Отслеживание на миникарте может не отображаться, пока вы не окажетесь в определённой зоне."
-L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "Например, стрелка, указывающая на "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Престол Гроз")..", будет отображаться только на "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("острове Грома")
+L["Waypoint tracking on the minimap may not always appear until you are in a specific zone. For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder."] = "Отслеживание на миникарте может не отображаться, пока вы не окажетесь в определённой зоне. Например, стрелка, указывающая на "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("Престол Гроз")..", будет отображаться только на "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("острове Грома").."."
 L["Set map pin"] = "Установить метку на карте"
 L["Set TomTom waypoint"] = "Установить точку маршрута "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("TomTom")
 L["Coming soon"] = "Скоро"
@@ -248,3 +246,14 @@ L["Click to unfavorite"] = "Нажмите, чтобы убрать из изб�
 L["Sort ascending"] = "Сортировать по возрастанию"
 L["Sort descending"] = "Сортировать по убыванию"
 L["Clear sort"] = "Сбросить сортировку"
+
+--- World Tour ---
+L["World Tour"] = "Мировой тур"
+L["No world tour stop selected"] = "Точка мирового тура не выбрана"
+L["Start"] = "Начать"
+L["Stop"] = "Остановить"
+L["Prev"] = "Назад"
+L["Next"] = "Далее"
+L["Reset"] = "Сбросить"
+L["Select at least one collectible type to continue the tour"] = "Выберите хотя бы один тип коллекционных предметов, чтобы продолжить тур"
+L["Invalid world tour command."] = "Неверная команда мирового тура."

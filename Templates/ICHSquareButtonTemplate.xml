@@ -1,6 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Blizzard_SharedXML/UI.xsd">
-    <Button name="ICHSquareButtonTemplate" mixin="ICHSquareButtonMixin" inherits="InsecureActionButtonTemplate" registerForClicks="AnyUp,AnyDown" virtual="true">
+    <Button name="ICHSquareButtonTemplate" mixin="ICHSquareButtonMixin" registerForClicks="AnyUp" virtual="true">
         <KeyValues>
             <KeyValue key="action" value="" type="string" />
         </KeyValues>
@@ -10,6 +10,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
         <Scripts>
             <OnEnter method="OnEnter"/>
             <OnLeave method="OnLeave"/>
+            <OnClick method="OnClick"/>
         </Scripts>
     </Button>
 </Ui>

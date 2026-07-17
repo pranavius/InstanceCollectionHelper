@@ -1,3 +1,11 @@
+--region Aliases
+---@alias TabSystem Frame & TabSystemTemplate
+---@alias Checkbox CheckButton & UICheckButtonTemplate
+---@alias UIPanelButton Button & UIPanelButtonTemplate
+---@alias DataProvider DataProviderMixin
+--endregion
+
+--region Object table definitions
 ---@class ExpansionTags
 ---@field Classic string[]
 ---@field TheBurningCrusade string[]
@@ -49,6 +57,9 @@
 ---@class Pet: InstanceItemBase
 ---@field PetItemID number
 
+---@class DecorItem: InstanceItemBase
+---@field DecorItemID number
+
 ---@class TimewalkingItem: VendorItemBase
 ---@field Expansion string
 ---@field Waypoint? Waypoint
@@ -64,9 +75,6 @@
 ---@field Phase? string
 ---@field AdditionalResource? WowRemixResource
 ---@field IsLemixExclusive boolean
-
----@class DecorItem: InstanceItemBase
----@field DecorItemID number
 
 ---@class CacheDataBase
 ---@field itemName string
@@ -90,11 +98,6 @@
 ---@field mountID? number
 ---@field speciesID? number
 
----@class LemixResourceCacheData
----@field itemName string
----@field itemID number
----@field iconID number
-
 ---@class SearchNotOperatorNode
 ---@field op "not"
 ---@field operand string|SearchNotOperatorNode
@@ -104,6 +107,52 @@
 ---@field left string|nil|SearchNotOperatorNode|SearchLogicalOperatorNode
 ---@field right string|nil|SearchNotOperatorNode
 
+---@class Translator
+---@field name string
+---@field locale "enUS"|"enGB"|"enAU"|"esES"|"esMX"|"ptBR"|"ptPT"|"frFR"|"deDE"|"itIT"|"ruRU"|"koKR"|"zhTW"|"zhCN"
+
+---@class SortState
+---@field column "Name"|"Instance"|"Type"|"Expansion"|"Cost"
+---@field direction "asc"|"desc"
+
+---@class ICHHelperItem
+---@field Type? "Mount"|"Toy"|"Pet"|"Decor"
+---@field MountID? number
+---@field ItemID? number
+---@field IconID number
+---@field Hyperlink string
+---@field EncounterID? number
+---@field Difficulties? string
+---@field Notes? string
+---@field Owned? boolean
+---@field CanBeLooted boolean
+
+---@class InstanceListItemConfig
+---@field isMount boolean
+---@field getInfo fun(data: InstanceItemBase|VendorItemBase, cached: any): string, number, boolean, number
+---@field cache? CacheDataBase[]
+---@field cacheKey? fun(data: InstanceItemBase|VendorItemBase)
+---@field hasPetCount? boolean
+---@field onNameClick? fun(frame: ICHListItem, data: InstanceItemBase|VendorItemBase, cached: any)
+---@field afterRender? fun(frame: ICHListItem, data: InstanceItemBase|VendorItemBase, cached: any, isOwned: boolean)
+
+---@class WorldTourStep
+---@field InstanceID? number
+---@field AreaPoiID? number
+---@field DestinationID? number|number[]
+---@field RelatedInstances? number[]
+---@field Waypoint? Waypoint
+---@field HelpText? string
+---@field Condition? boolean
+---@field Horde? WorldTourStep
+
+---@class WorldTour
+---@field Steps WorldTourStep[]
+---@field Route WorldTourStep[]
+---@field factionCapitalMapIDs number[]
+---endregion
+
+--region Custom FrameXML definitions
 ---@class ICHSquareButton: Button
 ---@field action string
 
@@ -185,6 +234,7 @@
 ---@field OtherInfoContainer OtherInfoContainer
 ---@field FavoriteContainer FavoriteContainer
 
+-- Frames exclusive to Legion Remix
 ---@class LemixCostContainer: CostContainer
 ---@field resourceItemID number
 
@@ -203,15 +253,6 @@
 ---@field ExclusiveHeader FontString
 ---@field CostHeader FontString
 
----@class InstanceListItemConfig
----@field isMount boolean
----@field getInfo fun(data: InstanceItemBase|VendorItemBase, cached: any)
----@field cache? CacheDataBase[]
----@field cacheKey? fun(data: InstanceItemBase|VendorItemBase)
----@field hasPetCount? boolean
----@field onNameClick? fun(frame: ICHListItem, data: InstanceItemBase|VendorItemBase, cached: any)
----@field afterRender? fun(frame: ICHListItem, data: InstanceItemBase|VendorItemBase, cached: any, isOwned: boolean)
-
 ---@class ICHLemixListItem: Frame
 ---@field isMount boolean
 ---@field relevantID number
@@ -225,6 +266,9 @@
 ---@field OtherInfoContainer OtherInfoContainer
 ---@field FavoriteContainer FavoriteContainer
 
+---@class ICHGuideTooltip: GameTooltip
+---@field activeAction string?
+
 ---@class ICHMain: Frame
 ---@field Title FontString
 ---@field SearchBox SearchBoxTemplate
@@ -233,18 +277,11 @@
 ---@field ListHeaders ICHListHeaders
 ---@field VendorListHeaders ICHListHeaders
 ---@field LemixListHeaders ICHLemixListHeaders
-
----@class MinimalSliderWithSteppers
----@field Slider Slider
----@field Back Button
----@field Forward Button
----@field Init fun(initVal: number, minVal: number, maxVal: number, steps: number)
+---@field GuideTooltip ICHGuideTooltip
 
 ---@class ScaleContainer: Frame
 ---@field Text FontString
----@field WindowScale MinimalSliderWithSteppers
-
----@alias ICHTabSystem Frame & TabSystemTemplate
+---@field WindowScale MinimalSliderWithSteppersTemplate
 
 ---@class Checkbox: CheckButton
 ---@field Text FontString
@@ -258,21 +295,12 @@
 ---@class TomTomContainer: Frame
 ---@field Checkbox Checkbox
 
----@class ICHFooter
+---@class ICHFooter: Frame
 ---@field Bg Texture
 ---@field ScaleContainer ScaleContainer
 ---@field AvailableContainer AvailableContainer
 ---@field OwnedContainer OwnedContainer
 ---@field TomTomContainer TomTomContainer
-
----@class ICHHelperItem
----@field MountID? number
----@field ItemID? number
----@field IconID number
----@field Hyperlink string
----@field EncounterID? number
----@field Notes? string
----@field CanBeLooted boolean
 
 ---@class ICHInstanceHelper: Frame
 ---@field InstanceName FontString
@@ -293,44 +321,38 @@
 ---@field Bg Texture
 ---@field Title FontString
 ---@field FavoritesLabel FontString
----@field MinimapCheckbox CheckButton
----@field MiniWindowCheckbox CheckButton
----@field MiniWindowInMythicPlusCheckbox CheckButton
----@field PetOwnedCheckbox CheckButton
+---@field MinimapCheckbox Checkbox
+---@field MiniWindowCheckbox Checkbox
+---@field MiniWindowInMythicPlusCheckbox Checkbox
+---@field PetOwnedCheckbox Checkbox
+---@field ClearAllFavoritesButton UIPanelButton
 ---@field Close Button
 
----@class Translator
----@field name string
----@field locale "enUS"|"enGB"|"enAU"|"esES"|"esMX"|"ptBR"|"ptPT"|"frFR"|"deDE"|"itIT"|"ruRU"|"koKR"|"zhTW"|"zhCN"
+---@class WorldTourTypeFilterRow: Frame
+---@field MountCheckbox Checkbox
+---@field PetCheckbox Checkbox
+---@field ToyCheckbox Checkbox
+---@field DecorCheckbox Checkbox
 
----@class SortState
----@field column "Name"|"Instance"|"Type"|"Expansion"|"Cost"
----@field direction "asc"|"desc"
+---@class ICHWorldTour: Frame
+---@field Bg Texture
+---@field Title FontString
+---@field ProgressText FontString
+---@field HelpText FontString
+---@field InstanceNameText FontString
+---@field CloseButton Button
+---@field ItemContainer HorizontalLayoutFrame
+---@field TypeFilterRow WorldTourTypeFilterRow
+---@field ResetButton Button
+---@field PrevButton Button
+---@field StartStopButton Button
+---@field NextButton Button
 
+--endregion
+
+--AddOn Table
 ---@class InstanceCollectionHelper: AceAddon, AceConsole-3.0, AceEvent-3.0
 ---@field db AceDBObject-3.0
 ---@field sortState? SortState
----@field Container ICHMain
----@field Title string
----@field ICHDataProvider DataProviderMixin
----@field ScrollView ScrollBoxListLinearViewMixin
----@field Tabs ICHTabSystem
----@field About ICHAbout
----@field Settings ICHSettings
----@field Footer ICHFooter
-
--------- WoW class annotation enhancements to stop LSP from flagging a bunch of things
----@class GameFontHighlightMedium
----@field SetText fun(text: string)
-
----@class GameFontHighlightSmall
----@field SetText fun(text: string)
-
----@class GameFontHighlightHuge
----@field SetText fun(text: string)
-
----@class EncounterJournalEncounterFrameInfo
----@field tab number
-
----@class Button
----@field Text FontString
+---@field Tabs TabSystem
+---@field ICHDataProvider DataProvider

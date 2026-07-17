@@ -54,7 +54,7 @@ AddOn.LemixPhases = {
     Phase5 = L["Phase 5: Infinite Echoes"]
 }
 
----Maps instance ID to the corresponding dungeon area map ID for dungeons and raids before Siege of Orgimmar
+---Maps instance ID to the corresponding dungeon area map ID for dungeons and raids before Siege of Orgrimmar
 ---@type table<number, number>
 AddOn.InstanceToDamIDMap = {
     [744] = 320, -- AQ40
@@ -139,21 +139,22 @@ AddOn.InstanceToDamIDMap = {
     [1316] = 2556, -- NPX
     [1309] = 2500, -- Blinding Vale
     [1313] = 2572, -- Voidscar Arena
-    [1299] = 2494, -- Winderunner Spire
+    [1299] = 2494, -- Windrunner Spire
+    [1322] = 2588, -- Altar of Fangs
 }
 
 ---@enum ExpansionOrder
 AddOn.ExpansionOrder = {
-    ["Classic"]                = LE_EXPANSION_CLASSIC,
-    ["The Burning Crusade"]    = LE_EXPANSION_BURNING_CRUSADE,
+    ["Classic"] = LE_EXPANSION_CLASSIC,
+    ["The Burning Crusade"] = LE_EXPANSION_BURNING_CRUSADE,
     ["Wrath of the Lich King"] = LE_EXPANSION_WRATH_OF_THE_LICH_KING,
-    ["Cataclysm"]              = LE_EXPANSION_CATACLYSM,
-    ["Mists of Pandaria"]      = LE_EXPANSION_MISTS_OF_PANDARIA,
-    ["Warlords of Draenor"]    = LE_EXPANSION_WARLORDS_OF_DRAENOR,
-    ["Legion"]                 = LE_EXPANSION_LEGION,
-    ["Battle for Azeroth"]     = LE_EXPANSION_BATTLE_FOR_AZEROTH,
-    ["Shadowlands"]            = LE_EXPANSION_SHADOWLANDS,
-    ["Dragonflight"]           = LE_EXPANSION_DRAGONFLIGHT,
-    ["The War Within"]         = LE_EXPANSION_WAR_WITHIN,
-    ["Midnight"]               = LE_EXPANSION_MIDNIGHT,
+    ["Cataclysm"] = LE_EXPANSION_CATACLYSM,
+    ["Mists of Pandaria"] = LE_EXPANSION_MISTS_OF_PANDARIA,
+    ["Warlords of Draenor"] = LE_EXPANSION_WARLORDS_OF_DRAENOR,
+    ["Legion"] = LE_EXPANSION_LEGION,
+    ["Battle for Azeroth"] = LE_EXPANSION_BATTLE_FOR_AZEROTH,
+    ["Shadowlands"] = LE_EXPANSION_SHADOWLANDS,
+    ["Dragonflight"] = LE_EXPANSION_DRAGONFLIGHT,
+    ["The War Within"] = LE_EXPANSION_WAR_WITHIN,
+    ["Midnight"] = LE_EXPANSION_MIDNIGHT,
 }

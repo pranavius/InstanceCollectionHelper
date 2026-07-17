@@ -25,11 +25,12 @@ local function SetBlizzardMapPin(data)
     if data.InstanceID == 1176 then
         C_SuperTrack.SetSuperTrackedMapPin(0, faction == "Horde" and 6012 or 6013)
         return true
-    -- elseif data.InstanceID == 1194 then
-    --     -- Special case for Tazavesh (AreaPoiID is a flight path from Oribos)
-    --     C_SuperTrack.SetSuperTrackedMapPin(2, data.AreaPoiID)
-    --     return true
+    -- Special case for Ny'alotha (entrance alternates weekly between Uldum and Vale of Eternal Blossoms)
+    elseif data.InstanceID == 1180 then
+        C_SuperTrack.SetSuperTrackedMapPin(0, AddOn.IsNyalothaEntranceInPandaria() and 6540 or 6539)
+        return true
     -- Special cases for Timewalking vendors for Classic, Cata, and WoD (different vendors based on faction)
+    -- BfA faction-specific Timewalking vendor setup is handled in TimewalkingDataProvider, since the vendor name is the same but only the waypoint differs
     elseif data.Expansion == "Classic" then
         C_SuperTrack.SetSuperTrackedMapPin(0, faction == "Horde" and 8191 or 8190)
         return true
@@ -43,7 +44,7 @@ local function SetBlizzardMapPin(data)
         C_SuperTrack.SetSuperTrackedMapPin(0, data.AreaPoiID)
         return true
     elseif data.Waypoint then
-        C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(data.Waypoint.mapID, data.Waypoint.x, data.Waypoint.y))
+        C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(data.Waypoint.mapID, data.Waypoint.x, data.Waypoint.y) --[[@as UiMapPoint]])
         C_SuperTrack.SetSuperTrackedUserWaypoint(true)
         return true
     end
@@ -68,12 +69,9 @@ local function SetTomTomWaypoint(data, destinationName)
     -- Special case for BoD (separate entrances based on faction)
     if data.InstanceID == 1176 then
         local faction = UnitFactionGroup("player")
-        if faction == "Horde" then AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(862, 0.543, 0.299, ttOptions)
-        else AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(1161, 0.704, .356, ttOptions) end
+        local waypoint = faction == "Horde" and AddOn.Waypoints.BattleOfDazaralorHorde or AddOn.Waypoints.BattleOfDazaralorAlliance
+        AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(waypoint.mapID, waypoint.x, waypoint.y, ttOptions)
         return true
-    -- elseif data.InstanceID == 1194 then
-    --     -- Change the name of the TomTom waypoint when set for Tazavesh
-    --     ttOptions.title = "Oribos -> "..destinationName
     end
     if data.Waypoint then
         AddOn.db.global.currentTomTomWaypoint = TomTom:AddWaypoint(data.Waypoint.mapID, data.Waypoint.x, data.Waypoint.y, ttOptions)
@@ -89,11 +87,31 @@ end
 local function HandleWaypointClick(data, destinationName)
     local isPinSet = false
     if ShouldUseTomTom(data) then
+        AddOn:PrintDebugMessage("Using TomTom waypoints to set path to", destinationName, "for collectible", data.Name)
         isPinSet = SetTomTomWaypoint(data, destinationName)
         AddOn.PrintChatMessage(isPinSet and L["TomTom waypoint set for"] or L["Unable to set TomTom waypoint for"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(destinationName))
-    elseif data.AreaPoiID or data.InstanceID == 1176 or data.Expansion then
+    elseif data.AreaPoiID or data.Waypoint or data.InstanceID == 1176 or data.InstanceID == 1180 or data.Expansion then
+        AddOn:PrintDebugMessage("Setting Blizzard map pin to", destinationName, "for collectible", data.Name)
         isPinSet = SetBlizzardMapPin(data)
         AddOn.PrintChatMessage(isPinSet and L["Map pin set for"] or L["Unable to set map pin for"], DARKYELLOW_FONT_COLOR:WrapTextInColorCode(destinationName))
+    end
+end
+
+function AddOn:SetWorldTourMapPin()
+    local step = AddOn.WorldTour:GetCurrentStep()
+    if not step then return end
+
+    -- Clear any previously supertracked pins and waypoints
+    C_SuperTrack.ClearSuperTrackedMapPin()
+    C_SuperTrack.SetSuperTrackedUserWaypoint(false)
+    C_Map.ClearUserWaypoint()
+    if step.AreaPoiID then
+        -- Set pin to area POI
+        C_SuperTrack.SetSuperTrackedMapPin(0, step.AreaPoiID)
+    elseif step.Waypoint then
+        -- Set pin to waypoint
+        C_Map.SetUserWaypoint(UiMapPoint.CreateFromCoordinates(step.Waypoint.mapID, step.Waypoint.x, step.Waypoint.y) --[[@as UiMapPoint]])
+        C_SuperTrack.SetSuperTrackedUserWaypoint(true)
     end
 end
 
@@ -102,8 +120,7 @@ end
 ---@param frame ICHListItem|ICHLemixListItem
 ---@param data Mount|Toy|Pet|DecorItem|TimewalkingItem|WowRemixItem
 function AddOn:ConfigureWaypointButton(destinationName, frame, data)
-    -- if data.InstanceID == 1176 or data.InstanceID == 1194 or data.AreaPoiID or data.Waypoint then
-    if data.InstanceID == 1176 or data.Expansion or data.AreaPoiID or data.Waypoint then
+    if data.InstanceID == 1176 or data.InstanceID == 1180 or data.Expansion or data.AreaPoiID or data.Waypoint then
         local isPinSettable = false
         if ShouldUseTomTom(data) then
             frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/AddOns/TomTom/Images/GoldGreenDotNew")
@@ -111,8 +128,8 @@ function AddOn:ConfigureWaypointButton(destinationName, frame, data)
             frame.OtherInfoContainer.ICHWaypointButton:SetSize(15, 15)
             frame.OtherInfoContainer.ICHWaypointButton:SetPoint("RIGHT", -2, 0)
             isPinSettable = true
-        -- Currently excluding BfA from the condition due to vendors not having an AreaPoiID
-        elseif data.AreaPoiID or (data.Expansion and data.Expansion ~= "Battle for Azeroth") or data.InstanceID == 1176 then
+        elseif data.AreaPoiID or data.Waypoint or data.Expansion == "Classic" or data.Expansion == "Cataclysm" or data.Expansion == "Warlords of Draenor" or data.InstanceID == 1176 or data.InstanceID == 1180 then
+            self:PrintDebugMessage("Configuring Blizzard waypoint button for", data.Expansion and data.VendorName or data.Name)
             frame.OtherInfoContainer.ICHWaypointButton:SetNormalTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Untracked")
             frame.OtherInfoContainer.ICHWaypointButton:SetHighlightTexture("Interface/Minimap/Minimap-Waypoint-MapPin-Tracked")
             frame.OtherInfoContainer.ICHWaypointButton:SetSize(24, 24)

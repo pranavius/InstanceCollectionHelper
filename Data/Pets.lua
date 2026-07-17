@@ -18,7 +18,7 @@ AddOn.Pets = {
         EncounterID = 1583,
         DifficultyIDs = { RaidDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 104, x = 0.711, y = 0.463 },
+        Waypoint = AddOn.Waypoints.BlackTemple,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -35,7 +35,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 422, x = 0.389, y = 0.35 },
+        Waypoint = AddOn.Waypoints.HeartOfFear,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -47,7 +47,7 @@ AddOn.Pets = {
         AreaPoiID = 6537,
         EncounterID = 1549,
         DifficultyIDs = { RaidDifficulty.Legacy40 },
-        Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
+        Waypoint = AddOn.Waypoints.TempleOfAhnQiraj,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -56,10 +56,9 @@ AddOn.Pets = {
         Instance = "Ny'alotha, the Waking City",
         InstanceID = 1180,
         MapID = 2217,
-        -- AreaPoiID = 6539, -- Or 6540 (Uldum)
         EncounterID = 2372,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = L["Entrance can be in either Uldum or Vale of Eternal Blossoms"],
+        Notes = L["Entrance can be in either Uldum or Vale of Eternal Blossoms"].."\n\n"..L["May require completion of the quest NZOTH_ASSAULTS_QUEST to access raid entrances"],
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -71,7 +70,7 @@ AddOn.Pets = {
         AreaPoiID = 6535,
         EncounterID = 1526,
         DifficultyIDs = { RaidDifficulty.Legacy40 },
-        Waypoint = { mapID = 35, x = 0.538, y = 0.813 },
+        Waypoint = AddOn.Waypoints.MoltenCore,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -88,7 +87,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 433, x = 0.484, y = 0.614 },
+        Waypoint = AddOn.Waypoints.TerraceOfEndlessSpring,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -105,19 +104,19 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 379, x = 0.596, y = 0.392 },
+        Waypoint = AddOn.Waypoints.MogushanVaults,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
         Name = "Blackfuse Bombling",
         PetItemID = 104158,
-        Instance = "Siege of Orgimmar",
+        Instance = "Siege of Orgrimmar",
         InstanceID = 369,
         MapID = 1136,
         AreaPoiID = 6507,
         EncounterID = 865,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 1530, x = 0.741, y = 0.401 },
+        Waypoint = AddOn.Waypoints.SiegeOfOrgrimmar,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -130,7 +129,7 @@ AddOn.Pets = {
         EncounterID = 195,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
+        Waypoint = AddOn.Waypoints.Firelands,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -147,7 +146,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 118, x = 0.538, y = 0.871 },
+        Waypoint = AddOn.Waypoints.IcecrownCitadel,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -164,7 +163,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 118, x = 0.538, y = 0.871 },
+        Waypoint = AddOn.Waypoints.IcecrownCitadel,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -181,7 +180,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 118, x = 0.538, y = 0.871 },
+        Waypoint = AddOn.Waypoints.IcecrownCitadel,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -194,7 +193,7 @@ AddOn.Pets = {
         EncounterID = 2589,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in a Follower dungeon"].."\n\n"..L["This item is obtainable even though it does not appear on the loot table for Goldie Baronbottom"],
-        Waypoint = { mapID = 2248, x = 0.766, y = 0.438 },
+        Waypoint = AddOn.Waypoints.CinderbrewMeadery,
         SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
@@ -212,7 +211,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
         Notes = L["Instance entrance is at the very top of the tower where the waypoint is located"],
-        Waypoint = { mapID = 241, x = 0.348, y = 0.772 },
+        Waypoint = AddOn.Waypoints.BastionOfTwilight,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -225,7 +224,7 @@ AddOn.Pets = {
         EncounterID = 192,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
+        Waypoint = AddOn.Waypoints.Firelands,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -237,7 +236,7 @@ AddOn.Pets = {
         AreaPoiID = 6533,
         EncounterID = 1595,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Waypoint = { mapID = 122, x = 0.443, y = 0.456 },
+        Waypoint = AddOn.Waypoints.SunwellPlateau,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -250,8 +249,8 @@ AddOn.Pets = {
         -- AreaPoiID = 6013 -- Alliance
         EncounterID = 2330,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        -- Waypoint = { mapID = 862, x = 0.543, y = 0.299 } -- Zuldazar
-        -- Waypoint = { mapID = 1161, x = 0.704, y = 0.356 } -- Boralus,
+        -- Waypoint = AddOn.Waypoints.BattleOfDazaralorHorde -- Zuldazar
+        -- Waypoint = AddOn.Waypoints.BattleOfDazaralorAlliance -- Boralus,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -263,7 +262,7 @@ AddOn.Pets = {
         AreaPoiID = 6536,
         EncounterID = 1535,
         DifficultyIDs = { RaidDifficulty.Legacy40 },
-        Waypoint = { mapID = 33, x = 0.64, y = 0.715 },
+        Waypoint = AddOn.Waypoints.BlackwingLair,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -275,7 +274,7 @@ AddOn.Pets = {
         AreaPoiID = 6530,
         EncounterID = 1572,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Waypoint = { mapID = 102, x = 0.519, y = 0.335 },
+        Waypoint = AddOn.Waypoints.SerpentshrineCavern,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -292,7 +291,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 379, x = 0.596, y = 0.392 },
+        Waypoint = AddOn.Waypoints.MogushanVaults,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -304,7 +303,7 @@ AddOn.Pets = {
         AreaPoiID = 6535,
         EncounterID = 1520,
         DifficultyIDs = { RaidDifficulty.Legacy40 },
-        Waypoint = { mapID = 35, x = 0.538, y = 0.813 },
+        Waypoint = AddOn.Waypoints.MoltenCore,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -321,7 +320,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10H,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H
         },
-        Waypoint = { mapID = 71, x = 0.647, y = 0.513 },
+        Waypoint = AddOn.Waypoints.DragonSoul,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -333,7 +332,7 @@ AddOn.Pets = {
         AreaPoiID = 6504,
         EncounterID = 1433,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 534, x = 0.47, y = 0.526 },
+        Waypoint = AddOn.Waypoints.HellfireCitadel,
         SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
     },
     {
@@ -346,7 +345,7 @@ AddOn.Pets = {
         EncounterID = 2650,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Also obtainable in a Follower dungeon"],
-        Waypoint = { mapID = 2214, x = 0.421, y = 0.395 },
+        Waypoint = AddOn.Waypoints.OperationFloodgate,
         SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
@@ -359,7 +358,7 @@ AddOn.Pets = {
         EncounterID = 1649,
         DifficultyIDs = { RaidDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 120, x = 0.416, y = 0.178 },
+        Waypoint = AddOn.Waypoints.Ulduar,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -371,7 +370,7 @@ AddOn.Pets = {
         AreaPoiID = 6536,
         EncounterID = 1531,
         DifficultyIDs = { RaidDifficulty.Legacy40 },
-        Waypoint = { mapID = 33, x = 0.64, y = 0.715 },
+        Waypoint = AddOn.Waypoints.BlackwingLair,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -382,7 +381,7 @@ AddOn.Pets = {
         MapID = 43,
         AreaPoiID = 6720,
         DifficultyIDs = { DungeonDifficulty.Normal },
-        Waypoint = { mapID = 240, x = 0.405, y = 0.687 },
+        Waypoint = AddOn.Waypoints.WailingCaverns,
         Notes = L["Dropped by Deviate Guardians and Deviate Ravagers throughout the dungeon"],
         SearchTags = AddOn.ExpansionTags.Classic
     },
@@ -400,7 +399,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 36, x = 0.231, y = 0.264 },
+        Waypoint = AddOn.Waypoints.BlackwingDescent,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -417,7 +416,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 1527, x = 0.37, y = 0.814 },
+        Waypoint = AddOn.Waypoints.ThroneOfTheFourWinds,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -434,19 +433,19 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 118, x = 0.752, y = 0.218 },
+        Waypoint = AddOn.Waypoints.TrialOfTheCrusader,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
         Name = "Droplet of Y'Shaarj",
         PetItemID = 104162,
-        Instance = "Siege of Orgimmar",
+        Instance = "Siege of Orgrimmar",
         InstanceID = 369,
         MapID = 1136,
         AreaPoiID = 6507,
         EncounterID = 867,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 1530, x = 0.741, y = 0.401 },
+        Waypoint = AddOn.Waypoints.SiegeOfOrgrimmar,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -458,7 +457,7 @@ AddOn.Pets = {
         AreaPoiID = 6521,
         EncounterID = 1636,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Waypoint = { mapID = 118, x = 0.538, y = 0.871 },
+        Waypoint = AddOn.Waypoints.IcecrownCitadel,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -470,7 +469,7 @@ AddOn.Pets = {
         AreaPoiID = 6994,
         EncounterID = 2442,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 1543, x = 0.697, y = 0.32 },
+        Waypoint = AddOn.Waypoints.SanctumOfDomination,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -479,10 +478,9 @@ AddOn.Pets = {
         Instance = "Ny'alotha, the Waking City",
         InstanceID = 1180,
         MapID = 2217,
-        -- AreaPoiID = 6539, -- Or 6540 (Uldum)
         EncounterID = 2375,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = L["Entrance can be in either Uldum or Vale of Eternal Blossoms"],
+        Notes = L["Entrance can be in either Uldum or Vale of Eternal Blossoms"].."\n\n"..L["May require completion of the quest NZOTH_ASSAULTS_QUEST to access raid entrances"],
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -494,7 +492,7 @@ AddOn.Pets = {
         AreaPoiID = 6994,
         EncounterID = 2442,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        Waypoint = { mapID = 1543, x = 0.697, y = 0.32 },
+        Waypoint = AddOn.Waypoints.SanctumOfDomination,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -511,7 +509,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10H,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H
         },
-        Waypoint = { mapID = 71, x = 0.647, y = 0.513 },
+        Waypoint = AddOn.Waypoints.DragonSoul,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -529,7 +527,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
         Notes = L["Instance entrance is at the very top of the tower where the waypoint is located"],
-        Waypoint = { mapID = 241, x = 0.348, y = 0.772 },
+        Waypoint = AddOn.Waypoints.BastionOfTwilight,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -541,7 +539,7 @@ AddOn.Pets = {
         AreaPoiID = 6528,
         EncounterID = 1560,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
+        Waypoint = AddOn.Waypoints.Karazhan,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -553,7 +551,7 @@ AddOn.Pets = {
         AreaPoiID = 5831,
         DifficultyIDs = { DungeonDifficulty.Mythic },
         Notes = L["Dropped by the Rare Elite Gol'than the Malodorous"].."\n\n"..L["Guides for how to spawn this mob can be found online"],
-        Waypoint = { mapID = 864, x = 0.519, y = 0.255 },
+        Waypoint = AddOn.Waypoints.TolDagor,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -566,7 +564,7 @@ AddOn.Pets = {
         EncounterID = 1587,
         DifficultyIDs = { RaidDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 104, x = 0.711, y = 0.463 },
+        Waypoint = AddOn.Waypoints.BlackTemple,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -579,7 +577,7 @@ AddOn.Pets = {
         EncounterID = 1587,
         DifficultyIDs = { RaidDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 104, x = 0.711, y = 0.463 },
+        Waypoint = AddOn.Waypoints.BlackTemple,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -592,7 +590,7 @@ AddOn.Pets = {
         EncounterID = 1587,
         DifficultyIDs = { RaidDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 104, x = 0.711, y = 0.463 },
+        Waypoint = AddOn.Waypoints.BlackTemple,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -607,7 +605,7 @@ AddOn.Pets = {
         SharedDifficulties = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 115, x = 0.873, y = 0.51 },
+        Waypoint = AddOn.Waypoints.Naxxramas,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -620,7 +618,7 @@ AddOn.Pets = {
         EncounterID = 1647,
         DifficultyIDs = { RaidDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 120, x = 0.416, y = 0.178 },
+        Waypoint = AddOn.Waypoints.Ulduar,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -635,7 +633,7 @@ AddOn.Pets = {
         SharedDifficulties = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 115, x = 0.873, y = 0.51 },
+        Waypoint = AddOn.Waypoints.Naxxramas,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -647,9 +645,7 @@ AddOn.Pets = {
         AreaPoiID = 2395,
         EncounterID = 2436,
         DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
-        -- Notes = L["Requires completing the Tazavesh storyline to unlock flight path, beginning with The Al'ley Cat of Oribos"],
-        -- Waypoint = { mapID = 1671, x = 0.602, y = 0.676 },
-        Waypoint = { mapID = 2371, x = 0.636, y = 0.702 },
+        Waypoint = AddOn.Waypoints.TazaveshKaresh,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -661,19 +657,19 @@ AddOn.Pets = {
         AreaPoiID = 6129,
         EncounterID = 2331,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 1462, x = 0.729, y = 0.365 },
+        Waypoint = AddOn.Waypoints.OperationMechagon,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
         Name = "Gooey Sha-ling",
         PetItemID = 104163,
-        Instance = "Siege of Orgimmar",
+        Instance = "Siege of Orgrimmar",
         InstanceID = 369,
         MapID = 1136,
         AreaPoiID = 6507,
         EncounterID = 867,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 1530, x = 0.741, y = 0.401 },
+        Waypoint = AddOn.Waypoints.SiegeOfOrgrimmar,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -685,7 +681,7 @@ AddOn.Pets = {
         AreaPoiID = 6500,
         DifficultyIDs = { DungeonDifficulty.Normal, DungeonDifficulty.Heroic },
         Notes = L["Dropped by Defias Pirates on the boat towards the end of the dungeon"],
-        Waypoint = { mapID = 52, x = 0.426, y = 0.716 },
+        Waypoint = AddOn.Waypoints.TheDeadmines,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -697,7 +693,7 @@ AddOn.Pets = {
         AreaPoiID = 6513,
         EncounterID = 1580,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Waypoint = { mapID = 75, x = 0.396, y = 0.17 },
+        Waypoint = AddOn.Waypoints.TheBattleForMountHyjal,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -709,7 +705,7 @@ AddOn.Pets = {
         AreaPoiID = 6535,
         EncounterID = 1525,
         DifficultyIDs = { RaidDifficulty.Legacy40 },
-        Waypoint = { mapID = 35, x = 0.538, y = 0.813 },
+        Waypoint = AddOn.Waypoints.MoltenCore,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -721,7 +717,7 @@ AddOn.Pets = {
         AreaPoiID = 6513,
         EncounterID = 1581,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Waypoint = { mapID = 75, x = 0.396, y = 0.17 },
+        Waypoint = AddOn.Waypoints.TheBattleForMountHyjal,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -734,7 +730,7 @@ AddOn.Pets = {
         EncounterID = 197,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
+        Waypoint = AddOn.Waypoints.Firelands,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -747,7 +743,7 @@ AddOn.Pets = {
         EncounterID = 1639,
         DifficultyIDs = { RaidDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 120, x = 0.416, y = 0.178 },
+        Waypoint = AddOn.Waypoints.Ulduar,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -759,7 +755,7 @@ AddOn.Pets = {
         AreaPoiID = 6994,
         EncounterID = 2445,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 1543, x = 0.697, y = 0.32 },
+        Waypoint = AddOn.Waypoints.SanctumOfDomination,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -776,7 +772,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
+        Waypoint = AddOn.Waypoints.ThroneOfThunder,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -793,19 +789,19 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 422, x = 0.389, y = 0.35 },
+        Waypoint = AddOn.Waypoints.HeartOfFear,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
         Name = "Kovok",
         PetItemID = 104165,
-        Instance = "Siege of Orgimmar",
+        Instance = "Siege of Orgrimmar",
         InstanceID = 369,
         MapID = 1136,
         AreaPoiID = 6507,
         EncounterID = 853,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 1530, x = 0.741, y = 0.401 },
+        Waypoint = AddOn.Waypoints.SiegeOfOrgrimmar,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -817,7 +813,7 @@ AddOn.Pets = {
         AreaPoiID = 6660,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Notes = L["Dropped by The Lanticore, which has a random chance to spawn after killing Orebender Gor'ashan"],
-        Waypoint = { mapID = 33, x = 0.790, y = 0.338 },
+        Waypoint = AddOn.Waypoints.UpperBlackrockSpire,
         SearchTags = AddOn.ExpansionTags.WarlordsOfDraenor
     },
     {
@@ -829,7 +825,7 @@ AddOn.Pets = {
         AreaPoiID = 6534,
         EncounterID = 1575,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Waypoint = { mapID = 109, x = 0.736, y = 0.637 },
+        Waypoint = AddOn.Waypoints.TheEye,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -842,7 +838,7 @@ AddOn.Pets = {
         EncounterID = 1582,
         DifficultyIDs = { RaidDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 104, x = 0.711, y = 0.463 },
+        Waypoint = AddOn.Waypoints.BlackTemple,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -855,7 +851,7 @@ AddOn.Pets = {
         EncounterID = 2354,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"],
-        -- Waypoint = { mapID = 422, x = 0.389, y = 0.35 },
+        Waypoint = AddOn.Waypoints.TheEternalPalace,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -867,7 +863,7 @@ AddOn.Pets = {
         AreaPoiID = 6528,
         EncounterID = 1556,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
+        Waypoint = AddOn.Waypoints.Karazhan,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -884,7 +880,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 422, x = 0.389, y = 0.35 },
+        Waypoint = AddOn.Waypoints.HeartOfFear,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -896,7 +892,7 @@ AddOn.Pets = {
         AreaPoiID = 6508,
         EncounterID = 820,
         DifficultyIDs = { RaidDifficulty.LegacyLFR },
-        Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
+        Waypoint = AddOn.Waypoints.ThroneOfThunder,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -913,7 +909,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
         Notes = L["Dropped by Sand Elementals in Normal and Heroic, but can be looted from Council of Elders in LFR"],
-        Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
+        Waypoint = AddOn.Waypoints.ThroneOfThunder,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -926,7 +922,7 @@ AddOn.Pets = {
         EncounterID = 1638,
         DifficultyIDs = { RaidDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 120, x = 0.416, y = 0.178 },
+        Waypoint = AddOn.Waypoints.Ulduar,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -938,7 +934,7 @@ AddOn.Pets = {
         AreaPoiID = 6994,
         EncounterID = 2440,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 1543, x = 0.697, y = 0.32 },
+        Waypoint = AddOn.Waypoints.SanctumOfDomination,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -950,7 +946,7 @@ AddOn.Pets = {
         AreaPoiID = 6528,
         EncounterID = 1557,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
+        Waypoint = AddOn.Waypoints.Karazhan,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -962,7 +958,7 @@ AddOn.Pets = {
         AreaPoiID = 6129,
         EncounterID = 2355,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 1462, x = 0.729, y = 0.365 },
+        Waypoint = AddOn.Waypoints.OperationMechagon,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -975,7 +971,7 @@ AddOn.Pets = {
         EncounterID = 2347,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"],
-        -- Waypoint = { mapID = 422, x = 0.389, y = 0.35 },
+        Waypoint = AddOn.Waypoints.TheEternalPalace,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -987,7 +983,7 @@ AddOn.Pets = {
         AreaPoiID = 6537,
         EncounterID = 1543,
         DifficultyIDs = { RaidDifficulty.Legacy40 },
-        Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
+        Waypoint = AddOn.Waypoints.TempleOfAhnQiraj,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -999,7 +995,7 @@ AddOn.Pets = {
         AreaPoiID = 6683,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Notes = L["Obtained by using an Amani Hex Stick on Forest Frogs"].."\n\n"..L["Detailed guides for how to obtain this pet can be found online"],
-        Waypoint = { mapID = 95, x = 0.82, y = 0.643 },
+        Waypoint = AddOn.Waypoints.ZulAman,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -1008,10 +1004,9 @@ AddOn.Pets = {
         Instance = "Ny'alotha, the Waking City",
         InstanceID = 1180,
         MapID = 2217,
-        -- AreaPoiID = 6539, -- Or 6540 (Uldum)
         EncounterID = 2365,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = L["Entrance can be in either Uldum or Vale of Eternal Blossoms"],
+        Notes = L["Entrance can be in either Uldum or Vale of Eternal Blossoms"].."\n\n"..L["May require completion of the quest NZOTH_ASSAULTS_QUEST to access raid entrances"],
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -1024,7 +1019,7 @@ AddOn.Pets = {
         EncounterID = 2349,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"],
-        -- Waypoint = { mapID = 422, x = 0.389, y = 0.35 },
+        Waypoint = AddOn.Waypoints.TheEternalPalace,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -1041,7 +1036,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 118, x = 0.752, y = 0.218 },
+        Waypoint = AddOn.Waypoints.TrialOfTheCrusader,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -1053,7 +1048,7 @@ AddOn.Pets = {
         AreaPoiID = 6528,
         EncounterID = 1563,
         DifficultyIDs = { RaidDifficulty.Legacy10 },
-        Waypoint = { mapID = 42, x = 0.47, y = 0.749 },
+        Waypoint = AddOn.Waypoints.Karazhan,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -1065,7 +1060,7 @@ AddOn.Pets = {
         AreaPoiID = 5095,
         EncounterID = 1704,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 641, x = 0.567, y = 0.375 },
+        Waypoint = AddOn.Waypoints.TheEmeraldNightmare,
         Notes = L["This item is obtainable even though it does not appear on the loot table for Dragons of Nightmare"],
         SearchTags = AddOn.ExpansionTags.Legion
     },
@@ -1079,7 +1074,7 @@ AddOn.Pets = {
         EncounterID = 533,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 122, x = 0.61, y = 0.307 },
+        Waypoint = AddOn.Waypoints.MagistersTerrace,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -1091,7 +1086,7 @@ AddOn.Pets = {
         AreaPoiID = 6534,
         EncounterID = 1573,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Waypoint = { mapID = 109, x = 0.736, y = 0.637 },
+        Waypoint = AddOn.Waypoints.TheEye,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -1108,7 +1103,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
+        Waypoint = AddOn.Waypoints.ThroneOfThunder,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -1120,7 +1115,7 @@ AddOn.Pets = {
         AreaPoiID = 6534,
         EncounterID = 1574,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Waypoint = { mapID = 109, x = 0.736, y = 0.637 },
+        Waypoint = AddOn.Waypoints.TheEye,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -1129,10 +1124,9 @@ AddOn.Pets = {
         Instance = "Ny'alotha, the Waking City",
         InstanceID = 1180,
         MapID = 2217,
-        -- AreaPoiID = 6539, -- Or 6540 (Uldum)
         EncounterID = 2372,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = L["Entrance can be in either Uldum or Vale of Eternal Blossoms"],
+        Notes = L["Entrance can be in either Uldum or Vale of Eternal Blossoms"].."\n\n"..L["May require completion of the quest NZOTH_ASSAULTS_QUEST to access raid entrances"],
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -1149,7 +1143,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 36, x = 0.231, y = 0.264 },
+        Waypoint = AddOn.Waypoints.BlackwingDescent,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -1166,7 +1160,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 422, x = 0.389, y = 0.35 },
+        Waypoint = AddOn.Waypoints.HeartOfFear,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -1178,7 +1172,7 @@ AddOn.Pets = {
         AreaPoiID = 6589,
         EncounterID = 2421,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 1525, x = 0.511, y = 0.301 },
+        Waypoint = AddOn.Waypoints.SanguineDepths,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -1191,7 +1185,7 @@ AddOn.Pets = {
         EncounterID = 1641,
         DifficultyIDs = { RaidDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 120, x = 0.416, y = 0.178 },
+        Waypoint = AddOn.Waypoints.Ulduar,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -1204,7 +1198,7 @@ AddOn.Pets = {
         EncounterID = 1643,
         DifficultyIDs = { RaidDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 120, x = 0.416, y = 0.178 },
+        Waypoint = AddOn.Waypoints.Ulduar,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -1217,7 +1211,7 @@ AddOn.Pets = {
         EncounterID = 1588,
         DifficultyIDs = { RaidDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 104, x = 0.711, y = 0.463 },
+        Waypoint = AddOn.Waypoints.BlackTemple,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -1229,7 +1223,7 @@ AddOn.Pets = {
         AreaPoiID = 6585,
         EncounterID = 2404,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 1536, x = 0.594, y = 0.65 },
+        Waypoint = AddOn.Waypoints.Plaguefall,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -1241,7 +1235,7 @@ AddOn.Pets = {
         AreaPoiID = 6661,
         EncounterID = 391,
         DifficultyIDs = { DungeonDifficulty.Normal },
-        Waypoint = { mapID = 33, x = 0.805, y = 0.419 },
+        Waypoint = AddOn.Waypoints.LowerBlackrockSpire,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -1254,7 +1248,7 @@ AddOn.Pets = {
         EncounterID = 1646,
         DifficultyIDs = { RaidDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 120, x = 0.416, y = 0.178 },
+        Waypoint = AddOn.Waypoints.Ulduar,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -1271,7 +1265,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 118, x = 0.752, y = 0.218 },
+        Waypoint = AddOn.Waypoints.TrialOfTheCrusader,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -1288,7 +1282,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
+        Waypoint = AddOn.Waypoints.ThroneOfThunder,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -1305,7 +1299,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 118, x = 0.538, y = 0.871 },
+        Waypoint = AddOn.Waypoints.IcecrownCitadel,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -1322,7 +1316,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 422, x = 0.389, y = 0.35 },
+        Waypoint = AddOn.Waypoints.HeartOfFear,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -1335,8 +1329,8 @@ AddOn.Pets = {
         -- AreaPoiID = 6013 -- Alliance
         EncounterID = 2330,
         DifficultyIDs = { RaidDifficulty.Mythic },
-        -- Waypoint = { mapID = 862, x = 0.543, y = 0.299 } -- Zuldazar
-        -- Waypoint = { mapID = 1161, x = 0.704, y = 0.356 } -- Boralus,
+        -- Waypoint = AddOn.Waypoints.BattleOfDazaralorHorde -- Zuldazar
+        -- Waypoint = AddOn.Waypoints.BattleOfDazaralorAlliance -- Boralus,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -1349,7 +1343,7 @@ AddOn.Pets = {
         EncounterID = 2143,
         DifficultyIDs = { DungeonDifficulty.Mythic },
         Notes = L["This pet takes 3 days to hatch after looting Viable Cobra Egg"],
-        Waypoint = { mapID = 864, x = 0.519, y = 0.255 },
+        Waypoint = AddOn.Waypoints.TempleOfSethraliss,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -1361,7 +1355,7 @@ AddOn.Pets = {
         AreaPoiID = 6586,
         EncounterID = 2405,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 1565, x = 0.355, y = 0.541 },
+        Waypoint = AddOn.Waypoints.MistsOfTirnaScithe,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -1378,7 +1372,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 433, x = 0.484, y = 0.614 },
+        Waypoint = AddOn.Waypoints.TerraceOfEndlessSpring,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -1390,7 +1384,7 @@ AddOn.Pets = {
         AreaPoiID = 6513,
         EncounterID = 1578,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Waypoint = { mapID = 75, x = 0.396, y = 0.17 },
+        Waypoint = AddOn.Waypoints.TheBattleForMountHyjal,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -1405,7 +1399,7 @@ AddOn.Pets = {
         SharedDifficulties = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 115, x = 0.873, y = 0.51 },
+        Waypoint = AddOn.Waypoints.Naxxramas,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -1422,7 +1416,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 379, x = 0.596, y = 0.392 },
+        Waypoint = AddOn.Waypoints.MogushanVaults,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -1434,7 +1428,7 @@ AddOn.Pets = {
         AreaPoiID = 6533,
         EncounterID = 1592,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Waypoint = { mapID = 122, x = 0.443, y = 0.456 },
+        Waypoint = AddOn.Waypoints.SunwellPlateau,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -1447,7 +1441,7 @@ AddOn.Pets = {
         EncounterID = 196,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
+        Waypoint = AddOn.Waypoints.Firelands,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -1459,7 +1453,7 @@ AddOn.Pets = {
         AreaPoiID = 6530,
         EncounterID = 1567,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Waypoint = { mapID = 102, x = 0.519, y = 0.335 },
+        Waypoint = AddOn.Waypoints.SerpentshrineCavern,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -1472,8 +1466,8 @@ AddOn.Pets = {
         -- AreaPoiID = 6013 -- Alliance
         EncounterID = 2330,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        -- Waypoint = { mapID = 862, x = 0.543, y = 0.299 } -- Zuldazar
-        -- Waypoint = { mapID = 1161, x = 0.704, y = 0.356 } -- Boralus,
+        -- Waypoint = AddOn.Waypoints.BattleOfDazaralorHorde -- Zuldazar
+        -- Waypoint = AddOn.Waypoints.BattleOfDazaralorAlliance -- Boralus,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -1485,7 +1479,7 @@ AddOn.Pets = {
         AreaPoiID = 6530,
         EncounterID = 1571,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Waypoint = { mapID = 102, x = 0.519, y = 0.335 },
+        Waypoint = AddOn.Waypoints.SerpentshrineCavern,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -1502,7 +1496,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 36, x = 0.231, y = 0.264 },
+        Waypoint = AddOn.Waypoints.BlackwingDescent,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -1520,7 +1514,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
         Notes = L["Instance entrance is at the very top of the tower where the waypoint is located"],
-        Waypoint = { mapID = 241, x = 0.348, y = 0.772 },
+        Waypoint = AddOn.Waypoints.BastionOfTwilight,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -1537,7 +1531,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10H,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H
         },
-        Waypoint = { mapID = 71, x = 0.647, y = 0.513 },
+        Waypoint = AddOn.Waypoints.DragonSoul,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -1549,7 +1543,7 @@ AddOn.Pets = {
         AreaPoiID = 6536,
         EncounterID = 1529,
         DifficultyIDs = { RaidDifficulty.Legacy40 },
-        Waypoint = { mapID = 33, x = 0.64, y = 0.715 },
+        Waypoint = AddOn.Waypoints.BlackwingLair,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -1561,7 +1555,7 @@ AddOn.Pets = {
         AreaPoiID = 6537,
         EncounterID = 1548,
         DifficultyIDs = { RaidDifficulty.Legacy40 },
-        Waypoint = { mapID = 327, x = 0.468, y = 0.075 },
+        Waypoint = AddOn.Waypoints.TempleOfAhnQiraj,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -1578,7 +1572,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
+        Waypoint = AddOn.Waypoints.ThroneOfThunder,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -1587,10 +1581,9 @@ AddOn.Pets = {
         Instance = "Ny'alotha, the Waking City",
         InstanceID = 1180,
         MapID = 2217,
-        -- AreaPoiID = 6539, -- Or 6540 (Uldum)
         EncounterID = 2364,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Notes = L["Entrance can be in either Uldum or Vale of Eternal Blossoms"],
+        Notes = L["Entrance can be in either Uldum or Vale of Eternal Blossoms"].."\n\n"..L["May require completion of the quest NZOTH_ASSAULTS_QUEST to access raid entrances"],
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -1607,7 +1600,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 379, x = 0.596, y = 0.392 },
+        Waypoint = AddOn.Waypoints.MogushanVaults,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -1624,7 +1617,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy25] = RaidDifficulty.Legacy10H,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10H
         },
-        Waypoint = { mapID = 118, x = 0.538, y = 0.871 },
+        Waypoint = AddOn.Waypoints.IcecrownCitadel,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -1637,7 +1630,7 @@ AddOn.Pets = {
         EncounterID = 2424,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["This item is obtainable even though it does not appear on the loot table for Sire Denathrius"],
-        Waypoint = { mapID = 1525, x = 0.464, y = 0.415 },
+        Waypoint = AddOn.Waypoints.CastleNathria,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -1650,7 +1643,7 @@ AddOn.Pets = {
         EncounterID = 1644,
         DifficultyIDs = { RaidDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 120, x = 0.416, y = 0.178 },
+        Waypoint = AddOn.Waypoints.Ulduar,
         SearchTags = AddOn.ExpansionTags.WrathOfTheLichKing
     },
     {
@@ -1662,7 +1655,7 @@ AddOn.Pets = {
         AreaPoiID = 6661,
         EncounterID = 393,
         DifficultyIDs = { DungeonDifficulty.Normal },
-        Waypoint = { mapID = 33, x = 0.805, y = 0.419 },
+        Waypoint = AddOn.Waypoints.LowerBlackrockSpire,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -1674,7 +1667,7 @@ AddOn.Pets = {
         AreaPoiID = 6533,
         EncounterID = 1594,
         DifficultyIDs = { RaidDifficulty.Legacy25 },
-        Waypoint = { mapID = 122, x = 0.443, y = 0.456 },
+        Waypoint = AddOn.Waypoints.SunwellPlateau,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -1687,7 +1680,7 @@ AddOn.Pets = {
         EncounterID = 2361,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["Access to the raid entrance requires completing the quest ETERNAL_PALACE_QUEST"],
-        -- Waypoint = { mapID = 422, x = 0.389, y = 0.35 },
+        Waypoint = AddOn.Waypoints.TheEternalPalace,
         SearchTags = AddOn.ExpansionTags.BattleForAzeroth
     },
     {
@@ -1704,7 +1697,7 @@ AddOn.Pets = {
             [RaidDifficulty.Legacy10H] = RaidDifficulty.Legacy10,
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
-        Waypoint = { mapID = 1527, x = 0.37, y = 0.814 },
+        Waypoint = AddOn.Waypoints.ThroneOfTheFourWinds,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
 }

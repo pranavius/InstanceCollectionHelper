@@ -1,7 +1,6 @@
 local name, AddOn = ...
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
-local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---Returns the favorites category name and item key (ItemID or Mount ID) for the given data.
 ---Categories are tab-scoped with Timewalking sub-types separated.

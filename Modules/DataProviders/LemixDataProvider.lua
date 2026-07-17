@@ -6,7 +6,7 @@ local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 function AddOn:CreateLemixCache()
     ---@type table<number, LemixCacheData>
     self.LemixCache = {}
-    ---@type table<number, LemixResourceCacheData>
+    ---@type table<number, CacheDataBase>
     self.LemixResourceCache = {}
     local toLoad = #self.LemixItems
 
@@ -14,29 +14,17 @@ function AddOn:CreateLemixCache()
         Item:CreateFromItemID(item.ItemID):ContinueOnItemLoad(function()
             toLoad = toLoad - 1
             if item.Type == "Mount" then
-                -- TODO: Replace with better fix for Scornwing Flight Form later
-                if item.ItemID == 253024 then
-                    local name, _, _, _, _, _, _, _, _, iconID = C_Item.GetItemInfo(item.ItemID)
-                    self.LemixCache[item.ItemID] = {
-                        itemName = C_Item.GetItemNameByID(item.ItemID) or "",
-                        itemID = item.ItemID,
-                        collectibleName = name or item.Name,
-                        iconID = iconID or 134400,
-                        mountID = 999999,
-                    }
-                else
-                    local mountID = C_MountJournal.GetMountFromItem(item.ItemID)
-                    local name, spellID = C_MountJournal.GetMountInfoByID(mountID)
-                    local iconID = C_Spell.GetSpellInfo(spellID) and C_Spell.GetSpellInfo(spellID).originalIconID
-    
-                    self.LemixCache[item.ItemID] = {
-                        itemName = C_Item.GetItemNameByID(item.ItemID) or "",
-                        itemID = item.ItemID,
-                        collectibleName = name or item.Name,
-                        iconID = iconID or 134400,
-                        mountID = mountID
-                    }
-                end
+                local mountID = C_MountJournal.GetMountFromItem(item.ItemID)
+                local mountName, spellID = C_MountJournal.GetMountInfoByID(mountID)
+                local iconID = C_Spell.GetSpellInfo(spellID) and C_Spell.GetSpellInfo(spellID).originalIconID
+
+                self.LemixCache[item.ItemID] = {
+                    itemName = C_Item.GetItemNameByID(item.ItemID) or "",
+                    itemID = item.ItemID,
+                    collectibleName = mountName or item.Name,
+                    iconID = iconID or 134400,
+                    mountID = mountID
+                }
             elseif item.Type == "Toy" then
                 local _, toyName, iconID = C_ToyBox.GetToyInfo(item.ItemID)
     

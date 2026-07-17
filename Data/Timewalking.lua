@@ -51,6 +51,7 @@ AddOn.TimewalkingItems = {
         Type = "Toy",
         VendorName = "Xydan",
         Expansion = "Dragonflight",
+        Waypoint = AddOn.Waypoints.DragonflightTimewalking,
         Cost = 750,
         SearchTags = AddOn.ExpansionTags.Dragonflight
     },
@@ -84,6 +85,7 @@ AddOn.TimewalkingItems = {
         Type = "Mount",
         VendorName = "Xydan",
         Expansion = "Dragonflight",
+        Waypoint = AddOn.Waypoints.DragonflightTimewalking,
         Cost = 5000,
         SearchTags = AddOn.ExpansionTags.Dragonflight
     },
@@ -94,7 +96,7 @@ AddOn.TimewalkingItems = {
         VendorName = "Collector Ta'steld",
         Expansion = "Shadowlands",
         Cost = 5000,
-        Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
+        Waypoint = AddOn.Waypoints.ShadowlandsTimewalking,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -228,7 +230,7 @@ AddOn.TimewalkingItems = {
         VendorName = "Collector Ta'steld",
         Expansion = "Shadowlands",
         Cost = 5000,
-        Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
+        Waypoint = AddOn.Waypoints.ShadowlandsTimewalking,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -381,6 +383,7 @@ AddOn.TimewalkingItems = {
         Type = "Mount",
         VendorName = "Xydan",
         Expansion = "Dragonflight",
+        Waypoint = AddOn.Waypoints.DragonflightTimewalking,
         Cost = 5000,
         SearchTags = AddOn.ExpansionTags.Dragonflight
     },
@@ -447,6 +450,7 @@ AddOn.TimewalkingItems = {
         Type = "Toy",
         VendorName = "Xydan",
         Expansion = "Dragonflight",
+        Waypoint = AddOn.Waypoints.DragonflightTimewalking,
         Cost = 500,
         SearchTags = AddOn.ExpansionTags.Dragonflight
     },
@@ -466,6 +470,7 @@ AddOn.TimewalkingItems = {
         Type = "Toy",
         VendorName = "Xydan",
         Expansion = "Dragonflight",
+        Waypoint = AddOn.Waypoints.DragonflightTimewalking,
         Cost = 1000,
         SearchTags = AddOn.ExpansionTags.Dragonflight
     },
@@ -486,7 +491,7 @@ AddOn.TimewalkingItems = {
         VendorName = "Collector Ta'steld",
         Expansion = "Shadowlands",
         Cost = 2200,
-        Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
+        Waypoint = AddOn.Waypoints.ShadowlandsTimewalking,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -530,6 +535,7 @@ AddOn.TimewalkingItems = {
         Type = "Pet",
         VendorName = "Xydan",
         Expansion = "Dragonflight",
+        Waypoint = AddOn.Waypoints.DragonflightTimewalking,
         Cost = 2200,
         SearchTags = AddOn.ExpansionTags.Dragonflight
     },
@@ -551,7 +557,7 @@ AddOn.TimewalkingItems = {
         VendorName = "Collector Ta'steld",
         Expansion = "Shadowlands",
         Cost = 5000,
-        Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
+        Waypoint = AddOn.Waypoints.ShadowlandsTimewalking,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -561,7 +567,7 @@ AddOn.TimewalkingItems = {
         VendorName = "Collector Ta'steld",
         Expansion = "Shadowlands",
         Cost = 750,
-        Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
+        Waypoint = AddOn.Waypoints.ShadowlandsTimewalking,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {
@@ -680,7 +686,7 @@ AddOn.TimewalkingItems = {
         VendorName = "Collector Ta'steld",
         Expansion = "Shadowlands",
         Cost = 1000,
-        Waypoint = { mapID = 1670, x = 0.563, y = 0.639 },
+        Waypoint = AddOn.Waypoints.ShadowlandsTimewalking,
         SearchTags = AddOn.ExpansionTags.Shadowlands
     },
     {

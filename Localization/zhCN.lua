@@ -120,11 +120,9 @@ L["Also show collectibles you already own"] = "同时显示已拥有的收藏品
 L["Use TomTom waypoints instead of Blizzard map pins"] = "使用TomTom路径点代替暴雪地图标记"
 L["Show Owned"] = "显示收集的物品"
 L["How To Use:"] = "如何使用:"
-L["Find the collectible you want to collect in the list and click the button for the difficulty you want to run on"] = "寻找你想要在列表中收集的藏品，并点击你想要刷的难度按钮。"
-L["to make sure it is updated."] = "为确保列表更新。"
+L["Find the collectible you want to collect in the list and click the button for the difficulty you want to run on to make sure it is updated."] = "寻找你想要在列表中收集的藏品，并点击你想要刷的难度按钮，为确保列表更新。"
 L["When you are locked out on a particular difficulty, the button for that difficulty will be disabled."] = "当您在特定难度上有进度锁定时，该难度的按钮将被禁用。"
-L["A button will also be disabled for legacy raids completed on another difficulty since those lockouts"] = "对于那些进度锁定，在另一个难度的旧团队副本的按钮也将禁用。"
-L["are shared across difficulties."] = "因为难度是共用的。"
+L["A button will also be disabled for legacy raids completed on another difficulty since those lockouts are shared across difficulties."] = "对于那些进度锁定，在另一个难度的旧团队副本的按钮也将禁用，因为难度是共用的。"
 L["Click the star icon on any item to mark or unmark it as a favorite. Favorited items are always pinned to the top of the list."] = "点击任意物品的星形图标以将其标记或取消标记为收藏。收藏的物品始终固定在列表顶部。"
 L["Click a column header to sort the list by that column. Click again to reverse the order, or a third time to clear the sort."] = "点击列标题以按该列对列表进行排序。再次点击以反转顺序，或第三次点击以清除排序。"
 L["Click on a collectible's icon to preview it in a dressing room window."] = "点击藏品的图标可在试衣间窗口中预览它。"
@@ -153,8 +151,8 @@ L["This button is only intended for tracking a Raid Finder (LFR) lockout. Raid d
 L["Requires completing certain objectives within a given amount of time, so it's recommended to search for a guide to obtain this mount online before attempting"] = "需要在给定的时间内完成某些目标，因此建议搜索指南以在尝试之前在线获取此坐骑"
 L["Do not talk to any of the Titan Keepers, otherwise this mount will not drop"] = "不要与任何泰坦守护者交谈，否则该坐骑不会掉落"
 L["Entrance can be in either Uldum or Vale of Eternal Blossoms"] = "入口可以在任何一个 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("奥丹姆").." 或 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("锦绣谷")
-L["Waypoint tracking on the minimap may not always appear until you are in a specific zone."] = "在您处于特定区域之前，在小地图上的路径点追踪可能并不总是出现。"
-L["For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder"] = "举例，指向的箭头 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("雷电王座").." 会显示只有当您位于 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("雷神岛") -- 注意: "雷霆王座" -> "雷电王座", "雷王島" -> "雷神岛" (简体官方译名)
+L["May require completion of the quest NZOTH_ASSAULTS_QUEST to access raid entrances"] = "进入团队副本入口可能需要完成任务 |A:QuestNormal:15:15|a"..DARKYELLOW_FONT_COLOR:WrapTextInColorCode(C_QuestLog.GetTitleForQuestID(select(1, UnitFactionGroup("player")) == "Horde" and 58582 or 58496) or select(1, UnitFactionGroup("player")) == "Horde" and "Return of the Black Prince" or "An Unwelcome Advisor")
+L["Waypoint tracking on the minimap may not always appear until you are in a specific zone. For example, an arrow pointing towards Throne of Thunder will only appear when you are on the Isle of Thunder."] = "在您处于特定区域之前，在小地图上的路径点追踪可能并不总是出现。举例，指向的箭头 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("雷电王座").." 会显示只有当您位于 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("雷神岛").."。" -- 注意: "雷霆王座" -> "雷电王座", "雷王島" -> "雷神岛" (简体官方译名)
 L["Set map pin"] = "设定地图标记"
 L["Set TomTom waypoint"] = "设定 "..DARKYELLOW_FONT_COLOR:WrapTextInColorCode("TomTom").." 路径点" -- TomTom 是插件名，保留
 L["Coming soon"] = "即将推出"
@@ -243,3 +241,14 @@ L["Click to unfavorite"] = "点击以取消收藏"
 L["Sort ascending"] = "升序排列"
 L["Sort descending"] = "降序排列"
 L["Clear sort"] = "清除排序"
+
+--- World Tour ---
+L["World Tour"] = "世界巡游"
+L["No world tour stop selected"] = "未选择世界巡游站点"
+L["Start"] = "开始"
+L["Stop"] = "停止"
+L["Prev"] = "上一个"
+L["Next"] = "下一个"
+L["Reset"] = "重置"
+L["Select at least one collectible type to continue the tour"] = "请至少选择一种收藏品类型以继续巡游"
+L["Invalid world tour command."] = "无效的世界巡游命令。"

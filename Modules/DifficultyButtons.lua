@@ -1,7 +1,6 @@
 local name, AddOn = ...
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
-local L = LibStub("AceLocale-3.0"):GetLocale(name, true)
 
 ---Unsets all difficulty button points and hides them before showing the correct ones based on provided data
 ---@param container DifficultyContainer

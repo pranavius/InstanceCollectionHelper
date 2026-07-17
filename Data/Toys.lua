@@ -17,7 +17,7 @@ AddOn.Toys = {
         AreaPoiID = 6682,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Notes = L["Requires completion of the achievement Relics of a Fallen Empire"],
-        Waypoint = { mapID = 224, x = 0.64, y = 0.218 },
+        Waypoint = AddOn.Waypoints.ZulGurub,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -29,7 +29,7 @@ AddOn.Toys = {
         AreaPoiID = 8363,
         EncounterID = 2691,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2371, x = 0.417, y = 0.215 },
+        Waypoint = AddOn.Waypoints.ManaforgeOmega,
         SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
@@ -41,7 +41,7 @@ AddOn.Toys = {
         AreaPoiID = 8270,
         EncounterID = 2736,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
-        Waypoint = { mapID = 2405, x = 0.452, y = 0.648 },
+        Waypoint = AddOn.Waypoints.TheVoidspire,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -53,7 +53,7 @@ AddOn.Toys = {
         AreaPoiID = 6666,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Notes = L["Drops from Don Carlos who patrols part of the path south of Tarren Mill"].."\n\n"..L["There are some reports of Don Carlos despawning after any bosses are killed, so proceed with caution"],
-        Waypoint = { mapID = 22, x = 0.698, y = 0.736 },
+        Waypoint = AddOn.Waypoints.OldHillsbradFoothills,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -66,7 +66,7 @@ AddOn.Toys = {
         EncounterID = 2642,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["Can also be looting by fishing within the instance"],
-        Waypoint = { mapID = 2346, x = 0.416, y = 0.488 },
+        Waypoint = AddOn.Waypoints.LiberationOfUndermine,
         SearchTags = AddOn.ExpansionTags.TheWarWithin
     },
     {
@@ -78,7 +78,7 @@ AddOn.Toys = {
         AreaPoiID = 6726,
         DifficultyIDs = { DungeonDifficulty.Normal },
         Notes = L["This is only collectable in the Classic version of Scholomance. If you do not have this instance unlocked, search for a guide online to do this first."],
-        Waypoint = { mapID = 22, x = 0.698, y = 0.736 },
+        Waypoint = AddOn.Waypoints.LegacyOfScholomance,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -91,7 +91,7 @@ AddOn.Toys = {
         EncounterID = 197,
         DifficultyIDs = { RaidDifficulty.Normal, RaidDifficulty.Heroic },
         Notes = L["Can only be looted and used by a Druid"].."\n\n"..L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 198, x = 0.468, y = 0.784 },
+        Waypoint = AddOn.Waypoints.Firelands,
         SearchTags = AddOn.ExpansionTags.Cataclysm
     },
     {
@@ -108,7 +108,7 @@ AddOn.Toys = {
             [RaidDifficulty.Legacy25H] = RaidDifficulty.Legacy10
         },
         Notes = L["Drops from Gastropod mobs found between Megaera and Ji-Kun"],
-        Waypoint = { mapID = 504, x = 0.638, y = 0.32 },
+        Waypoint = AddOn.Waypoints.ThroneOfThunder,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -121,7 +121,7 @@ AddOn.Toys = {
         EncounterID = 1737,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["This item is obtainable even though it does not appear on the loot table for Gul'dan"],
-        Waypoint = { mapID = 680, x = 0.437, y = 0.573 },
+        Waypoint = AddOn.Waypoints.TheNighthold,
         SearchTags = AddOn.ExpansionTags.Legion
     },
     {
@@ -134,7 +134,7 @@ AddOn.Toys = {
         EncounterID = 2553,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["Can also be looting by fishing within the instance"],
-        Waypoint = { mapID = 2200, x = 0.273, y = 0.31 },
+        Waypoint = AddOn.Waypoints.Amirdrassil,
         SearchTags = AddOn.ExpansionTags.Dragonflight
     },
     {
@@ -146,7 +146,7 @@ AddOn.Toys = {
         AreaPoiID = 6726,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Notes = L["Dropped by Doctor Theolen Krastinov, who has a random chance to spawn after killing Rattlegore"],
-        Waypoint = { mapID = 22, x = 0.698, y = 0.736 },
+        Waypoint = AddOn.Waypoints.Scholomance,
         SearchTags = AddOn.ExpansionTags.MistsOfPandaria
     },
     {
@@ -157,8 +157,8 @@ AddOn.Toys = {
         MapID = 1592,
         AreaPoiID = 8510,
         EncounterID = 2711,
-        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic, RaidDifficulty.MythicFlex },
-        Waypoint = { mapID = 2413, x = 0.736, y = 0.664 },
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = AddOn.Waypoints.Sporefall,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -169,8 +169,8 @@ AddOn.Toys = {
         MapID = 1592,
         AreaPoiID = 8510,
         EncounterID = 2711,
-        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic, RaidDifficulty.MythicFlex },
-        Waypoint = { mapID = 2413, x = 0.736, y = 0.664 },
+        DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
+        Waypoint = AddOn.Waypoints.Sporefall,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -182,7 +182,7 @@ AddOn.Toys = {
         AreaPoiID = 6718,
         DifficultyIDs = { DungeonDifficulty.Heroic },
         Notes = L["Can drop from every boss in the dungeon"].."\n\n"..L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 122, x = 0.61, y = 0.307 },
+        Waypoint = AddOn.Waypoints.MagistersTerrace,
         SearchTags = AddOn.ExpansionTags.TheBurningCrusade
     },
     {
@@ -195,7 +195,7 @@ AddOn.Toys = {
         AreaPoiID = 6724,
         DifficultyIDs = { DungeonDifficulty.Normal },
         Notes = L["Also obtainable in Timewalking"],
-        Waypoint = { mapID = 122, x = 0.61, y = 0.307 },
+        Waypoint = AddOn.Waypoints.StratholmeLive,
         SearchTags = AddOn.ExpansionTags.Classic
     },
     {
@@ -207,7 +207,7 @@ AddOn.Toys = {
         AreaPoiID = 8481,
         EncounterID = 2772,
         DifficultyIDs = { DungeonDifficulty.Mythic },
-        Waypoint = { mapID = 2413, x = 0.265, y = 0.78 },
+        Waypoint = AddOn.Waypoints.TheBlindingVale,
         SearchTags = AddOn.ExpansionTags.Midnight
     },
     {
@@ -220,7 +220,7 @@ AddOn.Toys = {
         EncounterID = 1737,
         DifficultyIDs = { RaidDifficulty.LFR, RaidDifficulty.Normal, RaidDifficulty.Heroic, RaidDifficulty.Mythic },
         Notes = L["Can only be looted and used by a Demon Hunter"].."\n\n"..L["This item is obtainable even though it does not appear on the loot table for Gul'dan"],
-        Waypoint = { mapID = 680, x = 0.437, y = 0.573 },
+        Waypoint = AddOn.Waypoints.TheNighthold,
         SearchTags = AddOn.ExpansionTags.Legion
     },
     {
@@ -232,7 +232,7 @@ AddOn.Toys = {
         AreaPoiID = 5327,
         DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Dropped by the Rare Elite Vixx the Collector"],
-        Waypoint = { mapID = 882, x = 0.222, y = 0.566 },
+        Waypoint = AddOn.Waypoints.SeatOfTheTriumvirate,
         SearchTags = AddOn.ExpansionTags.Legion
     },
     {
@@ -244,7 +244,7 @@ AddOn.Toys = {
         AreaPoiID = 5327,
         DifficultyIDs = { DungeonDifficulty.Heroic, DungeonDifficulty.Mythic },
         Notes = L["Dropped by the Rare Elite Vixx the Collector"],
-        Waypoint = { mapID = 882, x = 0.222, y = 0.566 },
+        Waypoint = AddOn.Waypoints.SeatOfTheTriumvirate,
         SearchTags = AddOn.ExpansionTags.Legion
     },
     {
@@ -256,7 +256,7 @@ AddOn.Toys = {
         AreaPoiID = 6502,
         DifficultyIDs = { DungeonDifficulty.Normal },
         Notes = L["Dropped by the hidden boss Endgineer Omegaplugg"].."\n\n"..L["It is highly recommended to attempt this encounter with a full party"],
-        Waypoint = { mapID = 27, x = 0.314, y = 0.380 },
+        Waypoint = AddOn.Waypoints.Gnomeregan,
         SearchTags = AddOn.ExpansionTags.Classic
     }
 }

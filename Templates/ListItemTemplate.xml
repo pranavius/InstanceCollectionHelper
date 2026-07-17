@@ -32,7 +32,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT"/>
                 </Anchors>
                 <Frames>
-                    <Button parentKey="ViewButton" inherits="InsecureActionButtonTemplate">
+                    <Button parentKey="ViewButton">
                         <Size x="24" y="24"/>
                         <Anchors>
                             <Anchor point="LEFT" relativePoint="LEFT" x="0" y="-1" />
@@ -66,7 +66,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     <Anchor point="BOTTOMLEFT" relativeKey="$parent.NameContainer" relativePoint="BOTTOMRIGHT"/>
                 </Anchors>
                 <Frames>
-                    <Button parentKey="ViewButton" inherits="InsecureActionButtonTemplate">
+                    <Button parentKey="ViewButton">
                         <Size x="20" y="20"/>
                         <Anchors>
                             <Anchor point="LEFT"/>
@@ -235,7 +235,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                             <OnLeave/>
                         </Scripts>
                     </Frame>
-                    <Button parentKey="ICHWaypointButton" inherits="InsecureActionButtonTemplate" hidden="true">
+                    <Button parentKey="ICHWaypointButton" hidden="true">
                         <Size x="24" y="24"/>
                         <KeyValues>
                             <KeyValue key="instanceID" value="" type="number"/>
@@ -291,7 +291,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     <Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT"/>
                 </Anchors>
                 <Frames>
-                    <Button parentKey="ViewButton" inherits="InsecureActionButtonTemplate">
+                    <Button parentKey="ViewButton">
                         <Size x="24" y="24"/>
                         <Anchors>
                             <Anchor point="LEFT" relativePoint="LEFT" x="0" y="-1" />
@@ -361,7 +361,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                     <Anchor point="BOTTOMLEFT" relativeKey="$parent.ExpansionContainer" relativePoint="BOTTOMRIGHT"/>
                 </Anchors>
                 <Frames>
-                    <Button parentKey="CurrencyButton" inherits="InsecureActionButtonTemplate">
+                    <Button parentKey="CurrencyButton">
                         <Size x="20" y="20"/>
                         <Anchors>
                             <Anchor point="LEFT" relativePoint="LEFT" x="0" y="-1" />
@@ -450,7 +450,7 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
                             <OnLeave/>
                         </Scripts>
                     </Frame>
-                    <Button parentKey="ICHWaypointButton" inherits="InsecureActionButtonTemplate" hidden="true">
+                    <Button parentKey="ICHWaypointButton" hidden="true">
                         <KeyValues>
                             <KeyValue key="vendorName" value="" type="string"/>
                         </KeyValues>

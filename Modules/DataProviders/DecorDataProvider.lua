@@ -2,6 +2,31 @@ local name, AddOn = ...
 ---@class InstanceCollectionHelper
 AddOn = LibStub("AceAddon-3.0"):GetAddon(name)
 
+function AddOn:CreateDecorCache()
+    ---@type table<number, CacheDataBase>
+    self.DecorCache = {}
+    local toLoad = #self.DecorItems
+
+    for _, item in ipairs(self.DecorItems) do
+        Item:CreateFromItemID(item.DecorItemID):ContinueOnItemLoad(function()
+            toLoad = toLoad - 1
+            local iconID = select(5, C_Item.GetItemInfoInstant(item.DecorItemID))
+
+            self.DecorCache[item.DecorItemID] = {
+                itemName = C_Item.GetItemNameByID(item.DecorItemID) or "",
+                itemID = item.DecorItemID,
+                iconID = iconID or 134400,
+            }
+
+            if toLoad == 0 then
+                self:PrintDebugMessage("Decor data loaded")
+                self.WorldTour:BuildRoute(true)
+                self.WorldTour:RefreshWindowIfShown()
+            end
+        end)
+    end
+end
+
 ---Initializes how decor data in the scrollable list should be displayed
 ---@param frame ICHListItem
 ---@param item DecorItem
@@ -27,6 +52,12 @@ function AddOn.DecorDataProviderInit(frame, item)
             local iconID = select(5, C_Item.GetItemInfoInstant(d.DecorItemID))
             return decor.name, iconID, isOwned, d.DecorItemID
         end,
-        onNameClick = function() HousingModelPreviewFrame:ShowCatalogEntryInfo(decor) end
+        onNameClick = function()
+            if not C_AddOns.IsAddOnLoaded("Blizzard_HousingModelPreview") then
+                AddOn:PrintDebugMessage("Loading Blizz Housing Model Preview module")
+                C_AddOns.LoadAddOn("Blizzard_HousingModelPreview")
+            end
+            HousingModelPreviewFrame:ShowCatalogEntryInfo(decor)
+        end
     })
 end
