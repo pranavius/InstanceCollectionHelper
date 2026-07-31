@@ -20,7 +20,7 @@ ignore:
     - LICENSE
     - Annotations.lua
     - Data/Lemix.lua
-    - Modules/LemixDataProvider.lua
+    - Modules/DataProviders/LemixDataProvider.lua
     - Templates/LemixMixins.lua
     - Templates/LemixTemplates.xml
 

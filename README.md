@@ -21,7 +21,7 @@ ICH will be continue to be supported in the **Midnight** expansion and beyond fo
   - Supports `&` (AND), `|` (OR), and `!` (NOT) logical operators with grouping via parentheses
 - Easily keep track of all available collectibles offered by Timewalking vendors along with their costs
 - Multi-column scrollable UI with the ability to "favorite" items and sort by a specific column
-- "Mini-window" that can appear when inside an instance that has collectible you are missing
+- "Mini-window" that can appear when inside an instance that shows which collectibles you are missing
 - *BETA Feature:* Instance farming **World Tour** that guides you through different zones in the game for the chance to grab any collectibles you're still missing
   - Farming route is based on the Mount Planner feature from [Simple Armory](https://simplearmory.com)
   - Creates a map pin for each travel destination and instance entrance
